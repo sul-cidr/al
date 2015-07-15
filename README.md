@@ -1,3 +1,4 @@
-== Authorial London 
+# Authorial London v2
 
-Rubified version
+Rubified remake of Authorial London
+
