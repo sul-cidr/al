@@ -1,0 +1,8 @@
+## *** questions, issues
+
+- do we want to type works?
+- change field names: 
+	passages.placenames -> placerefs
+	placerefs.source_loc -> passage_id
+
+- decide author->categories model
