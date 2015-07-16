@@ -1,4 +1,4 @@
 # Authorial London v2
 
-Rubified remake of Authorial London
+Ruby-fied remake of Authorial London
 
