@@ -8,5 +8,9 @@ class CreateWorks < ActiveRecord::Migration
     	t.integer :subject_id # subject of bio essay
      	t.timestamps null: false
     end
+
+    add_foreign_key :works, :authors
+    
   end
+
 end
