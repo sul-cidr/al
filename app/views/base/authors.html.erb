@@ -1,0 +1,11 @@
+<h1>Authorial London Authors</h1>
+<p>congrats, you made it to <b>views/base/authors</b> with <b>@array</b> passed by controller <b><em>base#authors</em></b></p>
+
+<% @array.each do |n| %>
+  <%= n %> <br/>
+<% end %>
+
+<p><%= link_to("Home", {:action => "index" }) %></p>
+
+<hr/>
+<%= params.inspect %>
