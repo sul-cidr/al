@@ -1,5 +1,5 @@
 class CreatePassages < ActiveRecord::Migration
-  def change
+  def up
     create_table :passages do |t|
     	t.string :passage_id # work.{int}
     	t.string :work_id
@@ -11,4 +11,9 @@ class CreatePassages < ActiveRecord::Migration
   add_foreign_key :passages, :works
 
   end
+
+  def down
+    drop_table passages
+  end
+
 end

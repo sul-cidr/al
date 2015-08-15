@@ -8,3 +8,6 @@ $	rails g model passage
 $	rails g model placeref
 $	rails g model place
 
+rake db:migrate
+rake db:seed
+
