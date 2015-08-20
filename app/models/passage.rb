@@ -4,6 +4,6 @@ class Passage < ActiveRecord::Base
   	passage_id
 	end
 
-	belongs_to :works
+	belongs_to :work, foreign_key: :work_id
 
 end
