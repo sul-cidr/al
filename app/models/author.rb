@@ -2,12 +2,16 @@ class Author < ActiveRecord::Base
 
 	self.primary_key = 'author_id'
 
-	# has_many :works
-	# has_many :passages, :through => :works
+	has_many :author_genres
+	has_many :genres, :through => :author_genres
+	has_many :author_forms
+	has_many :forms, :through => :author_forms
+	has_many :author_communities
+	has_many :communities, :through => :author_communities
+	has_many :author_standings
+	has_many :standings, :through => :author_standings
 
-	has_and_belongs_to_many :categories, :foreign_key => :author_id
-	# has_many :dimensions, :foreign_key => :author_id, :join_table => "authors_categories"
-	# has_many :categories, :through => :authors_categories
+	has_many :works
 
   def to_s
   "#{prefname}"

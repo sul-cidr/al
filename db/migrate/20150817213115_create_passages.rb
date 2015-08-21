@@ -1,7 +1,7 @@
 class CreatePassages < ActiveRecord::Migration
   def up
     create_table :passages, {:id => false}  do |t|
-    	t.string :passage_id # 
+    	t.string :passage_id 
     	t.integer :work_id
     	t.text :text
     	t.string :placerefs # place references in this passage

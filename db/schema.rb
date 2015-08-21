@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150818061451) do
+ActiveRecord::Schema.define(version: 20150820051952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,42 @@ ActiveRecord::Schema.define(version: 20150818061451) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "author_communities", force: :cascade do |t|
+    t.integer  "author_id"
+    t.integer  "community_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "author_communities", ["author_id", "community_id"], name: "index_author_communities_on_author_id_and_community_id", using: :btree
+
+  create_table "author_forms", force: :cascade do |t|
+    t.integer  "author_id"
+    t.integer  "form_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "author_forms", ["author_id", "form_id"], name: "index_author_forms_on_author_id_and_form_id", using: :btree
+
+  create_table "author_genres", force: :cascade do |t|
+    t.integer  "author_id"
+    t.integer  "genre_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "author_genres", ["author_id", "genre_id"], name: "index_author_genres_on_author_id_and_genre_id", using: :btree
+
+  create_table "author_standings", force: :cascade do |t|
+    t.integer  "author_id"
+    t.integer  "standing_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "author_standings", ["author_id", "standing_id"], name: "index_author_standings_on_author_id_and_standing_id", using: :btree
+
   create_table "authors", primary_key: "author_id", force: :cascade do |t|
     t.string   "prefname"
     t.string   "surname"
@@ -79,7 +115,25 @@ ActiveRecord::Schema.define(version: 20150818061451) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "communities", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "dimensions", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "forms", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -111,6 +165,12 @@ ActiveRecord::Schema.define(version: 20150818061451) do
     t.geometry "geom_line",   limit: {:srid=>4326, :type=>"line_string"}
     t.datetime "created_at",                                                null: false
     t.datetime "updated_at",                                                null: false
+  end
+
+  create_table "standings", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "works", primary_key: "work_id", force: :cascade do |t|
