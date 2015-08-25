@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  root "base#index"
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  
+  root to: "application#index"
+  
+  #root "base#index"
 
   match ':controller(/:action(/:id))', :via => :get
 
