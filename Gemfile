@@ -17,6 +17,14 @@ gem 'seedbank'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'devise'
 
+group :deployment do
+  gem 'capistrano', '~> 3.0'
+  gem 'capistrano-rails' # or other gems as appropriate
+  gem 'capistrano-rvm'
+  gem 'capistrano-bundler'
+  gem 'lyberteam-capistrano-devel', "~> 3.0"
+end
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views

@@ -1,5 +1,8 @@
 <div id="authors">
 	<div class="container">
-		<h2 class="muted">Authors</h3>
+		<div id ="authors-title">
+			<h2 class="muted">Authors</h2>
+		</div>
+		<div id="authors-content">the content div</div>
 	</div>
 </div>
