@@ -2,8 +2,12 @@
 	@startWithParent = false
 	
 	API =
-		showAuthors: ->
-			AuthorsApp.Show.Controller.showAuthors()
+		showAuthor: ->
+			AuthorsApp.Show.Controller.showAuthor()
+
+		listAuthors: ->
+			AuthorsApp.List.Controller.listAuthors()
 	
 	AuthorsApp.on "start", ->
-		API.showAuthors()
+		# API.listAuthors()
+		API.showAuthor()

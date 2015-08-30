@@ -2,9 +2,9 @@
   
   Show.Controller =
 
-    showAuthors: ->
-      authorsView = @getAuthorsView()
-      App.authorsRegion.show authorsView
+    showAuthor: ->
+      authorView = @getAuthorView()
+      App.authorsRegion.show authorView
     
-    getAuthorsView: ->
-      new Show.Authors
+    getAuthorView: ->
+      new Show.Author

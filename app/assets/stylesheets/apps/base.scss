@@ -13,5 +13,6 @@ p, h1, h2, h3, h4 {font-family: Palatino-linotype, Georgia;}
 	hr { margin: 5px 0; border: 0; height: 1px; 
 		background-image: linear-gradient(to right, rgba(0, 0, 0, 0), 
 			rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));}
+	.container { position:absolute; width: 95%;}
 }
 .panel-title { padding: 3px !important;}
