@@ -1,7 +1,5 @@
 @AL = do (Backbone, Marionette) ->
   
-  App = undefined
-  
   App = new (Marionette.Application)
   
   App.addRegions
