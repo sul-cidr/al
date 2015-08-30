@@ -1,8 +1,7 @@
-<div id="authors">
-	<div class="container">
-		<div id ="authors-title">
-			<h2 class="muted">Authors</h2>
+<div id="authors" class="panel">
+		<div class="panel-title">
+			<h3>Authors</h3>
+			<hr/>
 		</div>
-		<div id="authors-content">the content div</div>
-	</div>
+		<div id="authors-content"><p>authors content div</p></div>
 </div>

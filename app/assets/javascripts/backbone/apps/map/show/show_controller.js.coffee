@@ -2,10 +2,10 @@
 	
 	Show.Controller =
 		
-		showHeader: ->
+		showMap: ->
 			mapView = @getMapView()
 			App.mapRegion.show mapView
 		
-		getHeaderView: ->
+		getMapView: ->
 			new Show.Map
 
