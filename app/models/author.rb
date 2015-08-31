@@ -12,6 +12,7 @@ class Author < ActiveRecord::Base
 	has_many :standings, :through => :author_standings
 
 	has_many :works
+	has_many :passages, :through => :works
 
   def to_s
   "#{prefname}"
