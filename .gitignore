@@ -14,7 +14,8 @@
 !/log/.keep
 /tmp
 
-# Ignore folder of misc stuff
 /misc/*
+
+/config/*
 
 /node_modules
