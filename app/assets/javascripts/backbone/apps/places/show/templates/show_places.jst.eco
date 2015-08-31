@@ -3,5 +3,9 @@
 			<h3>Places</h3>
 			<hr/>
 		</div>
+		<div id="places-navmap" class="centered">
+			<img src="assets/images/minimap300w.png" />
+		</div>
 		<div id="places-content"><p>showPlaces()</p></div>
 </div>
+

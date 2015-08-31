@@ -1,4 +1,5 @@
 <div id="authors" class="panel">
+	<span id="toggle-authors"><></span>
 	<div class="panel-title">
 		<h3>{Author}</h3>
 		<hr/>

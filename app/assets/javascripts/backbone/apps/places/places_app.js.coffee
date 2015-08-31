@@ -3,6 +3,10 @@
 	
 	API =
 
+		# TODO: Marionette LayoutView
+		# listPlaces: ->
+		# 	PlacesApp.List.Controller.listPlaces()
+
 		showPlaces: ->
 			PlacesApp.Show.Controller.showPlaces()
 	
