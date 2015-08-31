@@ -1,8 +1,7 @@
-@AL.module "AuthorsApp.Show", (Show, App, Backbone, Marionette, $, _) ->
+@AL.module "AuthorsApp.List", (List, App, Backbone, Marionette, $, _) ->
 	
-	class Show.Author extends Marionette.ItemView
-	#class Show.Author extends App.Views.ItemView
-		template: "authors/show/templates/show_author"
+	class List.Authors extends Marionette.ItemView
+		template: "authors/list/templates/list_authors"
 
 	# AppLayoutView = Marionette.LayoutView.extend(
 	#   template: 'authors/show/templates/show_authors'
