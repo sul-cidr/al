@@ -17,9 +17,12 @@ gem 'seedbank'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'devise'
 
+gem 'ransack', '1.6.5'
 gem 'rabl'
 gem 'jquery-turbolinks'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
+gem 'squeel', github: 'activerecord-hackery/squeel'
+gem 'annotate'
 
 group :deployment do
   gem 'capistrano', '~> 3.0'

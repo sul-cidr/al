@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150820051952) do
+ActiveRecord::Schema.define(version: 20150901182036) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,23 +154,32 @@ ActiveRecord::Schema.define(version: 20150820051952) do
     t.string   "passage_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "work_id"
   end
 
   create_table "places", force: :cascade do |t|
     t.integer  "place_id"
-    t.string   "src"
+    t.string   "source"
     t.text     "geom_wkt"
-    t.geometry "geom_mpoint", limit: {:srid=>4326, :type=>"multi_point"}
-    t.geometry "geom_mpoly",  limit: {:srid=>4326, :type=>"multi_polygon"}
-    t.geometry "geom_line",   limit: {:srid=>4326, :type=>"line_string"}
-    t.datetime "created_at",                                                null: false
-    t.datetime "updated_at",                                                null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "names"
   end
 
   create_table "standings", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.boolean  "is_admin",   default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "works", primary_key: "work_id", force: :cascade do |t|
