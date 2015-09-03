@@ -3,10 +3,6 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   
   root to: "application#index"
-  
-  resources :authors
-  
-  #root "base#index"
 
   match ':controller(/:action(/:id))', :via => :get
 

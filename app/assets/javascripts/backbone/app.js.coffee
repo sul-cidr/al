@@ -2,6 +2,8 @@
   
   App = new (Marionette.Application)
   
+  # App.on 'initialize:before', ->
+
   # AuthorsRegion = Marionette.Region.extend(el: '#authors-region')
   # PlacesRegion = Marionette.Region.extend(el: '#places-region')
 
