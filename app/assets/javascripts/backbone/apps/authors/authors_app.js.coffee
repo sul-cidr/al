@@ -9,5 +9,5 @@
 			AuthorsApp.List.Controller.listAuthors()
 	
 	AuthorsApp.on "start", ->
-		# API.listAuthors()
-		API.showAuthor()
+		API.listAuthors()
+		# API.showAuthor()

@@ -6,4 +6,5 @@
 			HeaderApp.Show.Controller.showHeader()
 	
 	HeaderApp.on "start", ->
+		# console.log "started HeaderApp"
 		API.showHeader()

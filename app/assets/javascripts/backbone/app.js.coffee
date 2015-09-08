@@ -2,10 +2,10 @@
   
   App = new (Marionette.Application)
   
-  # App.on 'initialize:before', ->
+  App.on 'initialize:before', ->
 
-  # AuthorsRegion = Marionette.Region.extend(el: '#authors-region')
-  # PlacesRegion = Marionette.Region.extend(el: '#places-region')
+    # AuthorsRegion = Marionette.Region.extend(el: '#authors-region')
+    # PlacesRegion = Marionette.Region.extend(el: '#places-region')
 
   App.addRegions
     headerRegion: '#header-region'
@@ -16,9 +16,6 @@
     placesRegion: 
       selector: '#places-region'
       #regionClass: PlacesRegion
-
-    # mainRegion: '#main-region'
-    # footerRegion: '#footer-region'
 
   App.addInitializer ->
     App.module('HeaderApp').start()

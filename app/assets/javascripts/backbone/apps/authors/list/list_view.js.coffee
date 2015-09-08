@@ -3,6 +3,7 @@
 	class List.Authors extends Marionette.ItemView
 		template: "authors/list/templates/list_authors"
 
+
 	# AppLayoutView = Marionette.LayoutView.extend(
 	#   template: 'authors/show/templates/show_authors'
 	#   regions:
