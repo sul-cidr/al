@@ -7,6 +7,7 @@
 
 		listAuthors: ->
 			AuthorsApp.List.Controller.listAuthors()
+
 	
 	AuthorsApp.on "start", ->
 		API.listAuthors()

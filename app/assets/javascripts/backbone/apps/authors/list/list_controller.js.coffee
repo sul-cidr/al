@@ -3,8 +3,13 @@
   List.Controller =
 
     listAuthors: ->
-      authorsView = @getAuthorsView()
-      App.authorsRegion.show authorsView
-    
-    getAuthorsView: ->
-      new List.Authors
+      authorsCollection = new List.Collection
+
+      authorsCollection.fetch()
+
+      authorsView = new List.AuthorsView({
+        collection: authorsCollection
+      })
+
+      App.authorsRegion.show authorsView 
+

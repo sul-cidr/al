@@ -3,6 +3,7 @@
 			<h3>Authors</h3>
 			<hr/>
 		</div>
-		<div id="authors-content"><p>listAuthors()</p>
+		<div id="authors-content">
+      <p>listAuthors()</p>
 		</div>
 </div>
