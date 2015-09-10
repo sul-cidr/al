@@ -10,15 +10,16 @@
 
 	class PlacesApp.Router extends Marionette.AppRouter
 		appRoutes:
-			"places ": "listPlaces"
+			"places": "listPlaces"
 			# "place/??": "showPlace"
 
 	API =
 		# one or the other
-		# listPlaces: ->
-		# 	PlacesApp.List.Controller.listPlaces()
-		listPlaces: ->
-			PlacesApp.Show.Controller.showPlaces()
+		 listPlaces: ->
+		 	PlacesApp.List.Controller.listPlaces()
+
+		#listPlaces: ->
+		#	PlacesApp.Show.Controller.showPlaces()
 
 		# # ?? differentiate areas (neighborhoods/districts)?
 		# listAreas: ->

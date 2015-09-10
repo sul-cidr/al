@@ -4,7 +4,7 @@
 
     listAuthors: ->
       App.request "author:entities", (authors) =>
-        console.log authors
+        # console.log authors
 
         @layout = @getLayoutView()
 
@@ -20,7 +20,7 @@
 
     showAuthors: (authors) ->
       authorsView = @getAuthorsView authors
-      console.log authorsView
+      # console.log authorsView
       @layout.authorsRegion.show authorsView
 
     getAuthorsView: (authors) ->

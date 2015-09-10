@@ -14,11 +14,11 @@
 		template: "places/list/templates/_place"
 		tagName: "span"
 
-	class List.Authors extends App.Views.CompositeView
+	class List.Places extends App.Views.CompositeView
 		template: "places/list/templates/_places"
 		childView: List.Place
 		emptyView: List.Empty 
-		childViewContainer: "placelist"
+		childViewContainer: "arealist"
 
 	class List.Empty extends App.Views.ItemView
 		template: "places/list/templates/_empty"

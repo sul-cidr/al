@@ -5,4 +5,9 @@ class AuthorsController < ApplicationController
 		@authors = Author.all
 	end
 
+  def test
+    console.log 'AuthorsController'
+  end
+
+
 end

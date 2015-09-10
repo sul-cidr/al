@@ -8,6 +8,5 @@ class PlacesController < ApplicationController
   def areas
     
   end
-
-
+  
 end

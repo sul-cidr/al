@@ -9,21 +9,12 @@
 
   API =
     getPlaceEntities: (cb) ->
-    
-    getPlaces: ->
-      # not from the db yet 
-      
-      new Entities.PlaceCollection [
-        { prefname: "Southwark", type: "area"}
-        { prefname: "Bloomsbury", type: "area" }
-        { prefname: "The Strand", type: "place"}
-      ]
-
-      # places = new Entities.PlaceCollection()
-      # places.fetch
-      #   success: ->
-      #     cb places 
-
+      # console.log Entities
+      places = new Entities.PlaceCollection()
+      places.fetch
+        success: ->
+          cb places 
+   
   App.reqres.setHandler "place:entities", (cb) ->
     API.getPlaceEntities cb
 

@@ -4,7 +4,7 @@
 
     listPlaces: ->
       App.request "place:entities", (places) =>
-        console.log places
+        console.log 'in places list_controller'
 
         @layout = @getLayoutView()
 
@@ -15,7 +15,7 @@
         App.placesRegion.show @layout      
 
     showHeader: (places) ->
-      headerView = @getHeaderView places
+      # headerView = @getHeaderView places
       # for now, a static map in _places.jst.eco
       # @layout.headerRegion.show headerView
 
