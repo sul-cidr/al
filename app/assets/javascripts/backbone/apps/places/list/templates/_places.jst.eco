@@ -1,0 +1,8 @@
+<div id="places" class="panel">
+    <div class="panel-title">
+      <div id="places-navmap" class="centered">
+        <img src="assets/images/minimap300w.png" />
+      </div>
+    </div>
+    <arealist style="display:inline-block"></arealist>
+</div>

@@ -3,13 +3,45 @@
   List.Controller =
 
     listAuthors: ->
-      authorsCollection = new List.Collection
+      App.request "author:entities", (authors) =>
+        console.log authors
 
-      authorsCollection.fetch()
+        @layout = @getLayoutView()
 
-      authorsView = new List.AuthorsView({
-        collection: authorsCollection
-      })
+        @layout.on "show", =>
+          @showHeader authors
+          @showAuthors authors
 
-      App.authorsRegion.show authorsView 
+        App.authorsRegion.show @layout      
+
+    showHeader: (authors) ->
+      headerView = @getHeaderView authors
+      # @layout.headerRegion.show headerView
+
+    showAuthors: (authors) ->
+      authorsView = @getAuthorsView authors
+      console.log authorsView
+      @layout.authorsRegion.show authorsView
+
+    getAuthorsView: (authors) ->
+      new List.Authors
+        collection: authors
+
+    getHeaderView: (authors) ->
+      new List.Header
+        collection: authors
+
+    getLayoutView: ->
+      new List.Layout
+    
+
+      # authorsCollection = new List.Collection
+
+      # authorsCollection.fetch()
+
+      # authorsView = new List.AuthorsView({
+      #   collection: authorsCollection
+      # })
+
+      # App.authorsRegion.show authorsView 
 

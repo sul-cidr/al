@@ -18,6 +18,8 @@
 //= require lib/backbone.marionette
 //= require_tree ./backbone/config
 //= require backbone/app
+//= require_tree ./backbone/entities
+//= require_tree ./backbone/views
 //= require_tree ./backbone/apps
 //= require turbolinks
 //= require bootstrap-sprockets
