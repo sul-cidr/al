@@ -13,6 +13,9 @@
 	class List.Author extends App.Views.ItemView
 		template: "authors/list/templates/_author"
 		tagName: "span"
+		# templateHelpers: viewHelpers
+	  # templateHelpers: ->
+	  # 	fullname: @model.get('prefname').replace(' ','&nbsp;')
 
 	class List.Authors extends App.Views.CompositeView
 		template: "authors/list/templates/_authors"
