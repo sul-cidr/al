@@ -1,5 +1,5 @@
-<div id="map">
-	<div class="container">
-		<p>Wherewolves of London (on a map)</p>
-	</div>
-</div>
+
+<div id="map"><p>Wherewolves of London (on a map)</p></div>
+<div id='container'></div>
+
+

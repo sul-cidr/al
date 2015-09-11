@@ -4,7 +4,7 @@
 
     listPlaces: ->
       App.request "place:entities", (places) =>
-        console.log 'in places list_controller'
+        # console.log places
 
         @layout = @getLayoutView()
 
@@ -21,12 +21,13 @@
 
     showPlaces: (places) ->
       placesView = @getPlacesView places
-      console.log placesView
+      #console.log 'placesView', placesView
       @layout.placesRegion.show placesView
 
     getPlacesView: (places) ->
       new List.Places
         collection: places
+        # trying to filter this
 
     getHeaderView: (places) ->
       new List.Header

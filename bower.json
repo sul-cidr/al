@@ -1,0 +1,21 @@
+{
+  "name": "al",
+  "version": "0.0.1",
+  "homepage": "https://github.com/sul-cidr/al",
+  "authors": [
+    "kgeographer <karlg@kgeographer.org>"
+  ],
+  "description": "Authorial London",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/assets/components",
+    "test",
+    "tests"
+  ]
+}

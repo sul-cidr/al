@@ -4,6 +4,7 @@
 		
 		showMap: ->
 			mapView = @getMapView()
+      # console.log mapView
 			App.mapRegion.show mapView
 		
 		getMapView: ->

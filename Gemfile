@@ -24,6 +24,7 @@ gem 'font-awesome-rails'
 gem 'squeel', github: 'activerecord-hackery/squeel'
 gem 'annotate'
 
+
 # gem 'monban'
 # gem 'monban-generators'
 
