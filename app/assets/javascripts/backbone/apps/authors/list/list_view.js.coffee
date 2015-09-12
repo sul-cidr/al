@@ -5,7 +5,7 @@
 
 		regions:
 			authorsRegion: "#authors-region"
-			headerRegion: "#header-region"
+			headerRegion: "#title-region"
 			dimensionsRegion: "#dimensions-region"
 			categoriesRegion: "#catogories-region"
 			authorlistRegion: "#authorlist-region"
@@ -16,9 +16,6 @@
 	class List.Author extends App.Views.ItemView
 		template: "authors/list/templates/_author"
 		tagName: "span"
-		# templateHelpers: viewHelpers
-	  # templateHelpers: ->
-	  # 	fullname: @model.get('prefname').replace(' ','&nbsp;')
 
 	class List.Authors extends App.Views.CompositeView
 		template: "authors/list/templates/_authors"
@@ -29,13 +26,3 @@
 	class List.Empty extends App.Views.ItemView
 		template: "authors/list/templates/_empty"
 		tagName: "p"
-
-	# class List.AuthorView extends App.Views.ItemView
-	# 	template: "authors/list/templates/list_author"
-
-	# class List.AuthorsView extends App.Views.CollectionView
-	# 	template: "authors/list/templates/list_authors"
-
-	# 	getChildView: ->
-	# 		List.AuthorView
-
