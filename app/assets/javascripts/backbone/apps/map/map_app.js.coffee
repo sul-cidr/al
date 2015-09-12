@@ -7,3 +7,4 @@
 	
 	MapApp.on "start", ->
 		API.showMap()
+    

@@ -11,17 +11,25 @@
 // about supported directives.
 //
 
-//= require jquery
-//= require jquery.turbolinks
-//= require lib/underscore
-//= require lib/backbone
-//= require lib/backbone.marionette
+// *** from bower
+
+//= require jquery/dist/jquery.min
+//= require underscore/underscore-min
+//= require backbone/backbone-min
+//= require backbone.marionette/lib/backbone.marionette.min
+
+//= require mapbox.js/mapbox
+//= require wellknown/wellknown
+//= require leaflet-omnivore/leaflet-omnivore.min
+
+// *** app
+
 //= require_tree ./backbone/config
 //= require backbone/app
 //= require_tree ./backbone/entities
 //= require_tree ./backbone/views
 //= require_tree ./backbone/apps
-//= require turbolinks
+//*** require turbolinks
 //= require bootstrap-sprockets
 
 
