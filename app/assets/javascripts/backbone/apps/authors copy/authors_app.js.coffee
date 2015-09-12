@@ -19,8 +19,7 @@
 	App.addInitializer ->
 		new AuthorsApp.Router
 			controller: API
-		#API.showAuthors()
-		AuthorsApp.List.Controller.startAuthors()
+		API.listAuthors()
 ##
 	
 	# AuthorsApp.on "start", ->

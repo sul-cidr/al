@@ -2,7 +2,7 @@
   
   List.Controller =
 
-    startAuthors: ->
+    listAuthors: ->
       App.request "author:entities", (authors) =>
         # console.log authors
 
@@ -10,31 +10,18 @@
 
         @layout.on "show", =>
           @showHeader authors
-          @enumAuthors authors
+          @showAuthors authors
 
-        App.authorsRegion.show @layout 
-
-    listAuthors: ->
-      # App.request "author:entities", (authors) =>
-      #   # console.log authors
-
-      #   @layout = @getLayoutView()
-
-      #   @layout.on "show", =>
-      #     @showHeader authors
-      #     @showAuthors authors
-
-      #   App.authorsRegion.show @layout      
+        App.authorsRegion.show @layout      
 
     showHeader: (authors) ->
       headerView = @getHeaderView authors
       @layout.headerRegion.show headerView
 
-    enumAuthors: (authors) ->
-    #listAuthors: (authors) ->
+    showAuthors: (authors) ->
       authorsView = @getAuthorsView authors
-      console.log authorsView
-      @layout.authorlistRegion.show authorsView
+      # console.log authorsView
+      @layout.authorsRegion.show authorsView
 
     getAuthorsView: (authors) ->
       new List.Authors

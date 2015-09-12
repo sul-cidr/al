@@ -29,6 +29,7 @@
 //= require_tree ./backbone/entities
 //= require_tree ./backbone/views
 //= require_tree ./backbone/apps
+//= require_tree ./backbone/helpers
 //*** require turbolinks
 //= require bootstrap-sprockets
 

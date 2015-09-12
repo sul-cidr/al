@@ -4,11 +4,8 @@
 		template: "authors/list/templates/list_layout"
 
 		regions:
-			authorsRegion: "#authors-region"
 			headerRegion: "#header-region"
-			dimensionsRegion: "#dimensions-region"
-			categoriesRegion: "#catogories-region"
-			authorlistRegion: "#authorlist-region"
+			authorsRegion: "#authors-region"
 
 	class List.Header extends App.Views.ItemView
 		template: "authors/list/templates/_header"
@@ -16,9 +13,7 @@
 	class List.Author extends App.Views.ItemView
 		template: "authors/list/templates/_author"
 		tagName: "span"
-		# templateHelpers: viewHelpers
-	  # templateHelpers: ->
-	  # 	fullname: @model.get('prefname').replace(' ','&nbsp;')
+		templateHelpers: 'view_helpers'
 
 	class List.Authors extends App.Views.CompositeView
 		template: "authors/list/templates/_authors"
