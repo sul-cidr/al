@@ -16,7 +16,7 @@
 
     showHeader: (authors) ->
       headerView = @getHeaderView authors
-      # @layout.headerRegion.show headerView
+      @layout.headerRegion.show headerView
 
     showAuthors: (authors) ->
       authorsView = @getAuthorsView authors
