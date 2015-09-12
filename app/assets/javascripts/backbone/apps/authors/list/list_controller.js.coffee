@@ -7,22 +7,32 @@
         # console.log authors
 
         @layout = @getLayoutView()
+        console.log @layout
 
         @layout.on "show", =>
           @showHeader authors
           @enumAuthors authors
+          console.log '@layout.on "show"'
+          @showDimensions 'something'
+          @showCategories 'something'
 
-        App.authorsRegion.show @layout   
+        App.authorsRegion.show @layout  
 
     showHeader: (authors) ->
       headerView = @getHeaderView authors
       @layout.headerRegion.show headerView
 
-    showDimensions: ->
-      
+    showDimensions: (foo) ->
+      dimensionsView = new List.Dimensions
+      @layout.dimensionsRegion.show dimensionsView
+
+    showCategories: (foo) ->
+      categoriesView = new List.Categories
+      @layout.categoriesRegion.show categoriesView
+
     enumAuthors: (authors) ->
       authorsView = @getAuthorsView authors
-      console.log authorsView
+      # console.log authorsView
       @layout.authorlistRegion.show authorsView
 
     getAuthorsView: (authors) ->
