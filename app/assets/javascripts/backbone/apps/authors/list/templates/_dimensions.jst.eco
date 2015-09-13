@@ -1,13 +1,15 @@
-<div class="btn-group" role="group" aria-label="...">
+<!-- bootstrap buttons, not tied to actions -->
+
+<!-- <div class="btn-group" role="group" aria-label="...">
   <button type="button" class="btn btn-default active">Genre</button>
   <button type="button" class="btn btn-default">Form</button>
   <button type="button" class="btn btn-default">Community</button>
   <button type="button" class="btn btn-default">Standing</button>
-</div>
+</div> -->
 
-<!-- <ul class="ul-pills">
+<ul class="ul-pills">
   <li>Genre</li>
   <li>Form</li>
   <li>Literary Community</li>
   <li>Social Standing</li>
-</ul> -->
+</ul>

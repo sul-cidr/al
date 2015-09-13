@@ -15,8 +15,13 @@
 	class List.Dimensions extends App.Views.ItemView
 		template: "authors/list/templates/_dimensions"
 
-	class List.Categories extends App.Views.ItemView
+	class List.Category extends App.Views.ItemView
+		template: "authors/list/templates/_category"
+
+	class List.Categories extends App.Views.CompositeView
 		template: "authors/list/templates/_categories"
+		childView: List.Category
+		childViewContainer: "catlist"
 
 	class List.Author extends App.Views.ItemView
 		template: "authors/list/templates/_author"

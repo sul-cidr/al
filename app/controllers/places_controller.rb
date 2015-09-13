@@ -5,8 +5,7 @@ class PlacesController < ApplicationController
 		@places = Place.all
 	end
 
-  def areas
-    
+  def areas   
   end
   
 end

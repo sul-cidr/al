@@ -3,18 +3,18 @@
   List.Controller =
 
     startAuthors: ->
+
       App.request "author:entities", (authors) =>
         # console.log authors
 
         @layout = @getLayoutView()
-        console.log @layout
+        # console.log @layout
 
         @layout.on "show", =>
           @showHeader authors
           @enumAuthors authors
-          console.log '@layout.on "show"'
-          @showDimensions 'something'
-          @showCategories 'something'
+          @showDimensions()
+          @showCategories()
 
         App.authorsRegion.show @layout  
 
@@ -22,13 +22,19 @@
       headerView = @getHeaderView authors
       @layout.headerRegion.show headerView
 
-    showDimensions: (foo) ->
+    showDimensions: ->
+      console.log 'showDimensions()'
       dimensionsView = new List.Dimensions
       @layout.dimensionsRegion.show dimensionsView
 
-    showCategories: (foo) ->
-      categoriesView = new List.Categories
+    showCategories: ->
+      console.log 'showCategories() - how?'
+      categoriesView = new List.Categories #@getCategoriesView
       @layout.categoriesRegion.show categoriesView
+
+    getCategoriesView: ->
+      new List.Categories
+        collection: categories
 
     enumAuthors: (authors) ->
       authorsView = @getAuthorsView authors

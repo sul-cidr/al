@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   
   resources :authors, only: [:index, :test]
   resources :places, only: [:index]
+  resources :categories, only: [:index]
 
   root to: "application#index"
 
