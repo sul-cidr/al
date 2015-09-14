@@ -5,7 +5,7 @@
   class Entities.PlaceCollection extends Entities.Collection
     model: Entities.Place
     url: '/places.json'
-    #url: Routes.users_path()
+    idAttribute: "place_id"
 
   API =
     # all places: not especially useful

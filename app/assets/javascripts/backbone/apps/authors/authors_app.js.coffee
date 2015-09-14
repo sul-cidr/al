@@ -5,20 +5,28 @@
 		appRoutes:
 			"authors": "listAuthors"
 			"author": "showAuthor"
-			# "categories": "showCategories"
+			"dimensions": "listDimensions"
+			"categories": "listCategories"
 
 	API =
+		startAuthors: ->
+			AuthorsApp.List.Controller.startAuthors()
+
 		showAuthor: ->
 			AuthorsApp.Show.Controller.showAuthor()
 
 		listAuthors: ->
-			# dummy needed for some unknown reason
+			AuthorsApp.List.Controller.listAuthors()
 
-		showCategories: ->
+		listCategories: ->
+			AuthorsApp.List.Controller.listCategories()
+
+		listDimensions: ->
+			AuthorsApp.List.Controller.listDimensions()
 
 
 	App.addInitializer ->
 		new AuthorsApp.Router
 			controller: API
-		# API.startAuthors()
-		AuthorsApp.List.Controller.startAuthors()
+		API.startAuthors()
+		# AuthorsApp.List.Controller.startAuthors()

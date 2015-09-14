@@ -14,10 +14,10 @@
 
 	class List.Dimensions extends App.Views.ItemView
 		template: "authors/list/templates/_dimensions"
-		# CHECK what is this here?
-		events: {'click a': 'showAlert'}
-		showAlert: =>
-			console.log 'clicked a dimension, ' + @$el.html()
+		# TODO on-click filter categories
+		events: {'click a': 'filterCats'}
+		filterCats: (event) ->
+			console.log 'clicked a dimension, ' + event.currentTarget
 
 	class List.Category extends App.Views.ItemView
 		template: "authors/list/templates/_category"
@@ -40,7 +40,15 @@
 		childView: List.Author
 		emptyView: List.Empty 
 		# el: $("#authorlist-region")
-		childViewContainer: "authlist"
+		childViewContainer: "div"
+		# an attempt to sort
+	  # onRender: ->
+	  #   collection = @collection
+	  #   collection.comparator = (collection) ->
+	  #     -collection.get('surname')
+	  #   return
+	  # onSuccess: ->
+	  # 	@collection.sort()
 
 	class List.Empty extends App.Views.ItemView
 		template: "authors/list/templates/_empty"

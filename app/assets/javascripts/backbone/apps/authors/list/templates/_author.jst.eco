@@ -1,1 +1,1 @@
-<%= @safe hardSpace(@prefname) %>; 
+<a href="#"><%= @safe hardSpace(@prefname) %></a>; 

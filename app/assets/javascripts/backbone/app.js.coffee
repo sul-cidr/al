@@ -7,17 +7,17 @@
     # AuthorsRegion = Marionette.Region.extend(el: '#authors-region')
     # PlacesRegion = Marionette.Region.extend(el: '#places-region')
 
-  App.addRegions
-    headerRegion: '#header-region'
-    mapRegion: '#map-region'
-    authorsRegion: 
-      selector: '#authors-region'
-      #regionClass: AuthorsRegion
-    placesRegion: 
-      selector: '#places-region'
-      #regionClass: PlacesRegion
-
   App.addInitializer ->
+    App.addRegions
+      headerRegion: '#header-region'
+      mapRegion: '#map-region'
+      authorsRegion: 
+        selector: '#authors-region'
+        #regionClass: AuthorsRegion
+      placesRegion: 
+        selector: '#places-region'
+        #regionClass: PlacesRegion
+        
     App.module('HeaderApp').start()
     App.module('AuthorsApp').start()
     App.module('PlacesApp').start()

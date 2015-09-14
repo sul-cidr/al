@@ -7,7 +7,11 @@
 
 .author {display: inline-block;}
 
-authlist { padding:0 6px; font-family: Palatino-linotype, Georgia;}
+.authlist { padding:0 6px; font-family: Palatino-linotype, Georgia; margin-top: 6px;
+  a {text-decoration: none;}
+  a:hover {background: yellow;}
+  }
+
 catlist {  
   span { font-family: Geneva, Arial;}
 }
