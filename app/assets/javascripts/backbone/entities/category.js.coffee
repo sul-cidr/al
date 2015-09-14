@@ -1,9 +1,10 @@
 @AL.module "Entities", (Entities, App, Backbone, Marionette, $,  _) ->
 
+  class Entities.Category extends Entities.Model
+  
   class Entities.CategoryCollection extends Entities.Collection
     model: Entities.Category
-    #url: Routes.users_path()
-    url: '/categories.json'
+    url: '/categories.json' 
 
   API =
     getCategoryEntities: (cb) ->
@@ -14,4 +15,4 @@
           cb categories 
 
   App.reqres.setHandler "category:entities", (cb) ->
-    API.getcategoryEntities cb
+    API.getCategoryEntities cb

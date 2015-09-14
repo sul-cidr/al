@@ -1,15 +1,9 @@
-<!-- bootstrap buttons, not tied to actions -->
-
-<!-- <div class="btn-group" role="group" aria-label="...">
-  <button type="button" class="btn btn-default active">Genre</button>
-  <button type="button" class="btn btn-default">Form</button>
-  <button type="button" class="btn btn-default">Community</button>
-  <button type="button" class="btn btn-default">Standing</button>
-</div> -->
-
-<ul class="ul-pills">
-  <li>Genre</li>
-  <li>Form</li>
-  <li>Literary Community</li>
-  <li>Social Standing</li>
-</ul>
+<!-- bootstrap buttons, not tied to actions yet -->
+<div id="dimpills" class="navbar">
+  <ul class="nav nav-pills">
+    <li class="active"><a href="#">Genre</a></li>
+    <li><a href="#">Form</a></li>
+    <li><a href="#">Community</a></li>
+    <li><a href="#">Standing</a></li>
+  </ul>
+<div>

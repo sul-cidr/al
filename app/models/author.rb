@@ -29,7 +29,7 @@ class Author < ActiveRecord::Base
 	has_many :communities, :through => :author_communities
 	has_many :author_standings
 	has_many :standings, :through => :author_standings
-
+ 
 	has_many :works
 	has_many :passages, :through => :works
 	has_many :placerefs, :through => :passages
@@ -49,6 +49,5 @@ class Author < ActiveRecord::Base
   	# Place.joins{placerefs.passages.works.authors}.where{author=self}
 
   end
-
 
 end

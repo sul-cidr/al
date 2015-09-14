@@ -11,6 +11,7 @@
 #  latitude   :float
 #  longitude  :float
 #  names      :string
+#  place_type :string
 #
 
 require 'test_helper'

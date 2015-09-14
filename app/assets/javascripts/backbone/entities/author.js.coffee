@@ -4,7 +4,6 @@
 
   class Entities.AuthorCollection extends Entities.Collection
     model: Entities.Author
-    #url: Routes.users_path()
     url: '/authors.json'
 
   API =

@@ -2,10 +2,15 @@
   
   List.Controller =
 
-    startAuthors: ->
+    listCats: ->
+      App.request "category:entities", (categories) =>
+        # console.log 'categories: ', categories
+        categoriesView = @getCategoriesView categories
+        @layout.categoriesRegion.show categoriesView
 
+    startAuthors: ->
       App.request "author:entities", (authors) =>
-        # console.log authors
+        # console.log 'authors: ', authors
 
         @layout = @getLayoutView()
         # console.log @layout
@@ -14,7 +19,7 @@
           @showHeader authors
           @enumAuthors authors
           @showDimensions()
-          @showCategories()
+          @listCats()
 
         App.authorsRegion.show @layout  
 
@@ -23,16 +28,17 @@
       @layout.headerRegion.show headerView
 
     showDimensions: ->
-      console.log 'showDimensions()'
+      # console.log 'showDimensions()'
       dimensionsView = new List.Dimensions
       @layout.dimensionsRegion.show dimensionsView
 
-    showCategories: ->
-      console.log 'showCategories() - how?'
-      categoriesView = new List.Categories #@getCategoriesView
+    showCategories: (categories) ->
+      # console.log 'showCategories() ', categories
+      categoriesView = @getCategoriesView categories
+      # console.log categoriesView
       @layout.categoriesRegion.show categoriesView
 
-    getCategoriesView: ->
+    getCategoriesView: (categories) ->
       new List.Categories
         collection: categories
 

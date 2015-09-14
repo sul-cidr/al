@@ -1,7 +1,16 @@
 /* authors.scss */
 
 #authors-region { left: 0; background: #eeeee0; }
+// #dimensions-region {  }
+#categories-region { overflow: auto; border: 1px dotted #993333; 
+  background: #e0e0e0; padding: 3px;}
 
 .author {display: inline-block;}
 
 authlist { padding:0 6px; font-family: Palatino-linotype, Georgia;}
+catlist {  
+  span { font-family: Geneva, Arial;}
+}
+
+.navbar { min-height: 35px; margin-bottom:0; }
+.navbar .nav-pills >li >a { padding: 4px; margin:0;}

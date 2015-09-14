@@ -14,14 +14,22 @@
 
 	class List.Dimensions extends App.Views.ItemView
 		template: "authors/list/templates/_dimensions"
+		# TODO
+		events: {'click a': 'showAlert'}
+		showAlert: ->
+			console.log 'clicked a dimension'
 
 	class List.Category extends App.Views.ItemView
 		template: "authors/list/templates/_category"
+		tagName: "span"
 
 	class List.Categories extends App.Views.CompositeView
 		template: "authors/list/templates/_categories"
+		className: 'categories'
 		childView: List.Category
 		childViewContainer: "catlist"
+		filter: (child, index, collection) ->
+			child.get('dim') == 'genre'
 
 	class List.Author extends App.Views.ItemView
 		template: "authors/list/templates/_author"
@@ -31,6 +39,7 @@
 		template: "authors/list/templates/_authors"
 		childView: List.Author
 		emptyView: List.Empty 
+		# el: $("#authorlist-region")
 		childViewContainer: "authlist"
 
 	class List.Empty extends App.Views.ItemView
