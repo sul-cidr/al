@@ -5,6 +5,8 @@
   class Entities.AuthorCollection extends Entities.Collection
     model: Entities.Author
     url: '/authors.json'
+    # CHECK is this any use?
+    idAttribute: "author_id"
 
   API =
     getAuthorEntities: (cb) ->

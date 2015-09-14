@@ -1,1 +1,0 @@
-Total Authors: <%= @items.length %>

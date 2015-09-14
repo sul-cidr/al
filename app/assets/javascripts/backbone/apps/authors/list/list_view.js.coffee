@@ -14,10 +14,10 @@
 
 	class List.Dimensions extends App.Views.ItemView
 		template: "authors/list/templates/_dimensions"
-		# TODO
+		# CHECK what is this here?
 		events: {'click a': 'showAlert'}
-		showAlert: ->
-			console.log 'clicked a dimension'
+		showAlert: =>
+			console.log 'clicked a dimension, ' + @$el.html()
 
 	class List.Category extends App.Views.ItemView
 		template: "authors/list/templates/_category"
