@@ -4,4 +4,9 @@
 
 .place {display: inline-block;}
 
-arealist { padding:0 6px; font-family: Palatino-linotype, Georgia;}
+arealist { padding:0 26px; font-family: Palatino-linotype, Georgia;
+  font-size: 1.2em; 
+  a {text-decoration: none !important; }
+  a:hover {background: lightyellow;}
+}
+

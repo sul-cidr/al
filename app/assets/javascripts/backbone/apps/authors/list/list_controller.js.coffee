@@ -2,12 +2,6 @@
   
   List.Controller =
 
-    listCategories: ->
-      App.request "category:entities", (categories) =>
-        # console.log 'categories: ', categories
-        categoriesView = @getCategoriesView categories
-        @layout.categoriesRegion.show categoriesView
-
     startAuthors: ->
       App.request "author:entities", (authors) =>
         # console.log 'authors: ', authors
@@ -17,7 +11,6 @@
 
         @layout.on "show", =>
           @showHeader authors
-          #@enumAuthors authors
           @listAuthors authors
           @listDimensions()
           @listCategories()
@@ -33,20 +26,32 @@
       dimensionsView = new List.Dimensions
       @layout.dimensionsRegion.show dimensionsView
 
-    # listCategories: (categories) ->
-    #   # console.log 'showCategories() ', categories
-    #   categoriesView = @getCategoriesView categories
-    #   # console.log categoriesView
-    #   @layout.categoriesRegion.show categoriesView
+    listCategories: ->
+      App.request "category:entities", (categories) =>
+        # console.log 'categories: ', categories
+        categoriesView = @getCategoriesView categories
+        @layout.categoriesRegion.show categoriesView
 
     getCategoriesView: (categories) ->
       new List.Categories
         collection: categories
 
-    #enumAuthors: (authors) ->
+    showAuthor: (author) ->
+      console.log 'showAuthor()',author
+      # swaps out authors for single author 
+      # TODO clean up views on swap
+      authorView = @getAuthorView author
+      # console.log authorView
+      App.authorsRegion.show authorView
+
+    getAuthorView: (author) ->
+      # console.log author
+      new List.AuthorLayout ({
+        model: author
+      })
+
     listAuthors: (authors) ->
       authorsView = @getAuthorsView authors
-      # console.log authorsView
       @layout.authorlistRegion.show authorsView
 
     getAuthorsView: (authors) ->
@@ -59,6 +64,3 @@
 
     getLayoutView: ->
       new List.Layout
-    
-    #listAuthors: ->   
-      # dummy needed for some unknown reason

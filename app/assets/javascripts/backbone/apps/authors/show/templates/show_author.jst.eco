@@ -1,7 +1,7 @@
-<div id="authors" class="panel">
+<div id="one_author">
 	<span id="toggle-authors"><></span>
 	<div class="panel-title">
-		<h3>{Author}</h3>
+		<h3><%= @prefname %></h3>
 		<hr/>
 	</div>
 	<div id="authors-content">
@@ -13,8 +13,15 @@
 	    </ul>
 	    <div class="tab-content">	
 	      <div id="pill-1" class="tab-pane active">
-	        <div id="d_bio"><p>bio</p></div>
-	        <div id="d_biotext"></div>
+	        <div id="d_bio">
+	        	<div id="vital">
+	        		<ul>
+	        			<li><b>VIAF id:</b> <%= @viaf_id %></li>
+	        			<li><b>d. </b><%= @death_year %></li>
+	        		</ul>
+	        	</div>
+	        	<div id="d_biotext">M. Evans article here</div>
+					</div>
 	      </div> <!-- pill-1 -->
 	      <div id="pill-2" class="tab-pane fade">
 	        <div id="d_works-head"><p>d_works-head</p></div>

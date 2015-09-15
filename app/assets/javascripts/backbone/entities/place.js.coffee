@@ -15,15 +15,6 @@
         success: ->
           cb places
 
-    # 'areas' for navigating places
-    getAreas: (cb) ->
-      areas = new Entities.PlaceCollection()
-      places.fetch
-        success: ->
-          cb places 
-
   App.reqres.setHandler "place:entities", (cb) ->
     API.getPlaceEntities cb
 
-  App.reqres.setHandler "place:areas", (cb) ->
-    API.getAreas cb

@@ -3,6 +3,8 @@ json.array! @authors do |author|
     author,
     :author_id,
     :prefname,
-    :surname
+    :surname,
+    :viaf_id,
+    :death_year
   )
 end

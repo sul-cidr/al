@@ -1,7 +1,7 @@
 // panels.js
 
 $(document).on('page:change', function () {
-
+  console.log('$(document).on')
   $( "#toggle-authors" ).on("click", function() {
   	if ($("#authors").offset().left == 0) {
       console.log('.closer click to left')

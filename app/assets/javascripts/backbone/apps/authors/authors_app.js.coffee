@@ -4,16 +4,18 @@
 	class AuthorsApp.Router extends Marionette.AppRouter
 		appRoutes:
 			"authors": "listAuthors"
-			"author": "showAuthor"
+			"author/:id": "showAuthor" # pass author_id
 			"dimensions": "listDimensions"
 			"categories": "listCategories"
 
 	API =
 		startAuthors: ->
+			# console.log 'API.startAuthors()'
 			AuthorsApp.List.Controller.startAuthors()
 
-		showAuthor: ->
-			AuthorsApp.Show.Controller.showAuthor()
+		# single author
+		showAuthor: (id) ->
+			AuthorsApp.Show.Controller.showAuthor(id)
 
 		listAuthors: ->
 			AuthorsApp.List.Controller.listAuthors()
@@ -29,4 +31,4 @@
 		new AuthorsApp.Router
 			controller: API
 		API.startAuthors()
-		# AuthorsApp.List.Controller.startAuthors()
+		# AuthorsApp.Show.Controller.showAuthor()

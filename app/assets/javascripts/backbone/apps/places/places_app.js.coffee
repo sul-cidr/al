@@ -11,28 +11,25 @@
 	class PlacesApp.Router extends Marionette.AppRouter
 		appRoutes:
 			"places": "listPlaces"
-			# "place/??": "showPlace"
+			"areas": "listAreas"
+			"area/:id": "showArea"
 
 	API =
-		# one or the other
-		 listPlaces: ->
+		startPlaces: ->
+			# console.log 'API.startPlaces()'
+			PlacesApp.List.Controller.startPlaces()
+
+		listAreas: ->
+			PlacesApp.List.Controller.listAreas()
+
+		listPlaces: ->
 		 	PlacesApp.List.Controller.listPlaces()
-
-		#listPlaces: ->
-		#	PlacesApp.Show.Controller.showPlaces()
-
-		# # ?? differentiate areas (neighborhoods/districts)?
-		# listAreas: ->
-		# 	console.log 'show places tagged "area"'
-
-		# # detail page for a place (or buffer around place) via search
-		# showPlace: ->
 			
 		# # detail page for an area (neighborhood/district)
-		# showArea: ->
-			# 	
+		showArea: (id) ->
+			alert 'showArea, id: '+id
 
 	App.addInitializer ->
 		new PlacesApp.Router
 			controller: API
-		API.listPlaces()
+		API.startPlaces()

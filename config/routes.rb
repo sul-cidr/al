@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   
-  resources :authors, only: [:index, :test]
+  resources :authors
+  resources :areas
   resources :places, only: [:index]
   resources :categories, only: [:index]
 

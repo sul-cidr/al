@@ -31,25 +31,28 @@
 		filter: (child, index, collection) ->
 			child.get('dim') == 'genre'
 
+	class List.AuthorLayout extends Marionette.ItemView
+		template: "authors/show/templates/show_author"
+
 	class List.Author extends App.Views.ItemView
 		template: "authors/list/templates/_author"
 		tagName: "span"
+		# events: {'click a': 'showAuth'}
+		events: {'click': 'showAuth'}
+		showAuth: ->
+			# id = this.model.get('author_id')
+			author = this.model
+			console.log 'author '+author.attributes.author_id+' model clicked'
+			List.Controller.showAuthor(author)
 
 	class List.Authors extends App.Views.CompositeView
 		template: "authors/list/templates/_authors"
 		childView: List.Author
 		emptyView: List.Empty 
-		# el: $("#authorlist-region")
 		childViewContainer: "div"
-		# an attempt to sort
-	  # onRender: ->
-	  #   collection = @collection
-	  #   collection.comparator = (collection) ->
-	  #     -collection.get('surname')
-	  #   return
-	  # onSuccess: ->
-	  # 	@collection.sort()
 
 	class List.Empty extends App.Views.ItemView
 		template: "authors/list/templates/_empty"
 		tagName: "p"
+
+

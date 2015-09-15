@@ -2,10 +2,10 @@ class PlacesController < ApplicationController
 	respond_to :json
 
 	def index
-		@places = Place.all
+		@places = Place.order(:names).all
 	end
 
-  def areas   
+  def areas
   end
   
 end
