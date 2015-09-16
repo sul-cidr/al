@@ -18,7 +18,7 @@
 //= require backbone/backbone-min
 //= require backbone.marionette/lib/backbone.marionette.min
 
-//= require mapbox.js/mapbox
+//= require leaflet/dist/leaflet
 //= require wellknown/wellknown
 //= require leaflet-omnivore/leaflet-omnivore.min
 

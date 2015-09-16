@@ -3,6 +3,7 @@ json.array! @places do |place|
     place,
     :place_id,
     :place_type,
-    :names
+    :names,
+    :geom_wkt
   )
 end

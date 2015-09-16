@@ -3,8 +3,6 @@ json.array! @passages do |passage|
     passage,
     :passage_id,
     :work_id,
-    :subject_id,
-    :subject_label,
     :text
   )
 end

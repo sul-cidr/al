@@ -17,5 +17,8 @@
     "vendor/assets/components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "leaflet": "~0.7.5"
+  }
 }

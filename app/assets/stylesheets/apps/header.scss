@@ -1,7 +1,12 @@
 /* header.scss */
 
-#header	{  background: goldenrod; ; color: #fff; 
-	h2 { margin: 5px 0; text-align: center; }
+#header	{
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  background: #274965;
+  color: #ccc;
+	h2 {
+    margin: 5px 0; text-align: center;
+  }
 }
-
-

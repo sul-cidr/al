@@ -1,6 +1,13 @@
 /* map.scss */
 
-#map { position:absolute; top:0; bottom:0; z-index: -1;
-		width:100%; 	background: #F8F4F4;
-		p { text-align: center; margin-top: 250px; color: #666 }
+#map {
+  width:100vw;
+  height: 100vh;
+  background: #F8F4F4;
+  // z-index: -1;
+  p {
+    text-align: center;
+    margin-top: 250px;
+    color: #666
+  }
 }
