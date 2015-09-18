@@ -1,10 +1,10 @@
 @AL.module "Entities", (Entities, App, Backbone, Marionette, $,  _) ->
 
   class Entities.Category extends Entities.Model
-  
+
   class Entities.CategoryCollection extends Entities.Collection
     model: Entities.Category
-    url: '/categories.json' 
+    url: '/categories.json'
 
   API =
     getCategoryEntities: (cb) ->
@@ -12,7 +12,18 @@
       categories = new Entities.CategoryCollection()
       categories.fetch
         success: ->
-          cb categories 
+          cb categories
+
+    # getCategoryAuthors: (cb) ->
+    #   # console.log Entities
+    #   catAuthors = new Entities.AuthorCollection()
+    #   catAuthors.fetch
+    #     success: ->
+    #
+    #       cb categories
 
   App.reqres.setHandler "category:entities", (cb) ->
     API.getCategoryEntities cb
+
+  # App.reqres.setHandler "category:authors", (cb, cat) ->
+  #   API.getCategoryAuthors cb

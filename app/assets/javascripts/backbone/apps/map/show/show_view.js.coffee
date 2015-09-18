@@ -3,17 +3,19 @@
   class Show.Map extends Marionette.ItemView
     template: "map/show/templates/show_map"
 
-    ui: {
-      map: "#map"
-    }
-    # onRender: ->
-    onShow: ->
-      # console.log(@ui.map)
-      # console.log($("#map"))
+    initialize: ->
+      window.places = App.request "place:entities", (places) =>
+        # console.log places.length + ' places from view initialize: ', places
+        @initMap places
+
+    onBeforeRender: ->
+
+    # onShow ->
+    initMap: (places)->
       this.map = L.map('map', {
         zoomControl: false,
         attributionControl: false,
-        fadeAnimation: false,
+        fadeAnimation: false
       });
 
       # Zoom buttons on top right.
@@ -33,5 +35,108 @@
       # Default viewport.
       this.map.setView([51.5120, -0.1228], 12);
 
-      # App.reqres.request "place:entities", places ->
-      #   console.log places
+      console.log 'in loadPlaces(), need to parse WKT', places
+      pointFeatures = []
+      lineFeatures = []
+      polygonFeatures = []
+      $.each places.models, (i, pl) ->
+        geom = pl.attributes.geom_wkt
+        # console.log geom
+        if geom.substr(0,10) == 'MULTIPOINT'
+          pointFeatures.push L.circleMarker(swap(wellknown(geom).coordinates[0]), mapStyles.point)
+        else if geom.substr(0,15) == 'MULTILINESTRING'
+          lineFeatures.push new L.GeoJSON(wellknown(geom), mapStyles.street)
+        else if geom.substr(0,12) == 'MULTIPOLYGON'
+          polygonFeatures.push new L.GeoJSON(wellknown(geom), mapStyles.area)
+
+      markers = L.layerGroup(pointFeatures);
+      lines = L.featureGroup(lineFeatures);
+      polygons = L.layerGroup(polygonFeatures);
+
+      polygons.addTo(this.map)
+      lines.addTo(this.map)
+      markers.addTo(this.map)
+
+
+## from graves_ui
+      # this.idToPlace = {};
+    #   features = 'empty right now'
+    #   # Parse WKT -> GeoJSON.
+    #   # features = data.map(b => {
+    #   #
+    #   #   # Extract the lon/lat.
+    #   #   point = wellknown(b.geom).coordinates[0];
+    #   #
+    #   #   # Copy the SVG defaults.
+    #   #   # options = _.clone(styles.place.default);
+    #   #
+    #   #   # Create the marker.
+    #   #   feature = L.circleMarker(
+    #   #     swap(point),
+    #   #     _.merge(options, {id: b.id})
+    #   #   );
+    #   #
+    #   #   # Set radius. (Default to 20 graves?)
+    #   #   feature.setRadius(Math.log(b.count || 20)*3);
+    #   #
+    #   #   # Attach the popup.
+    #   #   feature.bindPopup(b.town, {
+    #   #     closeButton: false
+    #   #   });
+    #   #
+    #   #   # Map id -> feature.
+    #   #   this.idToPlace[b.id] = feature;
+    #   #
+    #   #   # return feature;
+    #   #
+    #   # });
+    #
+    #   # Add feature group to map.
+    #   this.places = L.featureGroup(features);
+    #   this.places.addTo(this.map);
+    #
+    #   # Highlight.
+    #   this.places.on(
+    #     'mouseover',
+    #     this.onHighlightPlace.bind(this)
+    #   );
+    #
+    #   # Unhighlight.
+    #   this.places.on(
+    #     'mouseout',
+    #     this.onUnhighlightPlace.bind(this)
+    #   );
+    #
+    #   # Select.
+    #   this.places.on(
+    #     'click',
+    #     this.onSelectPlace.bind(this)
+    #   );
+    #
+    # # /**
+    # #  * Highlight a place.
+    # #  *
+    # #  * @param {Number} id
+    # #  */
+    # highlightPlace: (id) ->
+    #   marker = this.idToPlace[id];
+    #   marker.setStyle(styles.place.highlight);
+    #
+    # # /**
+    # #  * Unhighlight a place.
+    # #  *
+    # #  * @param {Number} id
+    # #  */
+    # unhighlightPlace: (id) ->
+    #   marker = this.idToPlace[id];
+    #   marker.setStyle(styles.place.default);
+    #
+    #
+    # # /**
+    # #  * Focus on a place.
+    # #  *
+    # #  * @param {Number} id
+    # #  */
+    # selectPlace: (id) ->
+    #   marker = this.idToPlace[id];
+    #   this.map.flyTo(marker.getLatLng(), styles.zoom.place);

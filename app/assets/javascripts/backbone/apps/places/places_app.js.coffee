@@ -1,6 +1,6 @@
 @AL.module "PlacesApp", (PlacesApp, App, Backbone, Marionette, $, _) ->
 	#@startWithParent = false
-	
+
 	##
 	# places have geometry; areas are a subset of places, incl.
 	# boroughs/wards/neighborhoods
@@ -24,7 +24,7 @@
 
 		listPlaces: ->
 		 	PlacesApp.List.Controller.listPlaces()
-			
+
 		# # detail page for an area (neighborhood/district)
 		showArea: (id) ->
 			alert 'showArea, id: '+id

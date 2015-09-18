@@ -2,6 +2,7 @@ class AuthorsController < ApplicationController
   respond_to :json
 
   def index
+    # json is _not_ used internally 
     @authors = Author.order(:surname).all
   end
 

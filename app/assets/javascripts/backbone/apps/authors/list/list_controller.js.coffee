@@ -1,5 +1,5 @@
 @AL.module 'AuthorsApp.List', (List, App, Backbone, Marionette, $, _) ->
-  
+
   List.Controller =
 
     startAuthors: ->
@@ -11,11 +11,11 @@
 
         @layout.on "show", =>
           @showHeader authors
-          @listAuthors authors
+          @listAuthors authors, 'all'
           @listDimensions()
           @listCategories()
 
-        App.authorsRegion.show @layout  
+        App.authorsRegion.show @layout
 
     showHeader: (authors) ->
       headerView = @getHeaderView authors
@@ -38,8 +38,7 @@
 
     showAuthor: (author) ->
       console.log 'showAuthor()',author
-      # swaps out authors for single author 
-      # TODO clean up views on swap
+      # swaps out authors for single author
       authorView = @getAuthorView author
       # console.log authorView
       App.authorsRegion.show authorView
@@ -50,9 +49,16 @@
         model: author
       })
 
-    listAuthors: (authors) ->
+    listAuthors: (authors, category) ->
+      console.log category
+      # authorsCatView = @getAuthorsCatView category
       authorsView = @getAuthorsView authors
       @layout.authorlistRegion.show authorsView
+
+    # experiment: getting authors from rails genre.authors e.g.
+    # getAuthorsCatView: (cat) ->
+    #   new List.CategoryAuthors
+        # collection: categories.authors
 
     getAuthorsView: (authors) ->
       new List.Authors

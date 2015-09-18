@@ -1,5 +1,5 @@
 @AL.module 'PlacesApp.List', (List, App, Backbone, Marionette, $, _) ->
-  
+
   List.Controller =
 
     startPlaces: ->
@@ -12,8 +12,8 @@
           @showHeader areas
           @listAreas areas
 
-        App.placesRegion.show @layout      
-   
+        App.placesRegion.show @layout
+
     #
     # areas are used to aggregate & navigate places/placerefs
     #
@@ -32,10 +32,14 @@
     #
     ## places are geometries to be mapped
     #
-    listPlaces: (places) ->
-      placesView = @getPlacesView places
+    listPlaces: ->
+      # not listing them all anywhere, just getting data for map module
+      App.request "place:entities", (places) =>
+        window.mapdata = places
+        # console.log mapdata
+      # placesView = @getPlacesView places
+      # @layout.placesRegion.show placesView
       # console.log 'placesView', placesView
-      @layout.placesRegion.show placesView
 
     getPlacesView: (places) ->
       new List.Places

@@ -13,8 +13,8 @@
       places = new Entities.PlaceCollection()
       places.fetch
         success: ->
+          # TODO make sense to filter by geom type here? e.g. separate handlers?
           cb places
 
   App.reqres.setHandler "place:entities", (cb) ->
     API.getPlaceEntities cb
-

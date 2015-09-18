@@ -11,7 +11,7 @@
 	      <li id="li_works"><a href="#pill-2" data-toggle="pill">works</a></li>
 				<li id="li_pass" class="hidden"><a href="#pill-3" data-toggle="pill">passages</a></li>
 	    </ul>
-	    <div class="tab-content">	
+	    <div class="tab-content">
 	      <div id="pill-1" class="tab-pane active">
 	        <div id="d_bio">
 	        	<div id="vital">
@@ -20,7 +20,7 @@
 	        			<li><b>d. </b><%= @death_year %></li>
 	        		</ul>
 	        	</div>
-	        	<div id="d_biotext">M. Evans article here</div>
+	        	<div id="d_biotext">M. Evans <%= @prefname %> biography here</div>
 					</div>
 	      </div> <!-- pill-1 -->
 	      <div id="pill-2" class="tab-pane fade">
