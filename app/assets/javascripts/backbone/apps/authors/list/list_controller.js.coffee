@@ -11,7 +11,8 @@
 
         @layout.on "show", =>
           @showHeader authors
-          @listAuthors authors, 'all'
+          @listCatAuthors authors, 0
+          # @listAuthors authors, 'all'
           @listDimensions()
           # @listCategories()
           @listCategories("genre")
@@ -52,19 +53,28 @@
       })
 
     listAuthors: (authors, category) ->
-      console.log category
+      console.log 'list authors w/category ', category
       # authorsCatView = @getAuthorsCatView category
       authorsView = @getAuthorsView authors
       @layout.authorlistRegion.show authorsView
 
-    # experiment: getting authors from rails genre.authors e.g.
-    # getAuthorsCatView: (cat) ->
-    #   new List.CategoryAuthors
-        # collection: categories.authors
-
     getAuthorsView: (authors) ->
       new List.Authors
         collection: authors
+
+    # ultimately replace listAuthors
+    listCatAuthors: (authors, category) ->
+      # console.log 'list authors w/category ', category
+      authorsCatView = @getCatAuthorsView authors, category
+      # authorsCatView = @getCatAuthorsView authors, category
+      @layout.authorlistRegion.show authorsCatView
+
+    getCatAuthorsView: (authors, category) ->
+      new List.Authors
+        collection: authors
+        filter: (child, index, collection) ->
+          child.get('categories').indexOf(category) > 0;
+          # child.get('dim') == dim
 
     getHeaderView: (authors) ->
       new List.Header

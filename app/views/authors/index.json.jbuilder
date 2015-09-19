@@ -5,6 +5,9 @@ json.array! @authors do |author|
     :prefname,
     :surname,
     :viaf_id,
-    :death_year
+    :wiki_id,
+    :birth_year,
+    :death_year,
+    :categories
   )
 end

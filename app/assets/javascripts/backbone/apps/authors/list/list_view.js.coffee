@@ -32,7 +32,10 @@
     filterAuths: ->
       cat = this.model
       id = cat.attributes.id
-      # console.log 'List.Category.filterAuths by id:',id
+      App.request "author:entities", (authors) =>
+        # console.log authors
+        # console.log 'List.Category.filterAuths by category:',id
+        List.Controller.listCatAuthors(authors, id)
 
   class List.Categories extends App.Views.CompositeView
     template: "authors/list/templates/_categories"

@@ -16,8 +16,10 @@
 	        <div id="d_bio">
 	        	<div id="vital">
 	        		<ul>
-	        			<li><b>VIAF id:</b> <%= @viaf_id %></li>
+	        			<li><b>b. </b><%= @birth_year %></li>
 	        			<li><b>d. </b><%= @death_year %></li>
+                <li><b>VIAF id:</b> <%= @viaf_id %></li>
+                <li><a href="https://en.wikipedia.org/wiki/<%= @wiki_id %>" target="_blank">Wikipedia</a></li>
 	        		</ul>
 	        	</div>
 	        	<div id="d_biotext">M. Evans <%= @prefname %> biography here</div>

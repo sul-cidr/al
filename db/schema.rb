@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914212131) do
+ActiveRecord::Schema.define(version: 20150919024745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,17 +108,18 @@ ActiveRecord::Schema.define(version: 20150914212131) do
     t.integer  "death_year"
     t.integer  "viaf_id"
     t.string   "wiki_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "categories", default: [],              array: true
   end
 
-  create_table "authors_categories", id: false, force: :cascade do |t|
+  create_table "authors_categories", force: :cascade do |t|
     t.integer "author_id"
     t.integer "category_id"
     t.integer "dimension_id"
   end
 
-  add_index "authors_categories", ["author_id", "dimension_id"], name: "index_authors_categories_on_author_id_and_dimension_id", using: :btree
+  add_index "authors_categories", ["author_id", "category_id"], name: "index_authors_categories_on_author_id_and_category_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
