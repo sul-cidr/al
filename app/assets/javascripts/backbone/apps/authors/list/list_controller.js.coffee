@@ -13,7 +13,8 @@
           @showHeader authors
           @listAuthors authors, 'all'
           @listDimensions()
-          @listCategories()
+          # @listCategories()
+          @listCategories("genre")
 
         App.authorsRegion.show @layout
 
@@ -26,21 +27,22 @@
       dimensionsView = new List.Dimensions
       @layout.dimensionsRegion.show dimensionsView
 
-    listCategories: ->
+    listCategories: (dim) ->
       App.request "category:entities", (categories) =>
-        # console.log 'categories: ', categories
-        categoriesView = @getCategoriesView categories
+        # console.log 'listCategories for: ', dim
+        categoriesView = @getCategoriesView categories, dim
+        # console.log categoriesView
         @layout.categoriesRegion.show categoriesView
 
-    getCategoriesView: (categories) ->
+    getCategoriesView: (categories, dim) ->
       new List.Categories
         collection: categories
+        filter: (child, index, collection) ->
+          child.get('dim') == dim
 
     showAuthor: (author) ->
-      console.log 'showAuthor()',author
-      # swaps out authors for single author
+      # console.log 'showAuthor()',author
       authorView = @getAuthorView author
-      # console.log authorView
       App.authorsRegion.show authorView
 
     getAuthorView: (author) ->

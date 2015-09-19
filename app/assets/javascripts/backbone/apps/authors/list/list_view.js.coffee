@@ -15,9 +15,15 @@
   class List.Dimensions extends App.Views.ItemView
     template: "authors/list/templates/_dimensions"
     # TODO on-click filter categories
-    events: {'click a': 'filterCats'}
-    filterCats: (event) ->
-      console.log 'clicked a dimension, ' + event.currentTarget
+    events: {
+      "click li": "filterCats"
+    }
+    filterCats: (e) =>
+      $("li").removeClass("active")
+      $(e.currentTarget).addClass("active")
+      dim = $(e.currentTarget).context.attributes.value.value
+      # console.log 'List.Dimensions.filterCats by dimension: ' + dim
+      List.Controller.listCategories(dim)
 
   class List.Category extends App.Views.ItemView
     template: "authors/list/templates/_category"
@@ -26,8 +32,7 @@
     filterAuths: ->
       cat = this.model
       id = cat.attributes.id
-      console.log id + ' clicked'
-      #filter on
+      # console.log 'List.Category.filterAuths by id:',id
 
   class List.Categories extends App.Views.CompositeView
     template: "authors/list/templates/_categories"
@@ -36,6 +41,7 @@
     childViewContainer: "catlist"
     filter: (child, index, collection) ->
       child.get('dim') == 'genre'
+      # child.get('dim') == @dim
 
   class List.AuthorLayout extends Marionette.ItemView
     template: "authors/show/templates/show_author"
