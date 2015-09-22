@@ -19,34 +19,34 @@
 
 class Author < ActiveRecord::Base
 
-	self.primary_key = 'author_id'
+  self.primary_key = 'author_id'
 
-	has_many :author_genres
-	has_many :genres, :through => :author_genres
-	has_many :author_forms
-	has_many :forms, :through => :author_forms
-	has_many :author_communities
-	has_many :communities, :through => :author_communities
-	has_many :author_standings
-	has_many :standings, :through => :author_standings
- 
-	has_many :works
-	has_many :passages, :through => :works
-	has_many :placerefs, :through => :passages
+  has_many :author_genres
+  has_many :genres, :through => :author_genres
+  has_many :author_forms
+  has_many :forms, :through => :author_forms
+  has_many :author_communities
+  has_many :communities, :through => :author_communities
+  has_many :author_standings
+  has_many :standings, :through => :author_standings
+
+  has_many :works
+  has_many :passages, :through => :works
+  has_many :placerefs, :through => :passages
 
   def to_s
-  	"#{prefname}"
+    "#{prefname}"
   end
 
   def places
-		Place.joins('join placerefs on placerefs.place_id = places.place_id')
-			.joins('join passages on passages.passage_id = placerefs.passage_id')
-			.joins('join works on works.work_id = passages.work_id')
-			.joins('join authors on authors.author_id = works.author_id')
-			.where("authors.author_id = #{author_id}")
+    Place.joins('join placerefs on placerefs.place_id = places.place_id')
+      .joins('join passages on passages.passage_id = placerefs.passage_id')
+      .joins('join works on works.work_id = passages.work_id')
+      .joins('join authors on authors.author_id = works.author_id')
+      .where("authors.author_id = #{author_id}")
 
-  	# alternate if rails handles ids:
-  	# Place.joins{placerefs.passages.works.authors}.where{author=self}
+    # alternate if rails handles ids:
+    # Place.joins{placerefs.passages.works.authors}.where{author=self}
 
   end
 

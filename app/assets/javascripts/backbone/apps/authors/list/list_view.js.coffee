@@ -52,20 +52,24 @@
   class List.Author extends App.Views.ItemView
     template: "authors/list/templates/_author"
     tagName: "span"
-    # events: {'click a': 'showAuth'}
-    events: {'click': 'showAuth'}
-    showAuth: ->
-      # id = this.model.get('author_id')
+    events: {'click a': 'authByRoute'}
+    authByRoute: ->
       author = this.model
-      console.log 'author '+author.attributes.author_id+' model clicked'
-      List.Controller.showAuthor(author)
+      console.log 'authByRoute "authors/:author_id '+author.get('author_id')+' '
+      Backbone.history.navigate("authors/"+author.get('author_id'), true)
+      # List.Controller.showAuthor(author)
 
   class List.Authors extends App.Views.CompositeView
     template: "authors/list/templates/_authors"
     childView: List.Author
     emptyView: List.Empty
     childViewContainer: "div"
-
+  #   events: {'click a': 'showAuth'}
+  #   showAuth: (event) ->
+  #     # id = this.model.get('author_id')
+  #     author = this.model
+  #     console.log 'author '+author.attributes.author_id+' model clicked'
+  #     # List.Controller.showAuthor(author)
 
   class List.Empty extends App.Views.ItemView
     template: "authors/list/templates/_empty"

@@ -52,17 +52,7 @@
         model: author
       })
 
-    listAuthors: (authors, category) ->
-      console.log 'list authors w/category ', category
-      # authorsCatView = @getAuthorsCatView category
-      authorsView = @getAuthorsView authors
-      @layout.authorlistRegion.show authorsView
-
-    getAuthorsView: (authors) ->
-      new List.Authors
-        collection: authors
-
-    # ultimately replace listAuthors
+    # replaces listAuthors; category 0 = all
     listCatAuthors: (authors, category) ->
       # console.log 'list authors w/category ', category
       authorsCatView = @getCatAuthorsView authors, category
@@ -82,3 +72,13 @@
 
     getLayoutView: ->
       new List.Layout
+
+    # listAuthors: (authors, category) ->
+    #   console.log 'list authors w/category ', category
+    #   # authorsCatView = @getAuthorsCatView category
+    #   authorsView = @getAuthorsView authors
+    #   @layout.authorlistRegion.show authorsView
+    #
+    # getAuthorsView: (authors) ->
+    #   new List.Authors
+    #     collection: authors

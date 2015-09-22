@@ -35,7 +35,6 @@
       # Default viewport.
       this.map.setView([51.5120, -0.1228], 12);
 
-      console.log 'in loadPlaces(), need to parse WKT', places
       pointFeatures = []
       lineFeatures = []
       polygonFeatures = []

@@ -1,10 +1,11 @@
 @AL.module 'AuthorsApp.Show', (Show, App, Backbone, Marionette, $, _) ->
-  
+
   Show.Controller =
 
-    showAuthor: ->
-      authorView = @getAuthorView()
+    showAuthor: (author) ->
+      console.log 'Show.Controller.showAuthor(author): ', author
+      authorView = @getAuthorView(author)
       App.authorsRegion.show authorView
-    
-    getAuthorView: ->
+
+    getAuthorView: (author) ->
       new Show.Author

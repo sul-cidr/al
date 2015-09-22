@@ -1,12 +1,11 @@
 /* places.scss */
 
-#places { right: 0; background: #e0e0e0; }
+#places-region { background: #e0e0e0; }
 
 .place {display: inline-block;}
 
 arealist { padding:0 26px; font-family: Palatino-linotype, Georgia;
-  font-size: 1.2em; 
+  font-size: 1.2em;
   a {text-decoration: none !important; }
   a:hover {background: lightyellow;}
 }
-

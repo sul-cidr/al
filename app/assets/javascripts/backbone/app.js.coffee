@@ -1,33 +1,33 @@
 @AL = do (Backbone, Marionette) ->
-  
+
   App = new (Marionette.Application)
 
   App.on 'initialize:before', ->
-
-    # AuthorsRegion = Marionette.Region.extend(el: '#authors-region')
-    # PlacesRegion = Marionette.Region.extend(el: '#places-region')
-
+    console.log 'initialize before'
 
   App.addInitializer ->
+    console.log 'initialize'
     App.addRegions
       headerRegion: '#header-region'
       mapRegion: '#map-region'
-      authorsRegion: 
+      authorsRegion:
         selector: '#authors-region'
         #regionClass: AuthorsRegion
-      placesRegion: 
+      placesRegion:
         selector: '#places-region'
         #regionClass: PlacesRegion
 
     App.module('HeaderApp').start()
-    App.module('AuthorsApp').start()
-    App.module('PlacesApp').start()
-    App.module('MapApp').start()
+    # App.module('AuthorsApp').start()
+    # App.module('PlacesApp').start()
+    # App.module('MapApp').start()
 
-  App.on 'initialize:after', ->
+  App.on 'start', ->
+    console.log Backbone.history
     if Backbone.history
+      console.log 'history'
       return Backbone.history.start()
 
     return
-  
+
   App

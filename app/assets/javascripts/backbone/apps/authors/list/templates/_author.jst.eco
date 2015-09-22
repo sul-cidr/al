@@ -1,3 +1,4 @@
-<!-- <a href="authors/<%= #@author_id %>"><%= #@safe hardSpace(@prefname) %></a>;  -->
 
-<a href="#" data-id="<%= @author_id %>"> <%= @safe hardSpace(@prefname) %></a>; 
+<!-- <a href="#" data-id="<%= @author_id %>"> <%= @safe hardSpace(@prefname) %></a>;  -->
+<a href="#authors/<%= @author_id %>"> <%= @safe hardSpace(@prefname) %></a>;
+<!-- <%= @safe hardSpace(@prefname) %>;  -->

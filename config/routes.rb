@@ -3,12 +3,12 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  resources :authors
+  resources :authors, param: :author_id
   resources :areas
-  resources :places, only: [:index]
-  resources :categories, only: [:index]
-  resources :works
-  resources :passages
+  resources :places, param: :place_id
+  resources :categories#, only: [:index]
+  resources :works, param: :work_id
+  resources :passages, param: :passage_id
 
   root to: "application#index"
 

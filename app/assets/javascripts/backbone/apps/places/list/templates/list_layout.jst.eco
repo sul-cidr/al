@@ -1,2 +1,3 @@
-<div id="header-region"></div>
-<div id="places-region"></div>
+<div id="title-region"></div>
+<div id="navmap-region"></div>
+<div id="arealist-region"></div>
