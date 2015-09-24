@@ -6,13 +6,14 @@
     console.log 'initialize before'
 
   App.addInitializer ->
-    console.log 'initialize'
+    # console.log 'initialize'
     App.addRegions
       headerRegion: '#header-region'
       mapRegion: '#map-region'
       authorsRegion:
         selector: '#authors-region'
         #regionClass: AuthorsRegion
+      passagesRegion: '#bio-passages'
       placesRegion:
         selector: '#places-region'
         #regionClass: PlacesRegion
@@ -23,9 +24,7 @@
     # App.module('MapApp').start()
 
   App.on 'start', ->
-    console.log Backbone.history
     if Backbone.history
-      console.log 'history'
       return Backbone.history.start()
 
     return

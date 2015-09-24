@@ -18,7 +18,7 @@
     showAuthor: (author_id) ->
       # new instance of authors/:author_id
       App.request "author:entity", author_id, (author) ->
-        console.log author, ' from API'
+        # console.log author, ' from API'
         AuthorsApp.List.Controller.showAuthor(author)
         # AuthorsApp.Show.Controller.showAuthor(author)
 

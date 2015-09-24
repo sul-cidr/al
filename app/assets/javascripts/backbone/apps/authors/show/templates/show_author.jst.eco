@@ -22,7 +22,7 @@
                 <li><a href="https://en.wikipedia.org/wiki/<%= @wiki_id %>" target="_blank">Wikipedia</a></li>
               </ul>
             </div>
-            <div id="d_biotext">M. Evans <%= @prefname %> biography here</div>
+            <div id="bio-passages">M. Evans <%= @prefname %> biography here</div>
           </div>
         </div> <!-- pill-1 -->
         <div id="pill-2" class="tab-pane fade">

@@ -16,6 +16,10 @@ catlist {
   span { font-family: Geneva, Arial;}
 }
 
+#bio-passages { max-height: 360px; overflow:auto;}
+.passages { }
+.passagelist { }
+
 .navbar { min-height: 35px; margin-bottom:0; }
 .navbar .nav-pills >li  { padding: 4px; margin:0; cursor: pointer;}
 .navbar .nav-pills >li.active  { color: white; border-radius: 3px; background-color: #336699;}

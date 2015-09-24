@@ -25,6 +25,27 @@
       # console.log 'List.Dimensions.filterCats by dimension: ' + dim
       List.Controller.listCategories(dim)
 
+  class List.Passage extends App.Views.ItemView
+    template: "authors/list/templates/_passage"
+    tagName: "p"
+    events: {"click": "highlightPlacerefs"}
+    highlightPlacerefs: ->
+      console.log 'List.Passage.highlightPlacerefs()'
+
+  class List.Passages extends App.Views.CompositeView
+    template: "authors/list/templates/_passages"
+    # className: 'passages'
+    childView: List.Passage
+    childViewContainer: "div"
+    # regions:
+    #   passagesRegion: "#bio-passages"
+    # filtered already
+    # filter: (child, index, collection) ->
+    #   # TODO make dynamic
+    #   child.get('subject_id') == 10377
+
+
+
   class List.Category extends App.Views.ItemView
     template: "authors/list/templates/_category"
     tagName: "span"
@@ -33,8 +54,6 @@
       cat = this.model
       id = cat.attributes.id
       App.request "author:entities", (authors) =>
-        # console.log authors
-        # console.log 'List.Category.filterAuths by category:',id
         List.Controller.listCatAuthors(authors, id)
 
   class List.Categories extends App.Views.CompositeView
@@ -43,8 +62,9 @@
     childView: List.Category
     childViewContainer: "catlist"
     filter: (child, index, collection) ->
+      # filter genre for initial display
       child.get('dim') == 'genre'
-      # child.get('dim') == @dim
+
 
   class List.AuthorLayout extends Marionette.ItemView
     template: "authors/show/templates/show_author"
@@ -55,21 +75,18 @@
     events: {'click a': 'authByRoute'}
     authByRoute: ->
       author = this.model
-      console.log 'authByRoute "authors/:author_id '+author.get('author_id')+' '
+      # console.log 'authByRoute "authors/:author_id '+author.get('author_id')+' '
+
+      #/ route runs API.showAuthor -->
+      #/ gets model 'author', then runs
+      #/ AuthorsApp.List.Controller.showAuthor(author)
       Backbone.history.navigate("authors/"+author.get('author_id'), true)
-      # List.Controller.showAuthor(author)
 
   class List.Authors extends App.Views.CompositeView
     template: "authors/list/templates/_authors"
     childView: List.Author
     emptyView: List.Empty
     childViewContainer: "div"
-  #   events: {'click a': 'showAuth'}
-  #   showAuth: (event) ->
-  #     # id = this.model.get('author_id')
-  #     author = this.model
-  #     console.log 'author '+author.attributes.author_id+' model clicked'
-  #     # List.Controller.showAuthor(author)
 
   class List.Empty extends App.Views.ItemView
     template: "authors/list/templates/_empty"

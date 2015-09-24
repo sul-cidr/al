@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150919024745) do
+ActiveRecord::Schema.define(version: 20150923170802) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,10 +154,11 @@ ActiveRecord::Schema.define(version: 20150919024745) do
 
   create_table "passages", primary_key: "passage_id", force: :cascade do |t|
     t.integer  "work_id"
+    t.integer  "subject_id"
     t.text     "text"
-    t.string   "placerefs"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "placerefs",  default: [],              array: true
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "placerefs", force: :cascade do |t|

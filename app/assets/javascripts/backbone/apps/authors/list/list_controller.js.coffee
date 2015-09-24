@@ -41,9 +41,23 @@
         filter: (child, index, collection) ->
           child.get('dim') == dim
 
+    listPassages: (author_id) ->
+      console.log 'List.Controller.listPassages() for ',author_id
+      App.request "passage:entities", author_id, "bio", (bio_passages) =>
+        bioPassagesView = @getBioPassagesView bio_passages, author_id
+        console.log bio_passages.length + ' passages for ' + author_id
+        App.passagesRegion.show bioPassagesView
+
+    getBioPassagesView: (bio_passages, author_id) ->
+      new List.Passages
+        collection: bio_passages
+        viewComparator: "passage_id"
+        # already filtered
+
     showAuthor: (author) ->
-      # console.log 'showAuthor()',author
+      # console.log 'showAuthor()'
       authorView = @getAuthorView author
+      @listPassages author.attributes.author_id
       App.authorsRegion.show authorView
 
     getAuthorView: (author) ->
@@ -54,9 +68,7 @@
 
     # replaces listAuthors; category 0 = all
     listCatAuthors: (authors, category) ->
-      # console.log 'list authors w/category ', category
       authorsCatView = @getCatAuthorsView authors, category
-      # authorsCatView = @getCatAuthorsView authors, category
       @layout.authorlistRegion.show authorsCatView
 
     getCatAuthorsView: (authors, category) ->
@@ -64,7 +76,6 @@
         collection: authors
         filter: (child, index, collection) ->
           child.get('categories').indexOf(category) > 0;
-          # child.get('dim') == dim
 
     getHeaderView: (authors) ->
       new List.Header

@@ -242,6 +242,7 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     seedbank (0.3.0)
+    sequel (4.24.0)
     sprockets (3.3.3)
       rack (~> 1.0)
     sprockets-rails (2.3.2)
@@ -298,6 +299,7 @@ DEPENDENCIES
   sass-rails (>= 5.0)
   sdoc (~> 0.4.0)
   seedbank
+  sequel
   squeel!
   therubyracer
   uglifier (>= 1.3.0)
