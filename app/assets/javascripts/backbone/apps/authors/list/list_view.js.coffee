@@ -25,6 +25,19 @@
       # console.log 'List.Dimensions.filterCats by dimension: ' + dim
       List.Controller.listCategories(dim)
 
+  class List.Work extends App.Views.ItemView
+    template: "authors/list/templates/_work"
+    tagName: "li"
+    events: {"click": "loadPassages"}
+    loadPassages: ->
+      console.log 'List.Work.loadPassages()'
+
+  class List.Works extends App.Views.CompositeView
+    template: "authors/list/templates/_works"
+    className: 'works'
+    childView: List.Work
+    childViewContainer: "ul"
+
   class List.Passage extends App.Views.ItemView
     template: "authors/list/templates/_passage"
     tagName: "p"
@@ -37,13 +50,25 @@
     # className: 'passages'
     childView: List.Passage
     childViewContainer: "div"
-    # regions:
-    #   passagesRegion: "#bio-passages"
-    # filtered already
-    # filter: (child, index, collection) ->
-    #   # TODO make dynamic
-    #   child.get('subject_id') == 10377
 
+  class List.AuthorLayout extends Marionette.ItemView
+    template: "authors/show/templates/show_author"
+
+  class List.Author extends App.Views.ItemView
+    template: "authors/list/templates/_author"
+    tagName: "span"
+    events: {'click a': 'authByRoute'}
+    authByRoute: ->
+      #/ route runs API.showAuthor --> gets model 'author' -->
+      #/ AuthorsApp.List.Controller.showAuthor(author)
+      author = this.model
+      Backbone.history.navigate("authors/"+author.get('author_id'), true)
+
+  class List.Authors extends App.Views.CompositeView
+    template: "authors/list/templates/_authors"
+    childView: List.Author
+    emptyView: List.Empty
+    childViewContainer: "div"
 
 
   class List.Category extends App.Views.ItemView
@@ -64,29 +89,6 @@
     filter: (child, index, collection) ->
       # filter genre for initial display
       child.get('dim') == 'genre'
-
-
-  class List.AuthorLayout extends Marionette.ItemView
-    template: "authors/show/templates/show_author"
-
-  class List.Author extends App.Views.ItemView
-    template: "authors/list/templates/_author"
-    tagName: "span"
-    events: {'click a': 'authByRoute'}
-    authByRoute: ->
-      author = this.model
-      # console.log 'authByRoute "authors/:author_id '+author.get('author_id')+' '
-
-      #/ route runs API.showAuthor -->
-      #/ gets model 'author', then runs
-      #/ AuthorsApp.List.Controller.showAuthor(author)
-      Backbone.history.navigate("authors/"+author.get('author_id'), true)
-
-  class List.Authors extends App.Views.CompositeView
-    template: "authors/list/templates/_authors"
-    childView: List.Author
-    emptyView: List.Empty
-    childViewContainer: "div"
 
   class List.Empty extends App.Views.ItemView
     template: "authors/list/templates/_empty"

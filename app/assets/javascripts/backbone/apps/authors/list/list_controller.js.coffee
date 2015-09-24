@@ -41,24 +41,43 @@
         filter: (child, index, collection) ->
           child.get('dim') == dim
 
+    listWorks: (author_id) ->
+      App.request "work:entities", author_id, (works) =>
+        if App.worksRegion.$el.length >0
+          App.worksRegion.reset()
+        worksView = @getWorksView works
+        console.log 'listWorks(), '+ works.length + ' for ' + author_id
+        App.worksRegion.show worksView
+
+    getWorksView: (works) ->
+      new List.Works
+        collection: works
+        viewComparator: "title"
+
     listPassages: (author_id) ->
-      console.log 'List.Controller.listPassages() for ',author_id
+      # console.log 'List.Controller.listPassages() for ',author_id
       App.request "passage:entities", author_id, "bio", (bio_passages) =>
-        bioPassagesView = @getBioPassagesView bio_passages, author_id
-        console.log bio_passages.length + ' passages for ' + author_id
+        # wont show/render twice without reset
+        if App.passagesRegion.$el.length >0
+          App.passagesRegion.reset()
+        bioPassagesView = @getBioPassagesView bio_passages
+        console.log 'listPassages(), '+ bio_passages.length + ' for ' + author_id
+        window.pass = bioPassagesView
+        # console.log 'bioPassagesView:', bioPassagesView.collection
         App.passagesRegion.show bioPassagesView
 
-    getBioPassagesView: (bio_passages, author_id) ->
+    getBioPassagesView: (bio_passages) ->
       new List.Passages
         collection: bio_passages
         viewComparator: "passage_id"
+        # preventClose: true
         # already filtered
 
     showAuthor: (author) ->
-      # console.log 'showAuthor()'
+      console.log 'showAuthor()', author.attributes.author_id
       authorView = @getAuthorView author
-      @listPassages author.attributes.author_id
       App.authorsRegion.show authorView
+      @listPassages author.attributes.author_id
 
     getAuthorView: (author) ->
       # console.log author

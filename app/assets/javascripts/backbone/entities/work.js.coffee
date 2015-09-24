@@ -8,11 +8,15 @@
     idAttribute: "work_id"
 
   API =
-    getWorkEntities: (cb) ->
+    getWorkEntities: (id, cb) ->
       works = new Entities.WorkCollection()
       works.fetch
         success: ->
+          filterId = _.filter(works.models,(item) ->
+            item.get("author_id") == id;
+          )
+          works.reset(filterId)
           cb works
 
-  App.reqres.setHandler "work:entities", (cb) ->
+  App.reqres.setHandler "work:entities", (id, cb) ->
     API.getWorkEntities cb

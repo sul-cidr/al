@@ -5,6 +5,7 @@
     appRoutes:
       "": "startAuthors"
       "authors/:author_id": "showAuthor" # pass author_id
+      "authors/:author_id/works": "listAuthorWorks"
       # "dimensions": "listDimensions"
       # "categories": "listCategories"
 
@@ -21,6 +22,9 @@
         # console.log author, ' from API'
         AuthorsApp.List.Controller.showAuthor(author)
         # AuthorsApp.Show.Controller.showAuthor(author)
+
+    listAuthorWorks: (author_id) ->
+      # dunno
 
   App.addInitializer ->
     new AuthorsApp.Router

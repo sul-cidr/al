@@ -11,7 +11,7 @@
 
   API =
     getPassageEntities: (id, type, cb) ->
-      console.log 'getPassageEntities', id, type
+      # console.log 'getPassageEntities', id, type
       passages = new Entities.PassageCollection
       passages.fetch
         success: ->
@@ -29,28 +29,6 @@
           else if type == "works"
             passages.reset(filterWorks)
             cb passages
-    #
-    # getAuthorEntities: (cb) ->
-    #   authors.fetch
-    #     success: ->
-    #       # exclude Evans, Fielding, Boswell
-    #       filterName = _.filter(authors.models,(item) ->
-    #         item.get("author_id") < 10434;
-    #       )
-    #       authors.reset(filterName);
-    #       cb authors
-
-    # getBioPassages: (id, cb) ->
-    #   passages = new Entities.PassageCollection
-    #   console.log 'API.getBioPassages', id, passages
-    #   filterBio = _.filter(passages.models,(item) ->
-    #     item.get("subject_id") == id;
-    #   )
-    #   passages.reset(filterBio);
-    #   cb passages
 
   App.reqres.setHandler "passage:entities", (id, type, cb) ->
     API.getPassageEntities id, type, cb
-
-  # App.reqres.setHandler "passages:bio:author", (id, cb) ->
-  #   API.getBioPassages id, cb
