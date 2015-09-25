@@ -4,8 +4,10 @@
   class AuthorsApp.Router extends Marionette.AppRouter
     appRoutes:
       "": "startAuthors"
-      "authors/:author_id": "showAuthor" # pass author_id
-      "authors/:author_id/works": "listAuthorWorks"
+      "authors/:author_id": "passAuthorModel"
+
+      "passages/:work_id": "passWorkModel"
+
       # "dimensions": "listDimensions"
       # "categories": "listCategories"
 
@@ -15,16 +17,19 @@
       # console.log 'API.startAuthors()'
       AuthorsApp.List.Controller.startAuthors()
 
-    # single author
-    showAuthor: (author_id) ->
-      # new instance of authors/:author_id
+    passAuthorModel: (author_id) ->
+      # forwards author model to showAuthor function
       App.request "author:entity", author_id, (author) ->
-        # console.log author, ' from API'
         AuthorsApp.List.Controller.showAuthor(author)
-        # AuthorsApp.Show.Controller.showAuthor(author)
 
-    listAuthorWorks: (author_id) ->
-      # dunno
+    passWorkModel: (work_id) ->
+      # forwards work model to listWorksPassages function
+      App.request "work:entity", work_id, (work) ->
+        console.log work
+        console.log 'passWorkModel() for', work.attributes.work_id
+        # console.log work
+        AuthorsApp.List.Controller.listWorkPassages(work)
+
 
   App.addInitializer ->
     new AuthorsApp.Router

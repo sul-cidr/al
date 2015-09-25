@@ -13,7 +13,9 @@
       authorsRegion:
         selector: '#authors-region'
         #regionClass: AuthorsRegion
-      passagesRegion: '#bio-passages'
+      bioPassagesRegion: '#bio-passages'
+      workPassagesRegion: '#works-passages'
+      worksRegion: '#works-list'
       placesRegion:
         selector: '#places-region'
         #regionClass: PlacesRegion

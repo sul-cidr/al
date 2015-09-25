@@ -1,1 +1,3 @@
-<%= @safe @title %>
+<a href="#works/<%= @work_id %>"> <%= @safe hardSpace(@title) %></a>;
+
+<!-- <%= @safe @title %> -->

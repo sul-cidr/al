@@ -30,7 +30,12 @@
     tagName: "li"
     events: {"click": "loadPassages"}
     loadPassages: ->
-      console.log 'List.Work.loadPassages()'
+      work = this.model
+      # use route for model attributes and navigation
+      Backbone.history.navigate("passages/"+work.get('work_id'), true)
+      console.log 'load passages for '+work.get('work_id')
+      # direct - no model with work attributes
+      # List.Controller.listWorkPassages work.get('work_id')
 
   class List.Works extends App.Views.CompositeView
     template: "authors/list/templates/_works"
@@ -47,7 +52,7 @@
 
   class List.Passages extends App.Views.CompositeView
     template: "authors/list/templates/_passages"
-    # className: 'passages'
+    className: 'passages'
     childView: List.Passage
     childViewContainer: "div"
 

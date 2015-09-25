@@ -18,3 +18,7 @@
 /misc/*
 
 /node_modules
+
+/config/*
+
+Capfile

@@ -1,6 +1,7 @@
 @AL.module "Entities", (Entities, App, Backbone, Marionette, $,  _) ->
 
   class Entities.Place extends Entities.Model
+    idAttribute: "place_id"
 
   class Entities.PlaceCollection extends Entities.Collection
     model: Entities.Place

@@ -1,6 +1,7 @@
 @AL.module "Entities", (Entities, App, Backbone, Marionette, $,  _) ->
 
   class Entities.Passage extends Entities.Model
+    idAttribute: "passage_id"
 
   class Entities.PassageCollection extends Entities.Collection
     model: Entities.Passage
@@ -24,9 +25,9 @@
           )
           if type == "bio"
             passages.reset(filterBio)
-            window.biocoll = passages
+            # window.biocoll = passages
             cb passages
-          else if type == "works"
+          else if type == "work"
             passages.reset(filterWorks)
             cb passages
 
