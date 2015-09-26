@@ -11,6 +11,17 @@
 
   class List.Header extends App.Views.ItemView
     template: "authors/list/templates/_header"
+    events:
+      "click .toggle-authors": "onToggle"
+    onToggle: ->
+      console.log 'onToggle()'
+      if $("#authors-region").offset().left == 0
+        console.log '.closer click to left'
+        $("#authors-region").animate { 'left': -($("#authors-region").width() - 12) }, 500
+        # $(".closer").attr("class","closer fa fa-caret-square-o-right");
+      else if $("#authors-region").offset().left < 0
+        console.log '.closer click to right'
+        $("#authors-region").animate { 'left': 0 }, 500
 
   class List.Dimensions extends App.Views.ItemView
     template: "authors/list/templates/_dimensions"
@@ -31,11 +42,10 @@
     events: {"click": "loadPassages"}
     loadPassages: ->
       work = this.model
+      # show tab CHECK: leave visible?
+      $("#li_pass").removeClass("hidden")
       # use route for model attributes and navigation
       Backbone.history.navigate("passages/"+work.get('work_id'), true)
-      console.log 'load passages for '+work.get('work_id')
-      # direct - no model with work attributes
-      # List.Controller.listWorkPassages work.get('work_id')
 
   class List.Works extends App.Views.CompositeView
     template: "authors/list/templates/_works"

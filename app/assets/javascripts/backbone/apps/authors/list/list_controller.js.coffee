@@ -3,14 +3,16 @@
   List.Controller =
 
     startAuthors: ->
+      # App.request "authors:category", 0, (authors) =>
       App.request "author:entities", (authors) =>
-        # console.log 'authors: ', authors
+        console.log 'authors: ', authors
 
         @layout = @getLayoutView()
         # console.log @layout
 
         @layout.on "show", =>
           @showHeader authors
+          # @listCatAuthors 0
           @listCatAuthors authors, 0
           # @listAuthors authors, 'all'
           @listDimensions()
@@ -42,12 +44,11 @@
           child.get('dim') == dim
 
     listWorks: (author_id) ->
-      console.log 'listWorks() for ', author_id
       App.request "work:entities", author_id, (works) =>
         if App.worksRegion.$el.length >0
           App.worksRegion.reset()
         worksView = @getWorksView works
-        console.log 'listWorks(), '+ works.length + ' for ' + author_id
+        # console.log 'listWorks(), '+ works.length + ' for ' + author_id
         App.worksRegion.show worksView
 
     getWorksView: (works) ->
@@ -62,7 +63,7 @@
         if App.bioPassagesRegion.$el.length >0
           App.bioPassagesRegion.reset()
         bioPassagesView = @getBioPassagesView bio_passages
-        console.log 'listBioPassages(), '+ bio_passages.length + ' for ' + author_id
+        # console.log 'listBioPassages(), '+ bio_passages.length + ' for ' + author_id
         window.passb = bioPassagesView
         # console.log 'bioPassagesView:', bioPassagesView.collection
         App.bioPassagesRegion.show bioPassagesView
@@ -73,7 +74,7 @@
         viewComparator: "passage_id"
 
     listWorkPassages: (work) ->
-      console.log work
+      # console.log work
       id = work.attributes.work_id
       # console.log 'List.Controller.listWorkPassages() for',id
       App.request "passage:entities", id, "work", (work_passages) =>
@@ -81,7 +82,7 @@
         if App.workPassagesRegion.$el.length >0
           App.workPassagesRegion.reset()
         workPassagesView = @getWorkPassagesView work_passages, work
-        console.log 'listWorkPassages(), '+ work_passages.length + ' for ' + id
+        # console.log 'listWorkPassages(), '+ work_passages.length + ' for ' + id
         App.workPassagesRegion.show workPassagesView
         $("#somePills1 a[href='#pill-3']").tab('show')
 
@@ -93,7 +94,7 @@
       })
 
     showAuthor: (author) ->
-      console.log 'showAuthor()', author.attributes.author_id
+      # console.log 'showAuthor()', author.attributes.author_id
       authorView = @getAuthorView author
       App.authorsRegion.show authorView
       @listBioPassages author.attributes.author_id
@@ -105,16 +106,19 @@
         model: author
       })
 
-    # replaces listAuthors; category 0 = all
+    # category 0 = all
     listCatAuthors: (authors, category) ->
+      # console.log 'authors in category#: ',category
       authorsCatView = @getCatAuthorsView authors, category
+      # console.log authorsCatView
       @layout.authorlistRegion.show authorsCatView
 
     getCatAuthorsView: (authors, category) ->
       new List.Authors
         collection: authors
         filter: (child, index, collection) ->
-          child.get('categories').indexOf(category) > 0;
+          child.get('categories').indexOf(category) > -1;
+          # console.log 'filtered author collection', authors
 
     getHeaderView: (authors) ->
       new List.Header
@@ -122,13 +126,3 @@
 
     getLayoutView: ->
       new List.Layout
-
-    # listAuthors: (authors, category) ->
-    #   console.log 'list authors w/category ', category
-    #   # authorsCatView = @getAuthorsCatView category
-    #   authorsView = @getAuthorsView authors
-    #   @layout.authorlistRegion.show authorsView
-    #
-    # getAuthorsView: (authors) ->
-    #   new List.Authors
-    #     collection: authors

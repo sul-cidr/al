@@ -48,7 +48,7 @@
         else if geom.substr(0,12) == 'MULTIPOLYGON'
           polygonFeatures.push new L.GeoJSON(wellknown(geom), mapStyles.area)
 
-      markers = L.layerGroup(pointFeatures);
+      window.markers = L.layerGroup(pointFeatures);
       lines = L.featureGroup(lineFeatures);
       polygons = L.layerGroup(polygonFeatures);
 

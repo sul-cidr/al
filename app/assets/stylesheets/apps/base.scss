@@ -6,9 +6,9 @@ p, h1, h2, h3, h4 {font-family: Palatino-linotype, Georgia;}
 .centered {text-align: center;}
 .right {right: 0;}
 
-#toggle-authors {cursor: pointer;
+.toggle-authors {cursor: pointer;
   position: absolute; top: 0; right: 0; display: block; }
-#toggle-places {cursor: pointer;
+.toggle-places {cursor: pointer;
   position: absolute; top: 0; left: 0; display: block; }
 
 #wrap  {
@@ -18,9 +18,10 @@ p, h1, h2, h3, h4 {font-family: Palatino-linotype, Georgia;}
 .panel { width: 350px; height: 600px; top: 60px;
   position: absolute;
   h3 { margin: 5px 0; text-align: center;}
+  .container { position:absolute; width: 95%;}
+}
+.panel-title { padding: 3px !important;
   hr { margin: 5px 0; border: 0; height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0),
       rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));}
-  .container { position:absolute; width: 95%;}
 }
-.panel-title { padding: 3px !important;}

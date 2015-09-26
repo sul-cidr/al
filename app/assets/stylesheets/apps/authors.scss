@@ -19,7 +19,13 @@ catlist {
   span { font-family: Geneva, Arial;}
 }
 
-#bio-passages { max-height: 360px; overflow:auto;}
+#bio-passages { max-height: 360px; overflow:auto;
+  hr {display: none;}
+}
+
+#works-passages { max-height: 360px; overflow:auto;
+  hr { border: 0; border-bottom: 1px dashed #ccc; background: #999; }
+}
 .passages { }
 .passagelist { }
 

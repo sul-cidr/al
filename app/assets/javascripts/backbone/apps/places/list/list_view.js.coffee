@@ -10,6 +10,17 @@
 
   class List.Title extends App.Views.ItemView
     template: "places/list/templates/_title"
+    events:
+      "click .toggle-places": "onToggle"
+    onToggle: ->
+      console.log 'onToggle()'
+      xpos = ($(window).width() - 350) - $("#places-region").offset().left
+      if xpos == 0
+        console.log 'to right'
+        $("#places-region").animate { 'right': -($("#places-region").width() - 12) }, 500
+      else if $("#places-region").offset().left > $(window).width() - 350
+        console.log 'to left'
+        $("#places-region").animate { 'right': 0}, 500
 
   class List.Navmap extends App.Views.ItemView
     template: "places/list/templates/_navmap"

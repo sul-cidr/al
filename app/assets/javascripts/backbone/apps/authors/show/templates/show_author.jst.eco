@@ -1,7 +1,9 @@
 <div id="one_author">
-  <span id="toggle-authors"><></span>
   <div class="panel-title">
     <h3><%= @prefname %></h3>
+    <span class="toggle-authors">
+      <i class="fa fa-exchange"></i>
+    </span>
     <hr/>
   </div>
   <div id="authors-content">
@@ -9,9 +11,8 @@
       <ul id="somePills1" class="nav nav-pills">
         <li id="li_bio" class="active"><a href="#pill-1" data-toggle="pill">biography</a></li>
         <li id="li_works"><a href="#pill-2" data-toggle="pill">works</a></li>
-        <!-- <li id="li_pass" class="hidden"><a href="#pill-3" data-toggle="pill">passages</a></li> -->
         <!-- TODO hide initially-->
-        <li id="li_pass"><a href="#pill-3" data-toggle="pill">passages</a></li>
+        <li id="li_pass" class="hidden"><a href="#pill-3" data-toggle="pill">passages</a></li>
       </ul>
       <div class="tab-content">
         <div id="pill-1" class="tab-pane active">
@@ -28,17 +29,10 @@
           </div>
         </div> <!-- pill-1 -->
         <div id="pill-2" class="tab-pane fade">
-          <!-- <div id="d_works-head"><p>d_works-head</p></div> -->
           <div id="works-list"><p>d_works-list</p></div>
         </div> <!-- pill-2 -->
-        <!-- <div id="pill-3" class="tab-pane fade hidden"> -->
-        <div id="pill-3" class="tab-pane fade">
-          <!-- <div id="d_pass-head">
-            <h4>from <span class="s_worktitle"></span></h4>
-          </div> -->
+        <div id="pill-3" class="tab-pane fade ">
           <div id="works-passages">
-            <p>Integer efficitur ante sed posuere elementum. Aliquam aliquet metus nisl, eget elementum ex luctus sit amet. Sed in tristique mauris. </p>
-            <p>Morbi congue sem laoreet, faucibus justo eu, vestibulum nulla. Suspendisse faucibus efficitur vehicula. Curabitur dignissim cursus vehicula. </p>
           </div>
         </div> <!-- pill-3 -->
       </div> <!-- .tab-content -->

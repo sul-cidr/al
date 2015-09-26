@@ -3,9 +3,12 @@
   Show.Controller =
 
     showAuthor: (author) ->
-      console.log 'Show.Controller.showAuthor(author): ', author
-      authorView = @getAuthorView(author)
+      # console.log 'showAuthor()',author
+      authorView = @getAuthorView author
       App.authorsRegion.show authorView
 
     getAuthorView: (author) ->
-      new Show.Author
+      # console.log author
+      new List.AuthorLayout ({
+        model: author
+      })

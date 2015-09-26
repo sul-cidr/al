@@ -21,6 +21,7 @@
 //= require leaflet/dist/leaflet
 //= require wellknown/wellknown
 //= require leaflet-omnivore/leaflet-omnivore.min
+//= require jquery-ui
 
 // *** app
 
@@ -32,5 +33,3 @@
 //= require_tree ./backbone/helpers
 //*** require turbolinks
 //= require bootstrap-sprockets
-
-

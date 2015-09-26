@@ -14,7 +14,6 @@
 
   API =
     startAuthors: ->
-      # console.log 'API.startAuthors()'
       AuthorsApp.List.Controller.startAuthors()
 
     passAuthorModel: (author_id) ->
@@ -25,14 +24,11 @@
     passWorkModel: (work_id) ->
       # forwards work model to listWorksPassages function
       App.request "work:entity", work_id, (work) ->
-        console.log work
-        console.log 'passWorkModel() for', work.attributes.work_id
-        # console.log work
         AuthorsApp.List.Controller.listWorkPassages(work)
 
 
   App.addInitializer ->
     new AuthorsApp.Router
       controller: API
-    # CHECK: start this here?
-    API.startAuthors()
+    # CHECK: started by appRoute ""
+    # API.startAuthors()

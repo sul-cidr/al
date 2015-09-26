@@ -12,17 +12,10 @@
 
   API =
     getWorkEntity: (workid, cb) ->
-      console.log 'works, from getWorkEntity', works
+      # console.log 'works, from getWorkEntity', works
       window.works = works
       work = works._byId[workid]
       cb work
-      # works.fetch
-      #   success: ->
-      #     filterWorks = _.filter(works.models,(item) ->
-      #       item.get("work_id") == workid;
-      #     )
-      #     cb works
-
 
     getWorkEntities: (authid, cb) ->
       # works = new Entities.WorkCollection()
