@@ -3,9 +3,9 @@
   List.Controller =
 
     startAuthors: ->
-      # App.request "authors:category", 0, (authors) =>
-      App.request "author:entities", (authors) =>
-        console.log 'authors: ', authors
+      App.request "authors:category", 0, (authors) =>
+      #repl App.request "author:entities", (authors) =>
+        # console.log 'startAuthors>>authors: ', authors
 
         @layout = @getLayoutView()
         # console.log @layout
@@ -14,6 +14,7 @@
           @showHeader authors
           # @listCatAuthors 0
           @listCatAuthors authors, 0
+
           # @listAuthors authors, 'all'
           @listDimensions()
           # @listCategories()
@@ -114,10 +115,11 @@
       @layout.authorlistRegion.show authorsCatView
 
     getCatAuthorsView: (authors, category) ->
+      # console.log 'getCategoriesView:',category
       new List.Authors
         collection: authors
-        filter: (child, index, collection) ->
-          child.get('categories').indexOf(category) > -1;
+        # filter: (child, index, collection) ->
+        #   child.get('categories').indexOf(category) > -1;
           # console.log 'filtered author collection', authors
 
     getHeaderView: (authors) ->

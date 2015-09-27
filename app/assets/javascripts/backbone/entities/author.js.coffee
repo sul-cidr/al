@@ -6,20 +6,24 @@
 
   class Entities.AuthorCollection extends Entities.Collection
     model: Entities.Author
-    # url: '/authors.json'
     url: '/authors'
     # CHECK is idAttribute any use?
     idAttribute: "author_id"
 
   authors = new Entities.AuthorCollection
 
+  author = new Entities.Author
+
+
   API =
     getAuthorEntity: (id, cb) ->
-      author = authors._byId[id]
-      cb author
+      # $activeAuthor = authors._byId[id]
+      @author = authors._byId[id]
+      # cb activeAuthor
+      cb @author
 
-    getAuthorsCategory: (cat) ->
-      console.log 'cat = ',cat
+    getAuthorsCategory: (cat, cb) ->
+      # console.log 'in entity, cat =',cat
       authors.fetch
         success: ->
           # exclude Evans, Fielding, Boswell
@@ -30,8 +34,9 @@
             # item.where("'categories = any ("+cat+")'");
           )
           authors.reset(filterCat);
-          console.log 'filtered authors; ',authors
-          authors
+          $activeAuthors = authors
+          # console.log 'filtered authors; ', activeAuthors
+          cb authors
 
     getAuthorEntities: (cb) ->
       authors.fetch
@@ -43,8 +48,8 @@
           authors.reset(filterName);
           cb authors
 
-  App.reqres.setHandler "authors:category", (cat) ->
-    API.getAuthorsCategory cat
+  App.reqres.setHandler "authors:category", (cat, cb) ->
+    API.getAuthorsCategory cat, cb
 
   App.reqres.setHandler "author:entities", (cb) ->
     API.getAuthorEntities cb

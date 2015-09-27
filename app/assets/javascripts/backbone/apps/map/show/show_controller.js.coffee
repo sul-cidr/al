@@ -2,9 +2,8 @@
 
   Show.Controller =
 
-    showMap: ->
-      # places = App.request "place:entities", (places) =>
-      #   console.log places.length + ' places from controller: ', places
+    showMap: ()->
+      # console.log 'MapApp.Show.Controller.showMap()', authors
       mapView = @getMapView()
       # console.log 'mapView: ', mapView
       App.mapRegion.show mapView

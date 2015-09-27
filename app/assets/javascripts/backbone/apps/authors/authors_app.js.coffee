@@ -8,6 +8,7 @@
 
       "passages/:work_id": "passWorkModel"
 
+      # '/authors/:categoryid':
       # "dimensions": "listDimensions"
       # "categories": "listCategories"
 
@@ -18,12 +19,12 @@
 
     passAuthorModel: (author_id) ->
       # forwards author model to showAuthor function
-      App.request "author:entity", author_id, (author) ->
+      App.request "author:entity", author_id, (author) =>
         AuthorsApp.List.Controller.showAuthor(author)
 
     passWorkModel: (work_id) ->
       # forwards work model to listWorksPassages function
-      App.request "work:entity", work_id, (work) ->
+      App.request "work:entity", work_id, (work) =>
         AuthorsApp.List.Controller.listWorkPassages(work)
 
 

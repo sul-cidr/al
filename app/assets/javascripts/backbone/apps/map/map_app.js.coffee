@@ -1,5 +1,5 @@
 @AL.module "MapApp", (MapApp, App, Backbone, Marionette, $, _) ->
-  @startWithParent = false
+  # @startWithParent = false
 
   API =
     showMap: ->

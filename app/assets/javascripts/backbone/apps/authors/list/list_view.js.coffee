@@ -77,6 +77,8 @@
       #/ route runs API.showAuthor --> gets model 'author' -->
       #/ AuthorsApp.List.Controller.showAuthor(author)
       author = this.model
+      console.log 'clicked this author:', author
+      # @activeAuthor = author
       Backbone.history.navigate("authors/"+author.get('author_id'), true)
 
   class List.Authors extends App.Views.CompositeView
@@ -85,7 +87,6 @@
     emptyView: List.Empty
     childViewContainer: "div"
 
-
   class List.Category extends App.Views.ItemView
     template: "authors/list/templates/_category"
     tagName: "span"
@@ -93,8 +94,11 @@
     filterAuths: ->
       cat = this.model
       id = cat.attributes.id
-      App.request "author:entities", (authors) =>
+      console.log 'clicked '+ id + ', filter auth list & map'
+      App.request "authors:category", id, (authors) =>
         List.Controller.listCatAuthors(authors, id)
+        # MapApp.Show.Controller.showMap(authors)
+
 
   class List.Categories extends App.Views.CompositeView
     template: "authors/list/templates/_categories"

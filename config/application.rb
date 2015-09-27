@@ -14,7 +14,8 @@ module Authorial
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-
+    config.activeAuthor = {}
+    config.activeAuthors = {}
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
@@ -27,4 +28,3 @@ module Authorial
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
-
