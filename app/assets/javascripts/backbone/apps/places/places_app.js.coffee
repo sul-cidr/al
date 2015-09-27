@@ -1,6 +1,15 @@
 @AL.module "PlacesApp", (PlacesApp, App, Backbone, Marionette, $, _) ->
   @startWithParent = false
 
+  console.log 'PlacesApp started'
+
+  alertPrivate = (message) ->
+    console.log "Private alert: " + message
+
+  PlacesApp.alertPublic = (message) ->
+    console.log 'I will now call alertPrivate'
+    alertPrivate message
+
   ##
   # places have geometry; areas are a subset of places, incl.
   # boroughs/wards/neighborhoods
@@ -32,4 +41,4 @@
   App.addInitializer ->
     new PlacesApp.Router
       controller: API
-    API.startPlaces()
+    # API.startPlaces()

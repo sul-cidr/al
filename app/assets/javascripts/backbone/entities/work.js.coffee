@@ -6,14 +6,14 @@
   class Entities.WorkCollection extends Entities.Collection
     model: Entities.Work
     url: '/works.json'
-    idAttribute: "work_id"
+    comparator: 'title'
 
-  window.works = new Entities.WorkCollection()
+  works = new Entities.WorkCollection()
 
   API =
     getWorkEntity: (workid, cb) ->
       # console.log 'works, from getWorkEntity', works
-      window.works = works
+      # window.works = works
       work = works._byId[workid]
       cb work
 

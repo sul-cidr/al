@@ -7,13 +7,13 @@
   class Entities.AuthorCollection extends Entities.Collection
     model: Entities.Author
     url: '/authors'
+    comparator: 'surname'
     # CHECK is idAttribute any use?
     idAttribute: "author_id"
 
   authors = new Entities.AuthorCollection
 
   author = new Entities.Author
-
 
   API =
     getAuthorEntity: (id, cb) ->
@@ -48,6 +48,10 @@
           authors.reset(filterName);
           cb authors
 
+
+  App.reqres.setHandler "authors:active", (cb) ->
+    cb activeAuthors
+
   App.reqres.setHandler "authors:category", (cat, cb) ->
     API.getAuthorsCategory cat, cb
 
@@ -56,5 +60,6 @@
 
   App.reqres.setHandler "author:entity", (id, cb) ->
     API.getAuthorEntity id, cb
+
 
   # CHECK ?? add initializer to populate authors once, then check before any other fetch

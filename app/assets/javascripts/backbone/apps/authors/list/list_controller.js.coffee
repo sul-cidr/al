@@ -1,5 +1,7 @@
 @AL.module 'AuthorsApp.List', (List, App, Backbone, Marionette, $, _) ->
 
+  $vent = new Backbone.Wreqr.EventAggregator();
+
   List.Controller =
 
     startAuthors: ->
@@ -35,6 +37,8 @@
       App.request "category:entities", (categories) =>
         # console.log 'listCategories for: ', dim
         categoriesView = @getCategoriesView categories, dim
+        # categoriesView.on 'childview:authors:filtered', (childView, model) ->
+        #   console.log 'heard trigger', model
         # console.log categoriesView
         @layout.categoriesRegion.show categoriesView
 
@@ -111,8 +115,10 @@
     listCatAuthors: (authors, category) ->
       # console.log 'authors in category#: ',category
       authorsCatView = @getCatAuthorsView authors, category
+      #
       # console.log authorsCatView
       @layout.authorlistRegion.show authorsCatView
+
 
     getCatAuthorsView: (authors, category) ->
       # console.log 'getCategoriesView:',category

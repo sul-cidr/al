@@ -78,7 +78,9 @@
       #/ AuthorsApp.List.Controller.showAuthor(author)
       author = this.model
       console.log 'clicked this author:', author
-      # @activeAuthor = author
+      this.trigger("author:selected", author)
+      App.reqres.setHandler "author:active", ->
+        return author
       Backbone.history.navigate("authors/"+author.get('author_id'), true)
 
   class List.Authors extends App.Views.CompositeView
@@ -86,19 +88,23 @@
     childView: List.Author
     emptyView: List.Empty
     childViewContainer: "div"
+    onChildviewAuthorSelected: (author) ->
+      console.log 'triggered author:selected', author
 
   class List.Category extends App.Views.ItemView
     template: "authors/list/templates/_category"
     tagName: "span"
-    events: {"click": "filterAuths"}
-    filterAuths: ->
+    # events: {"click": "filterAuthors"}
+    events: {"click": "filterAuthors"}
+
+    filterAuthors: (e) ->
       cat = this.model
       id = cat.attributes.id
       console.log 'clicked '+ id + ', filter auth list & map'
       App.request "authors:category", id, (authors) =>
         List.Controller.listCatAuthors(authors, id)
-        # MapApp.Show.Controller.showMap(authors)
-
+      App.reqres.setHandler "category:active", ->
+        return cat
 
   class List.Categories extends App.Views.CompositeView
     template: "authors/list/templates/_categories"
@@ -108,6 +114,8 @@
     filter: (child, index, collection) ->
       # filter genre for initial display
       child.get('dim') == 'genre'
+    onChildviewAuthorsFiltered: ->
+      console.log 'bubbled up to List.Categories view'
 
   class List.Empty extends App.Views.ItemView
     template: "authors/list/templates/_empty"

@@ -14,14 +14,6 @@
         success: ->
           cb categories
 
-    # getCategoryAuthors: (cb) ->
-    #   # console.log Entities
-    #   catAuthors = new Entities.AuthorCollection()
-    #   catAuthors.fetch
-    #     success: ->
-    #
-    #       cb categories
-
   App.reqres.setHandler "category:entities", (cb) ->
     API.getCategoryEntities cb
 
