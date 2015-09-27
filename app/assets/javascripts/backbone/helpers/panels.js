@@ -12,7 +12,6 @@ $(document).on('page:change', function () {
       $("#authors").animate({'left': 0}, 500)
       // $(".closer").attr("class","closer fa fa-caret-square-o-left");
     }
-
   	// $("#authors").animate({"left": -330}, 500)
 	});
 })

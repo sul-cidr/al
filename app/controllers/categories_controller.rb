@@ -1,5 +1,7 @@
 class CategoriesController < ApplicationController
-  respond_to :json
+  respond_to do |format|
+    format.json
+  end
 
   def index
     @categories = Category.all

@@ -77,8 +77,9 @@
       #/ route runs API.showAuthor --> gets model 'author' -->
       #/ AuthorsApp.List.Controller.showAuthor(author)
       author = this.model
-      console.log 'clicked this author:', author
-      this.trigger("author:selected", author)
+      # console.log 'clicked this author:', author
+      App.commands.execute("refreshMap", 'author', author)
+      # this.trigger("author:selected", author)
       App.reqres.setHandler "author:active", ->
         return author
       Backbone.history.navigate("authors/"+author.get('author_id'), true)
@@ -100,7 +101,8 @@
     filterAuthors: (e) ->
       cat = this.model
       id = cat.attributes.id
-      console.log 'clicked '+ id + ', filter auth list & map'
+      # console.log 'clicked '+ id + ', filter auth list & map'
+      App.commands.execute("refreshMap", 'category', cat)
       App.request "authors:category", id, (authors) =>
         List.Controller.listCatAuthors(authors, id)
       App.reqres.setHandler "category:active", ->

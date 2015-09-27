@@ -1,7 +1,7 @@
 @AL = do (Backbone, Marionette) ->
 
   globalChannel = Backbone.Wreqr.radio.channel('global');
-  
+    
   App = new (Marionette.Application)
 
   App.on 'initialize:before', ->
