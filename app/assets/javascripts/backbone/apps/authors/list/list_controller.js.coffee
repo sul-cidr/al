@@ -11,7 +11,7 @@
         # console.log @layout
 
         @layout.on "show", =>
-          @showHeader authors
+          @showTitle authors
           # @listCatAuthors 0
           @listCatAuthors authors, 0
 
@@ -22,8 +22,8 @@
 
         App.authorsRegion.show @layout
 
-    showHeader: (authors) ->
-      headerView = @getHeaderView authors
+    showTitle: (authors) ->
+      headerView = @getTitleView authors
       @layout.headerRegion.show headerView
 
     listDimensions: ->
@@ -122,8 +122,8 @@
         #   child.get('categories').indexOf(category) > -1;
           # console.log 'filtered author collection', authors
 
-    getHeaderView: (authors) ->
-      new List.Header
+    getTitleView: (authors) ->
+      new List.Title
         collection: authors
 
     getLayoutView: ->

@@ -9,8 +9,8 @@
       categoriesRegion: "#categories-region"
       authorlistRegion: "#authorlist-region"
 
-  class List.Header extends App.Views.ItemView
-    template: "authors/list/templates/_header"
+  class List.Title extends App.Views.ItemView
+    template: "authors/list/templates/_title"
     events:
       "click .toggle-authors": "onToggle"
     onToggle: ->

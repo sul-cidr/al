@@ -1,5 +1,7 @@
-<h3>Places</h3>
-<span class="toggle-places">
-  <i class="fa fa-exchange"></i>
-</span>
-<hr/>
+<div class="panel-title">
+  <h3>Places</h3>
+  <span class="toggle-places">
+    <i class="fa fa-exchange"></i>
+  </span>
+  <hr/>
+</div>

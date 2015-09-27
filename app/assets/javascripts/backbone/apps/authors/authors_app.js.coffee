@@ -8,11 +8,6 @@
 
       "passages/:work_id": "passWorkModel"
 
-      # '/authors/:categoryid':
-      # "dimensions": "listDimensions"
-      # "categories": "listCategories"
-
-
   API =
     startAuthors: ->
       AuthorsApp.List.Controller.startAuthors()

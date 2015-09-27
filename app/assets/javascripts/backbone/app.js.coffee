@@ -22,7 +22,7 @@
 
     App.module('HeaderApp').start()
     # App.module('AuthorsApp').start()
-    # App.module('PlacesApp').start()
+    App.module('PlacesApp').start()
     App.module('MapApp').start()
 
   App.on 'start', ->
