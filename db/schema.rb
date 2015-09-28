@@ -163,12 +163,15 @@ ActiveRecord::Schema.define(version: 20150923170802) do
 
   create_table "placerefs", force: :cascade do |t|
     t.integer  "placeref_id"
-    t.string   "prefname"
-    t.integer  "place_id"
-    t.string   "passage_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
     t.integer  "work_id"
+    t.string   "passage_id"
+    t.string   "prefname"
+    t.string   "author_id"
+    t.integer  "place_id"
+    t.text     "geom_wkt"
+    t.string   "placeref_type"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "places", force: :cascade do |t|

@@ -77,7 +77,6 @@
       #/ route runs API.showAuthor --> gets model 'author' -->
       #/ AuthorsApp.List.Controller.showAuthor(author)
       author = this.model
-      # console.log 'clicked this author:', author
       App.commands.execute("refreshMap", 'author', author)
       # this.trigger("author:selected", author)
       App.reqres.setHandler "author:active", ->
@@ -89,8 +88,8 @@
     childView: List.Author
     emptyView: List.Empty
     childViewContainer: "div"
-    onChildviewAuthorSelected: (author) ->
-      console.log 'triggered author:selected', author
+    # onChildviewAuthorSelected: (author) ->
+    #   console.log 'triggered author:selected', author
 
   class List.Category extends App.Views.ItemView
     template: "authors/list/templates/_category"

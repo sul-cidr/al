@@ -8,7 +8,16 @@
       # console.log 'mapView: ', mapView
       App.mapRegion.show mapView
 
-    getMapView: (places) ->
+    getMapView: ->
+      new Show.Map
+
+    refreshMap: (what, model)->
+      console.log 'API.refresh() --> Show.Controller.refreshMap', what, model
+      id = model.attributes.author_id
+      App.request "placerefs:author", id, (placerefs) =>
+        console.log placerefs
+
+    getRefreshMapView: (places) ->
       new Show.Map
 
     # /**

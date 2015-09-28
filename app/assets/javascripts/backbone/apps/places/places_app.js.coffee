@@ -20,6 +20,7 @@
   class PlacesApp.Router extends Marionette.AppRouter
     appRoutes:
       "places": "listPlaces"
+      # "placerefs": 
       # "areas": "listAreas"
       # "area/:id": "showArea"
 
