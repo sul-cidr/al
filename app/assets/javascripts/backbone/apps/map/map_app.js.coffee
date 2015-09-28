@@ -10,7 +10,9 @@
       MapApp.Show.Controller.showMap()
 
     refresh: (what, model)->
-      MapApp.Show.Controller.refreshMap(what, model)
+      id = model.attributes.author_id
+      App.request "placerefs:author", id, (placerefs) =>
+        MapApp.Show.Controller.updateMap(placerefs)
 
   MapApp.on "start", ->
     controller: API

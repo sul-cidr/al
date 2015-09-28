@@ -2,9 +2,16 @@
 
   Show.Controller =
 
-    showMap: ()->
+    showMap: ->
       # console.log 'MapApp.Show.Controller.showMap()', authors
       mapView = @getMapView()
+      App.mapRegion.show mapView
+
+    updateMap: (placerefs) ->
+      # console.log 'MapApp.Show.Controller.showMap()', authors
+      mapView = @getMapView()
+      # mapView.initMap(placerefs)
+      mapView.updateMap(placerefs)
       # console.log 'mapView: ', mapView
       App.mapRegion.show mapView
 

@@ -15,7 +15,7 @@
       # placerefs = new Entities.PlacerefCollection()
       placerefs.fetch
         success: ->
-          console.log 'all '+placerefs.models.length+' authors at first'
+          console.log 'all '+placerefs.models.length+' placerefs at first'
           cb placerefs
 
     getPlacerefsAuthor: (id, cb) ->

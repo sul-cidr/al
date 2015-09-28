@@ -3,15 +3,19 @@
   class Show.Map extends Marionette.ItemView
     template: "map/show/templates/show_map"
 
-    initialize: ->
-      window.places = App.request "place:entities", (places) =>
+    onDomRefresh: ->
+    # initialize: ->
+      # console.log this.el
+      @initMap()
+      # setTimeout( =>
+      #   @initMap()
+      # , 3000)
+      App.request "placeref:entities", (placerefs) =>
         # console.log places.length + ' places from view initialize: ', places
-        @initMap places
+        # @initMap placerefs
 
-    onBeforeRender: ->
-
-    # onShow ->
-    initMap: (places)->
+    initMap: ->
+      console.log 'initMap'
       this.map = L.map('map', {
         zoomControl: false,
         attributionControl: false,
@@ -35,26 +39,26 @@
       # Default viewport.
       this.map.setView([51.5120, -0.1228], 12);
 
-      pointFeatures = []
-      lineFeatures = []
-      polygonFeatures = []
-      $.each places.models, (i, pl) ->
-        geom = pl.attributes.geom_wkt
-        # console.log geom
-        if geom.substr(0,10) == 'MULTIPOINT'
-          pointFeatures.push L.circleMarker(swap(wellknown(geom).coordinates[0]), mapStyles.point)
-        else if geom.substr(0,15) == 'MULTILINESTRING'
-          lineFeatures.push new L.GeoJSON(wellknown(geom), mapStyles.street)
-        else if geom.substr(0,12) == 'MULTIPOLYGON'
-          polygonFeatures.push new L.GeoJSON(wellknown(geom), mapStyles.area)
-
-      window.markers = L.layerGroup(pointFeatures);
-      lines = L.featureGroup(lineFeatures);
-      polygons = L.layerGroup(polygonFeatures);
-
-      polygons.addTo(this.map)
-      lines.addTo(this.map)
-      markers.addTo(this.map)
+      # pointFeatures = []
+      # lineFeatures = []
+      # polygonFeatures = []
+      # $.each placerefs.models, (i, pl) ->
+      #   geom = pl.attributes.geom_wkt
+      #   # console.log geom
+      #   if geom.substr(0,10) == 'MULTIPOINT'
+      #     pointFeatures.push L.circleMarker(swap(wellknown(geom).coordinates[0]), mapStyles.point)
+      #   else if geom.substr(0,15) == 'MULTILINESTRING'
+      #     lineFeatures.push new L.GeoJSON(wellknown(geom), mapStyles.street)
+      #   else if geom.substr(0,12) == 'MULTIPOLYGON'
+      #     polygonFeatures.push new L.GeoJSON(wellknown(geom), mapStyles.area)
+      #
+      # window.markers = L.layerGroup(pointFeatures);
+      # lines = L.featureGroup(lineFeatures);
+      # polygons = L.layerGroup(polygonFeatures);
+      #
+      # polygons.addTo(this.map)
+      # lines.addTo(this.map)
+      # markers.addTo(this.map)
 
 
 ## from graves_ui
