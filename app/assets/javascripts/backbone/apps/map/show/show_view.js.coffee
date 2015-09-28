@@ -1,7 +1,31 @@
 @AL.module "MapApp.Show", (Show, App, Backbone, Marionette, $, _) ->
 
+
   class Show.Map extends Marionette.ItemView
     template: "map/show/templates/show_map"
+
+    initialize: ->
+      @filters = {}
+
+    setFilter: (key, evaluator) ->
+      @filters[key] = evaluator
+
+    removeFilter: (key) ->
+      delete @filters[key]
+
+    filterAllLayers: ->
+      _.each @features (f) =>
+        filterLayer(f)
+
+    filterLayer: (layer) ->
+      visible = true
+      _.each @filters (evaluator, key) =>
+        visible = visible && evaluator(layer)
+      if visible
+        @map.addLayer layer
+      else
+        @map.removeLayer layer
+
 
     onDomRefresh: ->
       @initMap()
