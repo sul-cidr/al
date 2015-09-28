@@ -4,15 +4,9 @@
     template: "map/show/templates/show_map"
 
     onDomRefresh: ->
-    # initialize: ->
-      # console.log this.el
       @initMap()
-      # setTimeout( =>
-      #   @initMap()
-      # , 3000)
       App.request "placeref:entities", (placerefs) =>
-        # console.log places.length + ' places from view initialize: ', places
-        # @initMap placerefs
+        @ingest placerefs
 
     initMap: ->
       console.log 'initMap'
@@ -39,23 +33,29 @@
       # Default viewport.
       this.map.setView([51.5120, -0.1228], 12);
 
+    ingest: (placerefs) ->
+      @features = []
       # pointFeatures = []
       # lineFeatures = []
       # polygonFeatures = []
-      # $.each placerefs.models, (i, pl) ->
-      #   geom = pl.attributes.geom_wkt
-      #   # console.log geom
-      #   if geom.substr(0,10) == 'MULTIPOINT'
-      #     pointFeatures.push L.circleMarker(swap(wellknown(geom).coordinates[0]), mapStyles.point)
-      #   else if geom.substr(0,15) == 'MULTILINESTRING'
-      #     lineFeatures.push new L.GeoJSON(wellknown(geom), mapStyles.street)
-      #   else if geom.substr(0,12) == 'MULTIPOLYGON'
-      #     polygonFeatures.push new L.GeoJSON(wellknown(geom), mapStyles.area)
-      #
-      # window.markers = L.layerGroup(pointFeatures);
+      $.each placerefs.models, (i, pl) =>
+        geom = pl.attributes.geom_wkt
+        # console.log geom
+        if geom.substr(0,10) == 'MULTIPOINT'
+          feature = L.circleMarker(swap(wellknown(geom).coordinates[0]), mapStyles.point)
+          feature.model = pl
+          @features.push feature
+          # @features.push L.circleMarker(swap(wellknown(geom).coordinates[0]), mapStyles.point)
+        else if geom.substr(0,15) == 'MULTILINESTRING'
+          @features.push new L.GeoJSON(wellknown(geom), mapStyles.street)
+        else if geom.substr(0,12) == 'MULTIPOLYGON'
+          @features.push new L.GeoJSON(wellknown(geom), mapStyles.area)
+
+      @group = L.layerGroup(@features)
+      # markers = L.layerGroup(pointFeatures);
       # lines = L.featureGroup(lineFeatures);
       # polygons = L.layerGroup(polygonFeatures);
-      #
+      @group.addTo(@map)
       # polygons.addTo(this.map)
       # lines.addTo(this.map)
       # markers.addTo(this.map)
