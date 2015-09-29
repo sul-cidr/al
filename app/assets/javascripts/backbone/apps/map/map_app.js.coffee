@@ -16,10 +16,14 @@
       MapApp.Show.Controller.showMap()
 
     filterByAuthor: (author) ->
+      # on click feed selected author to setFilter(author)
+      MapApp.Show.Controller.setFilter 'author', (placeref) ->
+        placeref.get("author_id") == author.get("author_id")
+
+    filterByCategory: (author_ids, id) ->
       # console.log author.get("author_id")
-      MapApp.Show.Controller.setFilter 'author', (model) ->
-        # console.log model.get("author_id"), author.get("author_id")
-        model.get("author_id") == author.get("author_id")
+      MapApp.Show.Controller.setFilter 'author', (placeref) ->
+        author_ids.indexOf(placeref.get("author_id")) > 0
 
     filterByAuthors: (cat) ->
       # build collection of authorhs having 'cat'
@@ -28,12 +32,9 @@
       App.request "authors:category", id, (authors) =>
         # console.log authors
         _.each authors.models, (a) =>
-          # console.log a
           author_ids.push a.get("author_id")
-        console.log author_ids
-
-      # MapApp.Show.Controller.setFilter 'author', (model) ->
-      #   model.get("author_id") == author.get("author_id")
+          @filterByCategory author_ids, id
+        console.log 'cat '+id+ ': ', author_ids
 
 
   MapApp.on "start", ->

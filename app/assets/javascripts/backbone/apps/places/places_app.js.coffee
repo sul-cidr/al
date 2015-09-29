@@ -1,7 +1,7 @@
 @AL.module "PlacesApp", (PlacesApp, App, Backbone, Marionette, $, _) ->
   @startWithParent = false
 
-  console.log 'PlacesApp started'
+  # console.log 'PlacesApp started'
 
   alertPrivate = (message) ->
     console.log "Private alert: " + message
@@ -20,7 +20,7 @@
   class PlacesApp.Router extends Marionette.AppRouter
     appRoutes:
       "places": "listPlaces"
-      # "placerefs": 
+      # "placerefs":
       # "areas": "listAreas"
       # "area/:id": "showArea"
 

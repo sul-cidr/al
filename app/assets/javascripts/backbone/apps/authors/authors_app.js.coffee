@@ -1,7 +1,7 @@
 @AL.module "AuthorsApp", (AuthorsApp, App, Backbone, Marionette, $, _) ->
   @startWithParent = false
 
-  console.log 'AuthorsApp started'
+  # console.log 'AuthorsApp started'
 
   class AuthorsApp.Router extends Marionette.AppRouter
     appRoutes:

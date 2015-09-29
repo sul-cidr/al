@@ -6,6 +6,8 @@
 
     initialize: ->
       @filters = {}
+      @filteredFeatures = []
+      console.log 'filteredFeatures: ', @filteredFeatures
 
     setFilter: (key, evaluator) ->
       @filters[key] = evaluator
@@ -15,8 +17,10 @@
       delete @filters[key]
 
     filterAllLayers: ->
+      @filteredFeatures = []
       _.each @features, (f) =>
         @filterLayer(f)
+      # zoom to extent
 
     filterLayer: (layer) ->
       visible = true
@@ -24,8 +28,10 @@
         visible = visible && evaluator(layer.model)
       if visible
         @map.addLayer layer
+        @filteredFeatures.push layer
       else
         @map.removeLayer layer
+
 
     onDomRefresh: ->
       @initMap()
@@ -33,7 +39,7 @@
         @ingest placerefs
 
     initMap: ->
-      console.log 'initMap'
+      # console.log 'initMap'
       this.map = L.map('map', {
         zoomControl: false,
         attributionControl: false,
@@ -61,7 +67,6 @@
       @features = []
       $.each placerefs.models, (i, pl) =>
         geom = pl.attributes.geom_wkt
-        # console.log geom
         if geom.substr(0,10) == 'MULTIPOINT'
           feature = L.circleMarker(swap(wellknown(geom).coordinates[0]), mapStyles.point)
           feature.model = pl
@@ -77,9 +82,12 @@
           feature.model = pl
           @features.push feature
 
-      @group = L.layerGroup(@features)
+      @group = L.featureGroup(@features)
       @group.addTo(@map)
-
+      # @map.fitBounds(@group)
+      window.map = @map
+      window.group = @group
+      window.features = @features
 ## from graves_ui
       # this.idToPlace = {};
     #   features = 'empty right now'

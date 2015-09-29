@@ -34,7 +34,8 @@
             # item.where("'categories = any ("+cat+")'");
           )
           authors.reset(filterCat);
-          console.log authors.models.length + ' filtered authors'
+          # TODO this executes twice??
+          # console.log authors.models.length + ' filtered authors'
           cb authors
 
     getAuthorEntities: (cb) ->
