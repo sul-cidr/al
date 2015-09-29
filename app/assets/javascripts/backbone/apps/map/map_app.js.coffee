@@ -8,21 +8,33 @@
   App.vent.on "author:show", (author) ->
     API.filterByAuthor author
 
+  App.vent.on "authors:show", (cat) ->
+    API.filterByAuthors cat
+
   API =
     showMap: ->
       MapApp.Show.Controller.showMap()
-
-    refresh: (what, model)->
-      id = model.attributes.author_id
-      App.request "placerefs:author", id, (placerefs) =>
-        MapApp.Show.Controller.updateMap(placerefs)
 
     filterByAuthor: (author) ->
       # console.log author.get("author_id")
       MapApp.Show.Controller.setFilter 'author', (model) ->
         # console.log model.get("author_id"), author.get("author_id")
-        # TODO one is integer the other string
         model.get("author_id") == author.get("author_id")
+
+    filterByAuthors: (cat) ->
+      # build collection of authorhs having 'cat'
+      id = cat.get("id")
+      author_ids = []
+      App.request "authors:category", id, (authors) =>
+        # console.log authors
+        _.each authors.models, (a) =>
+          # console.log a
+          author_ids.push a.get("author_id")
+        console.log author_ids
+
+      # MapApp.Show.Controller.setFilter 'author', (model) ->
+      #   model.get("author_id") == author.get("author_id")
+
 
   MapApp.on "start", ->
     controller: API

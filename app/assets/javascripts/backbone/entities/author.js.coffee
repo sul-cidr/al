@@ -34,8 +34,7 @@
             # item.where("'categories = any ("+cat+")'");
           )
           authors.reset(filterCat);
-          $activeAuthors = authors
-          # console.log 'filtered authors; ', activeAuthors
+          console.log authors.models.length + ' filtered authors'
           cb authors
 
     getAuthorEntities: (cb) ->
