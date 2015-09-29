@@ -166,7 +166,7 @@ ActiveRecord::Schema.define(version: 20150923170802) do
     t.integer  "work_id"
     t.string   "passage_id"
     t.string   "prefname"
-    t.string   "author_id"
+    t.integer  "author_id"
     t.integer  "place_id"
     t.text     "geom_wkt"
     t.string   "placeref_type"

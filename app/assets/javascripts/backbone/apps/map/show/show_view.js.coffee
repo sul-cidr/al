@@ -27,7 +27,6 @@
       else
         @map.removeLayer layer
 
-
     onDomRefresh: ->
       @initMap()
       App.request "placeref:entities", (placerefs) =>
@@ -60,9 +59,6 @@
 
     ingest: (placerefs) ->
       @features = []
-      # pointFeatures = []
-      # lineFeatures = []
-      # polygonFeatures = []
       $.each placerefs.models, (i, pl) =>
         geom = pl.attributes.geom_wkt
         # console.log geom
@@ -70,7 +66,7 @@
           feature = L.circleMarker(swap(wellknown(geom).coordinates[0]), mapStyles.point)
           feature.model = pl
           @features.push feature
-          # @features.push L.circleMarker(swap(wellknown(geom).coordinates[0]), mapStyles.point)
+
         else if geom.substr(0,15) == 'MULTILINESTRING'
           feature =  new L.GeoJSON(wellknown(geom), mapStyles.street)
           feature.model = pl
@@ -82,14 +78,7 @@
           @features.push feature
 
       @group = L.layerGroup(@features)
-      # markers = L.layerGroup(pointFeatures);
-      # lines = L.featureGroup(lineFeatures);
-      # polygons = L.layerGroup(polygonFeatures);
       @group.addTo(@map)
-      # polygons.addTo(this.map)
-      # lines.addTo(this.map)
-      # markers.addTo(this.map)
-
 
 ## from graves_ui
       # this.idToPlace = {};

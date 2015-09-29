@@ -77,8 +77,6 @@
       #/ route runs API.showAuthor --> gets model 'author' -->
       #/ AuthorsApp.List.Controller.showAuthor(author)
       author = this.model
-      App.commands.execute("refreshMap", 'author', author)
-      # this.trigger("author:selected", author)
       App.reqres.setHandler "author:active", ->
         return author
       Backbone.history.navigate("authors/"+author.get('author_id'), true)
@@ -88,8 +86,6 @@
     childView: List.Author
     emptyView: List.Empty
     childViewContainer: "div"
-    # onChildviewAuthorSelected: (author) ->
-    #   console.log 'triggered author:selected', author
 
   class List.Category extends App.Views.ItemView
     template: "authors/list/templates/_category"

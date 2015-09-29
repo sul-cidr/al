@@ -7,7 +7,7 @@ class CreatePlacerefs < ActiveRecord::Migration
       t.integer :work_id
       t.string :passage_id # was placerefs.source_loc
     	t.string :prefname # may be altered from original
-      t.string :author_id
+      t.integer :author_id
     	t.integer :place_id
       t.text :geom_wkt
       t.string :placeref_type

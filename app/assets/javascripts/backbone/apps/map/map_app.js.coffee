@@ -21,9 +21,8 @@
       # console.log author.get("author_id")
       MapApp.Show.Controller.setFilter 'author', (model) ->
         # console.log model.get("author_id"), author.get("author_id")
-        console.log model.get("author_id"), author.get("author_id")
-        Number(model.get("author_id")) == Number(author.get("author_id"))
-
+        # TODO one is integer the other string
+        model.get("author_id") == author.get("author_id")
 
   MapApp.on "start", ->
     controller: API
