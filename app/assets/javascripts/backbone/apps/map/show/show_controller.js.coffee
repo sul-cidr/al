@@ -4,16 +4,12 @@
 
     showMap: ->
       # console.log 'MapApp.Show.Controller.showMap()', authors
-      mapView = @getMapView()
-      App.mapRegion.show mapView
+      @mapView = @getMapView()
+      App.mapRegion.show @mapView
 
-    updateMap: (placerefs) ->
-      # console.log 'MapApp.Show.Controller.showMap()', authors
-      mapView = @getMapView()
-      # mapView.initMap(placerefs)
-      mapView.updateMap(placerefs)
-      # console.log 'mapView: ', mapView
-      App.mapRegion.show mapView
+
+    setFilter: (key, evaluator) ->
+      @mapView.setFilter key, evaluator
 
     getMapView: ->
       new Show.Map

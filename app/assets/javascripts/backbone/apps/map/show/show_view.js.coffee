@@ -9,18 +9,19 @@
 
     setFilter: (key, evaluator) ->
       @filters[key] = evaluator
+      @filterAllLayers()
 
     removeFilter: (key) ->
       delete @filters[key]
 
     filterAllLayers: ->
-      _.each @features (f) =>
-        filterLayer(f)
+      _.each @features, (f) =>
+        @filterLayer(f)
 
     filterLayer: (layer) ->
       visible = true
-      _.each @filters (evaluator, key) =>
-        visible = visible && evaluator(layer)
+      _.each @filters, (evaluator, key) =>
+        visible = visible && evaluator(layer.model)
       if visible
         @map.addLayer layer
       else
@@ -71,9 +72,14 @@
           @features.push feature
           # @features.push L.circleMarker(swap(wellknown(geom).coordinates[0]), mapStyles.point)
         else if geom.substr(0,15) == 'MULTILINESTRING'
-          @features.push new L.GeoJSON(wellknown(geom), mapStyles.street)
+          feature =  new L.GeoJSON(wellknown(geom), mapStyles.street)
+          feature.model = pl
+          @features.push feature
+
         else if geom.substr(0,12) == 'MULTIPOLYGON'
-          @features.push new L.GeoJSON(wellknown(geom), mapStyles.area)
+          feature = new L.GeoJSON(wellknown(geom), mapStyles.area)
+          feature.model = pl
+          @features.push feature
 
       @group = L.layerGroup(@features)
       # markers = L.layerGroup(pointFeatures);

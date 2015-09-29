@@ -18,6 +18,7 @@
       # forwards author model to showAuthor function
       App.request "author:entity", author_id, (author) =>
         AuthorsApp.List.Controller.showAuthor(author)
+        App.vent.trigger "author:show", author
 
     passWorkModel: (work_id) ->
       # forwards work model to listWorksPassages function
