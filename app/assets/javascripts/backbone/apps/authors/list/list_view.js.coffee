@@ -77,8 +77,6 @@
       #/ route runs API.showAuthor --> gets model 'author' -->
       #/ AuthorsApp.List.Controller.showAuthor(author)
       author = this.model
-      # App.reqres.setHandler "author:active", ->
-      #   return author
       Backbone.history.navigate("authors/"+author.get('author_id'), true)
 
   class List.Authors extends App.Views.CompositeView
@@ -101,7 +99,7 @@
       # CHECK does this need to be in navigate?
       App.request "authors:category", id, (authors) =>
         List.Controller.listCatAuthors(authors, id)
-      App.vent.trigger "authors:show", cat
+      App.vent.trigger "category:authors:show", cat
 
 
   class List.Categories extends App.Views.CompositeView

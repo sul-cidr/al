@@ -24,6 +24,7 @@
       # forwards work model to listWorksPassages function
       App.request "work:entity", work_id, (work) =>
         AuthorsApp.List.Controller.listWorkPassages(work)
+        App.vent.trigger "work:show", work
 
 
   App.addInitializer ->

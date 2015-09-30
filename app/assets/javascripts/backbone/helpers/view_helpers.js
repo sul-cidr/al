@@ -19,8 +19,15 @@ var mapStyles = {
     "opacity": .7,
     "fillOpacity": 0.1
   },
-  point: {
+  point_work: {
     "color": "green",
+    "radius": 5,
+    "weight": 1,
+    "opacity": 0.5,
+    "fillOpacity": 0.35
+  },
+  point_bio: {
+    "color": "brown",
     "radius": 5,
     "weight": 1,
     "opacity": 0.5,

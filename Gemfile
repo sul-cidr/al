@@ -14,7 +14,10 @@ gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sass-rails', '>= 5.0'
 
 gem 'seedbank'
-gem 'activeadmin', github: 'gregbell/active_admin'
+
+# TODO this disable activeadmin
+# gem 'activeadmin', github: 'gregbell/active_admin'
+# gem 'activesupport', '4.2.2'
 gem 'devise'
 
 gem 'ransack', '1.6.5'

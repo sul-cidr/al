@@ -20,6 +20,9 @@
       @filteredFeatures = []
       _.each @features, (f) =>
         @filterLayer(f)
+      console.log @filteredFeatures
+      # @filteredFeatures.addTo(@map)
+
       # zoom to extent
 
     filterLayer: (layer) ->
@@ -27,6 +30,7 @@
       _.each @filters, (evaluator, key) =>
         visible = visible && evaluator(layer.model)
       if visible
+        # layer.setStyle(@stylePoints(layer))
         @map.addLayer layer
         @filteredFeatures.push layer
       else
@@ -63,24 +67,40 @@
       # Default viewport.
       this.map.setView([51.5120, -0.1228], 12);
 
+    stylePoints: (feature) ->
+      if feature.get("placeref_type") == "bio"
+        return mapStyles.point_bio
+      else
+        return mapStyles.point_work
+
     ingest: (placerefs) ->
       @features = []
       $.each placerefs.models, (i, pl) =>
         geom = pl.attributes.geom_wkt
         if geom.substr(0,10) == 'MULTIPOINT'
-          feature = L.circleMarker(swap(wellknown(geom).coordinates[0]), mapStyles.point)
+          feature = L.circleMarker(swap(wellknown(geom).coordinates[0]), @stylePoints(pl) )
+          feature.bindPopup(pl.get("prefname"))
           feature.model = pl
           @features.push feature
 
         else if geom.substr(0,15) == 'MULTILINESTRING'
-          feature =  new L.GeoJSON(wellknown(geom), mapStyles.street)
+          feature =  new L.GeoJSON(wellknown(geom), {
+            style: mapStyles.street,
+            onEachFeature: (feature, layer) ->
+              layer.bindPopup pl.get("prefname")
+          })
           feature.model = pl
           @features.push feature
-
-        else if geom.substr(0,12) == 'MULTIPOLYGON'
-          feature = new L.GeoJSON(wellknown(geom), mapStyles.area)
-          feature.model = pl
-          @features.push feature
+        # CHECK: polygons mess up the Map
+        # else if geom.substr(0,12) == 'MULTIPOLYGON'
+        #   feature = new L.GeoJSON(wellknown(geom), {
+        #       style: mapStyles.area,
+        #       onEachFeature: (feature, layer) ->
+        #         layer.bindPopup pl.get("prefname")
+        #     })
+        #   feature.model = pl
+        #   # feature.bindPopoup(pl.get("prefname"))
+        #   @features.push feature
 
       @group = L.featureGroup(@features)
       @group.addTo(@map)
