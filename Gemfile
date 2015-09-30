@@ -16,7 +16,7 @@ gem 'sass-rails', '>= 5.0'
 gem 'seedbank'
 
 # TODO this disable activeadmin
-# gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'activeadmin', github: 'gregbell/active_admin'
 # gem 'activesupport', '4.2.2'
 gem 'devise'
 
