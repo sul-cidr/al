@@ -29,6 +29,9 @@ catlist {
 .passages { }
 .passagelist { }
 
+.bioplace {text-decoration: underline; color: #993333;}
+.worksplace {text-decoration: underline; color: darkgreen;}
+
 .navbar { min-height: 35px; margin-bottom:0; }
 .navbar .nav-pills >li  { padding: 4px; margin:0; cursor: pointer;}
 .navbar .nav-pills >li.active  { color: white; border-radius: 3px; background-color: #336699;}

@@ -11,6 +11,9 @@
   App.vent.on "category:authors:show", (cat) ->
     API.filterByCategory cat
 
+  App.vent.on "work:show", (work) ->
+    API.highlightForWork work
+
   API =
     showMap: ->
       MapApp.Show.Controller.showMap()
@@ -36,6 +39,10 @@
           @filterByAuthors author_ids, id
         console.log 'cat '+id+ ': ', author_ids
 
+    highlightForWork: (work) ->
+      console.log 'map.API hightlightForWork()', work.get("work_id")
+      MapApp.Show.Controller.setFilter 'author', (placeref) ->
+        placeref.get("work_id") == work.get("work_id")
 
   MapApp.on "start", ->
     controller: API

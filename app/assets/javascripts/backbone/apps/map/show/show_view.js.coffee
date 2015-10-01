@@ -20,7 +20,7 @@
       @filteredFeatures = []
       _.each @features, (f) =>
         @filterLayer(f)
-      console.log @filteredFeatures
+      # console.log @filteredFeatures
       # @filteredFeatures.addTo(@map)
 
       # zoom to extent
