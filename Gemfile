@@ -17,7 +17,6 @@ gem 'seedbank'
 
 # TODO this disable activeadmin
 gem 'activeadmin', github: 'gregbell/active_admin'
-# gem 'activesupport', '4.2.2'
 gem 'devise'
 
 gem 'ransack', '1.6.5'
