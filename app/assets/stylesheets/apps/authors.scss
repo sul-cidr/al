@@ -1,6 +1,16 @@
 /* authors.scss */
 
-#authors-region { left: 0; background: #eeeee0; }
+#authors-region {
+  left: 0;
+  // left: -330px;
+  background: #eeeee0;
+  border-right: 4px solid #daa500;
+}
+#authors-tab {
+  float: right;
+  cursor: pointer;
+  img { position: absolute; right:0; top: 250px}
+}
 // #dimensions-region {  }
 #categories-region { overflow: auto; border: 1px dotted #993333;
   background: #e0e0e0; padding: 3px;}

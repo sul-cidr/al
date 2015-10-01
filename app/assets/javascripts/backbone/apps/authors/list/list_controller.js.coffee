@@ -1,6 +1,7 @@
 @AL.module 'AuthorsApp.List', (List, App, Backbone, Marionette, $, _) ->
 
   $vent = new Backbone.Wreqr.EventAggregator();
+  activeAuthor = {}
 
   List.Controller =
 
@@ -107,6 +108,7 @@
 
     getAuthorView: (author) ->
       # console.log author
+      # new App.Show.AuthorLayout ({
       new List.AuthorLayout ({
         model: author
       })

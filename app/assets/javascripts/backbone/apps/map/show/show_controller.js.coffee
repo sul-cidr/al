@@ -12,6 +12,9 @@
       # console.log 'setFilter() ' + key, evaluator
       @mapView.setFilter key, evaluator
 
+    clearFilters: ->
+      @mapView.clearFilters()
+
     getMapView: ->
       new Show.Map
 

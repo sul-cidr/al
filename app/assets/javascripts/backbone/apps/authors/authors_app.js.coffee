@@ -2,10 +2,12 @@
   @startWithParent = false
 
   # console.log 'AuthorsApp started'
+  activeAuthor = {}
 
   class AuthorsApp.Router extends Marionette.AppRouter
     appRoutes:
       "": "startAuthors"
+
       "authors/:author_id": "passAuthorModel"
 
       "passages/:work_id": "passWorkModel"
@@ -15,6 +17,7 @@
       AuthorsApp.List.Controller.startAuthors()
 
     passAuthorModel: (author_id) ->
+      App.vent.trigger "map:reset"
       # forwards author model to showAuthor function
       App.request "author:entity", author_id, (author) =>
         AuthorsApp.List.Controller.showAuthor(author)

@@ -8,13 +8,23 @@
     </span>
     <hr/>
   </div>
+
+  <!-- <div id="dimpills" class="navbar">
+    <ul class="nav nav-pills">
+      <li class="active" value="genre"> Genre </li>
+      <li value="form">Form</li>
+      <li value="community">Community</li>
+      <li value="standing">Standing</li>
+    </ul>
+  <div> -->
+
   <div id="authors-content">
     <div class="container"> <!-- a bootstrap designation -->
       <ul id="somePills1" class="nav nav-pills">
-        <li id="li_bio" class="active"><a href="#pill-1" data-toggle="pill">biography</a></li>
-        <li id="li_works"><a href="#pill-2" data-toggle="pill">works</a></li>
+        <li id="li_bio" class="active"><a href="#pill-1" data-toggle="tab">biography</a></li>
+        <li id="li_works"><a href="#pill-2" data-toggle="tab">works</a></li>
         <!-- TODO hide initially-->
-        <li id="li_pass" class="hidden"><a href="#pill-3" data-toggle="pill">passages</a></li>
+        <li id="li_pass" class="hidden"><a href="#pill-3" data-toggle="tab">passages</a></li>
       </ul>
       <div class="tab-content">
         <div id="pill-1" class="tab-pane active">

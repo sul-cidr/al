@@ -16,8 +16,8 @@ var mapStyles = {
   area: {
     "color": "red",
     "weight": 1,
-    "opacity": .7,
-    "fillOpacity": 0.1
+    "opacity": 0,
+    "fillOpacity": 0
   },
   point_work: {
     "color": "green",

@@ -15,6 +15,11 @@
 
     removeFilter: (key) ->
       delete @filters[key]
+      @filterAllLayers()
+
+    clearFilters: ->
+      @filters = {}
+      @filterAllLayers()
 
     filterAllLayers: ->
       @filteredFeatures = []
@@ -91,16 +96,17 @@
           })
           feature.model = pl
           @features.push feature
-        # CHECK: polygons mess up the Map
-        # else if geom.substr(0,12) == 'MULTIPOLYGON'
-        #   feature = new L.GeoJSON(wellknown(geom), {
-        #       style: mapStyles.area,
-        #       onEachFeature: (feature, layer) ->
-        #         layer.bindPopup pl.get("prefname")
-        #     })
-        #   feature.model = pl
-        #   # feature.bindPopoup(pl.get("prefname"))
-        #   @features.push feature
+        # TODO: visible only on hover in text
+        else if geom.substr(0,12) == 'MULTIPOLYGON'
+          feature = new L.GeoJSON(wellknown(geom), {
+              style: mapStyles.area
+              clickable: false
+              # ,onEachFeature: (feature, layer) ->
+              #   layer.bindPopup pl.get("prefname")
+            })
+          feature.model = pl
+          # feature.bindPopoup(pl.get("prefname"))
+          @features.push feature
 
       @group = L.featureGroup(@features)
       @group.addTo(@map)

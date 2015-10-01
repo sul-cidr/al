@@ -1,7 +1,15 @@
 /* places.scss */
 
-#places-region { background: #e0e0e0; }
-
+#places-region {
+  background: #e0e0e0;
+  right: -330px;
+  border-left: 4px solid #999;
+}
+#places-tab {
+  float: left;
+  cursor: pointer;
+  img { position: absolute; left:0; top: 250px}
+}
 .place {display: inline-block;}
 
 arealist { padding:0 26px; font-family: Palatino-linotype, Georgia;

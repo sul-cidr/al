@@ -14,6 +14,9 @@
   App.vent.on "work:show", (work) ->
     API.highlightForWork work
 
+  App.vent.on "map:reset", ->
+    API.clearFilters()
+
   API =
     showMap: ->
       MapApp.Show.Controller.showMap()
@@ -41,8 +44,11 @@
 
     highlightForWork: (work) ->
       console.log 'map.API hightlightForWork()', work.get("work_id")
-      MapApp.Show.Controller.setFilter 'author', (placeref) ->
+      MapApp.Show.Controller.setFilter 'work', (placeref) ->
         placeref.get("work_id") == work.get("work_id")
+
+    clearFilters: ->
+      MapApp.Show.Controller.clearFilters()
 
   MapApp.on "start", ->
     controller: API

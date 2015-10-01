@@ -42,4 +42,4 @@
   App.addInitializer ->
     new PlacesApp.Router
       controller: API
-    # API.startPlaces()
+    API.startPlaces()

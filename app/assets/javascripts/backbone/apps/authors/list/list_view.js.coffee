@@ -13,14 +13,12 @@
     template: "authors/list/templates/_title"
     events:
       "click .toggle-authors": "onToggle"
+    # TODO: this is replicated in List.AuthorLayout and in Places
     onToggle: ->
-      console.log 'onToggle()'
+      console.log 'toggle from List.Title'
       if $("#authors-region").offset().left == 0
-        console.log '.closer click to left'
-        $("#authors-region").animate { 'left': -($("#authors-region").width() - 12) }, 500
-        # $(".closer").attr("class","closer fa fa-caret-square-o-right");
+        $("#authors-region").animate { 'left': -($("#authors-region").width() - 15) }, 500
       else if $("#authors-region").offset().left < 0
-        console.log '.closer click to right'
         $("#authors-region").animate { 'left': 0 }, 500
 
   class List.Dimensions extends App.Views.ItemView
@@ -67,7 +65,17 @@
     childViewContainer: "div"
 
   class List.AuthorLayout extends Marionette.ItemView
+    # CHECK: why can't I put this in the Show module?
     template: "authors/show/templates/show_author"
+    events:
+      "click .toggle-authors": "onToggle"
+
+    onToggle: ->
+      console.log 'toggle from List.AuthorLayout'
+      if $("#authors-region").offset().left == 0
+        $("#authors-region").animate { 'left': -($("#authors-region").width() - 15) }, 500
+      else if $("#authors-region").offset().left < 0
+        $("#authors-region").animate { 'left': 0 }, 500
 
   class List.Author extends App.Views.ItemView
     template: "authors/list/templates/_author"
@@ -76,6 +84,10 @@
     authByRoute: ->
       #/ route runs API.showAuthor --> gets model 'author' -->
       #/ AuthorsApp.List.Controller.showAuthor(author)
+      # App.reqres.setHandler "author:active", ->
+      #   return
+      $activeAuthor = this.model
+      console.log $activeAuthor
       author = this.model
       Backbone.history.navigate("authors/"+author.get('author_id'), true)
 
