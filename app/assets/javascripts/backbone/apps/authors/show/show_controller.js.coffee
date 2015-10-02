@@ -3,18 +3,51 @@
   Show.Controller =
 
     showAuthor: (author) ->
-      # console.log 'showAuthor()', author.attributes.author_id
-      authorView = @getAuthorView author
-      App.authorsRegion.show authorView
-      @listBioPassages author.attributes.author_id
-      @listWorks author.attributes.author_id
+      id = author.get("author_id")
+      @authorLayout = @getAuthorLayout author
 
-    getAuthorView: (author) ->
-      # console.log author
-      # new App.Show.AuthorLayout ({
-      new Show.AuthorLayout ({
+      @authorLayout.on "show", =>
+        @showTitle author
+        @showNav()
+        @listBioPassages id
+        # @listWorks id
+
+      App.authorsRegion.show @authorLayout
+
+    getAuthorLayout: (author) ->
+      new Show.Layout ({
         model: author
       })
+
+    listBioPassages: (author_id) ->
+      # console.log 'List.Controller.listPassages() for ',author_id
+      App.request "passage:entities", author_id, "bio", (bio_passages) =>
+        # wont show/render twice without reset
+        if App.authorContentRegion.$el.length >0
+          App.authorContentRegion.reset()
+        bioPassagesView = @getBioPassagesView bio_passages
+        # console.log 'listBioPassages(), '+ bio_passages.length + ' for ' + author_id
+        window.passb = bioPassagesView
+        # console.log 'bioPassagesView:', bioPassagesView.collection
+        App.authorContentRegion.show bioPassagesView
+
+    getBioPassagesView: (bio_passages) ->
+      new Show.Passages
+        collection: bio_passages
+        viewComparator: "passage_id"
+
+    showTitle: (author) ->
+      @titleView = @getTitleView author
+      @authorLayout.titleRegion.show @titleView
+      console.log 'author prefname', author.get("prefname")
+
+    getTitleView: (author) ->
+      new Show.Title
+        model: author
+
+    showNav: ->
+      @navView = new Show.Pills
+      @authorLayout.navRegion.show @navView
 
     listWorks: (author_id) ->
       App.request "work:entities", author_id, (works) =>
@@ -28,23 +61,6 @@
       new Show.Works
         collection: works
         viewComparator: "title"
-
-    listBioPassages: (author_id) ->
-      # console.log 'List.Controller.listPassages() for ',author_id
-      App.request "passage:entities", author_id, "bio", (bio_passages) =>
-        # wont show/render twice without reset
-        if App.bioPassagesRegion.$el.length >0
-          App.bioPassagesRegion.reset()
-        bioPassagesView = @getBioPassagesView bio_passages
-        # console.log 'listBioPassages(), '+ bio_passages.length + ' for ' + author_id
-        window.passb = bioPassagesView
-        # console.log 'bioPassagesView:', bioPassagesView.collection
-        App.bioPassagesRegion.show bioPassagesView
-
-    getBioPassagesView: (bio_passages) ->
-      new Show.Passages
-        collection: bio_passages
-        viewComparator: "passage_id"
 
     listWorkPassages: (work) ->
       # console.log work
