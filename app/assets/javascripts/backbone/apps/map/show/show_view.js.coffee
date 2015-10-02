@@ -7,7 +7,7 @@
     initialize: ->
       @filters = {}
       @filteredFeatures = []
-      console.log 'filteredFeatures: ', @filteredFeatures
+      # console.log 'filteredFeatures: ', @filteredFeatures
 
     setFilter: (key, evaluator) ->
       @filters[key] = evaluator

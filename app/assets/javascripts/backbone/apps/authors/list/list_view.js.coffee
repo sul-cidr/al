@@ -40,7 +40,7 @@
     events: {'click a': 'authByRoute'}
     authByRoute: ->
       $activeAuthor = this.model
-      console.log $activeAuthor
+      # console.log $activeAuthor
       author = this.model
       Backbone.history.navigate("authors/"+author.get('author_id'), true)
 

@@ -28,9 +28,14 @@
     loadContent: (e) =>
       $("li").removeClass("active")
       $(e.currentTarget).addClass("active")
-      pill = $(e.currentTarget).context.attributes.value.value
-      console.log 'Show.Pills.loadContent for: ' + pill
-      # Show.Controller.listCategories(pill)
+      @pill = $(e.currentTarget).context.attributes.value.value
+      if @pill == 'works'
+        console.log 'Show.Controller.listWorks(author_id)'
+      else if @pill == 'passages'
+        console.log 'Show.Controller.listPassages(work_id)'
+      else if @pill == 'biography'
+        console.log 'Show.Controller.showAuthor(author)'
+        # Show.Controller.listCategories(pill)
 
   class Show.Passage extends App.Views.ItemView
     template: "authors/show/templates/_passage"

@@ -4,6 +4,8 @@
 
     showAuthor: (author) ->
       id = author.get("author_id")
+      prefname = author.get("prefname")
+      console.log 'showAuthor: '+ id, prefname
       @authorLayout = @getAuthorLayout author
 
       @authorLayout.on "show", =>
@@ -39,7 +41,6 @@
     showTitle: (author) ->
       @titleView = @getTitleView author
       @authorLayout.titleRegion.show @titleView
-      console.log 'author prefname', author.get("prefname")
 
     getTitleView: (author) ->
       new Show.Title
