@@ -12,6 +12,7 @@
     template: "authors/show/templates/_title"
     events:
       "click .toggle-authors": "onToggle"
+      "click .crumb": "goHome"
     # TODO: this is replicated in List.AuthorLayout and in Places
     onToggle: ->
       console.log 'toggle from Show.Title'
@@ -19,6 +20,8 @@
         $("#authors-region").animate { 'left': -($("#authors-region").width() - 15) }, 500
       else if $("#authors-region").offset().left < 0
         $("#authors-region").animate { 'left': 0 }, 500
+    goHome: ->
+      Backbone.history.navigate("", true)
 
   class Show.Pills extends App.Views.ItemView
     template: "authors/show/templates/_nav"
@@ -26,16 +29,21 @@
       "click li": "loadContent"
     }
     loadContent: (e) =>
-      $("li").removeClass("active")
+      $(".nav-pills li").removeClass("active")
       $(e.currentTarget).addClass("active")
+      authid = App.request("author:model").get("author_id")
       @pill = $(e.currentTarget).context.attributes.value.value
       if @pill == 'works'
-        console.log 'Show.Controller.listWorks(author_id)'
-      else if @pill == 'passages'
-        console.log 'Show.Controller.listPassages(work_id)'
+        @route = "#works/"+authid
+        # console.log 'loadContent, works:', @route
+        Backbone.history.navigate(@route, true)
+        # Show.Controller.listWorks authid
       else if @pill == 'biography'
-        console.log 'Show.Controller.showAuthor(author)'
-        # Show.Controller.listCategories(pill)
+        @route = "#authors/"+authid
+        # console.log 'loadContent, bio:', @route
+        Backbone.history.navigate(@route, true)
+        # Show.Controller.showAuthor authid
+      # passages are shown by clicking a work
 
   class Show.Passage extends App.Views.ItemView
     template: "authors/show/templates/_passage"
@@ -57,9 +65,11 @@
     loadPassages: ->
       work = this.model
       # show tab CHECK: leave visible?
-      $("#li_pass").removeClass("hidden")
+      $("#passages_pill").removeClass("hidden")
+      $(".nav-pills li").removeClass("active")
+      $("#passages_pill").addClass("active")
       # use route for model attributes and navigation
-      Backbone.history.navigate("passages/"+work.get('work_id'), true)
+      Backbone.history.navigate("workpassages/"+work.get('work_id'), true)
 
   class Show.Works extends App.Views.CompositeView
     template: "authors/show/templates/_works"

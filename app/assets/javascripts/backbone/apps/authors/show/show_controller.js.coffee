@@ -5,13 +5,13 @@
     showAuthor: (author) ->
       id = author.get("author_id")
       prefname = author.get("prefname")
-      console.log 'showAuthor: '+ id, prefname
+      # console.log 'showAuthor: '+ id, prefname
       @authorLayout = @getAuthorLayout author
 
       @authorLayout.on "show", =>
         @showTitle author
-        @showNav()
-        @listBioPassages id
+        @showNav author
+        @listBioPassages author
         # @listWorks id
 
       App.authorsRegion.show @authorLayout
@@ -21,9 +21,10 @@
         model: author
       })
 
-    listBioPassages: (author_id) ->
+    listBioPassages: (author) ->
+      id = author.get("author_id")
       # console.log 'List.Controller.listPassages() for ',author_id
-      App.request "passage:entities", author_id, "bio", (bio_passages) =>
+      App.request "passage:entities", id, "bio", (bio_passages) =>
         # wont show/render twice without reset
         if App.authorContentRegion.$el.length >0
           App.authorContentRegion.reset()
@@ -46,17 +47,20 @@
       new Show.Title
         model: author
 
-    showNav: ->
+    showNav: (author) ->
       @navView = new Show.Pills
+        model: author
       @authorLayout.navRegion.show @navView
 
-    listWorks: (author_id) ->
-      App.request "work:entities", author_id, (works) =>
-        if App.worksRegion.$el.length >0
-          App.worksRegion.reset()
-        worksView = @getWorksView works
+    listWorks: (author) ->
+      id = author.get("author_id")
+      App.request "work:entities", id, (works) =>
+        # console.log 'listWorks()', works
+        if App.authorContentRegion.$el.length > 0
+          App.authorContentRegion.reset()
+        @worksView = @getWorksView works
         # console.log 'listWorks(), '+ works.length + ' for ' + author_id
-        App.worksRegion.show worksView
+        App.authorContentRegion.show @worksView
 
     getWorksView: (works) ->
       new Show.Works
@@ -64,17 +68,17 @@
         viewComparator: "title"
 
     listWorkPassages: (work) ->
-      # console.log work
-      id = work.attributes.work_id
-      # console.log 'List.Controller.listWorkPassages() for',id
+      id = work.get("work_id")
+      # console.log 'Show.Controller.listWorkPassages() for',work_id
       App.request "passage:entities", id, "work", (work_passages) =>
         # wont show/render twice without reset
-        if App.workPassagesRegion.$el.length >0
-          App.workPassagesRegion.reset()
+        if App.authorContentRegion.$el.length >0
+          App.authorContentRegion.reset()
         workPassagesView = @getWorkPassagesView work_passages, work
         # console.log 'listWorkPassages(), '+ work_passages.length + ' for ' + id
-        App.workPassagesRegion.show workPassagesView
-        $("#somePills1 a[href='#pill-3']").tab('show')
+        App.authorContentRegion.show workPassagesView
+        # TODO: show Passages tab if it was hidden
+        $("#passages_pill").removeClass("hidden")
 
     getWorkPassagesView: (work_passages, work) ->
       new Show.Passages ({

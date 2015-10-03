@@ -1,6 +1,6 @@
 <div class="panel-title">
   <!-- TODO: use Backbone.history.navigate here -->
-  <p class="crumb"><a href="/">select authors</a></p>
+  <p class="crumb"><a href="#">Home</a></p>
   <h3><%= @prefname %></h3>
   <span class="toggle-authors">
     <i class="fa fa-exchange"></i>
