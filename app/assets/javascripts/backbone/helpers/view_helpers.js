@@ -9,7 +9,7 @@ function swap(point) {
 
 var mapStyles = {
   street: {
-    "color": "steelblue",
+    "color": "green",
     "weight": 3,
     "opacity": 0.85
   },

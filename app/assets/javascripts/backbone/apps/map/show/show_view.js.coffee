@@ -96,8 +96,8 @@
               layer.bindPopup pl.get("prefname")
           })
           # feature.options.model = pl
-          feature.id = prid
-          @idToFeature[prid] = feature
+          # feature.id = prid
+          # @idToFeature[prid] = feature
           @features.push feature
         # TODO: visible only on hover in text
         else if geom.substr(0,12) == 'MULTIPOLYGON'
@@ -107,13 +107,13 @@
               # ,onEachFeature: (feature, layer) ->
               #   layer.bindPopup pl.get("prefname")
             })
-          feature.model = pl
-          feature.options.id = prid
-          this.idToFeature[prid] = feature
+          # feature.model = pl
+          # feature.options.id = prid
+          # this.idToFeature[prid] = feature
           @features.push feature
 
 
-      console.log @idToFeature
+      # console.log @idToFeature
 
       @placerefs = L.featureGroup(@features)
 
@@ -144,7 +144,7 @@
     # TODO: better highlight/unhighlight system
     onHighlightFeature: (e) ->
       App.vent.trigger('highlight', e.layer.options.id);
-      e.layer.setStyle({"weight":4, "color": "#ff8c00"})
+      e.layer.setStyle({"weight":4, "color": "#ff8c00", "radius": 8})
       # console.log e.layer.options
       # e.layer.openPopup()
 
