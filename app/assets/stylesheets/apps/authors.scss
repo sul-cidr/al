@@ -1,11 +1,35 @@
 /* authors.scss */
 
-#authors-region { left: 0; background: #eeeee0; }
+/***/
+/* General, AuthorsApp */
+/***/
+
+h4 {}
+
+#authors-region {
+  left: 0;
+  // left: -330px;
+  background: #eeeee0;
+  border-right: 4px solid #daa500;
+}
+#authors-tab {
+  float: right;
+  cursor: pointer;
+  img { position: absolute; right:0; top: 250px}
+}
+
 // #dimensions-region {  }
 #categories-region { overflow: auto; border: 1px dotted #993333;
   background: #e0e0e0; padding: 3px;}
 
-h4 {}
+.navbar { min-height: 35px; margin-bottom:0; }
+.navbar .nav-pills >li  { padding: 4px; margin:0; cursor: pointer;}
+.navbar .nav-pills >li.active  { color: white; border-radius: 3px; background-color: #336699;}
+// .navbar .nav-pills >li >a { padding: 4px; margin:0;}
+
+/***/
+/* List module */
+/***/
 
 .author {display: inline-block;}
 .tab-content { padding-top: 6px;;}
@@ -19,17 +43,19 @@ catlist {
   span { font-family: Geneva, Arial;}
 }
 
+/***/
+/* Show module */
+/***/
+
 #bio-passages { max-height: 360px; overflow:auto;
   hr {display: none;}
 }
-
 #works-passages { max-height: 360px; overflow:auto;
   hr { border: 0; border-bottom: 1px dashed #ccc; background: #999; }
 }
+
 .passages { }
 .passagelist { }
 
-.navbar { min-height: 35px; margin-bottom:0; }
-.navbar .nav-pills >li  { padding: 4px; margin:0; cursor: pointer;}
-.navbar .nav-pills >li.active  { color: white; border-radius: 3px; background-color: #336699;}
-// .navbar .nav-pills >li >a { padding: 4px; margin:0;}
+.bioplace {text-decoration: underline; color: #993333;}
+.worksplace {text-decoration: underline; color: darkgreen;}

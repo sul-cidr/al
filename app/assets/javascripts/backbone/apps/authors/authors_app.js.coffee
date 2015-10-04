@@ -2,29 +2,40 @@
   @startWithParent = false
 
   # console.log 'AuthorsApp started'
+  activeAuthor = {}
 
   class AuthorsApp.Router extends Marionette.AppRouter
     appRoutes:
       "": "startAuthors"
       "authors/:author_id": "passAuthorModel"
-
-      "passages/:work_id": "passWorkModel"
+      "works/:author_id": "authorWorks"
+      "workpassages/:work_id": "workPassages"
 
   API =
     startAuthors: ->
       AuthorsApp.List.Controller.startAuthors()
 
+    authorWorks: (author_id) ->
+      App.request "author:entity", author_id, (author) =>
+        console.log 'API.authorWorks', author_id
+        AuthorsApp.Show.Controller.listWorks author
+
+    workPassages: (work_id) ->
+      App.request "work:entity", work_id, (work) =>
+        AuthorsApp.Show.Controller.listWorkPassages(work)
+        # returns current work from anywhere??
+        App.reqres.setHandler "work:model", ->
+          return work
+
     passAuthorModel: (author_id) ->
+      App.vent.trigger "map:reset"
       # forwards author model to showAuthor function
       App.request "author:entity", author_id, (author) =>
-        AuthorsApp.List.Controller.showAuthor(author)
+        AuthorsApp.Show.Controller.showAuthor(author)
         App.vent.trigger "author:show", author
-
-    passWorkModel: (work_id) ->
-      # forwards work model to listWorksPassages function
-      App.request "work:entity", work_id, (work) =>
-        AuthorsApp.List.Controller.listWorkPassages(work)
-
+        # returns current author from anywhere??
+        App.reqres.setHandler "author:model", ->
+          return author
 
   App.addInitializer ->
     new AuthorsApp.Router

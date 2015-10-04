@@ -9,18 +9,25 @@ function swap(point) {
 
 var mapStyles = {
   street: {
-    "color": "steelblue",
+    "color": "green",
     "weight": 3,
     "opacity": 0.85
   },
   area: {
     "color": "red",
     "weight": 1,
-    "opacity": .7,
-    "fillOpacity": 0.1
+    "opacity": 0,
+    "fillOpacity": 0
   },
-  point: {
+  point_work: {
     "color": "green",
+    "radius": 5,
+    "weight": 1,
+    "opacity": 0.5,
+    "fillOpacity": 0.35
+  },
+  point_bio: {
+    "color": "brown",
     "radius": 5,
     "weight": 1,
     "opacity": 0.5,

@@ -15,7 +15,7 @@
       # placerefs = new Entities.PlacerefCollection()
       placerefs.fetch
         success: ->
-          console.log 'all '+placerefs.models.length+' placerefs at first'
+          # console.log 'all '+placerefs.models.length+' placerefs at first'
           cb placerefs
 
   App.reqres.setHandler "placeref:entities", (cb) ->

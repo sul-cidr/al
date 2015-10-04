@@ -4,13 +4,15 @@ html,body  {  height: 100%;  }
 p, h1, h2, h3, h4 {font-family: Palatino-linotype, Georgia;}
 
 .centered {text-align: center;}
-.right {right: 0;}
+// .right {right: 0;}
 .crumb {font-size: .7em;}
 
+.fa-exchange {font-size:.8em; color: gray;}
+
 .toggle-authors {cursor: pointer;
-  position: absolute; top: 0; right: 0; display: block; }
+  position: absolute; top: 6px; right: 2px; display: block; }
 .toggle-places {cursor: pointer;
-  position: absolute; top: 0; left: 0; display: block; }
+  position: absolute; top: 6px; left: 2px; display: block; }
 
 #wrap  {
   height: auto !important; margin: 0 auto -60px;

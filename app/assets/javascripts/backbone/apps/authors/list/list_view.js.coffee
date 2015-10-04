@@ -13,14 +13,12 @@
     template: "authors/list/templates/_title"
     events:
       "click .toggle-authors": "onToggle"
+    # TODO: this is replicated in List.AuthorLayout and in Places
     onToggle: ->
-      console.log 'onToggle()'
+      console.log 'toggle from List.Title'
       if $("#authors-region").offset().left == 0
-        console.log '.closer click to left'
-        $("#authors-region").animate { 'left': -($("#authors-region").width() - 12) }, 500
-        # $(".closer").attr("class","closer fa fa-caret-square-o-right");
+        $("#authors-region").animate { 'left': -($("#authors-region").width() - 15) }, 500
       else if $("#authors-region").offset().left < 0
-        console.log '.closer click to right'
         $("#authors-region").animate { 'left': 0 }, 500
 
   class List.Dimensions extends App.Views.ItemView
@@ -36,49 +34,14 @@
       # console.log 'List.Dimensions.filterCats by dimension: ' + dim
       List.Controller.listCategories(dim)
 
-  class List.Work extends App.Views.ItemView
-    template: "authors/list/templates/_work"
-    tagName: "li"
-    events: {"click": "loadPassages"}
-    loadPassages: ->
-      work = this.model
-      # show tab CHECK: leave visible?
-      $("#li_pass").removeClass("hidden")
-      # use route for model attributes and navigation
-      Backbone.history.navigate("passages/"+work.get('work_id'), true)
-
-  class List.Works extends App.Views.CompositeView
-    template: "authors/list/templates/_works"
-    className: 'works'
-    childView: List.Work
-    childViewContainer: "ul"
-
-  class List.Passage extends App.Views.ItemView
-    template: "authors/list/templates/_passage"
-    tagName: "p"
-    events: {"click": "highlightPlacerefs"}
-    highlightPlacerefs: ->
-      console.log 'List.Passage.highlightPlacerefs()'
-
-  class List.Passages extends App.Views.CompositeView
-    template: "authors/list/templates/_passages"
-    className: 'passages'
-    childView: List.Passage
-    childViewContainer: "div"
-
-  class List.AuthorLayout extends Marionette.ItemView
-    template: "authors/show/templates/show_author"
-
   class List.Author extends App.Views.ItemView
     template: "authors/list/templates/_author"
     tagName: "span"
     events: {'click a': 'authByRoute'}
     authByRoute: ->
-      #/ route runs API.showAuthor --> gets model 'author' -->
-      #/ AuthorsApp.List.Controller.showAuthor(author)
+      $activeAuthor = this.model
+      # console.log $activeAuthor
       author = this.model
-      # App.reqres.setHandler "author:active", ->
-      #   return author
       Backbone.history.navigate("authors/"+author.get('author_id'), true)
 
   class List.Authors extends App.Views.CompositeView
@@ -101,8 +64,7 @@
       # CHECK does this need to be in navigate?
       App.request "authors:category", id, (authors) =>
         List.Controller.listCatAuthors(authors, id)
-      App.vent.trigger "authors:show", cat
-
+      App.vent.trigger "category:authors:show", cat
 
   class List.Categories extends App.Views.CompositeView
     template: "authors/list/templates/_categories"
