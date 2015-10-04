@@ -12,10 +12,18 @@
     API.filterByCategory cat
 
   App.vent.on "work:show", (work) ->
-    API.highlightForWork work
+    API.filterForWork work
 
   App.vent.on "map:reset", ->
     API.clearFilters()
+
+  App.vent.on "placeref:highlight", (id) ->
+    # console.log 'map_app heard highlight id#', id
+    MapApp.Show.Controller.onHighlightFeature id
+
+  App.vent.on "placeref:unhighlight", (id) ->
+    # console.log 'map_app heard unhighlight, id#', id
+    MapApp.Show.Controller.onUnhighlightFeature id
 
   API =
     showMap: ->
@@ -42,8 +50,8 @@
           @filterByAuthors author_ids, id
         console.log 'cat '+id+ ': ', author_ids
 
-    highlightForWork: (work) ->
-      console.log 'map.API hightlightForWork()', work.get("work_id")
+    filterForWork: (work) ->
+      console.log 'map.API filterForWork()', work.get("work_id")
       MapApp.Show.Controller.setFilter 'work', (placeref) ->
         placeref.get("work_id") == work.get("work_id")
 

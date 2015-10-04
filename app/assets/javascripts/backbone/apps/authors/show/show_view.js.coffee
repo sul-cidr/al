@@ -1,6 +1,5 @@
 @AL.module "AuthorsApp.Show", (Show, App, Backbone, Marionette, $, _) ->
 
-  channels: ['passage', 'passages', 'placerefs', 'map']
 
   class Show.Layout extends App.Views.Layout
     template: "authors/show/templates/show_layout"
@@ -51,24 +50,26 @@
     template: "authors/show/templates/_passage"
     tagName: "p"
     events: {
-      "click": "highlightPlacerefs"
-      "mouseenter span.placeref": "onPlacerefEnter"
-      "mouseleave span.placeref": "onPlacerefLeave"
+      # "click": "highlightPlacerefs"
+      "mouseenter span.place": "onPlacerefEnter"
+      "mouseleave span.place": "onPlacerefLeave"
     }
-    highlightPlacerefs: ->
-      console.log 'Show.Passage.highlightPlacerefs()'
+    # highlightPlacerefs: ->
+    #   console.log 'Show.Passage.highlightPlacerefs()'
 
     onPlacerefEnter: (e) ->
       id = this.getPlacerefIdFromEvent(e);
-      this.channels.placerefs.trigger('highlight', id);
-      this.channels.passage.trigger('hover', e)
+      console.log 'highlight placeref #', id
+      App.vent.trigger('placeref:highlight', id);
+      App.vent.trigger('placeref:hover', e)
 
     onPlacerefLeave: (e) ->
       id = this.getPlacerefIdFromEvent(e);
-      this.channels.placerefs.trigger('unhighlight', id);
+      # console.log 'left placeref span'
+      App.vent.trigger('placeref:unhighlight', id);
 
     getPlacerefIdFromEvent: (e) ->
-      Number($(e.currentTarget).attr('data-id'));
+      Number($(e.currentTarget).context.attributes.data_id.value);
 
   class Show.Passages extends App.Views.CompositeView
     template: "authors/show/templates/_passages"

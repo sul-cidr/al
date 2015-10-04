@@ -8,6 +8,21 @@ function swap(point) {
 }
 
 var mapStyles = {
+
+  features: {
+    point: {
+      "radius": 5,
+      "weight": 1,
+      "opacity": 0.5,
+      "fillOpacity": 0.35
+    },
+    highlight: {
+      "radius": 8,
+      "weight": 2,
+      "fillColor": "orange",
+      "fillOpacity": 0.7
+    }
+  },
   street: {
     "color": "green",
     "weight": 3,

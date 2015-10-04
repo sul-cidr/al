@@ -24,7 +24,7 @@
     #  * @param {Number} id
     #  */
     onHighlightFeature: (id) ->
-      this.view.highlightFeature(id);
+      @mapView.highlightFeature(id);
 
     # /**
     #  * Unhighlight a place site.
@@ -32,7 +32,7 @@
     #  * @param {Number} id
     #  */
     onUnhighlightFeature: (id) ->
-      this.view.unhighlightFeature(id);
+      @mapView.unhighlightFeature(id);
 
     # /**
     #  * Focus on a place site.
@@ -40,4 +40,4 @@
     #  * @param {Number} id
     #  */
     onSelectFeature: (id) ->
-      this.view.selectFeature(id);
+      @mapView.selectFeature(id);

@@ -57,5 +57,9 @@ catlist {
 .passages { }
 .passagelist { }
 
-.bioplace {text-decoration: underline; color: #993333;}
-.worksplace {text-decoration: underline; color: darkgreen;}
+.bioplace {text-decoration: underline;
+  color: #993333;
+  cursor: pointer;}
+.worksplace {text-decoration: underline;
+  color: darkgreen;
+  cursor: pointer;}

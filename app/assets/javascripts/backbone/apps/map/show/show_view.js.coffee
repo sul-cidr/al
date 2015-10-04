@@ -65,7 +65,7 @@
 
       this.map.addLayer(osmLayer);
       # Default viewport.
-      this.map.setView([51.5120, -0.1228], 12);
+      this.map.setView([51.5120, -0.1728], 12);
 
     stylePoints: (feature) ->
       if feature.get("placeref_type") == "bio"
@@ -83,10 +83,11 @@
           feature = L.circleMarker(
             swap(wellknown(geom).coordinates[0]),
             @stylePoints(pl) )
+          feature.model = pl
           feature.bindPopup(pl.get("prefname"))
           # CHECK: why bother adding an id here?
           feature.options.id = prid
-          # @idToFeature[prid] = feature
+          @idToFeature[prid] = feature
           @features.push feature
         else if geom.substr(0,15) == 'MULTILINESTRING'
           feature =  new L.GeoJSON(wellknown(geom), {
@@ -95,9 +96,10 @@
             onEachFeature: (feature, layer) ->
               layer.bindPopup pl.get("prefname")
           })
+          feature.model = pl
           # feature.options.model = pl
           # feature.id = prid
-          # @idToFeature[prid] = feature
+          @idToFeature[prid] = feature
           @features.push feature
         # TODO: visible only on hover in text
         else if geom.substr(0,12) == 'MULTIPOLYGON'
@@ -107,9 +109,9 @@
               # ,onEachFeature: (feature, layer) ->
               #   layer.bindPopup pl.get("prefname")
             })
-          # feature.model = pl
+          feature.model = pl
           # feature.options.id = prid
-          # this.idToFeature[prid] = feature
+          this.idToFeature[prid] = feature
           @features.push feature
 
 
@@ -159,12 +161,13 @@
 
     # triggered from passages
     highlightFeature: (id) ->
+      # console.log 'highlightFeature', id
       marker = this.idToFeature[id];
-      marker.setStyle(styles.feature.highlight);
+      marker.setStyle(mapStyles.features.highlight);
 
     unhighlightFeature: (id) ->
       marker = this.idToFeature[id];
-      marker.setStyle(styles.feature.default);
+      marker.setStyle(mapStyles.features.point);
 
     selectFeature: (id) ->
       marker = this.idToFeature[id];
