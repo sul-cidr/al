@@ -23,21 +23,21 @@
     #  *
     #  * @param {Number} id
     #  */
-    onHighlightPlace: (id) ->
-      this.view.highlightPlace(id);
+    onHighlightFeature: (id) ->
+      this.view.highlightFeature(id);
 
     # /**
     #  * Unhighlight a place site.
     #  *
     #  * @param {Number} id
     #  */
-    onUnhighlightPlace: (id) ->
-      this.view.unhighlightPlace(id);
+    onUnhighlightFeature: (id) ->
+      this.view.unhighlightFeature(id);
 
     # /**
     #  * Focus on a place site.
     #  *
     #  * @param {Number} id
     #  */
-    onSelectPlace: (id) ->
-      this.view.selectPlace(id);
+    onSelectFeature: (id) ->
+      this.view.selectFeature(id);

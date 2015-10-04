@@ -1,5 +1,7 @@
 @AL.module "AuthorsApp.Show", (Show, App, Backbone, Marionette, $, _) ->
 
+  channels: ['passage', 'passages', 'placerefs', 'map']
+
   class Show.Layout extends App.Views.Layout
     template: "authors/show/templates/show_layout"
     # template: "authors/show/templates/show_author"
@@ -48,9 +50,25 @@
   class Show.Passage extends App.Views.ItemView
     template: "authors/show/templates/_passage"
     tagName: "p"
-    events: {"click": "highlightPlacerefs"}
+    events: {
+      "click": "highlightPlacerefs"
+      "mouseenter span.placeref": "onPlacerefEnter"
+      "mouseleave span.placeref": "onPlacerefLeave"
+    }
     highlightPlacerefs: ->
       console.log 'Show.Passage.highlightPlacerefs()'
+
+    onPlacerefEnter: (e) ->
+      id = this.getPlacerefIdFromEvent(e);
+      this.channels.placerefs.trigger('highlight', id);
+      this.channels.passage.trigger('hover', e)
+
+    onPlacerefLeave: (e) ->
+      id = this.getPlacerefIdFromEvent(e);
+      this.channels.placerefs.trigger('unhighlight', id);
+
+    getPlacerefIdFromEvent: (e) ->
+      Number($(e.currentTarget).attr('data-id'));
 
   class Show.Passages extends App.Views.CompositeView
     template: "authors/show/templates/_passages"
