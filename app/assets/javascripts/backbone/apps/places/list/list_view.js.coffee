@@ -25,7 +25,24 @@
   class List.Area extends App.Views.ItemView
     template: "places/list/templates/_area"
     tagName: "span"
-    events: {'click a': 'drillArea'}
+    events: {
+      "click a": "drillArea"
+      "mouseenter a": "highlightArea"
+      "mouseleave a": "unhighlightArea"
+    }
+
+    onAreaEnter: (e) ->
+      id = this.getPlacerefIdFromEvent(e);
+      console.log 'enter area model #', id
+      App.vent.trigger('area:highlight', id);
+
+    onAreaLeave: (e) ->
+      id = this.getPlacerefIdFromEvent(e);
+      console.log 'left area a'
+      App.vent.trigger('area:unhighlight', id);
+
+    getAreaIdFromEvent: (e) ->
+      Number($(e.currentTarget).context.attributes.data_id.value);
 
     drillArea: (event) ->
       @activeArea = this.model

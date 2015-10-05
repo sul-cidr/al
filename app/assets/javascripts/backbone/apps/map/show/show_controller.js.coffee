@@ -18,25 +18,19 @@
       @mapView.clearFilters()
 
     # /**
-    #  * Highlight a place site.
-    #  *
-    #  * @param {Number} id
+    #  * Highlight a place.
     #  */
     onHighlightFeature: (id) ->
       @mapView.highlightFeature(id);
 
     # /**
-    #  * Unhighlight a place site.
-    #  *
-    #  * @param {Number} id
+    #  * Unhighlight a place.
     #  */
     onUnhighlightFeature: (id) ->
       @mapView.unhighlightFeature(id);
 
     # /**
-    #  * Focus on a place site.
-    #  *
-    #  * @param {Number} id
+    #  * Focus on a place.
     #  */
     onSelectFeature: (id) ->
       @mapView.selectFeature(id);

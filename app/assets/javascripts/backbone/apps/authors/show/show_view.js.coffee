@@ -61,7 +61,7 @@
       id = this.getPlacerefIdFromEvent(e);
       console.log 'highlight placeref #', id
       App.vent.trigger('placeref:highlight', id);
-      App.vent.trigger('placeref:hover', e)
+      # App.vent.trigger('placeref:hover', e)
 
     onPlacerefLeave: (e) ->
       id = this.getPlacerefIdFromEvent(e);

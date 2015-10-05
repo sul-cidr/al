@@ -189,6 +189,7 @@
       window.features = @features
 
     # TODO: better highlight/unhighlight system
+    # triggered from map
     onHighlightFeature: (e) ->
       App.vent.trigger('highlight', e.layer.options.id);
       e.layer.setStyle({"weight":4, "color": "#ff8c00", "radius": 8})
