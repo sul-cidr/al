@@ -34,7 +34,7 @@
     areaByRoute: ->
       window.activePlace = this.model
       area = this.model
-      console.log 'history.navigate', area.get("name")
+      # console.log 'history.navigate', area.get("name")
       Backbone.history.navigate("areas/"+area.get("id"), true)
 
     onAreaEnter: (e) ->

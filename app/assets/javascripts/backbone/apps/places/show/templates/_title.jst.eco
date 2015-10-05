@@ -1,6 +1,6 @@
 <div class="panel-title">
   <!-- TODO: use Backbone.history.navigate here -->
-  <p class="crumb"><a href="#">Home</a></p>
+  <p class="crumb" data_id="<%= @id %>"><a href="#">Home</a></p>
   <h3><%= @name %></h3>
   <span class="toggle-places">
     <i class="fa fa-exchange"></i>

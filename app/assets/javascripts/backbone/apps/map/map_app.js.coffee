@@ -33,7 +33,7 @@
     MapApp.Show.Controller.onHighlightFeature 'area', id
 
   App.vent.on "area:unhighlight", (id) ->
-    # console.log 'map_app heard unhighlight, id#', id
+    console.log 'map_app heard unhighlight, id#', id
     MapApp.Show.Controller.onUnhighlightFeature 'area', id
 
   API =

@@ -5,12 +5,12 @@
     showArea: (area) ->
       id = area.get("id")
       name = area.get("name")
-      console.log 'Show.Controller.showArea() '+ id,name
+      # console.log 'Show.Controller.showArea() '+ id,name
       @areaLayout = @getAreaLayout area
       window.areaLayout = @areaLayout
 
       @areaLayout.on "show", =>
-        console.log 'areaLayout shown'
+        # console.log 'areaLayout shown'
         @showTitle area
         @showNav area
         @showPlaceContent area
@@ -24,7 +24,7 @@
       })
 
     showTitle: (area) ->
-      console.log 'in showTitle', area.get("name")
+      # console.log 'in showTitle', area.get("name")
       titleView = @getTitleView area
       @areaLayout.titleRegion.show titleView
 

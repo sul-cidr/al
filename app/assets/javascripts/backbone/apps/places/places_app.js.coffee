@@ -25,7 +25,7 @@
     # # detail page for an area (borough or neighborhood)
     passAreaModel: (id) ->
       App.request "area:entity", id, (area) =>
-        console.log 'pass', area.get("name")
+        # console.log 'pass', area.get("name")
         PlacesApp.Show.Controller.showArea(area)
         App.vent.trigger "area:show", area
         # return focus area from anywhere
