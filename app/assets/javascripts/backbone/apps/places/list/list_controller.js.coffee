@@ -15,6 +15,9 @@
           @showNavmap()
           @listAreas areas
 
+        # App.vent.trigger "areas:list", areas
+        App.reqres.setHandler "areas:list", ->
+          return areas
         App.placesRegion.show @layout
 
     listAreas: (areas) ->

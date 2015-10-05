@@ -25,15 +25,19 @@
   class List.Area extends App.Views.ItemView
     template: "places/list/templates/_area"
     tagName: "span"
+    events: {'click a': 'drillArea'}
+
+    drillArea: (event) ->
+      @activeArea = this.model
+      area = this.model
+      console.log 'clicked area model ' + area.get("id")
+      Backbone.history.navigate("areas/"+area.get("id"), true)
 
   class List.Areas extends App.Views.CompositeView
     template: "places/list/templates/_areas"
     childView: List.Area
     emptyView: List.Empty
     childViewContainer: "arealist"
-    events: {'click a': 'drillAreas'}
-    drillAreas: (event) ->
-      console.log 'clicked a borough, ' + event.currentTarget
 
   # places not used yet
   # class List.Place extends App.Views.ItemView

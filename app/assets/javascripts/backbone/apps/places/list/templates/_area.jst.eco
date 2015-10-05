@@ -1,1 +1,1 @@
-[<a href="areas/<%= @id %>"><%= @safe hardSpace(@name) %></a>] 
+[<a href="#areas/<%= @id %>"><%= @safe hardSpace(@name) %></a>] 

@@ -1,8 +1,13 @@
 /* places.scss */
 
+/***/
+/* PlacesApp general */
+/***/
+
 #places-region {
   background: #e0e0e0;
-  right: -330px;
+  right: 0;
+  // right: -330px;
   border-left: 4px solid #999;
 }
 #places-tab {
@@ -11,6 +16,10 @@
   img { position: absolute; left:0; top: 250px}
 }
 .place {display: inline-block;}
+
+/***/
+/* PlacesApp Show module */
+/***/
 
 arealist { padding:0 26px; font-family: Palatino-linotype, Georgia;
   font-size: 1.2em;

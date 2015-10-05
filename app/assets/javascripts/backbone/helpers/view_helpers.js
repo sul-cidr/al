@@ -28,11 +28,24 @@ var mapStyles = {
     "weight": 3,
     "opacity": 0.85
   },
-  area: {
+  area_placeref: {
     "color": "red",
     "weight": 1,
     "opacity": 0,
     "fillOpacity": 0
+  },
+  borough: {
+    "color": "red",
+    "weight": 1,
+    "opacity": 1,
+    "fillOpacity": 0
+  },
+  point_hood: {
+    "color": "orange",
+    "radius": 2,
+    "weight": 1,
+    "opacity": 1,
+    "fillOpacity": 1
   },
   point_work: {
     "color": "green",

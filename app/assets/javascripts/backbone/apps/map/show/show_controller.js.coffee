@@ -7,6 +7,8 @@
       @mapView = @getMapView()
       App.mapRegion.show @mapView
 
+    getMapView: ->
+      new Show.Map
 
     setFilter: (key, evaluator) ->
       # console.log 'setFilter() ' + key, evaluator
@@ -14,9 +16,6 @@
 
     clearFilters: ->
       @mapView.clearFilters()
-
-    getMapView: ->
-      new Show.Map
 
     # /**
     #  * Highlight a place site.

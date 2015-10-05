@@ -39,8 +39,15 @@
 
     onDomRefresh: ->
       @initMap()
+
       App.request "placeref:entities", (placerefs) =>
-        @ingest placerefs
+        # points, lines, polygons; type: [bioblace | worksplace]
+        # @ingestPlacerefs placerefs
+
+      App.request "area:entities", (areas) =>
+        # type: [borough (polygon) | hood (point)]
+        window.areas = areas
+        @ingestAreas areas
 
     initMap: ->
       # console.log 'initMap'
@@ -64,8 +71,9 @@
       );
 
       this.map.addLayer(osmLayer);
-      # Default viewport.
-      this.map.setView([51.5120, -0.1728], 12);
+      # places open, authors open viewports
+      this.map.setView([51.5120, -0.0928], 12);
+      # this.map.setView([51.5120, -0.1728], 12);
 
     stylePoints: (feature) ->
       if feature.get("placeref_type") == "bio"
@@ -73,7 +81,44 @@
       else
         return mapStyles.point_work
 
-    ingest: (placerefs) ->
+      if feature.get("type") == "hood"
+        return mapStyles.point_hood
+
+    ingestAreas: (areas) ->
+      # console.log 'ingestAreas', areas
+      @idToFeature = {}
+      @features = []
+      $.each areas.models, (i, a) =>
+        geom = a.attributes.geom_wkt
+        aid = a.get("id")
+        if a.get("area_type") == "hood"
+          feature = L.circleMarker(
+            # not MULTIPOINT, but POINT
+            swap(wellknown(geom).coordinates), @stylePoints(a) )
+          feature.model = a
+          # feature.options.id = aid
+          @idToFeature[aid] = feature
+          @features.push feature
+        else if a.get("area_type") == "borough"
+          # console.log geom
+          feature =  new L.GeoJSON(wellknown(geom), {
+            style: mapStyles.borough
+          })
+          feature.model = a
+          @idToFeature[aid] = feature
+          @features.push feature
+
+      # console.log 'areas idToFeature:', @idToFeature
+
+      @areas = L.featureGroup(@features)
+
+      @areas.addTo(@map)
+      # @map.fitBounds(@group)
+      window.map = @map
+      window.areas = @areas
+      window.areaFeatures = @features
+
+    ingestPlacerefs: (placerefs) ->
       @idToFeature = {}
       @features = []
       $.each placerefs.models, (i, pl) =>
@@ -104,7 +149,7 @@
         # TODO: visible only on hover in text
         else if geom.substr(0,12) == 'MULTIPOLYGON'
           feature = new L.GeoJSON(wellknown(geom), {
-              style: mapStyles.area
+              style: mapStyles.area_placeref
               clickable: false
               # ,onEachFeature: (feature, layer) ->
               #   layer.bindPopup pl.get("prefname")
@@ -172,86 +217,3 @@
     selectFeature: (id) ->
       marker = this.idToFeature[id];
       this.map.flyTo(marker.getLatLng(), styles.zoom.feature);
-
-## from graves_ui
-      # this.idToPlace = {};
-    #   features = 'empty right now'
-    #   # Parse WKT -> GeoJSON.
-    #   # features = data.map(b => {
-    #   #
-    #   #   # Extract the lon/lat.
-    #   #   point = wellknown(b.geom).coordinates[0];
-    #   #
-    #   #   # Copy the SVG defaults.
-    #   #   # options = _.clone(styles.place.default);
-    #   #
-    #   #   # Create the marker.
-    #   #   feature = L.circleMarker(
-    #   #     swap(point),
-    #   #     _.merge(options, {id: b.id})
-    #   #   );
-    #   #
-    #   #   # Set radius. (Default to 20 graves?)
-    #   #   feature.setRadius(Math.log(b.count || 20)*3);
-    #   #
-    #   #   # Attach the popup.
-    #   #   feature.bindPopup(b.town, {
-    #   #     closeButton: false
-    #   #   });
-    #   #
-    #   #   # Map id -> feature.
-    #   #   this.idToPlace[b.id] = feature;
-    #   #
-    #   #   # return feature;
-    #   #
-    #   # });
-    #
-    #   # Add feature group to map.
-    #   this.places = L.featureGroup(features);
-    #   this.places.addTo(this.map);
-    #
-    #   # Highlight.
-    #   this.places.on(
-    #     'mouseover',
-    #     this.onHighlightPlace.bind(this)
-    #   );
-    #
-    #   # Unhighlight.
-    #   this.places.on(
-    #     'mouseout',
-    #     this.onUnhighlightPlace.bind(this)
-    #   );
-    #
-    #   # Select.
-    #   this.places.on(
-    #     'click',
-    #     this.onSelectPlace.bind(this)
-    #   );
-    #
-    # # /**
-    # #  * Highlight a place.
-    # #  *
-    # #  * @param {Number} id
-    # #  */
-    # highlightPlace: (id) ->
-    #   marker = this.idToPlace[id];
-    #   marker.setStyle(styles.place.highlight);
-    #
-    # # /**
-    # #  * Unhighlight a place.
-    # #  *
-    # #  * @param {Number} id
-    # #  */
-    # unhighlightPlace: (id) ->
-    #   marker = this.idToPlace[id];
-    #   marker.setStyle(styles.place.default);
-    #
-    #
-    # # /**
-    # #  * Focus on a place.
-    # #  *
-    # #  * @param {Number} id
-    # #  */
-    # selectPlace: (id) ->
-    #   marker = this.idToPlace[id];
-    #   this.map.flyTo(marker.getLatLng(), styles.zoom.place);

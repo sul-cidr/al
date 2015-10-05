@@ -25,6 +25,9 @@
     # console.log 'map_app heard unhighlight, id#', id
     MapApp.Show.Controller.onUnhighlightFeature id
 
+  # App.vent.on "areas:list", areas ->
+  #   MapApp.Show.Controller.
+
   API =
     showMap: ->
       MapApp.Show.Controller.showMap()
