@@ -33,7 +33,7 @@
     MapApp.Show.Controller.onHighlightFeature 'area', id
 
   App.vent.on "area:unhighlight", (id) ->
-    console.log 'map_app heard unhighlight, id#', id
+    # console.log 'map_app heard unhighlight, id#', id
     MapApp.Show.Controller.onUnhighlightFeature 'area', id
 
   API =
@@ -62,7 +62,7 @@
         _.each authors.models, (a) =>
           author_ids.push a.get("author_id")
           @filterByAuthors author_ids, id
-        console.log 'cat '+id+ ': ', author_ids
+        # console.log 'cat '+id+ ': ', author_ids
 
     filterForWork: (work) ->
       console.log 'map.API filterForWork()', work.get("work_id")

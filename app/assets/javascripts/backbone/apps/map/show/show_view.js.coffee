@@ -76,12 +76,12 @@
       # this.map.setView([51.5120, -0.1728], 12);
 
     stylePoints: (feature) ->
+      # console.log feature
       if feature.get("placeref_type") == "bio"
         return mapStyles.point_bio
-      else
+      else if feature.get("placeref_type") == "work"
         return mapStyles.point_work
-
-      if feature.get("type") == "hood"
+      else if feature.get("area_type") == "hood"
         return mapStyles.point_hood
 
     # CHECK: ingestAreas and ingestPlacerefs both need to populate this
