@@ -8,6 +8,9 @@
   App.vent.on "author:show", (author) ->
     API.filterByAuthor author
 
+  App.vent.on "area:show", (area) ->
+    API.focusArea area
+
   App.vent.on "category:authors:show", (cat) ->
     API.filterByCategory cat
 
@@ -19,23 +22,26 @@
 
   App.vent.on "placeref:highlight", (id) ->
     # console.log 'map_app heard highlight id#', id
-    MapApp.Show.Controller.onHighlightFeature id
+    MapApp.Show.Controller.onHighlightFeature 'placeref', id
 
   App.vent.on "placeref:unhighlight", (id) ->
     # console.log 'map_app heard unhighlight, id#', id
-    MapApp.Show.Controller.onUnhighlightFeature id
+    MapApp.Show.Controller.onUnhighlightFeature 'placeref', id
 
   App.vent.on "area:highlight", (id) ->
     # console.log 'map_app heard highlight id#', id
-    MapApp.Show.Controller.onHighlightFeature id
+    MapApp.Show.Controller.onHighlightFeature 'area', id
 
   App.vent.on "area:unhighlight", (id) ->
     # console.log 'map_app heard unhighlight, id#', id
-    MapApp.Show.Controller.onUnhighlightFeature id
+    MapApp.Show.Controller.onUnhighlightFeature 'area', id
 
   API =
     showMap: ->
       MapApp.Show.Controller.showMap()
+
+    focusArea: (area) ->
+      console.log 'map_app.API will zoom to area', area.get("name")
 
     filterByAuthor: (author) ->
       # on click feed selected author to setFilter(author)

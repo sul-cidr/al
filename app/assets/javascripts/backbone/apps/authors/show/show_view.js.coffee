@@ -1,6 +1,5 @@
 @AL.module "AuthorsApp.Show", (Show, App, Backbone, Marionette, $, _) ->
 
-
   class Show.Layout extends App.Views.Layout
     template: "authors/show/templates/show_layout"
     # template: "authors/show/templates/show_author"

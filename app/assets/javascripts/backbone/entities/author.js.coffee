@@ -16,10 +16,9 @@
   author = new Entities.Author
 
   API =
+    
     getAuthorEntity: (id, cb) ->
-      # $activeAuthor = authors._byId[id]
       @author = authors._byId[id]
-      # cb activeAuthor
       cb @author
 
     getAuthorsCategory: (cat, cb) ->

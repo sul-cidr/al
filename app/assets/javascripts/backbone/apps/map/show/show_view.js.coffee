@@ -42,7 +42,7 @@
 
       App.request "placeref:entities", (placerefs) =>
         # points, lines, polygons; type: [bioblace | worksplace]
-        # @ingestPlacerefs placerefs
+        @ingestPlacerefs placerefs
 
       App.request "area:entities", (areas) =>
         # type: [borough (polygon) | hood (point)]
@@ -84,9 +84,13 @@
       if feature.get("type") == "hood"
         return mapStyles.point_hood
 
+    # CHECK: ingestAreas and ingestPlacerefs both need to populate this
+    $idToFeature = {areas:{}, placerefs:{}}
+    window.idMapper = $idToFeature
+
     ingestAreas: (areas) ->
       # console.log 'ingestAreas', areas
-      @idToFeature = {}
+      # @idToFeature = {}
       @features = []
       $.each areas.models, (i, a) =>
         geom = a.attributes.geom_wkt
@@ -97,18 +101,21 @@
             swap(wellknown(geom).coordinates), @stylePoints(a) )
           feature.model = a
           # feature.options.id = aid
-          @idToFeature[aid] = feature
+          $idToFeature.areas[aid] = feature
+          # @idToFeature[aid] = feature
           @features.push feature
         else if a.get("area_type") == "borough"
           # console.log geom
           feature =  new L.GeoJSON(wellknown(geom), {
-            style: mapStyles.borough
+            style: mapStyles.area.start
           })
           feature.model = a
-          @idToFeature[aid] = feature
+          # feature.id = aid
+          $idToFeature.areas[aid] = feature
+          # @idToFeature[aid] = feature
           @features.push feature
 
-      # console.log 'areas idToFeature:', @idToFeature
+      # console.log $idToFeature.areas
 
       @areas = L.featureGroup(@features)
 
@@ -119,7 +126,7 @@
       window.areaFeatures = @features
 
     ingestPlacerefs: (placerefs) ->
-      @idToFeature = {}
+      # @idToFeature = {}
       @features = []
       $.each placerefs.models, (i, pl) =>
         geom = pl.attributes.geom_wkt
@@ -132,7 +139,7 @@
           feature.bindPopup(pl.get("prefname"))
           # CHECK: why bother adding an id here?
           feature.options.id = prid
-          @idToFeature[prid] = feature
+          $idToFeature.placerefs[prid] = feature
           @features.push feature
         else if geom.substr(0,15) == 'MULTILINESTRING'
           feature =  new L.GeoJSON(wellknown(geom), {
@@ -144,7 +151,8 @@
           feature.model = pl
           # feature.options.model = pl
           # feature.id = prid
-          @idToFeature[prid] = feature
+          $idToFeature.placerefs[prid] = feature
+          # @idToFeature[prid] = feature
           @features.push feature
         # TODO: visible only on hover in text
         else if geom.substr(0,12) == 'MULTIPOLYGON'
@@ -156,11 +164,10 @@
             })
           feature.model = pl
           # feature.options.id = prid
-          this.idToFeature[prid] = feature
+          $idToFeature.placerefs[prid] = feature
+          # this.idToFeature[prid] = feature
           @features.push feature
 
-
-      # console.log @idToFeature
 
       @placerefs = L.featureGroup(@features)
 
@@ -205,16 +212,24 @@
       App.vent.trigger('select', e.layer.options.id);
       e.layer.openPopup()
 
-    # triggered from passages
-    highlightFeature: (id) ->
+    # triggered from passages, area list
+    highlightFeature: (what, id) ->
       # console.log 'highlightFeature', id
-      marker = this.idToFeature[id];
-      marker.setStyle(mapStyles.features.highlight);
+      if what == "placeref"
+        marker = $idToFeature.placerefs[id];
+        marker.setStyle(mapStyles.features.highlight);
+      else if what == "area"
+        marker = $idToFeature.areas[id];
+        marker.setStyle(mapStyles.area.highlight);
 
-    unhighlightFeature: (id) ->
-      marker = this.idToFeature[id];
-      marker.setStyle(mapStyles.features.point);
+    unhighlightFeature: (what, id) ->
+      if what == "placeref"
+        marker = $idToFeature.placerefs[id];
+        marker.setStyle(mapStyles.features.point);
+      else if what == "area"
+        marker = $idToFeature.areas[id];
+        marker.setStyle(mapStyles.area.start);
 
-    selectFeature: (id) ->
-      marker = this.idToFeature[id];
+    selectFeature: (what, id) ->
+      marker = $idToFeature.placerefs[id];
       this.map.flyTo(marker.getLatLng(), styles.zoom.feature);

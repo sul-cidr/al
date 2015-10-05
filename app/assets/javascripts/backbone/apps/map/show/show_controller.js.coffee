@@ -20,17 +20,17 @@
     # /**
     #  * Highlight a place.
     #  */
-    onHighlightFeature: (id) ->
-      @mapView.highlightFeature(id);
+    onHighlightFeature: (what, id) ->
+      @mapView.highlightFeature(what, id);
 
     # /**
     #  * Unhighlight a place.
     #  */
-    onUnhighlightFeature: (id) ->
-      @mapView.unhighlightFeature(id);
+    onUnhighlightFeature: (what, id) ->
+      @mapView.unhighlightFeature(what, id);
 
     # /**
     #  * Focus on a place.
     #  */
-    onSelectFeature: (id) ->
-      @mapView.selectFeature(id);
+    onSelectFeature: (what, id) ->
+      @mapView.selectFeature(what, id);

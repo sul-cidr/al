@@ -11,7 +11,8 @@
 
   class PlacesApp.Router extends Marionette.AppRouter
     appRoutes:
-      "areas/:id": "showArea"
+      "": "startPlaces"
+      "areas/:id": "passAreaModel"
 
   API =
     startPlaces: ->
@@ -21,10 +22,15 @@
     listAreas: ->
       PlacesApp.List.Controller.listAreas()
 
-    # # detail page for an area (neighborhood/district)
-    showArea: (id) ->
-      console.log 'route will run showArea',id
-      PlacesApp.Show.Controller.showArea(id)
+    # # detail page for an area (borough or neighborhood)
+    passAreaModel: (id) ->
+      App.request "area:entity", id, (area) =>
+        console.log 'pass', area.get("name")
+        PlacesApp.Show.Controller.showArea(area)
+        App.vent.trigger "area:show", area
+        # return focus area from anywhere
+        App.reqres.setHandler "area:model", ->
+          return area
 
 
   App.addInitializer ->

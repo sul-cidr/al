@@ -33,7 +33,7 @@
       App.request "author:entity", author_id, (author) =>
         AuthorsApp.Show.Controller.showAuthor(author)
         App.vent.trigger "author:show", author
-        # returns current author from anywhere??
+        # returns focus author from anywhere??
         App.reqres.setHandler "author:model", ->
           return author
 

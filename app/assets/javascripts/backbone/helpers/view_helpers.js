@@ -34,11 +34,20 @@ var mapStyles = {
     "opacity": 0,
     "fillOpacity": 0
   },
-  borough: {
+  area: {
+    start: {
     "color": "red",
     "weight": 1,
-    "opacity": 1,
+    "opacity": 0,
     "fillOpacity": 0
+    },
+    highlight: {
+      "color": "orange",
+      "weight": 2,
+      "opacity": 1,
+      "fillColor": "red",
+      "fillOpacity": 0.3
+    }
   },
   point_hood: {
     "color": "orange",
