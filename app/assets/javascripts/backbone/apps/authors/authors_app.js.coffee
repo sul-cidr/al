@@ -41,4 +41,4 @@
     new AuthorsApp.Router
       controller: API
     # CHECK: started by appRoute ""
-    # API.startAuthors()
+    API.startAuthors()

@@ -40,14 +40,13 @@
     onDomRefresh: ->
       @initMap()
 
+      App.request "area:entities", (areas) =>
+        # type: [borough (polygon) | hood (point)]
+        @ingestAreas areas
+
       App.request "placeref:entities", (placerefs) =>
         # points, lines, polygons; type: [bioblace | worksplace]
         @ingestPlacerefs placerefs
-
-      App.request "area:entities", (areas) =>
-        # type: [borough (polygon) | hood (point)]
-        window.areas = areas
-        @ingestAreas areas
 
     initMap: ->
       # console.log 'initMap'
