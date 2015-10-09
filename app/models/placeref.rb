@@ -2,14 +2,17 @@
 #
 # Table name: placerefs
 #
-#  id          :integer          not null
-#  placeref_id :integer          primary key
-#  prefname    :string
-#  place_id    :integer
-#  passage_id  :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  work_id     :integer
+#  id            :integer          not null, primary key
+#  placeref_id   :integer
+#  work_id       :integer
+#  passage_id    :string
+#  prefname      :string
+#  author_id     :integer
+#  place_id      :integer
+#  geom_wkt      :text
+#  placeref_type :string
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 # reference in a work.passage to a place
@@ -19,5 +22,17 @@ class Placeref < ActiveRecord::Base
 
 	belongs_to :passage
 	has_one :place
+
+  # placerefs in or near hood
+  def self.in_or_near(id)
+    where {
+        geom_wkt like 'MULTIPOINT%' and
+      	st_intersects(
+          st_buffer( (st_geomfromtext(Area.find(id).geom_wkt)), 0.01),
+      	  st_geomfromtext(geom_wkt)
+        )
+      # st_geomfromtext(Area.find(id).geom_wkt)
+    }
+  end
 
 end

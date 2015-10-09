@@ -23,13 +23,45 @@
 
     goHome: (e) ->
       # TODO: clear unhighlight area, zoom out
-      console.log $(e.currentTarget)
+      # console.log $(e.currentTarget)
       id = Number($(e.currentTarget).context.attributes.data_id.value)
       App.vent.trigger("area:unhighlight", id)
       # Backbone.history.navigate("", true)
 
-  class Show.Nav extends App.Views.ItemView
-    template: "places/show/templates/_nav"
+  class Show.Hood extends App.Views.ItemView
+    template: "places/show/templates/_hood"
+    tagName: "span"
+    events: {
+      "click a": "hoodByRoute"
+      # "mouseenter a": "onAreaEnter"
+      # "mouseleave a": "onAreaLeave"
+    }
+
+    hoodByRoute: ->
+      window.activeHood = this.model
+      hood = this.model
+      Backbone.history.navigate("hoods/"+hood.get("id"), true)
+
+    # needed for map interaction
+    # onAreaEnter: (e) ->
+    #   id = this.getAreaIdFromEvent(e);
+    #   # console.log 'enter area model #', id
+    #   App.vent.trigger('area:highlight', id);
+    #
+    # onAreaLeave: (e) ->
+    #   id = this.getAreaIdFromEvent(e);
+    #   # console.log 'left area a'
+    #   App.vent.trigger('area:unhighlight', id);
+    #
+    # getAreaIdFromEvent: (e) ->
+    #   Number($(e.currentTarget).context.attributes.data_id.value);
+
+
+  class Show.Hoods extends App.Views.CompositeView
+    template: "places/show/templates/_hoods"
+    childView: Show.Hood
+    emptyView: Show.Empty
+    childViewContainer: "hoodslist"
 
   class Show.Content extends App.Views.ItemView
     template: "places/show/templates/_content"

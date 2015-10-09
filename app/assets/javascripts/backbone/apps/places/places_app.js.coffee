@@ -12,7 +12,8 @@
   class PlacesApp.Router extends Marionette.AppRouter
     appRoutes:
       "": "startPlaces"
-      "areas/:id": "passAreaModel"
+      "boroughs/:id": "passBoroughModel"
+      "hoods/:id": "passHoodModel"
 
   API =
     startPlaces: ->
@@ -22,16 +23,28 @@
     listAreas: ->
       PlacesApp.List.Controller.listAreas()
 
-    # # detail page for an area (borough or neighborhood)
-    passAreaModel: (id) ->
-      App.request "area:entity", id, (area) =>
-        # console.log 'pass', area.get("name")
-        PlacesApp.Show.Controller.showArea(area)
-        App.vent.trigger "area:show", area
-        # return focus area from anywhere
-        App.reqres.setHandler "area:model", ->
-          return area
+    # generate detail page for a borough
+    # get model for area id, pass to relevant controller method
+    # and set trigger for map
+    passBoroughModel: (id) ->
+      App.request "area:entity", id, (borough) =>
+        App.request "borough:hoods", id, (hoods) =>
+          PlacesApp.Show.Controller.showBorough(borough, hoods)
+          # App.vent.trigger "borough:show", borough
+          # # return focus area from anywhere
+          # App.reqres.setHandler "borough:model", ->
+          #   return borough
 
+    # generate detail page for a borough
+    passHoodModel: (id) ->
+      App.request "area:entity", id, (hood) =>
+        console.log 'appRoutes, get hood', hood.get("name")
+
+      #   PlacesApp.Show.Controller.showHood(hood)
+      #   App.vent.trigger "hood:show", hood
+      #   # return focus area from anywhere
+      #   App.reqres.setHandler "hood:model", ->
+      #       return hood
 
   App.addInitializer ->
     new PlacesApp.Router

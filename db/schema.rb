@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20150923170802) do
   create_table "areas", force: :cascade do |t|
     t.string   "name"
     t.string   "area_type"
+    t.integer  "parent_id"
     t.string   "altnames"
     t.text     "geom_wkt"
     t.point    "geom_point"

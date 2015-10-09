@@ -5,7 +5,7 @@
 
   class Entities.PlacerefCollection extends Entities.Collection
     model: Entities.Placeref
-    url: '/placerefs.json'
+    url: '/placerefs'
     # idAttribute: "placeref_id"
   placerefs = new Entities.PlacerefCollection()
 
@@ -20,40 +20,3 @@
 
   App.reqres.setHandler "placeref:entities", (cb) ->
     API.getPlacerefEntities cb
-
-    # getPlacerefsAuthor: (id, cb) ->
-    #   # placerefs = new Entities.PlacerefCollection()
-    #   placerefs.fetch
-    #     success: ->
-    #       # console.log placerefs
-    #       filterId = _.filter(placerefs.models,(item) ->
-    #         item.get("author_id") == id
-    #       )
-    #       placerefs.reset(filterId)
-    #       cb placerefs
-    #     error: ->
-    #       onErrorHandler
-    #
-    # getPlacerefsCategory: (id, cb) ->
-    #   # get author_ids for category members
-    #   # placerefs = new Entities.PlacerefCollection()
-    #   placerefs.fetch
-    #     success: ->
-    #       filterId = _.filter(placerefs.models,(item) ->
-    #         item.get("author_id") == id
-    #       )
-    #       placerefs.reset(filterId)
-    #       cb placerefs
-    #     error: ->
-    #       onErrorHandler
-    #
-    # onErrorHandler: (collection, response, options) ->
-    #   console.log 'placerefs fetch onerrorhandler'
-    #   console.log response.responseText
-
-
-  # App.reqres.setHandler "placerefs:author", (id, cb) ->
-  #   API.getPlacerefsAuthor id, cb
-  #
-  # App.reqres.setHandler "placerefs:category", (id, cb) ->
-  #   API.getPlacerefsCategory id, cb

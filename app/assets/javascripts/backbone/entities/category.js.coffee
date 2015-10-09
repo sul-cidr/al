@@ -4,7 +4,7 @@
 
   class Entities.CategoryCollection extends Entities.Collection
     model: Entities.Category
-    url: '/categories.json'
+    url: '/categories'
 
   API =
     getCategoryEntities: (cb) ->

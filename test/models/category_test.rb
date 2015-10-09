@@ -6,7 +6,7 @@
 #  name       :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  dimension  :string
+#  dim        :string
 #
 
 require 'test_helper'

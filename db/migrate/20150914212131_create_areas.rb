@@ -5,6 +5,7 @@ class CreateAreas < ActiveRecord::Migration
     create_table :areas do |t|
       t.string :name
       t.string :area_type
+      t.integer :parent_id
       t.string :altnames
       t.text :geom_wkt
       t.point :geom_point, srid:4326

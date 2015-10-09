@@ -21,8 +21,24 @@
       @area = areas._byId[id]
       cb @area
 
+    getHoods: (id, cb) ->
+      # console.log 'id in getHoods()', String(id)
+      areas.fetch
+        success: ->
+          # console.log 'areas', areas.models
+          filterId = _.filter(areas.models,(item) ->
+            # CHECK: WTF???? item.get("parent_id") == id;
+            String(item.get("parent_id")) == String(id);
+          )
+          areas.reset(filterId)
+          # console.log @areas
+          cb areas
+
   App.reqres.setHandler "area:entities", (cb) ->
     API.getAreaEntities cb
 
   App.reqres.setHandler "area:entity", (id, cb) ->
     API.getAreaEntity id, cb
+
+  App.reqres.setHandler "borough:hoods", (id, cb) ->
+    API.getHoods id, cb

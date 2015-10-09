@@ -34,8 +34,10 @@
     areaByRoute: ->
       window.activePlace = this.model
       area = this.model
-      # console.log 'history.navigate', area.get("name")
-      Backbone.history.navigate("areas/"+area.get("id"), true)
+      if area.get("area_type") == "borough"
+        Backbone.history.navigate("boroughs/"+area.get("id"), true)
+      else
+        Backbone.history.navigate("hoods/"+area.get("id"), true)
 
     onAreaEnter: (e) ->
       id = this.getAreaIdFromEvent(e);

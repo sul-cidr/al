@@ -3,6 +3,7 @@ json.array! @areas do |area|
     area,
     :id,
     :area_type,
+    :parent_id,
     :name,
     :geom_wkt
   )

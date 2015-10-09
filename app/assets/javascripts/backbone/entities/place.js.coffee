@@ -5,7 +5,7 @@
 
   class Entities.PlaceCollection extends Entities.Collection
     model: Entities.Place
-    url: '/places.json'
+    url: '/places'
     idAttribute: "place_id"
 
   API =

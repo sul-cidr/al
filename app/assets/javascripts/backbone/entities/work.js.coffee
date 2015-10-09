@@ -5,7 +5,7 @@
 
   class Entities.WorkCollection extends Entities.Collection
     model: Entities.Work
-    url: '/works.json'
+    url: '/works'
     comparator: 'title'
 
   works = new Entities.WorkCollection()

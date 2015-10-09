@@ -16,26 +16,6 @@
   author = new Entities.Author
 
   API =
-    
-    getAuthorEntity: (id, cb) ->
-      @author = authors._byId[id]
-      cb @author
-
-    getAuthorsCategory: (cat, cb) ->
-      # console.log 'in entity, cat =',cat
-      authors.fetch
-        success: ->
-          # exclude Evans, Fielding, Boswell
-          filterCat = _.filter(authors.models,(item) ->
-            item.get("author_id") < 10434 && #item.contains("categories", cat)
-            item.get('categories').indexOf(cat) > -1;
-            # _.contains(item.get("categories", cat))
-            # item.where("'categories = any ("+cat+")'");
-          )
-          authors.reset(filterCat);
-          # TODO this executes twice??
-          # console.log authors.models.length + ' filtered authors'
-          cb authors
 
     getAuthorEntities: (cb) ->
       authors.fetch
@@ -47,12 +27,20 @@
           authors.reset(filterName);
           cb authors
 
+    getAuthorEntity: (id, cb) ->
+      @author = authors._byId[id]
+      cb @author
 
-  App.reqres.setHandler "authors:active", (cb) ->
-    cb activeAuthors
-
-  App.reqres.setHandler "authors:category", (cat, cb) ->
-    API.getAuthorsCategory cat, cb
+    getAuthorsCategory: (cat, cb) ->
+      authors.fetch
+        success: ->
+          filterCat = _.filter(authors.models,(item) ->
+            item.get("author_id") < 10434 && #item.contains("categories", cat)
+            item.get('categories').indexOf(cat) > -1;
+          )
+          authors.reset(filterCat);
+          # TODO this executes twice??
+          cb authors
 
   App.reqres.setHandler "author:entities", (cb) ->
     API.getAuthorEntities cb
@@ -60,5 +48,7 @@
   App.reqres.setHandler "author:entity", (id, cb) ->
     API.getAuthorEntity id, cb
 
+  App.reqres.setHandler "authors:category", (cat, cb) ->
+    API.getAuthorsCategory cat, cb
 
   # CHECK ?? add initializer to populate authors once, then check before any other fetch

@@ -8,7 +8,7 @@
   App.vent.on "author:show", (author) ->
     API.filterByAuthor author
 
-  App.vent.on "area:show", (area) ->
+  App.vent.on "borough:show", (area) ->
     API.focusArea area
 
   App.vent.on "category:authors:show", (cat) ->
@@ -41,7 +41,16 @@
       MapApp.Show.Controller.showMap()
 
     focusArea: (area) ->
-      console.log 'map_app.API will zoom to area', area.get("name")
+      if area.get("area_type") == "hood"
+        console.log 'map_app.API zoom to hood centroid', area.get("name")
+        console.log '& filter for intersect of buffer'
+      else
+        console.log 'map_app.API zoom to borough', area.get("name")
+        console.log '& filter for intersect'
+
+    filterByArea: (area) ->
+      MapApp.Show.Controller.setFilter 'area', (placeref) ->
+        placeref.get("geom_wkt")
 
     filterByAuthor: (author) ->
       # on click feed selected author to setFilter(author)
