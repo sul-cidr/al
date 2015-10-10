@@ -1,13 +1,10 @@
 @AL.module "PlacesApp", (PlacesApp, App, Backbone, Marionette, $, _) ->
   @startWithParent = false
-  # console.log 'PlacesApp started'
 
-  ##
-  # places have geometry; areas are a subset of places, incl.
-  # boroughs/wards/neighborhoods
-  # place references in text refer to places
-  # navigation can drill down in places, some of which
-  # are the object of placerefs
+  App.vent.on "authors-panel:open", ->
+    PlacesApp.List.Controller.togglePanel()
+    map.setActiveArea('viewport-authors')
+    map.setView([51.5120, -0.0928], 12)
 
   class PlacesApp.Router extends Marionette.AppRouter
     appRoutes:
@@ -17,7 +14,7 @@
 
   API =
     startPlaces: ->
-      # console.log 'API.startPlaces()'
+      console.log 'API.startPlaces fired'
       PlacesApp.List.Controller.startPlaces()
 
     listAreas: ->
@@ -30,7 +27,7 @@
       App.request "area:entity", id, (borough) =>
         App.request "borough:hoods", id, (hoods) =>
           PlacesApp.Show.Controller.showBorough(borough, hoods)
-          # App.vent.trigger "borough:show", borough
+          App.vent.trigger "area:show", borough
           # # return focus area from anywhere
           # App.reqres.setHandler "borough:model", ->
           #   return borough
@@ -38,10 +35,9 @@
     # generate detail page for a borough
     passHoodModel: (id) ->
       App.request "area:entity", id, (hood) =>
-        console.log 'appRoutes, get hood', hood.get("name")
-
-      #   PlacesApp.Show.Controller.showHood(hood)
-      #   App.vent.trigger "hood:show", hood
+        # console.log 'appRoutes, get hood', hood.get("name")
+        PlacesApp.Show.Controller.showHood(hood)
+        App.vent.trigger "area:show", hood
       #   # return focus area from anywhere
       #   App.reqres.setHandler "hood:model", ->
       #       return hood

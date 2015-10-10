@@ -21,7 +21,9 @@
 //= require leaflet/dist/leaflet
 //= require wellknown/wellknown
 //= require leaflet-omnivore/leaflet-omnivore.min
+//= require leaflet-activearea/leaflet.activearea
 //= require jquery-ui
+//= require turf/turf.min
 
 // *** app
 

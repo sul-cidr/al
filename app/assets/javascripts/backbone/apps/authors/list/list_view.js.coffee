@@ -13,13 +13,8 @@
     template: "authors/list/templates/_title"
     events:
       "click .toggle-authors": "onToggle"
-    # TODO: this is replicated in List.AuthorLayout and in Places
-    onToggle: ->
-      console.log 'toggle from List.Title'
-      if $("#authors-region").offset().left == 0
-        $("#authors-region").animate { 'left': -($("#authors-region").width() - 15) }, 500
-      else if $("#authors-region").offset().left < 0
-        $("#authors-region").animate { 'left': 0 }, 500
+    onToggle:
+      AL.AuthorsApp.List.Controller.togglePanel
 
   class List.Dimensions extends App.Views.ItemView
     template: "authors/list/templates/_dimensions"

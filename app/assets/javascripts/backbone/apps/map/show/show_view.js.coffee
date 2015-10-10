@@ -54,7 +54,9 @@
         zoomControl: false,
         attributionControl: false,
         fadeAnimation: false
-      });
+      }).setActiveArea('viewport-places');
+
+      # var map = new L.Map(document.createElement('div')).setActiveArea('activeArea');
 
       # Zoom buttons on top right.
       zoomControl = L.control.zoom({
@@ -69,9 +71,11 @@
         { detectRetina: true }
       );
 
+      London = [51.5120, -0.0928];
+
       this.map.addLayer(osmLayer);
       # places open, authors open viewports
-      this.map.setView([51.5120, -0.0928], 12);
+      this.map.setView(London, 12);
       # this.map.setView([51.5120, -0.1728], 12);
 
     stylePoints: (feature) ->
@@ -193,6 +197,12 @@
       window.map = @map
       window.placerefs = @placerefs
       window.features = @features
+
+    zoomTo: (what, id) ->
+      marker = $idToFeature.areas[id];
+      window.m = marker
+      window.mbounds = marker.getBounds()
+      map.fitBounds(mbounds)
 
     # TODO: better highlight/unhighlight system
     # triggered from map

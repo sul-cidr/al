@@ -12,12 +12,8 @@
     template: "places/list/templates/_title"
     events:
       "click .toggle-places": "onToggle"
-    onToggle: ->
-      xpos = ($(window).width() - 350) - $("#places-region").offset().left
-      if xpos == 0
-        $("#places-region").animate { 'right': -($("#places-region").width() - 15) }, 500
-      else if $("#places-region").offset().left > $(window).width() - 350
-        $("#places-region").animate { 'right': 0}, 500
+    onToggle:
+      AL.PlacesApp.List.Controller.togglePanel
 
   class List.Navmap extends App.Views.ItemView
     template: "places/list/templates/_navmap"
@@ -35,8 +31,10 @@
       window.activePlace = this.model
       area = this.model
       if area.get("area_type") == "borough"
+        # indirectly yo showBorough() in controller
         Backbone.history.navigate("boroughs/"+area.get("id"), true)
       else
+        # indirectly yo showBorough() in controller
         Backbone.history.navigate("hoods/"+area.get("id"), true)
 
     onAreaEnter: (e) ->

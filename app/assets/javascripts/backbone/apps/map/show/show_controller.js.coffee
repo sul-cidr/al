@@ -17,6 +17,9 @@
     clearFilters: ->
       @mapView.clearFilters()
 
+    zoomTo: (what, id) ->
+      @mapView.zoomTo what, id
+
     # /**
     #  * Highlight a place.
     #  */

@@ -12,15 +12,14 @@
     template: "authors/show/templates/_title"
     events:
       "click .toggle-authors": "onToggle"
-      "click .crumb": "goHome"
-    # TODO: this is replicated in List.AuthorLayout and in Places
-    onToggle: ->
-      console.log 'toggle from Show.Title'
-      if $("#authors-region").offset().left == 0
-        $("#authors-region").animate { 'left': -($("#authors-region").width() - 15) }, 500
-      else if $("#authors-region").offset().left < 0
-        $("#authors-region").animate { 'left': 0 }, 500
+      "click .crumb-authors": "goHome"
+
+    # TODO: refactor?
+    onToggle:
+      AL.AuthorsApp.List.Controller.togglePanel
+
     goHome: ->
+      console.log 'supposed to go home'
       Backbone.history.navigate("", true)
 
   class Show.Pills extends App.Views.ItemView

@@ -11,22 +11,17 @@
     template: "places/show/templates/_title"
     events:
       "click .toggle-places": "onToggle"
-      "click .crumb": "goHome"
+      "click .crumb-places": "goHome"
 
-    # TODO: this is replicated in List.AuthorLayout and in Places
-    onToggle: ->
-      console.log 'toggle from Show.Title'
-      if $("#places-region").offset().left == 0
-        $("#places-region").animate { 'left': -($("#places-region").width() - 15) }, 500
-      else if $("#places-region").offset().left < 0
-        $("#places-region").animate { 'left': 0 }, 500
+    onToggle:
+      AL.PlacesApp.List.Controller.togglePanel
 
     goHome: (e) ->
       # TODO: clear unhighlight area, zoom out
-      # console.log $(e.currentTarget)
+      # console.log 'goHome()', $(e.currentTarget)
       id = Number($(e.currentTarget).context.attributes.data_id.value)
       App.vent.trigger("area:unhighlight", id)
-      # Backbone.history.navigate("", true)
+      Backbone.history.navigate("", true)
 
   class Show.Hood extends App.Views.ItemView
     template: "places/show/templates/_hood"

@@ -1,7 +1,7 @@
 @AL.module "PlacesApp.Show", (Show, App, Backbone, Marionette, $, _) ->
 
   Show.Controller =
-
+    # TODO: needs refactoring--showBorough and showHood to showArea()
     showBorough: (borough,hoods) ->
       id = borough.get("id")
       name = borough.get("name")
@@ -14,6 +14,21 @@
         @showTitle borough
         @showNav hoods
         @showPlaceContent borough
+
+      # keep showing in the placesRegion for now; areas are one kind of place
+      App.placesRegion.show @areaLayout
+
+    showHood: (hood) ->
+      id = hood.get("id")
+      name = hood.get("name")
+
+      @areaLayout = @getAreaLayout hood
+      window.areaLayout = @areaLayout
+
+      @areaLayout.on "show", =>
+        # console.log 'areaLayout shown'
+        @showTitle hood
+        @showPlaceContent hood
 
       # keep showing in the placesRegion for now; areas are one kind of place
       App.placesRegion.show @areaLayout

@@ -26,6 +26,18 @@
       new List.Title
         collection: authors
 
+    # TODO: refactor?
+    togglePanel: ->
+      # console.log 'toggle from List.Title'
+      if $("#authors-region").offset().left == 0
+        $("#authors-region").animate { 'left': -($("#authors-region").width() - 15) }, 500
+        App.vent.trigger("authors-panel:close")
+        $(".toggle-authors").removeClass("hidden")
+      else if $("#authors-region").offset().left < 0
+        $("#authors-region").animate { 'left': 0 }, 500
+        App.vent.trigger("authors-panel:open")
+        $(".toggle-authors").addClass("hidden")
+
     listDimensions: ->
       # console.log 'showDimensions()'
       dimensionsView = new List.Dimensions

@@ -8,7 +8,8 @@
   App.vent.on "author:show", (author) ->
     API.filterByAuthor author
 
-  App.vent.on "borough:show", (area) ->
+  # TODO: part of refactoring for areas - single area:show
+  App.vent.on "area:show", (area) ->
     API.focusArea area
 
   App.vent.on "category:authors:show", (cat) ->
@@ -36,17 +37,22 @@
     # console.log 'map_app heard unhighlight, id#', id
     MapApp.Show.Controller.onUnhighlightFeature 'area', id
 
+  App.vent.on "authors-panel:close", ->
+    
+
   API =
     showMap: ->
       MapApp.Show.Controller.showMap()
 
     focusArea: (area) ->
       if area.get("area_type") == "hood"
-        console.log 'map_app.API zoom to hood centroid', area.get("name")
-        console.log '& filter for intersect of buffer'
+        MapApp.Show.Controller.zoomTo 'hood', area.get("id")
+        # console.log 'map_app.API zoom to hood centroid', area.get("name")
+        # console.log '& filter for intersect of buffer'
       else
-        console.log 'map_app.API zoom to borough', area.get("name")
-        console.log '& filter for intersect'
+        MapApp.Show.Controller.zoomTo 'borough', area.get("id")
+        # console.log 'map_app.API zoom to borough', area.get("name")
+        # console.log '& filter for intersect'
 
     filterByArea: (area) ->
       MapApp.Show.Controller.setFilter 'area', (placeref) ->

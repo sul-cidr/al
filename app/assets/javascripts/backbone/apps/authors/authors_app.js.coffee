@@ -1,8 +1,11 @@
 @AL.module "AuthorsApp", (AuthorsApp, App, Backbone, Marionette, $, _) ->
   @startWithParent = false
 
-  # console.log 'AuthorsApp started'
-  activeAuthor = {}
+  App.vent.on "places-panel:open", ->
+    # console.log 'authors_app heard places-panel:close'
+    AuthorsApp.List.Controller.togglePanel()
+    map.setActiveArea('viewport-places')
+    map.setView([51.5120, -0.0928], 12)
 
   class AuthorsApp.Router extends Marionette.AppRouter
     appRoutes:
@@ -13,7 +16,9 @@
 
   API =
     startAuthors: ->
-      AuthorsApp.List.Controller.startAuthors()
+      console.log 'API.startAuthors fired'
+      AL.AuthorsApp.List.Controller.startAuthors()
+      # AuthorsApp.List.Controller.startAuthors()
 
     authorWorks: (author_id) ->
       App.request "author:entity", author_id, (author) =>
