@@ -38,7 +38,7 @@
     MapApp.Show.Controller.onUnhighlightFeature 'area', id
 
   App.vent.on "authors-panel:close", ->
-    
+
 
   API =
     showMap: ->
@@ -86,6 +86,7 @@
 
     clearFilters: ->
       MapApp.Show.Controller.clearFilters()
+      map.setView([51.5120, -0.0928], 12)
 
   MapApp.on "start", ->
     controller: API

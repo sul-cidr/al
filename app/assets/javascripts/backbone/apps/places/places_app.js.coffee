@@ -8,7 +8,7 @@
 
   class PlacesApp.Router extends Marionette.AppRouter
     appRoutes:
-      "": "startPlaces"
+      "places": "startPlaces"
       "boroughs/:id": "passBoroughModel"
       "hoods/:id": "passHoodModel"
 

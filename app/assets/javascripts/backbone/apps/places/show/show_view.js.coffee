@@ -20,8 +20,9 @@
       # TODO: clear unhighlight area, zoom out
       # console.log 'goHome()', $(e.currentTarget)
       id = Number($(e.currentTarget).context.attributes.data_id.value)
+      App.vent.trigger("map:reset", id)
       App.vent.trigger("area:unhighlight", id)
-      Backbone.history.navigate("", true)
+      Backbone.history.navigate("places", true)
 
   class Show.Hood extends App.Views.ItemView
     template: "places/show/templates/_hood"
