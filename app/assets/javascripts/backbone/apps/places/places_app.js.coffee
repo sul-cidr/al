@@ -14,7 +14,7 @@
 
   API =
     startPlaces: ->
-      console.log 'API.startPlaces fired'
+      # console.log 'API.startPlaces fired'
       PlacesApp.List.Controller.startPlaces()
 
     listAreas: ->

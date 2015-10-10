@@ -16,13 +16,13 @@
 
   API =
     startAuthors: ->
-      console.log 'API.startAuthors fired'
+      # console.log 'API.startAuthors fired'
       AL.AuthorsApp.List.Controller.startAuthors()
       # AuthorsApp.List.Controller.startAuthors()
 
     authorWorks: (author_id) ->
       App.request "author:entity", author_id, (author) =>
-        console.log 'API.authorWorks', author_id
+        # console.log 'API.authorWorks', author_id
         AuthorsApp.Show.Controller.listWorks author
 
     workPassages: (work_id) ->

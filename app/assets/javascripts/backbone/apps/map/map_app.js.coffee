@@ -80,7 +80,7 @@
         # console.log 'cat '+id+ ': ', author_ids
 
     filterForWork: (work) ->
-      console.log 'map.API filterForWork()', work.get("work_id")
+      # console.log 'map.API filterForWork()', work.get("work_id")
       MapApp.Show.Controller.setFilter 'work', (placeref) ->
         placeref.get("work_id") == work.get("work_id")
 

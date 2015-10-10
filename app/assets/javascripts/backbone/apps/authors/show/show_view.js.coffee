@@ -19,7 +19,7 @@
       AL.AuthorsApp.List.Controller.togglePanel
 
     goHome: ->
-      console.log 'supposed to go home'
+      # console.log 'supposed to go home'
       Backbone.history.navigate("", true)
       App.vent.trigger("map:reset")
 
