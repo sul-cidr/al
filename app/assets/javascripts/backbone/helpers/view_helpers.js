@@ -45,8 +45,8 @@ var mapStyles = {
       "color": "orange",
       "weight": 2,
       "opacity": 1,
-      "fillColor": "red",
-      "fillOpacity": 0.15
+      "fillColor": "yellow",
+      "fillOpacity": 0.1
     }
   },
   point_hood: {

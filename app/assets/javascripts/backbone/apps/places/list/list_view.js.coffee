@@ -31,10 +31,10 @@
       window.activePlace = this.model
       area = this.model
       if area.get("area_type") == "borough"
-        # indirectly yo showBorough() in controller
+        # indirectly to showBorough() in controller
         Backbone.history.navigate("boroughs/"+area.get("id"), true)
       else
-        # indirectly yo showBorough() in controller
+        # indirectly to showHood() in controller
         Backbone.history.navigate("hoods/"+area.get("id"), true)
 
     onAreaEnter: (e) ->

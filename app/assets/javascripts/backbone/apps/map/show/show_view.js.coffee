@@ -198,11 +198,16 @@
       window.placerefs = @placerefs
       window.features = @features
 
-    zoomTo: (what, id) ->
-      marker = $idToFeature.areas[id];
-      window.m = marker
-      window.mbounds = marker.getBounds()
-      map.fitBounds(mbounds)
+    zoomTo: (what, area) ->
+      # TODO: differentiate between hood (point) and borough (polygon)
+      if what == "borough"
+        marker = $idToFeature.areas[area.get("id")];
+        mbounds = marker.getBounds()
+        console.log 'get placerefs in', area.get("name")
+        map.fitBounds(mbounds)
+      else if what == "hood"
+        console.log 'get placerefs around', area
+        map.setView(area,14)
 
     # TODO: better highlight/unhighlight system
     # triggered from map

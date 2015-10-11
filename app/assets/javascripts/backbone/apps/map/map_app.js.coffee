@@ -44,19 +44,32 @@
     showMap: ->
       MapApp.Show.Controller.showMap()
 
+    toGeoJson: (feature) ->
+
     focusArea: (area) ->
       if area.get("area_type") == "hood"
-        MapApp.Show.Controller.zoomTo 'hood', area.get("id")
-        # console.log 'map_app.API zoom to hood centroid', area.get("name")
-        # console.log '& filter for intersect of buffer'
-      else
-        MapApp.Show.Controller.zoomTo 'borough', area.get("id")
-        # console.log 'map_app.API zoom to borough', area.get("name")
-        # console.log '& filter for intersect'
+        window.area = area
+        console.log 'clicked a hood,', area.get("name")
+        window.turfpoint = turf.point(wellknown(area.get("geom_wkt")).coordinates)
+        console.log 'hood coords', turfpoint
+        # make buffer and zoom to it
+        window.buffer = turf.buffer( turfpoint, 1, 'kilometers' )
+        console.log 'buffer area', turf.area(buffer)
 
-    filterByArea: (area) ->
-      MapApp.Show.Controller.setFilter 'area', (placeref) ->
-        placeref.get("geom_wkt")
+        # MapApp.Show.Controller.zoomTo 'hood', c
+
+        # filter
+        MapApp.Show.Controller.setFilter 'area', (placeref) ->
+          turf.inside( turf.point(wellknown(placeref.get("geom_wkt")).coordinates[0]), buffer.features[0] )
+
+      else
+        MapApp.Show.Controller.zoomTo 'borough', area
+
+        # created spatial filter
+        bounds = turf.polygon(wellknown(area.get("geom_wkt")).coordinates[0])
+        # window.wkb = wellknown(area.get("geom_wkt"))
+        MapApp.Show.Controller.setFilter 'area', (placeref) ->
+          turf.inside( turf.point(wellknown(placeref.get("geom_wkt")).coordinates[0]), bounds )
 
     filterByAuthor: (author) ->
       # on click feed selected author to setFilter(author)
