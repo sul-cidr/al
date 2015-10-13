@@ -27,14 +27,15 @@
     showHood: (id) ->
       PlacesApp.Show.Controller.showHood(id)
 
-  PlacesApp.on "area:show", (id) ->
+  App.vent.on "area:show", (area) ->
+    id = area.get("id")
     if id >= 95
       console.log 'places_app area:show', id
-      PlacesApp.navigate("boroughs/" + id)
+      Backbone.history.navigate("boroughs/" + id)
       API.showBorough(id)
     else
       console.log 'places_app area:show', id
-      PlacesApp.navigate("hoods/" + id)
+      Backbone.history.navigate("hoods/" + id)
       API.showHood(id)
 
   App.addInitializer ->

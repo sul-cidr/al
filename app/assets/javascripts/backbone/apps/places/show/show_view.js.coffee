@@ -25,6 +25,7 @@
       # console.log 'navigate to', "boroughs/"+id
       console.log 'fragment', Backbone.history.fragment
       # Backbone.history.navigate("boroughs/"+id, true)
+      App.vent.trigger "area:focus", App.request("area:entity", id)
 
     goHome: (e) ->
       # TODO: clear unhighlight area, zoom out

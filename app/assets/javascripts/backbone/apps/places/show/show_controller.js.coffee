@@ -3,11 +3,12 @@
   Show.Controller =
     # TODO: needs refactoring--showBorough and showHood to showArea()
     showBorough: (id) ->
+      console.log id
       App.request "area:entity", id, (borough) =>
         console.log 'ctrlr: got borough', borough.get("id")
         App.request "borough:hoods", id, (hoods) =>
           console.log "ctrlr: got "+hoods.length+" hoods"
-          App.vent.trigger "area:show", borough
+          App.vent.trigger "area:focus", borough
 
           @areaLayout = @getAreaLayout borough
           @areaLayout.on "show", =>
@@ -24,7 +25,7 @@
       App.request "area:entity", id, (hood) =>
         parent = hood.get("parent_id")
         console.log 'showHood, parentid: ' + hood.get("name"), hood.get("parent_id")
-        App.vent.trigger "area:show", hood
+        App.vent.trigger "area:focus", hood
 
         @areaLayout = @getAreaLayout hood
         @areaLayout.on "show", =>

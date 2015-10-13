@@ -24,6 +24,10 @@
       areasView = @getAreasView areas
       @layout.arealistRegion.show areasView
 
+      areasView.on "childview:contact:show", (childView, model) ->
+        # console.log model, model.get("id")
+        App.vent.trigger "area:show", model
+
     getAreasView: (areas) ->
       new List.Areas
         collection: areas
@@ -55,20 +59,3 @@
         $("#places-region").animate { 'right': 0}, 500
         App.vent.trigger("places-panel:open")
         $(".toggle-places").Class("hidden")
-    #
-    ## places are geometries to be mapped
-    ## handled from map
-    #
-    # listPlaces: ->
-    #   # not listing them all anywhere, just getting data for map module
-    #   App.request "place:entities", (places) =>
-    #     window.mapdata = places
-    #     # console.log mapdata
-    #   # placesView = @getPlacesView places
-    #   # @layout.placesRegion.show placesView
-    #   # console.log 'placesView', placesView
-    #
-    # getPlacesView: (places) ->
-    #   new List.Places
-    #     collection: places
-    #     # filtered in view definition

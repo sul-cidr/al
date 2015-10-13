@@ -9,7 +9,7 @@
     API.filterByAuthor author
 
   # TODO: part of refactoring for areas - single area:show
-  App.vent.on "area:show", (area) ->
+  App.vent.on "area:focus", (area) ->
     API.focusArea(area)
 
   App.vent.on "category:authors:show", (cat) ->
