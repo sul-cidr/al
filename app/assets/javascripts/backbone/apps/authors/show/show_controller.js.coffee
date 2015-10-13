@@ -28,29 +28,18 @@
         # wont show/render twice without reset
         if App.authorContentRegion.$el.length >0
           App.authorContentRegion.reset()
-        bioPassagesView = @getBioPassagesView bio_passages
+
+        bioPassagesView = @getBioPassagesView bio_passages, 'bio'
         # console.log 'listBioPassages(), '+ bio_passages.length + ' for ' + author_id
         window.passb = bioPassagesView
         # console.log 'bioPassagesView:', bioPassagesView.collection
         App.authorContentRegion.show bioPassagesView
 
-    getBioPassagesView: (bio_passages) ->
+    getBioPassagesView: (bio_passages, type) ->
       new Show.Passages
         collection: bio_passages
         viewComparator: "passage_id"
-
-    showTitle: (author) ->
-      @titleView = @getTitleView author
-      @authorLayout.titleRegion.show @titleView
-
-    getTitleView: (author) ->
-      new Show.Title
-        model: author
-
-    showNav: (author) ->
-      @navView = new Show.Pills
-        model: author
-      @authorLayout.navRegion.show @navView
+        className: if type == 'works' then 'passages-works' else 'passages-bio'
 
     listWorks: (author) ->
       id = author.get("author_id")
@@ -72,17 +61,31 @@
       # console.log 'Show.Controller.listWorkPassages() for',work_id
       App.request "passage:entities", id, "work", (work_passages) =>
         # wont show/render twice without reset
-        if App.authorContentRegion.$el.length >0
+        if App.authorContentRegion.$el.length > 0
           App.authorContentRegion.reset()
-        workPassagesView = @getWorkPassagesView work_passages, work
+        workPassagesView = @getWorkPassagesView work_passages, 'works'
         # console.log 'listWorkPassages(), '+ work_passages.length + ' for ' + id
         App.authorContentRegion.show workPassagesView
         # TODO: show Passages tab if it was hidden
         $("#passages_pill").removeClass("hidden")
 
-    getWorkPassagesView: (work_passages, work) ->
+    getWorkPassagesView: (work_passages, type) ->
       new Show.Passages ({
-        model: work
         collection: work_passages
         viewComparator: "passage_id"
+        className: if type == 'works' then 'passages-works' else 'passages-bio'
       })
+
+
+    showTitle: (author) ->
+      @titleView = @getTitleView author
+      @authorLayout.titleRegion.show @titleView
+
+    getTitleView: (author) ->
+      new Show.Title
+        model: author
+
+    showNav: (author) ->
+      @navView = new Show.Pills
+        model: author
+      @authorLayout.navRegion.show @navView

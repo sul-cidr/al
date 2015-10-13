@@ -50,15 +50,16 @@ catlist {
 
 .crumb-authors {font-size: .7em; color:#336699; cursor: pointer;}
 
-#bio-passages { max-height: 360px; overflow:auto;
+.passages-bio {
+  max-height: 500px;
+  overflow:auto;
   hr {display: none;}
 }
-#works-passages { max-height: 360px; overflow:auto;
-  hr { border: 0; border-bottom: 1px dashed #ccc; background: #999; }
+.passages-works {
+  max-height: 500px;
+  overflow:auto;
+  hr { border: 0; border-bottom: 1px dashed #ccc; background: #999; width:80%;}
 }
-
-.passages { }
-.passagelist { }
 
 .bioplace {text-decoration: underline;
   color: #993333;
