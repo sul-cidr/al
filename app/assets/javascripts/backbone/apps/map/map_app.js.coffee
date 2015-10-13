@@ -10,7 +10,7 @@
 
   # TODO: part of refactoring for areas - single area:show
   App.vent.on "area:show", (area) ->
-    API.focusArea area
+    API.focusArea(area)
 
   App.vent.on "category:authors:show", (cat) ->
     API.filterByCategory cat
@@ -37,8 +37,11 @@
     # console.log 'map_app heard unhighlight, id#', id
     MapApp.Show.Controller.onUnhighlightFeature 'area', id
 
-  App.vent.on "authors-panel:close", ->
+  App.vent.on "area:unhighlightAll", ->
+    MapApp.Show.Controller.unhighlightAll()
 
+  App.vent.on "authors-panel:close", ->
+    # CHECK: dunno what for
 
   API =
     showMap: ->
@@ -48,15 +51,16 @@
 
     focusArea: (area) ->
       if area.get("area_type") == "hood"
-        window.area = area
-        console.log 'clicked a hood,', area.get("name")
-        window.turfpoint = turf.point(wellknown(area.get("geom_wkt")).coordinates)
-        console.log 'hood coords', turfpoint
+        area = area
+        parent = area.get("parent_id")
+        console.log 'focusArea hood, parent_id: ' + area.get("name"), parent
+        turfpoint = turf.point(wellknown(area.get("geom_wkt")).coordinates)
+        # console.log 'hood coords', turfpoint
         # make buffer and zoom to it
-        window.buffer = turf.buffer( turfpoint, 1, 'kilometers' )
-        console.log 'buffer area', turf.area(buffer)
+        buffer = turf.buffer( turfpoint, 1, 'kilometers' )
+        # console.log 'buffer area', turf.area(buffer)
 
-        # MapApp.Show.Controller.zoomTo 'hood', c
+        MapApp.Show.Controller.zoomTo 'hood', swap(turf.centroid(buffer).geometry.coordinates)
 
         # filter
         MapApp.Show.Controller.setFilter 'area', (placeref) ->

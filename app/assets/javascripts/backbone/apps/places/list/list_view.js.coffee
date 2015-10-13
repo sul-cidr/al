@@ -18,6 +18,7 @@
   class List.Navmap extends App.Views.ItemView
     template: "places/list/templates/_navmap"
 
+
   class List.Area extends App.Views.ItemView
     template: "places/list/templates/_area"
     tagName: "span"
@@ -30,12 +31,15 @@
     areaByRoute: ->
       window.activePlace = this.model
       area = this.model
+      id = area.get("id")
       if area.get("area_type") == "borough"
-        # indirectly to showBorough() in controller
-        Backbone.history.navigate("boroughs/"+area.get("id"), true)
+        AL.trigger("area:show", id)
+        # PlacesApp.Show.Controller.showBorough id
+        # PlacesApp.navigate("boroughs/" + id)
       else
-        # indirectly to showHood() in controller
-        Backbone.history.navigate("hoods/"+area.get("id"), true)
+        AL.trigger("area:show", id)
+        # PlacesApp.Show.Controller.showHood id
+        # AL.PlacesApp.navigate("hoods/" + id)
 
     onAreaEnter: (e) ->
       id = this.getAreaIdFromEvent(e);

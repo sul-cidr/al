@@ -1,6 +1,5 @@
 @AL.module "MapApp.Show", (Show, App, Backbone, Marionette, $, _) ->
 
-
   class Show.Map extends Marionette.ItemView
     template: "map/show/templates/show_map"
 
@@ -125,7 +124,7 @@
       @areas.addTo(@map)
       # @map.fitBounds(@group)
       window.map = @map
-      window.areas = @areas
+      window.leaf_areas = @areas
       window.areaFeatures = @features
 
     ingestPlacerefs: (placerefs) ->
@@ -203,11 +202,13 @@
       if what == "borough"
         marker = $idToFeature.areas[area.get("id")];
         mbounds = marker.getBounds()
-        console.log 'get placerefs in', area.get("name")
+        # console.log 'get placerefs in', area.get("name")
         map.fitBounds(mbounds)
+
       else if what == "hood"
-        console.log 'get placerefs around', area
-        map.setView(area,14)
+        # area is a lonlat pair here
+        # console.log 'get placerefs around', area
+        map.setView(area, 14)
 
     # TODO: better highlight/unhighlight system
     # triggered from map
@@ -235,6 +236,11 @@
       else if what == "area"
         marker = $idToFeature.areas[id];
         marker.setStyle(mapStyles.area.highlight);
+
+    unhighlightAll: ->
+      # console.log 'unhighlightAll()', @areas
+      @areas.setStyle(mapStyles.area.start)
+
 
     unhighlightFeature: (what, id) ->
       if what == "placeref"

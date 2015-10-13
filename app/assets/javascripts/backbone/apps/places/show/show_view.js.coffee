@@ -11,17 +11,29 @@
     template: "places/show/templates/_title"
     events:
       "click .toggle-places": "onToggle"
-      "click .crumb-places": "goHome"
+      "click .crumb0 a": "goHome"
+      "click .crumb1 a": "goBorough"
 
     onToggle:
       AL.PlacesApp.List.Controller.togglePanel
+
+    goBorough: (e) ->
+      # step back up
+
+      # id = App.request("borough:active:model").get("id")
+      id = Number($(e.currentTarget).context.attributes.data_id.value)
+      # console.log 'navigate to', "boroughs/"+id
+      console.log 'fragment', Backbone.history.fragment
+      # Backbone.history.navigate("boroughs/"+id, true)
 
     goHome: (e) ->
       # TODO: clear unhighlight area, zoom out
       # console.log 'goHome()', $(e.currentTarget)
       id = Number($(e.currentTarget).context.attributes.data_id.value)
+      # console.log 'goHome() id=', id
       App.vent.trigger("map:reset", id)
-      App.vent.trigger("area:unhighlight", id)
+      App.vent.trigger("area:unhighlightAll", id)
+      # App.vent.trigger("area:unhighlight", id)
       Backbone.history.navigate("places", true)
 
   class Show.Hood extends App.Views.ItemView
@@ -35,8 +47,14 @@
 
     hoodByRoute: ->
       window.activeHood = this.model
-      hood = this.model
-      Backbone.history.navigate("hoods/"+hood.get("id"), true)
+      @activeHood = this.model
+      # console.log @activeHood
+      id = @activeHood.get("id")
+      Backbone.history.navigate("hoods/"+id, true)
+      $("#crumbs_places ul").append(
+        '>> <li class="crumb1"><a href="#" data_id="'+@activeHood.get("parent_id")+'">parent</a></li>'
+      );
+
 
     # needed for map interaction
     # onAreaEnter: (e) ->

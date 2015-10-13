@@ -2,36 +2,38 @@
 
   Show.Controller =
     # TODO: needs refactoring--showBorough and showHood to showArea()
-    showBorough: (borough,hoods) ->
-      id = borough.get("id")
-      name = borough.get("name")
-      # console.log 'Show.Controller.showBorough() ',hoods.length
-      @areaLayout = @getAreaLayout borough
-      window.areaLayout = @areaLayout
+    showBorough: (id) ->
+      App.request "area:entity", id, (borough) =>
+        console.log 'ctrlr: got borough', borough.get("id")
+        App.request "borough:hoods", id, (hoods) =>
+          console.log "ctrlr: got "+hoods.length+" hoods"
+          App.vent.trigger "area:show", borough
 
-      @areaLayout.on "show", =>
-        # console.log 'areaLayout shown'
-        @showTitle borough
-        @showNav hoods
-        @showPlaceContent borough
+          @areaLayout = @getAreaLayout borough
+          @areaLayout.on "show", =>
+            # console.log 'areaLayout shown'
+            @showTitle borough
+            @showNav hoods
+            @showPlaceContent borough
 
-      # keep showing in the placesRegion for now; areas are one kind of place
-      App.placesRegion.show @areaLayout
+          # keep showing in the placesRegion for now; areas are one kind of place
+          App.placesRegion.show @areaLayout
 
-    showHood: (hood) ->
-      id = hood.get("id")
-      name = hood.get("name")
 
-      @areaLayout = @getAreaLayout hood
-      window.areaLayout = @areaLayout
+    showHood: (id) ->
+      App.request "area:entity", id, (hood) =>
+        parent = hood.get("parent_id")
+        console.log 'showHood, parentid: ' + hood.get("name"), hood.get("parent_id")
+        App.vent.trigger "area:show", hood
 
-      @areaLayout.on "show", =>
-        # console.log 'areaLayout shown'
-        @showTitle hood
-        @showPlaceContent hood
+        @areaLayout = @getAreaLayout hood
+        @areaLayout.on "show", =>
+          # console.log 'areaLayout shown'
+          @showTitle hood
+          @showPlaceContent hood
 
-      # keep showing in the placesRegion for now; areas are one kind of place
-      App.placesRegion.show @areaLayout
+        # keep showing in the placesRegion for now; areas are one kind of place
+        App.placesRegion.show @areaLayout
 
     getAreaLayout: (area) ->
       new Show.Layout ({

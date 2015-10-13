@@ -9,8 +9,8 @@
   class PlacesApp.Router extends Marionette.AppRouter
     appRoutes:
       "places": "startPlaces"
-      "boroughs/:id": "passBoroughModel"
-      "hoods/:id": "passHoodModel"
+      "boroughs/:id": "showBorough"
+      "hoods/:id": "showHood"
 
   API =
     startPlaces: ->
@@ -20,29 +20,25 @@
     listAreas: ->
       PlacesApp.List.Controller.listAreas()
 
-    # generate detail page for a borough
-    # get model for area id, pass to relevant controller method
-    # and set trigger for map
-    passBoroughModel: (id) ->
-      App.request "area:entity", id, (borough) =>
-        App.request "borough:hoods", id, (hoods) =>
-          PlacesApp.Show.Controller.showBorough(borough, hoods)
-          App.vent.trigger "area:show", borough
-          # # return focus area from anywhere
-          # App.reqres.setHandler "borough:model", ->
-          #   return borough
 
-    # generate detail page for a borough
-    passHoodModel: (id) ->
-      App.request "area:entity", id, (hood) =>
-        # console.log 'appRoutes, get hood', hood.get("name")
-        PlacesApp.Show.Controller.showHood(hood)
-        App.vent.trigger "area:show", hood
-      #   # return focus area from anywhere
-      #   App.reqres.setHandler "hood:model", ->
-      #       return hood
+    showBorough: (id) ->
+      PlacesApp.Show.Controller.showBorough(id)
+
+    showHood: (id) ->
+      PlacesApp.Show.Controller.showHood(id)
+
+  PlacesApp.on "area:show", (id) ->
+    if id >= 95
+      console.log 'places_app area:show', id
+      PlacesApp.navigate("boroughs/" + id)
+      API.showBorough(id)
+    else
+      console.log 'places_app area:show', id
+      PlacesApp.navigate("hoods/" + id)
+      API.showHood(id)
 
   App.addInitializer ->
     new PlacesApp.Router
       controller: API
+    # Backbone.history.navigate("places", true)
     API.startPlaces()

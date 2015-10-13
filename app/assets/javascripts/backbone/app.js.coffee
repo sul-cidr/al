@@ -28,6 +28,7 @@
     App.module('PlacesApp').start()
     App.module('MapApp').start()
 
+  # App.on 'initialize:after', ->
   App.on 'start', ->
     # console.log "App started"
     if Backbone.history

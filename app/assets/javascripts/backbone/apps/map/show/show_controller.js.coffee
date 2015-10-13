@@ -21,6 +21,12 @@
       @mapView.zoomTo what, area
 
     # /**
+    #  * Unhighlight all; part of map:reset
+    #  */
+    unhighlightAll: ->
+      @mapView.unhighlightAll()
+
+    # /**
     #  * Highlight a place.
     #  */
     onHighlightFeature: (what, id) ->

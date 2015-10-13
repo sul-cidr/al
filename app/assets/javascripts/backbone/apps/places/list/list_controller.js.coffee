@@ -54,7 +54,7 @@
         # places panel is closed
         $("#places-region").animate { 'right': 0}, 500
         App.vent.trigger("places-panel:open")
-        $(".toggle-places").addClass("hidden")
+        $(".toggle-places").Class("hidden")
     #
     ## places are geometries to be mapped
     ## handled from map

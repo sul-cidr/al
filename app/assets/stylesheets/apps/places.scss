@@ -21,6 +21,16 @@
 /* PlacesApp Show module */
 /***/
 
+#crumbs_places {
+  font-size: 0.7em;
+
+  ul {
+    margin: 0; padding: 0;
+    list-style-type: none;
+  }
+  ul li { display: inline;}
+}
+
 arealist { padding:0 26px; font-family: Palatino-linotype, Georgia;
   font-size: 1.2em;
   a {text-decoration: none !important; }

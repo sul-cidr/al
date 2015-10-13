@@ -1,9 +1,13 @@
 <div class="panel-title">
   <!-- TODO: use Backbone.history.navigate here -->
-  <p class="crumb-places" data_id="<%= @id %>">Home</p>
+  <div id="crumbs_places">
+  <ul>
+    <!-- pass data_id for unhighlighting during map:reset-->
+    <li class="crumb0"><a href="#" data_id="<%= @id %>">Home</a></li>
+  </ul>
   <h3><%= @name %></h3>
-  <span class="toggle-places">
+  <!-- <span class="toggle-places">
     <i class="fa fa-exchange"></i>
-  </span>
+  </span> -->
   <hr/>
 </div>
