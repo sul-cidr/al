@@ -8,6 +8,7 @@
         console.log 'ctrlr: got borough', borough.get("id")
         App.request "borough:hoods", id, (hoods) =>
           console.log "ctrlr: got "+hoods.length+" hoods"
+          # let map know
           App.vent.trigger "area:focus", borough
 
           @areaLayout = @getAreaLayout borough
@@ -24,7 +25,8 @@
     showHood: (id) ->
       App.request "area:entity", id, (hood) =>
         parent = hood.get("parent_id")
-        console.log 'showHood, parentid: ' + hood.get("name"), hood.get("parent_id")
+        console.log 'ctrlr: got hood ' + hood.get("name") + '; parent is ', hood.get("parent_id")
+        # let map know
         App.vent.trigger "area:focus", hood
 
         @areaLayout = @getAreaLayout hood

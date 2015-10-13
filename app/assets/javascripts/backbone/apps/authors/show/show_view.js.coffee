@@ -72,7 +72,6 @@
 
   class Show.Passages extends App.Views.CompositeView
     template: "authors/show/templates/_passages"
-    # className: type == 'works' ? 'passages-works': 'passages-bio'
     childView: Show.Passage
     childViewContainer: "div"
 

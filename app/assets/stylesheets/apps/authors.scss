@@ -35,7 +35,7 @@ h4 {}
 .author {display: inline-block;}
 .tab-content { padding-top: 6px;;}
 
-.authlist { padding:0 6px; font-family: Palatino-linotype, Georgia; margin-top: 6px;
+.authlist { padding:0 6px; margin-top: 6px;
   a {text-decoration: none;}
   a:hover {background: yellow;}
   }
@@ -48,6 +48,9 @@ catlist {
 /* Show module */
 /***/
 
+#author_content_region {
+  p {font-size: 1.1em;}
+}
 .crumb-authors {font-size: .7em; color:#336699; cursor: pointer;}
 
 .passages-bio {

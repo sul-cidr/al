@@ -12,14 +12,6 @@
       @filters[key] = evaluator
       @filterAllLayers()
 
-    removeFilter: (key) ->
-      delete @filters[key]
-      @filterAllLayers()
-
-    clearFilters: ->
-      @filters = {}
-      @filterAllLayers()
-
     filterAllLayers: ->
       @filteredFeatures = []
       _.each @features, (f) =>
@@ -35,6 +27,15 @@
         @filteredFeatures.push layer
       else
         @map.removeLayer layer
+      window.filteredFeatures = @filteredFeatures
+      
+    removeFilter: (key) ->
+      delete @filters[key]
+      @filterAllLayers()
+
+    clearFilters: ->
+      @filters = {}
+      @filterAllLayers()
 
     onDomRefresh: ->
       @initMap()

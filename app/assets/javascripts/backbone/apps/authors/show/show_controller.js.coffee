@@ -58,6 +58,7 @@
 
     listWorkPassages: (work) ->
       id = work.get("work_id")
+      title = work.get("title")
       # console.log 'Show.Controller.listWorkPassages() for',work_id
       App.request "passage:entities", id, "work", (work_passages) =>
         # wont show/render twice without reset
@@ -68,6 +69,7 @@
         App.authorContentRegion.show workPassagesView
         # TODO: show Passages tab if it was hidden
         $("#passages_pill").removeClass("hidden")
+        $(".passages-works h4").html('<em>from</em> '+title)
 
     getWorkPassagesView: (work_passages, type) ->
       new Show.Passages ({

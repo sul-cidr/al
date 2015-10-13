@@ -52,31 +52,32 @@
     focusArea: (area) ->
       if area.get("area_type") == "hood"
         area = area
-        parent = area.get("parent_id")
-        console.log 'focusArea hood, parent_id: ' + area.get("name"), parent
+        parent_id = area.get("parent_id")
+        # TODO: proper breadcrumbs
+        console.log 'map focus ' + area.get("name") + '; parent_id:', parent_id
         turfpoint = turf.point(wellknown(area.get("geom_wkt")).coordinates)
-        # console.log 'hood coords', turfpoint
-        # make buffer and zoom to it
+
+        # make buffer, zoom to it, filter features
         buffer = turf.buffer( turfpoint, 1, 'kilometers' )
-        # console.log 'buffer area', turf.area(buffer)
 
         MapApp.Show.Controller.zoomTo 'hood', swap(turf.centroid(buffer).geometry.coordinates)
 
-        # filter
-        MapApp.Show.Controller.setFilter 'area', (placeref) ->
-          turf.inside( turf.point(wellknown(placeref.get("geom_wkt")).coordinates[0]), buffer.features[0] )
-
+        @filterByArea "hood", buffer.features[0]
       else
         MapApp.Show.Controller.zoomTo 'borough', area
 
-        # created spatial filter
         bounds = turf.polygon(wellknown(area.get("geom_wkt")).coordinates[0])
-        # window.wkb = wellknown(area.get("geom_wkt"))
-        MapApp.Show.Controller.setFilter 'area', (placeref) ->
-          turf.inside( turf.point(wellknown(placeref.get("geom_wkt")).coordinates[0]), bounds )
+
+        @filterByArea "borough", bounds
+
+
+    filterByArea: (type, bounds) ->
+      # to setFilter(area)
+      MapApp.Show.Controller.setFilter 'area', (placeref) ->
+        turf.inside( turf.point(wellknown(placeref.get("geom_wkt")).coordinates[0]), bounds )
 
     filterByAuthor: (author) ->
-      # on click feed selected author to setFilter(author)
+      # to setFilter(author)
       MapApp.Show.Controller.setFilter 'author', (placeref) ->
         placeref.get("author_id") == author.get("author_id")
 

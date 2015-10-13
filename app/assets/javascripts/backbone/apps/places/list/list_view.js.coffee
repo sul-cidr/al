@@ -29,17 +29,19 @@
     }
 
     areaByRoute: ->
+      # CHECK: uses trigger -> router -> controller 
       window.activePlace = this.model
       area = this.model
       id = area.get("id")
-      if area.get("area_type") == "borough"
-        AL.trigger("area:show", id)
-        # PlacesApp.Show.Controller.showBorough id
-        # PlacesApp.navigate("boroughs/" + id)
-      else
-        AL.trigger("area:show", id)
-        # PlacesApp.Show.Controller.showHood id
-        # AL.PlacesApp.navigate("hoods/" + id)
+
+      AL.trigger("area:show", id)
+
+      # if area.get("area_type") == "borough"
+      #   PlacesApp.Show.Controller.showBorough id
+      #   PlacesApp.navigate("boroughs/" + id)
+      # else
+      #   PlacesApp.Show.Controller.showHood id
+      #   AL.PlacesApp.navigate("hoods/" + id)
 
     onAreaEnter: (e) ->
       id = this.getAreaIdFromEvent(e);
