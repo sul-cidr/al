@@ -11,7 +11,7 @@
 // about supported directives.
 //
 
-// *** from bower
+// *** from bower (i.e. vendor/components)
 
 //= require jquery/dist/jquery.min
 //= require underscore/underscore-min
@@ -24,6 +24,8 @@
 //= require leaflet-activearea/leaflet.activearea
 //= require jquery-ui
 //= require turf/turf.min
+//= require crossfilter/crossfilter.min.js
+//= require d3/d3.min.js
 
 // *** app
 

@@ -1,11 +1,6 @@
 @AL.module "PlacesApp", (PlacesApp, App, Backbone, Marionette, $, _) ->
   @startWithParent = false
 
-  App.vent.on "authors-panel:open", ->
-    PlacesApp.List.Controller.togglePanel()
-    map.setActiveArea('viewport-authors')
-    map.setView([51.5120, -0.0928], 12)
-
   class PlacesApp.Router extends Marionette.AppRouter
     appRoutes:
       "places": "startPlaces"
@@ -20,12 +15,20 @@
     listAreas: ->
       PlacesApp.List.Controller.listAreas()
 
+    showAreaSummary: (activePlacerefs) ->
+      PlacesApp.Show.Controller.showAreaSummary(activePlacerefs)
 
+    # these go and do a spatial filter
     showBorough: (id) ->
       PlacesApp.Show.Controller.showBorough(id)
 
     showHood: (id) ->
       PlacesApp.Show.Controller.showHood(id)
+
+  App.vent.on "authors-panel:open", ->
+    PlacesApp.List.Controller.togglePanel()
+    map.setActiveArea('viewport-authors')
+    map.setView([51.5120, -0.0928], 12)
 
   App.vent.on "area:show", (area) ->
     id = area.get("id")
@@ -37,6 +40,9 @@
       console.log 'places_app area:show', id
       Backbone.history.navigate("hoods/" + id)
       API.showHood(id)
+
+  App.vent.on "placerefs:filtered", (activePlacerefs) ->
+    API.showAreaSummary activePlacerefs
 
   App.addInitializer ->
     new PlacesApp.Router

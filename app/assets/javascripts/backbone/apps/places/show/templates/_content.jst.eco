@@ -1,1 +1,1 @@
-<h4>area content here for {<%= @name %>}</h4>
+<!-- <h4>Authors who spoke of {<%= @name %>}</h4> -->

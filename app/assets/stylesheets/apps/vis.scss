@@ -1,0 +1,17 @@
+
+// d3.pack for place author distributions
+
+text {
+  font: 24px "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+circle {
+  fill: #ccc;
+}
+
+.node:hover circle {
+  fill: orange;
+  cursor: pointer;
+}

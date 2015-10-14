@@ -16,6 +16,9 @@
       @filteredFeatures = []
       _.each @features, (f) =>
         @filterLayer(f)
+      # results
+      window.activePlacerefs = @filteredFeatures
+      App.vent.trigger('placerefs:filtered', @filteredFeatures);
 
     filterLayer: (layer) ->
       visible = true
@@ -27,8 +30,7 @@
         @filteredFeatures.push layer
       else
         @map.removeLayer layer
-      window.filteredFeatures = @filteredFeatures
-      
+
     removeFilter: (key) ->
       delete @filters[key]
       @filterAllLayers()
