@@ -2,8 +2,8 @@
 
   Show.Controller =
 
-    showAreaSummary: (activePlacerefs) ->
-      window.wPlacerefs = []
+    showAreaSummary: (@activePlacerefs) ->
+      wPlacerefs = []
       bPlacerefs = []
       activeWorksPlaces = _.filter(activePlacerefs, (p) ->
         p.model.attributes.placeref_type == 'work')
@@ -30,6 +30,8 @@
       # $("#place_content_region").html(@makeText placerefsByAuthor)
       $("#place_content_region").html(@makeVis placerefsByAuthor)
 
+    # @activePlaceRefs is array of leaflet layers w/model.attributes
+
     makeVis: (auths) ->
       # console.log auths
       window.authobj = {"children":[]}
@@ -40,6 +42,8 @@
 
     summonWorks: (authid) ->
       console.log 'back in Show.Controller with', authid
+      console.log @activePlacerefs
+
 
 
     makeText: (auths) ->
