@@ -27,16 +27,19 @@ gem 'squeel', github: 'activerecord-hackery/squeel'
 gem 'annotate'
 gem 'sequel'
 
+# deploy
+gem 'dotenv-rails'
 
 # gem 'monban'
 # gem 'monban-generators'
 
 group :deployment do
   gem 'capistrano', '~> 3.0'
-  gem 'capistrano-rails' # or other gems as appropriate
+  gem 'capistrano-rails'
   gem 'capistrano-rvm'
   gem 'capistrano-bundler'
-  gem 'lyberteam-capistrano-devel', "~> 3.0"
+  gem 'capistrano-passenger'
+  gem 'dlss-capistrano'
 end
 
 # Use Uglifier as compressor for JavaScript assets
