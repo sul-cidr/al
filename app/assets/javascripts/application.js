@@ -21,11 +21,11 @@
 //= require leaflet/dist/leaflet
 //= require wellknown/wellknown
 //= require leaflet-omnivore/leaflet-omnivore.min
-//= require leaflet-activearea/leaflet.activearea
-//= require jquery-ui
+//= require leaflet-active-area/src/leaflet.activearea
+//= require jquery-ui/jquery-ui.min
 //= require turf/turf.min
-//= require crossfilter/crossfilter.min.js
-//= require d3/d3.min.js
+//= require crossfilter/crossfilter.min
+//= require d3/d3.min
 
 // *** app
 

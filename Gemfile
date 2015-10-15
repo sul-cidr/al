@@ -40,6 +40,7 @@ group :deployment do
   gem 'capistrano-bundler'
   gem 'capistrano-passenger'
   gem 'dlss-capistrano'
+  gem 'capistrano-bower'
 end
 
 # Use Uglifier as compressor for JavaScript assets

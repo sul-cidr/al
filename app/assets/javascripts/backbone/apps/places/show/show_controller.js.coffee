@@ -5,9 +5,9 @@
     showAreaSummary: (@activePlacerefs) ->
       wPlacerefs = []
       bPlacerefs = []
-      activeWorksPlaces = _.filter(activePlacerefs, (p) ->
+      @activeWorksPlaces = _.filter(activePlacerefs, (p) ->
         p.model.attributes.placeref_type == 'work')
-      activeBioPlaces = _.filter(activePlacerefs, (p) ->
+      @activeBioPlaces = _.filter(activePlacerefs, (p) ->
         p.model.attributes.placeref_type == 'bio')
       # crossbio = crossfilter(activeBioPlaces)
       # window.crossworks = crossfilter(activeWorksPlaces)
@@ -42,7 +42,9 @@
 
     summonWorks: (authid) ->
       console.log 'back in Show.Controller with', authid
-      console.log @activePlacerefs
+      console.log @activeWorksPlaces
+      _.each @activeWorksPlaces, (p) =>
+        console.log p.model.attributes.work_id
 
 
 
