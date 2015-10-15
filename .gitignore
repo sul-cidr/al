@@ -19,8 +19,6 @@
 
 /node_modules
 
-/config/*
-
 Capfile
 TODO.txt
 
