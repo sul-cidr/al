@@ -37,6 +37,7 @@ group :deployment do
   gem 'capistrano', '~> 3.0'
   gem 'capistrano-rails'
   gem 'capistrano-rvm'
+  gem 'capistrano-npm'
   gem 'capistrano-bundler'
   gem 'capistrano-passenger'
   gem 'dlss-capistrano'
