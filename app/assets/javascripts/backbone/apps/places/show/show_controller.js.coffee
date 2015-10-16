@@ -12,9 +12,9 @@
       # crossbio = crossfilter(activeBioPlaces)
       # window.crossworks = crossfilter(activeWorksPlaces)
       console.log 'API.showAreaSummary...will do just that'
-      _.each activeWorksPlaces, (p) =>
+      _.each @activeWorksPlaces, (p) =>
         wPlacerefs.push(p.model.attributes)
-      _.each activeBioPlaces, (p) =>
+      _.each @activeBioPlaces, (p) =>
         bPlacerefs.push(p.model.attributes)
       window.crossworks = crossfilter(wPlacerefs)
       crossbio = crossfilter(bPlacerefs)
