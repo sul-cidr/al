@@ -75,11 +75,11 @@
     childView: Show.Passage
     childViewContainer: "div"
 
-  class Show.worksPassages extends App.Views.CompositeView
-    template: "authors/show/templates/_passages"
-    className: 'passages-works'
-    childView: Show.Passage
-    childViewContainer: "div"
+  # class Show.worksPassages extends App.Views.CompositeView
+  #   template: "authors/show/templates/_passages"
+  #   className: 'passages-works'
+  #   childView: Show.Passage
+  #   childViewContainer: "div"
 
   class Show.Work extends App.Views.ItemView
     template: "authors/show/templates/_work"

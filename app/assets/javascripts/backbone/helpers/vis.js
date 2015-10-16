@@ -27,7 +27,7 @@ var packAuths = function (auths) {
         return "translate(" + d.x + "," + d.y + ")"; })
       .on("click", function(d){
         console.log('clicked '+ d.key)
-        AL.PlacesApp.Show.Controller.summonWorks(d.key)
+        AL.PlacesApp.Show.Controller.listPlacePassages(d.key)
       });
 
   node.append("circle")

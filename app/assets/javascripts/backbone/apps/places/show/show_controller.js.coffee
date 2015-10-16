@@ -2,11 +2,48 @@
 
   Show.Controller =
 
+    listPlacePassages: (authid) ->
+      prefname = authhash[authid]
+      console.log 'back in Show.Controller from vis with', authid
+
+      window.authorPassages =
+        _.filter @activeWorksPlaces, (wp) =>
+          wp.model.attributes.author_id == authid
+
+      # get passage_ids for author
+      passage_ids = []
+      _.each authorPassages, (p) =>
+        passage_ids.push p.model.attributes.passage_id
+      console.log passage_ids
+
+      # console.log 'Show.Controller.listWorkPassages() for',work_id
+      App.request "passages:places", passage_ids, (place_passages) =>
+      #   # wont show/render twice without reset
+        if App.authorContentRegion.$el.length > 0
+          App.authorContentRegion.reset()
+        placePassagesView = @getPlacePassagesView place_passages, 'works'
+        console.log 'listPlacePassages(), '+ place_passages.length + ' for ' + authid
+      #   App.authorContentRegion.show workPassagesView
+      #   # TODO: show Passages tab if it was hidden
+      #   $("#passages_pill").removeClass("hidden")
+      #   $(".passages-works h4").html('<em>from</em> '+title)
+
+    getPlacePassagesView: (place_passages, type) ->
+      new Show.Passages ({
+        collection: place_passages
+        viewComparator: "passage_id"
+        className: 'passages-places'
+      })
+
+    #
+    #
+    #
     showAreaSummary: (@activePlacerefs) ->
-      wPlacerefs = []
-      bPlacerefs = []
+      window.wPlacerefs = []
+      @bPlacerefs = []
       @activeWorksPlaces = _.filter(activePlacerefs, (p) ->
         p.model.attributes.placeref_type == 'work')
+      # console.log @activeWorksPlaces
       @activeBioPlaces = _.filter(activePlacerefs, (p) ->
         p.model.attributes.placeref_type == 'bio')
       # crossbio = crossfilter(activeBioPlaces)
@@ -15,9 +52,9 @@
       _.each @activeWorksPlaces, (p) =>
         wPlacerefs.push(p.model.attributes)
       _.each @activeBioPlaces, (p) =>
-        bPlacerefs.push(p.model.attributes)
-      window.crossworks = crossfilter(wPlacerefs)
-      crossbio = crossfilter(bPlacerefs)
+        @bPlacerefs.push(p.model.attributes)
+      crossworks = crossfilter(wPlacerefs)
+      crossbio = crossfilter(@bPlacerefs)
       # console.log 'have crossworks and crossbio array'
 
       # authById = crossworks.dimension(function(d) { return d.author_id; })
@@ -30,8 +67,9 @@
       # $("#place_content_region").html(@makeText placerefsByAuthor)
       $("#place_content_region").html(@makeVis placerefsByAuthor)
 
-    # @activePlaceRefs is array of leaflet layers w/model.attributes
-
+    #
+    #
+    #
     makeVis: (auths) ->
       # console.log auths
       window.authobj = {"children":[]}

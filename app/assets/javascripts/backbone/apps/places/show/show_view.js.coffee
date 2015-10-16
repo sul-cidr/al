@@ -78,5 +78,36 @@
     emptyView: Show.Empty
     childViewContainer: "hoodslist"
 
+  class Show.Passages extends App.Views.CompositeView
+    template: "places/show/templates/_passages"
+    childView: Show.Passage
+    childViewContainer: "div"
+
+
+  class Show.Passage extends App.Views.ItemView
+    template: "places/show/templates/_passage"
+    tagName: "p"
+    events: {
+      # "click": "highlightPlacerefs"
+      "mouseenter span.place": "onPlacerefEnter"
+      "mouseleave span.place": "onPlacerefLeave"
+    }
+    # highlightPlacerefs: ->
+    #   console.log 'Show.Passage.highlightPlacerefs()'
+
+    onPlacerefEnter: (e) ->
+      id = this.getPlacerefIdFromEvent(e);
+      console.log 'highlight placeref #', id
+      App.vent.trigger('placeref:highlight', id);
+      # App.vent.trigger('placeref:hover', e)
+
+    onPlacerefLeave: (e) ->
+      id = this.getPlacerefIdFromEvent(e);
+      # console.log 'left placeref span'
+      App.vent.trigger('placeref:unhighlight', id);
+
+    getPlacerefIdFromEvent: (e) ->
+      Number($(e.currentTarget).context.attributes.data_id.value);
+
   class Show.Content extends App.Views.ItemView
     template: "places/show/templates/_content"
