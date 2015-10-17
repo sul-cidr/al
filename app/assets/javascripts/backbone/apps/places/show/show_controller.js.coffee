@@ -36,9 +36,10 @@
     #
     # generates summary by author
     # TODO: by decade
-    #
+    # TODO: why is this function triggered continually?
     showAreaSummary: (@activePlacerefs) ->
       window.wPlacerefs = []
+      window.worksYears = []
       @bPlacerefs = []
       @activeWorksPlaces = _.filter(activePlacerefs, (p) ->
         p.model.attributes.placeref_type == 'work')
@@ -46,9 +47,10 @@
       @activeBioPlaces = _.filter(activePlacerefs, (p) ->
         p.model.attributes.placeref_type == 'bio')
 
-      console.log 'API.showAreaSummary..triggered from ??'
+      # console.log 'API.showAreaSummary..triggered from ??'
       _.each @activeWorksPlaces, (p) =>
         wPlacerefs.push(p.model.attributes)
+        worksYears.push(workhash[p.model.attributes.work_id].pub_year)
       _.each @activeBioPlaces, (p) =>
         @bPlacerefs.push(p.model.attributes)
       crossworks = crossfilter(wPlacerefs)
@@ -61,17 +63,18 @@
         author_id).all()
 
       # render the bubble vis
-      $("#place_content_region").html(@makeVis placerefsByAuthor)
+      $("#place_content_region").html(@makeVis placerefsByAuthor, worksYears)
 
     #
     # run vis.js packAuths bubble chart
     #
-    makeVis: (auths) ->
+    makeVis: (auths, years) ->
       # console.log auths
       window.authobj = {"children":[]}
       # console.log authobj
       _.each auths, (a) =>
         authobj['children'].push(a)
+      histYears(years)
       packAuths(authobj)
 
     # generates a list (not in use)

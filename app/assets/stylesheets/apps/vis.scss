@@ -15,3 +15,20 @@ circle {
   fill: orange;
   cursor: pointer;
 }
+
+.axis text {font: 10px sans-serif;}
+
+#histYears {
+  .bar rect {
+    fill: steelblue;
+    shape-rendering: crispEdges;
+  }
+  .bar text {
+    fill: #fff;
+  }
+  .axis path, .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+}

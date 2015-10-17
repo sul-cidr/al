@@ -3,6 +3,7 @@
   List.Controller =
 
     startAuthors: ->
+      # App.vent.trigger("map:reset")
       # start with all (cat 0)
       App.request "authors:category", 0, (authors) =>
 

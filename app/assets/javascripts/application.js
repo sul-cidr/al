@@ -23,7 +23,7 @@
 //= require leaflet-omnivore/leaflet-omnivore.min
 //= require leaflet-active-area/src/leaflet.activearea
 //= require jquery-ui/jquery-ui.min
-//= require turf/turf.min
+//= require turf/turf
 //= require crossfilter/crossfilter.min
 //= require d3/d3.min
 
