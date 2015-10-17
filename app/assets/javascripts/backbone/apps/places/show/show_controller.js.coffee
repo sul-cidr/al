@@ -28,6 +28,7 @@
         # can I get place passages rendering anywhere??
         # @areaLayout.placeContentRegion.show placePassagesView
         App.placePassagesRegion.show placePassagesView
+        App.placePassagesRegion.$el.fadeIn("slow")
       #   # TODO: show Passages tab if it was hidden
       #   $("#passages_pill").removeClass("hidden")
         $(".passages-places h4").html(authhash[authid])

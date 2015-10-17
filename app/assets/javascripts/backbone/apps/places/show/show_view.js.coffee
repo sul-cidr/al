@@ -87,11 +87,10 @@
     getPlacerefIdFromEvent: (e) ->
       Number($(e.currentTarget).context.attributes.data_id.value);
 
-
   class Show.PlacePassages extends App.Views.CompositeView
     template: "places/show/templates/_passages"
     childView: Show.PlacePassage
     childViewContainer: "placepassages"
-    
+
   class Show.Content extends App.Views.ItemView
     template: "places/show/templates/_content"

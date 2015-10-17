@@ -6,6 +6,12 @@
 
   App.on 'initialize:before', ->
     # console.log 'initialize before'
+    @FaderRegion = Marionette.Region.extend(attachHtml: (view) ->
+      # Some effect to show the view:
+      # @$el.empty().append view.el
+      @$el.show().fadeIn 'slow'
+      return
+    )
 
   App.addInitializer ->
     # console.log 'App initialized'
@@ -25,6 +31,7 @@
 
       placePassagesRegion:
         selector: '#place_passages_region'
+        # regionClass: @FaderRegion
 
     App.module('HeaderApp').start()
     App.module('AuthorsApp').start()
