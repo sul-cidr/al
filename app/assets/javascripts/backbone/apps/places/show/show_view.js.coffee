@@ -56,35 +56,13 @@
         '>> <li class="crumb1"><a href="#" data_id="'+@activeHood.get("parent_id")+'">parent</a></li>'
       );
 
-
-    # needed for map interaction
-    # onAreaEnter: (e) ->
-    #   id = this.getAreaIdFromEvent(e);
-    #   # console.log 'enter area model #', id
-    #   App.vent.trigger('area:highlight', id);
-    #
-    # onAreaLeave: (e) ->
-    #   id = this.getAreaIdFromEvent(e);
-    #   # console.log 'left area a'
-    #   App.vent.trigger('area:unhighlight', id);
-    #
-    # getAreaIdFromEvent: (e) ->
-    #   Number($(e.currentTarget).context.attributes.data_id.value);
-
-
   class Show.Hoods extends App.Views.CompositeView
     template: "places/show/templates/_hoods"
     childView: Show.Hood
     emptyView: Show.Empty
     childViewContainer: "hoodslist"
 
-  class Show.Passages extends App.Views.CompositeView
-    template: "places/show/templates/_passages"
-    childView: Show.Passage
-    childViewContainer: "div"
-
-
-  class Show.Passage extends App.Views.ItemView
+  class Show.PlacePassage extends App.Views.ItemView
     template: "places/show/templates/_passage"
     tagName: "p"
     events: {
@@ -109,5 +87,11 @@
     getPlacerefIdFromEvent: (e) ->
       Number($(e.currentTarget).context.attributes.data_id.value);
 
+
+  class Show.PlacePassages extends App.Views.CompositeView
+    template: "places/show/templates/_passages"
+    childView: Show.PlacePassage
+    childViewContainer: "placepassages"
+    
   class Show.Content extends App.Views.ItemView
     template: "places/show/templates/_content"

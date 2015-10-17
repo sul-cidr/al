@@ -33,11 +33,11 @@
 
 
     getPlacePassages: (passage_ids, cb) ->
-      console.log 'API.getPlacePassages', passage_ids
+      # console.log 'API.getPlacePassages', passage_ids
       placePassages = new Entities.PassageCollection
       placePassages.fetch
         success: ->
-          console.log placePassages
+          # console.log placePassages
           filter = _.filter(placePassages.models,(item) ->
             passage_ids.indexOf(item.get("passage_id")) > -1
           )

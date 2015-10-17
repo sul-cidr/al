@@ -4,7 +4,7 @@
 
     listPlacePassages: (authid) ->
       prefname = authhash[authid]
-      console.log 'back in Show.Controller from vis with', authid
+      # console.log 'back in Show.Controller from vis with', authid
 
       window.authorPassages =
         _.filter @activeWorksPlaces, (wp) =>
@@ -14,22 +14,26 @@
       window.passage_ids = []
       _.each authorPassages, (p) =>
         passage_ids.push p.model.attributes.passage_id
-      console.log passage_ids
+      # console.log passage_ids
 
       # console.log 'Show.Controller.listWorkPassages() for',work_id
       App.request "passages:places", passage_ids, (place_passages) =>
       #   # wont show/render twice without reset
         if App.authorContentRegion.$el.length > 0
           App.authorContentRegion.reset()
-        placePassagesView = @getPlacePassagesView place_passages, 'works'
-        console.log 'listPlacePassages(), '+ place_passages.length + ' for ' + authid
+        placePassagesView = @getPlacePassagesView place_passages
+        # console.log 'listPlacePassages(), '+ place_passages.length +
+        #   ' for ' + authhash[authid]
+        # console.log place_passages
+        # can I get place passages rendering anywhere??
+        # @areaLayout.placeContentRegion.show placePassagesView
         App.placePassagesRegion.show placePassagesView
       #   # TODO: show Passages tab if it was hidden
       #   $("#passages_pill").removeClass("hidden")
-      #   $(".passages-works h4").html('<em>from</em> '+title)
+        $(".passages-places h4").html(authhash[authid])
 
-    getPlacePassagesView: (place_passages, type) ->
-      new Show.Passages ({
+    getPlacePassagesView: (place_passages) ->
+      new Show.PlacePassages ({
         collection: place_passages
         viewComparator: "passage_id"
         className: 'passages-places'
@@ -48,7 +52,7 @@
         p.model.attributes.placeref_type == 'bio')
       # crossbio = crossfilter(activeBioPlaces)
       # window.crossworks = crossfilter(activeWorksPlaces)
-      console.log 'API.showAreaSummary...will do just that'
+      console.log 'API.showAreaSummary..triggered from ??'
       _.each @activeWorksPlaces, (p) =>
         wPlacerefs.push(p.model.attributes)
       _.each @activeBioPlaces, (p) =>
@@ -77,14 +81,6 @@
       _.each auths, (a) =>
         authobj['children'].push(a)
       packAuths(authobj)
-
-    summonWorks: (authid) ->
-      console.log 'back in Show.Controller with', authid
-      console.log @activeWorksPlaces
-      _.each @activeWorksPlaces, (p) =>
-        console.log p.model.attributes.work_id
-
-
 
     makeText: (auths) ->
       summaryHtml = "<div class='author-counts'>"
@@ -137,7 +133,6 @@
     getAreaLayout: (area) ->
       new Show.Layout ({
         model: area
-
       })
 
     showTitle: (area) ->

@@ -28,6 +28,7 @@
 
     # TODO: refactor?
     togglePanel: ->
+      AL.vent.trigger("map:reset")
       # console.log 'toggle from List.Title'
       if $("#authors-region").offset().left == 0
         $("#authors-region").animate { 'left': -($("#authors-region").width() - 15) }, 500

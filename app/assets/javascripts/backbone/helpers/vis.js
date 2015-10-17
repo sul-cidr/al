@@ -26,7 +26,7 @@ var packAuths = function (auths) {
       .attr("transform", function(d) {
         return "translate(" + d.x + "," + d.y + ")"; })
       .on("click", function(d){
-        console.log('clicked '+ d.key)
+        // console.log('clicked '+ d.key)
         AL.PlacesApp.Show.Controller.listPlacePassages(d.key)
       });
 

@@ -43,7 +43,6 @@
         # console.log 'loadContent, bio:', @route
         Backbone.history.navigate(@route, true)
         # Show.Controller.showAuthor authid
-      # passages are shown by clicking a work
 
   class Show.Passage extends App.Views.ItemView
     template: "authors/show/templates/_passage"
@@ -70,17 +69,12 @@
     getPlacerefIdFromEvent: (e) ->
       Number($(e.currentTarget).context.attributes.data_id.value);
 
+  # passages are shown by clicking a work
   class Show.Passages extends App.Views.CompositeView
     template: "authors/show/templates/_passages"
     childView: Show.Passage
     childViewContainer: "div"
-
-  # class Show.worksPassages extends App.Views.CompositeView
-  #   template: "authors/show/templates/_passages"
-  #   className: 'passages-works'
-  #   childView: Show.Passage
-  #   childViewContainer: "div"
-
+    
   class Show.Work extends App.Views.ItemView
     template: "authors/show/templates/_work"
     tagName: "li"

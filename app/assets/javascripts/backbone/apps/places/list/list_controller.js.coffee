@@ -48,6 +48,7 @@
       new List.Layout
 
     togglePanel: ->
+      AL.vent.trigger("map:reset")
       xpos = ($(window).width() - 350) - $("#places-region").offset().left
       if xpos == 0
         # places panel is open

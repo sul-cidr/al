@@ -42,6 +42,8 @@
       API.showHood(id)
 
   App.vent.on "placerefs:filtered", (activePlacerefs) ->
+    # CHECK: placeref filtering happens from both directions
+    # this renders Area Summary whether visible or not
     API.showAreaSummary activePlacerefs
 
   App.addInitializer ->

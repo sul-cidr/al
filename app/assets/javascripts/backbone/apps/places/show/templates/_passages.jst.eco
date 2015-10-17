@@ -1,2 +1,3 @@
 <h4><%= @prefname %></h4>
-<div class="passagelist-places"></div>
+<placepassages></placepassages>
+<!-- <div class="passagelist-places"></div> -->

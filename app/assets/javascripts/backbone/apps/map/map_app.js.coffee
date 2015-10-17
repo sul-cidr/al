@@ -103,6 +103,7 @@
         placeref.get("work_id") == work.get("work_id")
 
     clearFilters: ->
+      $("#place_passages_region").fadeOut("slow")
       MapApp.Show.Controller.clearFilters()
       map.setView([51.5120, -0.0928], 12)
 

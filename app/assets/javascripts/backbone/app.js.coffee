@@ -23,6 +23,9 @@
         selector: '#places-region'
         #regionClass: PlacesRegion
 
+      placePassagesRegion:
+        selector: '#place_passages_region'
+
     App.module('HeaderApp').start()
     App.module('AuthorsApp').start()
     App.module('PlacesApp').start()

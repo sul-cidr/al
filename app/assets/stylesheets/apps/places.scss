@@ -21,6 +21,20 @@
 /* PlacesApp Show module */
 /***/
 
+#place_passages_region {
+  width: 300px;
+  // height: 85%;
+  top: 100px;
+  left: 25px;
+  // display: none;
+  border-radius: 16px;
+  background-color: #fff;
+  opacity: 0.85;
+  position: absolute;
+  h4 { margin: 5px 0; text-align: center;}
+}
+
+
 .passages-places {
   max-height: 500px;
   overflow:auto;
