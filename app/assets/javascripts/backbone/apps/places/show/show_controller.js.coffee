@@ -11,7 +11,7 @@
           wp.model.attributes.author_id == authid
 
       # get passage_ids for author
-      passage_ids = []
+      window.passage_ids = []
       _.each authorPassages, (p) =>
         passage_ids.push p.model.attributes.passage_id
       console.log passage_ids
@@ -23,7 +23,7 @@
           App.authorContentRegion.reset()
         placePassagesView = @getPlacePassagesView place_passages, 'works'
         console.log 'listPlacePassages(), '+ place_passages.length + ' for ' + authid
-      #   App.authorContentRegion.show workPassagesView
+        App.placePassagesRegion.show placePassagesView
       #   # TODO: show Passages tab if it was hidden
       #   $("#passages_pill").removeClass("hidden")
       #   $(".passages-works h4").html('<em>from</em> '+title)

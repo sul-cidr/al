@@ -84,7 +84,7 @@
     filterByAuthors: (author_ids, id) ->
       # console.log author.get("author_id")
       MapApp.Show.Controller.setFilter 'author', (placeref) ->
-        author_ids.indexOf(placeref.get("author_id")) > 0
+        author_ids.indexOf(placeref.get("author_id")) > -1
 
     filterByCategory: (cat) ->
       # build collection of authorhs having 'cat'

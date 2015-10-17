@@ -31,5 +31,21 @@
             passages.reset(filterWorks)
             cb passages
 
+
+    getPlacePassages: (passage_ids, cb) ->
+      console.log 'API.getPlacePassages', passage_ids
+      placePassages = new Entities.PassageCollection
+      placePassages.fetch
+        success: ->
+          console.log placePassages
+          filter = _.filter(placePassages.models,(item) ->
+            passage_ids.indexOf(item.get("passage_id")) > -1
+          )
+          placePassages.reset(filter)
+          cb placePassages
+
   App.reqres.setHandler "passage:entities", (id, type, cb) ->
     API.getPassageEntities id, type, cb
+
+  App.reqres.setHandler "passages:places", (passage_ids, cb) ->
+    API.getPlacePassages passage_ids, cb
