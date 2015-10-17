@@ -14,23 +14,16 @@
       window.passage_ids = []
       _.each authorPassages, (p) =>
         passage_ids.push p.model.attributes.passage_id
-      # console.log passage_ids
 
-      # console.log 'Show.Controller.listWorkPassages() for',work_id
+      # retrieve single author's passages for an area
       App.request "passages:places", passage_ids, (place_passages) =>
-      #   # wont show/render twice without reset
         if App.authorContentRegion.$el.length > 0
           App.authorContentRegion.reset()
         placePassagesView = @getPlacePassagesView place_passages
-        # console.log 'listPlacePassages(), '+ place_passages.length +
-        #   ' for ' + authhash[authid]
-        # console.log place_passages
-        # can I get place passages rendering anywhere??
-        # @areaLayout.placeContentRegion.show placePassagesView
+
         App.placePassagesRegion.show placePassagesView
         App.placePassagesRegion.$el.fadeIn("slow")
-      #   # TODO: show Passages tab if it was hidden
-      #   $("#passages_pill").removeClass("hidden")
+        #
         $(".passages-places h4").html(authhash[authid])
 
     getPlacePassagesView: (place_passages) ->
@@ -41,7 +34,8 @@
       })
 
     #
-    #
+    # generates summary by author
+    # TODO: by decade
     #
     showAreaSummary: (@activePlacerefs) ->
       window.wPlacerefs = []
@@ -51,8 +45,7 @@
       # console.log @activeWorksPlaces
       @activeBioPlaces = _.filter(activePlacerefs, (p) ->
         p.model.attributes.placeref_type == 'bio')
-      # crossbio = crossfilter(activeBioPlaces)
-      # window.crossworks = crossfilter(activeWorksPlaces)
+
       console.log 'API.showAreaSummary..triggered from ??'
       _.each @activeWorksPlaces, (p) =>
         wPlacerefs.push(p.model.attributes)
@@ -62,18 +55,16 @@
       crossbio = crossfilter(@bPlacerefs)
       # console.log 'have crossworks and crossbio array'
 
-      # authById = crossworks.dimension(function(d) { return d.author_id; })
       authById = crossworks.dimension (d) ->
         d.author_id
       window.placerefsByAuthor = authById.group((author_id) ->
         author_id).all()
-      # placerefsByAuthor = authById.group(function(author_id){return author_id}).all()
 
-      # $("#place_content_region").html(@makeText placerefsByAuthor)
+      # render the bubble vis
       $("#place_content_region").html(@makeVis placerefsByAuthor)
 
     #
-    #
+    # run vis.js packAuths bubble chart
     #
     makeVis: (auths) ->
       # console.log auths
@@ -83,15 +74,12 @@
         authobj['children'].push(a)
       packAuths(authobj)
 
+    # generates a list (not in use)
     makeText: (auths) ->
       summaryHtml = "<div class='author-counts'>"
-
       _.each auths, (a) =>
         summaryHtml += "<span>"+authhash[a.key]+" (" + a.value + ")</span>"
-        # console.log authhash[a.key] + ': ' + a.value
-
       summaryHtml += "</div>"
-      # console.log summaryHtml
       return summaryHtml
 
     # TODO: needs refactoring--showBorough and showHood to showArea()
@@ -113,7 +101,6 @@
             App.vent.trigger "area:focus", borough
           # keep showing in the placesRegion for now; areas are one kind of place
           App.placesRegion.show @areaLayout
-
 
     showHood: (id) ->
       App.request "area:entity", id, (hood) =>
