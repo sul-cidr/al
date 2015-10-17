@@ -10,13 +10,16 @@
 
     setFilter: (key, evaluator) ->
       @filters[key] = evaluator
+      console.log 'setFilter', @filters
       @filterAllLayers()
 
     filterAllLayers: ->
       @filteredFeatures = []
       _.each @features, (f) =>
+        # console.log f
         @filterLayer(f)
-      # results
+      # TODO: this isn't an array sometimes??
+      # console.log @filteredFeatures
       window.activePlacerefs = @filteredFeatures
       App.vent.trigger('placerefs:filtered', @filteredFeatures);
 
@@ -26,6 +29,7 @@
         visible = visible && evaluator(layer.model)
       if visible
         # layer.setStyle(@stylePoints(layer))
+        console.log layer
         @map.addLayer layer
         @filteredFeatures.push layer
       else
