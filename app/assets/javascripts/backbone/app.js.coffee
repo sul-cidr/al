@@ -4,8 +4,29 @@
 
   App = new (Marionette.Application)
 
+  # from a 2012 blog post
+  # https://lostechies.com/derickbailey/2012/04/17/managing-a-modal-dialog-with-backbone-and-marionette/
+  ModalRegion = Backbone.Marionette.Region.extend(
+    el: '#modal'
+    constructor: ->
+      # throws error
+      # _.bindAll this
+      Backbone.Marionette.Region::constructor.apply this, arguments
+      @on 'view:show', @showModal, this
+    getEl: (selector) ->
+      $el = $(selector)
+      $el.on 'hidden', @close
+      $el
+    showModal: (view) ->
+      view.on 'close', @hideModal, this
+      @$el.modal 'show'
+    hideModal: ->
+      @$el.modal 'hide'
+  )
+
   App.on 'initialize:before', ->
-    # console.log 'initialize before'
+
+    # CHECK: does this even work?
     @FaderRegion = Marionette.Region.extend(attachHtml: (view) ->
       # Some effect to show the view:
       # @$el.empty().append view.el
@@ -32,6 +53,9 @@
       placePassagesRegion:
         selector: '#place_passages_region'
         # regionClass: @FaderRegion
+
+      modalRegion: new ModalRegion
+        selector: '#modal'
 
     App.module('HeaderApp').start()
     App.module('AuthorsApp').start()

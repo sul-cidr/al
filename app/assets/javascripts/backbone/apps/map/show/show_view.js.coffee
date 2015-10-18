@@ -162,7 +162,6 @@
       window.areaFeatures = @features
 
     ingestPlacerefs: (placerefs) ->
-      # @idToFeature = {}
       @features = []
       $.each placerefs.models, (i, pl) =>
         geom = pl.attributes.geom_wkt
@@ -172,11 +171,16 @@
             swap(wellknown(geom).coordinates[0]),
             @stylePoints(pl) )
           feature.model = pl
-          feature.bindPopup(pl.get("prefname"))
+          feature.bindPopup(
+            if pl.get('placeref_type') == 'bio'
+            then authhash[pl.get("author_id")]+' resided at ' + pl.get('prefname')
+            else '"'+pl.get('prefname') + '", in <em>' + workhash[pl.get('work_id')].title
+          )
           # CHECK: why bother adding an id here?
           feature.options.id = prid
           $idToFeature.placerefs[prid] = feature
           @features.push feature
+
         else if geom.substr(0,15) == 'MULTILINESTRING'
           feature =  new L.GeoJSON(wellknown(geom), {
             style: mapStyles.street,
@@ -185,11 +189,9 @@
               layer.bindPopup pl.get("prefname")
           })
           feature.model = pl
-          # feature.options.model = pl
-          # feature.id = prid
           $idToFeature.placerefs[prid] = feature
-          # @idToFeature[prid] = feature
           @features.push feature
+
         # TODO: visible only on hover in text
         else if geom.substr(0,12) == 'MULTIPOLYGON'
           feature = new L.GeoJSON(wellknown(geom), {

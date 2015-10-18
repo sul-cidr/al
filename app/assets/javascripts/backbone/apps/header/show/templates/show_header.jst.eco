@@ -1,5 +1,4 @@
 <div id="header">
-	<div class="container">
+    <span class="header-right">About</span>
 		<h2 class="muted">Authorial London</h2>
-	</div>
 </div>

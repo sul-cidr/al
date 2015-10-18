@@ -1,17 +1,15 @@
 /* header.scss */
-
-#header-basic	{
-  position: absolute;
-  top: 0;
-  width: 100vw;
-	h2 {
-    margin: 5px 0; text-align: center;
-  }
-  background: #274965;
-  color: #ccc;
-}
-
 @import "compass/css3/images";
+
+// aboout link, etc.
+.header-right {
+  position:absolute;
+  right:48px;
+  cursor: pointer;
+  text-decoration: underline;
+  color:#336699;
+  top: 14px;
+}
 
 #header {
   position: absolute;
@@ -31,3 +29,14 @@
   @include background-image(linear-gradient(left,  #ffffff 0%,#2A4747 25%,#2A4747 75%,#ffffff 100%));
 
 }
+
+// #header-basic	{
+//   position: absolute;
+//   top: 0;
+//   width: 100vw;
+// 	h2 {
+//     margin: 5px 0; text-align: center;
+//   }
+//   background: #274965;
+//   color: #ccc;
+// }
