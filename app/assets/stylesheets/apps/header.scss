@@ -1,12 +1,33 @@
 /* header.scss */
 
-#header	{
+#header-basic	{
   position: absolute;
   top: 0;
   width: 100vw;
-  background: #274965;
-  color: #ccc;
 	h2 {
     margin: 5px 0; text-align: center;
   }
+  background: #274965;
+  color: #ccc;
+}
+
+@import "compass/css3/images";
+
+#header {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  h2 {
+    margin: 5px 0;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-family: "IM Fell English";
+    letter-spacing: 4px;
+  }
+
+  background-color: #ffffff; // Old browsers
+  @include filter-gradient(#ffffff, #ffffff, horizontal); // IE6-9
+  @include background-image(linear-gradient(left,  #ffffff 0%,#2A4747 25%,#2A4747 75%,#ffffff 100%));
+
 }

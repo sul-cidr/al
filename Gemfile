@@ -12,10 +12,11 @@ gem 'eco'
 # gem 'compass-rails' (suspect?)
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'sass-rails', '>= 5.0'
+gem 'compass-rails', '2.0.4'
 
 gem 'seedbank'
 
-# TODO this disable activeadmin
+# TODO 
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'devise'
 

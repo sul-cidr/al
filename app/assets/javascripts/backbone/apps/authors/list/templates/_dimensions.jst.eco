@@ -7,12 +7,3 @@
     <li value="standing">Standing</li>
   </ul>
 <div>
-<!-- bootstrap buttons, not tied to actions yet -->
-<!-- <div id="dimpills" class="navbar">
-  <ul class="nav nav-pills">
-    <li class="active"><a href="#" value="genre" >Genre</a></li>
-    <li><a href="#" value="form">Form</a></li>
-    <li><a href="#" value="community">Community</a></li>
-    <li><a href="#" value="standing">Standing</a></li>
-  </ul>
-<div> -->
