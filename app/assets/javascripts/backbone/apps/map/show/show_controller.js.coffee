@@ -11,13 +11,14 @@
       new Show.Map
 
     setFilter: (key, evaluator) ->
-      # console.log 'setFilter() ' + key, evaluator
+      console.log 'Map.Show.Controller.setFilter() ' + key
       @mapView.setFilter key, evaluator
 
     clearFilters: ->
       @mapView.clearFilters()
 
     zoomTo: (what, area) ->
+      # console.log 'zoomTo <'+what+'> fired from controller'
       @mapView.zoomTo what, area
 
     # /**

@@ -48,7 +48,7 @@
       new List.Layout
 
     togglePanel: ->
-      AL.vent.trigger("map:reset")
+      # AL.vent.trigger("map:reset")
       xpos = ($(window).width() - 350) - $("#places-region").offset().left
       if xpos == 0
         # places panel is open
@@ -59,4 +59,4 @@
         # places panel is closed
         $("#places-region").animate { 'right': 0}, 500
         App.vent.trigger("places-panel:open")
-        $(".toggle-places").Class("hidden")
+        $(".toggle-places").addClass("hidden")

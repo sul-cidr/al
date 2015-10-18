@@ -3,6 +3,10 @@
   Show.Controller =
 
     showAuthor: (author) ->
+      # get map to filter for author
+      console.log "showAuthor triggering author:show"
+      App.vent.trigger "author:show", author
+
       id = author.get("author_id")
       prefname = author.get("prefname")
       # console.log 'showAuthor: '+ id, prefname

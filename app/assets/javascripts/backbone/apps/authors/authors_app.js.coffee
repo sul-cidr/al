@@ -1,9 +1,12 @@
 @AL.module "AuthorsApp", (AuthorsApp, App, Backbone, Marionette, $, _) ->
   @startWithParent = false
 
+  # map.setActiveArea('viewport-authors')
   App.vent.on "places-panel:open", ->
     # console.log 'authors_app heard places-panel:close'
     AuthorsApp.List.Controller.togglePanel()
+    $(".toggle-authors").removeClass("hidden")
+    # set initial map shift
     map.setActiveArea('viewport-places')
     map.setView([51.5120, -0.0928], 12)
 
@@ -36,8 +39,8 @@
       App.vent.trigger "map:reset"
       # forwards author model to showAuthor function
       App.request "author:entity", author_id, (author) =>
+        console.log 'API passing model to showAuthor'
         AuthorsApp.Show.Controller.showAuthor(author)
-        App.vent.trigger "author:show", author
         # returns focus author from anywhere??
         App.reqres.setHandler "author:model", ->
           return author

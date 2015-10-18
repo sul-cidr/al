@@ -3,7 +3,6 @@
   List.Controller =
 
     startAuthors: ->
-      # App.vent.trigger("map:reset")
       # start with all (cat 0)
       App.request "authors:category", 0, (authors) =>
 
@@ -29,15 +28,18 @@
 
     # TODO: refactor?
     togglePanel: ->
-      AL.vent.trigger("map:reset")
+      # AL.vent.trigger("map:reset")
       # console.log 'toggle from List.Title'
       if $("#authors-region").offset().left == 0
+        # authors is open
         $("#authors-region").animate { 'left': -($("#authors-region").width() - 15) }, 500
         App.vent.trigger("authors-panel:close")
-        $(".toggle-authors").removeClass("hidden")
+        $(".toggle-icon").toggle()
       else if $("#authors-region").offset().left < 0
+        # authors is closed
         $("#authors-region").animate { 'left': 0 }, 500
         App.vent.trigger("authors-panel:open")
+        $(".toggle-icon").toggle()
         $(".toggle-authors").addClass("hidden")
 
     listDimensions: ->

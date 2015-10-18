@@ -14,7 +14,7 @@ var mapStyles = {
       "radius": 5,
       "weight": 1,
       "opacity": 0.5,
-      "fillOpacity": 0.35
+      "fillOpacity": 0.8
     },
     highlight: {
       "radius": 8,

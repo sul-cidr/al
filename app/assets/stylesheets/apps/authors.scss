@@ -7,8 +7,8 @@
 h4 {}
 
 #authors-region {
-  // left: 0;
-  left: -330px;
+  left: 0;
+  // left: -330px;
   background: #eeeee0;
   border-right: 4px solid #daa500;
 }
@@ -54,12 +54,12 @@ catlist {
 .crumb-authors {font-size: .7em; color:#336699; cursor: pointer;}
 
 .passages-bio {
-  max-height: 500px;
+  max-height: 475px;
   overflow:auto;
   hr {display: none;}
 }
 .passages-works {
-  max-height: 500px;
+  max-height: 475px;
   overflow:auto;
   hr { border: 0; border-bottom: 1px dashed #ccc; background: #999; width:80%;}
 }

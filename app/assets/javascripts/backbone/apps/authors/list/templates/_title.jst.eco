@@ -1,6 +1,6 @@
 <div class="panel-title">
   <h3>Authors</h3>
-  <span class="toggle-authors">
+  <span class="toggle-authors hidden">
     <i class="fa fa-exchange"></i>
   </span>
   <hr/>

@@ -9,31 +9,38 @@
       # console.log 'filteredFeatures: ', @filteredFeatures
 
     setFilter: (key, evaluator) ->
+      console.log 'setFilter --> filterAllLayers'
       @filters[key] = evaluator
-      console.log 'setFilter', @filters
+      # console.log 'setFilter:', @filters
       @filterAllLayers()
-
-    filterAllLayers: ->
-      @filteredFeatures = []
-      _.each @features, (f) =>
-        # console.log f
-        @filterLayer(f)
-      # TODO: this isn't an array sometimes??
-      # console.log @filteredFeatures
-      window.activePlacerefs = @filteredFeatures
-      App.vent.trigger('placerefs:filtered', @filteredFeatures);
 
     filterLayer: (layer) ->
       visible = true
       _.each @filters, (evaluator, key) =>
         visible = visible && evaluator(layer.model)
       if visible
-        # layer.setStyle(@stylePoints(layer))
-        console.log layer
         @map.addLayer layer
         @filteredFeatures.push layer
       else
         @map.removeLayer layer
+
+    filterAllLayers: ->
+      @filteredFeatures = []
+      @latlon = []
+      _.each @features, (f) =>
+        # console.log f
+        @filterLayer(f)
+
+      # TODO: this isn't an array sometimes??
+      #
+      window.activePlacerefs = @filteredFeatures
+      window.filteredBounds = L.featureGroup(@filteredFeatures).getBounds()
+      map.fitBounds(filteredBounds)
+      # TODO:
+      # console.log 'center, in filter', filteredBounds.getCenter()
+      # @zoomToCluster 'cluster', @filteredFeatures
+
+      # App.vent.trigger('placerefs:filtered', @filteredFeatures);
 
     removeFilter: (key) ->
       delete @filters[key]
@@ -42,6 +49,26 @@
     clearFilters: ->
       @filters = {}
       @filterAllLayers()
+
+    zoomToCluster: (what, geom) ->
+      console.log 'in zoomToCluster'
+
+    zoomTo: (what, geom) ->
+      # TODO: differentiate between hood (point) and borough (polygon)
+      if what == "borough"
+        marker = $idToFeature.areas[geom.get("id")];
+        mbounds = marker.getBounds()
+        map.fitBounds(mbounds)
+
+      else if what == "hood"
+        # area is a lonlat pair here
+        map.setView(geom, 14)
+
+      # else if what = "cluster"
+
+        # cBounds = L.featureGroup(geom).getBounds()
+        # console.log 'center, in zoomTo', cBounds.getCenter()
+        # map.fitBounds(cBounds)
 
     onDomRefresh: ->
       @initMap()
@@ -60,7 +87,7 @@
         zoomControl: false,
         attributionControl: false,
         fadeAnimation: false
-      }).setActiveArea('viewport-places');
+      }).setActiveArea('viewport-authors');
 
       # var map = new L.Map(document.createElement('div')).setActiveArea('activeArea');
 
@@ -77,12 +104,12 @@
         { detectRetina: true }
       );
 
-      London = [51.5120, -0.0928];
+      London = [51.5120, -0.0928]
+      # London = [51.5120, -0.1728]
 
       this.map.addLayer(osmLayer);
       # places open, authors open viewports
       this.map.setView(London, 12);
-      # this.map.setView([51.5120, -0.1728], 12);
 
     stylePoints: (feature) ->
       # console.log feature
@@ -203,19 +230,6 @@
       window.map = @map
       window.placerefs = @placerefs
       window.features = @features
-
-    zoomTo: (what, area) ->
-      # TODO: differentiate between hood (point) and borough (polygon)
-      if what == "borough"
-        marker = $idToFeature.areas[area.get("id")];
-        mbounds = marker.getBounds()
-        # console.log 'get placerefs in', area.get("name")
-        map.fitBounds(mbounds)
-
-      else if what == "hood"
-        # area is a lonlat pair here
-        # console.log 'get placerefs around', area
-        map.setView(area, 14)
 
     # TODO: better highlight/unhighlight system
     # triggered from map

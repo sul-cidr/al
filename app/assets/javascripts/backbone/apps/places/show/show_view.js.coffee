@@ -32,7 +32,7 @@
       # console.log 'goHome()', $(e.currentTarget)
       id = Number($(e.currentTarget).context.attributes.data_id.value)
       # console.log 'goHome() id=', id
-      App.vent.trigger("map:reset", id)
+      # App.vent.trigger("map:reset", id)
       App.vent.trigger("area:unhighlightAll", id)
       # App.vent.trigger("area:unhighlight", id)
       Backbone.history.navigate("places", true)
