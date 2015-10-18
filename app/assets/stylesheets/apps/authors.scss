@@ -32,10 +32,19 @@ h4 {}
 /* List module */
 /***/
 
-.author {display: inline-block;}
+#authorlist-region {
+  max-height: 400px;
+  overflow: scroll;
+}
+.author {
+  display: inline-block;
+  width: 98px;
+}
 .tab-content { padding-top: 6px;;}
 
-.authlist { padding:0 6px; margin-top: 6px;
+.authlist {
+  padding:0 6px; margin-top: 6px;
+  overflow: scroll;
   a {text-decoration: none;}
   a:hover {background: yellow;}
   }

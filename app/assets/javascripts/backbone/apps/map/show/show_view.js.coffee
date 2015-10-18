@@ -40,7 +40,7 @@
       # console.log 'center, in filter', filteredBounds.getCenter()
       # @zoomToCluster 'cluster', @filteredFeatures
 
-      # App.vent.trigger('placerefs:filtered', @filteredFeatures);
+      App.vent.trigger('placerefs:filtered', @filteredFeatures);
 
     removeFilter: (key) ->
       delete @filters[key]

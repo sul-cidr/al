@@ -73,7 +73,7 @@
         App.authorContentRegion.show workPassagesView
         # TODO: show Passages tab if it was hidden
         $("#passages_pill").removeClass("hidden")
-        $(".passages-works h4").html('<em>from</em> '+title)
+        $(".passages-works h4").html('from <em>'+title+'</em')
 
     getWorkPassagesView: (work_passages, type) ->
       new Show.Passages ({
