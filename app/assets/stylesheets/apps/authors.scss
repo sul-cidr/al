@@ -36,8 +36,9 @@ h4 {}
 /***/
 
 #authorlist-region {
-  max-height: 400px;
-  overflow: scroll;
+  max-height: 78%;
+  overflow-y: scroll;
+  position:absolute;
 }
 .author {
   display: inline-block;
