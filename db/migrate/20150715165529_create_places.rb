@@ -5,6 +5,7 @@ class CreatePlaces < ActiveRecord::Migration
     	t.integer :place_id
       t.string :place_type
       t.string :names
+      t.string :source
       t.float :latitude
       t.float :longitude
     	t.text :geom_wkt

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150923170802) do
+ActiveRecord::Schema.define(version: 20150919024745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,9 +124,9 @@ ActiveRecord::Schema.define(version: 20150923170802) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
+    t.string   "dim"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "dim"
   end
 
   create_table "communities", force: :cascade do |t|
@@ -177,14 +177,14 @@ ActiveRecord::Schema.define(version: 20150923170802) do
 
   create_table "places", force: :cascade do |t|
     t.integer  "place_id"
+    t.string   "place_type"
+    t.string   "names"
     t.string   "source"
+    t.float    "latitude"
+    t.float    "longitude"
     t.text     "geom_wkt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float    "latitude"
-    t.float    "longitude"
-    t.string   "names"
-    t.string   "place_type"
   end
 
   create_table "standings", force: :cascade do |t|
