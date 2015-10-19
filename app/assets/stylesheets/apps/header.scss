@@ -7,7 +7,8 @@
   right:48px;
   cursor: pointer;
   text-decoration: underline;
-  color:#336699;
+  color:#C2D1E0;
+  // color:#336699;
   top: 14px;
 }
 
@@ -18,15 +19,24 @@
   h2 {
     margin: 5px 0;
     text-align: center;
-    color: white;
-    font-weight: bold;
-    font-family: "IM Fell English";
-    letter-spacing: 4px;
+    font-weight: bolder;
+    font-family: "Prociono";
+    font-variant: small-caps;
+    // font-family: "IM Fell English";
+    letter-spacing: 6px;
   }
 
+  // white center
+  h2 {color: #2A4747}
   background-color: #ffffff; // Old browsers
-  @include filter-gradient(#ffffff, #ffffff, horizontal); // IE6-9
-  @include background-image(linear-gradient(left,  #ffffff 0%,#2A4747 25%,#2A4747 75%,#ffffff 100%));
+  @include filter-gradient( #ffffff, #ffffff, horizontal); // IE6-9
+  @include background-image(linear-gradient(left,  #2A4747 0%,#BFC8C8 25%,#BFC8C8 75%,#2A4747 100%));
+
+  // slate center
+  // h2 {color: #ffffff}
+  // background-color: #2A4747; // Old browsers
+  // @include filter-gradient(#ffffff, #ffffff, horizontal); // IE6-9
+  // @include background-image(linear-gradient(left,  #ffffff 0%,#2A4747 25%,#2A4747 75%,#ffffff 100%));
 
 }
 

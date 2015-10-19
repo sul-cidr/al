@@ -5,21 +5,27 @@
 /***/
 
 #places-region {
-  // right: 0;
-  right: -330px;
+  // set activearea in Map.Show.View.initMap
+  right: 0;
+  // right: -330px;
   background: #e0e0e0;
   border-left: 4px solid #999;
 }
 #places-tab {
   float: left;
   cursor: pointer;
-  img { position: absolute; left:0; top: 250px}
+  img { position: absolute; left:0; top: 55px}
 }
 .place {display: inline-block;}
 
 /***/
 /* PlacesApp Show module */
 /***/
+
+.work-title {
+  font-size: 0.8em;
+  font-weight: 600;
+}
 
 #place_passages_region {
   width: 300px;
@@ -36,7 +42,7 @@
 }
 
 
-.passages-places {
+#placepassages-body {
   max-height: 500px;
   overflow:auto;
   hr { border: 0; border-bottom: 1px dashed #ccc; background: #999; width:80%;}

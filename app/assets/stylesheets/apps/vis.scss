@@ -12,15 +12,15 @@ circle {
 }
 
 .node:hover circle {
-  fill: orange;
+  fill: lightcoral;
   cursor: pointer;
 }
 
-.axis text {font: 10px sans-serif;}
+.axis text  {font: 10px sans-serif;}
 
 #histYears {
   .bar rect {
-    fill: steelblue;
+    fill: lightcoral;
     shape-rendering: crispEdges;
   }
   .bar text {

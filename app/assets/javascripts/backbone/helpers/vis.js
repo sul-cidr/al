@@ -4,7 +4,7 @@ var histYears = function (years) {
 
   var margin = {top: 10, right: 30, bottom: 20, left: 10},
       width = 340 - margin.left - margin.right,
-      height = 100 - margin.top - margin.bottom;
+      height = 80 - margin.top - margin.bottom;
 
   var x = d3.scale.linear()
       .domain(d3.extent(years))
@@ -54,20 +54,22 @@ var histYears = function (years) {
 var packAuths = function (auths) {
   // console.log(JSON.stringify(auths))
   // TODO: variable bleed depending on # hoods?
-  var bleed = 100,
+  var bleed = 150,
       width = 340,
-      height = 400;
+      height = 340;
 
   var pack = d3.layout.pack()
       .sort(null)
-      .size([width, height + bleed * 2])
+      .size([width, height])
+      // .size([width, height + bleed * 2])
       .padding(2);
 
   var svg = d3.select("#place_content_region").append("svg")
       .attr("width", width)
       .attr("height", height)
     .append("g")
-      .attr("transform", "translate(0," + -bleed + ")");
+      .attr("transform", "translate(0," + -30 + ")");
+      // .attr("transform", "translate(0," + -bleed + ")");
 
   // d3.json(auths, function(error, json) {
     // if (error) throw error;
@@ -80,19 +82,24 @@ var packAuths = function (auths) {
       .attr("transform", function(d) {
         return "translate(" + d.x + "," + d.y + ")"; })
       .on("click", function(d){
-        // console.log('clicked '+ d.key)
+        // TODO: bug, if starting in Authors, 2nd click here does not work
         AL.PlacesApp.Show.Controller.listPlacePassages(d.key)
       });
 
+
   node.append("circle")
-      .attr("r", function(d) { return d.r; });
+      .attr("r", function(d) { return d.r; })
+      // .on("mouseover", function(d){console.log(d)})
+      .append("svg:title")
+        .text(function(d) { return authhash[d.key]});;
 
   node.append("text")
       .text(function(d) { return authLabel[d.key]; })
       .style("font-size", function(d) {
         return Math.min(2 * d.r, (2 * d.r - 8) / this.getComputedTextLength() * 24) + "px";
       })
-      .attr("dy", ".35em");
+      .attr("dy", ".35em")
+
   // });
 
   d3.select(self.frameElement).style("height", height + "px");

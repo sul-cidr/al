@@ -7,21 +7,23 @@
 h4 {}
 
 #authors-region {
-  left: 0;
-  // left: -330px;
+  // left: 0;
+  left: -330px;
   background: #eeeee0;
   border-right: 4px solid #daa500;
 }
 #authors-tab {
   float: right;
   cursor: pointer;
-  img { position: absolute; right:0; top: 250px}
+  img { position: absolute; right:0; top: 55px}
 }
 
 // #dimensions-region {  }
 #categories-region { overflow: auto;
   border: 1px dotted #993333;
-  background: #e0e0e0; padding: 3px;}
+  background: #e0e0e0; padding: 3px;
+  margin-right: 8px;
+}
 
 .navbar { min-height: 35px; margin-bottom:0; }
 .navbar .nav-pills >li  { padding: 4px; margin:0; cursor: pointer;}

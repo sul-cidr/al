@@ -87,7 +87,7 @@
         zoomControl: false,
         attributionControl: false,
         fadeAnimation: false
-      }).setActiveArea('viewport-authors');
+      }).setActiveArea('viewport-places');
 
       # var map = new L.Map(document.createElement('div')).setActiveArea('activeArea');
 

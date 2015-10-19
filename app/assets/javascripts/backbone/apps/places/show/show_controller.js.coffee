@@ -74,8 +74,8 @@
       # console.log authobj
       _.each auths, (a) =>
         authobj['children'].push(a)
-      histYears(years)
       packAuths(authobj)
+      histYears(years)
 
     # generates a list (not in use)
     makeText: (auths) ->
