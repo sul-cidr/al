@@ -16,15 +16,18 @@ gem 'compass-rails', '2.0.4'
 
 gem 'seedbank'
 
-# TODO 
-gem 'activeadmin', github: 'gregbell/active_admin'
+# TODO
+gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
+
 gem 'devise'
+
 
 gem 'ransack', '1.6.5'
 gem 'rabl'
 # gem 'jquery-turbolinks'
 gem 'font-awesome-rails'
-gem 'squeel', github: 'activerecord-hackery/squeel'
+gem 'squeel', git: 'https://github.com/activerecord-hackery/squeel'
+
 gem 'annotate'
 gem 'sequel'
 
