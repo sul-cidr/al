@@ -26,7 +26,7 @@ gem 'ransack', '1.6.5'
 gem 'rabl'
 # gem 'jquery-turbolinks'
 gem 'font-awesome-rails'
-gem 'squeel', git: 'https://github.com/activerecord-hackery/squeel'
+gem 'squeel'
 
 gem 'annotate'
 gem 'sequel'
