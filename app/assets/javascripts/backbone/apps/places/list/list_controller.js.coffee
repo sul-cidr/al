@@ -49,6 +49,7 @@
 
     togglePanel: ->
       # AL.vent.trigger("map:reset")
+      # console.log 'Places togglePanel()'
       xpos = ($(window).width() - 350) - $("#places-region").offset().left
       if xpos == 0
         # places panel is open

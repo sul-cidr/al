@@ -5,7 +5,7 @@
   App.vent.on "places-panel:open", ->
     # console.log 'authors_app heard places-panel:close'
     AuthorsApp.List.Controller.togglePanel()
-    $(".toggle-authors").removeClass("hidden")
+    $(".toggle-a  uthors").removeClass("hidden")
     # set initial map shift
     map.setActiveArea('viewport-places')
     map.setView([51.5120, -0.0928], 12)
@@ -39,7 +39,7 @@
       App.vent.trigger "map:reset"
       # forwards author model to showAuthor function
       App.request "author:entity", author_id, (author) =>
-        console.log 'API passing model to showAuthor'
+        # console.log 'API passing model to showAuthor'
         AuthorsApp.Show.Controller.showAuthor(author)
         # returns focus author from anywhere??
         App.reqres.setHandler "author:model", ->

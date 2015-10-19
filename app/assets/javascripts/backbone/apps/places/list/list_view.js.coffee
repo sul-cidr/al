@@ -29,7 +29,7 @@
     }
 
     areaByRoute: ->
-      # CHECK: uses trigger -> router -> controller 
+      # CHECK: uses trigger -> router -> controller
       window.activePlace = this.model
       area = this.model
       id = area.get("id")

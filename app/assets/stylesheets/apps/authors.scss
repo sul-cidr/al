@@ -41,13 +41,13 @@ h4 {}
 }
 .author {
   display: inline-block;
-  width: 98px;
+  width: 92px;
 }
 .tab-content { padding-top: 6px;;}
 
 .authlist {
   padding:0 6px; margin-top: 6px;
-  overflow: scroll;
+  // overflow: scroll;
   a {text-decoration: none;}
   a:hover {background: yellow;}
   }

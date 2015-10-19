@@ -71,7 +71,7 @@
       # filter genre for initial display
       child.get('dim') == 'genre'
     onChildviewAuthorsFiltered: ->
-      console.log 'bubbled up to List.Categories view'
+      # console.log 'bubbled up to List.Categories view'
 
   class List.Empty extends App.Views.ItemView
     template: "authors/list/templates/_empty"

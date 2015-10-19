@@ -11,7 +11,7 @@
       new Show.Map
 
     setFilter: (key, evaluator) ->
-      console.log 'Map.Show.Controller.setFilter() ' + key
+      # console.log 'Map.Show.Controller.setFilter() ' + key
       @mapView.setFilter key, evaluator
 
     clearFilters: ->

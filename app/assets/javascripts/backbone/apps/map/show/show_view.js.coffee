@@ -9,7 +9,7 @@
       # console.log 'filteredFeatures: ', @filteredFeatures
 
     setFilter: (key, evaluator) ->
-      console.log 'setFilter --> filterAllLayers'
+      # console.log 'setFilter --> filterAllLayers'
       @filters[key] = evaluator
       # console.log 'setFilter:', @filters
       @filterAllLayers()

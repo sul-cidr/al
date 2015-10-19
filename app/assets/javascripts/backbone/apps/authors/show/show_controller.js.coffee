@@ -4,7 +4,7 @@
 
     showAuthor: (author) ->
       # get map to filter for author
-      console.log "showAuthor triggering author:show"
+      # console.log "showAuthor triggering author:show"
       App.vent.trigger "author:show", author
 
       id = author.get("author_id")
