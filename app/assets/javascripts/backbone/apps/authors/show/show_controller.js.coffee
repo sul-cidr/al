@@ -45,6 +45,7 @@
         viewComparator: "passage_id"
         className: if type == 'works' then 'passages-works' else 'passages-bio'
 
+    # TODO: make this display a visualization summary
     listWorks: (author) ->
       id = author.get("author_id")
       App.request "work:entities", id, (works) =>
@@ -52,7 +53,13 @@
         if App.authorContentRegion.$el.length > 0
           App.authorContentRegion.reset()
         @worksView = @getWorksView works
-        # console.log 'listWorks(), '+ works.length + ' for ' + author_id
+
+        # get work_ids
+        window.work_ids = []
+        _.each works.models, (w) =>
+          work_ids.push w.attributes.work_id
+        console.log 'works:',work_ids
+        # console.log works.length + ' works for ' + author_id
         App.authorContentRegion.show @worksView
 
     getWorksView: (works) ->

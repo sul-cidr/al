@@ -7,8 +7,9 @@
 h4 {}
 
 #authors-region {
-  // left: 0;
-  left: -330px;
+  // set activearea in Map.Show.View.initMap
+  left: 0;
+  // left: -330px;
   background: #eeeee0;
   border-right: 4px solid #daa500;
 }

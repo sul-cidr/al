@@ -37,6 +37,7 @@
       $activeAuthor = this.model
       # console.log $activeAuthor
       author = this.model
+      # CHECK: Sulc says this is bad...
       Backbone.history.navigate("authors/"+author.get('author_id'), true)
 
   class List.Authors extends App.Views.CompositeView

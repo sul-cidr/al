@@ -36,6 +36,7 @@
       if @pill == 'works'
         @route = "#works/"+authid
         # console.log 'loadContent, works:', @route
+        # CHECK: is this Navigate...true right?
         Backbone.history.navigate(@route, true)
         # Show.Controller.listWorks authid
       else if @pill == 'biography'
@@ -74,7 +75,7 @@
     template: "authors/show/templates/_passages"
     childView: Show.Passage
     childViewContainer: "div"
-    
+
   class Show.Work extends App.Views.ItemView
     template: "authors/show/templates/_work"
     tagName: "li"
