@@ -100,7 +100,7 @@
 
       # OSM base layer.
       osmLayer = L.tileLayer(
-        '//{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
+        'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
         { detectRetina: true }
       );
 
