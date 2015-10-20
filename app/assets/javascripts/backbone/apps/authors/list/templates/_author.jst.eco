@@ -1,9 +1,12 @@
 <div class="author">
   <a href="#authors/<%= @author_id %>">
+  <a href="#authors/<%= @author_id %>">
   <% if [10341,10343,10345,10359,10401,10415,10363,10371,10375,10369,10407,10377,10369,10347,10419].indexOf(@author_id) > -1: %>
-    <img src="assets/images/<%= @author_id %>_<%= @surname %>.png" /><br/>
+    <%= img_url @author_id +'_'+ @surname +'.png' %>
+    <!-- <img src="assets/images/<%= @author_id %>_<%= @surname %>.png" /><br/> -->
   <% else: %>
-    <img src="assets/images/blank.png" /><br/>
+    <%= img_url "blank.png" %>
+    <!-- <img src="assets/images/blank.png" /><br/> -->
   <% end %>
   <%= @safe hardSpace(@surname) %></a>
 </div>
