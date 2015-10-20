@@ -4,19 +4,20 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 
+gem 'sass-rails', '>= 5.0'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.1.0'
+
 # Use postgresql as the database for Active Record
 gem 'pg'
 gem 'activerecord-postgis-adapter'
 
 gem 'eco'
-# gem 'compass-rails' (suspect?)
 gem 'bootstrap-sass', '~> 3.3.5'
-gem 'sass-rails', '>= 5.0'
 gem 'compass-rails', '2.0.4'
 
 gem 'seedbank'
 
-# TODO
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
 
 gem 'devise'
@@ -34,9 +35,6 @@ gem 'sequel'
 # deploy
 gem 'dotenv-rails'
 
-# gem 'monban'
-# gem 'monban-generators'
-
 group :deployment do
   gem 'capistrano', '~> 3.0'
   gem 'capistrano-rails'
@@ -48,10 +46,6 @@ group :deployment do
   gem 'capistrano-bower'
 end
 
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
 
@@ -67,12 +61,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-# Use Unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
