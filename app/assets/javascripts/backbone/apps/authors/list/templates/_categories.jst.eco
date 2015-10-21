@@ -1,2 +1,2 @@
-<catlist><b><a href="#">All</a></b>; </catlist>
+<catlist><b><a class="all" href="#">All</a></b>; </catlist>
 <!-- <p>categories per dimension</p> -->

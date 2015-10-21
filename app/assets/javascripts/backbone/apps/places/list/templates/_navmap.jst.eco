@@ -1,4 +1,4 @@
 <div id="places-navmap" class="centered">
-  <img src="assets/images/minimap300w.png" />
-  <!-- <%= "minimap300w.png" %> -->
+  <!-- <img src="assets/images/minimap300w.png" /> -->
+  <%= image_tag "minimap300w.png" %>
 </div>

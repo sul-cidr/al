@@ -1,1 +1,1 @@
-<a href="#"><%= @name  %></a>; 
+<a class = "category" href="#"><%= @name  %></a>;

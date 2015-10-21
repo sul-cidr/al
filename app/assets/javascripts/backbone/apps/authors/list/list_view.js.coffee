@@ -50,11 +50,14 @@
     template: "authors/list/templates/_category"
     tagName: "span"
     # events: {"click": "filterAuthors"}
-    events: {"click": "filterAuthors"}
+    events: {
+      "click a.category": "filterAuthors"
+    }
 
     filterAuthors: (e) ->
       cat = this.model
       id = cat.attributes.id
+      console.log 'filter for cat', id
       App.reqres.setHandler "category:active", ->
         return cat
       # CHECK does this need to be in navigate?
@@ -67,11 +70,18 @@
     className: 'categories'
     childView: List.Category
     childViewContainer: "catlist"
+    events: {"click a.all": "removeFilter" }
     filter: (child, index, collection) ->
       # filter genre for initial display
       child.get('dim') == 'genre'
     onChildviewAuthorsFiltered: ->
       # console.log 'bubbled up to List.Categories view'
+    removeFilter: (e) ->
+      console.log 'remove filter'
+      App.request "authors:category", 0, (authors) =>
+        List.Controller.listCatAuthors(authors, 0)
+        App.vent.trigger("map:reset")
+
 
   class List.Empty extends App.Views.ItemView
     template: "authors/list/templates/_empty"
