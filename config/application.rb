@@ -28,5 +28,9 @@ module Authorial
     config.assets.enabled = true
     config.assets.debug = true
 
+    # added to enable precompile of assets
+    # config.serve_static_assets = true
+    config.serve_static_files = true
+
   end
 end
