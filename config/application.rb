@@ -30,7 +30,7 @@ module Authorial
 
     # added to enable precompile of assets
     # config.serve_static_assets = true
-    config.serve_static_files = true
+    # config.serve_static_files = true
 
   end
 end
