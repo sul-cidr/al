@@ -36,7 +36,7 @@ var mapStyles = {
   },
   area: {
     start: {
-    "color": "red",
+    "color": "white",
     "weight": 1,
     "opacity": 0.5,
     "fillOpacity": 0
@@ -57,15 +57,15 @@ var mapStyles = {
     "fillOpacity": 1
   },
   point_work: {
-    "color": "green",
-    "radius": 5,
+    "color": "blue",
+    "radius": 6,
     "weight": 1,
     "opacity": 0.5,
     "fillOpacity": 0.35
   },
   point_bio: {
     "color": "brown",
-    "radius": 5,
+    "radius": 4,
     "weight": 1,
     "opacity": 0.5,
     "fillOpacity": 0.35
