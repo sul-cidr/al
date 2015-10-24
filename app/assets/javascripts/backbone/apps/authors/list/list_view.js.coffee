@@ -20,10 +20,10 @@
     template: "authors/list/templates/_dimensions"
     # TODO on-click filter categories
     events: {
-      "click li": "filterCats"
+      "click #dimension_pills li": "filterCats"
     }
     filterCats: (e) =>
-      $("li").removeClass("active")
+      $("#dimension_pills li").removeClass("active")
       $(e.currentTarget).addClass("active")
       dim = $(e.currentTarget).context.attributes.value.value
       # console.log 'List.Dimensions.filterCats by dimension: ' + dim

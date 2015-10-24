@@ -7,14 +7,16 @@
 #places-region {
   // set activearea in Map.Show.View.initMap
   // right: 0;
-  right: -330px;
+  // right: -330px;
+  // left: 24px;;
+  display: none;
   background: #e0e0e0;
   border-left: 4px solid #999;
 }
 #places-tab {
-  float: left;
+  float: right;
   cursor: pointer;
-  img { position: absolute; left:0; top: 55px}
+  img { position: absolute; right:0; top: 88px}
 }
 .place {display: inline-block;}
 
@@ -31,11 +33,11 @@
   width: 300px;
   // height: 85%;
   top: 100px;
-  left: 25px;
+  right: 25px;
   display: none;
   padding: 6px;
   border-radius: 16px;
-  background-color: #fff;
+  background-color: #eee;
   opacity: 0.85;
   position: absolute;
   h4 { margin: 5px 0; text-align: center;}

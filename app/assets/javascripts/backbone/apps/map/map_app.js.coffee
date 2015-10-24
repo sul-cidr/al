@@ -1,5 +1,5 @@
 @AL.module "MapApp", (MapApp, App, Backbone, Marionette, $, _) ->
-  # @startWithParent = false
+  @startWithParent = false
 
   App.vent.on "author:show", (author) ->
     console.log "map heard author:show --> API.filterByAuthor"

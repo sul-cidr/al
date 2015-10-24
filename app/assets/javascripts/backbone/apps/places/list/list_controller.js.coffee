@@ -3,9 +3,9 @@
   List.Controller =
 
     startPlaces: ->
-    #
     # get areas here, used to aggregate & navigate places/placerefs
-    #
+      console.log 'startPlaces()'
+
       App.request "area:entities", (areas) =>
 
         @layout = @getLayoutView()
@@ -18,6 +18,8 @@
         # App.vent.trigger "areas:list", areas
         App.reqres.setHandler "areas:list", ->
           return areas
+
+        # hold off rendering
         App.placesRegion.show @layout
 
     listAreas: (areas) ->

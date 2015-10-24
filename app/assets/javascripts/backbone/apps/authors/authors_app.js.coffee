@@ -3,6 +3,7 @@
 
   # map.setActiveArea('viewport-authors')
   App.vent.on "places-panel:open", ->
+  # App.vent.on "places-panel:open", ->
     # console.log 'authors_app heard places-panel:close'
     AuthorsApp.List.Controller.togglePanel()
     $(".toggle-a  uthors").removeClass("hidden")
@@ -12,7 +13,7 @@
 
   class AuthorsApp.Router extends Marionette.AppRouter
     appRoutes:
-      "": "startAuthors"
+      # "": "startAuthors"
       "authors/:author_id": "passAuthorModel"
       "works/:author_id": "authorWorks"
       "workpassages/:work_id": "workPassages"
@@ -49,4 +50,4 @@
     new AuthorsApp.Router
       controller: API
     # CHECK: started by appRoute ""
-    API.startAuthors()
+    # API.startAuthors()

@@ -3,9 +3,9 @@
   List.Controller =
 
     startAuthors: ->
+      console.log 'startAuthors()'
       # start with all (cat 0)
       App.request "authors:category", 0, (authors) =>
-
         @layout = @getLayoutView()
         # console.log @layout
 
@@ -16,6 +16,7 @@
           @listDimensions()
           @listCategories("genre")
 
+        # hold off rendering this
         App.authorsRegion.show @layout
 
     showTitle: (authors) ->

@@ -5,6 +5,8 @@
     showMap: ->
       # console.log 'MapApp.Show.Controller.showMap()', authors
       @mapView = @getMapView()
+
+      # hold off rendering
       App.mapRegion.show @mapView
 
     getMapView: ->

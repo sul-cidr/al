@@ -39,15 +39,16 @@
     App.addRegions
       headerRegion: '#header-region'
       mapRegion: '#map-region'
+      contentRegion: '#content_region'
       authorsRegion:
-        selector: '#authors-region'
+        selector: '#authors_region'
         #regionClass: AuthorsRegion
 
       authorContentRegion:
         selector: '#author_content_region'
 
       placesRegion:
-        selector: '#places-region'
+        selector: '#places_region'
         #regionClass: PlacesRegion
 
       placePassagesRegion:
@@ -58,8 +59,9 @@
         selector: '#modal'
 
     App.module('HeaderApp').start()
+    App.module('ContentApp').start()
     App.module('AuthorsApp').start()
-    App.module('PlacesApp').start()
+    # App.module('PlacesApp').start()
     App.module('MapApp').start()
 
   # App.on 'initialize:after', ->

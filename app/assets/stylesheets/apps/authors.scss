@@ -9,6 +9,7 @@ h4 {}
 #authors-region {
   // set activearea in Map.Show.View.initMap
   left: 0;
+  display: none;
   // left: -330px;
   background: #eeeee0;
   border-right: 4px solid #daa500;
@@ -16,7 +17,7 @@ h4 {}
 #authors-tab {
   float: right;
   cursor: pointer;
-  img { position: absolute; right:0; top: 55px}
+  img { position: absolute; right:0; top: 88px}
 }
 
 // #dimensions-region {  }
@@ -24,11 +25,21 @@ h4 {}
   border: 1px dotted #993333;
   background: #e0e0e0; padding: 3px;
   margin-right: 8px;
+  height: 88px;
 }
 
 .navbar { min-height: 35px; margin-bottom:0; }
-.navbar .nav-pills >li  { padding: 4px; margin:0; cursor: pointer;}
-.navbar .nav-pills >li.active  { color: white; border-radius: 3px; background-color: #336699;}
+.navbar .nav-pills >li  {
+  padding: 4px;
+  margin:0;
+  cursor: pointer;
+}
+.navbar .nav-pills >li.active  {
+  color: white;
+  border-radius: 3px;
+  background-color: #336699;
+  cursor: none;
+}
 // .navbar .nav-pills >li >a { padding: 4px; margin:0;}
 
 /***/
