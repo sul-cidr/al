@@ -4,8 +4,8 @@
   class PlacesApp.Router extends Marionette.AppRouter
     appRoutes:
       # "places": "startPlaces"
-      "boroughs/:id": "showBorough"
-      "hoods/:id": "showHood"
+      "areas/:id": "showArea"
+      # "hoods/:id": "showHood"
 
   API =
     startPlaces: ->
@@ -19,11 +19,13 @@
       PlacesApp.Show.Controller.showAreaSummary(activePlacerefs)
 
     # these go and do a spatial filter
-    showBorough: (id) ->
-      PlacesApp.Show.Controller.showBorough(id)
+    showArea: (id) ->
+      PlacesApp.Show.Controller.showArea(id)
+    # showBorough: (id) ->
+    #   PlacesApp.Show.Controller.showBorough(id)
 
-    showHood: (id) ->
-      PlacesApp.Show.Controller.showHood(id)
+    # showHood: (id) ->
+    #   PlacesApp.Show.Controller.showHood(id)
 
   App.vent.on "authors-panel:open", ->
     PlacesApp.List.Controller.togglePanel()

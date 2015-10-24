@@ -7,7 +7,7 @@
       console.log 'startPlaces()'
 
       App.request "area:entities", (areas) =>
-
+        # console.log areas
         @layout = @getLayoutView()
 
         @layout.on "show", =>
@@ -34,7 +34,7 @@
       new List.Areas
         collection: areas
         filter: (child, index, collection) ->
-          child.get('area_type') == 'borough'
+          child.get('area_type') == 'hood'
 
     showTitle: ->
       titleView = new List.Title

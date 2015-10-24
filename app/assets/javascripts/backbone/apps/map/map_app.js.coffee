@@ -41,25 +41,27 @@
     #     placeref.get("work_id") == work.get("work_id")
 
     focusArea: (area) ->
-      if area.get("area_type") == "hood"
-        area = area
-        parent_id = area.get("parent_id")
-        # TODO: proper breadcrumbs
-        console.log 'map focus ' + area.get("name") + '; parent_id:', parent_id
-        turfpoint = turf.point(wellknown(area.get("geom_wkt")).coordinates)
+      # No more hierarchy - one level of areas
 
-        # make buffer, zoom to it, filter features
-        buffer = turf.buffer( turfpoint, 1, 'kilometers' )
+      # if area.get("area_type") == "hood"
+      #   area = area
+      #   parent_id = area.get("parent_id")
+      #   # TODO: proper breadcrumbs
+      #   console.log 'map focus ' + area.get("name") + '; parent_id:', parent_id
+      #   turfpoint = turf.point(wellknown(area.get("geom_wkt")).coordinates)
+      #
+      #   # make buffer, zoom to it, filter features
+      #   buffer = turf.buffer( turfpoint, 1, 'kilometers' )
+      #
+      #   MapApp.Show.Controller.zoomTo 'hood', swap(turf.centroid(buffer).geometry.coordinates)
+      #
+      #   @filterByArea "hood", buffer.features[0]
+      # else
+      MapApp.Show.Controller.zoomTo 'area', area
 
-        MapApp.Show.Controller.zoomTo 'hood', swap(turf.centroid(buffer).geometry.coordinates)
+      bounds = turf.polygon(wellknown(area.get("geom_wkt")).coordinates[0])
 
-        @filterByArea "hood", buffer.features[0]
-      else
-        MapApp.Show.Controller.zoomTo 'borough', area
-
-        bounds = turf.polygon(wellknown(area.get("geom_wkt")).coordinates[0])
-
-        @filterByArea "borough", bounds
+      @filterByArea "area", bounds
 
     filterByArea: (type, bounds) ->
       # to setFilter(area)

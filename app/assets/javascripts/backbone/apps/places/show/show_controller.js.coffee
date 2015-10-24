@@ -85,25 +85,25 @@
       summaryHtml += "</div>"
       return summaryHtml
 
-    # TODO: needs refactoring--showBorough and showHood to showArea()
-    showBorough: (id) ->
+    # TODO: plenty, I'm sure
+    showArea: (id) ->
+    # showBorough: (id) ->
       # console.log id
-      App.request "area:entity", id, (borough) =>
+      App.request "area:entity", id, (area) =>
         # console.log 'ctrlr: got borough', borough.get("id")
-        App.request "borough:hoods", id, (hoods) =>
+        # App.request "borough:hoods", id, (hoods) =>
           # console.log "ctrlr: got "+hoods.length+" hoods"
-          # let map know
 
-          @areaLayout = @getAreaLayout borough
-          @areaLayout.on "show", =>
-            # console.log 'areaLayout shown'
-            @showTitle borough
-            @showNav hoods
-            @showPlaceContent borough
+        @areaLayout = @getAreaLayout area
+        @areaLayout.on "show", =>
+          # console.log 'areaLayout shown'
+          @showTitle area
+          # @showNav hoods
+          @showPlaceContent area
 
-            App.vent.trigger "area:focus", borough
-          # keep showing in the placesRegion for now; areas are one kind of place
-          App.placesRegion.show @areaLayout
+          App.vent.trigger "area:focus", area
+        # keep showing in the placesRegion for now; areas are one kind of place
+        App.placesRegion.show @areaLayout
 
     showHood: (id) ->
       App.request "area:entity", id, (hood) =>
@@ -135,13 +135,13 @@
       new Show.Title
         model: area
 
-    showNav: (hoods) ->
-      @navView = @getNavView hoods
-      @areaLayout.navRegion.show @navView
-
-    getNavView: (hoods) ->
-      new Show.Hoods
-        collection: hoods
+    # showNav: (hoods) ->
+    #   @navView = @getNavView hoods
+    #   @areaLayout.navRegion.show @navView
+    #
+    # getNavView: (hoods) ->
+    #   new Show.Hoods
+    #     collection: hoods
 
     # CHECK: this could be split out, depending on content
     showPlaceContent: (area) ->

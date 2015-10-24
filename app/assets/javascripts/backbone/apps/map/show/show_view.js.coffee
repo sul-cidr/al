@@ -55,14 +55,14 @@
 
     zoomTo: (what, geom) ->
       # TODO: differentiate between hood (point) and borough (polygon)
-      if what == "borough"
+      if what == "area"
         marker = $idToFeature.areas[geom.get("id")];
         mbounds = marker.getBounds()
         map.fitBounds(mbounds)
 
-      else if what == "hood"
-        # area is a lonlat pair here
-        map.setView(geom, 14)
+      # else if what == "hood"
+      #   # area is a lonlat pair here
+      #   map.setView(geom, 14)
 
       # else if what = "cluster"
 
@@ -117,8 +117,8 @@
         return mapStyles.point_bio
       else if feature.get("placeref_type") == "work"
         return mapStyles.point_work
-      else if feature.get("area_type") == "hood"
-        return mapStyles.point_hood
+      # else if feature.get("area_type") == "hood"
+      #   return mapStyles.point_hood
 
     # CHECK: ingestAreas and ingestPlacerefs both need to populate this
     $idToFeature = {areas:{}, placerefs:{}}
@@ -131,16 +131,16 @@
       $.each areas.models, (i, a) =>
         geom = a.attributes.geom_wkt
         aid = a.get("id")
+        # if a.get("area_type") == "hood"
+        #   feature = L.circleMarker(
+        #     # not MULTIPOINT, but POINT
+        #     swap(wellknown(geom).coordinates), @stylePoints(a) )
+        #   feature.model = a
+        #   # feature.options.id = aid
+        #   $idToFeature.areas[aid] = feature
+        #   # @idToFeature[aid] = feature
+        #   @features.push feature
         if a.get("area_type") == "hood"
-          feature = L.circleMarker(
-            # not MULTIPOINT, but POINT
-            swap(wellknown(geom).coordinates), @stylePoints(a) )
-          feature.model = a
-          # feature.options.id = aid
-          $idToFeature.areas[aid] = feature
-          # @idToFeature[aid] = feature
-          @features.push feature
-        else if a.get("area_type") == "borough"
           # console.log geom
           feature =  new L.GeoJSON(wellknown(geom), {
             style: mapStyles.area.start

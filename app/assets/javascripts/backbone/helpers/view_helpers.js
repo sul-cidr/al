@@ -36,7 +36,7 @@ var mapStyles = {
   },
   area: {
     start: {
-    "color": "white",
+    "color": "grey",
     "weight": 1,
     "opacity": 0.5,
     "fillOpacity": 0
