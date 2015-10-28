@@ -33,11 +33,52 @@
         className: 'passages-places'
       })
 
+    # triggers area:focus to get placerefs for area
+    showArea: (area) ->
+      console.log 'ctrlr: got area', area.get("id")
+      # App.request "borough:hoods", id, (hoods) =>
+        # console.log "ctrlr: got "+hoods.length+" hoods"
+
+      @areaLayout = @getAreaLayout area
+      @areaLayout.on "show", =>
+        # console.log 'areaLayout shown'
+        @showTitle area
+        # @showNav hoods
+        @showPlaceContent area
+
+        App.vent.trigger "area:focus", area
+      # keep showing in the placesRegion for now; areas are one kind of place
+      App.placesRegion.show @areaLayout
+
+    getAreaLayout: (area) ->
+      new Show.Layout ({
+        model: area
+      })
+
+    showTitle: (area) ->
+      # console.log 'in showTitle', area.get("name")
+      titleView = @getTitleView area
+      @areaLayout.titleRegion.show titleView
+
+    getTitleView: (area) ->
+      new Show.Title
+        model: area
+
+    # CHECK: this could be split out, depending on content
+    showPlaceContent: (area) ->
+      # console.log 'showPlaceContent', area
+      @contentView = @getContentView area
+      @areaLayout.placeContentRegion.show @contentView
+
+    getContentView: (area) ->
+      new Show.Content
+        model: area
+
     #
     # generates summary by author
     # TODO: by decade
     # TODO: why is this function triggered continually?
-    showAreaSummary: (@activePlacerefs) ->
+    showAreaSummary: (activePlacerefs) ->
       window.wPlacerefs = []
       window.worksYears = []
       @bPlacerefs = []
@@ -77,33 +118,14 @@
       packAuths(authobj)
       histYears(years)
 
-    # generates a list (not in use)
-    makeText: (auths) ->
-      summaryHtml = "<div class='author-counts'>"
-      _.each auths, (a) =>
-        summaryHtml += "<span>"+authhash[a.key]+" (" + a.value + ")</span>"
-      summaryHtml += "</div>"
-      return summaryHtml
+    # showNav: (hoods) ->
+    #   @navView = @getNavView hoods
+    #   @areaLayout.navRegion.show @navView
+    #
+    # getNavView: (hoods) ->
+    #   new Show.Hoods
+    #     collection: hoods
 
-    # TODO: plenty, I'm sure
-    showArea: (id) ->
-    # showBorough: (id) ->
-      # console.log id
-      App.request "area:entity", id, (area) =>
-        # console.log 'ctrlr: got borough', borough.get("id")
-        # App.request "borough:hoods", id, (hoods) =>
-          # console.log "ctrlr: got "+hoods.length+" hoods"
-
-        @areaLayout = @getAreaLayout area
-        @areaLayout.on "show", =>
-          # console.log 'areaLayout shown'
-          @showTitle area
-          # @showNav hoods
-          @showPlaceContent area
-
-          App.vent.trigger "area:focus", area
-        # keep showing in the placesRegion for now; areas are one kind of place
-        App.placesRegion.show @areaLayout
 
     showHood: (id) ->
       App.request "area:entity", id, (hood) =>
@@ -120,35 +142,3 @@
           App.vent.trigger "area:focus", hood
         # keep showing in the placesRegion for now; areas are one kind of place
         App.placesRegion.show @areaLayout
-
-    getAreaLayout: (area) ->
-      new Show.Layout ({
-        model: area
-      })
-
-    showTitle: (area) ->
-      # console.log 'in showTitle', area.get("name")
-      titleView = @getTitleView area
-      @areaLayout.titleRegion.show titleView
-
-    getTitleView: (area) ->
-      new Show.Title
-        model: area
-
-    # showNav: (hoods) ->
-    #   @navView = @getNavView hoods
-    #   @areaLayout.navRegion.show @navView
-    #
-    # getNavView: (hoods) ->
-    #   new Show.Hoods
-    #     collection: hoods
-
-    # CHECK: this could be split out, depending on content
-    showPlaceContent: (area) ->
-      # console.log 'showPlaceContent', area
-      @contentView = @getContentView area
-      @areaLayout.placeContentRegion.show @contentView
-
-    getContentView: (area) ->
-      new Show.Content
-        model: area

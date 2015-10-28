@@ -12,7 +12,7 @@
     getMapView: ->
       new Show.Map
 
-    setFilter: (key, evaluator) ->
+    setFilter: (key, evaluator, counter) ->
       # console.log 'Map.Show.Controller.setFilter() ' + key
       @mapView.setFilter key, evaluator
 

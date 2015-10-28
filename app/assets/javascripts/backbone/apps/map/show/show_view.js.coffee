@@ -20,11 +20,13 @@
         visible = visible && evaluator(layer.model)
       if visible
         @map.addLayer layer
+        # console.log 'filterLayer', layer
         @filteredFeatures.push layer
       else
         @map.removeLayer layer
 
     filterAllLayers: ->
+      # console.log '@features in filterAllLayers', @features
       @filteredFeatures = []
       @latlon = []
       _.each @features, (f) =>
@@ -33,7 +35,7 @@
 
       # TODO: this isn't an array sometimes??
       #
-      window.activePlacerefs = @filteredFeatures
+      window.filteredFeatures = @filteredFeatures
       window.filteredBounds = L.featureGroup(@filteredFeatures).getBounds()
       map.fitBounds(filteredBounds)
       # TODO:
@@ -56,6 +58,7 @@
     zoomTo: (what, geom) ->
       # TODO: differentiate between hood (point) and borough (polygon)
       if what == "area"
+        console.log 'zoomTo geom:', geom
         marker = $idToFeature.areas[geom.get("id")];
         mbounds = marker.getBounds()
         map.fitBounds(mbounds)
@@ -107,7 +110,7 @@
       London = [51.5120, -0.0928]
       # London = [51.5120, -0.1728]
 
-      this.map.addLayer(osmLayer);
+      # this.map.addLayer(osmLayer);
       # places open, authors open viewports
       this.map.setView(London, 12);
 
@@ -125,11 +128,11 @@
     window.idMapper = $idToFeature
 
     ingestAreas: (areas) ->
-      # console.log 'ingestAreas', areas
+      console.log 'ingestAreas', areas
       # @idToFeature = {}
       @features = []
       $.each areas.models, (i, a) =>
-        geom = a.attributes.geom_wkt
+        geom = a.attributes.geom_poly_wkt
         aid = a.get("id")
         # if a.get("area_type") == "hood"
         #   feature = L.circleMarker(
@@ -166,9 +169,11 @@
       $.each placerefs.models, (i, pl) =>
         geom = pl.attributes.geom_wkt
         prid = pl.get("placeref_id")
-        if geom.substr(0,10) == 'MULTIPOINT'
+        if geom.substr(0,5) == 'POINT'
+          # console.log geom
           feature = L.circleMarker(
-            swap(wellknown(geom).coordinates[0]),
+            swap(wellknown(geom).coordinates),
+            # swap(wellknown(geom).coordinates[0]),
             @stylePoints(pl) )
           feature.model = pl
           feature.bindPopup(
@@ -190,7 +195,8 @@
           })
           feature.model = pl
           $idToFeature.placerefs[prid] = feature
-          @features.push feature
+          # CHECK: lines in @features defeats spatial query
+          # @features.push feature
 
         # TODO: visible only on hover in text
         else if geom.substr(0,12) == 'MULTIPOLYGON'
@@ -204,7 +210,7 @@
           # feature.options.id = prid
           $idToFeature.placerefs[prid] = feature
           # this.idToFeature[prid] = feature
-          @features.push feature
+          # @features.push feature
 
 
       @placerefs = L.featureGroup(@features)

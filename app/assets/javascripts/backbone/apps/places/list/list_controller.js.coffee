@@ -4,7 +4,7 @@
 
     startPlaces: ->
     # get areas here, used to aggregate & navigate places/placerefs
-      console.log 'startPlaces()'
+      # console.log 'startPlaces()'
 
       App.request "area:entities", (areas) =>
         # console.log areas

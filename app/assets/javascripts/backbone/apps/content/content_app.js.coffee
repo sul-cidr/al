@@ -10,7 +10,7 @@
 
   API =
     startContent: ->
-      console.log ' in AL.ContentApp.API.startContent()'
+      # console.log ' in AL.ContentApp.API.startContent()'
       AL.ContentApp.Show.Controller.startContent()
 
     startAuthors: ->

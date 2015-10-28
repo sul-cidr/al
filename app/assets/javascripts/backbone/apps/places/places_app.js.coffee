@@ -19,8 +19,8 @@
       PlacesApp.Show.Controller.showAreaSummary(activePlacerefs)
 
     # these go and do a spatial filter
-    showArea: (id) ->
-      PlacesApp.Show.Controller.showArea(id)
+    showArea: (area) ->
+      PlacesApp.Show.Controller.showArea(area)
     # showBorough: (id) ->
     #   PlacesApp.Show.Controller.showBorough(id)
 
@@ -34,14 +34,9 @@
 
   App.vent.on "area:show", (area) ->
     id = area.get("id")
-    if id >= 95
-      console.log 'places_app area:show', id
-      Backbone.history.navigate("boroughs/" + id)
-      API.showBorough(id)
-    else
-      console.log 'places_app area:show', id
-      Backbone.history.navigate("hoods/" + id)
-      API.showHood(id)
+    console.log 'area:show triggered', id
+    Backbone.history.navigate("areas/" + id)
+    API.showArea(area)
 
   App.vent.on "placerefs:filtered", (activePlacerefs) ->
     # CHECK: placeref filtering happens from both directions

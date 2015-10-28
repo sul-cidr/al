@@ -59,14 +59,17 @@
       # else
       MapApp.Show.Controller.zoomTo 'area', area
 
-      bounds = turf.polygon(wellknown(area.get("geom_wkt")).coordinates[0])
-
+      window.bounds = turf.polygon(wellknown(area.get("geom_poly_wkt")).coordinates)
+      console.log 'bounds, area: ' + bounds.geometry.coordinates, turf.area(bounds)
       @filterByArea "area", bounds
 
-    filterByArea: (type, bounds) ->
-      # to setFilter(area)
+    filterByArea: (type, b) ->
+      window.counter = 0
       MapApp.Show.Controller.setFilter 'area', (placeref) ->
-        turf.inside( turf.point(wellknown(placeref.get("geom_wkt")).coordinates[0]), bounds )
+        # console.log turf.point( wellknown(placeref.attributes.geom_wkt).coordinates )
+        counter += 1
+        turf.inside( turf.point(wellknown(placeref.get("geom_wkt")).coordinates), b )
+        # turf.inside( turf.point(wellknown(placeref.get("geom_wkt")).coordinates[0]), bounds )
 
     clearFilters: ->
       $("#place_passages_region").fadeOut("slow")

@@ -29,12 +29,12 @@
     }
 
     areaByRoute: ->
-      # CHECK: uses trigger -> router -> controller
+      # 
       window.activePlace = this.model
       area = this.model
       id = area.get("id")
 
-      AL.trigger("area:show", id)
+      App.vent.trigger("area:show", area)
 
       # if area.get("area_type") == "borough"
       #   PlacesApp.Show.Controller.showBorough id
