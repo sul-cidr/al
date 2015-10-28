@@ -12,7 +12,7 @@
 
         @layout.on "show", =>
           @showTitle()
-          @showNavmap()
+          # @showNavmap()
           @listAreas areas
 
         # App.vent.trigger "areas:list", areas

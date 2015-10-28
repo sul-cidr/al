@@ -110,16 +110,16 @@
       London = [51.5120, -0.0928]
       # London = [51.5120, -0.1728]
 
-      this.map.addLayer(osmLayer);
+      # this.map.addLayer(osmLayer);
       # places open, authors open viewports
       this.map.setView(London, 12);
 
     stylePoints: (feature) ->
       # console.log feature
       if feature.get("placeref_type") == "bio"
-        return mapStyles.point_bio
+        return mapStyles.point_bio.start
       else if feature.get("placeref_type") == "work"
-        return mapStyles.point_work
+        return mapStyles.point_work.start
       # else if feature.get("area_type") == "hood"
       #   return mapStyles.point_hood
 
@@ -193,10 +193,12 @@
             onEachFeature: (feature, layer) ->
               layer.bindPopup pl.get("prefname")
           })
+          # CHECK: neither of these actually do anything
           feature.model = pl
+          feature.options.id = prid
           $idToFeature.placerefs[prid] = feature
           # CHECK: lines in @features defeats spatial query
-          # @features.push feature
+          @features.push feature
 
         # TODO: visible only on hover in text
         else if geom.substr(0,12) == 'MULTIPOLYGON'
@@ -240,44 +242,53 @@
       window.features = @features
 
     # TODO: better highlight/unhighlight system
+    # CHECK: why trigger->map_app->controller->@highlightFeature ?
     # triggered from map
     onHighlightFeature: (e) ->
-      App.vent.trigger('highlight', e.layer.options.id);
-      e.layer.setStyle({"weight":4, "color": "#ff8c00", "radius": 8})
-      # console.log e.layer.options
-      # e.layer.openPopup()
+      color = e.layer.options.color
+      id = e.layer.options.id
+      # console.log 'e', e.layer
+      window.active = e
+      if e.layer.options.color == "green"
+        e.layer.setStyle({"color":"orange", "weight":6})
+      else if e.layer.options.color == "blue"
+        @highlightFeature('workplace', id)
+      else
+        @highlightFeature('bioplace', id)
 
     onUnhighlightFeature: (e) ->
-      App.vent.trigger('unhighlight', e.layer.options.id);
-      e.layer.setStyle mapStyles.point_bio
-      # e.layer.closePopup()
-
-    onSelectFeature: (e) ->
-      App.vent.trigger('select', e.layer.options.id);
-      e.layer.openPopup()
+      color = e.layer.options.color
+      id = e.layer.options.id
+      if color == "orange"
+        e.layer.setStyle({"color":"green", "weight":4})
+      else if color == "blue"
+        @unhighlightFeature('workplace', id)
+      else
+        @unhighlightFeature('bioplace', id)
 
     # triggered from passages, area list
     highlightFeature: (what, id) ->
-      # console.log 'highlightFeature', id
-      if what == "placeref"
-        marker = $idToFeature.placerefs[id];
-        marker.setStyle(mapStyles.features.highlight);
-      else if what == "area"
-        marker = $idToFeature.areas[id];
-        marker.setStyle(mapStyles.area.highlight);
+      marker = $idToFeature.placerefs[id];
+      if what == "workplace"
+        marker.setStyle(mapStyles.point_work.highlight);
+      else if what == "bioplace"
+        marker.setStyle(mapStyles.point_bio.highlight);
+
+
+    unhighlightFeature: (what, id) ->
+      marker = $idToFeature.placerefs[id];
+      if what == "workplace"
+        marker.setStyle(mapStyles.point_work.start);
+      else if what == "bioplace"
+        marker.setStyle(mapStyles.point_bio.start);
 
     unhighlightAll: ->
       # console.log 'unhighlightAll()', @areas
       @areas.setStyle(mapStyles.area.start)
 
-
-    unhighlightFeature: (what, id) ->
-      if what == "placeref"
-        marker = $idToFeature.placerefs[id];
-        marker.setStyle(mapStyles.features.point);
-      else if what == "area"
-        marker = $idToFeature.areas[id];
-        marker.setStyle(mapStyles.area.start);
+    onSelectFeature: (e) ->
+      App.vent.trigger('placeref:select', e.layer.options.id);
+      e.layer.openPopup()
 
     selectFeature: (what, id) ->
       marker = $idToFeature.placerefs[id];
