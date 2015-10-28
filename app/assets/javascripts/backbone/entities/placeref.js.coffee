@@ -10,12 +10,15 @@
   placerefs = new Entities.PlacerefCollection()
 
   API =
-    # all placeref: not especially useful
+    # all placerefs less bio not yet mapped to author/work
     getPlacerefEntities: (cb) ->
       # placerefs = new Entities.PlacerefCollection()
       placerefs.fetch
         success: ->
-          # console.log 'all '+placerefs.models.length+' placerefs at first'
+          filter = _.filter(placerefs.models,(item) ->
+            item.get("author_id") > -1;
+          )
+          placerefs.reset(filter)
           cb placerefs
 
   App.reqres.setHandler "placeref:entities", (cb) ->
