@@ -1,6 +1,6 @@
 <div id="content_pills" class="navbar">
   <ul class="nav nav-pills">
-    <li value="authors" class="active" id="authors_pill">Authors</li>
-    <li value="places" id="places_pill">Places</li>
+    <li value="authors" class="active" id="authors_pill">AUTHORS</li>
+    <li value="places" id="places_pill">PLACES</li>
   </ul>
 <div>

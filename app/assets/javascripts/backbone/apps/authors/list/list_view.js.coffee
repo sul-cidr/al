@@ -4,10 +4,10 @@
     template: "authors/list/templates/list_layout"
 
     regions:
-      headerRegion: "#title-region"
-      dimensionsRegion: "#dimensions-region"
-      categoriesRegion: "#categories-region"
-      authorlistRegion: "#authorlist-region"
+      headerRegion: "#title_region"
+      dimensionsRegion: "#dimensions_region"
+      categoriesRegion: "#categories_region"
+      authorlistRegion: "#authorlist_region"
 
   class List.Title extends App.Views.ItemView
     template: "authors/list/templates/_title"

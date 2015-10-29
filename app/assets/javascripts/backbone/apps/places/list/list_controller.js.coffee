@@ -12,7 +12,7 @@
 
         @layout.on "show", =>
           @showTitle()
-          # @showNavmap()
+          @showNavmap()
           @listAreas areas
 
         # App.vent.trigger "areas:list", areas
@@ -48,18 +48,3 @@
 
     getLayoutView: ->
       new List.Layout
-
-    togglePanel: ->
-      # AL.vent.trigger("map:reset")
-      # console.log 'Places togglePanel()'
-      xpos = ($(window).width() - 350) - $("#places-region").offset().left
-      if xpos == 0
-        # places panel is open
-        $("#places-region").animate { 'right': -($("#places-region").width() - 15) }, 500
-        App.vent.trigger("places-panel:close")
-        $(".toggle-places").removeClass("hidden")
-      else if $("#places-region").offset().left > $(window).width() - 350
-        # places panel is closed
-        $("#places-region").animate { 'right': 0}, 500
-        App.vent.trigger("places-panel:open")
-        $(".toggle-places").addClass("hidden")

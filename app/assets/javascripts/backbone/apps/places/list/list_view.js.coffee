@@ -4,9 +4,9 @@
     template: "places/list/templates/list_layout"
 
     regions:
-      titleRegion: "#title-region"
-      navmapRegion: "#navmap-region"
-      arealistRegion: "#arealist-region"
+      titleRegion: "#title_region"
+      navmapRegion: "#navmap_region"
+      arealistRegion: "#arealist_region"
 
   class List.Title extends App.Views.ItemView
     template: "places/list/templates/_title"
@@ -29,7 +29,7 @@
     }
 
     areaByRoute: ->
-      # 
+      #
       window.activePlace = this.model
       area = this.model
       id = area.get("id")

@@ -1,4 +1,5 @@
 <div id="header">
     <span class="header-right">About</span>
-		<h2 class="muted">Authorial London</h2>
+    <span ><img style="display:block; margin:auto;" src="assets/images/title-drop01.png"/></span>
+		<!-- <h2 class="muted">Authorial London</h2> -->
 </div>

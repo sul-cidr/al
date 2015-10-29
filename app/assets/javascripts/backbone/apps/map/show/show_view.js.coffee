@@ -197,8 +197,9 @@
           feature.model = pl
           feature.options.id = prid
           $idToFeature.placerefs[prid] = feature
+          
           # CHECK: lines in @features defeats spatial query
-          @features.push feature
+          # @features.push feature
 
         # TODO: visible only on hover in text
         else if geom.substr(0,12) == 'MULTIPOLYGON'

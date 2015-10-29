@@ -37,8 +37,8 @@
   App.addInitializer ->
     # console.log 'App initialized'
     App.addRegions
-      headerRegion: '#header-region'
-      mapRegion: '#map-region'
+      headerRegion: '#header_region'
+      mapRegion: '#map_region'
       contentRegion: '#content_region'
       authorsRegion:
         selector: '#authors_region'

@@ -1,6 +1,11 @@
 
-#content_region {
-  background: #eeeee0;
+#content_nav_region {
+  background: palegoldenrod;
+  padding-top: 3px;
+  padding-left: 65px;
+  li {
+    margin-left: 15px;
+  }
 }
 .ui-tabs-vertical { width: 320px; }
 // .ui-tabs-vertical { width: 55em; }

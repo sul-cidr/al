@@ -34,19 +34,17 @@
       })
 
     # triggers area:focus to get placerefs for area
-    showArea: (area) ->
-      console.log 'ctrlr: got area', area.get("id")
-      # App.request "borough:hoods", id, (hoods) =>
-        # console.log "ctrlr: got "+hoods.length+" hoods"
+    showArea: (id) ->
+      console.log 'ctrlr: will showArea', id
+      App.request "area:entity", id, (area) =>
 
-      @areaLayout = @getAreaLayout area
-      @areaLayout.on "show", =>
-        # console.log 'areaLayout shown'
-        @showTitle area
-        # @showNav hoods
-        @showPlaceContent area
+        @areaLayout = @getAreaLayout area
+        @areaLayout.on "show", =>
+          # console.log 'areaLayout shown'
+          @showTitle area
+          @showPlaceContent area
 
-        App.vent.trigger "area:focus", area
+          App.vent.trigger "area:focus", area
       # keep showing in the placesRegion for now; areas are one kind of place
       App.placesRegion.show @areaLayout
 

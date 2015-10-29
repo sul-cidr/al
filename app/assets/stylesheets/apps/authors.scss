@@ -14,14 +14,14 @@ h4 {}
   background: #eeeee0;
   border-right: 4px solid #daa500;
 }
-#authors-tab {
+#authors_tab {
   float: right;
   cursor: pointer;
   img { position: absolute; right:0; top: 88px}
 }
 
-// #dimensions-region {  }
-#categories-region { overflow: auto;
+
+#categories_region { overflow: auto;
   border: 1px dotted #993333;
   background: #e0e0e0; padding: 3px;
   margin-right: 8px;
@@ -40,13 +40,17 @@ h4 {}
   background-color: #336699;
   cursor: none;
 }
+
+#dimension_pills {
+  margin-left: 40px;
+}
 // .navbar .nav-pills >li >a { padding: 4px; margin:0;}
 
 /***/
 /* List module */
 /***/
 
-#authorlist-region {
+#authorlist_region {
   max-height: 78%;
   overflow-y: scroll;
   position:absolute;
@@ -59,13 +63,16 @@ h4 {}
 
 .authlist {
   padding:0 6px; margin-top: 6px;
-  // overflow: scroll;
+  overflow: scroll;
   a {text-decoration: none;}
   a:hover {background: yellow;}
   }
 
 catlist {
-  span { font-family: Geneva, Arial;}
+  span {
+    font-family: Geneva, Arial;
+    font-size: 0.85em;
+  }
 }
 
 /***/

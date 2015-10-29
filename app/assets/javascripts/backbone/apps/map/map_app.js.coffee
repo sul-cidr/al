@@ -66,8 +66,8 @@
     filterByArea: (type, b) ->
       window.counter = 0
       MapApp.Show.Controller.setFilter 'area', (placeref) ->
-        # console.log turf.point( wellknown(placeref.attributes.geom_wkt).coordinates )
         counter += 1
+        # console.log turf.point( wellknown(placeref.attributes.geom_wkt).coordinates )
         turf.inside( turf.point(wellknown(placeref.get("geom_wkt")).coordinates), b )
         # turf.inside( turf.point(wellknown(placeref.get("geom_wkt")).coordinates[0]), bounds )
 

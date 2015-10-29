@@ -1,7 +1,7 @@
 <div id="content_nav_region" class="navbar">
   <ul class="nav nav-pills">
-    <li value="authors" id="authors_pill">Authors</li>
-    <li value="places"  class="active" id="places_pill">Places</li>
+    <li value="authors" id="authors_pill">AUTHORS</li>
+    <li value="places" class="active" id="places_pill">PLACES</li>
   </ul>
 </div>
 <div id="authors_region" class="regiondiv" style="display:none;">
