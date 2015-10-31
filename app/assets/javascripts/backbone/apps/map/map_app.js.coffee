@@ -58,18 +58,21 @@
       #   @filterByArea "hood", buffer.features[0]
       # else
       MapApp.Show.Controller.zoomTo 'area', area
+      window.bounds_hood = turf.polygon(wellknown(area.get("geom_poly_wkt")).coordinates)
+      # console.log 'bounds: ' + bounds.geometry.coordinates+', area: '+turf.area(bounds)
+      # either filter here on hood bounds...
+      # or comment and let Show.Controller.zoomTo initiate filtering on viewport
+      MapApp.Show.Controller.filterByArea "area", bounds_hood
 
-      window.bounds = turf.polygon(wellknown(area.get("geom_poly_wkt")).coordinates)
-      console.log 'bounds, area: ' + bounds.geometry.coordinates, turf.area(bounds)
-      @filterByArea "area", bounds
-
-    filterByArea: (type, b) ->
-      window.counter = 0
-      MapApp.Show.Controller.setFilter 'area', (placeref) ->
-        counter += 1
-        # console.log turf.point( wellknown(placeref.attributes.geom_wkt).coordinates )
-        turf.inside( turf.point(wellknown(placeref.get("geom_wkt")).coordinates), b )
-        # turf.inside( turf.point(wellknown(placeref.get("geom_wkt")).coordinates[0]), bounds )
+    #
+    # moved to Show.Controller
+    # filterByArea: (type, b) ->
+    #   window.counter = 0
+    #   MapApp.Show.Controller.setFilter 'area', (placeref) ->
+    #     counter += 1
+    #     # console.log turf.point( wellknown(placeref.attributes.geom_wkt).coordinates )
+    #     turf.inside( turf.point(wellknown(placeref.get("geom_wkt")).coordinates), b )
+    #     # turf.inside( turf.point(wellknown(placeref.get("geom_wkt")).coordinates[0]), bounds )
 
     clearFilters: ->
       $("#place_passages_region").fadeOut("slow")

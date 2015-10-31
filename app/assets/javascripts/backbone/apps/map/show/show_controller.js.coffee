@@ -23,6 +23,18 @@
       # console.log 'zoomTo <'+what+'> fired from controller'
       @mapView.zoomTo what, area
 
+
+    filterByArea: (type, b) ->
+      window.counter = 0
+      @setFilter 'area', (placeref) ->
+      # MapApp.Show.Controller.setFilter 'area', (placeref) ->
+        counter += 1
+        console.log 'viewport bounds?: ', b
+        # console.log turf.point( wellknown(placeref.attributes.geom_wkt).coordinates )
+        # a hood voronoi polygon
+        turf.inside( turf.point(wellknown(placeref.get("geom_wkt")).coordinates), b )
+
+
     # /**
     #  * Unhighlight all; part of map:reset
     #  */

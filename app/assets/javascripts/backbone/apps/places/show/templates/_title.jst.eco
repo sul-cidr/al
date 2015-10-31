@@ -5,7 +5,7 @@
     <!-- pass data_id for unhighlighting during map:reset-->
     <li class="crumb0"><a href="#" data_id="<%= @id %>">Home</a></li>
   </ul>
-  <h3><%= @prefname %></h3>
+  <h3><em>in or near </em><%= @prefname %></h3>
   <!-- <span class="toggle-places">
     <i class="fa fa-exchange"></i>
   </span> -->

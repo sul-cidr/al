@@ -1,3 +1,5 @@
-<div id="places-navmap" class="centered">
-  <img src="assets/images/minimap300w.png" />
+<div id="places_navmap">
+<!-- <div id="places-navmap" class="centered"> -->
+  <h4>place references in or near...</h4>
+  <!-- <img src="assets/images/minimap300w.png" /> -->
 </div>

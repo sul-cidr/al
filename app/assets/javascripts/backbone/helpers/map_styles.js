@@ -29,7 +29,7 @@ var mapStyles = {
     start: {
       "color": "red",
       "weight": 1,
-      "opacity": 0.5,
+      "opacity": 0,
       "fillOpacity": 0
     },
     highlight: {
@@ -37,7 +37,7 @@ var mapStyles = {
       "weight": 2,
       "opacity": 1,
       "fillColor": "yellow",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.3
     }
   },
   point_work: {

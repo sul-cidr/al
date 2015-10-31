@@ -35,7 +35,7 @@
       id = area.get("id")
 
       App.vent.trigger("area:show", area)
-
+      App.vent.trigger('area:unhighlight', id);
       # if area.get("area_type") == "borough"
       #   PlacesApp.Show.Controller.showBorough id
       #   PlacesApp.navigate("boroughs/" + id)

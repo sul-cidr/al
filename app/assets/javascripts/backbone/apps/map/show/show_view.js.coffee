@@ -9,9 +9,7 @@
       # console.log 'filteredFeatures: ', @filteredFeatures
 
     setFilter: (key, evaluator) ->
-      # console.log 'setFilter --> filterAllLayers'
       @filters[key] = evaluator
-      # console.log 'setFilter:', @filters
       @filterAllLayers()
 
     filterLayer: (layer) ->
@@ -19,16 +17,16 @@
       _.each @filters, (evaluator, key) =>
         visible = visible && evaluator(layer.model)
       if visible
-        @map.addLayer layer
+        # @map.addLayer layer
         # console.log 'filterLayer', layer
         @filteredFeatures.push layer
-      else
-        @map.removeLayer layer
+      # don't filter on the map, only for area summaries
+      # else
+      #   @map.removeLayer layer
 
     filterAllLayers: ->
       # console.log '@features in filterAllLayers', @features
       @filteredFeatures = []
-      @latlon = []
       _.each @features, (f) =>
         # console.log f
         @filterLayer(f)
@@ -62,16 +60,12 @@
         marker = $idToFeature.areas[geom.get("id")];
         mbounds = marker.getBounds()
         map.fitBounds(mbounds)
+      window.mbounds = mbounds
 
-      # else if what == "hood"
-      #   # area is a lonlat pair here
-      #   map.setView(geom, 14)
+      # send viewport bounds to filter
+      # comment next out if filtering on hood
+      # Show.Controller.filterByArea "area", mbounds
 
-      # else if what = "cluster"
-
-        # cBounds = L.featureGroup(geom).getBounds()
-        # console.log 'center, in zoomTo', cBounds.getCenter()
-        # map.fitBounds(cBounds)
 
     onDomRefresh: ->
       @initMap()
@@ -128,7 +122,7 @@
     window.idMapper = $idToFeature
 
     ingestAreas: (areas) ->
-      console.log 'ingestAreas', areas
+      # console.log 'ingestAreas', areas
       # @idToFeature = {}
       @features = []
       $.each areas.models, (i, a) =>
@@ -197,7 +191,7 @@
           feature.model = pl
           feature.options.id = prid
           $idToFeature.placerefs[prid] = feature
-          
+
           # CHECK: lines in @features defeats spatial query
           # @features.push feature
 
@@ -269,12 +263,15 @@
 
     # triggered from passages, area list
     highlightFeature: (what, id) ->
+      # console.log what, id
       marker = $idToFeature.placerefs[id];
       if what == "workplace"
         marker.setStyle(mapStyles.point_work.highlight);
       else if what == "bioplace"
         marker.setStyle(mapStyles.point_bio.highlight);
-
+      else if what == "area"
+        marker = $idToFeature.areas[id];
+        marker.setStyle(mapStyles.area.highlight);
 
     unhighlightFeature: (what, id) ->
       marker = $idToFeature.placerefs[id];
@@ -282,6 +279,9 @@
         marker.setStyle(mapStyles.point_work.start);
       else if what == "bioplace"
         marker.setStyle(mapStyles.point_bio.start);
+      else if what == "area"
+        marker = $idToFeature.areas[id];
+        marker.setStyle(mapStyles.area.start);
 
     unhighlightAll: ->
       # console.log 'unhighlightAll()', @areas

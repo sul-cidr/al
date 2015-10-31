@@ -22,6 +22,21 @@
 }
 .place {display: inline-block;}
 
+
+/***/
+/* PlacesApp List module */
+/***/
+
+arealist { padding:0 6px; font-family: Palatino-linotype, Georgia;
+  font-size: 1em;
+  a {text-decoration: none !important; }
+  a:hover {background: lightyellow;}
+}
+
+#places_navmap {
+  h4 {margin-left: 6px; font-style: italic; }
+}
+
 /***/
 /* PlacesApp Show module */
 /***/
@@ -63,10 +78,4 @@
     list-style-type: none;
   }
   ul li { display: inline;}
-}
-
-arealist { padding:0 26px; font-family: Palatino-linotype, Georgia;
-  font-size: 0.9em;
-  a {text-decoration: none !important; }
-  a:hover {background: lightyellow;}
 }
