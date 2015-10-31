@@ -26,13 +26,16 @@
 
     filterByArea: (type, b) ->
       window.counter = 0
+      console.log "bounds to turf from hoods:", b
       @setFilter 'area', (placeref) ->
       # MapApp.Show.Controller.setFilter 'area', (placeref) ->
         counter += 1
-        console.log 'viewport bounds?: ', b
         # console.log turf.point( wellknown(placeref.attributes.geom_wkt).coordinates )
-        # a hood voronoi polygon
+
+        # b is a hood voronoi polygon geojson object a
         turf.inside( turf.point(wellknown(placeref.get("geom_wkt")).coordinates), b )
+        # b is a viewport
+
 
 
     # /**

@@ -34,32 +34,18 @@
           @filterByAuthors author_ids, id
         # console.log 'cat '+id+ ': ', author_ids
 
-    # not in use
-    # filterForWork: (work) ->
-    #   # console.log 'map.API filterForWork()', work.get("work_id")
-    #   MapApp.Show.Controller.setFilter 'work', (placeref) ->
-    #     placeref.get("work_id") == work.get("work_id")
-
     focusArea: (area) ->
-      # No more hierarchy - one level of areas
+      #
+      # area model in list has been clicked, need to
+      # 1) zoom to its voronoi extents
+      # 2) get resulting viewport extents\
+      # 3) filter placerefs for viewport w/o filtering map
+      #
 
-      # if area.get("area_type") == "hood"
-      #   area = area
-      #   parent_id = area.get("parent_id")
-      #   # TODO: proper breadcrumbs
-      #   console.log 'map focus ' + area.get("name") + '; parent_id:', parent_id
-      #   turfpoint = turf.point(wellknown(area.get("geom_wkt")).coordinates)
-      #
-      #   # make buffer, zoom to it, filter features
-      #   buffer = turf.buffer( turfpoint, 1, 'kilometers' )
-      #
-      #   MapApp.Show.Controller.zoomTo 'hood', swap(turf.centroid(buffer).geometry.coordinates)
-      #
-      #   @filterByArea "hood", buffer.features[0]
-      # else
-      MapApp.Show.Controller.zoomTo 'area', area
       window.bounds_hood = turf.polygon(wellknown(area.get("geom_poly_wkt")).coordinates)
+      MapApp.Show.Controller.zoomTo 'area', area
       # console.log 'bounds: ' + bounds.geometry.coordinates+', area: '+turf.area(bounds)
+
       # either filter here on hood bounds...
       # or comment and let Show.Controller.zoomTo initiate filtering on viewport
       MapApp.Show.Controller.filterByArea "area", bounds_hood

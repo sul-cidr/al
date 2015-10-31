@@ -1,5 +1,5 @@
 var histYears = function (years) {
-
+  console.log(years)
   var formatCount = d3.format("4d");
 
   var margin = {top: 10, right: 30, bottom: 20, left: 10},
@@ -7,7 +7,8 @@ var histYears = function (years) {
       height = 80 - margin.top - margin.bottom;
 
   var x = d3.scale.linear()
-      .domain(d3.extent(years))
+      .domain(d3.extent([1475,1978]))
+      // .domain(d3.extent(years))
       .range([0, width]);
   // Generate a histogram using twenty uniformly-spaced bins.
   var data = d3.layout.histogram()

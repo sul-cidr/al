@@ -40,6 +40,7 @@
       # console.log 'center, in filter', filteredBounds.getCenter()
       # @zoomToCluster 'cluster', @filteredFeatures
 
+      # @filteredFeatures used in PlacesApp to render summary
       App.vent.trigger('placerefs:filtered', @filteredFeatures);
 
     removeFilter: (key) ->
@@ -54,17 +55,20 @@
       console.log 'in zoomToCluster'
 
     zoomTo: (what, geom) ->
-      # TODO: differentiate between hood (point) and borough (polygon)
       if what == "area"
+        # geom is an area model; zoom to its voronoi extents
         console.log 'zoomTo geom:', geom
         marker = $idToFeature.areas[geom.get("id")];
         mbounds = marker.getBounds()
         map.fitBounds(mbounds)
       window.mbounds = mbounds
+      # get the bounds of the resulting viewport
+      window.vbounds = map.getBounds()
 
       # send viewport bounds to filter
-      # comment next out if filtering on hood
-      # Show.Controller.filterByArea "area", mbounds
+      # mbounds = markers; vbounds = viewport
+      # Show.Controller.filterByArea "area", turf.polygon(mbounds)
+      # Show.Controller.filterByArea "area", turf.polygon(vbounds)
 
 
     onDomRefresh: ->
