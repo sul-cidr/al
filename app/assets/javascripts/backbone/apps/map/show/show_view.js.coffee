@@ -63,7 +63,10 @@
         map.fitBounds(mbounds)
       window.mbounds = mbounds
       # get the bounds of the resulting viewport
-      window.vbounds = map.getBounds()
+      window.vbounds = turf.polygon([createPolygonFromBounds( map.getBounds() )])
+
+      # run this to filter on viewport
+      # AL.MapApp.Show.Controller.filterByArea "area", vbounds
 
       # send viewport bounds to filter
       # mbounds = markers; vbounds = viewport

@@ -8,6 +8,8 @@
   App.vent.on "category:authors:show", (cat) ->
     API.filterByCategory cat
 
+  App.vent.on "area:focus", (area) ->
+    API.focusArea(area)
 
   API =
     showMap: ->
@@ -41,35 +43,23 @@
       # 2) get resulting viewport extents\
       # 3) filter placerefs for viewport w/o filtering map
       #
+      # hbounds = hood voronoi, mbounds = markers, vbounds = viewport
+      window.area = area
+      window.hbounds = turf.polygon(wellknown(area.get("geom_poly_wkt")).coordinates)
+      console.log 'hbounds from this:', wellknown(area.get("geom_poly_wkt")).coordinates
 
-      window.bounds_hood = turf.polygon(wellknown(area.get("geom_poly_wkt")).coordinates)
       MapApp.Show.Controller.zoomTo 'area', area
-      # console.log 'bounds: ' + bounds.geometry.coordinates+', area: '+turf.area(bounds)
 
-      # either filter here on hood bounds...
-      # or comment and let Show.Controller.zoomTo initiate filtering on viewport
-      MapApp.Show.Controller.filterByArea "area", bounds_hood
-
-    #
-    # moved to Show.Controller
-    # filterByArea: (type, b) ->
-    #   window.counter = 0
-    #   MapApp.Show.Controller.setFilter 'area', (placeref) ->
-    #     counter += 1
-    #     # console.log turf.point( wellknown(placeref.attributes.geom_wkt).coordinates )
-    #     turf.inside( turf.point(wellknown(placeref.get("geom_wkt")).coordinates), b )
-    #     # turf.inside( turf.point(wellknown(placeref.get("geom_wkt")).coordinates[0]), bounds )
+      # run this to filter on hood voronoi bounds...
+      # or comment and let Show.Controller.zoomTo initiate filtering on viewport\
+      MapApp.Show.Controller.filterByArea "area", hbounds
 
     clearFilters: ->
       $("#place_passages_region").fadeOut("slow")
       MapApp.Show.Controller.clearFilters()
-      # map.setView([51.5120, -0.0928], 12)
 
 
   # TODO: part of refactoring for areas - single area:show
-  App.vent.on "area:focus", (area) ->
-    API.focusArea(area)
-
   App.vent.on "work:show", (work) ->
     API.filterForWork work
 

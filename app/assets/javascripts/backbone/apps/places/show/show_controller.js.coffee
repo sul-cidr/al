@@ -35,7 +35,7 @@
 
     # triggers area:focus to get placerefs for area
     showArea: (id) ->
-      console.log 'ctrlr: will showArea', id
+      console.log 'area:focus triggered', id
       App.request "area:entity", id, (area) =>
 
         @areaLayout = @getAreaLayout area
