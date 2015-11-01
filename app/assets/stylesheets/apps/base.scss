@@ -7,33 +7,8 @@ p, h1, h2, h3, h4 {font-family: "Palatino linotype", Georgia;}
 
 .centered {text-align: center;}
 // .right {right: 0;}
-
-.vertical {
-  width: 20px;
-  list-style-type: none;
-  br {
-    line-height: 80%;
-  }
-  li {
-    display: block;
-    float:left;
-    padding-top: 30px;
-    padding-left: 2px;
-  }
-  li.link {
-      color: #336699;
-      border-left: 1px solid grey;
-      border-bottom: 1px solid grey;
-      cursor:pointer;
-      // font-weight: lighter;
-    }
-  li.strong {
-      font-weight: bold;
-      color: #993333;
-      border-right: 1px solid grey;
-
-    }
-}
+.crumb { font-size: .8em;}
+.strong { font-weight: bold;}
 
 .fa-exchange {font-size:.8em; color: gray;}
 

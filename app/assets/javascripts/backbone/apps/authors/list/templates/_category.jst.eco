@@ -1,1 +1,5 @@
-<a class = "category" href="#"><%= @name  %></a>;
+<% if @name == "All": %>
+<a class="category active" href="#"><%= @name  %></a>;
+<% else: %>
+<a class="category" value="<%=@name%>" href="#"><%= @name  %></a>;
+<% end %>

@@ -3,7 +3,7 @@
 
   class PlacesApp.Router extends Marionette.AppRouter
     appRoutes:
-      # "places": "startPlaces"
+      "areas": "startPlaces"
       "areas/:id": "showArea"
       # "hoods/:id": "showHood"
 
@@ -11,6 +11,7 @@
     startPlaces: ->
       # console.log 'API.startPlaces fired'
       PlacesApp.List.Controller.startPlaces()
+      Backbone.history.navigate("areas")
 
     listAreas: ->
       PlacesApp.List.Controller.listAreas()

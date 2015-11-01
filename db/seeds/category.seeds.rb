@@ -35,5 +35,10 @@ Category.create([
 {name:"Low",dim:"standing"},
 {name:"Middle",dim:"standing"},
 {name:"Upper",dim:"standing"}
+# ,
+# {name:"All",dim:"community"},
+# {name:"All",dim:"form"},
+# {name:"All",dim:"genre"},
+# {name:"All",dim:"standing"}
 
 ])

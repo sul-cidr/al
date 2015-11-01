@@ -17,25 +17,26 @@
     onToggle:
       AL.PlacesApp.List.Controller.togglePanel
 
-    goBorough: (e) ->
-      # step back up
-
-      # id = App.request("borough:active:model").get("id")
-      id = Number($(e.currentTarget).context.attributes.data_id.value)
-      # console.log 'navigate to', "boroughs/"+id
-      console.log 'fragment', Backbone.history.fragment
-      # Backbone.history.navigate("boroughs/"+id, true)
-      App.vent.trigger "area:focus", App.request("area:entity", id)
-
     goHome: (e) ->
-      # TODO: clear unhighlight area, zoom out
+      # TODO:
       # console.log 'goHome()', $(e.currentTarget)
+      # clear the vis
+      $("#place_content_region").hide()
+      # get id to unhighlight
       id = Number($(e.currentTarget).context.attributes.data_id.value)
       # console.log 'goHome() id=', id
       App.vent.trigger("map:reset", id)
       App.vent.trigger("area:unhighlightAll", id)
       # App.vent.trigger("area:unhighlight", id)
-      Backbone.history.navigate("places", true)
+      Backbone.history.navigate("places")
+
+    # goBorough: (e) ->
+    #   # id = App.request("borough:active:model").get("id")
+    #   id = Number($(e.currentTarget).context.attributes.data_id.value)
+    #   # console.log 'navigate to', "boroughs/"+id
+    #   console.log 'fragment', Backbone.history.fragment
+    #   # Backbone.history.navigate("boroughs/"+id, true)
+    #   App.vent.trigger "area:focus", App.request("area:entity", id)
 
   class Show.Hood extends App.Views.ItemView
     template: "places/show/templates/_hood"

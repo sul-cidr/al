@@ -2,18 +2,18 @@
   @startWithParent = false
 
   # map.setActiveArea('viewport-authors')
-  App.vent.on "places-panel:open", ->
   # App.vent.on "places-panel:open", ->
-    # console.log 'authors_app heard places-panel:close'
-    AuthorsApp.List.Controller.togglePanel()
-    $(".toggle-a  uthors").removeClass("hidden")
-    # set initial map shift
-    map.setActiveArea('viewport-places')
-    map.setView([51.5120, -0.0928], 12)
+  # # App.vent.on "places-panel:open", ->
+  #   # console.log 'authors_app heard places-panel:close'
+  #   AuthorsApp.List.Controller.togglePanel()
+  #   $(".toggle-a  uthors").removeClass("hidden")
+  #   # set initial map shift
+  #   map.setActiveArea('viewport-places')
+  #   map.setView([51.5120, -0.0928], 12)
 
   class AuthorsApp.Router extends Marionette.AppRouter
     appRoutes:
-      # "": "startAuthors"
+      "authors": "startAuthors"
       "authors/:author_id": "passAuthorModel"
       "works/:author_id": "authorWorks"
       "workpassages/:work_id": "workPassages"

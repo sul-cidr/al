@@ -55,6 +55,15 @@
     }
 
     filterAuthors: (e) ->
+      # $("catlist a").removeClass("active")
+      # $(e.currentTarget).addClass("active")
+      seltext =
+        '<span class="strong">'+
+        $(e.currentTarget).context.innerHTML +
+        '</span><span class="right crumb"><a href="#">Clear filter</a></span>'
+      console.log $(e.currentTarget).context
+      $("#selected_cat").html(seltext)
+
       cat = this.model
       id = cat.attributes.id
       console.log 'filter for cat', id
@@ -69,19 +78,21 @@
     template: "authors/list/templates/_categories"
     className: 'categories'
     childView: List.Category
-    childViewContainer: "catlist"
-    events: {"click a.all": "removeFilter" }
+    childViewContainer: "#catlist"
+    events: {
+      "click #selected_cat a": "removeFilter"
+    }
     filter: (child, index, collection) ->
       # filter genre for initial display
       child.get('dim') == 'genre'
     onChildviewAuthorsFiltered: ->
       # console.log 'bubbled up to List.Categories view'
     removeFilter: (e) ->
-      console.log 'remove filter'
+      # console.log 'remove filter'
+      $("#selected_cat").remove()
       App.request "authors:category", 0, (authors) =>
         List.Controller.listCatAuthors(authors, 0)
         App.vent.trigger("map:reset")
-
 
   class List.Empty extends App.Views.ItemView
     template: "authors/list/templates/_empty"

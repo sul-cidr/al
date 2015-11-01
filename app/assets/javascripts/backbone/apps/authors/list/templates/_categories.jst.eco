@@ -1,2 +1,4 @@
-<catlist><b><a class="all" href="#">All</a></b>; </catlist>
-<!-- <p>categories per dimension</p> -->
+<div id="catlist">
+  <!-- <a class="active" href="#">All</a>;  -->
+</div>
+<div id="selected_cat"></div>
