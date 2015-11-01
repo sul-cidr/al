@@ -19,9 +19,11 @@
 //= require backbone.marionette/lib/backbone.marionette.min
 
 //= require leaflet/dist/leaflet
+// require mapbox.js/mapbox.uncompressed
 //= require wellknown/wellknown
 //= require leaflet-omnivore/leaflet-omnivore.min
 //= require leaflet-active-area/src/leaflet.activearea
+//= require leaflet.markercluster/dist/leaflet.markercluster
 //= require jquery-ui/jquery-ui.min
 //= require turf/turf
 //= require crossfilter/crossfilter.min

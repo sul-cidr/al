@@ -39,6 +39,7 @@
     "nprogress": "~0.2.0",
     "turf": "~2.0.2",
     "underscore": "~1.8.3",
-    "wellknown": "~0.4.0"
+    "wellknown": "~0.4.0",
+    "leaflet.markercluster": "~0.4.0"
   }
 }

@@ -22,7 +22,8 @@
         @filteredFeatures.push layer
       # filter placerefs
       else
-        @map.removeLayer layer
+        @markerClusters.removeLayer layer
+        # @map.removeLayer layer
 
     filterAllLayers: ->
       # console.log '@features in filterAllLayers', @features
@@ -90,7 +91,8 @@
       this.map = L.map('map', {
         zoomControl: false,
         attributionControl: false,
-        fadeAnimation: false
+        fadeAnimation: false,
+        maxZoom: 17
       }).setActiveArea('viewport-authors');
 
       # var map = new L.Map(document.createElement('div')).setActiveArea('activeArea');
@@ -102,6 +104,7 @@
 
       this.map.addControl(zoomControl);
 
+      # mapboxLayer =
       # OSM base layer.
       osmLayer = L.tileLayer(
         'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
@@ -111,9 +114,9 @@
       London = [51.5120, -0.0928]
       # London = [51.5120, -0.1728]
 
-      # this.map.addLayer(osmLayer);
+      this.map.addLayer(osmLayer);
       # places open, authors open viewports
-      this.map.setView(London, 12);
+      this.map.setView(London, 12)
 
     stylePoints: (feature) ->
       # console.log feature
@@ -216,8 +219,13 @@
           # this.idToFeature[prid] = feature
           # @features.push feature
 
-
       @placerefs = L.featureGroup(@features)
+
+
+      @markerClusters = L.markerClusterGroup();
+
+      @markerClusters.addLayer(@placerefs);
+
 
       # Highlight.
       @placerefs.on(
@@ -237,11 +245,15 @@
         this.onSelectFeature.bind(this)
       );
 
-      @placerefs.addTo(@map)
+      # clusters?
+      @markerClusters.addTo(@map)
+      # @placerefs.addTo(@map)
       # @map.fitBounds(@group)
+
       window.map = @map
       window.placerefs = @placerefs
       window.features = @features
+      window.markers = @markerClusters
 
     # TODO: better highlight/unhighlight system
     # CHECK: why trigger->map_app->controller->@highlightFeature ?
