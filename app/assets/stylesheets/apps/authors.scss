@@ -6,20 +6,15 @@
 
 h4 {}
 
-#authors-region {
-  // set activearea in Map.Show.View.initMap
-  left: 0;
-  display: none;
-  // left: -330px;
-  background: #eeeee0;
-  border-right: 4px solid #daa500;
+#authors_region {
+  // background: #eeeee0;
+  // border-right: 4px solid #daa500;
 }
 #authors_tab {
   float: right;
   cursor: pointer;
   img { position: absolute; right:0; top: 88px}
 }
-
 
 .categories {
   // border: 1px dotted #993333;

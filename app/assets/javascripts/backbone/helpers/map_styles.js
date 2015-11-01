@@ -20,16 +20,16 @@ var mapStyles = {
     "opacity": 0.85
   },
   area_placeref: {
-    "color": "red",
+    "color": "green",
     "weight": 1,
-    "opacity": 0,
-    "fillOpacity": 0
+    "opacity": 0.3,
+    "fillOpacity": 0.3
   },
   area: {
     start: {
       "color": "red",
       "weight": 1,
-      "opacity": 0,
+      "opacity": 0.3,
       "fillOpacity": 0
     },
     highlight: {

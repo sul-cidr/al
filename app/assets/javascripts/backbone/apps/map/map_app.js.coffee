@@ -8,8 +8,8 @@
   App.vent.on "category:authors:show", (cat) ->
     API.filterByCategory cat
 
-  App.vent.on "area:focus", (area) ->
-    API.focusArea(area)
+  App.vent.on "place:focus", (area) ->
+    API.focusPlace(area)
 
   API =
     showMap: ->
@@ -26,7 +26,7 @@
         author_ids.indexOf(placeref.get("author_id")) > -1
 
     filterByCategory: (cat) ->
-      # build collection of authorhs having 'cat'
+      # build collection of authors having 'cat'
       id = cat.get("id")
       author_ids = []
       App.request "authors:category", id, (authors) =>
@@ -34,9 +34,9 @@
         _.each authors.models, (a) =>
           author_ids.push a.get("author_id")
           @filterByAuthors author_ids, id
-        # console.log 'cat '+id+ ': ', author_ids
+        console.log 'cat '+id+ ': ', author_ids
 
-    focusArea: (area) ->
+    focusPlace: (area) ->
       #
       # area model in list has been clicked, need to
       # 1) zoom to its voronoi extents

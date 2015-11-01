@@ -34,21 +34,21 @@
       })
 
     # triggers area:focus to get placerefs for area
-    showArea: (id) ->
-      console.log 'area:focus triggered', id
+    showPlace: (id) ->
+      console.log 'place:focus triggered', id
       App.request "area:entity", id, (area) =>
 
-        @areaLayout = @getAreaLayout area
-        @areaLayout.on "show", =>
+        @placeLayout = @getPlaceLayout area
+        @placeLayout.on "show", =>
           # console.log 'areaLayout shown'
           @showTitle area
           @showPlaceContent area
 
-          App.vent.trigger "area:focus", area
+          App.vent.trigger "place:focus", area
       # keep showing in the placesRegion for now; areas are one kind of place
-      App.placesRegion.show @areaLayout
+      App.placesRegion.show @placeLayout
 
-    getAreaLayout: (area) ->
+    getPlaceLayout: (area) ->
       new Show.Layout ({
         model: area
       })
@@ -56,7 +56,7 @@
     showTitle: (area) ->
       # console.log 'in showTitle', area.get("name")
       titleView = @getTitleView area
-      @areaLayout.titleRegion.show titleView
+      @placeLayout.titleRegion.show titleView
 
     getTitleView: (area) ->
       new Show.Title
@@ -66,7 +66,7 @@
     showPlaceContent: (area) ->
       # console.log 'showPlaceContent', area
       @contentView = @getContentView area
-      @areaLayout.placeContentRegion.show @contentView
+      @placeLayout.placeContentRegion.show @contentView
 
     getContentView: (area) ->
       new Show.Content
@@ -76,7 +76,7 @@
     # generates summary by author
     # TODO: by decade
     # TODO: why is this function triggered continually?
-    showAreaSummary: (activePlacerefs) ->
+    showPlaceSummary: (activePlacerefs) ->
       window.wPlacerefs = []
       window.worksYears = []
       @bPlacerefs = []
@@ -124,19 +124,19 @@
     #   new Show.Hoods
     #     collection: hoods
 
-
-    showHood: (id) ->
-      App.request "area:entity", id, (hood) =>
-        parent = hood.get("parent_id")
-        console.log 'ctrlr: got hood ' + hood.get("name") + '; parent is ', hood.get("parent_id")
-        # let map know
-
-        @areaLayout = @getAreaLayout hood
-        @areaLayout.on "show", =>
-          # console.log 'areaLayout shown'
-          @showTitle hood
-          @showPlaceContent hood
-
-          App.vent.trigger "area:focus", hood
-        # keep showing in the placesRegion for now; areas are one kind of place
-        App.placesRegion.show @areaLayout
+    #
+    # showHood: (id) ->
+    #   App.request "area:entity", id, (hood) =>
+    #     parent = hood.get("parent_id")
+    #     console.log 'ctrlr: got hood ' + hood.get("name") + '; parent is ', hood.get("parent_id")
+    #     # let map know
+    #
+    #     @areaLayout = @getAreaLayout hood
+    #     @areaLayout.on "show", =>
+    #       # console.log 'areaLayout shown'
+    #       @showTitle hood
+    #       @showPlaceContent hood
+    #
+    #       App.vent.trigger "area:focus", hood
+    #     # keep showing in the placesRegion for now; areas are one kind of place
+    #     App.placesRegion.show @areaLayout

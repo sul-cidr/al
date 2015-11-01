@@ -20,9 +20,9 @@
         # @map.addLayer layer
         # console.log 'filterLayer', layer
         @filteredFeatures.push layer
-      # don't filter on the map, only for area summaries
-      # else
-      #   @map.removeLayer layer
+      # filter placerefs
+      else
+        @map.removeLayer layer
 
     filterAllLayers: ->
       # console.log '@features in filterAllLayers', @features
@@ -189,7 +189,7 @@
 
         else if geom.substr(0,15) == 'MULTILINESTRING'
           feature =  new L.GeoJSON(wellknown(geom), {
-            style: mapStyles.street,
+            style: mapStyles.street
             # options: {"model":pl,"id":prid}
             onEachFeature: (feature, layer) ->
               layer.bindPopup pl.get("prefname")

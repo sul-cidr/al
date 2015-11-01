@@ -10,12 +10,7 @@
   class Show.Title extends App.Views.ItemView
     template: "places/show/templates/_title"
     events:
-      "click .toggle-places": "onToggle"
       "click .crumb0 a": "goHome"
-      "click .crumb1 a": "goBorough"
-
-    onToggle:
-      AL.PlacesApp.List.Controller.togglePanel
 
     goHome: (e) ->
       # TODO:
@@ -28,7 +23,7 @@
       App.vent.trigger("map:reset", id)
       App.vent.trigger("area:unhighlightAll", id)
       # App.vent.trigger("area:unhighlight", id)
-      Backbone.history.navigate("places")
+      Backbone.history.navigate("places", true)
 
     # goBorough: (e) ->
     #   # id = App.request("borough:active:model").get("id")
@@ -38,31 +33,31 @@
     #   # Backbone.history.navigate("boroughs/"+id, true)
     #   App.vent.trigger "area:focus", App.request("area:entity", id)
 
-  class Show.Hood extends App.Views.ItemView
-    template: "places/show/templates/_hood"
-    tagName: "span"
-    events: {
-      "click a": "hoodByRoute"
-      # "mouseenter a": "onAreaEnter"
-      # "mouseleave a": "onAreaLeave"
-    }
-
-    hoodByRoute: ->
-      window.activeHood = this.model
-      @activeHood = this.model
-      # console.log @activeHood
-      id = @activeHood.get("id")
-      Backbone.history.navigate("hoods/"+id, true)
-      $("#crumbs_places ul").append(
-        '>> <li class="crumb1"><a href="#" data_id="'+@activeHood.get("parent_id")+'">parent</a></li>'
-      );
-
-  class Show.Hoods extends App.Views.CompositeView
-    template: "places/show/templates/_hoods"
-    childView: Show.Hood
-    emptyView: Show.Empty
-    childViewContainer: "hoodslist"
-
+  # class Show.Hood extends App.Views.ItemView
+  #   template: "places/show/templates/_hood"
+  #   tagName: "span"
+  #   events: {
+  #     "click a": "hoodByRoute"
+  #     # "mouseenter a": "onAreaEnter"
+  #     # "mouseleave a": "onAreaLeave"
+  #   }
+  #
+  #   hoodByRoute: ->
+  #     window.activeHood = this.model
+  #     @activeHood = this.model
+  #     # console.log @activeHood
+  #     id = @activeHood.get("id")
+  #     Backbone.history.navigate("hoods/"+id, true)
+  #     $("#crumbs_places ul").append(
+  #       '>> <li class="crumb1"><a href="#" data_id="'+@activeHood.get("parent_id")+'">parent</a></li>'
+  #     );
+  #
+  # class Show.Hoods extends App.Views.CompositeView
+  #   template: "places/show/templates/_hoods"
+  #   childView: Show.Hood
+  #   emptyView: Show.Empty
+  #   childViewContainer: "hoodslist"
+  #
   class Show.PlacePassage extends App.Views.ItemView
     template: "places/show/templates/_passage"
     tagName: "p"

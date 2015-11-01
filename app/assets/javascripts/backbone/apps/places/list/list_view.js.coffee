@@ -34,7 +34,7 @@
       area = this.model
       id = area.get("id")
 
-      App.vent.trigger("area:show", area)
+      App.vent.trigger("place:show", area)
       App.vent.trigger('area:unhighlight', id);
       # if area.get("area_type") == "borough"
       #   PlacesApp.Show.Controller.showBorough id

@@ -2,8 +2,5 @@
   <!-- TODO: use Backbone.history.navigate here -->
   <p class="crumb-authors">Home</p>
   <h3><%= @prefname %></h3>
-  <span class="toggle-authors hidden">
-    <i class="fa fa-exchange"></i>
-  </span>
   <hr/>
 </div>

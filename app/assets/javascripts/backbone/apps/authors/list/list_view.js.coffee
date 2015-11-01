@@ -55,24 +55,27 @@
     }
 
     filterAuthors: (e) ->
-      # $("catlist a").removeClass("active")
-      # $(e.currentTarget).addClass("active")
+      # select a category, filter authors and map
+
+      # set up 'clear"'
       seltext =
         '<span class="strong">'+
         $(e.currentTarget).context.innerHTML +
         '</span><span class="right crumb"><a href="#">Clear filter</a></span>'
-      console.log $(e.currentTarget).context
       $("#selected_cat").html(seltext)
+
 
       cat = this.model
       id = cat.attributes.id
       console.log 'filter for cat', id
-      App.reqres.setHandler "category:active", ->
-        return cat
-      # CHECK does this need to be in navigate?
+      # get a collection of author models for category
       App.request "authors:category", id, (authors) =>
         List.Controller.listCatAuthors(authors, id)
+
+      # trigger picked up by map_app
       App.vent.trigger "category:authors:show", cat
+      App.reqres.setHandler "category:active", ->
+        return cat
 
   class List.Categories extends App.Views.CompositeView
     template: "authors/list/templates/_categories"

@@ -2,7 +2,7 @@
   <!-- TODO: use Backbone.history.navigate here -->
   <div id="crumbs_places">
   <ul>
-    <li class="crumb0"><a href="#areas" data_id="<%= @id %>">Home</a></li>
+    <li class="crumb0"><a href="#places" data_id="<%= @id %>">Home</a></li>
   </ul>
   <h3><em>in or near </em><%= @prefname %></h3>
   <hr/>

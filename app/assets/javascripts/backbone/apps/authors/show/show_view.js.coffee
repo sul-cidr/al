@@ -20,7 +20,7 @@
 
     goHome: ->
       # console.log 'supposed to go home'
-      Backbone.history.navigate("", true)
+      Backbone.history.navigate("authors", true)
       App.vent.trigger("map:reset")
 
   class Show.Pills extends App.Views.ItemView
