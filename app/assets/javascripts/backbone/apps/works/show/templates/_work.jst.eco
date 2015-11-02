@@ -1,0 +1,1 @@
+<a href="#workpassages/<%= @work_id %>"> <%= @safe hardSpace(@title) %></a>;

@@ -1,0 +1,7 @@
+<div id="works_tab">
+  <!-- <img src="assets/images/works-places-menu.png" /> -->
+</div>
+<div id="title_region_w"></div>
+<div id="dimensions_region_w"></div>
+<div id="categories_region_w"><div id="selected_cat"></div></div>
+<div id="worklist_region_w"></div>

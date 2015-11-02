@@ -9,6 +9,7 @@
       contentRegion: "#content_region"
       authorsRegion: "#authors_region"
       placesRegion: "#places_region"
+      worksRegion: "#works_region"
 
     events:
       "click #content_nav_region li": "loadContent"
@@ -23,6 +24,7 @@
       if @pill == 'authors'
         @route = "#authors"
         $("#places_region").hide()
+        $("#works_region").hide()
         $("#authors_region").fadeIn("slow")
         # AL.AuthorsApp.List.Controller.startAuthors()
         # console.log 'loadContent, works:', @route
@@ -31,7 +33,13 @@
       else if @pill == 'places'
         @route = "#places"
         $("#authors_region").hide()
+        $("#works_region").hide()
         $("#places_region").fadeIn("slow")
         # AL.PlacesApp.List.Controller.startPlaces()
         # console.log 'loadContent, bio:', @route
         # Backbone.history.navigate(@route, true)
+      else if @pill == 'works'
+        @route = "#works"
+        $("#authors_region").hide()
+        $("#places_region").hide()
+        $("#works_region").fadeIn("slow")

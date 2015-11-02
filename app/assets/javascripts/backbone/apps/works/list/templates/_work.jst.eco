@@ -1,0 +1,4 @@
+<div class="work">
+  <a href="#works/<%= @work_id %>">
+  <%= @safe @title %></a>
+</div>

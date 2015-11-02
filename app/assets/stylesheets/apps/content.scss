@@ -2,11 +2,30 @@
 #content_nav_region {
   background: palegoldenrod;
   padding-top: 3px;
-  padding-left: 65px;
+  padding-left: 28px;
   li {
     margin-left: 15px;
   }
+
+  ul li { display: inline; }
+  // 
+  // ul li a
+  // {
+  // text-decoration: none;
+  // padding: .2em 1em;
+  // color: #fff;
+  // background-color: #036;
+  // }
+  //
+  // ul li a:hover
+  // {
+  // color: #fff;
+  // background-color: #369;
+  // }
 }
+
+
+
 .ui-tabs-vertical { width: 320px; }
 // .ui-tabs-vertical { width: 55em; }
 .ui-tabs-vertical .ui-tabs-panel { padding: 1em; float: left; width: 40em;}

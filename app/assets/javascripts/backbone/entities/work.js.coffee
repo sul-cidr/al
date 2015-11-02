@@ -27,8 +27,23 @@
           works.reset(filterId)
           cb works
 
+    getWorksCategory: (cat, cb) ->
+      works.fetch
+        # don't filter yet - no work category array with 0 in it
+        success: ->
+          filterCat = _.filter(works.models,(item) ->
+            item.get("author_id") < 10434
+            # && #item.contains("categories", cat)
+            # item.get('categories').indexOf(cat) > -1;
+          )
+          works.reset(filterCat);
+          cb works
+
   App.reqres.setHandler "work:entities", (authid, cb) ->
     API.getWorkEntities authid, cb
 
   App.reqres.setHandler "work:entity", (workid, cb) ->
     API.getWorkEntity workid, cb
+
+  App.reqres.setHandler "works:category", (cat, cb) ->
+    API.getWorksCategory cat, cb

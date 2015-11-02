@@ -7,22 +7,21 @@ module Searchable
 
     mapping do
       indexes :text
-      indexes :text_suggest, type: 'completion', payloads: true
     end
 
 
-    def as_indexed_json(options={})
-      as_json.merge \
-      text_suggest: {
-        input:  text,
-        output: text,
-        payload: { url: "/passages/#{passage_id}" }
-      }
-    end
-
-    def self.search(query)
-      # ...
-    end
+    # def as_indexed_json
+    #   self.as_json({
+    #     only: [:passage_id, :text, :work_id],
+    #     include: {
+    #       work: { only: :title }
+    #     }
+    #   })
+    # end
+    #
+    # def self.search(query)
+    #   # ...
+    # end
 
   end
 

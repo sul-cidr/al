@@ -55,12 +55,16 @@
         selector: '#place_passages_region'
         # regionClass: @FaderRegion
 
+      worksRegion:
+        selector: '#works_region'
+
       modalRegion: new ModalRegion
         selector: '#modal'
 
     App.module('HeaderApp').start()
     App.module('ContentApp').start()
     App.module('AuthorsApp').start()
+    App.module('WorksApp').start()
     # App.module('PlacesApp').start()
     App.module('MapApp').start()
 

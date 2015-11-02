@@ -2,9 +2,9 @@
   <ul class="nav nav-pills">
     <li value="authors" class="active" id="authors_pill">AUTHORS</li>
     <li value="places" id="places_pill">PLACES</li>
+    <li value="works" id="works_pill">WORKS</li>
   </ul>
 </div>
-<div id="authors_region" class="regiondiv">
-  <!-- <img src="assets/images/spinner.gif" /> -->
-</div>
+<div id="authors_region" class="regiondiv"></div>
 <div id="places_region" class="regiondiv" style="display:none;"></div>
+<div id="works_region" class="regiondiv" style="display:none;"></div>
