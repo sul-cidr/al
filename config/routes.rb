@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :passages, param: :passage_id
 
   root to: "application#index"
-
+  
   # match ':controller(/:action(/:id))', :via => :get
 
 end

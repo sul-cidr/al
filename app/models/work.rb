@@ -13,10 +13,10 @@
 
 class Work < ActiveRecord::Base
 
-	self.primary_key = 'work_id'
+  self.primary_key = 'work_id'
 
-	belongs_to :author, foreign_key: :author_id
-	has_many :passages
-	has_many :placerefs, :through => :passages
+  belongs_to :author, foreign_key: :author_id
+  has_many :passages
+  has_many :placerefs, :through => :passages
 
 end

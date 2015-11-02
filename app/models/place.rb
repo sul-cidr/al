@@ -15,12 +15,12 @@
 #
 
 class Place < ActiveRecord::Base
-	self.primary_key = 'place_id'
+  self.primary_key = 'place_id'
 
-	has_many :placerefs
-	has_many :passages, :through => :placerefs
-	has_many :works, :through => :passages
-	has_many :authors, :through => :works
+  has_many :placerefs
+  has_many :passages, :through => :placerefs
+  has_many :works, :through => :passages
+  has_many :authors, :through => :works
 
 
 end

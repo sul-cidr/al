@@ -1,0 +1,19 @@
+<h1>Passages Search</h1>
+
+<%= form_for search_path, method: :get do |f| %>
+  <p>
+    <%= f.label "Search for" %>
+    <%= text_field_tag :q, params[:q] %>
+    <%= submit_tag "Go", name: nil %>
+  </p>
+<% end %>
+
+<ul>
+  <% @passages.each do |passage| %>
+    <li>
+      <h3>
+        <%= link_to passage.passage_id, controller: "passages", action: "show", id: passage.passage_id%>
+      </h3>
+    </li>
+  <% end %>
+</ul>

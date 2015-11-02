@@ -58,9 +58,9 @@ class Area < ActiveRecord::Base
   def self.in_or_near(id)
     where {
         geom_wkt like 'MULTIPOINT%' and
-      	st_intersects(
+        st_intersects(
           st_buffer( (st_geomfromtext(Area.find(id).geom_wkt)), 0.01),
-      	  st_geomfromtext(geom_wkt)
+          st_geomfromtext(geom_wkt)
         )
       # st_geomfromtext(Area.find(id).geom_wkt)
     }
