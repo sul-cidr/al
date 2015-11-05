@@ -7,13 +7,13 @@
       # start with all (cat 0)
       App.request "works:category", 0, (works) =>
         @layout = @getLayoutView()
-        console.log @layout
-        console.log works
+        # console.log @layout
+        # console.log works
 
         @layout.on "show", =>
           @showTitle works
           @listCatWorks works, 0
-          
+
           # @listDimensions()
           @listCategories("genre")
 

@@ -51,15 +51,15 @@ ActiveRecord::Schema.define(version: 20150919024745) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "areas", force: :cascade do |t|
-    t.string   "name"
+    t.string   "prefname"
     t.string   "area_type"
+    t.text     "geom_poly_wkt"
+    t.text     "geom_point_wkt"
     t.integer  "parent_id"
-    t.string   "altnames"
-    t.text     "geom_wkt"
-    t.point    "geom_point"
-    t.geometry "geom_mpoly", limit: {:srid=>4326, :type=>"multi_polygon"}
-    t.datetime "created_at",                                               null: false
-    t.datetime "updated_at",                                               null: false
+    t.geometry "geom_poly",      limit: {:srid=>4326, :type=>"polygon"}
+    t.geometry "geom_point",     limit: {:srid=>4326, :type=>"point"}
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
   end
 
   create_table "author_communities", force: :cascade do |t|
@@ -123,10 +123,11 @@ ActiveRecord::Schema.define(version: 20150919024745) do
   add_index "authors_categories", ["author_id", "category_id"], name: "index_authors_categories_on_author_id_and_category_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
+    t.integer  "category_id"
     t.string   "name"
     t.string   "dim"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "communities", force: :cascade do |t|

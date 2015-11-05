@@ -64,10 +64,10 @@
         '</span><span class="right crumb"><a href="#">Clear filter</a></span>'
       $("#selected_cat").html(seltext)
 
-
       cat = this.model
-      id = cat.attributes.id
-      console.log 'filter for cat', id
+      window.activecat = cat
+      id = cat.attributes.category_id
+      console.log 'filter for cat:' + cat, id
       # get a collection of author models for category
       App.request "authors:category", id, (authors) =>
         List.Controller.listCatAuthors(authors, id)

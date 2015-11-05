@@ -11,13 +11,15 @@
 
 class Category < ActiveRecord::Base
 
+  self.primary_key = 'category_id'
+
   belongs_to :dimension
-  
+
   # abandoned in favor of author_genre, etc.
   has_and_belongs_to_many :authors, :through => :authors_categories
 
   def self.by_dim(d)
-    where { dim == d }
+    where { dimension == d }
   end
 
   # boy this sucks
