@@ -1,12 +1,3 @@
-<!-- <div id="places_tab">
-  <ul class="vertical">
-    <li value="authors" class="link">A<br/>U<br/>T<br/>H<br/>O<br/>R<br/>S</li>
-    <li value="places" class="strong">P<br/>L<br/>A<br/>C<br/>E<br/>S</li>
-  </ul> -->
-  <!-- <img src="assets/images/places-authors-menu.png" /> -->
-  <!-- <img src="assets/images/authors17w.png" />
-  <img src="assets/images/places17w250h.png"  style="top:200px;"/> -->
-<!-- </div> -->
 <div id="title_region"></div>
 <div id="navmap_region"></div>
 <div id="arealist_region"></div>

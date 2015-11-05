@@ -1,10 +1,14 @@
 <div class="panel-title">
-  <form class="form-inline" role="form">
+  <hr/>
+  <div id="search_works class="form-group"">
+    <input class="typeahead" type="text" placeholder="search works for...">
+    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+  </div>
+  <!-- <form class="form-inline" role="form">
    <div class="form-group">
-     <!-- <label for="search">Enter term(s)</label> -->
      <input type="search" class="form-control" id="search">
    </div>
    <button type="submit" class="btn btn-default">Search</button>
-  </form>
-  <hr/>
+  </form> -->
+  <!-- <hr/> -->
 </div>

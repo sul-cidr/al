@@ -25,6 +25,9 @@
 //= require leaflet-active-area/src/leaflet.activearea
 //= require leaflet.markercluster/dist/leaflet.markercluster
 //= require jquery-ui/jquery-ui.min
+//= require typeahead.js/dist/typeahead.jquery.min
+//= require typeahead.js/dist/bloodhound.min
+
 //= require turf/turf
 //= require crossfilter/crossfilter.min
 //= require d3/d3.min

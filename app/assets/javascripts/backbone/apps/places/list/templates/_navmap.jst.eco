@@ -1,4 +1,8 @@
 <div id="places_navmap">
+  <div id="search_places" class="form-group">
+    <input class="typeahead" type="text" placeholder="search places">
+    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+  </div>
 <!-- <div id="places-navmap" class="centered"> -->
   <h4>place references in or near...</h4>
   <!-- <img src="assets/images/minimap300w.png" /> -->

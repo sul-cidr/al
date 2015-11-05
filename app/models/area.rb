@@ -2,15 +2,16 @@
 #
 # Table name: areas
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  area_type  :string
-#  altnames   :string
-#  geom_wkt   :text
-#  geom_point :point            point, 0
-#  geom_mpoly :geometry({:srid= multipolygon, 4326
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id             :integer          not null, primary key
+#  prefname       :string
+#  area_type      :string
+#  geom_poly_wkt  :text
+#  geom_point_wkt :text
+#  parent_id      :integer
+#  geom_poly      :geometry({:srid= polygon, 4326
+#  geom_point     :geometry({:srid= point, 4326
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
 #
 
 class Area < ActiveRecord::Base

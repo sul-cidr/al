@@ -1,3 +1,32 @@
+$(function() {
+
+  var toponyms = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    prefetch: 'places.json',
+    // remote: {
+    //   url: '../data/films/queries/%QUERY.json',
+    //   wildcard: '%QUERY'
+    // }
+  });
+
+  $('#search_places .typeahead').typeahead(null, {
+    name: 'toponyms',
+    source: toponyms
+  });
+
+  $('#search_works .typeahead').typeahead(null, {
+    name: 'toponyms',
+    source: toponyms
+  });
+  // $('#search_place').typeahead([
+  // {
+  // name: 'areas',
+  // prefetch: '/areas.json',
+  // }
+  // ]);
+})
+
 function hardSpace(string){
   return string.replace(/ /g,'&nbsp;')
 }

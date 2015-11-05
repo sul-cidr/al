@@ -11,7 +11,11 @@ p, h1, h2, h3, h4 {font-family: "Palatino linotype", Georgia;}
 .strong { font-weight: bold;}
 
 .placeref {
-  background: yellowgreen; color: #575757; cursor: pointer; padding: 0 2px;}
+  background: #E8FCE8;
+  cursor: pointer;
+  padding: 0 1px;
+  display: inline-block;
+}
 
 .panel { width: 350px; height: 85%; top: 60px;
   position: absolute;

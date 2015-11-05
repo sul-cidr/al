@@ -1,5 +1,5 @@
 <div id="content_nav_region" class="navbar">
-  <ul class="nav nav-pills">
+  <ul class="nav"> <!-- <hr/> -->
     <li value="authors" class="active" id="authors_pill">AUTHORS</li>
     <li value="places" id="places_pill">PLACES</li>
     <li value="works" id="works_pill">WORKS</li>
