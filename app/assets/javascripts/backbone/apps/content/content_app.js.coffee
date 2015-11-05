@@ -7,6 +7,7 @@
       "": "startContent"
       "authors": "startAuthors"
       "places": "startPlaces"
+      "works": "startWorks"
 
   API =
     startContent: ->
@@ -20,6 +21,10 @@
     startPlaces: ->
       # console.log 'API.startPlaces fired'
       AL.PlacesApp.List.Controller.startPlaces()
+
+    startWorks: ->
+      # console.log 'API.startWorks fired'
+      AL.WorksApp.List.Controller.startWorks()
 
 
   App.addInitializer ->

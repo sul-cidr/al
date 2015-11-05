@@ -11,10 +11,6 @@
 
   class List.Title extends App.Views.ItemView
     template: "works/list/templates/_title"
-    events:
-      "click .toggle-works": "onToggle"
-    onToggle:
-      AL.WorksApp.List.Controller.togglePanel
 
   class List.Dimensions extends App.Views.ItemView
     template: "works/list/templates/_dimensions"
@@ -32,13 +28,13 @@
   class List.Work extends App.Views.ItemView
     template: "works/list/templates/_work"
     tagName: "span"
-    events: {'click a': 'authByRoute'}
-    authByRoute: ->
-      $activeWork = this.model
-      # console.log $activeWork
-      work = this.model
-      # CHECK: Sulc says this is bad...
-      Backbone.history.navigate("works/"+work.get('work_id'), true)
+    # events: {'click a': 'authByRoute'}
+    # authByRoute: ->
+    #   $activeWork = this.model
+    #   # console.log $activeWork
+    #   work = this.model
+    #   # CHECK: Sulc says this is bad...
+    #   Backbone.history.navigate("works/"+work.get('work_id'), true)
 
   class List.Works extends App.Views.CompositeView
     template: "works/list/templates/_works"

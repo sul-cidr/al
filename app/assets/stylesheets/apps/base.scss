@@ -10,7 +10,8 @@ p, h1, h2, h3, h4 {font-family: "Palatino linotype", Georgia;}
 .crumb { font-size: .8em;}
 .strong { font-weight: bold;}
 
-.fa-exchange {font-size:.8em; color: gray;}
+.placeref {
+  background: yellowgreen; color: #575757; cursor: pointer; padding: 0 2px;}
 
 .panel { width: 350px; height: 85%; top: 60px;
   position: absolute;

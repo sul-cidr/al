@@ -67,6 +67,9 @@
         collection: works
         viewComparator: "title"
 
+    showWork: (work) ->
+      console.log 'show work somehow, '+work.get("title")
+
     listWorkPassages: (work) ->
       id = work.get("work_id")
       title = work.get("title")
