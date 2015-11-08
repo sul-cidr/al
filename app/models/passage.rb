@@ -11,7 +11,6 @@
 #  updated_at :datetime         not null
 #
 
-require 'elasticsearch/model'
 
 class Passage < ActiveRecord::Base
 
@@ -23,8 +22,5 @@ class Passage < ActiveRecord::Base
   has_many :placerefs, foreign_key: :passage_id
   has_many :places, :through => :placerefs
 
-  include Searchable
 
 end
-
-Passage.import force: true # for auto sync model with elastic search

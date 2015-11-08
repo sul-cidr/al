@@ -3,8 +3,8 @@ json.array! @works do |work|
     work,
     :work_id,
     :author_id,
-    :subject_id,
     :title,
-    :pub_year
+    :work_year,
+    :keywords
   )
 end

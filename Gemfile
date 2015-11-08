@@ -32,8 +32,8 @@ gem 'squeel'
 gem 'annotate'
 gem 'sequel'
 
-gem 'elasticsearch-model'
-gem 'elasticsearch-rails'
+# gem 'elasticsearch-model'
+# gem 'elasticsearch-rails'
 
 # deploy
 gem 'dotenv-rails'

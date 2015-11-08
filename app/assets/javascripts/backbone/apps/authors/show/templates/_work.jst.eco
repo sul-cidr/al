@@ -1,3 +1,6 @@
-<a href="#workpassages/<%= @work_id %>"> <%= @safe hardSpace(@title) %></a>;
+<a href="#workpassages/<%= @work_id %>"> <%= @safe hardSpace(@title) %></a><br/>
+<% for key, value in @keywords: %>
+   <%= key %>, <%= value %>
+
 
 <!-- <%= @safe @title %> -->

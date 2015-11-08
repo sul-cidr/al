@@ -213,10 +213,10 @@ ActiveRecord::Schema.define(version: 20150919024745) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "works", primary_key: "work_id", force: :cascade do |t|
-    t.string   "title"
     t.integer  "author_id"
-    t.integer  "pub_year"
-    t.integer  "subject_id"
+    t.string   "title"
+    t.integer  "work_year"
+    t.jsonb    "keywords"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
