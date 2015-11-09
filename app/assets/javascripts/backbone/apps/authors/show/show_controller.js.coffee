@@ -4,7 +4,7 @@
 
     showAuthor: (author) ->
       # get map to filter for author
-      console.log "showAuthor triggering author:show", author
+      console.log "author:show for map_app", author
       # trigger for map_app
       App.vent.trigger "author:show", author
 
@@ -59,7 +59,7 @@
         window.work_ids = []
         _.each works.models, (w) =>
           work_ids.push w.attributes.work_id
-        console.log 'works:',work_ids
+        # console.log 'works:',work_ids
         # console.log works.length + ' works for ' + author_id
         App.authorContentRegion.show @worksView
 

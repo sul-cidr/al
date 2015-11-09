@@ -7,28 +7,11 @@
 h4 {}
 
 #authors_region {
-  // background: #eeeee0;
-  // border-right: 4px solid #daa500;
-}
-// #authors_tab {
-//   float: right;
-//   cursor: pointer;
-//   img { position: absolute; right:0; top: 88px}
-// }
 
-.categories {
-  // border: 1px dotted #993333;
-  // background: #e0e0e0; padding: 3px;
-  // margin-right: 8px;
-  // height: 88px;
 }
-//
-// #categories_region {
-//   border: 1px dotted #993333;
-//   background: #e0e0e0; padding: 3px;
-//   margin-right: 8px;
-//   // height: 88px;
-// }
+.categories {
+
+}
 
 .navbar { min-height: 35px; margin-bottom:0; }
 .navbar .nav-pills >li  {
@@ -46,14 +29,13 @@ h4 {}
 #dimension_pills {
   margin-left: 40px;
 }
-// .navbar .nav-pills >li >a { padding: 4px; margin:0;}
 
 /***/
 /* List module */
 /***/
 
 #authorlist_region {
-  max-height: 78%;
+  max-height: 75%;
   overflow-y: scroll;
   position:absolute;
 }
@@ -94,13 +76,18 @@ h4 {}
 }
 .crumb-authors {font-size: .7em; color:#336699; cursor: pointer;}
 
+.passagelist {
+  padding-right: 8px;
+}
 .passages-bio {
-  max-height: 475px;
+  position: absolute;
+  max-height: 75%;
   overflow:auto;
   hr {display: none;}
 }
 .passages-works {
-  max-height: 475px;
+  position: absolute;
+  max-height: 75%;
   overflow:auto;
   hr { border: 0; border-bottom: 1px dashed #ccc; background: #999; width:80%;}
 }
