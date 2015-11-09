@@ -63,14 +63,14 @@
 
     App.module('HeaderApp').start()
     App.module('ContentApp').start()
-    App.module('AuthorsApp').start()
-    App.module('WorksApp').start()
+    # App.module('AuthorsApp').start()
+    # App.module('WorksApp').start()
     # App.module('PlacesApp').start()
     App.module('MapApp').start()
 
   # App.on 'initialize:after', ->
   App.on 'start', ->
-    # console.log "App started"
+    console.log "App started"
     if Backbone.history
       return Backbone.history.start()
     return

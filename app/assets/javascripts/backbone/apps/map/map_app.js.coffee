@@ -54,17 +54,21 @@
       # or comment and let Show.Controller.zoomTo initiate filtering on viewport\
       MapApp.Show.Controller.filterByArea "area", hbounds
 
-    clearFilters: ->
+    resetMap: ->
+      # close the place passages window
       $("#place_passages_region").fadeOut("slow")
+      
+      # clear all filters
       MapApp.Show.Controller.clearFilters()
 
 
   # TODO: part of refactoring for areas - single area:show
-  App.vent.on "work:show", (work) ->
-    API.filterForWork work
 
   App.vent.on "map:reset", ->
     API.clearFilters()
+
+  App.vent.on "work:show", (work) ->
+    API.filterForWork work
 
   App.vent.on "placeref:highlight", (id) ->
     # console.log 'map_app heard highlight id#', id
@@ -85,8 +89,6 @@
   App.vent.on "area:unhighlightAll", ->
     MapApp.Show.Controller.unhighlightAll()
 
-  App.vent.on "authors-panel:close", ->
-    # CHECK: dunno what for
 
   MapApp.on "start", ->
     controller: API

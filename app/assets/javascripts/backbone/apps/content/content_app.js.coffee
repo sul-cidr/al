@@ -12,26 +12,31 @@
   API =
     startContent: ->
       # console.log ' in AL.ContentApp.API.startContent()'
+      Backbone.history.navigate("authors", true)
       AL.ContentApp.Show.Controller.startContent()
 
     startAuthors: ->
       # console.log 'API.startAuthors fired'
+      Backbone.history.navigate("authors")
       AL.AuthorsApp.List.Controller.startAuthors()
 
     startPlaces: ->
       # console.log 'API.startPlaces fired'
+      Backbone.history.navigate("places")
       AL.PlacesApp.List.Controller.startPlaces()
 
     startWorks: ->
       # console.log 'API.startWorks fired'
+      Backbone.history.navigate("works")
       AL.WorksApp.List.Controller.startWorks()
 
 
-  App.addInitializer ->
+  # App.addInitializer ->
+  #   new ContentApp.Router
+  #     controller: API
+    # API.startAuthors()
+
+  ContentApp.on "start", ->
     new ContentApp.Router
       controller: API
-    API.startAuthors()
-
-  # ContentApp.on "start", ->
-  #   controller: API
-  #   API.startContent()
+    API.startContent()

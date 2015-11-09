@@ -3,8 +3,8 @@
   List.Controller =
 
     startWorks: ->
-      # console.log 'startAuthors()'
-      # start with all (cat 0)
+      console.log 'startWorks()'
+      
       App.request "works:category", 0, (works) =>
         @layout = @getLayoutView()
         # console.log @layout

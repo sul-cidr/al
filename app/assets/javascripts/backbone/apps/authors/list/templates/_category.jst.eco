@@ -1,5 +1,5 @@
 <% if @name == "All": %>
-<a class="category active" href="#"><%= @name  %></a>;
+<a class="category active" href="#"><%= @safe hardSpace(@name)  %></a>;
 <% else: %>
-<a class="category" value="<%=@name%>" href="#"><%= @name  %></a>;
+<a class="category" value="<%=@name%>" href="#"><%= @safe hardSpace(@name)  %></a>;
 <% end %>

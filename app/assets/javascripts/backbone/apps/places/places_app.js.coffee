@@ -3,15 +3,11 @@
 
   class PlacesApp.Router extends Marionette.AppRouter
     appRoutes:
-      "places": "startPlaces"
       "places/:id": "showPlace"
-      # "hoods/:id": "showHood"
 
   API =
     startPlaces: ->
-      # console.log 'API.startPlaces fired'
       PlacesApp.List.Controller.startPlaces()
-      Backbone.history.navigate("places")
 
     listPlaces: ->
       PlacesApp.List.Controller.listPlaces()
@@ -39,8 +35,12 @@
     # this renders Area Summary whether visible or not
     API.showPlaceSummary activePlacerefs
 
-  App.addInitializer ->
+  PlacesApp.on "start", ->
     new PlacesApp.Router
       controller: API
-    # Backbone.history.navigate("places", true)
-    API.startPlaces()
+    # API.startPlacess()
+
+  # App.addInitializer ->
+  #   new PlacesApp.Router
+  #     controller: API
+  #   API.startPlaces()

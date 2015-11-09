@@ -4,8 +4,8 @@
 
     startPlaces: ->
     # get areas here, used to aggregate & navigate places/placerefs
-      # console.log 'startPlaces()'
-
+      console.log 'startPlaces()'
+      Backbone.history.navigate("places")
       App.request "area:entities", (areas) =>
         # console.log areas
         @layout = @getLayoutView()
