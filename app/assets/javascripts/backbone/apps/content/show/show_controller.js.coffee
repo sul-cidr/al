@@ -5,7 +5,10 @@
     startContent: ->
       @contentLayout = @getContentLayout()
       # start with authors
-      # AL.AuthorsApp.List.Controller.startAuthors()
+      # if $("#authors_region").html() == ''
+      #   AL.AuthorsApp.List.Controller.startAuthors()
+      # AL.PlacesApp.List.Controller.startPlaces()
+      # AL.WorksApp.List.Controller.startWorks()
       App.contentRegion.show @contentLayout
 
     getContent: ->
@@ -26,6 +29,8 @@
         $("#authors_region").fadeIn("slow")
 
       else if tab == 'places'
+        if $("#places_region").html() == ''
+          AL.PlacesApp.List.Controller.startPlaces()
         @route = "places"
         $("#places_tab").addClass("active")
         $("#authors_region").hide()
@@ -33,6 +38,8 @@
         $("#places_region").show()
 
       else if tab == 'works'
+        if $("#works_region").html() == ''
+          AL.WorksApp.List.Controller.startWorks()
         @route = "works"
         $("#works_tab").addClass("active")
         $("#authors_region").hide()
