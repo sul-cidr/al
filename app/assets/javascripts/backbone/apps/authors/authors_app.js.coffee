@@ -4,7 +4,7 @@
 
   class AuthorsApp.Router extends Marionette.AppRouter
     appRoutes:
-      "authors/:author_id": "passAuthorModel"
+      # "authors/:author_id": "passAuthorModel"
       "works/:author_id": "authorWorks"
       "workpassages/:work_id": "workPassages"
 
@@ -38,7 +38,7 @@
   AuthorsApp.on "start", ->
     new AuthorsApp.Router
       controller: API
-    Backbone.history.navigate("authors")
+    # Backbone.history.navigate("authors")
     # API.startAuthors()
   #
   # App.addInitializer ->

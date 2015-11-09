@@ -2,7 +2,7 @@
   @startWithParent = false
 
   App.vent.on "author:show", (author) ->
-    console.log "map heard author:show --> API.filterByAuthor"
+    console.log "map heard author:show -->", author
     API.filterByAuthor author
 
   App.vent.on "category:authors:show", (cat) ->
@@ -16,7 +16,7 @@
       MapApp.Show.Controller.showMap()
 
     filterByAuthor: (author) ->
-      console.log  'API.filterByAuthor() sets filter'
+      console.log  'API.filterByAuthor()',author.get("author_id")
       MapApp.Show.Controller.setFilter 'author', (placeref) ->
         placeref.get("author_id") == author.get("author_id")
 
@@ -57,7 +57,6 @@
     resetMap: ->
       # close the place passages window
       $("#place_passages_region").fadeOut("slow")
-      
       # clear all filters
       MapApp.Show.Controller.clearFilters()
 
@@ -65,7 +64,7 @@
   # TODO: part of refactoring for areas - single area:show
 
   App.vent.on "map:reset", ->
-    API.clearFilters()
+    API.resetMap()
 
   App.vent.on "work:show", (work) ->
     API.filterForWork work

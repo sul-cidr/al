@@ -11,12 +11,7 @@
   class Show.Title extends App.Views.ItemView
     template: "authors/show/templates/_title"
     events:
-      "click .toggle-authors": "onToggle"
       "click .crumb-authors": "goHome"
-
-    # TODO: refactor?
-    onToggle:
-      AL.AuthorsApp.List.Controller.togglePanel
 
     goHome: ->
       # console.log 'supposed to go home'

@@ -37,8 +37,11 @@
       $activeAuthor = this.model
       # console.log $activeAuthor
       author = this.model
-      # CHECK: Sulc says this is bad...
-      Backbone.history.navigate("authors/"+author.get('author_id'), true)
+      route = "authors/" + author.get('author_id')
+      console.log 'route', route
+      # CHECK: what is best practice?
+      # AL.AuthorsApp.Show.Controller.showAuthor(author)
+      Backbone.history.navigate(route, true)
 
   class List.Authors extends App.Views.CompositeView
     template: "authors/list/templates/_authors"
