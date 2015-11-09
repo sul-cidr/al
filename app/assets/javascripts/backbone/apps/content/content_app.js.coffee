@@ -22,7 +22,6 @@
 
     startPlaces: ->
       # console.log 'API.startPlaces fired'
-      Backbone.history.navigate("places")
       AL.PlacesApp.List.Controller.startPlaces()
 
     startWorks: ->

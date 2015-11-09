@@ -15,7 +15,6 @@
       "click #content_nav_region li": "showTab"
 
     showTab: (e) ->
-      $("#content_nav_region li").removeClass("active")
       if ['authors','places','works'].indexOf(e) > -1
         @tab = e
       else
