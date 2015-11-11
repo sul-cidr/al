@@ -22,6 +22,7 @@ gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
 
 gem 'devise'
 
+# gem 'progress_bar'
 
 gem 'ransack', '1.6.5'
 gem 'rabl'
@@ -32,6 +33,8 @@ gem 'squeel'
 gem 'annotate'
 gem 'sequel'
 
+gem 'sunspot_rails'
+gem 'sunspot_solr'
 # gem 'elasticsearch-model'
 # gem 'elasticsearch-rails'
 

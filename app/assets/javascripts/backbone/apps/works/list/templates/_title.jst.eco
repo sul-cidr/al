@@ -1,8 +1,10 @@
 <div class="panel-title">
   <hr/>
-  <div id="search_works class="form-group"">
-    <input class="typeahead" type="text" placeholder="search works for...">
-    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+  <div id="search_passages class="form-group"">
+    <input id="q_input" class="typeahead" type="text"
+      onkeydown="if(event.keyCode==13) $('#q_button').click()"
+      placeholder="search passages for...">
+    <button id="q_button" type="submit" class="btn btn-primary btn-sm">Submit</button>
   </div>
   <!-- <form class="form-inline" role="form">
    <div class="form-group">

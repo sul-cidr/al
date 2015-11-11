@@ -7,10 +7,19 @@
       headerRegion: "#title_region_w"
       dimensionsRegion: "#dimensions_region_w"
       categoriesRegion: "#categories_region_w"
-      worklistRegion: "#worklist_region_w"
+      contentRegion: "#workscontent_region_w"
 
   class List.Title extends App.Views.ItemView
     template: "works/list/templates/_title"
+    events: {
+      "click button": "queryPassages"
+    }
+    queryPassages: (e) =>
+      # console.log $(e.currentTarget)
+      q = $("#q_input").val()
+      Backbone.history.navigate("search/" + q, true)
+      # List.Controller.searchPassages($("#q_input").val())
+
 
   class List.Dimensions extends App.Views.ItemView
     template: "works/list/templates/_dimensions"
@@ -92,6 +101,7 @@
       App.request "works:category", 0, (works) =>
         List.Controller.listCatWorks(works, 0)
         App.vent.trigger("map:reset")
+
 
   class List.Empty extends App.Views.ItemView
     template: "works/list/templates/_empty"

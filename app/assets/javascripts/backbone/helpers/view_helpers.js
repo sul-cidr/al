@@ -20,7 +20,7 @@ function scale(value,r) {
 //     source: toponyms
 //   });
 //
-//   $('#search_works .typeahead').typeahead(null, {
+//   $('#search_passages .typeahead').typeahead(null, {
 //     name: 'toponyms',
 //     source: toponyms
 //   });

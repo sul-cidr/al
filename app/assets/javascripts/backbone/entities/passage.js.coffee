@@ -8,9 +8,21 @@
     url: '/passages'
     idAttribute: "passage_id"
 
+  class Entities.PassageResultsCollection extends Entities.Collection
+    model: Entities.Passage
+    url: '/passages/:q'
+    idAttribute: "passage_id"
+
   # passages = new Entities.PassageCollection
 
   API =
+    # search for string 'q'
+    searchPassages: (q, cb) ->
+      console.log 'entities.passage.searchPassages()', q
+      # execute a search here
+      passages = new Entities.PassageReultsCollection
+      cb passages
+
     getPassageEntities: (id, type, cb) ->
       # console.log 'getPassageEntities', id, type
       passages = new Entities.PassageCollection
@@ -49,3 +61,6 @@
 
   App.reqres.setHandler "passages:places", (passage_ids, cb) ->
     API.getPlacePassages passage_ids, cb
+
+  App.reqres.setHandler "passages:search", (q, cb) ->
+    API.searchPassages q, cb

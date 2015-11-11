@@ -4,7 +4,7 @@
 
     startWorks: ->
       console.log 'startWorks()'
-      
+
       App.request "works:category", 0, (works) =>
         @layout = @getLayoutView()
         # console.log @layout
@@ -50,7 +50,7 @@
 
     listCatWorks: (works, category) ->
       worksCatView = @getCatWorksView works, category
-      @layout.worklistRegion.show worksCatView
+      @layout.contentRegion.show worksCatView
 
     getCatWorksView: (works, category) ->
       new List.Works
@@ -58,3 +58,12 @@
 
     getLayoutView: ->
       new List.Layout
+
+    searchPassages: (q) ->
+      console.log 'works_app List.Controller.searchPassages()', q
+      App.request "passages:search", q, (results) =>
+        resultsView = @getResultsView results
+        @layout.contentRegion.show resultsView
+
+    getResultsView: (results) ->
+      new AL.AuthorsApp.Show.Passages

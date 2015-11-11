@@ -22,5 +22,12 @@ class Passage < ActiveRecord::Base
   has_many :placerefs, foreign_key: :passage_id
   has_many :places, :through => :placerefs
 
+  searchable do
+    text :text, :stored => true
+
+    string :passage_id, :stored => true
+    integer :work_id
+
+  end
 
 end

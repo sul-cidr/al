@@ -10,9 +10,11 @@ Rails.application.routes.draw do
   resources :categories#, only: [:index]
   resources :works, param: :work_id
   resources :passages, param: :passage_id
+  # resources :passages/search, param: :q
+  resources :search, only: [:index]
 
   root to: "application#index"
-  
+
   # match ':controller(/:action(/:id))', :via => :get
 
 end

@@ -11,6 +11,7 @@
       "authors/:author_id": "showAuthor"
       "works/:author_id": "authorWorks"
       "workpassages/:work_id": "workPassages"
+      "search/:q": "searchPassages"
 
 
   API =
@@ -54,6 +55,11 @@
         # returns current work
         App.reqres.setHandler "work:model", ->
           return work
+
+    searchPassages: (q) ->
+      console.log 'ContentApp router API searchPassages',q
+      AL.WorksApp.List.Controller.searchPassages q
+
 
   ContentApp.on "start", ->
     new ContentApp.Router
