@@ -20,8 +20,17 @@
     searchPassages: (q, cb) ->
       console.log 'entities.passage.searchPassages()', q
       # execute a search here
-      passages = new Entities.PassageReultsCollection
-      cb passages
+      passages = new Entities.PassageResultsCollection
+
+      $.ajax({
+          dataType: "json",
+          url: "/search.json",
+          data: {q:q},
+          success: (json) ->
+            console.log json
+      })
+      # $.getJSON '/search.json', (json) ->
+      #   console.log json
 
     getPassageEntities: (id, type, cb) ->
       # console.log 'getPassageEntities', id, type
