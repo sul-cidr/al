@@ -30,8 +30,9 @@
       id = author.get("author_id")
       # console.log 'List.Controller.listPassages() for ',author_id
       App.request "passage:entities", id, "bio", (bio_passages) =>
+        console.log bio_passages
         # wont show/render twice without reset
-        if App.authorContentRegion.$el.length >0
+        if App.authorContentRegion.$el.length > 0
           App.authorContentRegion.reset()
 
         bioPassagesView = @getBioPassagesView bio_passages, 'bio'

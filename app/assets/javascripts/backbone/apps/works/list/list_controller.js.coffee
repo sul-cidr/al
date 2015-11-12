@@ -62,8 +62,14 @@
     searchPassages: (q) ->
       console.log 'works_app List.Controller.searchPassages()', q
       App.request "passages:search", q, (results) =>
-        resultsView = @getResultsView results
+        console.log results
+        resultsView = @getResultsView results, 'works'
+        console.log resultsView
         @layout.contentRegion.show resultsView
 
-    getResultsView: (results) ->
-      new AL.AuthorsApp.Show.Passages
+    getResultsView: (results, type) ->
+      new AL.AuthorsApp.Show.Passages ({
+        collection: results
+        viewComparator: "passage_id"
+        className: if type == 'works' then 'passages-works' else 'passages-bio'
+      })

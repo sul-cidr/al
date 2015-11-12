@@ -10,7 +10,7 @@
 
   class Entities.PassageResultsCollection extends Entities.Collection
     model: Entities.Passage
-    url: '/passages/:q'
+    url: "/search.json"
     idAttribute: "passage_id"
 
   # passages = new Entities.PassageCollection
@@ -20,17 +20,29 @@
     searchPassages: (q, cb) ->
       console.log 'entities.passage.searchPassages()', q
       # execute a search here
+
+      # returns collection of models
       passages = new Entities.PassageResultsCollection
 
-      $.ajax({
-          dataType: "json",
-          url: "/search.json",
-          data: {q:q},
-          success: (json) ->
-            console.log json
+      passages.fetch({
+        data: {q: q}
+        processData: true
+
+        success: ->
+          # console.log passages
+          cb passages
       })
-      # $.getJSON '/search.json', (json) ->
-      #   console.log json
+
+      # this works to return JSON
+      # $.ajax({
+      #     dataType: "json",
+      #     url: "/search.json",
+      #     data: {q:q},
+      #     success: (json) ->
+      #       console.log json
+      #       cb json
+      # })
+
 
     getPassageEntities: (id, type, cb) ->
       # console.log 'getPassageEntities', id, type
