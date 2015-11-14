@@ -4,7 +4,7 @@
 
     showWork: (work) ->
       # get map to filter for author
-      console.log "work:show for map_app", work
+      console.log "showWork() trigger work:show for map", work
       # trigger for map_app
       # App.vent.trigger "work:show", work
 
@@ -12,7 +12,7 @@
       title = work.get("title")
       # console.log 'showAuthor: '+ id, prefname
       @workLayout = @getWorkLayout work
-      console.log '@workLayout', @workLayout
+      # console.log '@workLayout', @workLayout
 
       @workLayout.on "show", =>
         @showTitle work

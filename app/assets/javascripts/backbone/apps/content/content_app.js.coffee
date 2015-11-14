@@ -1,7 +1,8 @@
 @AL.module "ContentApp", (ContentApp, App, Backbone, Marionette, $, _) ->
   @startWithParent = true
 
-
+  # ContentApp is global router/API for the AL app
+  # 
   class ContentApp.Router extends Marionette.AppRouter
     appRoutes:
       "": "startContent"
@@ -37,7 +38,7 @@
       AL.WorksApp.List.Controller.startWorks()
 
     showAuthor: (author_id)->
-      console.log 'ContentApp.Router, showAuthor()'
+      # console.log 'ContentApp.Router, showAuthor()'
       App.vent.trigger "map:reset"
       # get author model from id, forward to showAuthor()
       App.request "author:entity", author_id, (author) =>
@@ -51,7 +52,7 @@
         AL.AuthorsApp.Show.Controller.listWorks author
 
     workPassages: (src,work_id) ->
-      console.log 'workPassages: '+src, work_id
+      # console.log 'workPassages: '+src, work_id
       # get work model from id, forward to listWorkPassages()
       App.request "work:entity", work_id, (work) =>
         if src == 'a'
@@ -63,7 +64,7 @@
           return work
 
     searchPassages: (q) ->
-      console.log 'ContentApp router API searchPassages',q
+      # console.log 'ContentApp router API searchPassages',q
       AL.WorksApp.List.Controller.searchPassages q
 
 

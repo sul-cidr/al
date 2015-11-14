@@ -40,7 +40,7 @@
     workByRoute: ->
       work = this.model
       route = "workpassages/w/" + work.get('work_id')
-      console.log 'List.Work workByRoute', work
+      # console.log 'List.Work workByRoute', work
       Backbone.history.navigate(route, true)
 
   class List.Works extends App.Views.CompositeView

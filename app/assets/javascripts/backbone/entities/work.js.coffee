@@ -36,7 +36,7 @@
               item.get('categories').indexOf(cat) > -1;
           )
           works.reset(filterCat);
-          console.log 'filtered works', works
+          # console.log 'filtered works', works
           cb works
 
   App.reqres.setHandler "work:entities", (authid, cb) ->

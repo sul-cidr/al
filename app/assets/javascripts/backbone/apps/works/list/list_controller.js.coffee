@@ -3,7 +3,7 @@
   List.Controller =
 
     startWorks: ->
-      console.log 'startWorks()'
+      # console.log 'startWorks()'
 
       App.request "works:category", 0, (works) =>
         @layout = @getLayoutView()
@@ -22,7 +22,7 @@
 
     getLayoutView: ->
       new List.Layout
-      
+
     showTitle: (works) ->
       titleView = @getTitleView works
       @layout.headerRegion.show titleView
@@ -63,7 +63,7 @@
     searchPassages: (q) ->
       console.log 'works_app List.Controller.searchPassages()', q
       App.request "passages:search", q, (results) =>
-        console.log results
+        # console.log results
         resultsView = @getResultsView results, 'works'
         console.log resultsView
         @layout.contentRegion.show resultsView
