@@ -5,7 +5,7 @@
     # template: "works/show/templates/show_work"
     regions:
       titleRegion: "#title_region"
-      navRegion: "#nav_region"
+      # navRegion: "#nav_region"
       workContentRegion: "#work_content_region"
 
   class Show.Title extends App.Views.ItemView

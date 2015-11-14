@@ -216,9 +216,10 @@ ActiveRecord::Schema.define(version: 20150919024745) do
     t.integer  "author_id"
     t.string   "title"
     t.integer  "work_year"
+    t.integer  "categories", default: [],              array: true
     t.jsonb    "keywords"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
 end

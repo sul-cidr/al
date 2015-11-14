@@ -1,4 +1,4 @@
 <div id="catlist">
   <!-- <a class="active" href="#">All</a>;  -->
 </div>
-<div id="selected_cat"></div>
+<div id="selected_cat_authors"></div>

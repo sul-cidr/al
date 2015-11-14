@@ -3,8 +3,8 @@
 
 
   class WorksApp.Router extends Marionette.AppRouter
-    appRoutes:
-      "work/:work_id": "passWorkModel"
+    # appRoutes:
+    #   "work/:work_id": "passWorkModel"
       # "workpassages/:work_id": "workPassages"
 
   API =
@@ -13,11 +13,11 @@
       AL.WorksApp.List.Controller.startWorks()
       # WorksApp.List.Controller.startWorks()
 
-    passWorkModel: (work_id) ->
-      App.vent.trigger "map:reset"
-      # forwards work model to showWork function
-      App.request "work:entity", work_id, (work) =>
-        WorksApp.Show.Controller.showWork(work)
+    # passWorkModel: (work_id) ->
+    #   App.vent.trigger "map:reset"
+    #   # forwards work model to showWork function
+    #   App.request "work:entity", work_id, (work) =>
+    #     WorksApp.Show.Controller.showWork(work)
 
         # return work-in-focus to any
         # App.reqres.setHandler "work:model", ->

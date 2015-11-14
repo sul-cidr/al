@@ -1,74 +1,30 @@
-@AL.module 'AuthorsApp.Show', (Show, App, Backbone, Marionette, $, _) ->
+@AL.module 'WorksApp.Show', (Show, App, Backbone, Marionette, $, _) ->
 
   Show.Controller =
 
-    showAuthor: (author) ->
+    showWork: (author) ->
       # get map to filter for author
-      # console.log "showAuthor triggering author:show"
-      App.vent.trigger "author:show", author
+      console.log "work:show for map_app", work
+      # trigger for map_app
+      App.vent.trigger "work:show", work
 
-      id = author.get("author_id")
-      prefname = author.get("prefname")
+      id = work.get("work_id")
+      title = work.get("title")
       # console.log 'showAuthor: '+ id, prefname
-      @authorLayout = @getAuthorLayout author
+      @workLayout = @getWorkLayout work
 
-      @authorLayout.on "show", =>
-        @showTitle author
-        @showNav author
-        @listBioPassages author
+      @workLayout.on "show", =>
+        @showTitle work
+        # @showNav work
+        @listWorkPassages work
         # @listWorks id
 
-      App.authorsRegion.show @authorLayout
+      App.worksRegion.show @workLayout
 
-    getAuthorLayout: (author) ->
+    getWorkLayout: (work) ->
       new Show.Layout ({
-        model: author
+        model: work
       })
-
-    listBioPassages: (author) ->
-      id = author.get("author_id")
-      # console.log 'List.Controller.listPassages() for ',author_id
-      App.request "passage:entities", id, "bio", (bio_passages) =>
-        # wont show/render twice without reset
-        if App.authorContentRegion.$el.length >0
-          App.authorContentRegion.reset()
-
-        bioPassagesView = @getBioPassagesView bio_passages, 'bio'
-        # console.log 'listBioPassages(), '+ bio_passages.length + ' for ' + author_id
-        window.passb = bioPassagesView
-        # console.log 'bioPassagesView:', bioPassagesView.collection
-        App.authorContentRegion.show bioPassagesView
-
-    getBioPassagesView: (bio_passages, type) ->
-      new Show.Passages
-        collection: bio_passages
-        viewComparator: "passage_id"
-        className: if type == 'works' then 'passages-works' else 'passages-bio'
-
-    # TODO: make this display a visualization summary
-    listWorks: (author) ->
-      id = author.get("author_id")
-      App.request "work:entities", id, (works) =>
-        # console.log 'listWorks()', works
-        if App.authorContentRegion.$el.length > 0
-          App.authorContentRegion.reset()
-        @worksView = @getWorksView works
-
-        # get work_ids
-        window.work_ids = []
-        _.each works.models, (w) =>
-          work_ids.push w.attributes.work_id
-        console.log 'works:',work_ids
-        # console.log works.length + ' works for ' + author_id
-        App.authorContentRegion.show @worksView
-
-    getWorksView: (works) ->
-      new Show.Works
-        collection: works
-        viewComparator: "title"
-
-    showWork: (work) ->
-      console.log 'show work somehow, '+work.get("title")
 
     listWorkPassages: (work) ->
       id = work.get("work_id")
@@ -76,11 +32,11 @@
       # console.log 'Show.Controller.listWorkPassages() for',work_id
       App.request "passage:entities", id, "work", (work_passages) =>
         # wont show/render twice without reset
-        if App.authorContentRegion.$el.length > 0
-          App.authorContentRegion.reset()
+        if App.workContentRegion.$el.length > 0
+          App.workContentRegion.reset()
         workPassagesView = @getWorkPassagesView work_passages, 'works'
         # console.log 'listWorkPassages(), '+ work_passages.length + ' for ' + id
-        App.authorContentRegion.show workPassagesView
+        App.workContentRegion.show workPassagesView
         # TODO: show Passages tab if it was hidden
         $("#passages_pill").removeClass("hidden")
         $(".passages-works h4").html('from <em>'+title+'</em')
@@ -89,19 +45,19 @@
       new Show.Passages ({
         collection: work_passages
         viewComparator: "passage_id"
-        className: if type == 'works' then 'passages-works' else 'passages-bio'
+        className: 'passages-works'
       })
 
 
-    showTitle: (author) ->
-      @titleView = @getTitleView author
-      @authorLayout.titleRegion.show @titleView
+    showTitle: (work) ->
+      @titleView = @getTitleView work
+      @workLayout.titleRegion.show @titleView
 
-    getTitleView: (author) ->
+    getTitleView: (work) ->
       new Show.Title
-        model: author
-
-    showNav: (author) ->
-      @navView = new Show.Pills
-        model: author
-      @authorLayout.navRegion.show @navView
+        model: work
+    #
+    # showNav: (work) ->
+    #   @navView = new Show.Pills
+    #     model: work
+    #   @authorLayout.navRegion.show @navView

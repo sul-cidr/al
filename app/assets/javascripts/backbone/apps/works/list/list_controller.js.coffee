@@ -14,7 +14,7 @@
           @showTitle works
           @listCatWorks works, 0
 
-          # @listDimensions()
+          @listDimensions()
           @listCategories("genre")
 
         # hold off rendering this

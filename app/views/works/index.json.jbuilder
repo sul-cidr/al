@@ -5,6 +5,7 @@ json.array! @works do |work|
     :author_id,
     :title,
     :work_year,
+    :categories,
     :keywords
   )
 end

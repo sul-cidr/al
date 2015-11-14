@@ -8,7 +8,9 @@
       "authors": "startAuthors"
       "places": "startPlaces"
       "works": "startWorks"
-      "authors/:author_id": "showAuthor"
+      "author/:author_id": "showAuthor"
+      # TODO: getting authors per cat should be a route
+      # "authors/:category_id": "showAuthors"
       "works/:author_id": "authorWorks"
       "workpassages/:work_id": "workPassages"
       "search/:q": "searchPassages"

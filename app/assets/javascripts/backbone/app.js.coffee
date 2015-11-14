@@ -58,6 +58,9 @@
       worksRegion:
         selector: '#works_region'
 
+      workContentRegion:
+        selector: '#work_content_region'
+
       modalRegion: new ModalRegion
         selector: '#modal'
 

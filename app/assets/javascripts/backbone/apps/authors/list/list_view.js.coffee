@@ -37,7 +37,7 @@
       $activeAuthor = this.model
       # console.log $activeAuthor
       author = this.model
-      route = "authors/" + author.get('author_id')
+      route = "author/" + author.get('author_id')
       console.log 'route', route
       # CHECK: what is best practice?
       # AL.AuthorsApp.Show.Controller.showAuthor(author)
@@ -59,13 +59,11 @@
 
     filterAuthors: (e) ->
       # select a category, filter authors and map
-
-      # set up 'clear"'
       seltext =
         '<span class="strong">'+
         $(e.currentTarget).context.innerHTML +
         '</span><span class="right crumb"><a href="#">Clear filter</a></span>'
-      $("#selected_cat").html(seltext)
+      $("#selected_cat_authors").html(seltext)
 
       cat = this.model
       window.activecat = cat
@@ -86,7 +84,7 @@
     childView: List.Category
     childViewContainer: "#catlist"
     events: {
-      "click #selected_cat a": "removeFilter"
+      "click #selected_cat_authors a": "removeFilter"
     }
     filter: (child, index, collection) ->
       # filter genre for initial display
@@ -95,7 +93,7 @@
       # console.log 'bubbled up to List.Categories view'
     removeFilter: (e) ->
       # console.log 'remove filter'
-      $("#selected_cat").remove()
+      $("#selected_cat_authors").remove()
       App.request "authors:category", 0, (authors) =>
         List.Controller.listCatAuthors(authors, 0)
         App.vent.trigger("map:reset")

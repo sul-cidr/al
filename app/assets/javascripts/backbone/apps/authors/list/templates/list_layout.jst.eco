@@ -1,7 +1,4 @@
-<div id="authors_tab">
-  <!-- <img src="assets/images/authors-places-menu.png" /> -->
-</div>
 <div id="title_region"></div>
 <div id="dimensions_region"></div>
-<div id="categories_region"><div id="selected_cat"></div></div>
+<div id="categories_region"></div>
 <div id="authorlist_region"></div>
