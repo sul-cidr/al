@@ -4,7 +4,7 @@
 
     startWorks: ->
       # console.log 'startWorks()'
-
+      # console.log 'startWorks caller:', arguments.callee.caller.toString()
       App.request "works:category", 0, (works) =>
         @layout = @getLayoutView()
         # console.log @layout
@@ -12,7 +12,7 @@
 
         @layout.on "show", =>
           @showTitle works
-          @listCatWorks works, 0
+          @listCatWorks works
 
           @listDimensions()
           @listCategories("genre")
@@ -51,11 +51,13 @@
         filter: (child, index, collection) ->
           child.get('dim') == dim
 
-    listCatWorks: (works, category) ->
-      worksCatView = @getCatWorksView works, category
+    listCatWorks: (works) ->
+      # console.log arguments.callee.caller.toString()
+      # console.log 'listCatWorks()', works
+      worksCatView = @getCatWorksView works
       @layout.workListRegion.show worksCatView
 
-    getCatWorksView: (works, category) ->
+    getCatWorksView: (works) ->
       new List.Works
         collection: works
         # className: 'work'

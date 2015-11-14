@@ -1,10 +1,13 @@
 <div id="content_nav_region" class="navbar">
   <ul class="nav"> <!-- <hr/> -->
-    <li value="authors" class="active" id="authors_tab">AUTHORS</li>
+    <li value="authors" id="authors_tab">AUTHORS</li>
     <li value="places" id="places_tab">PLACES</li>
-    <li value="works" id="works_tab">WORKS</li>
+    <li value="works" class="active" id="works_tab">WORKS</li>
   </ul>
 </div>
-<div id="authors_region" class="regiondiv"></div>
+<div id="authors_region" class="regiondiv"style="display:none;"></div>
 <div id="places_region" class="regiondiv" style="display:none;"></div>
-<div id="works_region" class="regiondiv" style="display:none;"></div>
+<div id="works_region" class="regiondiv" ></div>
+<!-- <div id="authors_region" class="regiondiv"></div>
+<div id="places_region" class="regiondiv" style="display:none;"></div>
+<div id="works_region" class="regiondiv" style="display:none;"></div> -->

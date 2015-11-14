@@ -1,6 +1,7 @@
 <div class="panel-title">
   <!-- TODO: use Backbone.history.navigate here -->
-  <p class="crumb-works">List of works</p>
-  <h3><%= @title %></h3>
+  <p class="crumb-works"><< Return to works list</p>
+  <h4><%= @title %></h4>
+  <p><%= authhash[@author_id] %></p>
   <hr/>
 </div>

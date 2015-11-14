@@ -4,7 +4,7 @@
 
     showWork: (work) ->
       # get map to filter for author
-      console.log "showWork() trigger work:show for map", work
+      console.log "showWork() trigger work:show for map"
       # trigger for map_app
       # App.vent.trigger "work:show", work
 
@@ -40,7 +40,7 @@
         App.workContentRegion.show workPassagesView
         # TODO: show Passages tab if it was hidden
         $("#passages_pill").removeClass("hidden")
-        $(".passages-works h4").html('from <em>'+title+'</em')
+        # $(".passages-works h4").html('from <em>'+title+'</em')
 
     getWorkPassagesView: (work_passages, type) ->
       new Show.Passages ({

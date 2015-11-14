@@ -7,12 +7,37 @@ p, h1, h2, h3, h4 {font-family: "Palatino linotype", Georgia;}
 
 .centered {text-align: center;}
 // .right {right: 0;}
-.crumb { font-size: .8em;}
+.crumb { font-size: .8em; cursor: pointer; color: #336699;}
 .strong { font-weight: bold;}
 .hanging {
   padding-left: 16px ;
   text-indent: -8px ;
 }
+
+div.categories {
+  .active {font-size: 1.3em;}
+  span {
+    font-family: Geneva, Arial;
+    font-size: 0.85em;
+  }
+  border: 1px dotted #993333;
+  background: #e0e0e0; padding: 3px;
+  margin-right: 8px;
+  // min-height: 80px;
+}
+
+div.categories ul {
+  list-style-type: none;
+  li {
+    display: inline;
+    cursor: pointer;
+    color:#336699;
+  }
+}
+.catlist {
+  margin:0; padding: 0;
+}
+
 .placeref {
   background: #E8FCE8;
   cursor: pointer;

@@ -2,7 +2,7 @@
   @startWithParent = true
 
   # ContentApp is global router/API for the AL app
-  # 
+  #
   class ContentApp.Router extends Marionette.AppRouter
     appRoutes:
       "": "startContent"
@@ -20,7 +20,7 @@
   API =
     startContent: ->
       # console.log ' in AL.ContentApp.API.startContent()'
-      Backbone.history.navigate("authors", true)
+      Backbone.history.navigate("works", true)
       AL.ContentApp.Show.Controller.startContent()
 
     startAuthors: ->
@@ -53,7 +53,7 @@
 
     workPassages: (src,work_id) ->
       # console.log 'workPassages: '+src, work_id
-      # get work model from id, forward to listWorkPassages()
+      # get work model from id, forward to sub-app controller
       App.request "work:entity", work_id, (work) =>
         if src == 'a'
           AL.AuthorsApp.Show.Controller.listWorkPassages(work)

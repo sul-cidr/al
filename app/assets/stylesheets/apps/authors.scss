@@ -9,9 +9,6 @@ h4 {}
 #authors_region {
 
 }
-.categories {
-
-}
 
 .navbar { min-height: 35px; margin-bottom:0; }
 .navbar .nav-pills >li  {
@@ -24,10 +21,6 @@ h4 {}
   border-radius: 3px;
   background-color: #336699;
   cursor: none;
-}
-
-#dimension_pills {
-  margin-left: 10px;
 }
 
 /***/
@@ -51,18 +44,6 @@ h4 {}
   a {text-decoration: none;}
   a:hover {background: yellow;}
   }
-
-#catlist {
-  .active {font-size: 1.3em;}
-  span {
-    font-family: Geneva, Arial;
-    font-size: 0.85em;
-  }
-  border: 1px dotted #993333;
-  background: #e0e0e0; padding: 3px;
-  margin-right: 8px;
-  min-height: 80px;
-}
 
 #selected_cat_authors {
   margin: 2px 22px 0 8px;

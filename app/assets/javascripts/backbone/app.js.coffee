@@ -73,7 +73,7 @@
 
   # App.on 'initialize:after', ->
   App.on 'start', ->
-    console.log "App started"
+    # console.log "App started"
     if Backbone.history
       return Backbone.history.start()
     return

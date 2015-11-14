@@ -9,7 +9,15 @@
 div.work:hover {
   background: yellow;
 }
-.crumb-authors {font-size: .7em; color:#336699; cursor: pointer;}
+.panel-title {
+  h4 {margin-bottom:0; color: #993333;
+    text-align: center; font-weight: bold;}
+  p {font-style: italic; color: #333; margin-top:0;  text-align: center;}
+}
+
+.crumb-works {
+  font-size: .7em; color:#336699 !important;
+  cursor: pointer; text-align: left !important;}
 
 #selected_cat_works {
   margin: 2px 22px 0 8px;

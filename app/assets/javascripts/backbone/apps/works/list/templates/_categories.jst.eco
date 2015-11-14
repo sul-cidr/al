@@ -1,4 +1,1 @@
-<div id="catlist">
-  <!-- <a class="active" href="#">All</a>;  -->
-</div>
-<div id="selected_cat_works"></div>
+<ul class="catlist"></ul>
