@@ -12,7 +12,7 @@
       # TODO: getting authors per cat should be a route
       # "authors/:category_id": "showAuthors"
       "works/:author_id": "authorWorks"
-      "workpassages/:work_id": "workPassages"
+      "workpassages/:src/:work_id": "workPassages"
       "search/:q": "searchPassages"
 
 
@@ -50,10 +50,14 @@
       App.request "author:entity", author_id, (author) =>
         AL.AuthorsApp.Show.Controller.listWorks author
 
-    workPassages: (work_id) ->
+    workPassages: (src,work_id) ->
+      console.log 'workPassages: '+src, work_id
       # get work model from id, forward to listWorkPassages()
       App.request "work:entity", work_id, (work) =>
-        AL.AuthorsApp.Show.Controller.listWorkPassages(work)
+        if src == 'a'
+          AL.AuthorsApp.Show.Controller.listWorkPassages(work)
+        else if src == 'w'
+          AL.WorksApp.Show.Controller.showWork(work)
         # returns current work
         App.reqres.setHandler "work:model", ->
           return work

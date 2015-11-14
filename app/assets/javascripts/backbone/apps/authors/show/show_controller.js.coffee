@@ -12,7 +12,8 @@
       prefname = author.get("prefname")
       # console.log 'showAuthor: '+ id, prefname
       @authorLayout = @getAuthorLayout author
-
+      console.log '@authorLayout', @authorLayout
+      
       @authorLayout.on "show", =>
         @showTitle author
         @showNav author

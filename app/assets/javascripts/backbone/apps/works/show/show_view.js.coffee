@@ -5,8 +5,8 @@
     # template: "works/show/templates/show_work"
     regions:
       titleRegion: "#title_region"
-      # navRegion: "#nav_region"
-      workContentRegion: "#work_content_region"
+      navRegion: "#nav_region"
+      workContentRegion: "#work_content_region_w"
 
   class Show.Title extends App.Views.ItemView
     template: "works/show/templates/_title"
@@ -85,7 +85,7 @@
       $(".nav-pills li").removeClass("active")
       $("#passages_pill").addClass("active")
       # use route for model attributes and navigation
-      Backbone.history.navigate("workpassages/"+work.get('work_id'), true)
+      Backbone.history.navigate("workpassages/w/"+work.get('work_id'))
 
   class Show.Works extends App.Views.CompositeView
     template: "works/show/templates/_works"

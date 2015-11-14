@@ -7,7 +7,7 @@
       headerRegion: "#title_region_w"
       dimensionsRegion: "#dimensions_region_w"
       categoriesRegion: "#categories_region_w"
-      contentRegion: "#workscontent_region_w"
+      workListRegion: "#worklist_region_w"
 
   class List.Title extends App.Views.ItemView
     template: "works/list/templates/_title"
@@ -19,7 +19,6 @@
       q = $("#q_input").val()
       Backbone.history.navigate("search/" + q, true)
       # List.Controller.searchPassages($("#q_input").val())
-
 
   class List.Dimensions extends App.Views.ItemView
     template: "works/list/templates/_dimensions"
@@ -40,8 +39,9 @@
     events: {'click a': 'workByRoute'}
     workByRoute: ->
       work = this.model
+      route = "workpassages/w/" + work.get('work_id')
       console.log 'List.Work workByRoute', work
-      Backbone.history.navigate("workpassages/"+work.get('work_id'), true)
+      Backbone.history.navigate(route, true)
 
   class List.Works extends App.Views.CompositeView
     template: "works/list/templates/_works"
@@ -56,17 +56,12 @@
     events: {
       "click a.category": "filterWorks"
     }
-
     filterWorks: (e) ->
-      # select a category, filter works and map
-
-      # set up 'clear"'
       seltext =
         '<span class="strong">'+
         $(e.currentTarget).context.innerHTML +
         '</span><span class="right crumb"><a href="#">Clear filter</a></span>'
       $("#selected_cat_works").html(seltext)
-
 
       cat = this.model
       id = cat.attributes.id

@@ -82,7 +82,7 @@
       $(".nav-pills li").removeClass("active")
       $("#passages_pill").addClass("active")
       # use route for model attributes and navigation
-      Backbone.history.navigate("workpassages/"+work.get('work_id'), true)
+      Backbone.history.navigate("workpassages/a/"+work.get('work_id'), true)
 
   class Show.Works extends App.Views.CompositeView
     template: "authors/show/templates/_works"

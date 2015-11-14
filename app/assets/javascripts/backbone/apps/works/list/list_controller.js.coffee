@@ -20,6 +20,9 @@
         # hold off rendering this
         App.worksRegion.show @layout
 
+    getLayoutView: ->
+      new List.Layout
+      
     showTitle: (works) ->
       titleView = @getTitleView works
       @layout.headerRegion.show titleView
@@ -50,15 +53,12 @@
 
     listCatWorks: (works, category) ->
       worksCatView = @getCatWorksView works, category
-      @layout.contentRegion.show worksCatView
+      @layout.workListRegion.show worksCatView
 
     getCatWorksView: (works, category) ->
       new List.Works
         collection: works
         # className: 'work'
-
-    getLayoutView: ->
-      new List.Layout
 
     searchPassages: (q) ->
       console.log 'works_app List.Controller.searchPassages()', q

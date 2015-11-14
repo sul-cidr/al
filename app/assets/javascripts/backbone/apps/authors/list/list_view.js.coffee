@@ -35,12 +35,10 @@
     events: {'click a': 'authByRoute'}
     authByRoute: ->
       $activeAuthor = this.model
-      # console.log $activeAuthor
       author = this.model
       route = "author/" + author.get('author_id')
+      # runs showAuthor()
       console.log 'route', route
-      # CHECK: what is best practice?
-      # AL.AuthorsApp.Show.Controller.showAuthor(author)
       Backbone.history.navigate(route, true)
 
   class List.Authors extends App.Views.CompositeView

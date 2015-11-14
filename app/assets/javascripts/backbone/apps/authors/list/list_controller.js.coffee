@@ -19,6 +19,9 @@
         # hold off rendering this
         App.authorsRegion.show @layout
 
+    getLayoutView: ->
+      new List.Layout
+
     showTitle: (authors) ->
       titleView = @getTitleView authors
       @layout.headerRegion.show titleView
@@ -54,6 +57,3 @@
     getCatAuthorsView: (authors, category) ->
       new List.Authors
         collection: authors
-
-    getLayoutView: ->
-      new List.Layout

@@ -2,16 +2,17 @@
 
   Show.Controller =
 
-    showWork: (author) ->
+    showWork: (work) ->
       # get map to filter for author
       console.log "work:show for map_app", work
       # trigger for map_app
-      App.vent.trigger "work:show", work
+      # App.vent.trigger "work:show", work
 
       id = work.get("work_id")
       title = work.get("title")
       # console.log 'showAuthor: '+ id, prefname
       @workLayout = @getWorkLayout work
+      console.log '@workLayout', @workLayout
 
       @workLayout.on "show", =>
         @showTitle work
@@ -47,7 +48,6 @@
         viewComparator: "passage_id"
         className: 'passages-works'
       })
-
 
     showTitle: (work) ->
       @titleView = @getTitleView work
