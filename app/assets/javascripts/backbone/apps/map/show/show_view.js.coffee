@@ -114,7 +114,7 @@
       London = [51.5120, -0.0928]
       # London = [51.5120, -0.1728]
 
-      this.map.addLayer(osmLayer);
+      # this.map.addLayer(osmLayer);
       # places open, authors open viewports
       this.map.setView(London, 12)
 
@@ -127,46 +127,20 @@
       # else if feature.get("area_type") == "hood"
       #   return mapStyles.point_hood
 
+    bookMarker = L.MakiMarkers.icon({
+    	icon: 'library',
+    	color: '#CD5C5C',
+    	size: 's'
+    });
+    houseMarker = L.MakiMarkers.icon({
+    	icon: 'lodging',
+    	color: '#BA55D3',
+    	size: 's'
+    });
+
     # CHECK: ingestAreas and ingestPlacerefs both need to populate this
     $idToFeature = {areas:{}, placerefs:{}}
     window.idMapper = $idToFeature
-
-    ingestAreas: (areas) ->
-      # console.log 'ingestAreas', areas
-      # @idToFeature = {}
-      @features = []
-      $.each areas.models, (i, a) =>
-        geom = a.attributes.geom_poly_wkt
-        aid = a.get("id")
-        # if a.get("area_type") == "hood"
-        #   feature = L.circleMarker(
-        #     # not MULTIPOINT, but POINT
-        #     swap(wellknown(geom).coordinates), @stylePoints(a) )
-        #   feature.model = a
-        #   # feature.options.id = aid
-        #   $idToFeature.areas[aid] = feature
-        #   # @idToFeature[aid] = feature
-        #   @features.push feature
-        if a.get("area_type") == "hood"
-          # console.log geom
-          feature =  new L.GeoJSON(wellknown(geom), {
-            style: mapStyles.area.start
-          })
-          feature.model = a
-          # feature.id = aid
-          $idToFeature.areas[aid] = feature
-          # @idToFeature[aid] = feature
-          @features.push feature
-
-      # console.log $idToFeature.areas
-
-      @areas = L.featureGroup(@features)
-
-      @areas.addTo(@map)
-      # @map.fitBounds(@group)
-      window.map = @map
-      window.leaf_areas = @areas
-      window.areaFeatures = @features
 
     ingestPlacerefs: (placerefs) ->
       @features = []
@@ -175,15 +149,27 @@
         prid = pl.get("placeref_id")
         if geom.substr(0,5) == 'POINT'
           # console.log geom
-          feature = L.circleMarker(
-            swap(wellknown(geom).coordinates),
+
+          feature = L.marker(
+            swap(wellknown(geom).coordinates))
             # swap(wellknown(geom).coordinates[0]),
-            @stylePoints(pl) )
+            # @stylePoints(pl) )
+
+          # feature = L.circleMarker(
+          #   swap(wellknown(geom).coordinates),
+          #   # swap(wellknown(geom).coordinates[0]),
+          #   @stylePoints(pl) )
+
           feature.model = pl
           feature.bindPopup(
             if pl.get('placeref_type') == 'bio'
             then authhash[pl.get("author_id")]+' resided at ' + pl.get('prefname')
             else '"'+pl.get('prefname') + '", in <em>' + workhash[pl.get('work_id')].title
+          )
+          feature.setIcon(
+            if pl.get('placeref_type') == 'bio'
+            then houseMarker
+            else bookMarker
           )
           # CHECK: why bother adding an id here?
           feature.options.id = prid
@@ -228,16 +214,16 @@
 
 
       # Highlight.
-      @placerefs.on(
-        'mouseover',
-        this.onHighlightFeature.bind(this)
-      );
-
-      # // Unhighlight.
-      @placerefs.on(
-        'mouseout',
-        this.onUnhighlightFeature.bind(this)
-      );
+      # @placerefs.on(
+      #   'mouseover',
+      #   this.onHighlightFeature.bind(this)
+      # );
+      #
+      # # // Unhighlight.
+      # @placerefs.on(
+      #   'mouseout',
+      #   this.onUnhighlightFeature.bind(this)
+      # );
 
       # // Select.
       @placerefs.on(
@@ -254,6 +240,43 @@
       window.placerefs = @placerefs
       window.features = @features
       window.markers = @markerClusters
+
+    ingestAreas: (areas) ->
+      # console.log 'ingestAreas', areas
+      # @idToFeature = {}
+      @features = []
+      $.each areas.models, (i, a) =>
+        geom = a.attributes.geom_poly_wkt
+        aid = a.get("id")
+        # if a.get("area_type") == "hood"
+        #   feature = L.circleMarker(
+        #     # not MULTIPOINT, but POINT
+        #     swap(wellknown(geom).coordinates), @stylePoints(a) )
+        #   feature.model = a
+        #   # feature.options.id = aid
+        #   $idToFeature.areas[aid] = feature
+        #   # @idToFeature[aid] = feature
+        #   @features.push feature
+        if a.get("area_type") == "hood"
+          # console.log geom
+          feature =  new L.GeoJSON(wellknown(geom), {
+            style: mapStyles.area.start
+          })
+          feature.model = a
+          # feature.id = aid
+          $idToFeature.areas[aid] = feature
+          # @idToFeature[aid] = feature
+          @features.push feature
+
+      # console.log $idToFeature.areas
+
+      @areas = L.featureGroup(@features)
+
+      @areas.addTo(@map)
+      # @map.fitBounds(@group)
+      window.map = @map
+      window.leaf_areas = @areas
+      window.areaFeatures = @features
 
     # TODO: better highlight/unhighlight system
     # CHECK: why trigger->map_app->controller->@highlightFeature ?

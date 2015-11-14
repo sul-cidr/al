@@ -55,6 +55,7 @@
     getCatWorksView: (works, category) ->
       new List.Works
         collection: works
+        # className: 'work'
 
     getLayoutView: ->
       new List.Layout

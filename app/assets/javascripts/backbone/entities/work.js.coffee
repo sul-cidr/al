@@ -6,7 +6,7 @@
   class Entities.WorkCollection extends Entities.Collection
     model: Entities.Work
     url: '/works'
-    comparator: 'title'
+    comparator: 'sortable_title' #.gsub(/A /,'').gsub(/The /,'')
 
   works = new Entities.WorkCollection()
 

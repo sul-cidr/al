@@ -9,7 +9,10 @@ p, h1, h2, h3, h4 {font-family: "Palatino linotype", Georgia;}
 // .right {right: 0;}
 .crumb { font-size: .8em;}
 .strong { font-weight: bold;}
-
+.hanging {
+  padding-left: 16px ;
+  text-indent: -8px ;
+}
 .placeref {
   background: #E8FCE8;
   cursor: pointer;

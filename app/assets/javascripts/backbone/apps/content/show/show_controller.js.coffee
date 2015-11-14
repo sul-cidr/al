@@ -17,6 +17,39 @@
     getContentLayout: ->
       new Show.ContentLayout
 
+    # TODO: refactor passages for authors, places, works
+    # listPassages: (authid) ->
+    #   prefname = authhash[authid]
+    #   # console.log 'back in Show.Controller from vis with', authid
+    #
+    #   authorPassages =
+    #     _.filter @activeWorksPlaces, (wp) =>
+    #       wp.model.attributes.author_id == authid
+    # 
+    #   # get passage_ids for author
+    #   passage_ids = []
+    #   _.each authorPassages, (p) =>
+    #     passage_ids.push p.model.attributes.passage_id
+    #
+    #   # retrieve single author's passages for an area
+    #   App.request "passages:places", passage_ids, (place_passages) =>
+    #     if App.authorContentRegion.$el.length > 0
+    #       App.authorContentRegion.reset()
+    #     passagesView = @getPassagesView passages
+    #
+    #     App.placePassagesRegion.show passagesView
+    #     App.placePassagesRegion.$el.fadeIn("slow")
+    #     #
+    #     $(".passages-places h4").html(authhash[authid])
+    #
+    # getPassagesView: (passages) ->
+    #   new Show.Passages ({
+    #     collection: passages
+    #     viewComparator: "passage_id"
+    #     # TODO: different styles
+    #     className: 'passages-places'
+    #   })
+
     showTab: (tab)->
       console.log 'showTab(): ',tab
       $("#content_nav_region li").removeClass("active")

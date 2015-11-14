@@ -19,4 +19,8 @@ class Work < ActiveRecord::Base
   has_many :passages
   has_many :placerefs, :through => :passages
 
+  def sortable_title
+    self.title.sub(/^(the|a|an)\s+/i, '')
+  end
+
 end

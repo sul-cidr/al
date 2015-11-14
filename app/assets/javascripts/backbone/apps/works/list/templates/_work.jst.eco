@@ -1,4 +1,4 @@
-<div class="work">
+<div class="work hanging">
   <a href="#works/<%= @work_id %>">
   <%= @safe @title %></a>
 </div>

@@ -36,7 +36,7 @@
 
   class List.Work extends App.Views.ItemView
     template: "works/list/templates/_work"
-    tagName: "span"
+    # tagName: "span"
     # events: {'click a': 'authByRoute'}
     # authByRoute: ->
     #   $activeWork = this.model

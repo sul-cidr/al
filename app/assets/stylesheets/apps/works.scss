@@ -1,0 +1,19 @@
+.work {
+  margin: 4px 0;
+  line-height: 1em;
+  a, a:hover{
+    text-decoration: none;
+    display: inline-block;
+  }
+  // a:hover {
+  //   text-decoration: none;
+  // }
+}
+
+// .worklist:nth-of-type(odd) {
+//     background: #eeeee0;
+// }
+div.work:hover {
+  background: yellow;
+
+}

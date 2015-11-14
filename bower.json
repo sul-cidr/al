@@ -41,6 +41,7 @@
     "underscore": "~1.8.3",
     "wellknown": "~0.4.0",
     "leaflet.markercluster": "~0.4.0",
-    "typeahead.js": "~0.11.1"
+    "typeahead.js": "~0.11.1",
+    "Leaflet.MakiMarkers": "~1.0.1"
   }
 }
