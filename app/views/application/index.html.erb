@@ -1,18 +1,13 @@
-<div id="map_region"></div>
 <div id="header_region"></div>
-
-<div id="content_region" class="panel">
-  <!-- <div id="authors_region"></div>
-  <div id="places_region"></div> -->
-</div>
-
+<div id="map_region"></div>
+<div id="content_region" class="panel"></div>
 <div id="place_passages_region"></div>
-<div id="modal"></div>
+<!-- <div id="modal"></div> -->
 <div id="footer_region"></div>
 
 <%= javascript_tag do %>
 	$(function() {
-    console.log('application/index.html.erb')
+    console.log('$() in application/index.html.erb')
 		AL.start();
 	});
 <% end %>

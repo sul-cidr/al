@@ -45,7 +45,7 @@
 
 
     getPassageEntities: (id, type, cb) ->
-      # console.log 'getPassageEntities', id, type
+      console.log 'getPassageEntities', id, type
       passages = new Entities.PassageCollection
       passages.fetch
         success: ->

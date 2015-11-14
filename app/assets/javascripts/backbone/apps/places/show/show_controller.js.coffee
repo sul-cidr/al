@@ -4,7 +4,6 @@
 
     listPlacePassages: (authid) ->
       prefname = authhash[authid]
-      # console.log 'back in Show.Controller from vis with', authid
 
       window.authorPassages =
         _.filter @activeWorksPlaces, (wp) =>

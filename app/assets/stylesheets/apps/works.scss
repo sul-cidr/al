@@ -1,22 +1,15 @@
 .work {
   margin: 4px 0;
-  line-height: 1em;
+  line-height: 1.2em;
   a, a:hover{
     text-decoration: none;
     display: inline-block;
   }
-  // a:hover {
-  //   text-decoration: none;
-  // }
 }
-
-// .worklist:nth-of-type(odd) {
-//     background: #eeeee0;
-// }
 div.work:hover {
   background: yellow;
-
 }
+.crumb-authors {font-size: .7em; color:#336699; cursor: pointer;}
 
 #selected_cat_works {
   margin: 2px 22px 0 8px;

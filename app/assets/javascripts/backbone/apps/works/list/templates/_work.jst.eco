@@ -2,4 +2,5 @@
   <!-- <a href="#"> -->
   <a href="#workpassages/w/<%= @work_id %>">
   <%= @safe @title %></a>
+  <!-- (<%= @work_id %>) -->
 </div>

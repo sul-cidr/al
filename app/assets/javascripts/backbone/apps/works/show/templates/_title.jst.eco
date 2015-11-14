@@ -1,6 +1,6 @@
 <div class="panel-title">
   <!-- TODO: use Backbone.history.navigate here -->
-  <p class="crumb-authors">Home</p>
+  <p class="crumb-works">List of works</p>
   <h3><%= @title %></h3>
   <hr/>
 </div>

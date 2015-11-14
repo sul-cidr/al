@@ -3,8 +3,8 @@
   List.Controller =
 
     startAuthors: ->
-      console.log 'List.Controller.startAuthors()'
-      # start with all (cat 0)
+      # console.log 'List.Controller.startAuthors()'
+      # start with all (cat 0); filtered in the app
       App.request "authors:category", 0, (authors) =>
         @layout = @getLayoutView()
         # console.log @layout
