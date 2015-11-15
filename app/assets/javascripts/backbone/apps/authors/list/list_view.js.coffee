@@ -47,10 +47,10 @@
     authByRoute: ->
       $activeAuthor = this.model
       author = this.model
-      route = "authors/" + author.get('author_id')
+      @route = "authors/" + author.get('author_id')
       # runs showAuthor()
-      console.log 'route', route
-      Backbone.history.navigate(route, true)
+      console.log 'route', @route
+      Backbone.history.navigate(@route, true)
 
   class List.Authors extends App.Views.CompositeView
     template: "authors/list/templates/_authors"

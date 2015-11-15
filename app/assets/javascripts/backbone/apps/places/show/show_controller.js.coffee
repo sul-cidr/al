@@ -88,7 +88,7 @@
       # console.log 'API.showAreaSummary..triggered from ??'
       _.each @activeWorksPlaces, (p) =>
         wPlacerefs.push(p.model.attributes)
-        worksYears.push(workhash[p.model.attributes.work_id].pub_year)
+        worksYears.push(workhash[p.model.attributes.work_id].work_year)
       _.each @activeBioPlaces, (p) =>
         @bPlacerefs.push(p.model.attributes)
       crossworks = crossfilter(wPlacerefs)
@@ -107,7 +107,7 @@
     # run vis.js packAuths bubble chart
     #
     makeVis: (auths, years) ->
-      # console.log auths
+      console.log years
       window.authobj = {"children":[]}
       # console.log authobj
       _.each auths, (a) =>

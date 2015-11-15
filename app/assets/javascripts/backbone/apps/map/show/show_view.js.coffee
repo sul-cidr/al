@@ -17,6 +17,7 @@
       _.each @filters, (evaluator, key) =>
         visible = visible && evaluator(layer.model)
       if visible
+        @markerClusters.addLayer layer
         # @map.addLayer layer
         # console.log 'filterLayer', layer
         @filteredFeatures.push layer
@@ -147,13 +148,11 @@
       $.each placerefs.models, (i, pl) =>
         geom = pl.attributes.geom_wkt
         prid = pl.get("placeref_id")
+        aid = pl.get("author_id").toString()
         if geom.substr(0,5) == 'POINT'
-          # console.log geom
 
           feature = L.marker(
             swap(wellknown(geom).coordinates))
-            # swap(wellknown(geom).coordinates[0]),
-            # @stylePoints(pl) )
 
           # feature = L.circleMarker(
           #   swap(wellknown(geom).coordinates),
@@ -163,7 +162,9 @@
           feature.model = pl
           feature.bindPopup(
             if pl.get('placeref_type') == 'bio'
-            then authhash[pl.get("author_id")]+' resided at ' + pl.get('prefname')
+            # then '"'+aid+'"' + ' resided at ' +
+            then authhash[pl.get("author_id")]+' resided at ' +
+              pl.get('prefname')
             else '"'+pl.get('prefname') + '", in <em>' + workhash[pl.get('work_id')].title
           )
           feature.setIcon(
@@ -207,7 +208,6 @@
 
       @placerefs = L.featureGroup(@features)
 
-
       @markerClusters = L.markerClusterGroup();
 
       @markerClusters.addLayer(@placerefs);
@@ -236,6 +236,7 @@
       # @placerefs.addTo(@map)
       # @map.fitBounds(@group)
 
+      # TODO: stop exposing these
       window.map = @map
       window.placerefs = @placerefs
       window.features = @features
