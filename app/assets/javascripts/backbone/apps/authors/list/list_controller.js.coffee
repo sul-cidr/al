@@ -50,8 +50,8 @@
         filter: (child, index, collection) ->
           child.get('dim') == dim
 
-    listCatAuthors: (authors, category) ->
-      authorsCatView = @getCatAuthorsView authors, category
+    listCatAuthors: (authors) ->
+      authorsCatView = @getCatAuthorsView authors
       @layout.authorlistRegion.show authorsCatView
 
     getCatAuthorsView: (authors, category) ->

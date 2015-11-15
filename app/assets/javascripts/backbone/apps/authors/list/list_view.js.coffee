@@ -9,6 +9,17 @@
       categoriesRegion: "#categories_region"
       authorlistRegion: "#authorlist_region"
 
+    events: {
+      "click .clear": "removeFilter"
+    }
+
+    removeFilter: ->
+      console.log 'remove filter'
+      $("#selected_cat_authors").remove()
+      App.request "authors:category", 0, (authors) =>
+        List.Controller.listCatAuthors(authors)
+        # App.vent.trigger("map:reset")
+
   class List.Title extends App.Views.ItemView
     template: "authors/list/templates/_title"
     events:
@@ -60,9 +71,10 @@
       seltext =
         '<span class="strong">'+
         $(e.currentTarget).context.innerHTML +
-        '</span><span class="right crumb"><a href="#">Clear filter</a></span>'
+        '</span><span class="right crumb clear">'+
+        'Clear filter</span>'
       $("#selected_cat_authors").html(seltext)
-
+      
       cat = this.model
       window.activecat = cat
       id = cat.attributes.id
@@ -81,20 +93,11 @@
     className: 'categories'
     childView: List.Category
     childViewContainer: ".catlist"
-    events: {
-      "click #selected_cat_authors a": "removeFilter"
-    }
+
     filter: (child, index, collection) ->
       # filter genre for initial display
       child.get('dim') == 'genre'
-    onChildviewAuthorsFiltered: ->
-      # console.log 'bubbled up to List.Categories view'
-    removeFilter: (e) ->
-      # console.log 'remove filter'
-      $("#selected_cat_authors").remove()
-      App.request "authors:category", 0, (authors) =>
-        List.Controller.listCatAuthors(authors, 0)
-        App.vent.trigger("map:reset")
+
 
   class List.Empty extends App.Views.ItemView
     template: "authors/list/templates/_empty"
