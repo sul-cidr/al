@@ -28,11 +28,14 @@ div.categories {
 
 div.categories ul {
   list-style-type: none;
+  margin: 0; padding: 0 8px;
   li {
     display: inline;
     cursor: pointer;
     color:#336699;
+    margin-left: -1px;
   }
+  li:hover {background: #ffff99}
 }
 .catlist {
   margin:0; padding: 0;

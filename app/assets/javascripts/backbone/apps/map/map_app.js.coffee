@@ -34,7 +34,7 @@
         _.each authors.models, (a) =>
           author_ids.push a.get("author_id")
           @filterByAuthors author_ids, id
-        console.log 'cat '+id+ ': ', author_ids
+        console.log 'mapping cat '+id+ ': ', author_ids
 
     focusPlace: (area) ->
       #

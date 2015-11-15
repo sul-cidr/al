@@ -1,6 +1,6 @@
 <div class="panel-title">
   <!-- TODO: use Backbone.history.navigate here -->
-  <p class="crumb-authors">Home</p>
+  <p class="crumb-authors"><< Back</p>
   <h3><%= @prefname %></h3>
   <hr/>
 </div>

@@ -2,7 +2,8 @@
 <!-- <% if @name == "All": %>
   <li class="category active"><%= @name  %></li>;
 <% else: %> -->
-<li class="category" value="<%=@name%>"><%= @name %></li> 
+<li class="category" value="<%=@name%>"><%= @name %></li>::
+<!-- &middot;  -->
 <!-- <% end %> -->
 
 

@@ -36,7 +36,7 @@
     authByRoute: ->
       $activeAuthor = this.model
       author = this.model
-      route = "author/" + author.get('author_id')
+      route = "authors/" + author.get('author_id')
       # runs showAuthor()
       console.log 'route', route
       Backbone.history.navigate(route, true)
@@ -52,7 +52,7 @@
     tagName: "span"
     # events: {"click": "filterAuthors"}
     events: {
-      "click a.category": "filterAuthors"
+      "click li.category": "filterAuthors"
     }
 
     filterAuthors: (e) ->
@@ -65,8 +65,8 @@
 
       cat = this.model
       window.activecat = cat
-      id = cat.attributes.category_id
-      console.log 'filter for cat:' + cat, id
+      id = cat.attributes.id
+      console.log 'filter authors, cat: ' + id
       # get a collection of author models for category
       App.request "authors:category", id, (authors) =>
         List.Controller.listCatAuthors(authors, id)
@@ -80,7 +80,7 @@
     template: "authors/list/templates/_categories"
     className: 'categories'
     childView: List.Category
-    childViewContainer: "#catlist"
+    childViewContainer: ".catlist"
     events: {
       "click #selected_cat_authors a": "removeFilter"
     }

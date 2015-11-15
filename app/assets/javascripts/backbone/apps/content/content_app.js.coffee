@@ -9,7 +9,7 @@
       "authors": "startAuthors"
       "places": "startPlaces"
       "works": "startWorks"
-      "author/:author_id": "showAuthor"
+      "authors/:author_id": "showAuthor"
       # TODO: getting authors per cat should be a route
       # "authors/:category_id": "showAuthors"
       "works/:author_id": "authorWorks"
@@ -20,7 +20,7 @@
   API =
     startContent: ->
       # console.log ' in AL.ContentApp.API.startContent()'
-      Backbone.history.navigate("works", true)
+      Backbone.history.navigate("authors", true)
       AL.ContentApp.Show.Controller.startContent()
 
     startAuthors: ->
@@ -48,7 +48,9 @@
           return author
 
     authorWorks: (author_id) ->
+      console.log 'works/:author_id, API authorWorks()'
       App.request "author:entity", author_id, (author) =>
+        console.log 'author model from API:', author
         AL.AuthorsApp.Show.Controller.listWorks author
 
     workPassages: (src,work_id) ->

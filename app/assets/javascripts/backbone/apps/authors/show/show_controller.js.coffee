@@ -12,8 +12,8 @@
       prefname = author.get("prefname")
       # console.log 'showAuthor: '+ id, prefname
       @authorLayout = @getAuthorLayout author
-      console.log '@authorLayout', @authorLayout
-      
+      # console.log '@authorLayout', @authorLayout
+
       @authorLayout.on "show", =>
         @showTitle author
         @showNav author
@@ -51,8 +51,9 @@
     # TODO: make this display a visualization summary
     listWorks: (author) ->
       id = author.get("author_id")
-      App.request "work:entities", id, (works) =>
-        # console.log 'listWorks()', works
+      console.log 'listWorks()', id
+      App.request "works:author", id, (works) =>
+        console.log 'listWorks() '+ id, works
         if App.authorContentRegion.$el.length > 0
           App.authorContentRegion.reset()
         @worksView = @getWorksView works

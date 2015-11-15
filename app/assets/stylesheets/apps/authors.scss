@@ -55,7 +55,9 @@ h4 {}
 #author_content_region {
   p {font-size: 1.1em;}
 }
-.crumb-authors {font-size: .7em; color:#336699; cursor: pointer;}
+.crumb-authors {
+  font-size: .7em; color:#336699 !important;
+  cursor: pointer; text-align: left !important;}
 
 .passagelist {
   padding-right: 8px;
