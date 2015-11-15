@@ -109,9 +109,9 @@ ActiveRecord::Schema.define(version: 20150919024745) do
     t.integer  "death_year"
     t.integer  "viaf_id"
     t.string   "wiki_id"
+    t.integer  "categories", default: [],              array: true
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
-    t.integer  "categories", default: [],              array: true
   end
 
   create_table "authors_categories", force: :cascade do |t|

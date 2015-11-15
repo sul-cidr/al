@@ -12,7 +12,8 @@ class CreateAuthors < ActiveRecord::Migration
         	t.integer :death_year
         	t.integer :viaf_id
         	t.string :wiki_id
-        	
+          t.integer :categories, array: true, default: []
+
         	t.timestamps null: false
         end
 

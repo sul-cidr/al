@@ -30,9 +30,10 @@ Category.create([
   {category_id:13,name:"Satire",dim:"genre"},
   {category_id:14,name:"Short Story",dim:"genre"},
   {category_id:15,name:"Thriller",dim:"genre"},
-  {category_id:33,name:"Low",dim:"standing"},
-  {category_id:32,name:"Middle",dim:"standing"},
-  {category_id:31,name:"Upper",dim:"standing"}
+  # {category_id:33,name:"Low",dim:"standing"},
+  # {category_id:32,name:"Middle",dim:"standing"},
+  {category_id:31,name:"Upper Class",dim:"standing"},
+  {category_id:34,name:"Middle/Lower Classes",dim:"standing"}
 
 
 ])
