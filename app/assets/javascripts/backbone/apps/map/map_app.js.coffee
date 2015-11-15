@@ -3,10 +3,18 @@
 
   App.vent.on "author:show", (author) ->
     console.log "map heard author:show -->", author
+    # placerefs for all passages by an author
     API.filterByAuthor author
 
   App.vent.on "category:authors:show", (cat) ->
+    console.log 'map heard category:authors:show --> ', cat
+    # placerefs for all passages by set of authors
     API.filterByCategory cat
+
+  App.vent.on "category:works:show", (cat) ->
+    console.log 'map heard category:works:show --> ', cat
+    # placerefs for all passages in works of a category
+    # API.filterByCategory cat
 
   App.vent.on "place:focus", (area) ->
     API.focusPlace(area)

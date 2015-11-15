@@ -82,8 +82,8 @@
       App.request "works:category", id, (works) =>
         List.Controller.listCatWorks(works)
         # console.log 'works for cat '+id, works
-      # trigger picked up by map_app
-      # App.vent.trigger "category:works:show", cat
+      # to map_app
+      App.vent.trigger "category:works:show", cat
       App.reqres.setHandler "category:active", ->
         return cat
 

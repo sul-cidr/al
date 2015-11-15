@@ -15,7 +15,7 @@
 
     removeFilter: ->
       console.log 'remove filter'
-      $("#selected_cat_authors").remove()
+      $("#selected_cat_authors").html('')
       App.request "authors:category", 0, (authors) =>
         List.Controller.listCatAuthors(authors)
         # App.vent.trigger("map:reset")
@@ -74,16 +74,16 @@
         '</span><span class="right crumb clear">'+
         'Clear filter</span>'
       $("#selected_cat_authors").html(seltext)
-      
+
       cat = this.model
       window.activecat = cat
       id = cat.attributes.id
-      console.log 'filter authors, cat: ' + id
+      # console.log 'filter authors, cat: ' + id
       # get a collection of author models for category
       App.request "authors:category", id, (authors) =>
         List.Controller.listCatAuthors(authors, id)
 
-      # trigger picked up by map_app
+      # to map_app
       App.vent.trigger "category:authors:show", cat
       App.reqres.setHandler "category:active", ->
         return cat
