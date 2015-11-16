@@ -1,9 +1,9 @@
 <div class="panel-title">
   <hr/>
   <div id="search_passages class="form-group"">
-    <label class="radio-inline"><input type="radio" name="optradio">titles</label>
-    <label class="radio-inline"><input type="radio" checked = "checked" 
-      name="optradio">passages</label>
+    <!-- <label class="radio-inline"><input type="radio" name="optradio">titles</label>
+    <label class="radio-inline"><input type="radio" checked = "checked"
+      name="optradio">passages</label> -->
     <input id="q_input" class="typeahead" type="text"
       onkeydown="if(event.keyCode==13) $('#q_button').click()"
       placeholder="search passages for...">

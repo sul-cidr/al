@@ -54,7 +54,7 @@
         AL.AuthorsApp.Show.Controller.listWorks author
 
     workPassages: (src,work_id) ->
-      # console.log 'workPassages: '+src, work_id
+      console.log 'workPassages: '+src, work_id
       # get work model from id, forward to sub-app controller
       App.request "work:entity", work_id, (work) =>
         if src == 'a'
@@ -66,7 +66,7 @@
           return work
 
     searchPassages: (q) ->
-      # console.log 'ContentApp router API searchPassages',q
+      console.log 'ContentApp router API searchPassages',q
       AL.WorksApp.List.Controller.searchPassages q
 
 

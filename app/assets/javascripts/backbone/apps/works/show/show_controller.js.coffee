@@ -14,6 +14,7 @@
       @workLayout = @getWorkLayout work
       # console.log '@workLayout', @workLayout
 
+      console.log '@workLayout', @workLayout
       @workLayout.on "show", =>
         @showTitle work
         # @showNav work
@@ -56,7 +57,7 @@
     getTitleView: (work) ->
       new Show.Title
         model: work
-    #
+
     # showNav: (work) ->
     #   @navView = new Show.Pills
     #     model: work
