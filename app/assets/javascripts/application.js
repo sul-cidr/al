@@ -43,3 +43,4 @@
 //= require_tree ./backbone/helpers
 //*** require turbolinks
 //= require bootstrap-sprockets
+//= require typekit

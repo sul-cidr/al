@@ -3,13 +3,16 @@
   List.Controller =
 
     startAuthors: ->
-      # console.log 'List.Controller.startAuthors()'
+      # set URL
+      Backbone.history.navigate("authors")
+
       # start with all (cat 0); filtered in the app
       App.request "authors:category", 0, (authors) =>
         @layout = @getLayoutView()
-        # console.log @layout
+        console.log authors.models.length + ' authors'
 
         @layout.on "show", =>
+          AL.ContentApp.Show.Controller.showTab('authors')
           @showTitle authors
           @listCatAuthors authors, 0
 
@@ -54,6 +57,6 @@
       authorsCatView = @getCatAuthorsView authors
       @layout.authorlistRegion.show authorsCatView
 
-    getCatAuthorsView: (authors, category) ->
+    getCatAuthorsView: (authors) ->
       new List.Authors
         collection: authors

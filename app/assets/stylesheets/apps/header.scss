@@ -12,22 +12,25 @@
   top: 14px;
 }
 
+// .title {font-family: "english";}
+
 #header {
   position: absolute;
   top: 0;
   width: 100vw;
-  h2 {
+  h1 {
     margin: 5px 0;
     text-align: center;
-    font-weight: bolder;
+    font-size: 2em;
+    // font-weight: bolder;
     // font-family: "Prociono";
     font-variant: small-caps;
-    font-family: "IM Fell English";
+    font-family: "english";
     letter-spacing: 6px;
+    color: #2A4747;
   }
 
   // white center
-  h2 {color: #2A4747}
   background-color: #ffffff; // Old browsers
   @include filter-gradient( #ffffff, #ffffff, horizontal); // IE6-9
   @include background-image(linear-gradient(left,  #2A4747 0%,#BFC8C8 25%,#BFC8C8 75%,#2A4747 100%));

@@ -100,14 +100,37 @@
       # filter genre for initial display
       child.get('dim') == 'genre'
 
-    # removeFilter: (e) ->
-    #   # console.log 'remove filter'
-    #   $("#selected_cat_works").remove()
-    #   App.request "works:category", 0, (works) =>
-    #     List.Controller.listCatWorks(works, 0)
-    #     App.vent.trigger("map:reset")
-
-
   class List.Empty extends App.Views.ItemView
     template: "works/list/templates/_empty"
     tagName: "p"
+
+  class List.SearchResult extends App.Views.ItemView
+    template: "works/list/templates/_passage"
+    tagName: "p"
+    events: {
+      # "click": "highlightPlacerefs"
+      "mouseenter span.place": "onPlacerefEnter"
+      "mouseleave span.place": "onPlacerefLeave"
+    }
+    # highlightPlacerefs: ->
+    #   console.log 'Show.Passage.highlightPlacerefs()'
+
+    onPlacerefEnter: (e) ->
+      id = this.getPlacerefIdFromEvent(e);
+      console.log 'highlight placeref #', id
+      App.vent.trigger('placeref:highlight', id);
+      # App.vent.trigger('placeref:hover', e)
+
+    onPlacerefLeave: (e) ->
+      id = this.getPlacerefIdFromEvent(e);
+      # console.log 'left placeref span'
+      App.vent.trigger('placeref:unhighlight', id);
+
+    getPlacerefIdFromEvent: (e) ->
+      Number($(e.currentTarget).context.attributes.data_id.value);
+
+  # passages are shown by clicking a work
+  class List.SearchResults extends App.Views.CompositeView
+    template: "works/list/templates/_passages"
+    childView: List.SearchResult
+    childViewContainer: "div"

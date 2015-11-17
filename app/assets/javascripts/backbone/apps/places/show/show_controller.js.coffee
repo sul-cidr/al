@@ -18,6 +18,7 @@
       App.request "passages:places", passage_ids, (place_passages) =>
         if App.authorContentRegion.$el.length > 0
           App.authorContentRegion.reset()
+        window.placepassages = place_passages
         placePassagesView = @getPlacePassagesView place_passages
 
         App.placePassagesRegion.show placePassagesView

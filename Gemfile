@@ -15,6 +15,7 @@ gem 'activerecord-postgis-adapter'
 gem 'eco'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'compass-rails', '2.0.4'
+gem 'typekit-rails'
 
 gem 'seedbank'
 

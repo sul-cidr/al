@@ -3,21 +3,19 @@
   List.Controller =
 
     startWorks: ->
-      # console.log 'startWorks()'
-      # console.log 'startWorks caller:', arguments.callee.caller.toString()
+      # set URL
+      Backbone.history.navigate("works")
       App.request "works:category", 0, (works) =>
         @layout = @getLayoutView()
-        # console.log @layout
-        # console.log works
 
         @layout.on "show", =>
+          AL.ContentApp.Show.Controller.showTab('works')
           @showTitle works
           @listCatWorks works
 
           @listDimensions()
           @listCategories("genre")
 
-        # hold off rendering this
         App.worksRegion.show @layout
 
     getLayoutView: ->
@@ -40,9 +38,6 @@
       App.request "category:entities", (categories) =>
         # console.log 'listCategories for: ', dim
         categoriesView = @getCategoriesView categories, dim
-        # categoriesView.on 'childview:works:filtered', (childView, model) ->
-        #   console.log 'heard trigger', model
-        # console.log categoriesView
         @layout.categoriesRegion.show categoriesView
 
     getCategoriesView: (categories, dim) ->
@@ -65,16 +60,49 @@
     searchPassages: (q) ->
       console.log 'works_app List.Controller.searchPassages()', q
       App.request "passages:search", q, (results) =>
-        console.log 'search results:', results
-        resultsView = @getResultsView results, 'works'
-        console.log 'resultsView', resultsView
+        window.searchresults = results
+        if results.length > 0
+          resultsView = @getResultsView results
+          @layout.workListRegion.show resultsView
+        else
+          $(".passagelist").html('<p>Sorry, no results...</p>')
 
-        @layout.workListRegion.show resultsView
+      $(".search-passages h4").html('Mentions of <b>'+q+'</b>')
 
-    getResultsView: (results, type) ->
-      new AL.AuthorsApp.Show.Passages ({
+    getResultsView: (results) ->
+      new List.SearchResults ({
         collection: results
         viewComparator: "passage_id"
-        className: if type == 'works' then 'passages-works' else 'passages-bio'
+        className: 'passages-works'
       })
+
+# places is a model for passage display
+    # listPlacePassages: (authid) ->
+    #   prefname = authhash[authid]
     #
+    #   window.authorPassages =
+    #     _.filter @activeWorksPlaces, (wp) =>
+    #       wp.model.attributes.author_id == authid
+    #
+    #   # get passage_ids for author
+    #   window.passage_ids = []
+    #   _.each authorPassages, (p) =>
+    #     passage_ids.push p.model.attributes.passage_id
+    #
+    #   # retrieve single author's passages for an area
+    #   App.request "passages:places", passage_ids, (place_passages) =>
+    #     if App.authorContentRegion.$el.length > 0
+    #       App.authorContentRegion.reset()
+    #     placePassagesView = @getPlacePassagesView place_passages
+    #
+    #     App.placePassagesRegion.show placePassagesView
+    #     App.placePassagesRegion.$el.fadeIn("slow")
+    #     #
+    #     $(".passages-places h4").html(authhash[authid])
+    #
+    # getPlacePassagesView: (place_passages) ->
+    #   new Show.PlacePassages ({
+    #     collection: place_passages
+    #     viewComparator: "passage_id"
+    #     className: 'passages-places'
+    #   })

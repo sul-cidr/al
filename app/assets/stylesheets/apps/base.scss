@@ -1,7 +1,9 @@
 /* base.scss - application-wide */
 
 html,body  {  height: 100%;  }
-p, h1, h2, h3, h4 {font-family: "Palatino linotype", Georgia;}
+h1, h2, h3, h4 {font-family: "english", Georgia;}
+
+p {font-family: "Palatino linotype", Georgia, serif;}
 
 .active {cursor: none;}
 

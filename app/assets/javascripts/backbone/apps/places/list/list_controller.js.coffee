@@ -3,17 +3,16 @@
   List.Controller =
 
     startPlaces: ->
-    # get areas here, used to aggregate & navigate places/placerefs
+      # set URL
       console.log 'startPlaces()'
       Backbone.history.navigate("places")
-
-      # AL.ContentApp.Show.Controller.showTab('places')
 
       App.request "area:entities", (areas) =>
         # console.log areas
         @layout = @getLayoutView()
 
         @layout.on "show", =>
+          AL.ContentApp.Show.Controller.showTab('places')
           @showTitle()
           @showNavmap()
           @listAreas areas
