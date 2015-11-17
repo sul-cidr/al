@@ -89,6 +89,7 @@
 
     initMap: ->
       # console.log 'initMap'
+      # this.map = L.mapbox.map('map', {
       this.map = L.map('map', {
         zoomControl: false,
         attributionControl: false,
@@ -105,17 +106,20 @@
 
       this.map.addControl(zoomControl);
 
+      # mbLayer = L.mapbox.tileLayer('elijahmeeks.kd3jd7e1')
+      # mapbox://styles/elijahmeeks/cigvm9rhm000d90ksrihyve8x
+
       # mapboxLayer =
-      # OSM base layer.
+      # OSM base layer
       osmLayer = L.tileLayer(
         'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
         { detectRetina: true }
       );
 
       London = [51.5120, -0.0928]
-      # London = [51.5120, -0.1728]
 
-      # this.map.addLayer(osmLayer);
+      # this.map.addLayer(mbLayer);
+      this.map.addLayer(osmLayer);
       # places open, authors open viewports
       this.map.setView(London, 12)
 
