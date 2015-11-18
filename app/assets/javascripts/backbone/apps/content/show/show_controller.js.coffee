@@ -21,7 +21,7 @@
 
 
     showTab: (tab)->
-      console.log 'showTab(): ',tab
+      # $(".header-left").removeClass("hidden")
       $("#content_nav_region li").removeClass("active")
       $("#place_passages_region").fadeOut()
 
@@ -34,6 +34,7 @@
 
       else if tab == 'places'
         if $("#places_region").html() == ''
+          $(".header-left").removeClass("hidden")
           AL.PlacesApp.List.Controller.startPlaces()
         @route = "places"
         $("#places_tab").addClass("active")
@@ -43,6 +44,7 @@
 
       else if tab == 'works'
         if $("#works_region").html() == ''
+          $(".header-left").removeClass("hidden")
           AL.WorksApp.List.Controller.startWorks()
         @route = "works"
         $("#works_tab").addClass("active")
@@ -50,7 +52,7 @@
         $("#places_region").hide()
         $("#works_region").fadeIn("slow")
 
-      Backbone.history.navigate(@route)
+      Backbone.history.navigate(@route, true)
 
     startAuthors: ->
       # get a view and show in authorsRegion

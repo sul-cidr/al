@@ -4,9 +4,9 @@
 
     showAuthor: (author) ->
       # get map to filter for author
-      console.log "author:show for map_app", author
+      console.log "showAuthor", author
       # trigger for map_app
-      App.vent.trigger "author:show", author
+      # App.vent.trigger "author:show", author
 
       id = author.get("author_id")
       prefname = author.get("prefname")
@@ -15,6 +15,8 @@
       # console.log '@authorLayout', @authorLayout
 
       @authorLayout.on "show", =>
+        # AL.ContentApp.Show.Controller.showTab('authors')
+        # Backbone.history.navigate("authors/"+id)
         @showTitle author
         @showNav author
         @listBioPassages author

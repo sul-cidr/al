@@ -73,7 +73,7 @@
 
   class Show.Work extends App.Views.ItemView
     template: "authors/show/templates/_work"
-    tagName: "li"
+    tagName: "span"
     events: {"click": "loadPassages"}
     loadPassages: ->
       work = this.model
@@ -88,4 +88,4 @@
     template: "authors/show/templates/_works"
     className: 'works'
     childView: Show.Work
-    childViewContainer: "ul"
+    childViewContainer: "div"

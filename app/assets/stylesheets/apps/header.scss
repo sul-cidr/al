@@ -12,7 +12,14 @@
   top: 14px;
 }
 
-// .title {font-family: "english";}
+.header-left {
+  // font-awesome 'home'
+  position:absolute;
+  left:16px;
+  cursor: pointer;
+  color:#C2D1E0;
+  top: 14px;
+}
 
 #header {
   position: absolute;
