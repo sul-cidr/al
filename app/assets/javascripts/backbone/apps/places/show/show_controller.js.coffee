@@ -45,8 +45,12 @@
           @showPlaceContent area
 
           App.vent.trigger "place:focus", area
+          # CHECK: expose current area model here?
+          App.reqres.setHandler "area:model", ->
+              return area
       # keep showing in the placesRegion for now; areas are one kind of place
       App.placesRegion.show @placeLayout
+
 
     getPlaceLayout: (area) ->
       new Show.Layout ({

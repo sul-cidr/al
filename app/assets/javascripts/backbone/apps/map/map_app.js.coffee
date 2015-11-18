@@ -17,6 +17,7 @@
     # API.filterByCategory cat
 
   App.vent.on "place:focus", (area) ->
+    console.log 'map_app place:focus', area
     API.focusPlace(area)
 
   API =

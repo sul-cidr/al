@@ -55,12 +55,15 @@
       # App.vent.trigger "map:reset"
       # get area model from id, forward to showPlace()
       # these are the voronoi polygons
-      App.request "area:entity", id, (area) =>
-        console.log 'area', area
-        AL.PlacesApp.Show.Controller.showPlace(area)
+      AL.PlacesApp.Show.Controller.showPlace(id)
 
-        App.reqres.setHandler "area:model", ->
-          return area
+      # everything moves to Controller
+      # App.request "area:entity", id, (area) =>
+      #   console.log 'area', area
+      #   AL.PlacesApp.Show.Controller.showPlace(area)
+      #
+      #   App.reqres.setHandler "area:model", ->
+      #     return area
 
     authorWorks: (author_id) ->
       console.log 'works/:author_id, API authorWorks()'

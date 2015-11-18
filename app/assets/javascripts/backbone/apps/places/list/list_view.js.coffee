@@ -32,16 +32,30 @@
       #
       window.activePlace = this.model
       area = this.model
-      id = area.get("id")
+      id = area.get('id')
+      @route = "places/" + id
 
-      App.vent.trigger("place:show", area)
+      Backbone.history.navigate(@route, true)
+
       App.vent.trigger('area:unhighlight', id);
-      # if area.get("area_type") == "borough"
-      #   PlacesApp.Show.Controller.showBorough id
-      #   PlacesApp.navigate("boroughs/" + id)
-      # else
-      #   PlacesApp.Show.Controller.showHood id
-      #   AL.PlacesApp.navigate("hoods/" + id)
+    #
+    # areaByRoute: ->
+    #   #
+    #   window.activePlace = this.model
+    #   area = this.model
+    #   id = area.get("id")
+    #
+    #   App.vent.trigger("place:show", area)
+    #   App.vent.trigger('area:unhighlight', id);
+
+    # this is how it's done in authors
+    # authByRoute: ->
+    #   $activeAuthor = this.model
+    #   author = this.model
+    #   @route = "authors/" + author.get('author_id')
+    #   # runs showAuthor()
+    #   console.log 'route', @route
+    #   Backbone.history.navigate(@route, true)
 
     onAreaEnter: (e) ->
       id = this.getAreaIdFromEvent(e);

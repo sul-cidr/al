@@ -19,11 +19,6 @@
     showPlace: (id) ->
       PlacesApp.Show.Controller.showPlace(id)
 
-  App.vent.on "authors-panel:open", ->
-    PlacesApp.List.Controller.togglePanel()
-    map.setActiveArea('viewport-authors')
-    map.setView([51.5120, -0.0928], 12)
-
   App.vent.on "place:show", (area) ->
     id = area.get("id")
     console.log 'place:show triggered', id
