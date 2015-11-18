@@ -38,6 +38,7 @@
     API.getAreaEntities cb
 
   App.reqres.setHandler "area:entity", (id, cb) ->
+    console.log 'area entity', id
     API.getAreaEntity id, cb
 
   App.reqres.setHandler "borough:hoods", (id, cb) ->

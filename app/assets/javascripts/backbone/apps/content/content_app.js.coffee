@@ -10,7 +10,7 @@
       "places": "startPlaces"
       "works": "startWorks"
       "authors/:author_id": "showAuthor"
-      "places/place_id": "showPlace"
+      "places/:id": "showArea"
 
       # TODO: getting authors per cat should be a route
       # "authors/:category_id": "showAuthors"
@@ -50,11 +50,11 @@
         App.reqres.setHandler "author:model", ->
           return author
     #
-    showPlace: (id)->
-      console.log 'ContentApp.Router, showPlace()', id
+    showArea: (id)->
+      console.log 'ContentApp.Router, showArea()', id
       # App.vent.trigger "map:reset"
       # get area model from id, forward to showPlace()
-      # thes are the voronoi polygons
+      # these are the voronoi polygons
       App.request "area:entity", id, (area) =>
         console.log 'area', area
         AL.PlacesApp.Show.Controller.showPlace(area)
