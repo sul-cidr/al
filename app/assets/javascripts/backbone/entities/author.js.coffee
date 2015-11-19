@@ -31,15 +31,19 @@
       @author = authors._byId[id]
       cb @author
 
+    # TODO this executes twice, from authors_app and map_app
     getAuthorsCategory: (cat, cb) ->
+      # console.log 'API.getAuthorsCategory', cat
       authors.fetch
         success: ->
+          _.each authors.models, (a) =>
+            console.log a.attributes.categories
           filterCat = _.filter(authors.models,(item) ->
             item.get("author_id") < 10434 && #item.contains("categories", cat)
             item.get('categories').indexOf(cat) > -1;
           )
           authors.reset(filterCat);
-          # TODO this executes twice??
+          console.log authors.models.length + ' authors from API'
           cb authors
 
   App.reqres.setHandler "author:entities", (cb) ->

@@ -6,10 +6,10 @@
     # placerefs for all passages by an author
     API.filterByAuthor author
 
-  App.vent.on "category:authors:show", (cat) ->
-    console.log 'map heard category:authors:show --> ', cat
+  App.vent.on "category:authors:show", (id) ->
+    console.log 'map heard category:authors:show --> ', id
     # placerefs for all passages by set of authors
-    API.filterByCategory cat
+    API.filterByCategory id
 
   App.vent.on "category:works:show", (cat) ->
     console.log 'map heard category:works:show --> ', cat
@@ -34,16 +34,16 @@
       MapApp.Show.Controller.setFilter 'authors', (placeref) ->
         author_ids.indexOf(placeref.get("author_id")) > -1
 
-    filterByCategory: (cat) ->
+    filterByCategory: (id) ->
       # build collection of authors having 'cat'
-      id = cat.get("id")
+      # id = cat.get("id")
       author_ids = []
       App.request "authors:category", id, (authors) =>
         # console.log authors
         _.each authors.models, (a) =>
           author_ids.push a.get("author_id")
           @filterByAuthors author_ids, id
-        console.log 'mapping cat '+id+ ': ', author_ids
+        console.log 'mapping authors in cat '+id+ ': ', author_ids
 
     focusPlace: (area) ->
       #

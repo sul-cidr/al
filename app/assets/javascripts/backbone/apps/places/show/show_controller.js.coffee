@@ -112,7 +112,7 @@
     # run vis.js packAuths bubble chart
     #
     makeVis: (auths, years) ->
-      console.log years
+      # console.log years
       window.authobj = {"children":[]}
       # console.log authobj
       _.each auths, (a) =>

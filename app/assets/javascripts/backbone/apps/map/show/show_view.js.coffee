@@ -119,7 +119,7 @@
       London = [51.5120, -0.0928]
 
       # this.map.addLayer(mbLayer);
-      this.map.addLayer(osmLayer);
+      # this.map.addLayer(osmLayer);
       # places open, authors open viewports
       this.map.setView(London, 12)
 

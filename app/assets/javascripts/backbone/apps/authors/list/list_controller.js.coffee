@@ -14,10 +14,11 @@
         @layout.on "show", =>
           AL.ContentApp.Show.Controller.showTab('authors')
           @showTitle authors
-          @listCatAuthors authors, 0
+          @listCatAuthors authors
 
-          @listDimensions()
-          @listCategories("genre")
+          @listDimensions() # renders dropdown buttons
+          @dropdownCategories()
+          # @listCategories("genre")
 
         # hold off rendering this
         App.authorsRegion.show @layout
@@ -37,6 +38,17 @@
       # console.log 'showDimensions()'
       dimensionsView = new List.Dimensions
       @layout.dimensionsRegion.show dimensionsView
+
+    dropdownCategories: ->
+      App.request "category:entities", (categories) =>
+        # console.log categories
+        for d in ['genre','form','community','standing']
+           dimcollection = categories.where({dim: d});
+           for c in dimcollection
+             $("#ul_"+d).append(
+              "<li val="+c.attributes.id+">"+c.attributes.name+
+              "</li>"
+             )
 
     listCategories: (dim) ->
       App.request "category:entities", (categories) =>

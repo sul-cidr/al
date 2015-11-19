@@ -4,12 +4,6 @@
 /* General, AuthorsApp */
 /***/
 
-h4 {}
-
-#authors_region {
-
-}
-
 .navbar { min-height: 35px; margin-bottom:0; }
 .navbar .nav-pills >li  {
   padding: 4px;
@@ -27,27 +21,57 @@ h4 {}
 /* List module */
 /***/
 
-#authorlist_region {
-  max-height: 75%;
-  overflow-y: scroll;
-  position:absolute;
-}
-.author {
-  display: inline-block;
-  width: 92px;
-}
-.tab-content { padding-top: 6px;;}
-
-.authlist {
-  padding:0 6px; margin-top: 6px;
-  overflow: scroll;
-  a {text-decoration: none;}
-  a:hover {background: yellow;}
+.dim-container {
+  width: 100%;
+  float: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  // border: solid 1px blue;
+  text-align: center;
+  button {
+     display: inline-block;
+     float:left;
+     font-size: 12px;
+     padding: 6px;
+    //  margin-left: 5px;
+     background-color: #4c8080;
+     border-color: #2A4747;
   }
+}
+.child {
+  margin:auto;
+}
+.dropdown-menu {
+  li {
+  padding-left: 4px;
+  cursor: pointer;
+  }
+  li:hover { background: aliceblue;}
+}
 
 #selected_cat_authors {
   margin: 2px 22px 0 8px;
 }
+
+#authorlist_region {
+  // max-height: 85%;
+  // overflow-y: scroll;
+  float:left;
+  // position:absolute;
+  // margin-top:35px;
+}
+.authlist {
+  padding:0 6px; margin-top: 6px;
+  // overflow-y: scroll;
+  a {text-decoration: none;}
+  a:hover {background: yellow;}
+  }
+.author {
+  display: inline-block;
+  width: 92px;
+}
+
 /***/
 /* Show module */
 /***/

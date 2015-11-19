@@ -29,16 +29,31 @@
 
   class List.Dimensions extends App.Views.ItemView
     template: "authors/list/templates/_dimensions"
-    # TODO on-click filter categories
+    # TODO on-select for each dropdown
     events: {
-      "click #dimension_pills li": "filterCats"
+      "click .dim-container li": "filterAuthors"
+      # "click #dimension_pills li": "filterCats"
     }
-    filterCats: (e) =>
-      $("#dimension_pills li").removeClass("active")
-      $(e.currentTarget).addClass("active")
-      dim = $(e.currentTarget).context.attributes.value.value
-      # console.log 'List.Dimensions.filterCats by dimension: ' + dim
-      List.Controller.listCategories(dim)
+
+    filterAuthors: (e) ->
+      window.catid = parseInt($(e.currentTarget).context.attributes.val.value)
+      # filter authors and map for category
+      seltext =
+        '<span class="strong">'+
+        $(e.currentTarget).context.innerHTML +
+        '</span><span class="right crumb clear">'+
+        'Clear filter</span>'
+      $("#selected_cat_authors").html(seltext)
+
+      # get a collection of author models for category
+      App.request "authors:category", catid, (authors) =>
+        console.log 'filtered authors: '+ catid, authors
+        List.Controller.listCatAuthors(authors)
+
+      # to map_app
+      App.vent.trigger "category:authors:show", catid
+      # App.vent.trigger "category:authors:show", cat
+
 
   class List.Author extends App.Views.ItemView
     template: "authors/list/templates/_author"
@@ -58,45 +73,45 @@
     emptyView: List.Empty
     childViewContainer: "div"
 
-  class List.Category extends App.Views.ItemView
-    template: "authors/list/templates/_category"
-    tagName: "span"
-    # events: {"click": "filterAuthors"}
-    events: {
-      "click li.category": "filterAuthors"
-    }
-
-    filterAuthors: (e) ->
-      # select a category, filter authors and map
-      seltext =
-        '<span class="strong">'+
-        $(e.currentTarget).context.innerHTML +
-        '</span><span class="right crumb clear">'+
-        'Clear filter</span>'
-      $("#selected_cat_authors").html(seltext)
-
-      cat = this.model
-      window.activecat = cat
-      id = cat.attributes.id
-      # console.log 'filter authors, cat: ' + id
-      # get a collection of author models for category
-      App.request "authors:category", id, (authors) =>
-        List.Controller.listCatAuthors(authors, id)
-
-      # to map_app
-      App.vent.trigger "category:authors:show", cat
-      App.reqres.setHandler "category:active", ->
-        return cat
-
-  class List.Categories extends App.Views.CompositeView
-    template: "authors/list/templates/_categories"
-    className: 'categories'
-    childView: List.Category
-    childViewContainer: ".catlist"
-
-    filter: (child, index, collection) ->
-      # filter genre for initial display
-      child.get('dim') == 'genre'
+  # class List.Category extends App.Views.ItemView
+  #   template: "authors/list/templates/_category"
+  #   tagName: "span"
+  #   # events: {"click": "filterAuthors"}
+  #   events: {
+  #     "click li.category": "filterAuthors"
+  #   }
+  #
+  #   filterAuthors: (e) ->
+  #     # select a category, filter authors and map
+  #     seltext =
+  #       '<span class="strong">'+
+  #       $(e.currentTarget).context.innerHTML +
+  #       '</span><span class="right crumb clear">'+
+  #       'Clear filter</span>'
+  #     $("#selected_cat_authors").html(seltext)
+  #
+  #     cat = this.model
+  #     window.activecat = cat
+  #     id = cat.attributes.id
+  #     # console.log 'filter authors, cat: ' + id
+  #     # get a collection of author models for category
+  #     App.request "authors:category", id, (authors) =>
+  #       List.Controller.listCatAuthors(authors, id)
+  #
+  #     # to map_app
+  #     App.vent.trigger "category:authors:show", cat
+  #     App.reqres.setHandler "category:active", ->
+  #       return cat
+  #
+  # class List.Categories extends App.Views.CompositeView
+  #   template: "authors/list/templates/_categories"
+  #   className: 'categories'
+  #   childView: List.Category
+  #   childViewContainer: ".catlist"
+  #
+  #   filter: (child, index, collection) ->
+  #     # filter genre for initial display
+  #     child.get('dim') == 'genre'
 
 
   class List.Empty extends App.Views.ItemView
