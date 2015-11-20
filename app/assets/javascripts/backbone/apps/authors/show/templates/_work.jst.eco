@@ -1,10 +1,11 @@
 <!-- <a href="#"> <%= @safe hardSpace(@title) %></a><br/> -->
 <div class="work hanging">
   <a href="#workpassages/a/<%= @work_id %>" >
-    <%= @safe hardSpace(@title) %>
+    <%= @safe @title %>
   </a><br/>
-  <% for key, value in @keywords: %>
-     <%= key %>, <%= value %>
+  <span class=".cloud">word cloud of salient terms for this work to appear here</span>
+  <!-- <% for key, value in @keywords: %>
+     <%= key %>, <%= value %> -->
 </div>
 
 <!-- <%= @safe @title %> -->

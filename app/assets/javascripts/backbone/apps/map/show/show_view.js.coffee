@@ -17,32 +17,33 @@
       _.each @filters, (evaluator, key) =>
         visible = visible && evaluator(layer.model)
       if visible
-        @markerClusters.addLayer layer
-        # @map.addLayer layer
-        # console.log 'filterLayer', layer
+        # used to get bounds
         @filteredFeatures.push layer
-      # filter placerefs
+        @markerClusters.addLayer layer
       else
         @markerClusters.removeLayer layer
         # @map.removeLayer layer
 
     filterAllLayers: ->
       # console.log '@features in filterAllLayers', @features
-      @filteredFeatures = []
+      # @filteredFeatures = []
       _.each @features, (f) =>
         # console.log f
         @filterLayer(f)
 
-      # TODO: this isn't an array sometimes??
-      #
+      # TODO: filteredFeatures is empty sometimes !?!?!?
+      # filteredFeatures[]
+      window.markerClusters = @markerClusters
       window.filteredFeatures = @filteredFeatures
       window.filteredBounds = L.featureGroup(@filteredFeatures).getBounds()
+      # markerClusters bounds are always all placerefs
+      # map.fitBounds(@markerClusters.getBounds())
+
       map.fitBounds(filteredBounds)
       # TODO:
       # console.log 'center, in filter', filteredBounds.getCenter()
-      # @zoomToCluster 'cluster', @filteredFeatures
 
-      # @filteredFeatures used in PlacesApp to render summary
+      # @filteredFeatures array used in PlacesApp to render summary
       App.vent.trigger('placerefs:filtered', @filteredFeatures);
 
     removeFilter: (key) ->

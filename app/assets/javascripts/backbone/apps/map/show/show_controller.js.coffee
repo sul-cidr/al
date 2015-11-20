@@ -20,7 +20,6 @@
       @mapView.clearFilters()
 
     zoomTo: (what, area) ->
-      # console.log 'zoomTo <'+what+'> fired from controller'
       @mapView.zoomTo what, area
 
 

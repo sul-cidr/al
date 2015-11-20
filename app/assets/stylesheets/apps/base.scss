@@ -10,6 +10,12 @@ p {font-family: "Palatino linotype", Georgia, serif;}
 .centered {text-align: center;}
 // .right {right: 0;}
 .crumb { font-size: .8em; cursor: pointer; color: #336699;}
+
+.crumb-left {
+  font-size: .7em; color:#336699 !important;
+  cursor: pointer; text-align: left !important;}
+
+  
 .strong { font-weight: bold;}
 
 .hanging {
@@ -56,11 +62,7 @@ div.categories ul {
   h3 { margin: 5px 0; text-align: center;}
   .container { position:absolute; width: 95%;}
 }
-.panel-title { padding: 3px !important;
-  hr { margin: 5px 0; border: 0; height: 1px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0),
-      rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));}
-}
+
 
 .dim-pills {
   margin-left: 10px;

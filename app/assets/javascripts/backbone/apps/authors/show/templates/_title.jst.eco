@@ -1,5 +1,5 @@
 <div class="panel-title">
-  <p class="crumb-authors"><< Back</p>
+  <p class="crumb-left"><< Back</p>
   <h3><%= @prefname %></h3>
   <hr/>
 </div>

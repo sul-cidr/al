@@ -8,42 +8,12 @@
 /* List module */
 /***/
 
-.dim-container {
-  width: 100%;
-  float: left;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  // border: solid 1px blue;
-  text-align: center;
-  button {
-     display: inline-block;
-     float:left;
-     font-size: 12px;
-     padding: 6px;
-    //  margin-left: 5px;
-     background-color: #4c8080;
-     border-color: #2A4747;
-  }
-}
-.child {
-  margin:auto;
-}
-.dropdown-menu {
-  li {
-  padding-left: 4px;
-  cursor: pointer;
-  }
-  li:hover { background: aliceblue;}
-}
-
 #selected_cat_authors {
   margin: 2px 22px 0 8px;
 }
 
 #authorlist_region {
-  // max-height: 85%;
-  // overflow-y: scroll;
+  font-family:'english';
   float:left;
   // position:absolute;
   // margin-top:35px;
@@ -66,9 +36,16 @@
 #author_content_region {
   p {font-size: 1.1em;}
 }
-.crumb-authors {
-  font-size: .7em; color:#336699 !important;
-  cursor: pointer; text-align: left !important;}
+
+#title_region {
+  hr { margin: 5px 0; border: 0; height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));}
+}
+
+#nav_region {
+  font-family: 'english';
+}
 
 .passagelist {
   padding-right: 8px;
@@ -83,7 +60,8 @@
   position: absolute;
   max-height: 75%;
   overflow:auto;
-  hr { border: 0; border-bottom: 1px dashed #ccc; background: #999; width:80%;}
+  hr { border: 0; border-bottom: 1px dashed #ccc;
+    background: #999; width:80%;}
 }
 
 .bioplace {text-decoration: underline;

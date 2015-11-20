@@ -40,18 +40,18 @@
       AL.WorksApp.List.Controller.startWorks()
 
     showAuthor: (author_id)->
-      console.log 'ContentApp.Router, showAuthor()', author_id
+      # console.log 'ContentApp.Router, showAuthor()', author_id
       # App.vent.trigger "map:reset"
       # get author model from id, forward to showAuthor()
       App.request "author:entity", author_id, (author) =>
-        console.log 'author', author
+        # console.log 'author', author
         AL.AuthorsApp.Show.Controller.showAuthor(author)
 
         App.reqres.setHandler "author:model", ->
           return author
     #
     showArea: (id)->
-      console.log 'ContentApp.Router, showArea()', id
+      # console.log 'ContentApp.Router, showArea()', id
       # App.vent.trigger "map:reset"
       # get area model from id, forward to showPlace()
       # these are the voronoi polygons

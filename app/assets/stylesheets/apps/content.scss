@@ -32,13 +32,15 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  font-family: 'english';
   // border: solid 1px blue;
   text-align: center;
   button {
      display: inline-block;
      float:left;
-     font-size: 12px;
-     padding: 6px;
+     font-size: 13px;
+     letter-spacing: 1px;
+     padding: 4px 6px;
     //  margin-left: 5px;
      background-color: #4c8080;
      border-color: #2A4747;

@@ -11,13 +11,14 @@
   class Show.Title extends App.Views.ItemView
     template: "authors/show/templates/_title"
     events:
-      "click .crumb-authors": "goHome"
+      "click .crumb-left": "goHome"
 
     goHome: ->
       # restore dimensions dropdowns
       $("#dimensions_region").show()
       # execute startAuthors()
-      Backbone.history.navigate("authors", true)
+      Backbone.history.history.back()
+      # Backbone.history.navigate("authors", true)
       App.vent.trigger("map:reset")
 
   class Show.Pills extends App.Views.ItemView

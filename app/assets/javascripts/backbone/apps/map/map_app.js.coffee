@@ -2,7 +2,7 @@
   @startWithParent = false
 
   App.vent.on "author:show", (author) ->
-    console.log "map heard author:show -->", author
+    # console.log "map heard author:show -->", author.get('author_id')
     # placerefs for all passages by an author
     API.filterByAuthor author
 
@@ -25,7 +25,7 @@
       MapApp.Show.Controller.showMap()
 
     filterByAuthor: (author) ->
-      console.log  'API.filterByAuthor()',author.get("author_id")
+      console.log  'MapApp.API.filterByAuthor()',author.get("author_id")
       MapApp.Show.Controller.setFilter 'author', (placeref) ->
         placeref.get("author_id") == author.get("author_id")
 
