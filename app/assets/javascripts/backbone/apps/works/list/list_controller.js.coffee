@@ -14,7 +14,7 @@
           @listCatWorks works
 
           @listDimensions()
-          @listCategories("genre")
+          # @listCategories("genre")
 
         App.worksRegion.show @layout
 
@@ -34,17 +34,17 @@
       dimensionsView = new List.Dimensions
       @layout.dimensionsRegion.show dimensionsView
 
-    listCategories: (dim) ->
-      App.request "category:entities", (categories) =>
-        # console.log 'listCategories for: ', dim
-        categoriesView = @getCategoriesView categories, dim
-        @layout.categoriesRegion.show categoriesView
-
-    getCategoriesView: (categories, dim) ->
-      new List.Categories
-        collection: categories
-        filter: (child, index, collection) ->
-          child.get('dim') == dim
+    # listCategories: (dim) ->
+    #   App.request "category:entities", (categories) =>
+    #     # console.log 'listCategories for: ', dim
+    #     categoriesView = @getCategoriesView categories, dim
+    #     @layout.categoriesRegion.show categoriesView
+    #
+    # getCategoriesView: (categories, dim) ->
+    #   new List.Categories
+    #     collection: categories
+    #     filter: (child, index, collection) ->
+    #       child.get('dim') == dim
 
     listCatWorks: (works) ->
       # console.log arguments.callee.caller.toString()

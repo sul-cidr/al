@@ -3,23 +3,38 @@
   Show.Controller =
 
     startContent: ->
+      # build top-level frame for app
       @contentLayout = @getContentLayout()
-      # start with authors
-      # if $("#authors_region").html() == ''
-      #   AL.AuthorsApp.List.Controller.startAuthors()
-      # AL.PlacesApp.List.Controller.startPlaces()
-      # AL.WorksApp.List.Controller.startWorks()
       App.contentRegion.show @contentLayout
 
-    getContent: ->
-      new Show.ContentLayout
+      # render dropdown filter buttons & populate from db
+      @listDimensions()
+      @dropdownCategories()
 
     getContentLayout: ->
       new Show.ContentLayout
 
     # TODO: refactor passages for authors, places, works
 
+    # dimensions dropdowns ('genre, form, community, standing')
+    listDimensions: ->
+      # console.log 'showDimensions()'
+      dimensionsView = new Show.Dimensions
+      @contentLayout.dimensionsRegion.show dimensionsView
 
+    # populate dropdowns from db
+    dropdownCategories: ->
+      App.request "category:entities", (categories) =>
+        # console.log categories
+        for d in ['genre','form','community','standing']
+           dimcollection = categories.where({dim: d});
+           for c in dimcollection
+             $("#ul_"+d).append(
+              "<li val="+c.attributes.id+">"+c.attributes.name+
+              "</li>"
+             )
+
+    # called from various places to manage tab state
     showTab: (tab)->
       # $(".header-left").removeClass("hidden")
       $("#content_nav_region li").removeClass("active")
@@ -54,10 +69,10 @@
 
       Backbone.history.navigate(@route, true)
 
-    startAuthors: ->
+    # startAuthors: ->
       # get a view and show in authorsRegion
       # console.log 'Show.Controller.startAuthors'
 
-    startPlaces: ->
+    # startPlaces: ->
       # get a view and show in placesRegion
       # console.log 'Show.Controller.startPlaces'
