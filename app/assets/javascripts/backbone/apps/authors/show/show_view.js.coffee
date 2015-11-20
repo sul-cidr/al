@@ -14,7 +14,9 @@
       "click .crumb-authors": "goHome"
 
     goHome: ->
-      # console.log 'supposed to go home'
+      # restore dimensions dropdowns
+      $("#dimensions_region").show()
+      # execute startAuthors()
       Backbone.history.navigate("authors", true)
       App.vent.trigger("map:reset")
 

@@ -37,13 +37,13 @@
       authors.fetch
         success: ->
           _.each authors.models, (a) =>
-            console.log a.attributes.categories
+            # console.log a.attributes.categories
           filterCat = _.filter(authors.models,(item) ->
             item.get("author_id") < 10434 && #item.contains("categories", cat)
             item.get('categories').indexOf(cat) > -1;
           )
           authors.reset(filterCat);
-          console.log authors.models.length + ' authors from API'
+          # console.log authors.models.length + ' authors from API'
           cb authors
 
   App.reqres.setHandler "author:entities", (cb) ->

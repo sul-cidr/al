@@ -3,6 +3,8 @@
   Show.Controller =
 
     showAuthor: (author) ->
+      # hide dimension dropdowns
+      $("#dimensions_region").hide()
       # get map to filter for author
       console.log "showAuthor", author
       # trigger for map_app

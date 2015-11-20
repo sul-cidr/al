@@ -41,6 +41,9 @@
       $("#place_passages_region").fadeOut()
 
       if tab == 'authors'
+        # ensure dimensions dropdowns visible
+        $("#dimensions_region").show()
+
         @route = "authors"
         $("#authors_tab").addClass("active")
         $("#places_region").hide()
@@ -48,6 +51,9 @@
         $("#authors_region").fadeIn("slow")
 
       else if tab == 'places'
+        # hide dimensions dropdowns
+        $("#dimensions_region").hide()
+        
         if $("#places_region").html() == ''
           $(".header-left").removeClass("hidden")
           AL.PlacesApp.List.Controller.startPlaces()
@@ -58,6 +64,9 @@
         $("#places_region").show()
 
       else if tab == 'works'
+        # ensure dimensions dropdowns visible
+        $("#dimensions_region").show()
+
         if $("#works_region").html() == ''
           $(".header-left").removeClass("hidden")
           AL.WorksApp.List.Controller.startWorks()

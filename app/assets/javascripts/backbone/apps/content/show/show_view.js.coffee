@@ -47,7 +47,7 @@
       # get a collection of author models for category
       App.request "authors:category", catid, (authors) =>
         console.log 'filtered authors: '+ catid, authors
-        List.Controller.listCatAuthors(authors)
+        AL.AuthorsApp.List.Controller.listCatAuthors(authors)
 
       # to map_app
       App.vent.trigger "category:authors:show", catid
