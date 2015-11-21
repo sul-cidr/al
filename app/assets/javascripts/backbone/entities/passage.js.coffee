@@ -19,9 +19,8 @@
     # search for string 'q'
     searchPassages: (q, cb) ->
       console.log 'entities.passage.searchPassages()', q
-      # execute a search here
 
-      # returns collection of models
+      # execute a search, returns collection of models
       passages = new Entities.PassageResultsCollection
 
       passages.fetch({
@@ -29,23 +28,11 @@
         processData: true
 
         success: ->
-          # console.log passages
           cb passages
       })
 
-      # this works to return JSON
-      # $.ajax({
-      #     dataType: "json",
-      #     url: "/search.json",
-      #     data: {q:q},
-      #     success: (json) ->
-      #       console.log json
-      #       cb json
-      # })
-
-
     getPassageEntities: (id, type, cb) ->
-      console.log 'getPassageEntities', id, type
+      # console.log 'getPassageEntities', id, type
       passages = new Entities.PassageCollection
       passages.fetch
         success: ->

@@ -35,8 +35,6 @@
         turf.inside( turf.point(wellknown(placeref.get("geom_wkt")).coordinates), b )
         # b is a viewport
 
-
-
     # /**
     #  * Unhighlight all; part of map:reset
     #  */

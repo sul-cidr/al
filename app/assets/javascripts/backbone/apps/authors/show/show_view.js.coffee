@@ -48,20 +48,27 @@
     tagName: "p"
     events: {
       # "click": "highlightPlacerefs"
-      "mouseenter span.place": "onPlacerefEnter"
-      "mouseleave span.place": "onPlacerefLeave"
+      "mouseenter span.placeref": "onPlacerefEnter"
+      "mouseleave span.placeref": "onPlacerefLeave"
     }
     # highlightPlacerefs: ->
     #   console.log 'Show.Passage.highlightPlacerefs()'
 
     onPlacerefEnter: (e) ->
-      id = this.getPlacerefIdFromEvent(e);
+      # console.log $(e.currentTarget).context.id
+      id = $(e.currentTarget).context.id
+      # span = $(".placeref[id="+id+"]")
+      # spanAnchor = s.offset().left+s.width()+2
+      # m=idMapper.placerefs[31038]._latlng
+      # map.unproject([m.lat,m.lng])
+      # id = this.getPlacerefIdFromEvent(e);
       console.log 'highlight placeref #', id
+
       App.vent.trigger('placeref:highlight', id);
       # App.vent.trigger('placeref:hover', e)
 
     onPlacerefLeave: (e) ->
-      id = this.getPlacerefIdFromEvent(e);
+      id = $(e.currentTarget).context.id
       # console.log 'left placeref span'
       App.vent.trigger('placeref:unhighlight', id);
 

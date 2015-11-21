@@ -68,15 +68,6 @@
       # get the bounds of the resulting viewport
       window.vbounds = turf.polygon([createPolygonFromBounds( map.getBounds() )])
 
-      # run this to filter on viewport
-      # AL.MapApp.Show.Controller.filterByArea "area", vbounds
-
-      # send viewport bounds to filter
-      # mbounds = markers; vbounds = viewport
-      # Show.Controller.filterByArea "area", turf.polygon(mbounds)
-      # Show.Controller.filterByArea "area", turf.polygon(vbounds)
-
-
     onDomRefresh: ->
       @initMap()
 
@@ -138,10 +129,17 @@
     	color: '#CD5C5C',
     	size: 's'
     });
-    houseMarker = L.MakiMarkers.icon({
+
+    window.houseMarker = L.MakiMarkers.icon({
     	icon: 'lodging',
     	color: '#BA55D3',
     	size: 's'
+    });
+
+    window.houseMarkerL = L.MakiMarkers.icon({
+    	icon: 'lodging',
+    	color: '#BA55D3',
+    	size: 'l'
     });
 
     # CHECK: ingestAreas and ingestPlacerefs both need to populate this
@@ -169,8 +167,10 @@
             if pl.get('placeref_type') == 'bio'
             # then '"'+aid+'"' + ' resided at ' +
             then authhash[pl.get("author_id")]+' resided at ' +
-              pl.get('prefname')
-            else '"'+pl.get('prefname') + '", in <em>' + workhash[pl.get('work_id')].title
+              pl.get('prefname')+'<br/>'+pl.get('placeref_id')
+            else '"'+pl.get('prefname') + '", in <em>' +
+              workhash[pl.get('work_id')].title + '<br/>' +
+              pl.get('placeref_id')
           )
           feature.setIcon(
             if pl.get('placeref_type') == 'bio'
@@ -288,6 +288,7 @@
     # CHECK: why trigger->map_app->controller->@highlightFeature ?
     # triggered from map
     onHighlightFeature: (e) ->
+      console.log 'onHightlightFeature', e.layer
       color = e.layer.options.color
       id = e.layer.options.id
       # console.log 'e', e.layer
@@ -311,10 +312,21 @@
 
     # triggered from passages, area list
     highlightFeature: (what, id) ->
-      # console.log what, id
-      marker = $idToFeature.placerefs[id];
-      if what == "workplace"
-        marker.setStyle(mapStyles.point_work.highlight);
+      if what == "placeref"
+        window.marker = $idToFeature.placerefs[id];
+        console.log 'what, id, marker: '+ what, id, marker
+        # ex. Donne 30265 Bread Street
+        # if it's in a cluster, remove it and re-place on map:
+        markerClusters.removeLayer(m)
+        map.addLayer(m)
+        # make it big
+        marker.setIcon(houseMarkerL)
+        # zoom to it
+        map.setView(m._popup._source._latlng,17,{animate:true})
+
+        # marker.setStyle(mapStyles.point_work.highlight);
+      # if what == "workplace"
+      #   marker.setStyle(mapStyles.point_work.highlight);
       else if what == "bioplace"
         marker.setStyle(mapStyles.point_bio.highlight);
       else if what == "area"
@@ -323,8 +335,11 @@
 
     unhighlightFeature: (what, id) ->
       marker = $idToFeature.placerefs[id];
-      if what == "workplace"
-        marker.setStyle(mapStyles.point_work.start);
+      if what == "placeref"
+        marker.setIcon(houseMarker)
+        # TODO: maybe put in back in a cluster?
+      # if what == "workplace"
+      #   marker.setStyle(mapStyles.point_work.start);
       else if what == "bioplace"
         marker.setStyle(mapStyles.point_bio.start);
       else if what == "area"

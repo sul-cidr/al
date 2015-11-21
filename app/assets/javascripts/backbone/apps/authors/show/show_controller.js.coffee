@@ -6,7 +6,7 @@
       # hide dimension dropdowns
       $("#dimensions_region").hide()
       # get map to filter for author
-      console.log "showAuthor", author.get('author_id')
+      # console.log "showAuthor", author.get('author_id')
       # trigger for map_app
       App.vent.trigger "author:show", author
 
@@ -35,7 +35,7 @@
       id = author.get("author_id")
       # console.log 'List.Controller.listPassages() for ',author_id
       App.request "passage:entities", id, "bio", (bio_passages) =>
-        console.log bio_passages
+        # console.log bio_passages
         # wont show/render twice without reset
         if App.authorContentRegion.$el.length > 0
           App.authorContentRegion.reset()
@@ -55,7 +55,7 @@
     # TODO: make this display a visualization summary
     listWorks: (author) ->
       id = author.get("author_id")
-      console.log 'listWorks()', id
+      # console.log 'listWorks()', id
       App.request "works:author", id, (works) =>
         console.log 'listWorks() '+ id, works
         if App.authorContentRegion.$el.length > 0
