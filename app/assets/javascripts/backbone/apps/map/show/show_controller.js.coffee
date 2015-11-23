@@ -42,6 +42,12 @@
       @mapView.unhighlightAll()
 
     # /**
+    #  * Click a place in text.
+    #  */
+    onClickPlaceref: (what, id) ->
+      @mapView.clickPlaceref(what, id);
+
+    # /**
     #  * Highlight a place.
     #  */
     onHighlightFeature: (what, id) ->

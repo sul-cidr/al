@@ -47,29 +47,29 @@
     template: "authors/show/templates/_passage"
     tagName: "p"
     events: {
-      # "click": "highlightPlacerefs"
+      "click span.placeref": "onPlacerefClick"
       "mouseenter span.placeref": "onPlacerefEnter"
       "mouseleave span.placeref": "onPlacerefLeave"
     }
-    # highlightPlacerefs: ->
-    #   console.log 'Show.Passage.highlightPlacerefs()'
+
+    onPlacerefClick: (e) ->
+      window.context = $(e.currentTarget).context
+      id = $(e.currentTarget).context.attributes.val.value
+      console.log 'onPlaceRefClick', id
+
+      App.vent.trigger('placeref:click', id);
 
     onPlacerefEnter: (e) ->
-      # console.log $(e.currentTarget).context.id
-      id = $(e.currentTarget).context.id
-      # span = $(".placeref[id="+id+"]")
-      # spanAnchor = s.offset().left+s.width()+2
-      # m=idMapper.placerefs[31038]._latlng
-      # map.unproject([m.lat,m.lng])
-      # id = this.getPlacerefIdFromEvent(e);
-      console.log 'highlight placeref #', id
+      window.context = $(e.currentTarget).context
+      id = $(e.currentTarget).context.attributes.val.value
+      console.log 'onPlaceRefEnter', id
 
       App.vent.trigger('placeref:highlight', id);
       # App.vent.trigger('placeref:hover', e)
 
     onPlacerefLeave: (e) ->
-      id = $(e.currentTarget).context.id
-      # console.log 'left placeref span'
+      id = $(e.currentTarget).context.attributes.val.value
+      console.log 'onPlaceRefLeave', id
       App.vent.trigger('placeref:unhighlight', id);
 
     getPlacerefIdFromEvent: (e) ->

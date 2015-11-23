@@ -136,10 +136,10 @@
     	size: 's'
     });
 
-    window.houseMarkerL = L.MakiMarkers.icon({
+    window.houseMarkerM = L.MakiMarkers.icon({
     	icon: 'lodging',
     	color: '#BA55D3',
-    	size: 'l'
+    	size: 'm'
     });
 
     # CHECK: ingestAreas and ingestPlacerefs both need to populate this
@@ -287,64 +287,84 @@
     # TODO: better highlight/unhighlight system
     # CHECK: why trigger->map_app->controller->@highlightFeature ?
     # triggered from map
-    onHighlightFeature: (e) ->
-      console.log 'onHightlightFeature', e.layer
-      color = e.layer.options.color
-      id = e.layer.options.id
-      # console.log 'e', e.layer
-      window.active = e
-      if e.layer.options.color == "green"
-        e.layer.setStyle({"color":"orange", "weight":6})
-      else if e.layer.options.color == "blue"
-        @highlightFeature('workplace', id)
-      else
-        @highlightFeature('bioplace', id)
-
-    onUnhighlightFeature: (e) ->
-      color = e.layer.options.color
-      id = e.layer.options.id
-      if color == "orange"
-        e.layer.setStyle({"color":"green", "weight":4})
-      else if color == "blue"
-        @unhighlightFeature('workplace', id)
-      else
-        @unhighlightFeature('bioplace', id)
+    # onHighlightFeature: (e) ->
+    #   console.log 'onHightlightFeature', e.layer
+    #   color = e.layer.options.color
+    #   id = e.layer.options.id
+    #   # console.log 'e', e.layer
+    #   window.active = e
+    #   if e.layer.options.color == "green"
+    #     e.layer.setStyle({"color":"orange", "weight":6})
+    #   else if e.layer.options.color == "blue"
+    #     @highlightFeature('workplace', id)
+    #   else
+    #     @highlightFeature('bioplace', id)
+    #
+    # onUnhighlightFeature: (e) ->
+    #   color = e.layer.options.color
+    #   id = e.layer.options.id
+    #   if color == "orange"
+    #     e.layer.setStyle({"color":"green", "weight":4})
+    #   else if color == "blue"
+    #     @unhighlightFeature('workplace', id)
+    #   else
+    #     @unhighlightFeature('bioplace', id)
 
     # triggered from passages, area list
-    highlightFeature: (what, id) ->
+    clickPlaceref: (what, id) ->
       if what == "placeref"
-        window.marker = $idToFeature.placerefs[id];
+        marker = $idToFeature.placerefs[id];
         console.log 'what, id, marker: '+ what, id, marker
         # ex. Donne 30265 Bread Street
         # if it's in a cluster, remove it and re-place on map:
-        markerClusters.removeLayer(m)
-        map.addLayer(m)
-        # make it big
-        marker.setIcon(houseMarkerL)
+        # @markerClusters.removeLayer(marker)
+        # map.addLayer(marker)
+        # # make it big
+        # marker.setIcon(houseMarkerL)
         # zoom to it
-        map.setView(m._popup._source._latlng,17,{animate:true})
+        map.setView(marker._popup._source._latlng,17,{animate:true})
 
         # marker.setStyle(mapStyles.point_work.highlight);
       # if what == "workplace"
       #   marker.setStyle(mapStyles.point_work.highlight);
       else if what == "bioplace"
-        marker.setStyle(mapStyles.point_bio.highlight);
+        marker = $idToFeature.placerefs[id];
       else if what == "area"
         marker = $idToFeature.areas[id];
         marker.setStyle(mapStyles.area.highlight);
+    # triggered from passages, area list
+    highlightFeature: (what, id) ->
+      if what == "placeref"
+        marker = $idToFeature.placerefs[id];
+        # console.log 'highlightFeature: '+ what, id, marker
+        # ex. Donne 30265 Bread Street
+
+        # if it's in a cluster, remove it and re-place on map:
+        @markerClusters.removeLayer(marker)
+        map.addLayer(marker)
+        # make it big
+        marker.setIcon(houseMarkerM)
+
+      # else if what == "bioplace"
+      #   marker.setStyle(mapStyles.point_bio.highlight);
+      # else if what == "area"
+      #   marker = $idToFeature.areas[id];
+      #   marker.setStyle(mapStyles.area.highlight);
 
     unhighlightFeature: (what, id) ->
       marker = $idToFeature.placerefs[id];
+      # console.log 'what, id, marker: '+ what, id, marker
       if what == "placeref"
         marker.setIcon(houseMarker)
         # TODO: maybe put in back in a cluster?
+
       # if what == "workplace"
       #   marker.setStyle(mapStyles.point_work.start);
-      else if what == "bioplace"
-        marker.setStyle(mapStyles.point_bio.start);
-      else if what == "area"
-        marker = $idToFeature.areas[id];
-        marker.setStyle(mapStyles.area.start);
+      # else if what == "bioplace"
+      #   marker.setStyle(mapStyles.point_bio.start);
+      # else if what == "area"
+      #   marker = $idToFeature.areas[id];
+      #   marker.setStyle(mapStyles.area.start);
 
     unhighlightAll: ->
       # console.log 'unhighlightAll()', @areas

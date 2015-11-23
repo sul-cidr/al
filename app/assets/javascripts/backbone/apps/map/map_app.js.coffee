@@ -78,6 +78,10 @@
   App.vent.on "work:show", (work) ->
     API.filterForWork work
 
+  App.vent.on "placeref:click", (id) ->
+    # console.log 'map_app heard highlight id#', id
+    MapApp.Show.Controller.onClickPlaceref 'placeref', id
+
   App.vent.on "placeref:highlight", (id) ->
     # console.log 'map_app heard highlight id#', id
     MapApp.Show.Controller.onHighlightFeature 'placeref', id
