@@ -165,8 +165,8 @@
           feature.model = pl
           feature.bindPopup(
             if pl.get('placeref_type') == 'bio'
-            # then '"'+aid+'"' + ' resided at ' +
-            then authhash[pl.get("author_id")]+' resided at ' +
+            then '"'+pl.get("author_id")+'"' + ' resided at ' +
+            # then authhash[pl.get("author_id")]+' resided at ' +
               pl.get('prefname')+'<br/>'+pl.get('placeref_id')
             else '"'+pl.get('prefname') + '", in <em>' +
               workhash[pl.get('work_id')].title + '<br/>' +
