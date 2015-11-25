@@ -3,10 +3,11 @@
 # Table name: works
 #
 #  work_id    :integer          not null, primary key
-#  title      :string
 #  author_id  :integer
-#  pub_year   :integer
-#  subject_id :integer
+#  title      :string
+#  work_year  :integer
+#  categories :integer          default([]), is an Array
+#  keywords   :jsonb
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

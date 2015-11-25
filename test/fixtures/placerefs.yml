@@ -6,7 +6,7 @@
 #  placeref_id   :integer
 #  work_id       :integer
 #  passage_id    :string
-#  prefname      :string
+#  placeref      :string
 #  author_id     :integer
 #  place_id      :integer
 #  geom_wkt      :text

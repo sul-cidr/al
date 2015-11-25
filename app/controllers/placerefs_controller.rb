@@ -2,7 +2,7 @@ class PlacerefsController < ApplicationController
 
 
   def index
-    @placerefs = Placeref.order(:prefname).all
+    @placerefs = Placeref.order(:placeref).all
 
     respond_to do |format|
       format.json { render json: @placerefs }

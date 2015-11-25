@@ -111,7 +111,7 @@
       London = [51.5120, -0.0928]
 
       # this.map.addLayer(mbLayer);
-      # this.map.addLayer(osmLayer);
+      this.map.addLayer(osmLayer);
       # places open, authors open viewports
       this.map.setView(London, 12)
 
@@ -147,13 +147,15 @@
     window.idMapper = $idToFeature
 
     ingestPlacerefs: (placerefs) ->
+      # console.log placerefs.models
       @features = []
       $.each placerefs.models, (i, pl) =>
         geom = pl.attributes.geom_wkt
         prid = pl.get("placeref_id")
         aid = pl.get("author_id").toString()
+        # if geom.substr(0,10) == 'MULTIPOINT'
         if geom.substr(0,5) == 'POINT'
-
+          # console.log wellknown(geom).coordinates
           feature = L.marker(
             swap(wellknown(geom).coordinates))
 
@@ -167,8 +169,8 @@
             if pl.get('placeref_type') == 'bio'
             then '"'+pl.get("author_id")+'"' + ' resided at ' +
             # then authhash[pl.get("author_id")]+' resided at ' +
-              pl.get('prefname')+'<br/>'+pl.get('placeref_id')
-            else '"'+pl.get('prefname') + '", in <em>' +
+              pl.get('placeref')+'<br/>'+pl.get('placeref_id')
+            else '"'+pl.get('placeref') + '", in <em>' +
               workhash[pl.get('work_id')].title + '<br/>' +
               pl.get('placeref_id')
           )
@@ -187,7 +189,7 @@
             style: mapStyles.street
             # options: {"model":pl,"id":prid}
             onEachFeature: (feature, layer) ->
-              layer.bindPopup pl.get("prefname")
+              layer.bindPopup pl.get("placeref")
           })
           # CHECK: neither of these actually do anything
           feature.model = pl

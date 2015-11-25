@@ -1,9 +1,9 @@
-json.array! @places do |place|
+json.array! @placerefs do |place|
   json.extract!(
     place,
     :placeref_id,
     :placeref_type,
-    :prefname,
+    :placeref,
     :author_id,
     :work_id,
     :place_id,
