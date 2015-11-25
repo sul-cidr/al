@@ -1,5 +1,6 @@
 <div id="placepassages-title">
-  <h4><%= @prefname %></h4>
+  <h4><%= @placeref %></h4>
+  <i id="passage_closer" class="fa fa-close fa-lg right"/></i>
 </div>
 <div id="placepassages-body">
   <placepassages></placepassages>

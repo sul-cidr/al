@@ -15,7 +15,7 @@
         passage_ids.push p.model.attributes.passage_id
 
       # retrieve single author's passages for an area
-      App.request "passages:places", passage_ids, (place_passages) =>
+      App.request "passages:place", passage_ids, (place_passages) =>
         # if App.authorContentRegion.$el.length > 0
         #   App.authorContentRegion.reset()
         window.placepassages = place_passages

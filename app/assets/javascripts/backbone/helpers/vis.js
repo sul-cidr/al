@@ -85,6 +85,7 @@ var packAuths = function (auths) {
       .on("click", function(d){
         // TODO: bug, if starting in Authors, 2nd click here does not work
         AL.PlacesApp.Show.Controller.listPlacePassages(d.key)
+        console.log('vis d.key', d.key)
       });
 
 

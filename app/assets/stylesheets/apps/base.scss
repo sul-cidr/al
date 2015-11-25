@@ -15,14 +15,20 @@ p {font-family: "Palatino linotype", Georgia, serif;}
   font-size: .7em; color:#336699 !important;
   cursor: pointer; text-align: left !important;}
 
-  
+
 .strong { font-weight: bold;}
 
 .hanging {
   padding-left: 16px ;
   text-indent: -8px ;
 }
-
+// fa-close
+#passage_closer {
+  position: absolute;
+  top:2px;
+  right:2px;
+  cursor: pointer;
+}
 div.categories {
   .active {font-size: 1.3em;}
   span {

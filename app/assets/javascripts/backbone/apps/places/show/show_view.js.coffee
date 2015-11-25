@@ -55,6 +55,12 @@
     template: "places/show/templates/_passages"
     childView: Show.PlacePassage
     childViewContainer: "placepassages"
+    events: {
+      "click #passage_closer": "closeRightPanel"
+    }
+
+    closeRightPanel: ->
+      App.placePassagesRegion.$el.hide()
 
   class Show.Content extends App.Views.ItemView
     template: "places/show/templates/_content"

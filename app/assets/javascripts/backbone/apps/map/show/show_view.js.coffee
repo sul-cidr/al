@@ -2,6 +2,15 @@
 
   class Show.Map extends Marionette.ItemView
     template: "map/show/templates/show_map"
+    events: {
+      "click .passage-link": "showOnePassage"
+    }
+
+    showOnePassage: (e) ->
+      console.log 'popup passage', $(e.currentTarget).context.attributes.val.value
+      id = $(e.currentTarget).context.attributes.val.value
+      # TODO: load passage in right panel
+      Show.Controller.showOnePassage(id)
 
     initialize: ->
       @filters = {}
@@ -98,20 +107,38 @@
 
       this.map.addControl(zoomControl);
 
-      # mbLayer = L.mapbox.tileLayer('elijahmeeks.kd3jd7e1')
-      # mapbox://styles/elijahmeeks/cigvm9rhm000d90ksrihyve8x
-
-      # mapboxLayer =
       # OSM base layer
-      osmLayer = L.tileLayer(
+      l_osmLayer = L.tileLayer(
         'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
         { detectRetina: true }
       );
 
+      l_sat = L.tileLayer('elijahmeeks.kd3jd7e1')
+      l_indicator = L.tileLayer('elijahmeeks.gqd89536')
+      l_taylor = L.tileLayer('elijahmeeks.7dd6ynaj')
+      l_bowles = L.tileLayer('elijahmeeks.36cac3di')
+      #
+      # l_sat = L.mapbox.tileLayer('elijahmeeks.kd3jd7e1')
+      # l_indicator = L.mapbox.tileLayer('elijahmeeks.gqd89536')
+      # l_taylor = L.mapbox.tileLayer('elijahmeeks.7dd6ynaj')
+      # l_bowles = L.mapbox.tileLayer('elijahmeeks.36cac3di')
+      # mapbox://styles/elijahmeeks/cigvm9rhm000d90ksrihyve8x
+
+      baselayers = {
+        # "Styled OSM": l_mbstudio,
+        "Satellite": l_sat
+      }
+      window.overlays = {
+        "Indicator (1880)":l_indicator,
+        "Bowles (1783)":l_bowles,
+        "Taylor (1723)":l_taylor,
+      }
+
+      # lyrs = L.control.layers(overlays).addTo(map);
+
       London = [51.5120, -0.0928]
 
-      # this.map.addLayer(mbLayer);
-      this.map.addLayer(osmLayer);
+      this.map.addLayer(l_osmLayer);
       # places open, authors open viewports
       this.map.setView(London, 12)
 
@@ -159,20 +186,17 @@
           feature = L.marker(
             swap(wellknown(geom).coordinates))
 
-          # feature = L.circleMarker(
-          #   swap(wellknown(geom).coordinates),
-          #   # swap(wellknown(geom).coordinates[0]),
-          #   @stylePoints(pl) )
-
           feature.model = pl
           feature.bindPopup(
             if pl.get('placeref_type') == 'bio'
-            then '"'+pl.get("author_id")+'"' + ' resided at ' +
-            # then authhash[pl.get("author_id")]+' resided at ' +
-              pl.get('placeref')+'<br/>'+pl.get('placeref_id')
-            else '"'+pl.get('placeref') + '", in <em>' +
-              workhash[pl.get('work_id')].title + '<br/>' +
-              pl.get('placeref_id')
+            # then '"'+pl.get("author_id")+'"' + ' resided at ' +
+            then authhash[pl.get("author_id")]+' resided at ' +
+              pl.get("placeref")+'<br/>'+pl.get("placeref_id")
+            else '"'+pl.get("placeref") + '", in <em>' +
+              workhash[pl.get("work_id")].title + '<br/>' +
+              pl.get("placeref_id") + '<br/>' +
+              '<span class="passage-link" val='+pl.get("passage_id")+
+                '>show passage</span>'
           )
           feature.setIcon(
             if pl.get('placeref_type') == 'bio'
@@ -184,7 +208,8 @@
           $idToFeature.placerefs[prid] = feature
           @features.push feature
 
-        else if geom.substr(0,15) == 'MULTILINESTRING'
+        else if geom.substr(0,10) == 'LINESTRING'
+        # else if geom.substr(0,15) == 'MULTILINESTRING'
           feature =  new L.GeoJSON(wellknown(geom), {
             style: mapStyles.street
             # options: {"model":pl,"id":prid}
@@ -197,7 +222,7 @@
           $idToFeature.placerefs[prid] = feature
 
           # CHECK: lines in @features defeats spatial query
-          # @features.push feature
+          @features.push feature
 
         # TODO: visible only on hover in text
         else if geom.substr(0,12) == 'MULTIPOLYGON'
@@ -223,16 +248,16 @@
       # Highlight.
       # @placerefs.on(
       #   'mouseover',
-      #   this.onHighlightFeature.bind(this)
+      #   this.onSelectFeature.bind(this)
       # );
       #
-      # # // Unhighlight.
+      # # Unhighlight.
       # @placerefs.on(
       #   'mouseout',
-      #   this.onUnhighlightFeature.bind(this)
+      #   this.onUnselectFeature.bind(this)
       # );
 
-      # // Select.
+      # Select
       @placerefs.on(
         'click',
         this.onSelectFeature.bind(this)
@@ -301,7 +326,7 @@
     #     @highlightFeature('workplace', id)
     #   else
     #     @highlightFeature('bioplace', id)
-    #
+    # #
     # onUnhighlightFeature: (e) ->
     #   color = e.layer.options.color
     #   id = e.layer.options.id
@@ -334,6 +359,7 @@
       else if what == "area"
         marker = $idToFeature.areas[id];
         marker.setStyle(mapStyles.area.highlight);
+
     # triggered from passages, area list
     highlightFeature: (what, id) ->
       if what == "placeref"
@@ -373,8 +399,12 @@
       @areas.setStyle(mapStyles.area.start)
 
     onSelectFeature: (e) ->
-      App.vent.trigger('placeref:select', e.layer.options.id);
+      # App.vent.trigger('placeref:select', e.layer.options.id);
       e.layer.openPopup()
+
+    onUnselectFeature: (e) ->
+      # App.vent.trigger('placeref:select', e.layer.options.id);
+      e.layer.closePopup()
 
     selectFeature: (what, id) ->
       marker = $idToFeature.placerefs[id];

@@ -64,3 +64,35 @@
     #  */
     onSelectFeature: (what, id) ->
       @mapView.selectFeature(what, id);
+
+      # TODO: rig this
+    showOnePassage: (passage_id) ->
+      # prefname = authhash[authid]
+      #
+      # window.authorPassages =
+      #   _.filter @activeWorksPlaces, (wp) =>
+      #     wp.model.attributes.author_id == authid
+      #
+      # # get passage_ids for author
+      # window.passage_ids = []
+      # _.each authorPassages, (p) =>
+      #   passage_ids.push p.model.attributes.passage_id
+
+      # retrieve single passage
+      App.request "passage:place", passage_id, (place_passages) =>
+        # if App.authorContentRegion.$el.length > 0
+        #   App.authorContentRegion.reset()
+        window.placepassage = place_passages
+        placePassageView = @getPlacePassageView place_passages
+
+        App.placePassagesRegion.show placePassageView
+        App.placePassagesRegion.$el.fadeIn("slow")
+        #
+        # $(".passages-places h4").html(authhash[authid])
+
+    getPlacePassageView: (place_passages) ->
+      new AL.PlacesApp.Show.PlacePassages ({
+        collection: place_passages
+        # viewComparator: "passage_id"
+        className: 'passages-places'
+      })
