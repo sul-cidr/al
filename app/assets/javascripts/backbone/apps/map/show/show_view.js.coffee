@@ -190,8 +190,8 @@
           feature.bindPopup(
             if pl.get('placeref_type') == 'bio'
             # then '"'+pl.get("author_id")+'"' + ' resided at ' +
-            then authhash[pl.get("author_id")]+' resided at ' +
-              pl.get("placeref")+'<br/>'+pl.get("placeref_id")
+            then pl.get("placeref")+' was on '+authhash[pl.get("author_id")]+'\'s lifepath' +
+              '<br/>'+pl.get("placeref_id")
             else '"'+pl.get("placeref") + '", in <em>' +
               workhash[pl.get("work_id")].title + '<br/>' +
               pl.get("placeref_id") + '<br/>' +

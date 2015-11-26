@@ -1,3 +1,21 @@
+var arrayWordCloud = function (workarray) {
+  console.log(workarray)
+  window.data = []
+  $.each(workarray, function (i) {
+    var obj = {text: workarray[i][0], size: workarray[i][1]}
+    data.push(obj)
+  })
+  return data;
+}
+var modelWordCloud = function (workmodel) {
+  keywords = workmodel.attributes.keywords
+  window.data = []
+  $.each(keywords, function (i) {
+    var obj = {text: keywords[i][0], size: keywords[i][1]}
+    data.push(obj)
+  })
+  return data;
+}
 var histYears = function (years) {
   // console.log(years)
   var formatCount = d3.format("4d");

@@ -1,5 +1,23 @@
 @AL.module "AuthorsApp.Show", (Show, App, Backbone, Marionette, $, _) ->
 
+  class Show.CloudBase extends App.Views.ItemView
+    defaults: {
+      margin: {top: 5, right: 5, bottom: 5, left: 5}
+      # others specific to word clouds
+    }
+    render: ->
+      margin = this.defaults.margin;
+      this.width = this.$el.width() - margin.left - margin.right;
+      this.height = this.$el.height() - margin.top - margin.bottom;
+
+      this.svg = d3.select(this.el).append("svg")
+          .attr("width", this.width + margin.left + margin.right)
+          .attr("height", this.height + margin.top + margin.bottom)
+        .append("g")
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      return this;
+
   class Show.Layout extends App.Views.Layout
     template: "authors/show/templates/show_layout"
     # template: "authors/show/templates/show_author"
@@ -97,5 +115,6 @@
   class Show.Works extends App.Views.CompositeView
     template: "authors/show/templates/_works"
     className: 'works'
+    # childView: Show.CloudBase
     childView: Show.Work
     childViewContainer: "div"

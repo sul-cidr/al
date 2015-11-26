@@ -63,12 +63,15 @@
         if App.authorContentRegion.$el.length > 0
           App.authorContentRegion.reset()
         @worksView = @getWorksView works
-
+        window.works = works
         # get work_ids
         window.work_ids = []
         _.each works.models, (w) =>
           work_ids.push w.attributes.work_id
-        # console.log 'works:',work_ids
+          # window.keywords = {}
+          # keywords['text'] = w.attributes.keywords[0]
+          # keywords['size'] = w.attributes.keywords[1]
+          # console.log JSON.stringify(wordCloud(w))
         # console.log works.length + ' works for ' + author_id
         App.authorContentRegion.show @worksView
 
