@@ -1,21 +1,25 @@
 var arrayWordCloud = function (workarray) {
   console.log(workarray)
+  html = ""
   window.data = []
   $.each(workarray, function (i) {
     var obj = {text: workarray[i][0], size: workarray[i][1]}
     data.push(obj)
   })
-  return data;
-}
-var modelWordCloud = function (workmodel) {
-  keywords = workmodel.attributes.keywords
-  window.data = []
-  $.each(keywords, function (i) {
-    var obj = {text: keywords[i][0], size: keywords[i][1]}
-    data.push(obj)
+
+  data.sort(function(a,b) {return (a.text > b.text) ? 1 : ((b.text > a.text) ? -1 : 0);} );
+
+  max = Math.max.apply(Math,data.map(function(o){return o.size;}))
+  min = Math.min.apply(Math,data.map(function(o){return o.size;}))
+
+  $.each(data, function (i) {
+    size = data[i]['size']
+    html += '<span style="font-size:'+scaleFont(data[i]['size'],[min,max])+'em;">'+
+      data[i]['text']+'</span> '
   })
-  return data;
+  return html;
 }
+
 var histYears = function (years) {
   // console.log(years)
   var formatCount = d3.format("4d");

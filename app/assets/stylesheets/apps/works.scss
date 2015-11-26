@@ -1,4 +1,4 @@
-.work {
+.work span {
   margin: 4px 0;
   line-height: 1.2em;
   a, a:hover{
@@ -6,9 +6,21 @@
     display: inline-block;
   }
 }
-div.work:hover {
-  background: yellow;
+
+
+.work-title {
+  font-size: 0.9em;
+  font-weight: 600;
+  color: #993333
 }
+
+.work-cloud {
+  margin-bottom:8px;
+  span {
+    line-height:.8em;
+  }
+}
+
 .panel-title {
   h4 {margin-bottom:0; color: #993333;
     text-align: center; font-weight: bold;}

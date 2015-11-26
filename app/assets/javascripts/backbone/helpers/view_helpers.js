@@ -1,8 +1,14 @@
-// r = [min,max]
+// returns value between 0 and 1;
+// r = [min,max] of dataset
 function scale(value,r) {
-    return value * ( 1/(r[1] - r[0]) );
+  return value * ( 1/(r[1] - r[0]) );
 }
-
+function scaleFont(value,range) {
+  s = d3.scale.linear()
+        .domain(range)
+        .range([0.8,1.4]) // em
+  return s(value);
+}
 function poetize(string) {
   return string.replace(/\/(?!span)/g,'<br/>');
 }

@@ -1,9 +1,10 @@
 <!-- <a href="#"> <%= @safe hardSpace(@title) %></a><br/> -->
-<div class="work hanging">
-  <a href="#workpassages/a/<%= @work_id %>" >
-    <%= @safe @title %>  </a>
-  <br/>
-  <%= arrayWordCloud(@keywords) %>
+<div class="work">
+  <span class="work-title hanging"><a href="#workpassages/a/<%= @work_id %>" >
+    <%= @safe @title %>  </a></span>
+  <div class="work-cloud">
+    <%= @safe arrayWordCloud(@keywords) %>
+  </div>
   <!-- <% #for key, value in @keywords: %>
      <%= #key %>
   <% #end %> -->
