@@ -1,55 +1,5 @@
 @AL.module "AuthorsApp.Show", (Show, App, Backbone, Marionette, $, _) ->
 
-  # just make any d3 thing repeat in a child
-  # child of Show.Works
-  class Show.D3Thing extends App.Views.ItemView
-    template: "authors/show/templates/_work"
-    el: 'svg'
-    initialize: ->
-      @d3 = d3.select(@el)
-    #   return
-    # events: 'click': 'makeCircle'
-    # makeCircle: ->
-    #   circ = @d3.append('circle')
-    #   view = new CircleView(el: circ[0])
-    #   view.render()
-    #   return
-
-  # experiment
-  class Show.CloudBase extends App.Views.ItemView
-    defaults: {
-      margin: {top: 5, right: 5, bottom: 5, left: 5}
-      # others specific to word clouds
-    }
-    render: ->
-      margin = this.defaults.margin;
-      this.width = this.$el.width() - margin.left - margin.right;
-      this.height = this.$el.height() - margin.top - margin.bottom;
-
-      this.svg = d3.select(this.el).append("svg")
-          .attr("width", this.width + margin.left + margin.right)
-          .attr("height", this.height + margin.top + margin.bottom)
-        .append("g")
-          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    renderData: ->
-      chart = this
-      x = this.scales.x
-      y = this.scales.y
-
-      this.svg.selectAll(".bar")
-          .data(this.mapData()) // { x: xAttr, y: yAttr }
-        .enter().append("rect")
-          .attr("class", "bar")
-          .attr("x", ->
-            return x(d.x) )
-          .attr("width", x.rangeBand())
-          .attr("y", ->
-            return y(d.y); )
-          .attr("height", (d) ->
-            return chart.height - y(d.y); );
-      return this;
-
   class Show.Layout extends App.Views.Layout
     template: "authors/show/templates/show_layout"
     # template: "authors/show/templates/show_author"

@@ -1,13 +1,14 @@
 var arrayWordCloud = function (workarray) {
-  console.log(workarray)
+  // console.log(workarray)
   html = ""
-  window.data = []
+  data = []
   $.each(workarray, function (i) {
     var obj = {text: workarray[i][0], size: workarray[i][1]}
     data.push(obj)
   })
 
-  data.sort(function(a,b) {return (a.text > b.text) ? 1 : ((b.text > a.text) ? -1 : 0);} );
+  data.sort(function(a,b) {
+    return (a.text > b.text) ? 1 : ((b.text > a.text) ? -1 : 0);} );
 
   max = Math.max.apply(Math,data.map(function(o){return o.size;}))
   min = Math.min.apply(Math,data.map(function(o){return o.size;}))

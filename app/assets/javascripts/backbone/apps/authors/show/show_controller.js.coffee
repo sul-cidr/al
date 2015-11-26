@@ -54,7 +54,6 @@
         viewComparator: "passage_id"
         className: if type == 'works' then 'passages-works' else 'passages-bio'
 
-    # TODO: make this display a visualization summary
     listWorks: (author) ->
       id = author.get("author_id")
       # console.log 'listWorks()', id
@@ -68,11 +67,6 @@
         window.work_ids = []
         _.each works.models, (w) =>
           work_ids.push w.attributes.work_id
-          # window.keywords = {}
-          # keywords['text'] = w.attributes.keywords[0]
-          # keywords['size'] = w.attributes.keywords[1]
-          # console.log JSON.stringify(wordCloud(w))
-        # console.log works.length + ' works for ' + author_id
         App.authorContentRegion.show @worksView
 
     getWorksView: (works) ->

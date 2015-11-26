@@ -3,12 +3,15 @@
 function scale(value,r) {
   return value * ( 1/(r[1] - r[0]) );
 }
+
+// returns value in ems suitable for font size
 function scaleFont(value,range) {
   s = d3.scale.linear()
-        .domain(range)
-        .range([0.8,1.4]) // em
+    .domain(range)
+    .range([0.8,1.4]) // em
   return s(value);
 }
+
 function poetize(string) {
   return string.replace(/\/(?!span)/g,'<br/>');
 }
