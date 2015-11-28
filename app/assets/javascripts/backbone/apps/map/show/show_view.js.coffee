@@ -190,8 +190,8 @@
           feature.bindPopup(
             if pl.get('placeref_type') == 'bio'
             # then '"'+pl.get("author_id")+'"' + ' resided at ' +
-            then pl.get("placeref")+' was on '+authhash[pl.get("author_id")]+'\'s lifepath' +
-              '<br/>'+pl.get("placeref_id")
+            then pl.get("placeref")+' was on '+authhash[pl.get("author_id")]+
+              '\'s lifepath<br/>'+pl.get("placeref_id")+', '+pl.get("passage_id")
             else '"'+pl.get("placeref") + '", in <em>' +
               workhash[pl.get("work_id")].title + '<br/>' +
               pl.get("placeref_id") + '<br/>' +
@@ -311,43 +311,14 @@
       window.leaf_areas = @areas
       window.areaFeatures = @features
 
-    # TODO: better highlight/unhighlight system
-    # CHECK: why trigger->map_app->controller->@highlightFeature ?
-    # triggered from map
-    # onHighlightFeature: (e) ->
-    #   console.log 'onHightlightFeature', e.layer
-    #   color = e.layer.options.color
-    #   id = e.layer.options.id
-    #   # console.log 'e', e.layer
-    #   window.active = e
-    #   if e.layer.options.color == "green"
-    #     e.layer.setStyle({"color":"orange", "weight":6})
-    #   else if e.layer.options.color == "blue"
-    #     @highlightFeature('workplace', id)
-    #   else
-    #     @highlightFeature('bioplace', id)
-    # #
-    # onUnhighlightFeature: (e) ->
-    #   color = e.layer.options.color
-    #   id = e.layer.options.id
-    #   if color == "orange"
-    #     e.layer.setStyle({"color":"green", "weight":4})
-    #   else if color == "blue"
-    #     @unhighlightFeature('workplace', id)
-    #   else
-    #     @unhighlightFeature('bioplace', id)
-
     # triggered from passages, area list
     clickPlaceref: (what, id) ->
       if what == "placeref"
         marker = $idToFeature.placerefs[id];
         console.log 'what, id, marker: '+ what, id, marker
-        # ex. Donne 30265 Bread Street
-        # if it's in a cluster, remove it and re-place on map:
-        # @markerClusters.removeLayer(marker)
-        # map.addLayer(marker)
-        # # make it big
-        # marker.setIcon(houseMarkerL)
+        # it's been removed from cluster by mouseover:
+        # make it bigger
+        # marker.setIcon(houseMarkerM)
         # zoom to it
         map.setView(marker._popup._source._latlng,17,{animate:true})
 

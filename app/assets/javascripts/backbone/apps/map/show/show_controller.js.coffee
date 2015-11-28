@@ -67,17 +67,6 @@
 
       # TODO: rig this
     showOnePassage: (passage_id) ->
-      # prefname = authhash[authid]
-      #
-      # window.authorPassages =
-      #   _.filter @activeWorksPlaces, (wp) =>
-      #     wp.model.attributes.author_id == authid
-      #
-      # # get passage_ids for author
-      # window.passage_ids = []
-      # _.each authorPassages, (p) =>
-      #   passage_ids.push p.model.attributes.passage_id
-
       # retrieve single passage
       App.request "passage:place", passage_id, (place_passages) =>
         # if App.authorContentRegion.$el.length > 0

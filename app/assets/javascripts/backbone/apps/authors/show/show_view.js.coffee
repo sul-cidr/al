@@ -49,7 +49,8 @@
     events: {
       "click span.placeref": "onPlacerefClick"
       "mouseenter span.placeref": "onPlacerefEnter"
-      "mouseleave span.placeref": "onPlacerefLeave"
+      # TODO: is this right behavior?
+      # "mouseleave span.placeref": "onPlacerefLeave"
     }
 
     onPlacerefClick: (e) ->
