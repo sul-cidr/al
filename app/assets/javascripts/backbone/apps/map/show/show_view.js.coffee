@@ -113,10 +113,10 @@
         { detectRetina: true }
       );
 
-      l_sat = L.tileLayer('elijahmeeks.kd3jd7e1')
-      l_indicator = L.tileLayer('elijahmeeks.gqd89536')
-      l_taylor = L.tileLayer('elijahmeeks.7dd6ynaj')
-      l_bowles = L.tileLayer('elijahmeeks.36cac3di')
+      # l_sat = L.tileLayer('elijahmeeks.kd3jd7e1')
+      # l_indicator = L.tileLayer('elijahmeeks.gqd89536')
+      # l_taylor = L.tileLayer('elijahmeeks.7dd6ynaj')
+      # l_bowles = L.tileLayer('elijahmeeks.36cac3di')
       #
       # l_sat = L.mapbox.tileLayer('elijahmeeks.kd3jd7e1')
       # l_indicator = L.mapbox.tileLayer('elijahmeeks.gqd89536')
@@ -124,15 +124,15 @@
       # l_bowles = L.mapbox.tileLayer('elijahmeeks.36cac3di')
       # mapbox://styles/elijahmeeks/cigvm9rhm000d90ksrihyve8x
 
-      baselayers = {
-        # "Styled OSM": l_mbstudio,
-        "Satellite": l_sat
-      }
-      window.overlays = {
-        "Indicator (1880)":l_indicator,
-        "Bowles (1783)":l_bowles,
-        "Taylor (1723)":l_taylor,
-      }
+      # baselayers = {
+      #   # "Styled OSM": l_mbstudio,
+      #   "Satellite": l_sat
+      # }
+      # window.overlays = {
+      #   "Indicator (1880)":l_indicator,
+      #   "Bowles (1783)":l_bowles,
+      #   "Taylor (1723)":l_taylor,
+      # }
 
       # lyrs = L.control.layers(overlays).addTo(map);
 
