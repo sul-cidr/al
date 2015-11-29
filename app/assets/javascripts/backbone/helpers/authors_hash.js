@@ -1,5 +1,4 @@
 var workhash = {
-
   20469:{"author_id":10405,"work_year":1921,"title":"To Let"},
   20438:{"author_id":10397,"work_year":1951,"title":"The End of the Affair"},
   20410:{"author_id":10435,"work_year":1749,"title":"Tom Jones"},

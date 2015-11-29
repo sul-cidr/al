@@ -64,7 +64,6 @@
       MapApp.Show.Controller.filterByArea "area", hbounds
 
     resetMap: ->
-      # close the place passages window
       $("#place_passages_region").fadeOut("slow")
       # clear all filters
       MapApp.Show.Controller.clearFilters()

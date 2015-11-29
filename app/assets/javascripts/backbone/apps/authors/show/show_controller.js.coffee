@@ -3,9 +3,11 @@
   Show.Controller =
 
     showAuthor: (author) ->
+      console.log "showAuthor", author.get('surname')
       # hide dimension dropdowns
-      $("#dimensions_region").hide()
-      # get map to filter for author
+      $("#dimensions_region").addClass("hidden")
+
+      # TODO: get map to filter for author
       # console.log "showAuthor", author.get('author_id')
 
       # trigger for map_app
@@ -19,12 +21,14 @@
       # console.log '@authorLayout', @authorLayout
 
       @authorLayout.on "show", =>
-        # AL.ContentApp.Show.Controller.showTab('authors')
-        # Backbone.history.navigate("authors/"+id)
         @showTitle author
         @showNav author
         @listBioPassages author
         # @listWorks id
+        $("#author_crumbs").append(
+          '<span id="crumb_author" class="crumb-left" val="'+id+'">:: '+author.get("surname")+
+          ' :: Biography'+
+          '</span>')
 
       App.authorsRegion.show @authorLayout
 

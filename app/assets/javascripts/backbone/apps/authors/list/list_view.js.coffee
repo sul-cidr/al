@@ -35,8 +35,7 @@
       $activeAuthor = this.model
       author = this.model
       @route = "authors/" + author.get('author_id')
-      # runs showAuthor()
-      # console.log 'route', @route
+      # runs AuthorsApp.Show.Controller.showAuthor()
       Backbone.history.navigate(@route, true)
 
   class List.Authors extends App.Views.CompositeView

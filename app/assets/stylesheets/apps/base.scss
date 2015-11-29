@@ -12,13 +12,15 @@ p {font-family: "Palatino linotype", Georgia, serif;}
 .crumb { font-size: .8em; cursor: pointer; color: #336699;}
 
 .crumb-left {
-  font-size: .7em; color:#336699 !important;
-  cursor: pointer; text-align: left !important;}
+  font-size: .7em;
+   text-align: left !important;
+}
+.crumb-link {cursor: pointer; color:#336699 !important;}
 
 .strong { font-weight: bold;}
 
 .hanging {
-  padding-left: 6px ;
+  padding-left: 10px ;
   text-indent: -8px ;
 }
 // fa-close
@@ -64,6 +66,8 @@ div.categories ul {
 
 .panel { width: 350px; height: 85%; top: 60px;
   position: absolute;
+  left: 4px;
+  box-shadow: 6px 6px 4px #888888;
   h3 { margin: 5px 0; text-align: center;}
   .container { position:absolute; width: 95%;}
 }

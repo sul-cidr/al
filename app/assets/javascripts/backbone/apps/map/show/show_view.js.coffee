@@ -48,7 +48,12 @@
       # markerClusters bounds are always all placerefs
       # map.fitBounds(@markerClusters.getBounds())
 
-      map.fitBounds(filteredBounds)
+      if filteredFeatures.length > 600
+        map.fitBounds(filteredBounds)
+      else
+        # TODO: filter bounds to not include Oxford, etc
+        # until then,
+        map.setView([51.5120, -0.0928], 12)
       # TODO:
       # console.log 'center, in filter', filteredBounds.getCenter()
 
@@ -94,8 +99,9 @@
       @map = L.map('map', {
         zoomControl: false,
         attributionControl: false,
-        fadeAnimation: false,
-        maxZoom: 17
+        fadeAnimation: true,
+        maxZoom: 18,
+        inertiaMaxSpeed: 1000
       }).setActiveArea('viewport-authors');
 
       # var map = new L.Map(document.createElement('div')).setActiveArea('activeArea');

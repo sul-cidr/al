@@ -11,15 +11,21 @@
   class Show.Title extends App.Views.ItemView
     template: "authors/show/templates/_title"
     events:
-      "click .crumb-left": "goHome"
+      "click #crumb_authors": "goHome"
+      "click #crumb_author": "goAuthor"
 
     goHome: ->
       # restore dimensions dropdowns
       $("#dimensions_region").show()
       # execute startAuthors()
-      Backbone.history.history.back()
-      # Backbone.history.navigate("authors", true)
+      # Backbone.history.history.back()
+      Backbone.history.navigate("authors", true)
       App.vent.trigger("map:reset")
+    goAuthor: (e) ->
+      # window.location.hash
+      console.log $(e.currentTarget).context.attributes
+      id = $(e.currentTarget).context.attributes.val.value
+      Backbone.history.navigate("authors/"+id, true)
 
   class Show.Pills extends App.Views.ItemView
     template: "authors/show/templates/_nav"
@@ -32,6 +38,10 @@
       authid = App.request("author:model").get("author_id")
       @pill = $(e.currentTarget).context.attributes.value.value
       if @pill == 'works'
+        $("#passages_pill").addClass("hidden")
+        $("#author_crumbs").append(
+          '<span id="crumb_works" class="crumb-left"> :: Works </span>')
+        $("#crumb_author").addClass("crumb-link")
         @route = "works/"+authid
         console.log 'loadContent, works:', @route
         # CHECK: is this Navigate...true right?

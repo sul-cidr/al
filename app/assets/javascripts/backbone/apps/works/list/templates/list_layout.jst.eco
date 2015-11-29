@@ -1,5 +1,5 @@
 <div id="title_region_w"></div>
 <div id="dimensions_region_w"></div>
 <!-- <div id="categories_region_w"></div> -->
-<div id="selected_cat_works"></div>
+<div id="selected_cat_works"><span class= "strong">All</span></div>
 <div id="worklist_region_w"></div>

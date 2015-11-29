@@ -19,8 +19,9 @@
         @tab = e
       else
         @tab = $(e.currentTarget).context.attributes.value.value
+        console.log @tab
         $(e.currentTarget).addClass("active")
-
+      window.activeTab = @tab
       Show.Controller.showTab(@tab)
 
   class Show.Dimensions extends App.Views.ItemView
@@ -28,13 +29,51 @@
     # TODO on-select for each dropdown
     events: {
       # TODO: needs to filter works, alternatively
-      "click .dim-container li": "filterAuthors"
+      "click .dim-container li": "filterStuff"
     }
+    filterStuff: (e) ->
+      # filter either authors or works and map for category
+      tab = window.location.hash.substring(1,window.location.hash.length)
+      catid = parseInt($(e.currentTarget).context.attributes.val.value)
+      seltext =
+        '<span class="strong">'+
+        $(e.currentTarget).context.innerHTML +
+        '</span><span class="right crumb clear">'+
+        'Clear filter</span>'
+      $("#selected_cat_"+tab).html(seltext)
+
+      # get a collection of models for category
+      App.request tab+":category", catid, (collection) =>
+        console.log 'filtered '+ tab + catid, collection
+        if tab == 'works'
+          AL.WorksApp.List.Controller.listCatWorks(collection)
+        else if tab == 'authors'
+          AL.AuthorsApp.List.Controller.listCatAuthors(collection)
+
+      # to map_app
+      App.vent.trigger "category:"+tab+":show", catid
 
     filterWorks: (e) ->
       console.log 'filterWorks(e) from ContentApp.Show'
+      window.catid = parseInt($(e.currentTarget).context.attributes.val.value)
+      # filter works and map for category
+      seltext =
+        '<span class="strong">'+
+        $(e.currentTarget).context.innerHTML +
+        '</span><span class="right crumb clear">'+
+        'Clear filter</span>'
+      $("#selected_cat_works").html(seltext)
+
+      # get a collection of work models for category
+      App.request "works:category", catid, (works) =>
+        console.log 'filtered works: '+ catid, works
+        AL.WorksApp.List.Controller.listCatWorks(works)
+
+      # to map_app
+      App.vent.trigger "category:works:show", catid
 
     filterAuthors: (e) ->
+      console.log 'filterWorks(e) from ContentApp.Show'
       window.catid = parseInt($(e.currentTarget).context.attributes.val.value)
       # filter authors and map for category
       seltext =
