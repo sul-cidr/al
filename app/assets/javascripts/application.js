@@ -18,8 +18,8 @@
 //= require backbone/backbone-min
 //= require backbone.marionette/lib/backbone.marionette.min
 
-//= require leaflet/dist/leaflet
-// require mapbox.js/mapbox.standalone
+// require leaflet/dist/leaflet
+//= require mapbox.js
 //= require wellknown/wellknown
 //= require leaflet-omnivore/leaflet-omnivore.min
 //= require leaflet-active-area/src/leaflet.activearea

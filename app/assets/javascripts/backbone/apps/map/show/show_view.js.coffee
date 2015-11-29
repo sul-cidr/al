@@ -91,7 +91,7 @@
     initMap: ->
       # console.log 'initMap'
       # this.map = L.mapbox.map('map', {
-      this.map = L.map('map', {
+      @map = L.map('map', {
         zoomControl: false,
         attributionControl: false,
         fadeAnimation: false,
@@ -100,19 +100,19 @@
 
       # var map = new L.Map(document.createElement('div')).setActiveArea('activeArea');
 
-      # Zoom buttons on top right.
-      zoomControl = L.control.zoom({
-        position: 'topright'
-      });
-
-      this.map.addControl(zoomControl);
+      L.mapbox.accessToken = 'pk.eyJ1IjoiZWxpamFobWVla3MiLCJhIjoiY2loanVmcGljMG50ZXY1a2xqdGV3YjRkZyJ9.tZqY_fRD2pQ1a0E599nKqg'
 
       # OSM base layer
       l_osmLayer = L.tileLayer(
         'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
         { detectRetina: true }
       );
-
+      l_indicator = L.tileLayer(
+        'https://api.mapbox.com/v4/elijahmeeks.gqd89536/{z}/{x}/{y}.png?access_token=' +
+          L.mapbox.accessToken, {
+          attribution: 'Indicator (1880)',
+          detectRetina: true
+          });
       # l_sat = L.tileLayer('elijahmeeks.kd3jd7e1')
       # l_indicator = L.tileLayer('elijahmeeks.gqd89536')
       # l_taylor = L.tileLayer('elijahmeeks.7dd6ynaj')
@@ -124,23 +124,31 @@
       # l_bowles = L.mapbox.tileLayer('elijahmeeks.36cac3di')
       # mapbox://styles/elijahmeeks/cigvm9rhm000d90ksrihyve8x
 
-      # baselayers = {
-      #   # "Styled OSM": l_mbstudio,
-      #   "Satellite": l_sat
-      # }
+      baselayers = {
+        "Styled OSM": l_osmLayer,
+        "Indicator (1880)":l_indicator
+        # "Satellite": l_sat
+      }
       # window.overlays = {
       #   "Indicator (1880)":l_indicator,
       #   "Bowles (1783)":l_bowles,
       #   "Taylor (1723)":l_taylor,
       # }
 
-      # lyrs = L.control.layers(overlays).addTo(map);
+      L.control.layers(baselayers).addTo(@map);
+
+      # Zoom buttons on top right.
+      zoomControl = L.control.zoom({
+        position: 'topright'
+      });
+
+      @map.addControl(zoomControl);
 
       London = [51.5120, -0.0928]
 
-      this.map.addLayer(l_osmLayer);
+      @map.addLayer(l_osmLayer);
       # places open, authors open viewports
-      this.map.setView(London, 12)
+      @map.setView(London, 12)
 
     stylePoints: (feature) ->
       # console.log feature

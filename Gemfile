@@ -12,6 +12,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'pg'
 gem 'activerecord-postgis-adapter'
 
+gem 'mapbox-rails'
+
 gem 'eco'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'compass-rails', '2.0.4'
