@@ -35,7 +35,6 @@
     "leaflet-omnivore": "~0.3.2",
     "lesshat": "~3.0.2",
     "lodash": "~3.10.1",
-    "mapbox.js": "~2.2.1",
     "nprogress": "~0.2.0",
     "turf": "~2.0.2",
     "underscore": "~1.8.3",
