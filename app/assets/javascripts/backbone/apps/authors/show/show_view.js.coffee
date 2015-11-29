@@ -16,7 +16,7 @@
 
     goHome: ->
       # restore dimensions dropdowns
-      $("#dimensions_region").show()
+      $("#dimensions_region").removeClass("hidden")
       # execute startAuthors()
       # Backbone.history.history.back()
       Backbone.history.navigate("authors", true)
