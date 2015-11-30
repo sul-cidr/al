@@ -60,7 +60,8 @@
     }
 
     closeRightPanel: ->
-      App.placePassagesRegion.$el.hide()
+      App.placePassagesRegion.$el.addClass('hidden')
+      map.closePopup()
 
   class Show.Content extends App.Views.ItemView
     template: "places/show/templates/_content"

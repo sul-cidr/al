@@ -7,7 +7,7 @@
     }
 
     showOnePassage: (e) ->
-      console.log 'popup passage', $(e.currentTarget).context.attributes.val.value
+      # console.log 'popup passage', $(e.currentTarget).context.attributes.val.value
       id = $(e.currentTarget).context.attributes.val.value
       # TODO: load passage in right panel
       Show.Controller.showOnePassage(id)
@@ -156,6 +156,11 @@
       # places open, authors open viewports
       @map.setView(London, 12)
 
+      @map.addEventListener 'popupclose', (->
+        $("#place_passages_region").addClass('hidden')
+        return
+      ), this
+
     stylePoints: (feature) ->
       # console.log feature
       if feature.get("placeref_type") == "bio"
@@ -201,17 +206,21 @@
             swap(wellknown(geom).coordinates))
 
           feature.model = pl
-          feature.bindPopup(
+          @popup = feature.bindPopup(
             if pl.get('placeref_type') == 'bio'
             # then '"'+pl.get("author_id")+'"' + ' resided at ' +
-            then pl.get("placeref")+' was on '+authhash[pl.get("author_id")]+
-              '\'s lifepath<br/>'+pl.get("placeref_id")+', '+pl.get("passage_id")
-            else '"'+pl.get("placeref") + '", in <em>' +
-              workhash[pl.get("work_id")].title + '<br/>' +
+            then '"<b>'+pl.get("placeref")+'</b>", a place in<br/>'+
+              authhash[pl.get("author_id")]+'\'s life<br/>'+
+              pl.get("placeref_id")+', '+pl.get("passage_id")
+            else '"<b>'+pl.get("placeref") + '</b>", in<br/>'+
+              '<em>'+workhash[pl.get("work_id")].title + '</em><br/>' +
               pl.get("placeref_id") + '<br/>' +
               '<span class="passage-link" val='+pl.get("passage_id")+
                 '>show passage</span>'
           )
+          # popup.on("popupclose"): ->
+          #   $(".passages-places").addClass('hidden')
+
           feature.setIcon(
             if pl.get('placeref_type') == 'bio'
             then houseMarker

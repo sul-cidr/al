@@ -68,6 +68,7 @@
       # TODO: rig this
     showOnePassage: (passage_id) ->
       # retrieve single passage
+      $("#place_passages_region").removeClass('hidden')
       App.request "passage:place", passage_id, (place_passages) =>
         # if App.authorContentRegion.$el.length > 0
         #   App.authorContentRegion.reset()
