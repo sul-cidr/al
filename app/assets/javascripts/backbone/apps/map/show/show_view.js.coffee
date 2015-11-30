@@ -156,9 +156,11 @@
       # places open, authors open viewports
       @map.setView(London, 12)
 
-      @map.addEventListener 'popupclose', (->
+      @map.addEventListener 'popupclose', ( (e) =>
         $("#place_passages_region").addClass('hidden')
+        activeMarker.setIcon(houseMarker)
         return
+      # ), console.log this
       ), this
 
     stylePoints: (feature) ->
@@ -170,7 +172,7 @@
       # else if feature.get("area_type") == "hood"
       #   return mapStyles.point_hood
 
-    bookMarker = L.MakiMarkers.icon({
+    window.bookMarker = L.MakiMarkers.icon({
     	icon: 'library',
     	color: '#CD5C5C',
     	size: 's'
@@ -366,6 +368,7 @@
         map.addLayer(marker)
         # make it big
         marker.setIcon(houseMarkerM)
+        window.activeMarker = marker
 
       # else if what == "bioplace"
       #   marker.setStyle(mapStyles.point_bio.highlight);
