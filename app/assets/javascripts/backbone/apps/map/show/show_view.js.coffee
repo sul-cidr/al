@@ -341,6 +341,7 @@
       if what == "placeref"
         marker = $idToFeature.placerefs[id];
         console.log 'what, id, marker: '+ what, id, marker
+        marker.openPopup()
         # it's been removed from cluster by mouseover:
         # make it bigger
         # marker.setIcon(houseMarkerM)

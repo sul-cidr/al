@@ -67,7 +67,6 @@
       window.context = $(e.currentTarget).context
       id = $(e.currentTarget).context.attributes.val.value
       console.log 'onPlaceRefClick', id
-
       App.vent.trigger('placeref:click', id);
 
     onPlacerefEnter: (e) ->
