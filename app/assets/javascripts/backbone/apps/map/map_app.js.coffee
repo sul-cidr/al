@@ -25,9 +25,14 @@
       MapApp.Show.Controller.showMap()
 
     filterByAuthor: (author) ->
-      console.log  'MapApp.API.filterByAuthor()',author.get("author_id")
+      id = author.get("author_id")
+      dyear = author.get("death_year")
+
+      console.log  'MapApp.API.filterByAuthor()', id
       MapApp.Show.Controller.setFilter 'author', (placeref) ->
-        placeref.get("author_id") == author.get("author_id")
+        placeref.get("author_id") == id
+
+      # MapApp.Show.Controller.swapBase dyear
 
     filterByAuthors: (author_ids, id) ->
       # console.log author.get("author_id")
@@ -67,6 +72,7 @@
       $("#place_passages_region").fadeOut("slow")
       # clear all filters
       MapApp.Show.Controller.clearFilters()
+      # map.addLayer(l_osmLayer)
 
 
   # TODO: part of refactoring for areas - single area:show

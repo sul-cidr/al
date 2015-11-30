@@ -22,6 +22,8 @@
     zoomTo: (what, area) ->
       @mapView.zoomTo what, area
 
+    swapBase: (dyear) ->
+      @mapView.swapBase(dyear)
 
     filterByArea: (type, b) ->
       window.counter = 0

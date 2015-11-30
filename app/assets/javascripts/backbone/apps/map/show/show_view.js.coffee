@@ -48,14 +48,10 @@
       # markerClusters bounds are always all placerefs
       # map.fitBounds(@markerClusters.getBounds())
 
-      if filteredFeatures.length > 600
-        map.fitBounds(filteredBounds)
-      else
-        # TODO: filter bounds to not include Oxford, etc
-        # until then,
-        map.setView([51.5120, -0.0928], 12)
-      # TODO:
-      # console.log 'center, in filter', filteredBounds.getCenter()
+      # if filteredFeatures.length > 600
+      map.fitBounds(filteredBounds)
+      # else
+      #   map.setView([51.5120, -0.0928], 12)
 
       # @filteredFeatures array used in PlacesApp to render summary
       App.vent.trigger('placerefs:filtered', @filteredFeatures);
@@ -93,6 +89,41 @@
         # points, lines, polygons; type: [bioblace | worksplace]
         @ingestPlacerefs placerefs
 
+
+    L.mapbox.accessToken = 'pk.eyJ1IjoiZWxpamFobWVla3MiLCJhIjoiY2loanVmcGljMG50ZXY1a2xqdGV3YjRkZyJ9.tZqY_fRD2pQ1a0E599nKqg'
+
+    # OSM base layer
+    l_osmLayer = L.tileLayer(
+      'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
+      { detectRetina: true }
+    );
+    l_indicator = L.tileLayer(
+      'https://api.mapbox.com/v4/elijahmeeks.gqd89536/{z}/{x}/{y}.png?access_token=' +
+        L.mapbox.accessToken, {
+        attribution: 'Indicator (1880)',
+        detectRetina: true
+        });
+    l_bowles = L.tileLayer(
+      'https://api.mapbox.com/v4/elijahmeeks.36cac3di/{z}/{x}/{y}.png?access_token=' +
+        L.mapbox.accessToken, {
+        attribution: 'Bowles (1783)',
+        detectRetina: true
+        });
+    l_taylor = L.tileLayer(
+      'https://api.mapbox.com/v4/elijahmeeks.7dd6ynaj/{z}/{x}/{y}.png?access_token=' +
+        L.mapbox.accessToken, {
+        attribution: 'Taylor (1723)',
+        detectRetina: true
+        });
+
+    swapBase: (dyear) ->
+      if dyear < 1900 && dyear > 1803
+        map.addLayer(l_indicator)
+      else if dyear < 1802 && dyear > 1743
+        map.addLayer(l_bowles)
+      else if dyear < 1742
+        map.addLayer(l_taylor)
+
     initMap: ->
       # console.log 'initMap'
       # this.map = L.mapbox.map('map', {
@@ -106,42 +137,17 @@
 
       # var map = new L.Map(document.createElement('div')).setActiveArea('activeArea');
 
-      L.mapbox.accessToken = 'pk.eyJ1IjoiZWxpamFobWVla3MiLCJhIjoiY2loanVmcGljMG50ZXY1a2xqdGV3YjRkZyJ9.tZqY_fRD2pQ1a0E599nKqg'
-
-      # OSM base layer
-      l_osmLayer = L.tileLayer(
-        'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
-        { detectRetina: true }
-      );
-      l_indicator = L.tileLayer(
-        'https://api.mapbox.com/v4/elijahmeeks.gqd89536/{z}/{x}/{y}.png?access_token=' +
-          L.mapbox.accessToken, {
-          attribution: 'Indicator (1880)',
-          detectRetina: true
-          });
-      # l_sat = L.tileLayer('elijahmeeks.kd3jd7e1')
-      # l_indicator = L.tileLayer('elijahmeeks.gqd89536')
-      # l_taylor = L.tileLayer('elijahmeeks.7dd6ynaj')
-      # l_bowles = L.tileLayer('elijahmeeks.36cac3di')
-      #
-      # l_sat = L.mapbox.tileLayer('elijahmeeks.kd3jd7e1')
-      # l_indicator = L.mapbox.tileLayer('elijahmeeks.gqd89536')
-      # l_taylor = L.mapbox.tileLayer('elijahmeeks.7dd6ynaj')
-      # l_bowles = L.mapbox.tileLayer('elijahmeeks.36cac3di')
-      # mapbox://styles/elijahmeeks/cigvm9rhm000d90ksrihyve8x
-
-      baselayers = {
-        "Styled OSM": l_osmLayer,
+      baseMaps = {
+        "Modern": l_osmLayer
+      }
+      overlayMaps = {
         "Indicator (1880)":l_indicator
+        "Bowles (1783)":l_bowles,
+        "Taylor (1723)":l_taylor
         # "Satellite": l_sat
       }
-      # window.overlays = {
-      #   "Indicator (1880)":l_indicator,
-      #   "Bowles (1783)":l_bowles,
-      #   "Taylor (1723)":l_taylor,
-      # }
 
-      L.control.layers(baselayers).addTo(@map);
+      L.control.layers(baseMaps,overlayMaps).addTo(@map);
 
       # Zoom buttons on top right.
       zoomControl = L.control.zoom({
