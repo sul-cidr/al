@@ -37,26 +37,43 @@
     color: #2A4747;
   }
 
-  // white center
+  // white-ish center
   background-color: #ffffff; // Old browsers
   @include filter-gradient( #ffffff, #ffffff, horizontal); // IE6-9
   @include background-image(linear-gradient(left,  #2A4747 0%,#BFC8C8 25%,#BFC8C8 75%,#2A4747 100%));
 
   // slate center
-  // h2 {color: #ffffff}
   // background-color: #2A4747; // Old browsers
   // @include filter-gradient(#ffffff, #ffffff, horizontal); // IE6-9
   // @include background-image(linear-gradient(left,  #ffffff 0%,#2A4747 25%,#2A4747 75%,#ffffff 100%));
 
 }
 
-// #header-basic	{
-//   position: absolute;
-//   top: 0;
-//   width: 100vw;
-// 	h2 {
-//     margin: 5px 0; text-align: center;
-//   }
-//   background: #274965;
-//   color: #ccc;
-// }
+#map_chooser {
+  position: absolute;
+  margin: 4px 2px;
+  padding-left: 4px;
+  top: 55px;
+  right: 42px;
+  z-index: 1;
+  background: #fff;
+  font-family: 'english';
+  ul {
+    list-style-type: none;
+    display: inline-block;
+    margin-bottom: 0;
+    padding: 2px;
+
+  }
+  li {
+    display: inline;
+    cursor: pointer;
+    color:#336699;
+    margin-left: 6px;
+  }
+  li:hover {background: yellow;}
+
+  .active {
+    background: yellow;
+  }
+}

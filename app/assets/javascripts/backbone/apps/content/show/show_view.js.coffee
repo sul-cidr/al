@@ -10,6 +10,7 @@
       authorsRegion: "#authors_region"
       placesRegion: "#places_region"
       worksRegion: "#works_region"
+      mapChooser: "#map_chooser"
 
     events:
       "click #content_nav_region li": "showTab"

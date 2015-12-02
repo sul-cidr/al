@@ -20,7 +20,13 @@
     console.log 'map_app place:focus', area
     API.focusPlace(area)
 
+  App.vent.on "map:swap", (id) ->
+    MapApp.Show.Controller.swapBase id
+
   API =
+    # swapBase: (id) ->
+    #   MapApp.Show.Controller.swapBase()
+
     showMap: ->
       MapApp.Show.Controller.showMap()
 

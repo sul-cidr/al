@@ -22,7 +22,8 @@
         placePassagesView = @getPlacePassagesView place_passages
 
         App.placePassagesRegion.show placePassagesView
-        App.placePassagesRegion.$el.fadeIn("slow")
+        $("#place_passages_region").removeClass('hidden')
+        # App.placePassagesRegion.$el.fadeIn("slow")
         #
         $(".passages-places h4").html(authhash[authid])
 

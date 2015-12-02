@@ -64,6 +64,34 @@
       @filters = {}
       @filterAllLayers()
 
+    swapBase: (id) ->
+      # TODO "eval is evil"
+      # what is active lyr id?
+      active = $("#map_chooser li.active").attr("val")
+      console.log 'swapBase(id): active, new: '+ active, id
+      # clear all tabs of active class
+      $("#map_chooser li").removeClass('active')
+      # make selected active
+      $("#map_chooser li[val='"+id+"']").addClass('active')
+      lyr = eval(id)
+      console.log 'eval(id):', lyr
+      # if the active map was historic, remove it
+      if active != 'l_osm'
+        console.log 'active was != l_osm, it was ', active
+        map.removeLayer(eval(active))
+      if id == 'l_indicator'
+        if map.getZoom() < 13
+          map.setZoom(13)
+        map.addLayer(lyr)
+      if id == 'l_bowles'
+        if map.getZoom() < 14
+          map.setZoom(14)
+        map.addLayer(lyr)
+      if id == 'l_taylor'
+        if map.getZoom() < 15
+          map.setZoom(15)
+        map.addLayer(lyr)
+
     zoomToCluster: (what, geom) ->
       console.log 'in zoomToCluster'
 
@@ -93,11 +121,11 @@
     L.mapbox.accessToken = 'pk.eyJ1IjoiZWxpamFobWVla3MiLCJhIjoiY2loanVmcGljMG50ZXY1a2xqdGV3YjRkZyJ9.tZqY_fRD2pQ1a0E599nKqg'
 
     # OSM base layer
-    l_osmLayer = L.tileLayer(
+    l_osm = L.tileLayer(
       'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
       { detectRetina: true }
     );
-    l_indicator = L.tileLayer(
+    window.l_indicator = L.tileLayer(
       'https://api.mapbox.com/v4/elijahmeeks.gqd89536/{z}/{x}/{y}.png?access_token=' +
         L.mapbox.accessToken, {
         attribution: 'Indicator (1880)',
@@ -116,13 +144,13 @@
         detectRetina: true
         });
 
-    swapBase: (dyear) ->
-      if dyear < 1900 && dyear > 1803
-        map.addLayer(l_indicator)
-      else if dyear < 1802 && dyear > 1743
-        map.addLayer(l_bowles)
-      else if dyear < 1742
-        map.addLayer(l_taylor)
+    # swapBase: (dyear) ->
+    #   if dyear < 1900 && dyear > 1803
+    #     map.addLayer(l_indicator)
+    #   else if dyear < 1802 && dyear > 1743
+    #     map.addLayer(l_bowles)
+    #   else if dyear < 1742
+    #     map.addLayer(l_taylor)
 
     initMap: ->
       # console.log 'initMap'
@@ -138,7 +166,7 @@
       # var map = new L.Map(document.createElement('div')).setActiveArea('activeArea');
 
       baseMaps = {
-        "Modern": l_osmLayer
+        "Modern": l_osm
       }
       overlayMaps = {
         "Indicator (1880)":l_indicator
@@ -147,7 +175,7 @@
         # "Satellite": l_sat
       }
 
-      L.control.layers(baseMaps,overlayMaps).addTo(@map);
+      # L.control.layers(baseMaps,overlayMaps).addTo(@map);
 
       # Zoom buttons on top right.
       zoomControl = L.control.zoom({
@@ -158,15 +186,15 @@
 
       London = [51.5120, -0.0928]
 
-      @map.addLayer(l_osmLayer);
+      @map.addLayer(l_osm);
       # places open, authors open viewports
       @map.setView(London, 12)
 
       @map.addEventListener 'popupclose', ( (e) =>
+        e.preventDefault
         $("#place_passages_region").addClass('hidden')
-        activeMarker.setIcon(houseMarker)
+        # activeMarker.setIcon(houseMarker)
         return
-      # ), console.log this
       ), this
 
     stylePoints: (feature) ->
@@ -216,11 +244,10 @@
           feature.model = pl
           @popup = feature.bindPopup(
             if pl.get('placeref_type') == 'bio'
-            # then '"'+pl.get("author_id")+'"' + ' resided at ' +
-            then '"<b>'+pl.get("placeref")+'</b>", a place in<br/>'+
+            then '<b>'+pl.get("placeref")+'</b>, a place in<br/>'+
               authhash[pl.get("author_id")]+'\'s life<br/>'+
               pl.get("placeref_id")+', '+pl.get("passage_id")
-            else '"<b>'+pl.get("placeref") + '</b>", in<br/>'+
+            else '<b>'+pl.get("placeref") + '</b>, in<br/>'+
               '<em>'+workhash[pl.get("work_id")].title + '</em><br/>' +
               pl.get("placeref_id") + '<br/>' +
               '<span class="passage-link" val='+pl.get("passage_id")+
@@ -342,15 +369,12 @@
       window.leaf_areas = @areas
       window.areaFeatures = @features
 
-    # triggered from passages, area list
+    # triggered from passages lists, area list
     clickPlaceref: (what, id) ->
       if what == "placeref"
         marker = $idToFeature.placerefs[id];
-        console.log 'what, id, marker: '+ what, id, marker
+        # console.log 'what, id, marker: '+ what, id, marker
         marker.openPopup()
-        # it's been removed from cluster by mouseover:
-        # make it bigger
-        # marker.setIcon(houseMarkerM)
         # zoom to it
         map.setView(marker._popup._source._latlng,17,{animate:true})
 

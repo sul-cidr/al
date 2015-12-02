@@ -15,9 +15,12 @@
 #authorlist_region {
   font-family:'english';
   float:left;
+  height:600px;
+  overflow-y: scroll;
   // position:absolute;
   // margin-top:35px;
 }
+
 .authlist {
   padding:0 6px; margin-top: 6px;
   // overflow-y: scroll;

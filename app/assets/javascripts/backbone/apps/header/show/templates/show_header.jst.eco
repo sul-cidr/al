@@ -4,3 +4,11 @@
     <!-- <span ><img style="display:block; margin:auto;" src="assets/images/title-drop02.png"/></span> -->
 		<h1>Authorial London</h1>
 </div>
+<div id="map_chooser"><span class="strong"><i class="fa fa-lg fa-map-o"/>&nbsp;Base map: </span>
+  <ul>
+    <li val="l_osm" class="active">Modern</li>
+    <li val="l_indicator">Late 19c</li>
+    <li val="l_bowles">Late 18c</li>
+    <li val="l_taylor">Early 18c</li>
+  </ul>
+</div>

@@ -12,6 +12,9 @@
     getMapView: ->
       new Show.Map
 
+    swapBase: (id) ->
+      @mapView.swapBase id
+
     setFilter: (key, evaluator, counter) ->
       # console.log 'Map.Show.Controller.setFilter() ' + key
       @mapView.setFilter key, evaluator
@@ -21,9 +24,6 @@
 
     zoomTo: (what, area) ->
       @mapView.zoomTo what, area
-
-    swapBase: (dyear) ->
-      @mapView.swapBase(dyear)
 
     filterByArea: (type, b) ->
       window.counter = 0

@@ -5,23 +5,15 @@
 /***/
 
 #places_region {
-  // set activearea in Map.Show.View.initMap
-  // right: 0;
-  // right: -330px;
-  // left: 24px;;
   display: none;
-  // background: #e0e0e0;
-  // border-left: 4px solid #999;
 }
-// #places_tab {
-//   position: absolute;
-//   right: -5px;
-//   padding-top: 40px;
-//   // cursor: pointer;
-//   // img { position: absolute; right:0; top: 88px}
-// }
+
 .place {display: inline-block;}
 
+#arealist_region {
+  height:400px;
+  overflow-y: scroll;
+}
 
 /***/
 /* PlacesApp List module */
@@ -50,7 +42,7 @@ arealist { padding:0 6px; font-family: Palatino-linotype, Georgia;
   // height: 85%;
   top: 100px;
   right: 25px;
-  display: none;
+  // display: none;
   padding: 8px;
   // border-radius: 16px;
   background-color: #eee;

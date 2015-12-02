@@ -4,6 +4,6 @@
     <button type="submit" class="btn btn-primary btn-sm">Submit</button>
   </div>
 <!-- <div id="places-navmap" class="centered"> -->
+  <img src="assets/images/minimap300w.png" />
   <h4>place references in or near...</h4>
-  <!-- <img src="assets/images/minimap300w.png" /> -->
 </div>
