@@ -7,10 +7,6 @@
       # hide dimension dropdowns
       $("#dimensions_region").addClass("hidden")
 
-      # trigger for map_app
-      # TODO: map filtering fails half the time
-      App.vent.trigger "author:show", author
-
       id = author.get("author_id")
       prefname = author.get("prefname")
       # console.log 'showAuthor: '+ id, prefname
@@ -28,6 +24,10 @@
           '</span>')
 
       App.authorsRegion.show @authorLayout
+
+      # trigger for map_app
+      # TODO: map filtering fails half the time
+      App.vent.trigger "author:show", author
 
     getAuthorLayout: (author) ->
       new Show.Layout ({

@@ -33,12 +33,10 @@
     filterByAuthor: (author) ->
       id = author.get("author_id")
       dyear = author.get("death_year")
-
-      console.log  'MapApp.API.filterByAuthor()', id
+      # console.log  'MapApp.API.filterByAuthor()', id
       MapApp.Show.Controller.setFilter 'author', (placeref) ->
+        # console.log placeref
         placeref.get("author_id") == id
-
-      # MapApp.Show.Controller.swapBase dyear
 
     filterByAuthors: (author_ids, id) ->
       # console.log author.get("author_id")

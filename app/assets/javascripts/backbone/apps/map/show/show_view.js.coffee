@@ -25,6 +25,7 @@
       visible = true
       _.each @filters, (evaluator, key) =>
         visible = visible && evaluator(layer.model)
+      # console.log visible
       if visible
         # used to get bounds
         @filteredFeatures.push layer
@@ -34,8 +35,7 @@
         # @map.removeLayer layer
 
     filterAllLayers: ->
-      # console.log '@features in filterAllLayers', @features
-      # @filteredFeatures = []
+      # console.log @features
       _.each @features, (f) =>
         # console.log f
         @filterLayer(f)
@@ -44,6 +44,7 @@
       # filteredFeatures[]
       window.markerClusters = @markerClusters
       window.filteredFeatures = @filteredFeatures
+      # console.log @filteredFeatures
       window.filteredBounds = L.featureGroup(@filteredFeatures).getBounds()
       # markerClusters bounds are always all placerefs
       # map.fitBounds(@markerClusters.getBounds())
@@ -65,6 +66,7 @@
       @filterAllLayers()
 
     swapBase: (id) ->
+      # London = [51.5120, -0.0928]
       # TODO "eval is evil"
       # what is active lyr id?
       active = $("#map_chooser li.active").attr("val")
@@ -81,15 +83,15 @@
         map.removeLayer(eval(active))
       if id == 'l_indicator'
         if map.getZoom() < 13
-          map.setZoom(13)
+          map.setView(@London, 13)
         map.addLayer(lyr)
       if id == 'l_bowles'
         if map.getZoom() < 14
-          map.setZoom(14)
+          map.setView(@London, 14)
         map.addLayer(lyr)
       if id == 'l_taylor'
         if map.getZoom() < 15
-          map.setZoom(15)
+          map.setView(@London, 15)
         map.addLayer(lyr)
 
     zoomToCluster: (what, geom) ->
@@ -125,32 +127,27 @@
       'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
       { detectRetina: true }
     );
-    window.l_indicator = L.tileLayer(
-      'https://api.mapbox.com/v4/elijahmeeks.gqd89536/{z}/{x}/{y}.png?access_token=' +
+    window.l_indicator = L.mapbox.tileLayer(
+        'elijahmeeks.gqd89536',
+      # 'https://api.mapbox.com/v4/elijahmeeks.gqd89536/{z}/{x}/{y}.png?access_token=' +
         L.mapbox.accessToken, {
         attribution: 'Indicator (1880)',
         detectRetina: true
         });
-    l_bowles = L.tileLayer(
-      'https://api.mapbox.com/v4/elijahmeeks.36cac3di/{z}/{x}/{y}.png?access_token=' +
+    l_bowles = L.mapbox.tileLayer(
+        'elijahmeeks.36cac3di',
+      # 'https://api.mapbox.com/v4/elijahmeeks.36cac3di/{z}/{x}/{y}.png?access_token=' +
         L.mapbox.accessToken, {
         attribution: 'Bowles (1783)',
         detectRetina: true
         });
-    l_taylor = L.tileLayer(
-      'https://api.mapbox.com/v4/elijahmeeks.7dd6ynaj/{z}/{x}/{y}.png?access_token=' +
+    l_taylor = L.mapbox.tileLayer(
+      # 'https://api.mapbox.com/v4/elijahmeeks.7dd6ynaj/{z}/{x}/{y}.png?access_token=' +
+        'elijahmeeks.7dd6ynaj',
         L.mapbox.accessToken, {
         attribution: 'Taylor (1723)',
         detectRetina: true
         });
-
-    # swapBase: (dyear) ->
-    #   if dyear < 1900 && dyear > 1803
-    #     map.addLayer(l_indicator)
-    #   else if dyear < 1802 && dyear > 1743
-    #     map.addLayer(l_bowles)
-    #   else if dyear < 1742
-    #     map.addLayer(l_taylor)
 
     initMap: ->
       # console.log 'initMap'
@@ -184,11 +181,11 @@
 
       @map.addControl(zoomControl);
 
-      London = [51.5120, -0.0928]
+      @London = [51.5120, -0.0928]
 
       @map.addLayer(l_osm);
       # places open, authors open viewports
-      @map.setView(London, 12)
+      @map.setView(@London, 12)
 
       @map.addEventListener 'popupclose', ( (e) =>
         e.preventDefault
@@ -333,21 +330,10 @@
       window.markers = @markerClusters
 
     ingestAreas: (areas) ->
-      # console.log 'ingestAreas', areas
-      # @idToFeature = {}
-      @features = []
+      @areaFeatures = []
       $.each areas.models, (i, a) =>
         geom = a.attributes.geom_poly_wkt
         aid = a.get("id")
-        # if a.get("area_type") == "hood"
-        #   feature = L.circleMarker(
-        #     # not MULTIPOINT, but POINT
-        #     swap(wellknown(geom).coordinates), @stylePoints(a) )
-        #   feature.model = a
-        #   # feature.options.id = aid
-        #   $idToFeature.areas[aid] = feature
-        #   # @idToFeature[aid] = feature
-        #   @features.push feature
         if a.get("area_type") == "hood"
           # console.log geom
           feature =  new L.GeoJSON(wellknown(geom), {
@@ -357,11 +343,9 @@
           # feature.id = aid
           $idToFeature.areas[aid] = feature
           # @idToFeature[aid] = feature
-          @features.push feature
+          @areaFeatures.push feature
 
-      # console.log $idToFeature.areas
-
-      @areas = L.featureGroup(@features)
+      @areas = L.featureGroup(@areaFeatures)
 
       @areas.addTo(@map)
       # @map.fitBounds(@group)
@@ -378,9 +362,6 @@
         # zoom to it
         map.setView(marker._popup._source._latlng,17,{animate:true})
 
-        # marker.setStyle(mapStyles.point_work.highlight);
-      # if what == "workplace"
-      #   marker.setStyle(mapStyles.point_work.highlight);
       else if what == "bioplace"
         marker = $idToFeature.placerefs[id];
       else if what == "area"
@@ -401,26 +382,12 @@
         marker.setIcon(houseMarkerM)
         window.activeMarker = marker
 
-      # else if what == "bioplace"
-      #   marker.setStyle(mapStyles.point_bio.highlight);
-      # else if what == "area"
-      #   marker = $idToFeature.areas[id];
-      #   marker.setStyle(mapStyles.area.highlight);
-
     unhighlightFeature: (what, id) ->
       marker = $idToFeature.placerefs[id];
       # console.log 'what, id, marker: '+ what, id, marker
       if what == "placeref"
         marker.setIcon(houseMarker)
         # TODO: maybe put in back in a cluster?
-
-      # if what == "workplace"
-      #   marker.setStyle(mapStyles.point_work.start);
-      # else if what == "bioplace"
-      #   marker.setStyle(mapStyles.point_bio.start);
-      # else if what == "area"
-      #   marker = $idToFeature.areas[id];
-      #   marker.setStyle(mapStyles.area.start);
 
     unhighlightAll: ->
       # console.log 'unhighlightAll()', @areas

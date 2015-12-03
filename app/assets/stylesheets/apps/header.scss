@@ -52,12 +52,13 @@
 #map_chooser {
   position: absolute;
   margin: 4px 2px;
-  padding-left: 4px;
+  padding: 4px 0 4px 4px;
   top: 55px;
   right: 42px;
   z-index: 1;
   background: #fff;
   font-family: 'english';
+  border-radius: 3px;
   ul {
     list-style-type: none;
     display: inline-block;
