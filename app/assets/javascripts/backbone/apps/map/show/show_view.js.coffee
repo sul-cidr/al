@@ -295,7 +295,9 @@
 
       @placerefs = L.featureGroup(@features)
 
-      @markerClusters = L.markerClusterGroup();
+      @markerClusters = L.markerClusterGroup(
+        # {disableClusteringAtZoom: 17}
+      );
 
       @markerClusters.addLayer(@placerefs);
 
