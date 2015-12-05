@@ -45,13 +45,14 @@
           @showTitle area
           @showPlaceContent area
 
+          # for map
           App.vent.trigger "place:focus", area
+
           # CHECK: expose current area model here?
           App.reqres.setHandler "area:model", ->
               return area
       # keep showing in the placesRegion for now; areas are one kind of place
       App.placesRegion.show @placeLayout
-
 
     getPlaceLayout: (area) ->
       new Show.Layout ({
@@ -110,7 +111,7 @@
       $("#place_content_region").html(@makeVis placerefsByAuthor, worksYears)
 
     #
-    # run vis.js packAuths bubble chart
+    # run vis.js packAuths bubble chart and temporal histogram
     #
     makeVis: (auths, years) ->
       # console.log years
@@ -120,28 +121,3 @@
         authobj['children'].push(a)
       packAuths(authobj)
       histYears(years)
-
-    # showNav: (hoods) ->
-    #   @navView = @getNavView hoods
-    #   @areaLayout.navRegion.show @navView
-    #
-    # getNavView: (hoods) ->
-    #   new Show.Hoods
-    #     collection: hoods
-
-    #
-    # showHood: (id) ->
-    #   App.request "area:entity", id, (hood) =>
-    #     parent = hood.get("parent_id")
-    #     console.log 'ctrlr: got hood ' + hood.get("name") + '; parent is ', hood.get("parent_id")
-    #     # let map know
-    #
-    #     @areaLayout = @getAreaLayout hood
-    #     @areaLayout.on "show", =>
-    #       # console.log 'areaLayout shown'
-    #       @showTitle hood
-    #       @showPlaceContent hood
-    #
-    #       App.vent.trigger "area:focus", hood
-    #     # keep showing in the placesRegion for now; areas are one kind of place
-    #     App.placesRegion.show @areaLayout

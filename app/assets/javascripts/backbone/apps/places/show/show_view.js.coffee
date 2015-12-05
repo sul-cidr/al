@@ -25,7 +25,6 @@
       # App.vent.trigger("area:unhighlight", id)
       Backbone.history.navigate("places", true)
 
-
   class Show.PlacePassage extends App.Views.ItemView
     template: "places/show/templates/_passage"
     tagName: "p"

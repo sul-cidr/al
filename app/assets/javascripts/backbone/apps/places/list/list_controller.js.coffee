@@ -12,7 +12,7 @@
         @layout = @getLayoutView()
 
         @layout.on "show", =>
-          # AL.ContentApp.Show.Controller.showTab('places')
+          AL.ContentApp.Show.Controller.showTab('places')
           @showTitle()
           @showNavmap()
           @listAreas areas
@@ -47,6 +47,8 @@
       navmapView = new List.Navmap
       # console.log navmapView
       @layout.navmapRegion.show navmapView
+      # put map in div with area selected
+      $("#keymap").html( makeKeymap(1) )
 
     getLayoutView: ->
       new List.Layout

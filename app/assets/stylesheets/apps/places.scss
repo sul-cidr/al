@@ -19,6 +19,16 @@
 /* PlacesApp List module */
 /***/
 
+#keymap {
+  svg {background: aliceblue;}
+
+  path {
+    stroke: white;
+    stroke-width: 0.25px;
+    fill: #993333;
+  }  
+}
+
 arealist { padding:0 6px; font-family: Palatino-linotype, Georgia;
   font-size: 1em;
   a {text-decoration: none !important; }
