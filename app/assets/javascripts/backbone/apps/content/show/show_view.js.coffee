@@ -10,17 +10,18 @@
       authorsRegion: "#authors_region"
       placesRegion: "#places_region"
       worksRegion: "#works_region"
+      searchRegion: "#search_region"
       mapChooser: "#map_chooser"
 
     events:
       "click #content_nav_region li": "showTab"
 
     showTab: (e) ->
-      if ['authors','places','works'].indexOf(e) > -1
+      if ['authors','places','works','search'].indexOf(e) > -1
         @tab = e
       else
         @tab = $(e.currentTarget).context.attributes.value.value
-        console.log @tab
+        console.log 'showTab on click', @tab
         $(e.currentTarget).addClass("active")
       window.activeTab = @tab
       Show.Controller.showTab(@tab)

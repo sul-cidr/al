@@ -4,7 +4,7 @@
 
     startAuthors: ->
       # set URL
-      Backbone.history.navigate("authors")
+      # Backbone.history.navigate("authors")
 
       # start with all (cat 0); filtered in the app
       App.request "authors:category", 0, (authors) =>

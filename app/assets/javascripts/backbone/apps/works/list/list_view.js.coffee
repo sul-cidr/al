@@ -104,33 +104,33 @@
     template: "works/list/templates/_empty"
     tagName: "p"
 
-  class List.SearchResult extends App.Views.ItemView
-    template: "works/list/templates/_passage"
-    tagName: "p"
-    events: {
-      # "click": "highlightPlacerefs"
-      "mouseenter span.place": "onPlacerefEnter"
-      "mouseleave span.place": "onPlacerefLeave"
-    }
-    # highlightPlacerefs: ->
-    #   console.log 'Show.Passage.highlightPlacerefs()'
-
-    onPlacerefEnter: (e) ->
-      id = this.getPlacerefIdFromEvent(e);
-      console.log 'highlight placeref #', id
-      App.vent.trigger('placeref:highlight', id);
-      # App.vent.trigger('placeref:hover', e)
-
-    onPlacerefLeave: (e) ->
-      id = this.getPlacerefIdFromEvent(e);
-      # console.log 'left placeref span'
-      App.vent.trigger('placeref:unhighlight', id);
-
-    getPlacerefIdFromEvent: (e) ->
-      Number($(e.currentTarget).context.attributes.data_id.value);
-
-  # passages are shown by clicking a work
-  class List.SearchResults extends App.Views.CompositeView
-    template: "works/list/templates/_passages"
-    childView: List.SearchResult
-    childViewContainer: "div"
+  # class List.SearchResult extends App.Views.ItemView
+  #   template: "works/list/templates/_passage"
+  #   tagName: "p"
+  #   events: {
+  #     # "click": "highlightPlacerefs"
+  #     "mouseenter span.place": "onPlacerefEnter"
+  #     "mouseleave span.place": "onPlacerefLeave"
+  #   }
+  #   # highlightPlacerefs: ->
+  #   #   console.log 'Show.Passage.highlightPlacerefs()'
+  #
+  #   onPlacerefEnter: (e) ->
+  #     id = this.getPlacerefIdFromEvent(e);
+  #     console.log 'highlight placeref #', id
+  #     App.vent.trigger('placeref:highlight', id);
+  #     # App.vent.trigger('placeref:hover', e)
+  #
+  #   onPlacerefLeave: (e) ->
+  #     id = this.getPlacerefIdFromEvent(e);
+  #     # console.log 'left placeref span'
+  #     App.vent.trigger('placeref:unhighlight', id);
+  #
+  #   getPlacerefIdFromEvent: (e) ->
+  #     Number($(e.currentTarget).context.attributes.data_id.value);
+  #
+  # # passages are shown by clicking a work
+  # class List.SearchResults extends App.Views.CompositeView
+  #   template: "works/list/templates/_passages"
+  #   childView: List.SearchResult
+  #   childViewContainer: "div"

@@ -3,8 +3,3 @@
    <!-- (<%= #workhash[@work_id].work_year %>)</span> -->
   <br/> <%= @safe @text %>
 <hr/>
-
-<!-- <span class="work-title">from <em><%= #workhash[@work_id].title %></em>
-   (<%= #workhash[@work_id].work_year %>)</span><br/>
-  <%= @safe @text %>
-<hr/> -->

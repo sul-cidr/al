@@ -9,6 +9,7 @@
       "authors": "startAuthors"
       "places": "startPlaces"
       "works": "startWorks"
+      "search": "startSearch"
       "authors/:author_id": "showAuthor"
       "places/:id": "showArea"
 
@@ -26,18 +27,20 @@
       AL.ContentApp.Show.Controller.startContent()
 
     startAuthors: ->
-      # console.log 'API.startAuthors fired'
-      # Backbone.history.navigate("authors")
+      # console.log 'API.startAuthors from ContentApp'
       AL.AuthorsApp.List.Controller.startAuthors()
 
     startPlaces: ->
-      # console.log 'API.startPlaces fired'
+      console.log 'API.startPlaces from ContentApp'
       AL.PlacesApp.List.Controller.startPlaces()
 
     startWorks: ->
-      # console.log 'API.startWorks fired'
-      # Backbone.history.navigate("works")
+      console.log 'API.startWorks from ContentApp'
       AL.WorksApp.List.Controller.startWorks()
+
+    startSearch: ->
+      console.log 'API.startSearch from ContentApp'
+      AL.SearchApp.Show.Controller.startSearch()
 
     showAuthor: (author_id)->
       # console.log 'ContentApp.Router, showAuthor()', author_id
@@ -51,19 +54,9 @@
           return author
     #
     showArea: (id)->
-      # console.log 'ContentApp.Router, showArea()', id
-      # App.vent.trigger "map:reset"
-      # get area model from id, forward to showPlace()
       # these are the voronoi polygons
       AL.PlacesApp.Show.Controller.showPlace(id)
 
-      # everything moves to Controller
-      # App.request "area:entity", id, (area) =>
-      #   console.log 'area', area
-      #   AL.PlacesApp.Show.Controller.showPlace(area)
-      #
-      #   App.reqres.setHandler "area:model", ->
-      #     return area
 
     authorWorks: (author_id) ->
       console.log 'works/:author_id, API authorWorks()'
@@ -84,8 +77,8 @@
           return work
 
     searchPassages: (q) ->
-      console.log 'ContentApp router API searchPassages',q
-      AL.WorksApp.List.Controller.searchPassages q
+      # console.log 'ContentApp router API searchPassages',q
+      AL.SearchApp.Show.Controller.searchPassages q
 
 
   ContentApp.on "start", ->

@@ -58,6 +58,9 @@
       worksRegion:
         selector: '#works_region'
 
+      searchRegion:
+        selector: '#search_region'
+
       workContentRegion:
         selector: '#work_content_region'
 

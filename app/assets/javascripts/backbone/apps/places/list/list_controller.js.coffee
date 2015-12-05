@@ -4,15 +4,15 @@
 
     startPlaces: ->
       # set URL
-      console.log 'startPlaces()'
-      Backbone.history.navigate("places")
+      console.log 'PlacesApp.List startPlaces()'
+      # Backbone.history.navigate("places")
 
       App.request "area:entities", (areas) =>
         # console.log areas
         @layout = @getLayoutView()
 
         @layout.on "show", =>
-          AL.ContentApp.Show.Controller.showTab('places')
+          # AL.ContentApp.Show.Controller.showTab('places')
           @showTitle()
           @showNavmap()
           @listAreas areas

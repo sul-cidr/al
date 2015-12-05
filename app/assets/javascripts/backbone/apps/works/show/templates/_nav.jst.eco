@@ -1,10 +1,1 @@
 <p>works nav region</p>
-
-<!-- 
-<div id="author_pills" class="navbar">
-  <ul class="nav nav-pills">
-    <li value="biography" class="active" id="bio_pill">Biography</li>
-    <li value="works" id="works_pill">Works</li>
-    <li value="passages" class="hidden" id="passages_pill">Passages</li>
-  </ul>
-<div> -->

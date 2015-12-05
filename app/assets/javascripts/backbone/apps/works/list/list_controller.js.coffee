@@ -57,24 +57,24 @@
         collection: works
         # className: 'work'
 
-    searchPassages: (q) ->
-      console.log 'works_app List.Controller.searchPassages()', q
-      App.request "passages:search", q, (results) =>
-        window.searchresults = results
-        if results.length > 0
-          resultsView = @getResultsView results
-          @layout.workListRegion.show resultsView
-        else
-          $(".passagelist").html('<p>Sorry, no results...</p>')
-
-      $(".search-passages h4").html('Mentions of <b>'+q+'</b>')
-
-    getResultsView: (results) ->
-      new List.SearchResults ({
-        collection: results
-        viewComparator: "passage_id"
-        className: 'passages-works'
-      })
+    # searchPassages: (q) ->
+    #   console.log 'works_app List.Controller.searchPassages()', q
+    #   App.request "passages:search", q, (results) =>
+    #     window.searchresults = results
+    #     if results.length > 0
+    #       resultsView = @getResultsView results
+    #       @layout.workListRegion.show resultsView
+    #     else
+    #       $(".passagelist").html('<p>Sorry, no results...</p>')
+    #
+    #   $(".search-passages h4").html('Mentions of <b>'+q+'</b>')
+    #
+    # getResultsView: (results) ->
+    #   new List.SearchResults ({
+    #     collection: results
+    #     viewComparator: "passage_id"
+    #     className: 'passages-works'
+    #   })
 
 # places is a model for passage display
     # listPlacePassages: (authid) ->

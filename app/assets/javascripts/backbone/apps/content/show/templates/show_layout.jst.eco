@@ -3,12 +3,11 @@
     <li value="authors" class="active" id="authors_tab">AUTHORS</li>
     <li value="places" id="places_tab">PLACES</li>
     <li value="works" id="works_tab">WORKS</li>
+    <li value="search" id="search_tab"> <i class="fa fa-search fa-lg" /> </li>
   </ul>
 </div>
 <div id="dimensions_region"></div>
 <div id="authors_region" class="regiondiv"></div>
 <div id="places_region" class="regiondiv" style="display:none;"></div>
 <div id="works_region" class="regiondiv" style="display:none;"></div>
-<!-- <div id="authors_region" class="regiondiv"></div>
-<div id="places_region" class="regiondiv" style="display:none;"></div>
-<div id="works_region" class="regiondiv" style="display:none;"></div> -->
+<div id="search_region" class="regiondiv" style="display:none;"></div>

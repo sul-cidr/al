@@ -18,7 +18,7 @@
   API =
     # search for string 'q'
     searchPassages: (q, cb) ->
-      console.log 'entities.passage.searchPassages()', q
+      # console.log 'entities.passage.searchPassages()', q
 
       # execute a search, returns collection of models
       passages = new Entities.PassageResultsCollection
@@ -28,7 +28,12 @@
         processData: true
 
         success: ->
+          filterBio = _.filter(passages.models,(item) ->
+            item.get("work_id") > 20399
+          )
+          passages.reset(filterBio)
           cb passages
+
       })
 
     getPassageEntities: (id, type, cb) ->

@@ -1,0 +1,4 @@
+<span class="work-title">from <em><%= workhash[@work_id].title %></em> (<%= workhash[@work_id].work_year%>)<br/>
+<%= authhash[workhash[@work_id].author_id] %> <br/></span>
+<%= @safe poetize(@text) %>
+<hr/>

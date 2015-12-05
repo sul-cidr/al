@@ -1,19 +1,3 @@
 <div class="panel-title">
   <hr/>
-  <div id="search_passages class="form-group"">
-    <!-- <label class="radio-inline"><input type="radio" name="optradio">titles</label>
-    <label class="radio-inline"><input type="radio" checked = "checked"
-      name="optradio">passages</label> -->
-    <input id="q_input" class="typeahead" type="text"
-      onkeydown="if(event.keyCode==13) $('#q_button').click()"
-      placeholder="search passages for...">
-    <button id="q_button" type="submit" class="btn btn-primary btn-sm">Submit</button>
-  </div>
-  <!-- <form class="form-inline" role="form">
-   <div class="form-group">
-     <input type="search" class="form-control" id="search">
-   </div>
-   <button type="submit" class="btn btn-default">Search</button>
-  </form> -->
-  <!-- <hr/> -->
 </div>
