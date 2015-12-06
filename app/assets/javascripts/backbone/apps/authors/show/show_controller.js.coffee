@@ -46,7 +46,10 @@
         bioPassagesView = @getBioPassagesView bio_passages, 'bio'
         # console.log 'listBioPassages(), '+ bio_passages.length + ' for ' + author_id
         window.passb = bioPassagesView
-        # console.log 'bioPassagesView:', bioPassagesView.collection
+        # expose for disambiguating placeref selection on click
+        App.reqres.setHandler "activework:id", ->
+          return bioPassagesView.collection.models[0].attributes.work_id
+
         App.authorContentRegion.show bioPassagesView
 
     getBioPassagesView: (bio_passages, type) ->

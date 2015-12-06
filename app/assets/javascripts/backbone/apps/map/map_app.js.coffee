@@ -87,17 +87,17 @@
   App.vent.on "work:show", (work) ->
     API.filterForWork work
 
-  App.vent.on "placeref:click", (id) ->
-    # console.log 'map_app heard highlight id#', id
-    MapApp.Show.Controller.onClickPlaceref 'placeref', id
+  App.vent.on "placeref:click", (prid) ->
+    # console.log 'map_app heard highlight id#', iid
+    MapApp.Show.Controller.onClickPlaceref prid
 
-  App.vent.on "placeref:highlight", (id) ->
+  App.vent.on "placeref:highlight", (prid) ->
     # console.log 'map_app heard highlight id#', id
-    MapApp.Show.Controller.onHighlightFeature 'placeref', id
+    MapApp.Show.Controller.onHighlightFeature prid
 
-  App.vent.on "placeref:unhighlight", (id) ->
+  App.vent.on "placeref:unhighlight", (prid) ->
     # console.log 'map_app heard unhighlight, id#', id
-    MapApp.Show.Controller.onUnhighlightFeature 'placeref', id
+    MapApp.Show.Controller.onUnhighlightFeature prid
 
   App.vent.on "area:highlight", (id) ->
     # console.log 'map_app heard highlight id#', id

@@ -126,7 +126,7 @@
     l_osm = L.tileLayer(
       'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
       { detectRetina: true }
-    );
+      );
     window.l_indicator = L.mapbox.tileLayer(
         'elijahmeeks.gqd89536',
       # 'https://api.mapbox.com/v4/elijahmeeks.gqd89536/{z}/{x}/{y}.png?access_token=' +
@@ -222,17 +222,22 @@
     });
 
     # CHECK: ingestAreas and ingestPlacerefs both need to populate this
+    # $idToFeature = {areas:[], placerefs:[]}
     $idToFeature = {areas:{}, placerefs:{}}
-    window.idMapper = $idToFeature
+    $foo = {areas:[], placerefs:[]}
+    window.idToFeature = $idToFeature
+    window.foo = $foo
 
     ingestPlacerefs: (placerefs) ->
-      # console.log placerefs.models
+      # console.log 'placeref models to be ingested', placerefs.models
       @features = []
       $.each placerefs.models, (i, pl) =>
         geom = pl.attributes.geom_wkt
         prid = pl.get("placeref_id")
         aid = pl.get("author_id").toString()
-        # if geom.substr(0,10) == 'MULTIPOINT'
+        workid = pl.get("work_id")
+
+        # POINT data
         if geom.substr(0,5) == 'POINT'
           # console.log wellknown(geom).coordinates
           feature = L.marker(
@@ -260,11 +265,17 @@
           )
           # CHECK: why bother adding an id here?
           feature.options.id = prid
+          feature.options.workid = workid
+          # obj = {}
+          # obj[prid]=feature
+          # $idToFeature.placerefs.push obj
+          $foo.placerefs[prid]={feat:feature,wid:workid}
+
           $idToFeature.placerefs[prid] = feature
           @features.push feature
 
+        # LINESTRING data
         else if geom.substr(0,10) == 'LINESTRING'
-        # else if geom.substr(0,15) == 'MULTILINESTRING'
           feature =  new L.GeoJSON(wellknown(geom), {
             style: mapStyles.street
             # options: {"model":pl,"id":prid}
@@ -274,24 +285,14 @@
           # CHECK: neither of these actually do anything
           feature.model = pl
           feature.options.id = prid
+          feature.options.workid = workid
+          # $idToFeature.placerefs.push {prid:feature}
           $idToFeature.placerefs[prid] = feature
+          $foo.placerefs[prid]={feat:feature,wid:workid}
 
           # CHECK: lines in @features defeats spatial query
           @features.push feature
 
-        # TODO: visible only on hover in text
-        else if geom.substr(0,12) == 'MULTIPOLYGON'
-          feature = new L.GeoJSON(wellknown(geom), {
-              style: mapStyles.area_placeref
-              clickable: false
-              # ,onEachFeature: (feature, layer) ->
-              #   layer.bindPopup pl.get("prefname")
-            })
-          feature.model = pl
-          # feature.options.id = prid
-          $idToFeature.placerefs[prid] = feature
-          # this.idToFeature[prid] = feature
-          # @features.push feature
 
       @placerefs = L.featureGroup(@features)
 
@@ -314,16 +315,14 @@
       #   this.onUnselectFeature.bind(this)
       # );
 
-      # Select
+      # click gets a popup
       @placerefs.on(
         'click',
         this.onSelectFeature.bind(this)
       );
 
-      # clusters?
+      # clusters
       @markerClusters.addTo(@map)
-      # @placerefs.addTo(@map)
-      # @map.fitBounds(@group)
 
       # TODO: stop exposing these
       window.map = @map
@@ -331,58 +330,70 @@
       window.features = @features
       window.markers = @markerClusters
 
+    # neighborhood voronoi polygons
     ingestAreas: (areas) ->
       @areaFeatures = []
       $.each areas.models, (i, a) =>
         geom = a.attributes.geom_poly_wkt
         aid = a.get("id")
+        # they're all hoods, but leaves possibility for hierarchy
         if a.get("area_type") == "hood"
           # console.log geom
           feature =  new L.GeoJSON(wellknown(geom), {
             style: mapStyles.area.start
           })
-          feature.model = a
-          # feature.id = aid
+
+          # model-to-map feature hash
           $idToFeature.areas[aid] = feature
-          # @idToFeature[aid] = feature
           @areaFeatures.push feature
 
       @areas = L.featureGroup(@areaFeatures)
 
       @areas.addTo(@map)
-      # @map.fitBounds(@group)
+      # TODO: stop exposing these
       window.map = @map
       window.leaf_areas = @areas
       window.areaFeatures = @features
 
-    # triggered from passages lists, area list
-    clickPlaceref: (what, id) ->
-      if what == "placeref"
-        marker = $idToFeature.placerefs[id];
-        # console.log 'what, id, marker: '+ what, id, marker
-        marker.openPopup()
-        # zoom to it
-        map.setView(marker._popup._source._latlng,17,{animate:true})
+    # called by Show.Controller on trigger 'placeref:click'
+    clickPlaceref: (prid) ->
+      window.wid = App.reqres.getHandler('activework:id')()
+      console.log 'prid: '+prid+', wid: '+wid
+      window.workMarker = _.filter(foo.placerefs[prid], (item) ->
+        item.wid == wid
+      )
+      # marker = markers
+      # marker = _.filter(workMarkers, (item) ->
+      #   item.options.id == id
+      # )
+      # console.log marker
 
-      else if what == "bioplace"
-        marker = $idToFeature.placerefs[id];
-      else if what == "area"
-        marker = $idToFeature.areas[id];
-        marker.setStyle(mapStyles.area.highlight);
+      marker = $idToFeature.placerefs[prid];
+      marker.openPopup()
+      # zoom to it
+      if marker._latlng != undefined
+        # it's a point
+        map.setView(marker._popup._source._latlng,16,{animate:true})
+      else
+        # it's a linestring
+        map.setView(marker.getBounds().getCenter(),16,{animate:true})
+
 
     # triggered from passages, area list
     highlightFeature: (what, id) ->
       if what == "placeref"
         marker = $idToFeature.placerefs[id];
-        # console.log 'highlightFeature: '+ what, id, marker
-        # ex. Donne 30265 Bread Street
+        # if it's a point in cluster, remove it and re-place on map:
+        if marker._latlng != undefined
+          # console.log 'highlightFeature: '+ what, id, marker
+          @markerClusters.removeLayer(marker)
+          map.addLayer(marker)
+          # make it bigger
+          marker.setIcon(houseMarkerM)
+          window.activeMarker = marker
+        else
+          console.log 'a linestring', marker
 
-        # if it's in a cluster, remove it and re-place on map:
-        @markerClusters.removeLayer(marker)
-        map.addLayer(marker)
-        # make it big
-        marker.setIcon(houseMarkerM)
-        window.activeMarker = marker
 
     unhighlightFeature: (what, id) ->
       marker = $idToFeature.placerefs[id];

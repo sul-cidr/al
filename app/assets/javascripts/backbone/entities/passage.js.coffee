@@ -50,7 +50,6 @@
           )
           if type == "bio"
             passages.reset(filterBio)
-            # window.biocoll = passages
             cb passages
           else if type == "work"
             passages.reset(filterWorks)

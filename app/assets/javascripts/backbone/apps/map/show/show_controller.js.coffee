@@ -44,10 +44,11 @@
       @mapView.unhighlightAll()
 
     # /**
-    #  * Click a place in text.
-    #  */
-    onClickPlaceref: (what, id) ->
-      @mapView.clickPlaceref(what, id);
+    # Clicking tagged placeref triggers "placeref:click"
+    # Go to view
+    # */
+    onClickPlaceref: (prid) ->
+      @mapView.clickPlaceref(prid);
 
     # /**
     #  * Highlight a place.
