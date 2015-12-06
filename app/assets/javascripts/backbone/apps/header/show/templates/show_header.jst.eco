@@ -1,8 +1,10 @@
 <div id="header">
     <span class="header-left"><i class="fa fa-home fa-lg"></i></span>
     <span class="header-right">About</span>
-    <!-- <span ><img style="display:block; margin:auto;" src="assets/images/title-drop02.png"/></span> -->
-		<h1>Authorial London</h1>
+  <h1 id="title">Authorial London</h1>
+    <!-- <span>The City in the Lives and Works of its Writers<span> -->
+
+  </div>
 </div>
 <div id="map_chooser"><span class="strong"><i class="fa fa-lg fa-map-o"/>&nbsp;Base map: </span>
   <ul>

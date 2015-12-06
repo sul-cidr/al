@@ -29,8 +29,12 @@
   class List.Searchbox extends App.Views.ItemView
     template: "places/list/templates/_searchbox"
     events: {
-        'focus #search_input': 'getAutocomplete'
+        "focus #search_input": "getAutocomplete"
+        # "click button": "showPlace"
     }
+
+    # showPlace: (e) ->
+    #   console.log @selectedArea
 
     getAutocomplete: ->
       console.log 'getAutocomplete'
@@ -39,7 +43,11 @@
         select: (event, ui) ->
             event.preventDefault()
             $("#search_input").val(ui.item.label)
-            # $("#selected-customer").val(ui.item.label);
+            # @selectedArea = ui.item.value
+            # console.log @selectedArea
+            @route = "places/" + ui.item.value
+            Backbone.history.navigate(@route, true)
+            
         focus: (event, ui) ->
             event.preventDefault()
             $("#search_input").val(ui.item.label)
@@ -69,24 +77,6 @@
       Backbone.history.navigate(@route, true)
 
       App.vent.trigger('area:unhighlight', id);
-    #
-    # areaByRoute: ->
-    #   #
-    #   window.activePlace = this.model
-    #   area = this.model
-    #   id = area.get("id")
-    #
-    #   App.vent.trigger("place:show", area)
-    #   App.vent.trigger('area:unhighlight', id);
-
-    # this is how it's done in authors
-    # authByRoute: ->
-    #   $activeAuthor = this.model
-    #   author = this.model
-    #   @route = "authors/" + author.get('author_id')
-    #   # runs showAuthor()
-    #   console.log 'route', @route
-    #   Backbone.history.navigate(@route, true)
 
     onAreaEnter: (e) ->
       id = this.getAreaIdFromEvent(e);
