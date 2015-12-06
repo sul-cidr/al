@@ -1,19 +1,50 @@
 @AL.module "PlacesApp.List", (List, App, Backbone, Marionette, $, _) ->
+  #
+  # class List.Placeref extends App.Views.ItemView
+  #   initialize: ->
+  #     @myCollection = new MyCollection
+  #     @collectionFetched = false
+  #
+  #   events:
+  #     'focus #names': 'getAutocomplete'
+  #     'keydown #names': 'fetchCollection'
+  #   fetchCollection: ->
+  #     if @collectionFetched
+  #       return
+  #     @myCollection.fetch()
+  #     @collectionFetched = true
+  #     return
+  #   getAutocomplete: ->
+  #     $('#names').autocomplete source: JSON.stringify(@myCollection)
+  # });
 
   class List.Layout extends App.Views.Layout
     template: "places/list/templates/list_layout"
 
     regions:
-      titleRegion: "#title_region"
+      searchboxRegion: "#searchbox_region"
       navmapRegion: "#navmap_region"
       arealistRegion: "#arealist_region"
 
-  class List.Title extends App.Views.ItemView
-    template: "places/list/templates/_title"
-    events:
-      "click .toggle-places": "onToggle"
-    onToggle:
-      AL.PlacesApp.List.Controller.togglePanel
+  class List.Searchbox extends App.Views.ItemView
+    template: "places/list/templates/_searchbox"
+    events: {
+        'focus #search_input': 'getAutocomplete'
+    }
+
+    getAutocomplete: ->
+      console.log 'getAutocomplete'
+      $("#search_input").autocomplete({
+        source: placeLookup
+        select: (event, ui) ->
+            event.preventDefault()
+            $("#search_input").val(ui.item.label)
+            # $("#selected-customer").val(ui.item.label);
+        focus: (event, ui) ->
+            event.preventDefault()
+            $("#search_input").val(ui.item.label)
+      })
+
 
   class List.Navmap extends App.Views.ItemView
     template: "places/list/templates/_navmap"

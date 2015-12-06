@@ -17,6 +17,7 @@ gem 'mapbox-rails'
 gem 'eco'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'compass-rails', '2.0.4'
+
 gem 'typekit-rails'
 
 gem 'seedbank'
@@ -61,6 +62,9 @@ gem 'therubyracer', platforms: :ruby
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+# works with jquery-ui
+# gem 'rails4-autocomplete'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 # gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

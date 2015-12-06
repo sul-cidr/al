@@ -15,6 +15,4 @@ Rails.application.routes.draw do
 
   root to: "application#index"
 
-  # match ':controller(/:action(/:id))', :via => :get
-
 end

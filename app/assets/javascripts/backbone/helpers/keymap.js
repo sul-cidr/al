@@ -13,7 +13,7 @@ var makeKeymap = function(initarea){
     .attr("id", "hoods");
 
   d3.json("assets/data/london-boroughs14.json", function(json) {
-    console.log(json)
+    // console.log(json)
     // vanilla projection
     var projection = d3.geo.mercator()
         .scale(1)

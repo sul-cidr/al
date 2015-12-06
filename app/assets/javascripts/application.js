@@ -26,6 +26,7 @@
 //= require leaflet.markercluster/dist/leaflet.markercluster
 //= require Leaflet.MakiMarkers/Leaflet.MakiMarkers
 //= require jquery-ui/jquery-ui.min
+
 //= require typeahead.js/dist/typeahead.jquery.min
 //= require typeahead.js/dist/bloodhound.min
 

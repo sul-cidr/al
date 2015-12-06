@@ -13,7 +13,7 @@
 
         @layout.on "show", =>
           AL.ContentApp.Show.Controller.showTab('places')
-          @showTitle()
+          @showSearchbox()
           @showNavmap()
           @listAreas areas
 
@@ -23,6 +23,20 @@
 
         # hold off rendering
         App.placesRegion.show @layout
+
+    showSearchbox: ->
+      App.request "placeref:entities", (placerefs) =>
+        searchboxView = new List.Searchbox
+          collection: placerefs
+        @layout.searchboxRegion.show searchboxView
+
+
+    showNavmap: ->
+      navmapView = new List.Navmap
+      # console.log navmapView
+      @layout.navmapRegion.show navmapView
+      # put map in div with area selected
+      $("#keymap").html( makeKeymap(1) )
 
     listAreas: (areas) ->
       areasView = @getAreasView areas
@@ -38,17 +52,6 @@
         filter: (child, index, collection) ->
           child.get('area_type') == 'hood'
 
-    showTitle: ->
-      titleView = new List.Title
-      # console.log titleView
-      @layout.titleRegion.show titleView
-
-    showNavmap: ->
-      navmapView = new List.Navmap
-      # console.log navmapView
-      @layout.navmapRegion.show navmapView
-      # put map in div with area selected
-      $("#keymap").html( makeKeymap(1) )
 
     getLayoutView: ->
       new List.Layout
