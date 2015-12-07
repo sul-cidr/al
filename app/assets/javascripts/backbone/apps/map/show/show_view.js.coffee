@@ -363,26 +363,20 @@
         # console.log item.model.attributes.placeref_id, parseInt(prid)
         item.model.attributes.placeref_id == parseInt(prid) )[0]
 
-      # marker = markers
-      # marker = _.filter(workMarkers, (item) ->
-      #   item.options.id == id
-      # )
-      # console.log marker
-
-      # marker = $idToFeature.placerefs[prid];
-      console.log 'clickPlaceref marker ', @marker
-      window.m = @marker
+      # console.log 'clickPlaceref marker ', @marker
       # zoom to it
+      console.log '@marker',@marker
+      window.m = @marker
       if @marker._latlng != undefined
-        console.log '!=undefined', @marker
+        # console.log '!=undefined', @marker
         # it's a point
         map.setView(@marker._popup._source._latlng,16,{animate:true})
-        @marker.openPopup()
+        # @marker.openPopup()
       else
         # it's a linestring
         map.setView(@marker.getBounds().getCenter(),16,{animate:true})
-        @marker.openPopup()
 
+      @marker.openPopup()
 
     # triggered from passages, area list
     highlightFeature: (prid) ->
