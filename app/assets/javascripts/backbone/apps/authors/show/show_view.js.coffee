@@ -69,17 +69,14 @@
       App.vent.trigger('placeref:click', prid)
 
     onPlacerefEnter: (e) ->
-      window.context = $(e.currentTarget).context
       prid = $(e.currentTarget).context.attributes.val.value
       console.log 'onPlaceRefEnter', prid
-
-      App.vent.trigger('placeref:highlight', prid);
-      # App.vent.trigger('placeref:hover', e)
+      # App.vent.trigger('placeref:highlight', prid);
 
     onPlacerefLeave: (e) ->
       prid = $(e.currentTarget).context.attributes.val.value
       console.log 'onPlaceRefLeave', id
-      App.vent.trigger('placeref:unhighlight', prid);
+      # App.vent.trigger('placeref:unhighlight', prid);
 
     getPlacerefIdFromEvent: (e) ->
       Number($(e.currentTarget).context.attributes.data_id.value);

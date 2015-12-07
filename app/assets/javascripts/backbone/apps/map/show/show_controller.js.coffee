@@ -53,14 +53,14 @@
     # /**
     #  * Highlight a place.
     #  */
-    onHighlightFeature: (what, id) ->
-      @mapView.highlightFeature(what, id);
+    onHighlightFeature: (prid) ->
+      @mapView.highlightFeature(prid);
 
     # /**
     #  * Unhighlight a place.
     #  */
-    onUnhighlightFeature: (what, id) ->
-      @mapView.unhighlightFeature(what, id);
+    onUnhighlightFeature: (prid) ->
+      @mapView.unhighlightFeature(prid);
 
     # /**
     #  * Focus on a place.

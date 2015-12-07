@@ -359,44 +359,50 @@
     clickPlaceref: (prid) ->
       window.wid = App.reqres.getHandler('activework:id')()
       console.log 'prid: '+prid+', wid: '+wid
-      window.workMarker = _.filter(foo.placerefs[prid], (item) ->
-        item.wid == wid
-      )
+      @marker = _.filter(filteredFeatures, (item) ->
+        # console.log item.model.attributes.placeref_id, parseInt(prid)
+        item.model.attributes.placeref_id == parseInt(prid) )[0]
+
       # marker = markers
       # marker = _.filter(workMarkers, (item) ->
       #   item.options.id == id
       # )
       # console.log marker
 
-      marker = $idToFeature.placerefs[prid];
-      marker.openPopup()
+      # marker = $idToFeature.placerefs[prid];
+      console.log 'clickPlaceref marker ', @marker
+      window.m = @marker
       # zoom to it
-      if marker._latlng != undefined
+      if @marker._latlng != undefined
+        console.log '!=undefined', @marker
         # it's a point
-        map.setView(marker._popup._source._latlng,16,{animate:true})
+        map.setView(@marker._popup._source._latlng,16,{animate:true})
+        @marker.openPopup()
       else
         # it's a linestring
-        map.setView(marker.getBounds().getCenter(),16,{animate:true})
+        map.setView(@marker.getBounds().getCenter(),16,{animate:true})
+        @marker.openPopup()
 
 
     # triggered from passages, area list
-    highlightFeature: (what, id) ->
-      if what == "placeref"
-        marker = $idToFeature.placerefs[id];
-        # if it's a point in cluster, remove it and re-place on map:
-        if marker._latlng != undefined
-          # console.log 'highlightFeature: '+ what, id, marker
-          @markerClusters.removeLayer(marker)
-          map.addLayer(marker)
-          # make it bigger
-          marker.setIcon(houseMarkerM)
-          window.activeMarker = marker
-        else
-          console.log 'a linestring', marker
+    highlightFeature: (prid) ->
+      window.wid = App.reqres.getHandler('activework:id')()
+      # if what == "placeref"
+      marker = $idToFeature.placerefs[prid];
+      # if it's a point in cluster, remove it and re-place on map:
+      if marker._latlng != undefined
+        # console.log 'highlightFeature marker pre ',marker
+        @markerClusters.removeLayer(marker)
+        map.addLayer(marker)
+        # make it bigger
+        marker.setIcon(houseMarkerM)
+        console.log 'highlightFeature marker ',marker
+        window.activeMarker = marker
+      else
+        console.log 'a linestring', marker
 
-
-    unhighlightFeature: (what, id) ->
-      marker = $idToFeature.placerefs[id];
+    unhighlightFeature: (prid) ->
+      marker = $idToFeature.placerefs[prid];
       # console.log 'what, id, marker: '+ what, id, marker
       if what == "placeref"
         marker.setIcon(houseMarker)
