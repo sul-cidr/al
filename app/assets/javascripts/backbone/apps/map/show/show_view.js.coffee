@@ -95,7 +95,7 @@
         map.addLayer(lyr)
 
     zoomToCluster: (what, geom) ->
-      console.log 'in zoomToCluster'
+      # console.log 'in zoomToCluster'
 
     zoomTo: (what, geom) ->
       if what == "area"
@@ -358,14 +358,14 @@
     # called by Show.Controller on trigger 'placeref:click'
     clickPlaceref: (prid) ->
       window.wid = App.reqres.getHandler('activework:id')()
-      console.log 'prid: '+prid+', wid: '+wid
+      # console.log 'prid: '+prid+', wid: '+wid
       @marker = _.filter(filteredFeatures, (item) ->
         # console.log item.model.attributes.placeref_id, parseInt(prid)
         item.model.attributes.placeref_id == parseInt(prid) )[0]
 
       # console.log 'clickPlaceref marker ', @marker
       # zoom to it
-      console.log '@marker',@marker
+      # console.log '@marker',@marker
       window.m = @marker
       if @marker._latlng != undefined
         # console.log '!=undefined', @marker
@@ -390,10 +390,10 @@
         map.addLayer(marker)
         # make it bigger
         marker.setIcon(houseMarkerM)
-        console.log 'highlightFeature marker ',marker
+        # console.log 'highlightFeature marker ',marker
         window.activeMarker = marker
       else
-        console.log 'a linestring', marker
+        # console.log 'a linestring', marker
 
     unhighlightFeature: (prid) ->
       marker = $idToFeature.placerefs[prid];

@@ -23,7 +23,7 @@
       App.vent.trigger("map:reset")
     goAuthor: (e) ->
       # window.location.hash
-      console.log $(e.currentTarget).context.attributes
+      # console.log $(e.currentTarget).context.attributes
       id = $(e.currentTarget).context.attributes.val.value
       Backbone.history.navigate("authors/"+id, true)
 
@@ -43,13 +43,13 @@
           '<span id="crumb_works" class="crumb-left"> :: Works </span>')
         $("#crumb_author").addClass("crumb-link")
         @route = "works/"+authid
-        console.log 'loadContent, works:', @route
+        # console.log 'loadContent, works:', @route
         # CHECK: is this Navigate...true right?
         Backbone.history.navigate(@route, true)
         # Show.Controller.listWorks authid
       else if @pill == 'biography'
         @route = "authors/"+authid
-        console.log 'loadContent, bio:', @route
+        # console.log 'loadContent, bio:', @route
         Backbone.history.navigate(@route, true)
         # Show.Controller.showAuthor authid
 
@@ -70,12 +70,12 @@
 
     onPlacerefEnter: (e) ->
       prid = $(e.currentTarget).context.attributes.val.value
-      console.log 'onPlaceRefEnter', prid
+      # console.log 'onPlaceRefEnter', prid
       # App.vent.trigger('placeref:highlight', prid);
 
     onPlacerefLeave: (e) ->
       prid = $(e.currentTarget).context.attributes.val.value
-      console.log 'onPlaceRefLeave', id
+      # console.log 'onPlaceRefLeave', id
       # App.vent.trigger('placeref:unhighlight', prid);
 
     getPlacerefIdFromEvent: (e) ->

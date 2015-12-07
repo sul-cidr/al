@@ -3,7 +3,7 @@
     <li value="authors" class="active" id="authors_tab">AUTHORS</li>
     <li value="places" id="places_tab">PLACES</li>
     <li value="works" id="works_tab">WORKS</li>
-    <li value="search" id="search_tab"> <i class="fa fa-search fa-lg" /> </li>
+    <li value="search" id="search_tab">&nbsp;&nbsp;<i class="fa fa-search fa-lg" />&nbsp;&nbsp;</li>
   </ul>
 </div>
 <div id="dimensions_region"></div>
