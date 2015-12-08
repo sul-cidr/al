@@ -35,10 +35,14 @@
         # @map.removeLayer layer
 
     filterAllLayers: ->
+      setTimer('filterAllLayers')
+
       # console.log @features
       _.each @features, (f) =>
         # console.log f
         @filterLayer(f)
+
+      console.timeEnd "filterAllLayers"
 
       # TODO: filteredFeatures is empty sometimes !?!?!?
       # filteredFeatures[]
@@ -100,7 +104,7 @@
     zoomTo: (what, geom) ->
       if what == "area"
         # geom is an area model; zoom to its voronoi extents
-        console.log 'zoomTo geom:', geom
+        # console.log 'zoomTo geom:', geom
         marker = $idToFeature.areas[geom.get("id")];
         mbounds = marker.getBounds()
         map.fitBounds(mbounds)
@@ -112,8 +116,12 @@
       @initMap()
 
       App.request "area:entities", (areas) =>
-        # type: [borough (polygon) | hood (point)]
+        # add to map
         @ingestAreas areas
+        # make available to places_app
+        App.reqres.setHandler "areas:active", ->
+          return areas
+        # AL.PlacesApp.List.Controller.startPlaces()
 
       App.request "placeref:entities", (placerefs) =>
         # points, lines, polygons; type: [bioblace | worksplace]
@@ -232,9 +240,9 @@
     # CHECK: ingestAreas and ingestPlacerefs both need to populate this
     # $idToFeature = {areas:[], placerefs:[]}
     $idToFeature = {areas:{}, placerefs:{}}
-    $foo = {areas:[], placerefs:[]}
+    # $foo = {areas:[], placerefs:[]}
     window.idToFeature = $idToFeature
-    window.foo = $foo
+    # window.foo = $foo
 
     ingestPlacerefs: (placerefs) ->
       # console.log 'placeref models to be ingested', placerefs.models
@@ -277,7 +285,7 @@
           # obj = {}
           # obj[prid]=feature
           # $idToFeature.placerefs.push obj
-          $foo.placerefs[prid]={feat:feature,wid:workid}
+          # $foo.placerefs[prid]={feat:feature,wid:workid}
 
           $idToFeature.placerefs[prid] = feature
           @features.push feature
@@ -296,7 +304,7 @@
           feature.options.workid = workid
           # $idToFeature.placerefs.push {prid:feature}
           $idToFeature.placerefs[prid] = feature
-          $foo.placerefs[prid]={feat:feature,wid:workid}
+          # $foo.placerefs[prid]={feat:feature,wid:workid}
 
           # CHECK: lines in @features defeats spatial query
           @features.push feature

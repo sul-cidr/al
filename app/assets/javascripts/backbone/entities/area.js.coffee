@@ -11,10 +11,11 @@
   API =
     # 'areas' for navigating places
     getAreaEntities: (cb) ->
-      # areas = new Entities.AreaCollection()
+      setTimer('getAreaEntities')
       areas.fetch
         success: ->
           cb areas
+          console.timeEnd 'getAreaEntities'
 
     getAreaEntity: (id, cb) ->
       # console.log areas

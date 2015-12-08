@@ -17,7 +17,7 @@
     # API.filterByCategory cat
 
   App.vent.on "place:focus", (area) ->
-    console.log 'map_app place:focus', area
+    # console.log 'map_app place:focus', area
     API.focusPlace(area)
 
   App.vent.on "map:swap", (id) ->
@@ -61,10 +61,9 @@
       # 2) get resulting viewport extents\
       # 3) filter placerefs for viewport w/o filtering map
       #
-      # hbounds = hood voronoi, mbounds = markers, vbounds = viewport
       window.area = area
       window.hbounds = turf.polygon(wellknown(area.get("geom_poly_wkt")).coordinates)
-      console.log 'hbounds from this:', wellknown(area.get("geom_poly_wkt")).coordinates
+      # console.log 'hbounds from this:', wellknown(area.get("geom_poly_wkt")).coordinates
 
       MapApp.Show.Controller.zoomTo 'area', area
 

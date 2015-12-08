@@ -7,22 +7,24 @@
       console.log 'PlacesApp.List startPlaces()'
       # Backbone.history.navigate("places")
 
-      App.request "area:entities", (areas) =>
-        # console.log areas
-        @layout = @getLayoutView()
+      # area collection already loaded by map
+      areas = AL.reqres.getHandler("areas:active")()
+      # App.request "area:entities", (areas) =>
 
-        @layout.on "show", =>
-          AL.ContentApp.Show.Controller.showTab('places')
-          @showSearchbox()
-          @showNavmap()
-          @listAreas areas
+      @layout = @getLayoutView()
+
+      @layout.on "show", =>
+        AL.ContentApp.Show.Controller.showTab('places')
+        @showSearchbox()
+        @showNavmap()
+        @listAreas areas
 
         # App.vent.trigger "areas:list", areas
-        App.reqres.setHandler "areas:list", ->
-          return areas
+        # App.reqres.setHandler "areas:list", ->
+        #   return areas
 
         # hold off rendering
-        App.placesRegion.show @layout
+      App.placesRegion.show @layout
 
     showSearchbox: ->
       App.request "placeref:entities", (placerefs) =>
@@ -42,9 +44,6 @@
       areasView = @getAreasView areas
       @layout.arealistRegion.show areasView
 
-      areasView.on "childview:contact:show", (childView, model) ->
-        # console.log model, model.get("id")
-        App.vent.trigger "area:show", model
 
     getAreasView: (areas) ->
       new List.Areas

@@ -1,10 +1,14 @@
-.work span {
+#worklist_region_w {
+  font-family: 'english';
+}
+.work {
   margin: 4px 0;
   line-height: 1.2em;
-  a, a:hover{
+  a {
     text-decoration: none;
     display: inline-block;
   }
+  a:hover { background: yellow;}
 }
 
 

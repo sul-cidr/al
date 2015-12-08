@@ -1,16 +1,5 @@
 // d3 keymap for places
 
-// try out simple d3
-// var simpleKeymap = SimpleMapD3({
-//   container: "#keymap",
-//   datasource: "assets/data/london-boroughs14.json",
-//   tooltipOn: true,
-//   styles: {
-//     stroke: "#fff",
-//     fill: "#999"
-//   }
-// });
-
 var makeKeymap = function(initarea){
   var width = 310,
       height = 170;
@@ -43,10 +32,15 @@ var makeKeymap = function(initarea){
         .data(json.features)
       .enter().append("svg:path")
         .attr("d", path)
-        .style("fill", "#eee")
-        .style("stroke-width", "0.5")
-        .style("stroke", "#333")
+        .attr("class", "borough")
+        // .style("fill", "#eee")
+        // .style("stroke-width", "0.5")
+        // .style("stroke", "#333")
+        .on("click", function (d,i) {
+            console.log('borough: ' + d.properties.id)
 
+            // "id":14,"lad11nm":"Camden"
+          })
 
   });
 }

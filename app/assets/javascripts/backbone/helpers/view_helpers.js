@@ -1,3 +1,15 @@
+function setTimer(name) {
+  var i, output;
+  i = void 0;
+  output = '';
+  console.time(name);
+  i = 1;
+  while (i <= 1e6) {
+    output += i;
+    i++;
+  }
+}
+
 // returns value between 0 and 1;
 // r = [min,max] of dataset
 function scale(value,r) {

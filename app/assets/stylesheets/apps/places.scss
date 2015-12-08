@@ -13,21 +13,13 @@
 #arealist_region {
   height:400px;
   overflow-y: scroll;
+  font-family: 'english';
 }
 
 /***/
 /* PlacesApp List module */
 /***/
 
-#keymap {
-  svg {background: aliceblue;}
-
-  path {
-    stroke: white;
-    stroke-width: 0.25px;
-    fill: #993333;
-  }
-}
 
 arealist { padding:0 6px; font-family: Palatino-linotype, Georgia;
   font-size: 1em;
@@ -42,6 +34,32 @@ arealist { padding:0 6px; font-family: Palatino-linotype, Georgia;
 #search_places {
   margin-left: 6px;
 }
+
+/***/
+/* PlacesApp List Keymap */
+/***/
+
+#keymap {
+  svg {background: aliceblue;}
+
+  // path {
+  //   stroke: white;
+  //   stroke-width: 0.25px;
+  //   fill: #993333;
+  //   cursor:pointer;
+  // }
+}
+
+.borough {
+  fill: #999;
+  stroke-width: 0.5;
+  stroke: #fff;
+  cursor:pointer;
+}
+// .style("fill", "#eee")
+// .style("stroke-width", "0.5")
+// .style("stroke", "#333")
+
 /***/
 /* PlacesApp Show module */
 /***/
