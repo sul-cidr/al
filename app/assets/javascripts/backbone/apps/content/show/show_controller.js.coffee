@@ -39,8 +39,9 @@
       # $(".header-left").removeClass("hidden")
       $("#content_nav_region li").removeClass("active")
       $("#place_passages_region").fadeOut()
-      App.vent.trigger("map:reset")
-      
+      if map.getZoom() > 16
+        App.vent.trigger("map:reset")
+
       if tab == 'authors'
         # console.log 'Show.Controller showTab(authors)'
         # ensure dimensions dropdowns visible

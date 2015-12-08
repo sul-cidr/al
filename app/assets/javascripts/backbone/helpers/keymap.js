@@ -1,4 +1,15 @@
- // d3 keymap for places
+// d3 keymap for places
+
+// try out simple d3
+// var simpleKeymap = SimpleMapD3({
+//   container: "#keymap",
+//   datasource: "assets/data/london-boroughs14.json",
+//   tooltipOn: true,
+//   styles: {
+//     stroke: "#fff",
+//     fill: "#999"
+//   }
+// });
 
 var makeKeymap = function(initarea){
   var width = 310,
@@ -35,5 +46,7 @@ var makeKeymap = function(initarea){
         .style("fill", "#eee")
         .style("stroke-width", "0.5")
         .style("stroke", "#333")
+
+
   });
 }

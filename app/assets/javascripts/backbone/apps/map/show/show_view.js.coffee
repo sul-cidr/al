@@ -122,6 +122,13 @@
 
     L.mapbox.accessToken = 'pk.eyJ1IjoiZWxpamFobWVla3MiLCJhIjoiY2loanVmcGljMG50ZXY1a2xqdGV3YjRkZyJ9.tZqY_fRD2pQ1a0E599nKqg'
 
+    # mapbox light base in progress
+    l_mblight = L.mapbox.tileLayer(
+        'elijahmeeks.8a9e3cb1',
+        L.mapbox.accessToken, {
+        attribution: 'Mapbox',
+        detectRetina: true
+        });
     # OSM base layer
     l_osm = L.tileLayer(
       'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
@@ -163,7 +170,8 @@
       # var map = new L.Map(document.createElement('div')).setActiveArea('activeArea');
 
       baseMaps = {
-        "Modern": l_osm
+        "Modern": l_mblight
+        # "Modern": l_osm
       }
       overlayMaps = {
         "Indicator (1880)":l_indicator
@@ -183,7 +191,7 @@
 
       @London = [51.5120, -0.0928]
 
-      @map.addLayer(l_osm);
+      @map.addLayer(l_mblight);
       # places open, authors open viewports
       @map.setView(@London, 12)
 
