@@ -33,14 +33,14 @@ var makeKeymap = function(initarea){
       .enter().append("svg:path")
         .attr("d", path)
         .attr("class", "borough")
-        // .style("fill", "#eee")
-        // .style("stroke-width", "0.5")
-        // .style("stroke", "#333")
+        .attr("id", function(d) {return "b"+d.properties.id})
         .on("click", function (d,i) {
-            console.log('borough: ' + d.properties.id)
-
-            // "id":14,"lad11nm":"Camden"
-          })
-
+          d3.select(".selected").classed("selected", false);
+          d3.select(this).classed("selected", true);
+          console.log('borough: ' + d.properties.id)
+          AL.PlacesApp.List.Controller.listAreas(d.properties.id)
+        })
+    // #13 City of London selected
+    boroughs.select("path#b13").classed('selected',true)
   });
 }

@@ -7,8 +7,8 @@
       console.log 'PlacesApp.List startPlaces()'
       # Backbone.history.navigate("places")
 
-      # area collection already loaded by map
-      areas = AL.reqres.getHandler("areas:active")()
+      # get area collection already loaded by map
+      # window.areas = AL.reqres.getHandler("areas:active")()
       # App.request "area:entities", (areas) =>
 
       @layout = @getLayoutView()
@@ -17,14 +17,36 @@
         AL.ContentApp.Show.Controller.showTab('places')
         @showSearchbox()
         @showNavmap()
-        @listAreas areas
-
-        # App.vent.trigger "areas:list", areas
-        # App.reqres.setHandler "areas:list", ->
-        #   return areas
+        @listAreas(13)
 
         # hold off rendering
       App.placesRegion.show @layout
+
+    listAreas: (borough) ->
+      hoodArray = boroughHoods[borough]
+      console.log borough+': '+hoodArray
+    # listAreas: (areas, borough) ->
+      # TODO: get all 115 areas somehow
+      window.areas = AL.reqres.getHandler("areas:active")()
+      filteredAreas = areas.filter((area) ->
+        area.get('id') in hoodArray
+      )
+      # new collection from models
+      boroughCollection = new Backbone.Collection(filteredAreas);
+      # view with collection
+      areasView = @getAreasView boroughCollection
+
+      console.log 'boroughCollection ', boroughCollection
+      @layout.arealistRegion.show areasView
+
+    getAreasView: (boroughCollection) ->
+      new List.Areas
+        collection: boroughCollection
+        filter: (child, index, collection) ->
+          child.get('area_type') == 'hood'
+
+    getLayoutView: ->
+      new List.Layout
 
     showSearchbox: ->
       App.request "placeref:entities", (placerefs) =>
@@ -32,25 +54,9 @@
           collection: placerefs
         @layout.searchboxRegion.show searchboxView
 
-
     showNavmap: ->
       navmapView = new List.Navmap
       # console.log navmapView
       @layout.navmapRegion.show navmapView
       # put map in div with area selected
       $("#keymap").html( makeKeymap(1) )
-
-    listAreas: (areas) ->
-      areasView = @getAreasView areas
-      @layout.arealistRegion.show areasView
-
-
-    getAreasView: (areas) ->
-      new List.Areas
-        collection: areas
-        filter: (child, index, collection) ->
-          child.get('area_type') == 'hood'
-
-
-    getLayoutView: ->
-      new List.Layout

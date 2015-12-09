@@ -56,6 +56,9 @@ arealist { padding:0 6px; font-family: Palatino-linotype, Georgia;
   stroke: #fff;
   cursor:pointer;
 }
+.selected {
+  fill: #993333;
+}
 // .style("fill", "#eee")
 // .style("stroke-width", "0.5")
 // .style("stroke", "#333")

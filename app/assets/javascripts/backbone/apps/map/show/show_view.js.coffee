@@ -117,10 +117,12 @@
 
       App.request "area:entities", (areas) =>
         # add to map
+        allAreas = areas # clone collection
         @ingestAreas areas
         # make available to places_app
         App.reqres.setHandler "areas:active", ->
           return areas
+          # return areas
         # AL.PlacesApp.List.Controller.startPlaces()
 
       App.request "placeref:entities", (placerefs) =>

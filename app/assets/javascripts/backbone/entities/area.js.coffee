@@ -6,6 +6,11 @@
     model: Entities.Area
     url: '/areas.json'
 
+    filterById: (idArray) ->
+      @reset _.map(idArray, ((id) ->
+        @get id
+      ), this)
+
   areas = new Entities.AreaCollection()
 
   API =
@@ -23,16 +28,12 @@
       cb @area
 
     getHoods: (id, cb) ->
-      # console.log 'id in getHoods()', String(id)
       areas.fetch
         success: ->
-          # console.log 'areas', areas.models
-          filterId = _.filter(areas.models,(item) ->
-            # CHECK: WTF???? item.get("parent_id") == id;
-            String(item.get("parent_id")) == String(id);
+          filterBorough = _.filter(areas.models,(item) ->
+            boroughHoods[id].indexOf(item.get('id')) > -1
           )
-          areas.reset(filterId)
-          # console.log @areas
+          areas.reset(filterBorough);
           cb areas
 
   App.reqres.setHandler "area:entities", (cb) ->
