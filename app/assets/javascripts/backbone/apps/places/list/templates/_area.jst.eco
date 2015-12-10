@@ -1,2 +1,2 @@
 <a href="#places/<%= @id %>"
-  data_id=<%= @id %>><%= @safe hardSpace(@prefname) %></a> &bull;
+  data_id=<%= @id %>><%= @safe hardSpace(@prefname) %></a>&nbsp;&bull;

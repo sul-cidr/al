@@ -11,3 +11,7 @@
 <div id="places_region" class="regiondiv" style="display:none;"></div>
 <div id="works_region" class="regiondiv" style="display:none;"></div>
 <div id="search_region" class="regiondiv" style="display:none;"></div>
+
+<div id="spin_authors" class="spinner-loader">
+  Loading…
+</div>

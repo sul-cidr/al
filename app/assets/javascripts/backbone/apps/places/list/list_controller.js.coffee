@@ -3,13 +3,7 @@
   List.Controller =
 
     startPlaces: ->
-      # set URL
       console.log 'PlacesApp.List startPlaces()'
-      # Backbone.history.navigate("places")
-
-      # get area collection already loaded by map
-      # window.areas = AL.reqres.getHandler("areas:active")()
-      # App.request "area:entities", (areas) =>
 
       @layout = @getLayoutView()
 
@@ -19,14 +13,12 @@
         @showNavmap()
         @listAreas(13)
 
-        # hold off rendering
       App.placesRegion.show @layout
 
     listAreas: (borough) ->
+      $("#places_navmap h4").html('Neighborhoods in and around '+boroughHash[borough])
       hoodArray = boroughHoods[borough]
-      console.log borough+': '+hoodArray
-    # listAreas: (areas, borough) ->
-      # TODO: get all 115 areas somehow
+      # console.log borough+': '+hoodArray
       window.areas = AL.reqres.getHandler("areas:active")()
       filteredAreas = areas.filter((area) ->
         area.get('id') in hoodArray
@@ -35,8 +27,7 @@
       boroughCollection = new Backbone.Collection(filteredAreas);
       # view with collection
       areasView = @getAreasView boroughCollection
-
-      console.log 'boroughCollection ', boroughCollection
+      # console.log 'boroughCollection ', boroughCollection
       @layout.arealistRegion.show areasView
 
     getAreasView: (boroughCollection) ->

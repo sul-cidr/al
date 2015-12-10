@@ -117,7 +117,7 @@
 
       App.request "area:entities", (areas) =>
         # add to map
-        allAreas = areas # clone collection
+        # allAreas = areas # clone collection
         @ingestAreas areas
         # make available to places_app
         App.reqres.setHandler "areas:active", ->
@@ -128,6 +128,8 @@
       App.request "placeref:entities", (placerefs) =>
         # points, lines, polygons; type: [bioblace | worksplace]
         @ingestPlacerefs placerefs
+
+      # $("#spin_authors").addClass('hidden')
 
 
     L.mapbox.accessToken = 'pk.eyJ1IjoiZWxpamFobWVla3MiLCJhIjoiY2loanVmcGljMG50ZXY1a2xqdGV3YjRkZyJ9.tZqY_fRD2pQ1a0E599nKqg'

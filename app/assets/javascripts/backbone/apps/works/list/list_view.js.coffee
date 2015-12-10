@@ -4,9 +4,7 @@
     template: "works/list/templates/list_layout"
 
     regions:
-      headerRegion: "#title_region_w"
-      dimensionsRegion: "#dimensions_region_w"
-      categoriesRegion: "#categories_region_w"
+      searchboxRegion: "#searchbox_region_w"
       workListRegion: "#worklist_region_w"
 
     events: {
@@ -20,29 +18,28 @@
         List.Controller.listCatWorks(works)
       #   App.vent.trigger("map:reset")
 
-  class List.Title extends App.Views.ItemView
-    template: "works/list/templates/_title"
+  class List.Searchbox extends App.Views.ItemView
+    template: "places/list/templates/_searchbox"
     events: {
-      "click button": "queryPassages"
+        "focus #search_input_w": "getAutocomplete"
     }
-    queryPassages: (e) =>
-      # console.log $(e.currentTarget)
-      q = $("#q_input").val()
-      Backbone.history.navigate("search/" + q, true)
-      # List.Controller.searchPassages($("#q_input").val())
 
-  class List.Dimensions extends App.Views.ItemView
-    template: "works/list/templates/_dimensions"
-    # TODO on-click filter categories
-    events: {
-      "click #dimension_pills_w li": "filterCats"
-    }
-    filterCats: (e) =>
-      $("#dimension_pills_w li").removeClass("active")
-      $(e.currentTarget).addClass("active")
-      dim = $(e.currentTarget).context.attributes.value.value
-      # console.log 'List.Dimensions.filterCats by dimension: ' + dim
-      List.Controller.listCategories(dim)
+    getAutocomplete: ->
+      console.log 'getAutocomplete in works'
+      $("#search_input_w").autocomplete({
+        source: workLookup
+        select: (event, ui) ->
+            event.preventDefault()
+            $("#search_input_w").val(ui.item.label)
+            @selectedWork = ui.item.value
+            console.log @selectedWork
+            # @route = "works/" + ui.item.value
+            # Backbone.history.navigate(@route, true)
+
+        focus: (event, ui) ->
+            event.preventDefault()
+            $("#search_input_w").val(ui.item.label)
+      })
 
   class List.Work extends App.Views.ItemView
     template: "works/list/templates/_work"
@@ -60,77 +57,7 @@
     emptyView: List.Empty
     childViewContainer: "div"
 
-  class List.Category extends App.Views.ItemView
-    template: "works/list/templates/_category"
-    tagName: "li"
-    # events: {"click": "filterWorks"}
-    events: {
-      "click li.category": "filterWorks"
-    }
-    filterWorks: (e) ->
-      seltext =
-        '<span class="strong">'+
-        $(e.currentTarget).context.innerHTML +
-        '</span><span class="right crumb clear">'+
-        'Clear filter</span>'
-      $("#selected_cat_works").html(seltext)
-
-      cat = this.model
-      id = cat.attributes.id
-      # console.log 'filter for cat', id
-      # get a collection of work models for category
-      App.request "works:category", id, (works) =>
-        List.Controller.listCatWorks(works)
-        # console.log 'works for cat '+id, works
-      # to map_app
-      App.vent.trigger "category:works:show", cat
-      App.reqres.setHandler "category:active", ->
-        return cat
-
-  class List.Categories extends App.Views.CompositeView
-    template: "works/list/templates/_categories"
-    className: 'categories'
-    childView: List.Category
-    childViewContainer: ".catlist"
-    # events: {
-    #   "click #selected_cat_works a": "removeFilter"
-    # }
-
-    filter: (child, index, collection) ->
-      # filter genre for initial display
-      child.get('dim') == 'genre'
 
   class List.Empty extends App.Views.ItemView
     template: "works/list/templates/_empty"
     tagName: "p"
-
-  # class List.SearchResult extends App.Views.ItemView
-  #   template: "works/list/templates/_passage"
-  #   tagName: "p"
-  #   events: {
-  #     # "click": "highlightPlacerefs"
-  #     "mouseenter span.place": "onPlacerefEnter"
-  #     "mouseleave span.place": "onPlacerefLeave"
-  #   }
-  #   # highlightPlacerefs: ->
-  #   #   console.log 'Show.Passage.highlightPlacerefs()'
-  #
-  #   onPlacerefEnter: (e) ->
-  #     id = this.getPlacerefIdFromEvent(e);
-  #     console.log 'highlight placeref #', id
-  #     App.vent.trigger('placeref:highlight', id);
-  #     # App.vent.trigger('placeref:hover', e)
-  #
-  #   onPlacerefLeave: (e) ->
-  #     id = this.getPlacerefIdFromEvent(e);
-  #     # console.log 'left placeref span'
-  #     App.vent.trigger('placeref:unhighlight', id);
-  #
-  #   getPlacerefIdFromEvent: (e) ->
-  #     Number($(e.currentTarget).context.attributes.data_id.value);
-  #
-  # # passages are shown by clicking a work
-  # class List.SearchResults extends App.Views.CompositeView
-  #   template: "works/list/templates/_passages"
-  #   childView: List.SearchResult
-  #   childViewContainer: "div"
