@@ -1,7 +1,8 @@
+# before everything broke
 production:
   solr:
     hostname: localhost
-    port: 8080
+    port: 8983
     log_level: WARNING
     path: /solr/production
     # read_timeout: 2
@@ -21,8 +22,34 @@ development:
 test:
   solr:
     hostname: localhost
-    port: 8983
+    port: 8981
     log_level: WARNING
     path: /solr/test
 
     solr_home: solr
+
+# production:
+#   solr:
+#     hostname: localhost
+#     port: 8983
+#     log_level: WARNING
+#     path: /solr/production
+#     # read_timeout: 2
+#     # open_timeout: 0.5
+#     solr_home: solr
+#
+# development:
+#   solr:
+#     hostname: localhost
+#     port: 8982
+#     log_level: INFO
+#     path: /solr/development
+#     solr_home: solr
+#
+# test:
+#   solr:
+#     hostname: localhost
+#     port: 8981
+#     log_level: WARNING
+#     path: /solr/test
+#     solr_home: solr
