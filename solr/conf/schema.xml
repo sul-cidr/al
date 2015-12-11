@@ -43,6 +43,7 @@
   - Remember to run the JVM in server mode, and use a higher logging level
     that avoids logging every request
 -->
+
 <schema name="sunspot" version="1.0">
   <types>
     <!-- field type definitions. The "name" attribute is
@@ -69,20 +70,30 @@
     </fieldType>
     <!-- *** This fieldType is used by Sunspot! *** -->
     <fieldType name="boolean" class="solr.BoolField" omitNorms="true"/>
+
+<!-- begin KG:edit fix deprecated -->
     <!-- *** This fieldType is used by Sunspot! *** -->
-    <fieldType name="date" class="solr.DateField" omitNorms="true"/>
+    <!-- <fieldType name="date" class="solr.DateField" omitNorms="true"/> -->
+    <fieldType name="date" class="solr.TrieDateField" omitNorms="true"/>
     <!-- *** This fieldType is used by Sunspot! *** -->
-    <fieldType name="sdouble" class="solr.SortableDoubleField" omitNorms="true"/>
+    <!-- <fieldType name="sdouble" class="solr.SortableDoubleField" omitNorms="true"/> -->
+    <fieldType name="sdouble" class="solr.TrieDoubleField" omitNorms="true"/>
     <!-- *** This fieldType is used by Sunspot! *** -->
-    <fieldType name="sfloat" class="solr.SortableFloatField" omitNorms="true"/>
+    <!-- <fieldType name="sfloat" class="solr.SortableFloatField" omitNorms="true"/> -->
+    <fieldType name="sfloat" class="solr.TrieFloatField" omitNorms="true"/>
     <!-- *** This fieldType is used by Sunspot! *** -->
-    <fieldType name="sint" class="solr.SortableIntField" omitNorms="true"/>
+    <!-- <fieldType name="sint" class="solr.SortableIntField" omitNorms="true"/> -->
+    <fieldType name="sint" class="solr.TrieIntField" omitNorms="true"/>
     <!-- *** This fieldType is used by Sunspot! *** -->
-    <fieldType name="slong" class="solr.SortableLongField" omitNorms="true"/>
+    <!-- <fieldType name="slong" class="solr.SortableLongField" omitNorms="true"/> -->
+    <fieldType name="slong" class="solr.TrieLongField" omitNorms="true"/>
+<!-- end KG:edit fix deprecated -->
+
     <!-- *** This fieldType is used by Sunspot! *** -->
     <fieldType name="tint" class="solr.TrieIntField" omitNorms="true"/>
     <!-- *** This fieldType is used by Sunspot! *** -->
     <fieldType name="tfloat" class="solr.TrieFloatField" omitNorms="true"/>
+
     <!-- *** This fieldType is used by Sunspot! *** -->
     <fieldType name="tdate" class="solr.TrieDateField"
                omitNorms="true"/>
@@ -136,7 +147,11 @@
     <!-- *** This field is used by Sunspot! *** -->
     <field name="class_name" stored="false" type="string" multiValued="false" indexed="true"/>
     <!-- *** This field is used by Sunspot! *** -->
-    <field name="text" stored="false" type="string" multiValued="true" indexed="true"/>
+
+    <!-- KG:edit -->
+    <field name="text" stored="false" type="text_general" multiValued="true" indexed="true"/>
+    <!-- <field name="text" stored="false" type="string" multiValued="true" indexed="true"/> -->
+
     <!-- *** This field is used by Sunspot! *** -->
     <field name="lat" stored="true" type="tdouble" multiValued="false" indexed="true"/>
     <!-- *** This field is used by Sunspot! *** -->
