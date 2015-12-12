@@ -39,6 +39,8 @@ gem 'sequel'
 
 gem 'sunspot_rails'
 gem 'sunspot_solr'
+# gem 'sunspot_rails', '2.2.2'
+# gem 'sunspot_solr', '2.2.2'
 # gem 'elasticsearch-model'
 # gem 'elasticsearch-rails'
 
