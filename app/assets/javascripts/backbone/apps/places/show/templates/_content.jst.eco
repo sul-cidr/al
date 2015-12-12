@@ -1,1 +1,3 @@
-<!-- <h4>Authors who spoke of {<%= @name %>}</h4> -->
+<div class="word-cloud">
+  <%= @safe arrayWordCloud(@keywords) %>
+</div>

@@ -27,7 +27,7 @@
 
     filterByArea: (type, b) ->
       window.counter = 0
-      console.log "bounds to turf from hoods:", b
+      # console.log "bounds to turf from hoods:", b
       @setFilter 'area', (placeref) ->
       # MapApp.Show.Controller.setFilter 'area', (placeref) ->
         counter += 1

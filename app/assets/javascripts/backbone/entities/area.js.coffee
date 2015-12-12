@@ -26,7 +26,7 @@
           console.timeEnd 'getAreaEntities'
 
     getAreaEntity: (id, cb) ->
-      console.log 'getAreaEntity', id
+      # console.log 'getAreaEntity', id
       # @area = areas.find(id)
       @area = areas._byId[id]
       cb @area
@@ -44,7 +44,7 @@
     API.getAreaEntities cb
 
   App.reqres.setHandler "area:entity", (id, cb) ->
-    console.log 'area entity', id
+    # console.log 'area entity', id
     API.getAreaEntity id, cb
 
   App.reqres.setHandler "borough:hoods", (id, cb) ->

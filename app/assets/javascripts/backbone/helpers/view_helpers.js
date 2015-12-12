@@ -24,6 +24,13 @@ function scaleFont(value,range) {
   return s(value);
 }
 
+function colorizeFont(value,range) {
+  // var ramp=d3.scale.linear().domain([0,100]).range(["red","blue"]);
+  s = d3.scale.linear()
+    .domain(range)
+    .range(["#666","#a63603"]) // em
+  return s(value);
+}
 function poetize(string) {
   return string.replace(/\/(?!span)/g,'<br/>');
 }

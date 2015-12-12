@@ -1,9 +1,9 @@
-var arrayWordCloud = function (workarray) {
+var arrayWordCloud = function (array) {
   // console.log(workarray)
   html = ""
   data = []
-  $.each(workarray, function (i) {
-    var obj = {text: workarray[i][0], size: workarray[i][1]}
+  $.each(array, function (i) {
+    var obj = {text: array[i][0], size: array[i][1]}
     data.push(obj)
   })
 
@@ -15,7 +15,9 @@ var arrayWordCloud = function (workarray) {
 
   $.each(data, function (i) {
     size = data[i]['size']
-    html += '<span style="font-size:'+scaleFont(data[i]['size'],[min,max])+'em;">'+
+    html += '<span style="color:'+colorizeFont(data[i]['size'],[min,max])+
+      '; font-size:'+scaleFont(data[i]['size'],[min,max])+'em;">'+
+    // html += '<span style="font-size:'+scaleFont(data[i]['size'],[min,max])+'em;">'+
       data[i]['text']+'</span> '
   })
   return html;
@@ -89,6 +91,7 @@ var packAuths = function (auths) {
       .padding(2);
 
   var svg = d3.select("#place_content_region").append("svg")
+      .attr("id", "authPack")
       .attr("width", width)
       .attr("height", height)
     .append("g")
@@ -108,7 +111,7 @@ var packAuths = function (auths) {
       .on("click", function(d){
         // TODO: bug, if starting in Authors, 2nd click here does not work
         AL.PlacesApp.Show.Controller.listPlacePassages(d.key)
-        console.log('vis d.key', d.key)
+        // console.log('vis d.key', d.key)
       });
 
 

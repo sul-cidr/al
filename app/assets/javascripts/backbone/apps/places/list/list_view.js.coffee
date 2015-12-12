@@ -51,7 +51,7 @@
       area = this.model
       id = area.get('area_id')
       @route = "places/" + id
-      console.log 'areaByRoute(), id: ',id
+      # console.log 'areaByRoute(), id: ',id
 
       Backbone.history.navigate(@route, true)
 

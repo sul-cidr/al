@@ -30,6 +30,15 @@ hr { margin: 5px 0; border: 0; height: 1px;
   padding-left: 17px ;
   text-indent: -8px ;
 }
+
+.word-cloud {
+  font-family: 'english';
+  margin-bottom:8px;
+  span {
+    line-height:.8em;
+  }
+}
+
 // fa-close
 #passage_closer {
   position: absolute;
