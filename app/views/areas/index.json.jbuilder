@@ -1,10 +1,10 @@
 json.array! @areas do |area|
   json.extract!(
     area,
-    :id,
+    :area_id,
     :prefname,
     :area_type,
-    :parent_id,
+    :keywords,
     :geom_point_wkt,
     :geom_poly_wkt
   )

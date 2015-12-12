@@ -50,16 +50,14 @@ ActiveRecord::Schema.define(version: 20150919024745) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "areas", force: :cascade do |t|
+  create_table "areas", primary_key: "area_id", force: :cascade do |t|
     t.string   "prefname"
     t.string   "area_type"
     t.text     "geom_poly_wkt"
     t.text     "geom_point_wkt"
-    t.integer  "parent_id"
-    t.geometry "geom_poly",      limit: {:srid=>4326, :type=>"polygon"}
-    t.geometry "geom_point",     limit: {:srid=>4326, :type=>"point"}
-    t.datetime "created_at",                                             null: false
-    t.datetime "updated_at",                                             null: false
+    t.jsonb    "keywords"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "author_communities", force: :cascade do |t|
