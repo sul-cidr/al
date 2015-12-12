@@ -105,7 +105,7 @@
       if what == "area"
         # geom is an area model; zoom to its voronoi extents
         # console.log 'zoomTo geom:', geom
-        marker = $idToFeature.areas[geom.get("id")];
+        marker = $idToFeature.areas[geom.get("area_id")];
         mbounds = marker.getBounds()
         map.fitBounds(mbounds)
       window.mbounds = mbounds
@@ -355,7 +355,7 @@
       @areaFeatures = []
       $.each areas.models, (i, a) =>
         geom = a.attributes.geom_poly_wkt
-        aid = a.get("id")
+        aid = a.get("area_id")
         # they're all hoods, but leaves possibility for hierarchy
         if a.get("area_type") == "hood"
           # console.log geom

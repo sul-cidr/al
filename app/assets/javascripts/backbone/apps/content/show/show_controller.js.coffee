@@ -39,8 +39,9 @@
       # $(".header-left").removeClass("hidden")
       $("#content_nav_region li").removeClass("active")
       $("#place_passages_region").fadeOut()
-      if map.getZoom() > 16
-        App.vent.trigger("map:reset")
+      # TODO: reset map when changing tab
+      # if map.getZoom() > 16
+      #   App.vent.trigger("map:reset")
 
       if tab == 'authors'
         # console.log 'Show.Controller showTab(authors)'

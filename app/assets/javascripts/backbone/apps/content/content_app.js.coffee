@@ -31,15 +31,15 @@
       AL.AuthorsApp.List.Controller.startAuthors()
 
     startPlaces: ->
-      console.log 'API.startPlaces from ContentApp'
+      # console.log 'API.startPlaces from ContentApp'
       AL.PlacesApp.List.Controller.startPlaces()
 
     startWorks: ->
-      console.log 'API.startWorks from ContentApp'
+      # console.log 'API.startWorks from ContentApp'
       AL.WorksApp.List.Controller.startWorks()
 
     startSearch: ->
-      console.log 'API.startSearch from ContentApp'
+      # console.log 'API.startSearch from ContentApp'
       AL.SearchApp.Show.Controller.startSearch()
 
     showAuthor: (author_id)->

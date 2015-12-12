@@ -1,17 +1,20 @@
 @AL.module "Entities", (Entities, App, Backbone, Marionette, $,  _) ->
 
   class Entities.Area extends Entities.Model
+    idAttribute: "area_id"
 
   class Entities.AreaCollection extends Entities.Collection
     model: Entities.Area
     url: '/areas.json'
+    comparator: 'prefname'
+    idAttribute: "area_id"
 
     filterById: (idArray) ->
       @reset _.map(idArray, ((id) ->
         @get id
       ), this)
 
-  areas = new Entities.AreaCollection()
+  window.areas = new Entities.AreaCollection()
 
   API =
     # 'areas' for navigating places
@@ -23,7 +26,8 @@
           console.timeEnd 'getAreaEntities'
 
     getAreaEntity: (id, cb) ->
-      # console.log areas
+      console.log 'getAreaEntity', id
+      # @area = areas.find(id)
       @area = areas._byId[id]
       cb @area
 

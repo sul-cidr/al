@@ -49,7 +49,7 @@
     areaByRoute: ->
       window.activePlace = this.model
       area = this.model
-      id = area.get('id')
+      id = area.get('area_id')
       @route = "places/" + id
       console.log 'areaByRoute(), id: ',id
 

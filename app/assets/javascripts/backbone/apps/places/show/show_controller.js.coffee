@@ -38,7 +38,7 @@
     showPlace: (id) ->
       console.log 'place:focus triggered', id
       App.request "area:entity", id, (area) =>
-
+        console.log 'showPlace(id) asked for model', area
         @placeLayout = @getPlaceLayout area
         @placeLayout.on "show", =>
           # console.log 'areaLayout shown'
