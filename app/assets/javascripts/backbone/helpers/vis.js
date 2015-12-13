@@ -24,7 +24,7 @@ var arrayWordCloud = function (array) {
 }
 
 var histYears = function (years) {
-  // console.log(years)
+  console.log(years,worksYears)
   var formatCount = d3.format("4d");
 
   var margin = {top: 10, right: 30, bottom: 20, left: 10},
@@ -36,15 +36,25 @@ var histYears = function (years) {
       // .domain(d3.extent(years))
       .range([0, width]);
   // Generate a histogram using twenty uniformly-spaced bins.
-  var data = d3.layout.histogram()
+  data = d3.layout.histogram()
       .bins(x.ticks(20))
       (years);
 
+  dataAll = d3.layout.histogram()
+      .bins(x.ticks(20))
+      (worksYearsAll);
+
   var numbins = data.length;
-  var barWidth = width/numbins - 1;
+  var numbinsAll = dataAll.length;
+  var barWidth = width/numbins - 3;
+  var barWidthAll = width/numbinsAll - 1;
 
   var y = d3.scale.linear()
       .domain([0, d3.max(data, function(d) { return d.y; })])
+      .range([height, 0]);
+
+  var yAll = d3.scale.linear()
+      .domain([0, d3.max(dataAll, function(d) { return d.y; })])
       .range([height, 0]);
 
   var xAxis = d3.svg.axis()
@@ -75,6 +85,21 @@ var histYears = function (years) {
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
+
+// overlay hollow bars for all works (dataAll, yAll)
+
+  var barAll = svg.selectAll(".barAll")
+      .data(dataAll)
+    .enter().append("g")
+      .attr("class", "barAll")
+      .attr("transform", function(d) { return "translate(" + x(d.x) + "," + yAll(d.y) + ")"; });
+
+  barAll.append("rect")
+      .attr("x", 1)
+      //.attr("width", x(data[0].dx) - 1)
+      .attr("width", barWidthAll)
+      .attr("height", function(d) { return height - yAll(d.y); });
+
 }
 
 var packAuths = function (auths) {

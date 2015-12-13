@@ -119,5 +119,5 @@
       # console.log authobj
       _.each auths, (a) =>
         authobj['children'].push(a)
-      packAuths(authobj)
       histYears(years)
+      packAuths(authobj)
