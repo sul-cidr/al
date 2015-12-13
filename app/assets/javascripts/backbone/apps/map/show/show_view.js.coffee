@@ -349,7 +349,9 @@
       window.placerefs = @placerefs
       window.features = @features
       window.markers = @markerClusters
-
+      # stop spinner
+      $("#spin_map").addClass('hidden')
+      
     # neighborhood voronoi polygons
     ingestAreas: (areas) ->
       @areaFeatures = []

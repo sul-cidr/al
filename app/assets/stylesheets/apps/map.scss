@@ -11,6 +11,12 @@
     color: #666
   }
 }
+#spin_map {
+  position: absolute;
+  top: 350px;
+  left: 65%;
+  z-index: 10000;
+}
 
 .viewport-places {
   position: absolute;

@@ -8,6 +8,7 @@
 
       # hold off rendering
       App.mapRegion.show @mapView
+      # $("#spin_map").addClass('hidden')
 
     getMapView: ->
       new Show.Map

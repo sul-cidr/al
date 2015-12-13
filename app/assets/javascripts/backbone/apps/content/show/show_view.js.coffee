@@ -37,6 +37,7 @@
       # filter either authors or works and map for category
       tab = window.location.hash.substring(1,window.location.hash.length)
       catid = parseInt($(e.currentTarget).context.attributes.val.value)
+      # print category header
       seltext =
         '<span class="strong">'+
         $(e.currentTarget).context.innerHTML +
@@ -46,7 +47,7 @@
 
       # get a collection of models for category
       App.request tab+":category", catid, (collection) =>
-        console.log 'filtered '+ tab + catid, collection
+        # console.log 'filtered '+ tab + ', cat: '+ catid, collection
         if tab == 'works'
           AL.WorksApp.List.Controller.listCatWorks(collection)
         else if tab == 'authors'
@@ -56,7 +57,7 @@
       App.vent.trigger "category:"+tab+":show", catid
 
     filterWorks: (e) ->
-      console.log 'filterWorks(e) from ContentApp.Show'
+      # console.log 'filterWorks(e) from ContentApp.Show'
       window.catid = parseInt($(e.currentTarget).context.attributes.val.value)
       # filter works and map for category
       seltext =
@@ -68,14 +69,14 @@
 
       # get a collection of work models for category
       App.request "works:category", catid, (works) =>
-        console.log 'filtered works: '+ catid, works
+        # console.log 'filtered works: '+ catid, works
         AL.WorksApp.List.Controller.listCatWorks(works)
 
       # to map_app
       App.vent.trigger "category:works:show", catid
 
     filterAuthors: (e) ->
-      console.log 'filterWorks(e) from ContentApp.Show'
+      # console.log 'filterWorks(e) from ContentApp.Show'
       window.catid = parseInt($(e.currentTarget).context.attributes.val.value)
       # filter authors and map for category
       seltext =
@@ -87,7 +88,7 @@
 
       # get a collection of author models for category
       App.request "authors:category", catid, (authors) =>
-        console.log 'filtered authors: '+ catid, authors
+        # console.log 'filtered authors: '+ catid, authors
         AL.AuthorsApp.List.Controller.listCatAuthors(authors)
 
       # to map_app

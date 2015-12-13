@@ -7,11 +7,9 @@
   </ul>
 </div>
 <div id="dimensions_region"></div>
-<div id="authors_region" class="regiondiv"></div>
+<div id="authors_region" class="regiondiv">
+  <div id="spin_authors" class="spinner-loader"></div>
+</div>
 <div id="places_region" class="regiondiv" style="display:none;"></div>
 <div id="works_region" class="regiondiv" style="display:none;"></div>
 <div id="search_region" class="regiondiv" style="display:none;"></div>
-
-<div id="spin_authors" class="spinner-loader">
-  Loading…
-</div>

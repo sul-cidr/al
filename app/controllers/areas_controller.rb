@@ -1,6 +1,7 @@
 class AreasController < ApplicationController
 	respond_to :json
 
+
 	def index
 		# @areas = Area.all
 		@areas = Area.active

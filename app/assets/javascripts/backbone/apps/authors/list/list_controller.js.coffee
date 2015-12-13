@@ -16,6 +16,7 @@
           # @showTitle authors
           @listCatAuthors authors
           $("#spin_authors").addClass('hidden')
+          
         #
         App.authorsRegion.show @layout
 

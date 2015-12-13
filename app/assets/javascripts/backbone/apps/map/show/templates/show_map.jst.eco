@@ -1,5 +1,4 @@
 
-<div id="map"></div>
-
-
-
+<div id="map">
+  <div id="spin_map" class="spinner-loader"></div>
+</div>
