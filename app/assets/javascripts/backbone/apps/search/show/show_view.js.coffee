@@ -14,7 +14,8 @@
     clearSearch: ->
       console.log 'clearSearch'
       # List.Controller.startWorks()
-      $("#results_region_search").html('<img src="assets/images/drop-of-thames_320w.png" />')
+      $("#results_region_search").html('<img src="assets/images/drop-of-thames_320w.png" />
+        <br/>A Drop of Thames Water <br/><em>Punch magazine (1850), via Wikimedia Commons</em>')
       $("#q_input").val('')
 
     queryPassages: (e) =>
