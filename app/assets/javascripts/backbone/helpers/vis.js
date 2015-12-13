@@ -24,7 +24,7 @@ var arrayWordCloud = function (array) {
 }
 
 var histYears = function (years) {
-  console.log(years,worksYears)
+  // console.log(years,worksYears)
   var formatCount = d3.format("4d");
 
   var margin = {top: 10, right: 30, bottom: 20, left: 10},
