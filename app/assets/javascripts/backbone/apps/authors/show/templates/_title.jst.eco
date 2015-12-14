@@ -3,5 +3,6 @@
     <span id="crumb_authors" class="crumb-left crumb-link">Authors</span>
   </div>
   <h3><%= @prefname %></h3>
+  <p id="vitals">b. <%= @birth_year %> &middot; d. <%= @death_year %> </span>
   <hr/>
 </div>

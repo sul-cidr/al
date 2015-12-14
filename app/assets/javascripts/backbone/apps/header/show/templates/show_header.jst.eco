@@ -5,15 +5,22 @@
       <span class="tagline">The City in the Lives and Works of its Writers</span>
     </span>
     <span class="header-right">About</span>
-
-
   </div>
 </div>
-<div id="map_chooser"><span class="strong"><i class="fa fa-lg fa-map-o"/>&nbsp;Base map: </span>
-  <ul>
-    <li val="l_osm" class="active">Modern</li>
-    <li val="l_indicator">Late 19c</li>
-    <li val="l_bowles">Late 18c</li>
-    <li val="l_taylor">Early 18c</li>
-  </ul>
+<div id="about">
+  <div id="map_chooser"
+    <span class="strong"><i class="fa fa-lg fa-map-o"/>&nbsp;Base map: </span>
+    <ul>
+      <li val="l_osm" class="active">Modern</li>
+      <li val="l_indicator">Late 19c</li>
+      <li val="l_bowles">Late 18c</li>
+      <li val="l_taylor">Early 18c</li>
+    </ul>
+  </div>
+  <div id="about_content" class="hidden">
+    <h3>What, why, how, and who</h3>
+    <p>The <span class="red strong">Authorial London</span> project is compiling and mapping references to places within London found in works by writers who have lived there.</p>
+    <p>At present our corpus includes roughly 1,600 passages from 240 works written between the 14th to 20th centuries by 47 authors from 12 literary communities. The site allows exploring and analyzing them from literary, geographical, and biographical perspectives, on dimensions of genre, form, literary community, social standing, and neighborhood.</p>
+    <p>Authorial London has been developed as a re-usable platform we call, “Authorial {X}.“ Our intent is that researchers and college instructors may readily instantiate a similar site for any place of interest, and engage either a class or research community of interest in gathering data for it: authors, texts, references to places within texts, and the geometry necessary for mapping them.</p>
+    </div>
 </div>

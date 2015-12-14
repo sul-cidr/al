@@ -59,8 +59,12 @@
   }
 }
 
-
-#map_chooser {
+#about_content {
+  position: absolute;
+  width: 95%;
+  margin: inherit;
+}
+#about {
   position: absolute;
   margin: 4px 2px;
   padding: 4px 0 4px 4px;

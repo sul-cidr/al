@@ -27,17 +27,21 @@ hr { margin: 5px 0; border: 0; height: 1px;
 .strong { font-weight: bold;}
 
 .hanging {
-  padding-left: 17px ;
+  padding-left: 8px ;
   text-indent: -8px ;
 }
 
 .word-cloud {
   font-family: 'english';
   margin-bottom:8px;
+  margin: 2px 0 14px;
+  padding: 2px;
+  background: #eee;
   span {
     line-height:.8em;
   }
 }
+
 
 // fa-close
 #passage_closer {
@@ -85,7 +89,9 @@ div.categories ul {
   left: 4px;
   background: whitesmoke;
   box-shadow: 6px 6px 4px #888888;
-  h3 { margin: 5px 0; text-align: center;}
+  h3 {
+    margin: 5px 0 0; text-align: center;
+  }
   .container { position:absolute; width: 95%;}
 }
 

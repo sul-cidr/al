@@ -20,7 +20,7 @@ function scale(value,r) {
 function scaleFont(value,range) {
   s = d3.scale.linear()
     .domain(range)
-    .range([0.8,1.4]) // em
+    .range([0.9,1.4]) // em
   return s(value);
 }
 
