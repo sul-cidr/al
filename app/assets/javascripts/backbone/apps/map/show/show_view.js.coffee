@@ -4,7 +4,10 @@
     template: "map/show/templates/show_map"
     events: {
       "click .passage-link": "showOnePassage"
+      "click body": "closeAbout"
     }
+    closeAbout: ->
+      HeaderApp.Show.Controller.loadAbout()
 
     showOnePassage: (e) ->
       # console.log 'popup passage', $(e.currentTarget).context.attributes.val.value
@@ -351,7 +354,7 @@
       window.markers = @markerClusters
       # stop spinner
       $("#spin_map").addClass('hidden')
-      
+
     # neighborhood voronoi polygons
     ingestAreas: (areas) ->
       @areaFeatures = []

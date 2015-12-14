@@ -63,6 +63,8 @@
   position: absolute;
   width: 95%;
   margin: inherit;
+  overflow-y: auto;
+  h4 {margin-bottom: 0;}
 }
 #about {
   position: absolute;
@@ -76,6 +78,8 @@
   font-family: 'english';
   border-radius: 3px;
   box-shadow: 3px 3px 2px #888888;
+}
+#map_chooser {
   ul {
     list-style-type: none;
     display: inline-block;

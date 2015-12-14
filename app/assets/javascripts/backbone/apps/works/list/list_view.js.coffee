@@ -14,12 +14,13 @@
       console.log 'removeFilter'
       # List.Controller.startWorks()
       $("#selected_cat_works").html('')
-      App.request "works:category", 0, (works) =>
-        List.Controller.listCatWorks(works)
+      List.Controller.startWorks()
+      # App.request "works:category", 0, (works) =>
+      #   List.Controller.listCatWorks(works)
       #   App.vent.trigger("map:reset")
 
   class List.Searchbox extends App.Views.ItemView
-    template: "places/list/templates/_searchbox"
+    template: "works/list/templates/_searchbox"
     events: {
         "focus #search_input_w": "getAutocomplete"
     }
@@ -48,7 +49,7 @@
     workByRoute: ->
       work = this.model
       route = "workpassages/w/" + work.get('work_id')
-      # console.log 'List.Work workByRoute', work
+      console.log 'List.Work workByRoute', work
       Backbone.history.navigate(route, true)
 
   class List.Works extends App.Views.CompositeView
