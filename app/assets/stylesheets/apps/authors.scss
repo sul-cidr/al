@@ -6,7 +6,7 @@
 
 #spin_authors {
   position: absolute;
-  top: 250px;
+  top: 350px;
   left: 150px;
   z-index: 1000;
 }
@@ -20,10 +20,6 @@
   top:85px;
   bottom: 2%;
   overflow-y:auto;
-}
-
-#selected_cat_authors {
-  margin: 2px 22px 0 8px;
 }
 
 #authorlist_region {
@@ -44,13 +40,13 @@
   width: 96px;
 }
 
+#selected_cat_authors {
+  margin: 2px 22px 0 8px;
+}
+
 /***/
 /* Show module */
 /***/
-
-#author_content_region {
-  p {font-size: 1.1em;}
-}
 
 #title_region {
   hr { margin: 5px 0; border: 0; height: 1px;
@@ -62,22 +58,27 @@
   font-family: 'english';
 }
 
+#author_content_region {
+  p {font-size: 1.1em;}
+  hr {display: none;}
+}
+
 .passagelist {
   padding-right: 8px;
 }
-.passages-bio {
-  position: absolute;
-  max-height: 75%;
-  overflow:auto;
-  hr {display: none;}
-}
-.passages-works {
-  position: absolute;
-  max-height: 75%;
-  overflow:auto;
-  hr { border: 0; border-bottom: 1px dashed #ccc;
-    background: #999; width:80%;}
-}
+// .passages-bio {
+//   position: absolute;
+//   max-height: 75%;
+//   // overflow:auto;
+//   hr {display: none;}
+// }
+// .passages-works {
+//   position: absolute;
+//   max-height: 95%;
+//   // overflow:auto;
+//   hr { border: 0; border-bottom: 1px dashed #ccc;
+//     background: #999; width:80%;}
+// }
 
 .bioplace {text-decoration: underline;
   color: #993333;

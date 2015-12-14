@@ -56,7 +56,7 @@
       new Show.Passages
         collection: bio_passages
         viewComparator: "passage_id"
-        className: if type == 'works' then 'passages-works' else 'passages-bio'
+        # className: if type == 'works' then 'passages-works' else 'passages-bio'
 
     listWorks: (author) ->
       id = author.get("author_id")
@@ -97,7 +97,7 @@
       new Show.Passages ({
         collection: work_passages
         viewComparator: "passage_id"
-        className: if type == 'works' then 'passages-works' else 'passages-bio'
+        # className: if type == 'works' then 'passages-works' else 'passages-bio'
       })
 
 
