@@ -4,7 +4,7 @@
       <h1>Authorial London</h1>
       <span class="tagline">The City in the Lives and Works of its Writers</span>
     </span>
-    <span class="header-right">About</span>
+    <span class="header-right"><i class="fa fa-bars fa-lg"></i></span>
   </div>
 </div>
 <div id="about">

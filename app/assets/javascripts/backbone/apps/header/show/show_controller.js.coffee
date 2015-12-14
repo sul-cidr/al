@@ -12,9 +12,10 @@
     loadAbout: (e)->
       # e.preventDefault()
       @wHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-      console.log 'resize to '+@wHeight*0.85
+      # console.log 'resize to '+@wHeight*0.85
       if $("#about").height() < 100
-        $("#about").animate({ height: @wHeight * 0.85 }, 500, ->
+        # $("#map_chooser").addClass('hidden')
+        $("#about").animate({ height: @wHeight * 0.90 }, 500, ->
           $("#about_content").removeClass('hidden')
           # $("#map_chooser").addClass('hidden')
         )

@@ -1,4 +1,19 @@
 
+#content_region {
+  width: 350px;
+  position: absolute;
+  top: 60px;
+  bottom: 12px;
+  padding: 12px;
+  left: 4px;
+  background: whitesmoke;
+  box-shadow: 6px 6px 4px #888888;
+  h3 {
+    margin: 5px 0 0; text-align: center;
+  }
+  .container { position:absolute; width: 95%;}
+}
+
 #content_nav_region {
   background: palegoldenrod;
   padding-top: 3px;
@@ -75,29 +90,6 @@
 #search_tab {
   i {color: #993333;}
 }
-// .navbar
-// .navbar
-
-
-  // .panel-title { padding: 3px !important;
-  //
-  // }
-  //
-  // ul li a
-  // {
-  // text-decoration: none;
-  // padding: .2em 1em;
-  // color: #fff;
-  // background-color: #036;
-  // }
-  //
-  // ul li a:hover
-  // {
-  // color: #fff;
-  // background-color: #369;
-  // }
-
-
 
 .ui-tabs-vertical { width: 320px; }
 // .ui-tabs-vertical { width: 55em; }

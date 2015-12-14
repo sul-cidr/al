@@ -13,14 +13,14 @@
    <ul id="ul_form" class="dropdown-menu">
    </ul>
   </div>
-  <div class="dropdown child">
+  <div id="b_comm" class="dropdown child">
    <button class="btn btn-primary dropdown-toggle" type="button"
     data-toggle="dropdown">Community
    <span class="caret"></span></button>
    <ul id="ul_community" class="dropdown-menu">
    </ul>
   </div>
-  <div class="dropdown child">
+  <div id="b_stand" class="dropdown child">
    <button class="btn btn-primary dropdown-toggle" type="button"
     data-toggle="dropdown">Standing
    <span class="caret"></span></button>

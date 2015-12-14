@@ -56,6 +56,8 @@
         $("#works_region").hide()
         $("#search_region").hide()
         $("#authors_region").fadeIn("slow")
+        $("#b_comm").css('visibility','visible')
+        $("#b_stand").css('visibility','visible')
 
       else if tab == 'places'
         # console.log 'Show.Controller showTab(places)'
@@ -86,6 +88,8 @@
         $("#places_region").hide()
         $("#search_region").hide()
         $("#works_region").fadeIn("slow")
+        $("#b_comm").css('visibility','hidden')
+        $("#b_stand").css('visibility','hidden')
 
       else if tab == 'search'
         # console.log 'Show.Controller showTab(search)'
