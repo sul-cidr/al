@@ -21,7 +21,10 @@
       # console.log 'filteredFeatures: ', @filteredFeatures
 
     setFilter: (key, evaluator) ->
+      # re-initialize each time (no sub-filtering
+      @filters = {}
       @filters[key] = evaluator
+      console.log '@filters upon setFilter', @filters
       @filterAllLayers()
 
     filterLayer: (layer) ->
@@ -39,7 +42,6 @@
 
     filterAllLayers: ->
       setTimer('filterAllLayers')
-
       # console.log @features
       _.each @features, (f) =>
         # console.log f
@@ -382,7 +384,7 @@
 
     # called by Show.Controller on trigger 'placeref:click'
     clickPlaceref: (prid) ->
-      window.wid = App.reqres.getHandler('activework:id')()
+      # window.wid = App.reqres.getHandler('activework:id')()
       # console.log 'prid: '+prid+', wid: '+wid
       @marker = _.filter(filteredFeatures, (item) ->
         # console.log item.model.attributes.placeref_id, parseInt(prid)

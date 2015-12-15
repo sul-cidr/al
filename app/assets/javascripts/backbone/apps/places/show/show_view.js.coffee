@@ -29,26 +29,31 @@
     template: "places/show/templates/_passage"
     tagName: "p"
     events: {
-      # "click": "highlightPlacerefs"
-      "mouseenter span.place": "onPlacerefEnter"
-      "mouseleave span.place": "onPlacerefLeave"
+      "click span.placeref": "onPlacerefClick"
+      "mouseenter span.placeref": "onPlacerefEnter"
+      "mouseleave span.placeref": "onPlacerefLeave"
     }
-    # highlightPlacerefs: ->
-    #   console.log 'Show.Passage.highlightPlacerefs()'
+
+    onPlacerefClick: (e) ->
+      # window.context = $(e.currentTarget).context
+      prid = this.getPlacerefIdFromEvent(e);
+      # prid = $(e.currentTarget).context.attributes.val.value
+      console.log 'clicked placeref', prid
+      App.vent.trigger('placeref:click', prid)
 
     onPlacerefEnter: (e) ->
-      id = this.getPlacerefIdFromEvent(e);
-      console.log 'highlight placeref #', id
-      App.vent.trigger('placeref:highlight', id);
+      prid = this.getPlacerefIdFromEvent(e);
+      # console.log 'highlight placeref #', prid
+      # App.vent.trigger('placeref:highlight', prid);
       # App.vent.trigger('placeref:hover', e)
 
     onPlacerefLeave: (e) ->
-      id = this.getPlacerefIdFromEvent(e);
+      prid = this.getPlacerefIdFromEvent(e);
       # console.log 'left placeref span'
-      App.vent.trigger('placeref:unhighlight', id);
+      # App.vent.trigger('placeref:unhighlight', prid);
 
     getPlacerefIdFromEvent: (e) ->
-      Number($(e.currentTarget).context.attributes.data_id.value);
+      Number($(e.currentTarget).context.attributes.val.value);
 
   class Show.PlacePassages extends App.Views.CompositeView
     template: "places/show/templates/_passages"

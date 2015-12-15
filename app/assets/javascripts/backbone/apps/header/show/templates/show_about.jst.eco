@@ -1,0 +1,32 @@
+<div id="about_region">
+  <div id="map_chooser"
+    <span class="strong"><i class="fa fa-lg fa-map-o"/>&nbsp;Base map: </span>
+    <ul>
+      <li val="l_osm" class="active">Modern</li>
+      <li val="l_indicator">Late 19c</li>
+      <li val="l_bowles">Late 18c</li>
+      <li val="l_taylor">Early 18c</li>
+    </ul>
+  </div>
+  <div id="about_content" class="hidden">
+    <h3>What, who, why, and how</h3>
+    <h4 class = "red">What</h4>
+    <p>The <span class="strong">Authorial London</span> project is compiling and mapping references to places within London found in works by writers who have lived there.</p>
+    <p>At present our corpus includes roughly 1,600 passages from 240 works written between the 14th to 20th centuries by 47 authors from 12 literary communities. The site allows exploring and analyzing them from literary, geographical, and biographical perspectives, on dimensions of genre, form, literary community, social standing, and neighborhood.</p>
+    <p>Authorial London has been developed as a re-usable platform we call, “Authorial {X}.“ Our intent is that researchers and college instructors may readily instantiate a similar site for any place of interest, and engage either a class or research community of interest in gathering data for it: authors, texts, references to places within texts, and the geometry necessary for mapping them.</p>
+    <h4 class = "red">Who</h4>
+    <p>This work extends the earlier "A Guide to Authorial London" project at
+      Stanford University (2010), led by <a href="http://bookhaven.stanford.edu/2013/02/a-durable-sense-of-joy-master-miltonist-martin-evans-1935-2013/" target="_blank">Martin Evans</a>
+      of the English Department and developed by Elijah Meeks of Stanford University Libraries. The present version was created by:
+    </p>
+    <ul>
+      <li><strong>Kenneth Ligda</strong>, PhD; <em>co-investigator</em><br/>Associate Director of Instructional Design<br/>
+      Vice Provost for Teaching and Learning (<strong>VPTL</strong>)</li>
+      <li><strong>Karl Grossner</strong>, PhD; <em>co-investigator & technical lead</em><br>Research Developer<br/>
+      Center for Interdisciplinary Digital Research (<strong>CIDR</strong>)</li>
+    </ul>
+    <!-- <p>The Authorial London and Authorial {X} projects are a joint effort of Kenny Ligda and
+      Karl Grossner, members of the Office of the Vice Provost for Teaching and Learning (VPTL) and
+      the Center for Interdisciplinary Digital Research (CIDR) at Stanford University.</p> -->
+    </div>
+</div>
