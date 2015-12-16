@@ -275,7 +275,8 @@
               authhash[pl.get("author_id")]+'\'s life<br/>'+
               pl.get("placeref_id")+', '+pl.get("passage_id")
             else '<b>'+pl.get("placeref") + '</b>, in<br/>'+
-              '<em>'+workhash[pl.get("work_id")].title + '</em><br/>' +
+              '<a href="#">'+authhash[pl.get("author_id")]+'</a>, '+
+              '<em>'+workhash[pl.get("work_id")].title + '</em>'+'<br/>'+
               pl.get("placeref_id") + '<br/>' +
               '<span class="passage-link" val='+pl.get("passage_id")+
                 '>show passage</span>'

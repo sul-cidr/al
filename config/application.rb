@@ -1,9 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
-
 require 'dotenv-rails'
-# config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -12,6 +10,14 @@ Bundler.require(*Rails.groups)
 
 module Authorial
   class Application < Rails::Application
+    # config.before_configuration do
+    #   env_file = Rails.root.join("config", 'local_env.yml').to_s
+    #   if File.exists?(env_file)
+    #     YAML.load_file(env_file)[Rails.env].each do |key, value|
+    #       ENV[key.to_s] = value
+    #     end
+    #   end
+    # end
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -23,7 +29,7 @@ module Authorial
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
-    
+
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.enabled = true
@@ -32,6 +38,7 @@ module Authorial
     # added to enable precompile of assets
     # config.serve_static_assets = true
     # config.serve_static_files = true
+
 
   end
 end

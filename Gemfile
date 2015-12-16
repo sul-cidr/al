@@ -7,16 +7,15 @@ gem 'rails', '4.2.4'
 gem 'sass-rails', '>= 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
+gem 'eco'
+gem 'bootstrap-sass', '~> 3.3.5'
+gem 'compass-rails', '2.0.4'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
 gem 'activerecord-postgis-adapter'
 
 gem 'mapbox-rails'
-
-gem 'eco'
-gem 'bootstrap-sass', '~> 3.3.5'
-gem 'compass-rails', '2.0.4'
 
 gem 'typekit-rails'
 
@@ -25,6 +24,7 @@ gem 'seedbank'
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
 
 gem 'devise'
+gem 'dotenv-rails'
 
 # gem 'progress_bar'
 
@@ -39,13 +39,6 @@ gem 'sequel'
 
 gem 'sunspot_rails'
 gem 'sunspot_solr'
-# gem 'sunspot_rails', '2.2.2'
-# gem 'sunspot_solr', '2.2.2'
-# gem 'elasticsearch-model'
-# gem 'elasticsearch-rails'
-
-# deploy
-gem 'dotenv-rails'
 
 group :deployment do
   gem 'capistrano', '~> 3.0'
