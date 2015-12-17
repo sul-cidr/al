@@ -273,13 +273,12 @@
             if pl.get('placeref_type') == 'bio'
             then '<b>'+pl.get("placeref")+'</b>, a place in<br/>'+
               authhash[pl.get("author_id")]+'\'s life<br/>'+
-              pl.get("placeref_id")+', '+pl.get("passage_id")
+              pl.get("placeref_id")
             else '<b>'+pl.get("placeref") + '</b>, in<br/>'+
-              '<a href="#">'+authhash[pl.get("author_id")]+'</a>, '+
               '<em>'+workhash[pl.get("work_id")].title + '</em>'+'<br/>'+
-              pl.get("placeref_id") + '<br/>' +
+              'by '+authhash[pl.get("author_id")]+'. '+
               '<span class="passage-link" val='+pl.get("passage_id")+
-                '>show passage</span>'
+                '>show passage</span> ['+pl.get("placeref_id") + ']'
           )
           # popup.on("popupclose"): ->
           #   $(".passages-places").addClass('hidden')
@@ -399,7 +398,7 @@
         # console.log '!=undefined', @marker
         # it's a point
         map.setView(@marker._popup._source._latlng,16,{animate:true})
-        # @marker.openPopup()
+        @marker.openPopup()
       else
         # it's a linestring
         map.setView(@marker.getBounds().getCenter(),16,{animate:true})

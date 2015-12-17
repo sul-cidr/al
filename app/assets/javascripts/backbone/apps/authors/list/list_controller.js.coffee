@@ -3,9 +3,9 @@
   List.Controller =
 
     startAuthors: ->
-      # set URL
-      # Backbone.history.navigate("authors")
-
+      #
+      # ensure dimension buttons show
+      $("#dimensions_region").removeClass("hidden")
       # start with all (cat 0); filtered in the app
       App.request "authors:category", 0, (authors) =>
         @layout = @getLayoutView()

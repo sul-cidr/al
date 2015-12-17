@@ -49,7 +49,7 @@
         # ensure dimensions dropdowns visible
         $("#dimensions_region").removeClass('hidden')
 
-        Backbone.history.navigate('authors')
+        Backbone.history.navigate('authors', true)
         @route = "authors"
         $("#authors_tab").addClass("active")
         $("#places_region").hide()

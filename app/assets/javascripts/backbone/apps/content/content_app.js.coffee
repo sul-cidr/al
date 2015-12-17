@@ -64,7 +64,7 @@
         console.log 'author model from API:', author
         AL.AuthorsApp.Show.Controller.listWorks author
 
-    workPassages: (src,work_id) ->
+    workPassages: (src, work_id) ->
       console.log 'workPassages: '+src, work_id
       # get work model from id, forward to sub-app controller
       App.request "work:entity", work_id, (work) =>
