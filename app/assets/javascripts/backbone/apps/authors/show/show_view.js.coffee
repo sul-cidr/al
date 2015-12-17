@@ -39,8 +39,8 @@
       @pill = $(e.currentTarget).context.attributes.value.value
       if @pill == 'works'
         $("#passages_pill").addClass("hidden")
-        $("#author_crumbs").append(
-          '<span id="crumb_works" class="crumb-left"> :: Works </span>')
+        if $("#crumb_works").length < 1
+          $("#author_crumbs").append('<span id="crumb_works" class="crumb-left"> :: Works </span>')
         $("#crumb_author").addClass("crumb-link")
         @route = "works/"+authid
         # console.log 'loadContent, works:', @route

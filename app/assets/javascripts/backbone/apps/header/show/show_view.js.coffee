@@ -5,14 +5,14 @@
     template: "header/show/templates/show_header"
     events:
       "click .header-right": "loadAbout"
-      "click i": "resetApp"
+      "click .header-left": "resetApp"
       "click #map_chooser li": "loadMap"
 
     loadAbout: (e)->
       Show.Controller.loadAbout(e)
 
     resetApp: (e) ->
-      Backbone.history.navigate("authors", true)
+      Backbone.history.navigate("/", true)
 
     loadMap: (e) ->
       id = e.target.attributes.val.value

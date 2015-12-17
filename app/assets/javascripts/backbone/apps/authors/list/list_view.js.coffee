@@ -32,6 +32,7 @@
     tagName: "span"
     events: {'click a': 'authByRoute'}
     authByRoute: ->
+      $("#spin_authors").removeClass('hidden')
       $activeAuthor = this.model
       author = this.model
       @route = "authors/" + author.get('author_id')
