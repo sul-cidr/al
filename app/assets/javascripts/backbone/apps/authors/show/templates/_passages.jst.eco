@@ -1,2 +1,2 @@
-<h4><%= @title %></h4>
-<div class="passagelist"></div>
+<h4 class="work-title"></h4>
+<div></div>

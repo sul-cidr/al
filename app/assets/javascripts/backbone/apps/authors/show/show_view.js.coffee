@@ -86,6 +86,7 @@
     template: "authors/show/templates/_passages"
     childView: Show.Passage
     childViewContainer: "div"
+    # className: 'passages-works'
 
   class Show.Work extends App.Views.ItemView
     template: "authors/show/templates/_work"

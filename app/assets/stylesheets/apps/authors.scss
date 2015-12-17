@@ -60,11 +60,17 @@
 
 #author_content_region {
   p {font-size: 1.1em;}
+  padding-right: 8px;
+  //
+}
+
+// passages are either for bio or works
+.passages-bio {
   hr {display: none;}
 }
 
-.passagelist {
-  padding-right: 8px;
+.passages-works {
+
 }
 
 .bioplace {text-decoration: underline;

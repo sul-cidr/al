@@ -56,7 +56,7 @@
       new Show.Passages
         collection: bio_passages
         viewComparator: "passage_id"
-        # className: if type == 'works' then 'passages-works' else 'passages-bio'
+        className: 'passages-bio'
 
     listWorks: (author) ->
       id = author.get("author_id")
@@ -91,13 +91,13 @@
         App.authorContentRegion.show workPassagesView
         # TODO: show Passages tab if it was hidden
         $("#passages_pill").removeClass("hidden")
-        $(".passages-works h4").html('from <em>'+title+'</em')
+        $(".work-title").html('from <em>'+title+'</em')
 
     getWorkPassagesView: (work_passages, type) ->
       new Show.Passages ({
         collection: work_passages
         viewComparator: "passage_id"
-        # className: if type == 'works' then 'passages-works' else 'passages-bio'
+        className: 'passages-works'
       })
 
 
