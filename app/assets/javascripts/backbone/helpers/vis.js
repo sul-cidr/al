@@ -46,11 +46,12 @@ var histYears = function (years) {
 
   var numbins = data.length;
   var numbinsAll = dataAll.length;
-  var barWidth = width/numbins - 3;
+  var barWidth = width/numbins - 1;
   var barWidthAll = width/numbinsAll - 1;
 
   var y = d3.scale.linear()
-      .domain([0, d3.max(data, function(d) { return d.y; })])
+      .domain([0, d3.max(dataAll, function(d) { return d.y; })])
+      // .domain([0, d3.max(data, function(d) { return d.y; })])
       .range([height, 0]);
 
   var yAll = d3.scale.linear()
@@ -100,6 +101,22 @@ var histYears = function (years) {
       .attr("width", barWidthAll)
       .attr("height", function(d) { return height - yAll(d.y); });
 
+  legend = svg.append("svg:g")
+    .attr("id","histlegend")
+
+  // legBox = legend.append("rect")
+  // 	.attr("y",1).attr("x",1)
+  // 	.attr("width",80)
+  // 	.attr("height",40)
+  // 	.style("fill","#fff")
+  // 	.style("stroke","#1a2c40")
+  // 	.style("stroke-width",1)
+  // 	.style("opacity",0.2)
+  legend.append("image")
+  	.attr("xlink:href", function(d) { return ("assets/images/hist-legend.png")})
+  	.attr("x",1).attr("y",-5)
+  	.attr("width",80)
+  	.attr("height",40)
 }
 
 var packAuths = function (auths) {

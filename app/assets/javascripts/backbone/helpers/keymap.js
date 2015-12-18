@@ -42,5 +42,6 @@ var makeKeymap = function(initarea){
         })
     // #13 City of London selected
     boroughs.select("path#b1").classed('selected',true)
+  
   });
 }

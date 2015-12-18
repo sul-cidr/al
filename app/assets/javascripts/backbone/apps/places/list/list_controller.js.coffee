@@ -19,9 +19,9 @@
       $("#places_navmap h4").html('Neighborhoods in and around <span class="red">'+
         boroughHash[borough]+'</span')
       hoodArray = boroughHoods[borough]
-      # console.log borough+': '+hoodArray
-      window.areas = App.reqres.getHandler("areas:active")()
-      filteredAreas = areas.filter((area) ->
+      console.log 'borough: '+borough, hoodArray
+      # window.areas = App.reqres.getHandler("areas:active")()
+      window.filteredAreas = areas.filter((area) ->
         area.get('area_id') in hoodArray
       )
       # new collection from models
