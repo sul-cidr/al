@@ -20,50 +20,32 @@
 
   class Show.Nav extends App.Views.ItemView
     template: "works/show/templates/_nav"
-  #
-  # class Show.Pills extends App.Views.ItemView
-  #   template: "works/show/templates/_nav"
-  #   events: {
-  #     "click li": "loadContent"
-  #   }
-  #   loadContent: (e) =>
-  #     $(".nav-pills li").removeClass("active")
-  #     $(e.currentTarget).addClass("active")
-  #     workid = App.request("work:model").get("work_id")
-  #     @pill = $(e.currentTarget).context.attributes.value.value
-  #     if @pill == 'works'
-  #       @route = "#works/"+workid
-  #       # console.log 'loadContent, works:', @route
-  #       # CHECK: is this Navigate...true right?
-  #       Backbone.history.navigate(@route, true)
-  #       # Show.Controller.listWorks authid
-  #     else if @pill == 'biography'
-  #       @route = "#authors/"+authid
-  #       # console.log 'loadContent, bio:', @route
-  #       Backbone.history.navigate(@route, true)
-  #       # Show.Controller.showAuthor authid
 
   class Show.Passage extends App.Views.ItemView
     template: "works/show/templates/_passage"
     tagName: "p"
     events: {
-      # "click": "highlightPlacerefs"
-      "mouseenter span.place": "onPlacerefEnter"
-      "mouseleave span.place": "onPlacerefLeave"
+      "click span.placeref": "onPlacerefClick"
+      "mouseenter span.placeref": "onPlacerefEnter"
+      "mouseleave span.placeref": "onPlacerefLeave"
     }
     # highlightPlacerefs: ->
     #   console.log 'Show.Passage.highlightPlacerefs()'
 
+    onPlacerefClick: (e) ->
+      # window.context = $(e.currentTarget).context
+      prid = $(e.currentTarget).context.attributes.val.value
+      App.vent.trigger('placeref:click', prid)
+
     onPlacerefEnter: (e) ->
-      id = this.getPlacerefIdFromEvent(e);
-      console.log 'highlight placeref #', id
-      App.vent.trigger('placeref:highlight', id);
-      # App.vent.trigger('placeref:hover', e)
+      prid = $(e.currentTarget).context.attributes.val.value
+      # console.log 'onPlaceRefEnter', prid
+      # App.vent.trigger('placeref:highlight', prid);
 
     onPlacerefLeave: (e) ->
-      id = this.getPlacerefIdFromEvent(e);
-      # console.log 'left placeref span'
-      App.vent.trigger('placeref:unhighlight', id);
+      prid = $(e.currentTarget).context.attributes.val.value
+      # console.log 'onPlaceRefLeave', id
+      # App.vent.trigger('placeref:unhighlight', prid);
 
     getPlacerefIdFromEvent: (e) ->
       Number($(e.currentTarget).context.attributes.data_id.value);

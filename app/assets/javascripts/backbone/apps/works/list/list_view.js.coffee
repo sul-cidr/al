@@ -32,7 +32,7 @@
             event.preventDefault()
             $("#search_input_w").val(ui.item.label)
             @selectedWork = ui.item.value
-            @route = "workpassages/w/ " + ui.item.value
+            @route = "workpassages/w/" + ui.item.value
             # console.log @route
             Backbone.history.navigate(@route, true)
 
@@ -48,7 +48,7 @@
     workByRoute: ->
       work = this.model
       route = "workpassages/w/" + work.get('work_id')
-      # console.log 'List.Work workByRoute', work
+      console.log 'List.Work workByRoute', route
       Backbone.history.navigate(route, true)
 
   class List.Works extends App.Views.CompositeView

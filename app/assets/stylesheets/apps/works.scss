@@ -1,6 +1,15 @@
+#works_region {
+  position: absolute;
+  top:85px;
+  bottom: 2%;
+  overflow-y:auto;
+}
+
 #worklist_region_w {
   font-family: 'english';
+  margin-left: 6px;
 }
+
 .work {
   margin: 8px 5px;
   line-height: 1.2em;
@@ -11,7 +20,9 @@
   a:hover { background: yellow;}
 }
 
-
+.passages-works {
+  padding: 0 8px;
+}
 .work-title {
   font-size: 0.9em;
   font-weight: 600;
