@@ -27,9 +27,11 @@
     listCatWorks: (works) ->
       # console.log arguments.callee.caller.toString()
       window.works = works
-      console.log 'listCatWorks()', works
+      # console.log 'listCatWorks()', works
       worksCatView = @getCatWorksView works
       @layout.workListRegion.show worksCatView
+      # for map filter
+      App.vent.trigger "category:works:show", works
 
     getCatWorksView: (works) ->
       new List.Works
