@@ -3,10 +3,10 @@
   Show.Controller =
 
     showWork: (work) ->
-      # get map to filter for author
-      console.log "showWork() trigger work:show for map"
+      # get map to filter for work
+      # console.log "showWork() trigger work:show for map"
       # trigger for map_app
-      # App.vent.trigger "work:show", work
+      App.vent.trigger "work:show", work
 
       id = work.get("work_id")
       title = work.get("title")
@@ -14,7 +14,7 @@
       @workLayout = @getWorkLayout work
       # console.log '@workLayout', @workLayout
 
-      console.log '@workLayout', @workLayout
+      # console.log '@workLayout', @workLayout
       @workLayout.on "show", =>
         @showTitle work
         # @showNav work

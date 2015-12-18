@@ -21,10 +21,10 @@
       # console.log 'filteredFeatures: ', @filteredFeatures
 
     setFilter: (key, evaluator) ->
-      # re-initialize each time (no sub-filtering
+      # re-initialize filters each time
       @filters = {}
       @filters[key] = evaluator
-      console.log '@filters upon setFilter', @filters
+      console.log 'set @filters', @filters
       @filterAllLayers()
 
     filterLayer: (layer) ->
@@ -41,6 +41,8 @@
         # @map.removeLayer layer
 
     filterAllLayers: ->
+      # reset filteredFeatures array
+      @filteredFeatures = []
       setTimer('filterAllLayers')
       # console.log @features
       _.each @features, (f) =>
@@ -55,13 +57,8 @@
       window.filteredFeatures = @filteredFeatures
       # console.log @filteredFeatures
       window.filteredBounds = L.featureGroup(@filteredFeatures).getBounds()
-      # markerClusters bounds are always all placerefs
-      # map.fitBounds(@markerClusters.getBounds())
 
-      # if filteredFeatures.length > 600
       map.fitBounds(filteredBounds)
-      # else
-      #   map.setView([51.5120, -0.0928], 12)
 
       # @filteredFeatures array used in PlacesApp to render summary
       App.vent.trigger('placerefs:filtered', @filteredFeatures);

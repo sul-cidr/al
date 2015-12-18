@@ -9,12 +9,12 @@
   App.vent.on "category:authors:show", (id) ->
     console.log 'map heard category:authors:show --> ', id
     # placerefs for all passages by set of authors
-    API.filterByCategory id
+    API.filterByAuthorCategory id
 
   App.vent.on "category:works:show", (cat) ->
     console.log 'map heard category:works:show --> ', cat
     # placerefs for all passages in works of a category
-    # API.filterByCategory cat
+    API.filterByWorkCategory cat
 
   App.vent.on "place:focus", (area) ->
     # console.log 'map_app place:focus', area
@@ -43,15 +43,30 @@
       MapApp.Show.Controller.setFilter 'authors', (placeref) ->
         author_ids.indexOf(placeref.get("author_id")) > -1
 
-    filterByCategory: (id) ->
-      # build collection of authors having 'cat'
+    filterByAuthorCategory: (id) ->
+      # build collection of authors having 'id'
       # id = cat.get("id")
       author_ids = []
       App.request "authors:category", id, (authors) =>
         _.each authors.models, (a) =>
           author_ids.push a.get("author_id")
         @filterByAuthors author_ids, id
-        # console.log 'mapping authors in cat '+id+ ': ', author_ids
+        console.log 'filterByAuthorCategory '+id+ ': ', author_ids
+
+    filterByWorkCategory: (id) ->
+      # build collection of works having 'cat'
+      # id = cat.get("id")
+      # work_ids = []
+      # App.request "authors:category", id, (authors) =>
+      #   _.each authors.models, (a) =>
+      #     author_ids.push a.get("author_id")
+      #   @filterByAuthors author_ids, id
+      console.log 'filterByWorkCategory '+id # + ': ', author_ids
+
+    filterForWork: (work) ->
+      id = work.get("work_id")
+      MapApp.Show.Controller.setFilter 'works', (placeref) ->
+        placeref.get("work_id") == id
 
     focusPlace: (area) ->
       #

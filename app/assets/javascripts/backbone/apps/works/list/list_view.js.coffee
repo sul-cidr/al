@@ -11,7 +11,7 @@
       "click .clear": "removeFilter"
     }
     removeFilter: ->
-      console.log 'removeFilter'
+      # console.log 'removeFilter'
       # List.Controller.startWorks()
       $("#selected_cat_works").html('')
       List.Controller.startWorks()
@@ -26,16 +26,16 @@
     }
 
     getAutocomplete: ->
-      console.log 'getAutocomplete in works'
+      # console.log 'getAutocomplete in works'
       $("#search_input_w").autocomplete({
         source: workLookup
         select: (event, ui) ->
             event.preventDefault()
             $("#search_input_w").val(ui.item.label)
             @selectedWork = ui.item.value
-            console.log @selectedWork
-            # @route = "works/" + ui.item.value
-            # Backbone.history.navigate(@route, true)
+            @route = "workpassages/w/ " + ui.item.value
+            # console.log @route
+            Backbone.history.navigate(@route, true)
 
         focus: (event, ui) ->
             event.preventDefault()
@@ -49,7 +49,7 @@
     workByRoute: ->
       work = this.model
       route = "workpassages/w/" + work.get('work_id')
-      console.log 'List.Work workByRoute', work
+      # console.log 'List.Work workByRoute', work
       Backbone.history.navigate(route, true)
 
   class List.Works extends App.Views.CompositeView
@@ -57,7 +57,7 @@
     childView: List.Work
     emptyView: List.Empty
     childViewContainer: "div"
-
+    viewComparator: "sortable_title"
 
   class List.Empty extends App.Views.ItemView
     template: "works/list/templates/_empty"
