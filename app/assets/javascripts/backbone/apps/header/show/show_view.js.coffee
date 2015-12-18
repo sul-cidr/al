@@ -11,8 +11,9 @@
     loadAbout: (e)->
       Show.Controller.loadAbout(e)
 
-    resetApp: (e) ->
-      Backbone.history.navigate("/", true)
+    resetApp: ->
+      Backbone.history.navigate("/authors")
+      window.location.reload()
 
     loadMap: (e) ->
       id = e.target.attributes.val.value

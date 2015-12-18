@@ -20,8 +20,8 @@
       # console.log 'Map.Show.Controller.setFilter() ' + key
       @mapView.setFilter key, evaluator
 
-    clearFilters: ->
-      @mapView.clearFilters()
+    clearFilters: (keepzoom)->
+      @mapView.clearFilters(keepzoom)
 
     zoomTo: (what, area) ->
       @mapView.zoomTo what, area

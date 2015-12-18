@@ -24,8 +24,9 @@
       # re-initialize filters each time
       @filters = {}
       @filters[key] = evaluator
-      console.log 'set @filters', @filters
       @filterAllLayers()
+      App.reqres.setHandler "filters:active", ->
+        return @filters
 
     filterLayer: (layer) ->
       visible = true
@@ -40,7 +41,7 @@
         @markerClusters.removeLayer layer
         # @map.removeLayer layer
 
-    filterAllLayers: ->
+    filterAllLayers: (keepzoom)->
       # reset filteredFeatures array
       @filteredFeatures = []
       setTimer('filterAllLayers')
@@ -58,7 +59,8 @@
       # console.log @filteredFeatures
       window.filteredBounds = L.featureGroup(@filteredFeatures).getBounds()
 
-      map.fitBounds(filteredBounds)
+      if keepzoom != 'stay'
+        map.fitBounds(filteredBounds)
 
       # @filteredFeatures array used in PlacesApp to render summary
       App.vent.trigger('placerefs:filtered', @filteredFeatures);
@@ -67,9 +69,9 @@
       delete @filters[key]
       @filterAllLayers()
 
-    clearFilters: ->
+    clearFilters: (keepzoom)->
       @filters = {}
-      @filterAllLayers()
+      @filterAllLayers(keepzoom)
 
     swapBase: (id) ->
       # London = [51.5120, -0.0928]
@@ -387,9 +389,9 @@
         # console.log item.model.attributes.placeref_id, parseInt(prid)
         item.model.attributes.placeref_id == parseInt(prid) )[0]
 
-      # console.log 'clickPlaceref marker ', @marker
+      console.log 'clickPlaceref marker ', @marker
       # zoom to it
-      # console.log '@marker',@marker
+      # console.log '@marker', @marker
       window.m = @marker
       if @marker._latlng != undefined
         # console.log '!=undefined', @marker

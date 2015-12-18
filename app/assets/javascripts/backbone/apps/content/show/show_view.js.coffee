@@ -35,6 +35,7 @@
     }
     filterStuff: (e) ->
       # filter either authors or works and map for category
+      console.log $(e.currentTarget)
       tab = window.location.hash.substring(1,window.location.hash.length)
       catid = parseInt($(e.currentTarget).context.attributes.val.value)
       # print category header

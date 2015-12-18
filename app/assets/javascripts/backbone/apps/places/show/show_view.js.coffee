@@ -10,20 +10,13 @@
   class Show.Title extends App.Views.ItemView
     template: "places/show/templates/_title"
     events:
-      "click .crumb0 a": "goHome"
+      "click .crumb-places": "goHome"
 
-    goHome: (e) ->
-      # TODO:
-      # console.log 'goHome()', $(e.currentTarget)
-      # clear the vis
-      $("#place_content_region").hide()
-      # get id to unhighlight
-      id = Number($(e.currentTarget).context.attributes.data_id.value)
-      # console.log 'goHome() id=', id
-      App.vent.trigger("map:reset", id)
-      App.vent.trigger("area:unhighlightAll", id)
-      # App.vent.trigger("area:unhighlight", id)
+    goHome: ->
+      # console.log 'supposed to go home'
       Backbone.history.navigate("places", true)
+      App.vent.trigger("map:reset")
+
 
   class Show.PlacePassage extends App.Views.ItemView
     template: "places/show/templates/_passage"

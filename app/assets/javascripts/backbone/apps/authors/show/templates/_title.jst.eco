@@ -1,6 +1,6 @@
 <div class="panel-title">
   <div id="author_crumbs">
-    <span id="crumb_authors" class="crumb-left crumb-link">Authors</span>
+    <span id="crumb_authors" class="crumb-left crumb-link">All authors</span>
   </div>
   <h3><%= @prefname %></h3>
   <p id="vitals">b. <%= @birth_year %> &middot; d. <%= @death_year %> </span>

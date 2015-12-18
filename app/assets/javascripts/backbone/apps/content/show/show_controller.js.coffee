@@ -23,6 +23,7 @@
       @contentLayout.dimensionsRegion.show dimensionsView
 
     # populate dropdowns from db
+    # TODO: multiple selections
     dropdownCategories: ->
       if $("#ul_genre li").length == 0
         App.request "category:entities", (categories) =>
@@ -31,8 +32,9 @@
              dimcollection = categories.where({dim: d});
              for c in dimcollection
                $("#ul_"+d).append(
-                "<li val="+c.attributes.id+">"+c.attributes.name+
-                "</li>"
+                "<li val="+c.attributes.id+">"+c.attributes.name+"</li>"
+                # "<li><label><input type='checkbox' val="+c.attributes.id+
+                # " disabled> "+c.attributes.name+"</label></li>"
                )
 
     # called from various places to manage tab state

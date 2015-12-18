@@ -68,6 +68,10 @@ arealist { padding:0 6px; font-family: Palatino-linotype, Georgia;
 /* PlacesApp Show module */
 /***/
 
+.crumb-places {
+  font-size: .7em; color:#336699 !important;
+  cursor: pointer; text-align: left !important;}
+
 .yearline {
   fill: none;
   stroke: #000;
