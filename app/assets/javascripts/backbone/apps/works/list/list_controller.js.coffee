@@ -3,7 +3,7 @@
   List.Controller =
 
     startWorks: ->
-      # set URL
+      console.log 'startWorks'
       Backbone.history.navigate("works")
       App.request "works:category", 0, (works) =>
         @layout = @getLayoutView()
@@ -26,7 +26,8 @@
 
     listCatWorks: (works) ->
       # console.log arguments.callee.caller.toString()
-      # console.log 'listCatWorks()', works
+      window.works = works
+      console.log 'listCatWorks()', works
       worksCatView = @getCatWorksView works
       @layout.workListRegion.show worksCatView
 

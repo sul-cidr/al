@@ -4,6 +4,7 @@ class CreateWorks < ActiveRecord::Migration
     	t.integer :work_id
     	t.integer :author_id
       t.string :title
+      t.string :sorter
     	t.integer :work_year
       t.integer :categories, array: true, default: []
       t.jsonb :keywords

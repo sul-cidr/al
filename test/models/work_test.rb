@@ -5,6 +5,7 @@
 #  work_id    :integer          not null, primary key
 #  author_id  :integer
 #  title      :string
+#  sorter     :string
 #  work_year  :integer
 #  categories :integer          default([]), is an Array
 #  keywords   :jsonb

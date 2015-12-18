@@ -9,7 +9,7 @@
       # start with all (cat 0); filtered in the app
       App.request "authors:category", 0, (authors) =>
         @layout = @getLayoutView()
-        console.log authors.models.length + ' authors'
+        # console.log authors.models.length + ' authors'
 
         @layout.on "show", =>
           AL.ContentApp.Show.Controller.showTab('authors')

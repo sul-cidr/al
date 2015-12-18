@@ -10,14 +10,13 @@
     events: {
       "click .clear": "removeFilter"
     }
+
     removeFilter: ->
-      # console.log 'removeFilter'
-      # List.Controller.startWorks()
+      # console.log 'remove filter'
       $("#selected_cat_works").html('')
-      List.Controller.startWorks()
-      # App.request "works:category", 0, (works) =>
-      #   List.Controller.listCatWorks(works)
-      #   App.vent.trigger("map:reset")
+      App.request "works:category", 0, (works) =>
+        List.Controller.listCatWorks(works)
+        App.vent.trigger("map:reset")
 
   class List.Searchbox extends App.Views.ItemView
     template: "works/list/templates/_searchbox"
@@ -57,7 +56,7 @@
     childView: List.Work
     emptyView: List.Empty
     childViewContainer: "div"
-    viewComparator: "sortable_title"
+    viewComparator: "sorter"
 
   class List.Empty extends App.Views.ItemView
     template: "works/list/templates/_empty"
