@@ -85,9 +85,3 @@
     new ContentApp.Router
       controller: API
     API.startContent()
-
-
-  # App.addInitializer ->
-  #   new ContentApp.Router
-  #     controller: API
-    # API.startAuthors()

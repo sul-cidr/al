@@ -25,6 +25,7 @@
     # populate dropdowns from db
     # TODO: multiple selections
     dropdownCategories: ->
+      alert 'dropdownCategories called by'+arguments.callee.caller.toString()
       if $("#ul_genre li").length == 0
         App.request "category:entities", (categories) =>
           # console.log categories

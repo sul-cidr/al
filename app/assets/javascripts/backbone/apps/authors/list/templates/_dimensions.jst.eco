@@ -1,12 +1,4 @@
-<!-- bootstrap buttons, not tied to actions yet -->
-<!-- <div id="dimension_pills" class="navbar dim-pills">
-  <ul class="nav nav-pills">
-    <li class="active" value="genre"> Genre </li>
-    <li value="form">Form</li>
-    <li value="community">Community</li>
-    <li value="standing">Standing</li>
-  </ul>
-<div> -->
+
 <div class= "dim-container">
   <div class="dropdown child">
    <button class="btn btn-primary dropdown-toggle" type="button"

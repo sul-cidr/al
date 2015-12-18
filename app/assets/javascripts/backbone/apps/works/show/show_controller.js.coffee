@@ -3,7 +3,6 @@
   Show.Controller =
 
     showWork: (work) ->
-      # get map to filter for work
       # console.log "showWork() trigger work:show for map"
       # trigger for map_app
       App.vent.trigger "work:show", work
@@ -14,12 +13,10 @@
       @workLayout = @getWorkLayout work
       # console.log '@workLayout', @workLayout
 
-      # console.log '@workLayout', @workLayout
       @workLayout.on "show", =>
+        $("#dimensions_region").addClass('hidden')
         @showTitle work
-        # @showNav work
         @listWorkPassages work
-        # @listWorks id
 
       App.worksRegion.show @workLayout
 
