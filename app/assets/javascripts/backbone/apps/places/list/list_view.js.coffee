@@ -22,9 +22,9 @@
         select: (event, ui) ->
             event.preventDefault()
             $("#search_input").val(ui.item.label)
-            # @selectedArea = ui.item.value
-            # console.log @selectedArea
+            @selectedArea = ui.item.value
             @route = "places/" + ui.item.value
+            console.log 'autocomplete route,', @route
             Backbone.history.navigate(@route, true)
 
         focus: (event, ui) ->
@@ -51,7 +51,7 @@
       area = this.model
       id = area.get('area_id')
       @route = "places/" + id
-      # console.log 'areaByRoute(), id: ',id
+      console.log 'areaByRoute(): ',@route
 
       Backbone.history.navigate(@route, true)
 

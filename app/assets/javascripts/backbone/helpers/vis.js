@@ -88,35 +88,27 @@ var histYears = function (years) {
       .call(xAxis);
 
 // overlay hollow bars for all works (dataAll, yAll)
-
-  var barAll = svg.selectAll(".barAll")
-      .data(dataAll)
-    .enter().append("g")
-      .attr("class", "barAll")
-      .attr("transform", function(d) { return "translate(" + x(d.x) + "," + yAll(d.y) + ")"; });
-
-  barAll.append("rect")
-      .attr("x", 1)
-      //.attr("width", x(data[0].dx) - 1)
-      .attr("width", barWidthAll)
-      .attr("height", function(d) { return height - yAll(d.y); });
+  // TODO: get reference bars for overall placeref count in
+  // var barAll = svg.selectAll(".barAll")
+  //     .data(dataAll)
+  //   .enter().append("g")
+  //     .attr("class", "barAll")
+  //     .attr("transform", function(d) { return "translate(" + x(d.x) + "," + yAll(d.y) + ")"; });
+  //
+  // barAll.append("rect")
+  //     .attr("x", 1)
+  //     //.attr("width", x(data[0].dx) - 1)
+  //     .attr("width", barWidthAll)
+  //     .attr("height", function(d) { return height - yAll(d.y); });
 
   legend = svg.append("svg:g")
     .attr("id","histlegend")
 
-  // legBox = legend.append("rect")
-  // 	.attr("y",1).attr("x",1)
-  // 	.attr("width",80)
-  // 	.attr("height",40)
-  // 	.style("fill","#fff")
-  // 	.style("stroke","#1a2c40")
-  // 	.style("stroke-width",1)
-  // 	.style("opacity",0.2)
   legend.append("image")
   	.attr("xlink:href", function(d) { return ("assets/images/hist-legend.png")})
   	.attr("x",1).attr("y",-5)
   	.attr("width",80)
-  	.attr("height",40)
+  	.attr("height",29)
 }
 
 var packAuths = function (auths) {

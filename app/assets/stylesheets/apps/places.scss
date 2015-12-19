@@ -32,10 +32,6 @@ arealist { padding:0 6px; font-family: Palatino-linotype, Georgia;
   h4 {margin-left: 6px; font-style: italic; }
 }
 
-#search_places {
-  margin-left: 6px;
-}
-
 /***/
 /* PlacesApp List Keymap */
 /***/
@@ -59,6 +55,16 @@ arealist { padding:0 6px; font-family: Palatino-linotype, Georgia;
 }
 .selected {
   fill: #993333;
+}
+
+#search_places {
+  float:left;
+  margin-top: 5px;
+}
+#search_place_chooser {
+  float:right;
+  font-size: smaller;
+  .radio { margin:0;}
 }
 // .style("fill", "#eee")
 // .style("stroke-width", "0.5")

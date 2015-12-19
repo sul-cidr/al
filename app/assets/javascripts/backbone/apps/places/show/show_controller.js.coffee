@@ -88,7 +88,7 @@
       @bPlacerefs = []
       @activeWorksPlaces = _.filter(activePlacerefs, (p) ->
         p.model.attributes.placeref_type == 'work')
-      # console.log @activeWorksPlaces
+      # console.log 'activeWorksPlaces', @activeWorksPlaces
       @activeBioPlaces = _.filter(activePlacerefs, (p) ->
         p.model.attributes.placeref_type == 'bio')
 

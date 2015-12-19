@@ -5,7 +5,8 @@
   #
   class ContentApp.Router extends Marionette.AppRouter
     appRoutes:
-      "": "startContent"
+      "": "startAuthors"
+      # "": "startContent"
       "authors": "startAuthors"
       "places": "startPlaces"
       "works": "startWorks"

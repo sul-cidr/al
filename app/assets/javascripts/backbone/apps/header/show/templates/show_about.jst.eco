@@ -12,8 +12,8 @@
     <h3>What, who, why, and how</h3>
     <h4 class = "red">What</h4>
     <p>The <span class="strong">Authorial London</span> project is compiling and mapping references to places within London found in works by writers who have lived there.</p>
-    <p>At present our corpus includes roughly 1,600 passages from 240 works written between the 14th to 20th centuries by 47 authors from 12 literary communities. The site allows exploring and analyzing them from literary, geographical, and biographical perspectives, on dimensions of genre, form, literary community, social standing, and neighborhood.</p>
-    <p>Authorial London has been developed as a re-usable platform we call, “Authorial {X}.“ Our intent is that researchers and college instructors may readily instantiate a similar site for any place of interest, and engage either a class or research community of interest in gathering data for it: authors, texts, references to places within texts, and the geometry necessary for mapping them.</p>
+    <p>At present our corpus includes roughly 1,600 passages from 185 works written between the 14th to 20th centuries by 47 authors from 12 literary communities. The site allows exploring and analyzing them from literary, geographical, and biographical perspectives, on dimensions of genre, form, literary community, social standing, and neighborhood.</p>
+    <p>Authorial London has been developed as the first instance of a software platform we call, “Authorial {X}.“ Our intent is that researchers and college instructors may readily instantiate a similar site for any place of interest, and engage either a class or research community of interest in gathering data for it: authors, texts, references to places within texts, and the geometry necessary for mapping them.</p>
     <h4 class = "red">Who</h4>
     <p>This work extends the earlier "A Guide to Authorial London" project at
       Stanford University (2010), led by <a href="http://bookhaven.stanford.edu/2013/02/a-durable-sense-of-joy-master-miltonist-martin-evans-1935-2013/" target="_blank">Martin Evans</a>

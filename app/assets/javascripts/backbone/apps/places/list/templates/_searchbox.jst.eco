@@ -1,5 +1,15 @@
-<div id="search_places" class="ui-widget">
-  <input id="search_input" type="text" placeholder="search places">
-  <button type="submit" class="btn btn-primary btn-sm">Submit</button>
-    <hr/>
+<div id="search_container">
+  <div id="search_places" class="ui-widget">
+    <input id="search_input" type="text" placeholder="search neighborhoods">
+    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+  </div>
+  <div id="search_place_chooser">
+    <div class="radio">
+      <label><input type="radio" name="optradio" checked>Neighborhoods</label>
+    </div>
+    <div class="radio">
+      <label><input type="radio" name="optradio" disabled>All places</label>
+    </div>
+  </div>
+  <hr/>
 </div>

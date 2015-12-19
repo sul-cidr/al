@@ -7,9 +7,11 @@
       @contentLayout = @getContentLayout()
       App.contentRegion.show @contentLayout
 
-      # render dropdown filter buttons & populate from db
       @listDimensions()
-      @dropdownCategories()
+      # @contentLayout.on "show", =>
+      # render dropdown filter buttons & populate from db
+      if $("#ul_genre li").length == 0
+        @dropdownCategories()
 
     getContentLayout: ->
       new Show.ContentLayout
@@ -25,18 +27,18 @@
     # populate dropdowns from db
     # TODO: multiple selections
     dropdownCategories: ->
-      alert 'dropdownCategories called by'+arguments.callee.caller.toString()
-      if $("#ul_genre li").length == 0
-        App.request "category:entities", (categories) =>
-          # console.log categories
-          for d in ['genre','form','community','standing']
-             dimcollection = categories.where({dim: d});
-             for c in dimcollection
-               $("#ul_"+d).append(
-                "<li val="+c.attributes.id+">"+c.attributes.name+"</li>"
-                # "<li><label><input type='checkbox' val="+c.attributes.id+
-                # " disabled> "+c.attributes.name+"</label></li>"
-               )
+      console.log 'dropdownCategories called by'+arguments.callee.caller.toString()
+      # if $("#ul_genre li").length == 0
+      App.request "category:entities", (categories) =>
+        # console.log categories
+        for d in ['genre','form','community','standing']
+           dimcollection = categories.where({dim: d});
+           for c in dimcollection
+             $("#ul_"+d).append(
+              "<li val="+c.attributes.id+">"+c.attributes.name+"</li>"
+              # "<li><label><input type='checkbox' val="+c.attributes.id+
+              # " disabled> "+c.attributes.name+"</label></li>"
+             )
 
     # called from various places to manage tab state
     showTab: (tab)->
