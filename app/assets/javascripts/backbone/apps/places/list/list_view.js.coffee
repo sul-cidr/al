@@ -16,22 +16,38 @@
     }
 
     getAutocomplete: ->
-      console.log 'getAutocomplete'
-      $("#search_input").autocomplete({
-        source: placeLookup
-        select: (event, ui) ->
+      choice = $('#search_place_chooser input:radio:checked').val()
+      console.log 'getAutocomplete', choice
+      if choice == 'hoods'
+        $("#search_input").autocomplete({
+          source: areaLookup
+          select: (event, ui) ->
+              event.preventDefault()
+              $("#search_input").val(ui.item.label)
+              @selectedArea = ui.item.value
+              @route = "places/" + ui.item.value
+              console.log 'autocomplete route,', @route
+              Backbone.history.navigate(@route, true)
+
+          focus: (event, ui) ->
+              event.preventDefault()
+              $("#search_input").val(ui.item.label)
+        })
+      else if choice == 'all'
+        $("#search_input").autocomplete({
+          source: placerefLookup
+          select: (event, ui) ->
             event.preventDefault()
             $("#search_input").val(ui.item.label)
             @selectedArea = ui.item.value
-            @route = "places/" + ui.item.value
+            @route = "placerefs/" + ui.item.value
             console.log 'autocomplete route,', @route
-            Backbone.history.navigate(@route, true)
+            # Backbone.history.navigate(@route, true)
 
-        focus: (event, ui) ->
-            event.preventDefault()
-            $("#search_input").val(ui.item.label)
-      })
-
+          focus: (event, ui) ->
+              event.preventDefault()
+              $("#search_input").val(ui.item.label)
+        })
 
   class List.Navmap extends App.Views.ItemView
     template: "places/list/templates/_navmap"

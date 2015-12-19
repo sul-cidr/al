@@ -1,4 +1,4 @@
-var placeLookup =
+var areaLookup =
 [
   {label:"Acton",value:1},
   {label:"Balham",value:2},
