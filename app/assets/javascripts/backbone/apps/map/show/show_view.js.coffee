@@ -396,13 +396,17 @@
       if @marker._latlng != undefined
         # console.log '!=undefined', @marker
         # it's a point
-        map.setView(@marker._popup._source._latlng,16,{animate:true})
+        # remove it from a cluster if it's in one
+        @markerClusters.removeLayer(@marker)
+        # put it back on map
+        map.addLayer(@marker)
         @marker.openPopup()
+        map.setView(@marker._popup._source._latlng,15,{animate:true})
       else
         # it's a linestring
-        map.setView(@marker.getBounds().getCenter(),16,{animate:true})
+        map.setView(@marker.getBounds().getCenter(),15,{animate:true})
 
-      @marker.openPopup()
+      # @marker.openPopup()
 
     # triggered from passages, area list
     highlightFeature: (prid) ->
