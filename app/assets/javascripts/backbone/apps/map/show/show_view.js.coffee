@@ -59,10 +59,10 @@
       # console.log @filteredFeatures
       window.filteredBounds = L.featureGroup(@filteredFeatures).getBounds()
 
-      if keepzoom == ''
+      if keepzoom != 'stay'
         map.fitBounds(filteredBounds)
-      else if keepzoom == 'london'
-        map.setView([51.5120, -0.0928],12)
+      # else if keepzoom == 'london'
+      #   map.setView([51.5120, -0.0928],12)
 
       # @filteredFeatures array used in PlacesApp to render summary
       App.vent.trigger('placerefs:filtered', @filteredFeatures);
