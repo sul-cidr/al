@@ -52,7 +52,7 @@
       if tab == 'authors'
         # console.log 'Show.Controller showTab(authors)'
         # ensure dimensions dropdowns visible
-        App.vent.trigger("map:reset")
+        # App.vent.trigger("map:reset")
         $("#dimensions_region").removeClass('hidden')
 
         Backbone.history.navigate('authors', true)
