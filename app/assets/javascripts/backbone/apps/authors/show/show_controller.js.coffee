@@ -3,7 +3,7 @@
   Show.Controller =
 
     showAuthor: (author) ->
-      console.log "showAuthor", author.get('surname')
+      # console.log "showAuthor", author.get('surname')
       # hide dimension dropdowns
       $("#dimensions_region").addClass("hidden")
 
@@ -22,7 +22,7 @@
           '<span id="crumb_author" class="crumb-left" val="'+id+'">:: '+author.get("surname")+
           ' :: Biography'+
           '</span>')
-        $("#spin_authors").addClass('hidden')
+        # $("#spin_authors").addClass('hidden')
 
       App.authorsRegion.show @authorLayout
 
@@ -63,7 +63,7 @@
       id = author.get("author_id")
       # console.log 'listWorks()', id
       App.request "works:author", id, (works) =>
-        console.log 'listWorks() '+ id, works
+        # console.log 'listWorks() '+ id, works
         if App.authorContentRegion.$el.length > 0
           App.authorContentRegion.reset()
         @worksView = @getWorksView works

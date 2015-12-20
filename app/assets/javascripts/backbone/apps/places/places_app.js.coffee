@@ -21,14 +21,14 @@
 
   App.vent.on "place:show", (area) ->
     id = area.get("id")
-    console.log 'place:show triggered', id
+    # console.log 'place:show triggered', id
     Backbone.history.navigate("places/" + id)
     API.showPlace(id)
 
   App.vent.on "placerefs:filtered", (activePlacerefs) ->
     # CHECK: placeref filtering happens from both directions
     # this renders Area Summary whether visible or not
-    console.log 'activePlacerefs', activePlacerefs.length
+    # console.log 'activePlacerefs', activePlacerefs.length
     API.showPlaceSummary activePlacerefs
 
   PlacesApp.on "start", ->

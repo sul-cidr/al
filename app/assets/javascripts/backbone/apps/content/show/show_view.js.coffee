@@ -21,7 +21,7 @@
         @tab = e
       else
         @tab = $(e.currentTarget).context.attributes.value.value
-        console.log 'content.showTab', @tab
+        # console.log 'content.showTab', @tab
         $(e.currentTarget).addClass("active")
       window.activeTab = @tab
       Show.Controller.showTab(@tab)
@@ -35,7 +35,7 @@
     }
     filterStuff: (e) ->
       # filter either authors or works and map for category
-      console.log $(e.currentTarget)
+      # console.log $(e.currentTarget)
       tab = window.location.hash.substring(1,window.location.hash.length)
       catid = parseInt($(e.currentTarget).context.attributes.val.value)
       # print category header
@@ -46,7 +46,7 @@
         'Clear filter</span>'
       $("#selected_cat_"+tab).html(seltext)
 
-      console.log 'filterStuff() ' + tab, catid
+      # console.log 'filterStuff() ' + tab, catid
       # get a collection of models for category
       App.request tab+":category", catid, (collection) =>
         # console.log 'filtered '+ tab + ', cat: '+ catid, collection

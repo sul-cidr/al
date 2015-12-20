@@ -69,7 +69,7 @@
           cb placePassages
 
     getPlacePassage: (passage_id, cb) ->
-      console.log 'API.getPlacePassage (one)', passage_id
+      # console.log 'API.getPlacePassage (one)', passage_id
       placePassages = new Entities.PassageCollection
       placePassages.fetch
         success: ->

@@ -3,7 +3,7 @@
   List.Controller =
 
     startWorks: ->
-      console.log 'startWorks'
+      # console.log 'startWorks'
       Backbone.history.navigate("works")
       App.request "works:category", 0, (works) =>
         @layout = @getLayoutView()

@@ -17,7 +17,7 @@
 
     getAutocomplete: ->
       choice = $('#search_place_chooser input:radio:checked').val()
-      console.log 'getAutocomplete', choice
+      # console.log 'getAutocomplete', choice
       if choice == 'hoods'
         $("#search_input").autocomplete({
           source: areaLookup
@@ -41,7 +41,7 @@
             $("#search_input").val(ui.item.label)
             @selectedArea = ui.item.value
             @route = "placerefs/" + ui.item.value
-            console.log 'autocomplete route,', @route
+            # console.log 'autocomplete route,', @route
             # Backbone.history.navigate(@route, true)
 
           focus: (event, ui) ->
@@ -67,7 +67,7 @@
       area = this.model
       id = area.get('area_id')
       @route = "places/" + id
-      console.log 'areaByRoute(): ',@route
+      # console.log 'areaByRoute(): ',@route
 
       Backbone.history.navigate(@route, true)
 

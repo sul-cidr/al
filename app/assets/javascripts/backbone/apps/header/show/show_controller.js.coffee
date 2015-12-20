@@ -35,6 +35,6 @@ $('#clickme').click ->
     left: '+=50'
     height: 'toggle'
   }, 5000, ->
-    console.log 'do it'
+    # console.log 'do it'
     return
   return

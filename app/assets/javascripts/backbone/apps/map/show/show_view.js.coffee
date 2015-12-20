@@ -80,16 +80,16 @@
       # TODO "eval is evil"
       # what is active lyr id?
       active = $("#map_chooser li.active").attr("val")
-      console.log 'swapBase(id): active, new: '+ active, id
+      # console.log 'swapBase(id): active, new: '+ active, id
       # clear all tabs of active class
       $("#map_chooser li").removeClass('active')
       # make selected active
       $("#map_chooser li[val='"+id+"']").addClass('active')
       lyr = eval(id)
-      console.log 'eval(id):', lyr
+      # console.log 'eval(id):', lyr
       # if the active map was historic, remove it
       if active != 'l_osm'
-        console.log 'active was != l_osm, it was ', active
+        # console.log 'active was != l_osm, it was ', active
         map.removeLayer(eval(active))
       if id == 'l_indicator'
         if map.getZoom() < 13
@@ -394,7 +394,7 @@
         @marker = _.filter(features, (item) ->
           item.model.attributes.placeref_id == parseInt(prid) )[0]
 
-      console.log 'clickPlaceref marker ', @marker
+      # console.log 'clickPlaceref marker ', @marker
       # zoom to it
       # console.log '@marker', @marker
       window.m = @marker

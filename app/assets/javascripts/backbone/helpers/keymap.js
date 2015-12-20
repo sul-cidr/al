@@ -37,11 +37,11 @@ var makeKeymap = function(initarea){
         .on("click", function (d,i) {
           d3.select(".selected").classed("selected", false);
           d3.select(this).classed("selected", true);
-          console.log('borough: ' + d.properties.id)
+          // console.log('borough: ' + d.properties.id)
           AL.PlacesApp.List.Controller.listAreas(d.properties.id)
         })
     // #13 City of London selected
     boroughs.select("path#b1").classed('selected',true)
-  
+
   });
 }

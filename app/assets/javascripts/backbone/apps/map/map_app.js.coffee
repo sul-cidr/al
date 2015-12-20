@@ -7,12 +7,12 @@
     API.filterByAuthor author
 
   App.vent.on "category:authors:show", (id) ->
-    console.log 'map heard category:authors:show --> ', id
+    # console.log 'map heard category:authors:show --> ', id
     # placerefs for all passages by set of authors
     API.filterByAuthorCategory id
 
   App.vent.on "category:works:show", (works) ->
-    console.log 'map heard category:works:show '
+    # console.log 'map heard category:works:show '
     # placerefs for all passages in works of a category
     API.filterByWorkCategory works
 
@@ -51,7 +51,7 @@
         _.each authors.models, (a) =>
           author_ids.push a.get("author_id")
         @filterByAuthors author_ids, id
-        console.log 'filterByAuthorCategory '+id+ ': ', author_ids
+        # console.log 'filterByAuthorCategory '+id+ ': ', author_ids
 
     filterByWork: (work) ->
       id = work.get("work_id")
@@ -69,7 +69,7 @@
       _.each works.models, (w) =>
         work_ids.push w.get("work_id")
       @filterByWorks work_ids
-      console.log 'filterByWorkCategory ' # +id+ ': ', author_ids
+      # console.log 'filterByWorkCategory ' # +id+ ': ', author_ids
 
     focusPlace: (area) ->
       #

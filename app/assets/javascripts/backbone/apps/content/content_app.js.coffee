@@ -61,13 +61,13 @@
 
 
     authorWorks: (author_id) ->
-      console.log 'works/:author_id, API authorWorks()'
+      # console.log 'works/:author_id, API authorWorks()'
       App.request "author:entity", author_id, (author) =>
-        console.log 'author model from API:', author
+        # console.log 'author model from API:', author
         AL.AuthorsApp.Show.Controller.listWorks author
 
     workPassages: (src, work_id) ->
-      console.log 'workPassages: '+src, work_id
+      # console.log 'workPassages: '+src, work_id
       # get work model from id, forward to sub-app controller
       App.request "work:entity", work_id, (work) =>
         if src == 'a'

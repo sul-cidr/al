@@ -31,7 +31,7 @@
       # window.context = $(e.currentTarget).context
       prid = this.getPlacerefIdFromEvent(e);
       # prid = $(e.currentTarget).context.attributes.val.value
-      console.log 'clicked placeref', prid
+      # console.log 'clicked placeref', prid
       App.vent.trigger('placeref:click', prid)
 
     onPlacerefEnter: (e) ->

@@ -16,11 +16,11 @@
 // 	});
 // })
 
+//
+// $( ".toggle" ).on("click", function() {
+//   // console.log( $( this ).text() );
+// });
 
-$( ".toggle" ).on("click", function() {
-  console.log( $( this ).text() );
-});
-
-function toggleMe(){
-	console.log('clicked a .toggle span')
-}
+// function toggleMe(){
+// 	console.log('clicked a .toggle span')
+// }

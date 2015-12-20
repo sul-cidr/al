@@ -1,3 +1,3 @@
 import Backbone from 'backbone';
 
-console.log(Backbone)
+// console.log(Backbone)
