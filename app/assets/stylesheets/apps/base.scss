@@ -42,6 +42,12 @@ hr { margin: 5px 0; border: 0; height: 1px;
   }
 }
 
+#spin_content {
+  position: absolute;
+  top: 350px;
+  left: 150px;
+  z-index: 1000;
+}
 
 // fa-close
 #passage_closer {

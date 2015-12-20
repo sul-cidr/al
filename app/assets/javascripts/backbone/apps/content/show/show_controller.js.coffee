@@ -50,6 +50,10 @@
       #   App.vent.trigger("map:reset")
 
       if tab == 'authors'
+        App.MapApp.Show.Controller.clearFilters('london')
+        map.setView([51.5120, -0.0928],12)
+        # if $("#content_nav_region li.active").attr('value') != 'authors'
+        #   App.vent.trigger("map:reset")
         # console.log 'Show.Controller showTab(authors)'
         # ensure dimensions dropdowns visible
         $("#dimensions_region").removeClass('hidden')

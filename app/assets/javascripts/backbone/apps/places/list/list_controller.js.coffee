@@ -8,6 +8,7 @@
       @layout = @getLayoutView()
 
       @layout.on "show", =>
+        $("#spin_authors").addClass('hidden')
         AL.ContentApp.Show.Controller.showTab('places')
         @showSearchbox()
         @showNavmap()
@@ -19,7 +20,7 @@
       $("#places_navmap h4").html('Neighborhoods in and around <span class="red">'+
         boroughHash[borough]+'</span')
       hoodArray = boroughHoods[borough]
-      # console.log 'borough: '+borough, hoodArray
+      # console.log 'listAreas(), borough: '+borough, hoodArray
       # window.areas = App.reqres.getHandler("areas:active")()
       window.filteredAreas = areas.filter((area) ->
         area.get('area_id') in hoodArray
