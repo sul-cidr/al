@@ -77,7 +77,7 @@
     getWorksView: (works) ->
       new Show.Works
         collection: works
-        viewComparator: "title"
+        viewComparator: "sorter"
 
     listWorkPassages: (work) ->
       id = work.get("work_id")

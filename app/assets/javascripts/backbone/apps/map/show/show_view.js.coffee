@@ -140,7 +140,8 @@
 
     # mapbox light base in progress
     l_mblight = L.mapbox.tileLayer(
-        'elijahmeeks.8a9e3cb1',
+        # 'elijahmeeks.8a9e3cb1', # light
+        'elijahmeeks.e72a8419',  # emerald
         L.mapbox.accessToken, {
         attribution: 'Mapbox',
         detectRetina: true

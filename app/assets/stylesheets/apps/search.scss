@@ -7,6 +7,10 @@
   margin-bottom: 12px;
 }
 #results_region_search {
+  position: absolute;
+  top:85px;
+  bottom: 2%;
+  overflow-y:auto;
   img {
     margin-top: 20px;
   }

@@ -30,12 +30,18 @@
     template: "search/show/templates/_passage"
     tagName: "p"
     events: {
-      # "click": "highlightPlacerefs"
+      "click span.placeref": "onPlacerefClick"
       "mouseenter span.place": "onPlacerefEnter"
       "mouseleave span.place": "onPlacerefLeave"
     }
     # highlightPlacerefs: ->
     #   console.log 'Show.Passage.highlightPlacerefs()'
+
+    onPlacerefClick: (e) ->
+      # window.context = $(e.currentTarget).context
+      prid = $(e.currentTarget).context.attributes.val.value
+      console.log 'onPlaceRefClick', prid
+      App.vent.trigger('placeref:click', prid)
 
     onPlacerefEnter: (e) ->
       id = this.getPlacerefIdFromEvent(e);

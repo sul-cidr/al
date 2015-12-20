@@ -3,7 +3,7 @@
     <input id="q_input" width = 220px; class="typeahead" type="text"
       onkeydown="if(event.keyCode==13) $('#q_button').click()"
       placeholder="any term(s) or placename(s)...">
-    <button id="q_button" type="submit" class="btn btn-primary btn-sm">Submit</button>
+    <button id="q_button" type="submit" class="btn btn-primary btn-sm">Search</button>
     <span class="clear-search crumb-link hidden">Clear</span>
   </div>
 </div>

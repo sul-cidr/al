@@ -48,6 +48,7 @@
       # App.vent.trigger "map:reset"
       # get author model from id, forward to showAuthor()
       App.request "author:entity", author_id, (author) =>
+
         # console.log 'author', author
         AL.AuthorsApp.Show.Controller.showAuthor(author)
 
