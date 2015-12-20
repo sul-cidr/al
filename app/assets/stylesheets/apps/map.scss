@@ -17,7 +17,19 @@
   left: 60%;
   z-index: 10000;
 }
-
+#legend {
+  position: absolute;
+  height: 30px;
+  padding: 4px 0 4px 8px;
+  bottom: 2%;
+  right: 5px;
+  z-index: 1;
+  background: #f8f4f4;
+  // oldlace whitesmoke
+  font-family: 'english';
+  border-radius: 3px;
+  box-shadow: 3px 3px 2px #888888;
+}
 .viewport-places {
   position: absolute;
   top: 50px;

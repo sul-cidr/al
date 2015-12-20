@@ -1,4 +1,5 @@
 
 <div id="map">
   <div id="spin_map" class="spinner-loader"></div>
+  <div id="legend"><img src="assets/images/legend.png"/></div>
 </div>

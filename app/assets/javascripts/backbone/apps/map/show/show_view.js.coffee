@@ -384,11 +384,13 @@
 
     # called by Show.Controller on trigger 'placeref:click'
     clickPlaceref: (prid) ->
-      # window.wid = App.reqres.getHandler('activework:id')()
-      # console.log 'prid: '+prid+', wid: '+wid
-      @marker = _.filter(filteredFeatures, (item) ->
-        # console.log item.model.attributes.placeref_id, parseInt(prid)
-        item.model.attributes.placeref_id == parseInt(prid) )[0]
+      # TODO: if search tab active, filteredFeatures doesn't exist
+      if $("#content_nav_region li.active").attr('value') != 'search'
+        @marker = _.filter(filteredFeatures, (item) ->
+          item.model.attributes.placeref_id == parseInt(prid) )[0]
+      else
+        @marker = _.filter(features, (item) ->
+          item.model.attributes.placeref_id == parseInt(prid) )[0]
 
       console.log 'clickPlaceref marker ', @marker
       # zoom to it
@@ -406,8 +408,7 @@
       else
         # it's a linestring
         map.setView(@marker.getBounds().getCenter(),15,{animate:true})
-
-      # @marker.openPopup()
+        @marker.openPopup()
 
     # triggered from passages, area list
     highlightFeature: (prid) ->
