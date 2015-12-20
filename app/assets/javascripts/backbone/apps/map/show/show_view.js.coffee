@@ -324,9 +324,17 @@
       @placerefs = L.featureGroup(@features)
 
       @markerClusters = L.markerClusterGroup(
-        # {disableClusteringAtZoom: 17}
+        {
+          polygonOptions: {
+          fillColor: '#3887be',
+          color: '#3887be',
+          weight: 2,
+          opacity: 0.6,
+          fillOpacity: 0.3 },
+          disableClusteringAtZoom: 15
+        }
       );
-
+# disableClusteringAtZoom: 15,
       @markerClusters.addLayer(@placerefs);
 
 
