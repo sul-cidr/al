@@ -334,9 +334,8 @@
           disableClusteringAtZoom: 15
         }
       );
-# disableClusteringAtZoom: 15,
-      @markerClusters.addLayer(@placerefs);
 
+      @markerClusters.addLayer(@placerefs);
 
       # Highlight.
       # @placerefs.on(
@@ -367,7 +366,7 @@
       # stop spinner
       $("#spin_map").addClass('hidden')
 
-    # neighborhood voronoi polygons
+    # neighborhood voronoi polygons (not visible)
     ingestAreas: (areas) ->
       @areaFeatures = []
       $.each areas.models, (i, a) =>
@@ -392,9 +391,10 @@
       window.leaf_areas = @areas
       window.areaFeatures = @features
 
+    # click placeref in text
     # called by Show.Controller on trigger 'placeref:click'
     clickPlaceref: (prid) ->
-      # TODO: if search tab active, filteredFeatures doesn't exist
+      # if search tab active, filteredFeatures doesn't exist
       if $("#content_nav_region li.active").attr('value') != 'search'
         @marker = _.filter(filteredFeatures, (item) ->
           item.model.attributes.placeref_id == parseInt(prid) )[0]
@@ -404,7 +404,6 @@
 
       # console.log 'clickPlaceref marker ', @marker
       # zoom to it
-      # console.log '@marker', @marker
       window.m = @marker
       if @marker._latlng != undefined
         # console.log '!=undefined', @marker
