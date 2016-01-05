@@ -330,8 +330,8 @@
           color: '#3887be',
           weight: 2,
           opacity: 0.6,
-          fillOpacity: 0.3 },
-          disableClusteringAtZoom: 15
+          fillOpacity: 0.3 }
+          # disableClusteringAtZoom: 15
         }
       );
 
