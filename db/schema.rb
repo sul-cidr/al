@@ -174,14 +174,16 @@ ActiveRecord::Schema.define(version: 20150919024745) do
     t.datetime "updated_at",    null: false
   end
 
-  create_table "places", force: :cascade do |t|
+  create_table "places", id: false, force: :cascade do |t|
     t.integer  "place_id"
     t.string   "place_type"
-    t.string   "names"
-    t.string   "source"
+    t.string   "prefname"
     t.float    "latitude"
     t.float    "longitude"
     t.text     "geom_wkt"
+    t.text     "geom_wkt_l"
+    t.text     "geom_wkt_a"
+    t.string   "source"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

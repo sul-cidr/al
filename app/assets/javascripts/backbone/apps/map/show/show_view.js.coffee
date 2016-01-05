@@ -131,12 +131,13 @@
           # return areas
         # AL.PlacesApp.List.Controller.startPlaces()
 
-      App.request "placeref:entities", (placerefs) =>
+      App.request "place:entities", (places) =>
         # points, lines, polygons; type: [bioblace | worksplace]
-        @ingestPlacerefs placerefs
-
-      # $("#spin_authors").addClass('hidden')
-
+        @ingestPlaces places
+      #
+      # App.request "placeref:entities", (placerefs) =>
+      #   # points, lines, polygons; type: [bioblace | worksplace]
+      #   @ingestPlacerefs placerefs
 
     L.mapbox.accessToken = 'pk.eyJ1IjoiZWxpamFobWVla3MiLCJhIjoiY2loanVmcGljMG50ZXY1a2xqdGV3YjRkZyJ9.tZqY_fRD2pQ1a0E599nKqg'
 
@@ -235,13 +236,11 @@
     	color: '#CD5C5C',
     	size: 's'
     });
-
     window.houseMarker = L.MakiMarkers.icon({
     	icon: 'lodging',
     	color: '#BA55D3',
     	size: 's'
     });
-
     window.houseMarkerM = L.MakiMarkers.icon({
     	icon: 'lodging',
     	color: '#BA55D3',
@@ -250,10 +249,57 @@
 
     # CHECK: ingestAreas and ingestPlacerefs both need to populate this
     # $idToFeature = {areas:[], placerefs:[]}
-    $idToFeature = {areas:{}, placerefs:{}}
-    # $foo = {areas:[], placerefs:[]}
+    $idToFeature = {areas:{}, places:{}}
     window.idToFeature = $idToFeature
     # window.foo = $foo
+
+    ingestPlaces: (places) ->
+      console.log places.models.length + ' place models to be ingested, e.g.', places.models[0]
+      @features = []
+      options = {
+        numberOfSides: 6,
+        color: 'red',
+        radius: 8,
+        opacity: 0.5
+      }
+      $.each places.models, (i, pl) =>
+        geom = pl.attributes.geom_wkt
+        pid = pl.get("place_id")
+        # console.log 'pid', pid
+        if geom.substr(0,5) == 'POINT'
+          coords = swap(wellknown(geom).coordinates)
+          l_geom = new L.LatLng(coords[0],coords[1])
+          # console.log l_geom
+          feature = new L.CircleMarker(l_geom, options)
+          # feature = new L.RegularPolygonMarker(l_geom, options)
+          $idToFeature.places[pid] = feature
+          # console.log feature
+          @features.push feature
+
+        else if geom.substr(0,10) == 'LINESTRING'
+          feature =  new L.GeoJSON(wellknown(geom), {
+            style: mapStyles.street
+            # options: {"model":pl,"id":prid}
+            onEachFeature: (feature, layer) ->
+              layer.bindPopup pl.get("prefname")
+          })
+          # CHECK: neither of these actually do anything
+          feature.model = pl
+          feature.options.id = pid
+          $idToFeature.places[pid] = feature
+          # CHECK: lines in @features defeats spatial query?
+          @features.push feature
+
+      @places = L.featureGroup(@features)
+
+      @places.on('click',
+        this.onSelectFeature.bind(this)
+      );
+
+      @places.addTo(@map)
+      # TODO: stop exposing these
+      window.places = @places
+      window.features = @features
 
     ingestPlacerefs: (placerefs) ->
       # console.log 'placeref models to be ingested', placerefs.models
@@ -337,7 +383,7 @@
 
       @markerClusters.addLayer(@placerefs);
 
-      # Highlight.
+        # Highlight.
       # @placerefs.on(
       #   'mouseover',
       #   this.onSelectFeature.bind(this)

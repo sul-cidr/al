@@ -24,6 +24,7 @@
 //= require leaflet-omnivore/leaflet-omnivore.min
 //= require leaflet-active-area/src/leaflet.activearea
 //= require leaflet.markercluster/dist/leaflet.markercluster
+//= require leaflet-dvf/dist/leaflet-dvf
 //= require Leaflet.MakiMarkers/Leaflet.MakiMarkers
 //= require jquery-ui/jquery-ui.min
 

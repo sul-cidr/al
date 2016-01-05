@@ -1,14 +1,16 @@
 # a Place has a geometry, for 1..* placerefs
 class CreatePlaces < ActiveRecord::Migration
   def change
-    create_table :places do |t|
+    create_table :places, {:id => false} do |t|
     	t.integer :place_id
       t.string :place_type
-      t.string :names
-      t.string :source
+      t.string :prefname
       t.float :latitude
       t.float :longitude
     	t.text :geom_wkt
+    	t.text :geom_wkt_l
+    	t.text :geom_wkt_a
+      t.string :source
      	t.timestamps null: false
     end
   end
