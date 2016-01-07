@@ -24,6 +24,14 @@ function scaleFont(value,range) {
   return s(value);
 }
 
+// returns value in pixels suitable for circle markers
+function scaleMarker(value,range) {
+  s = d3.scale.linear()
+    .domain(range)
+    .range([4,12]) // em
+  return s(value);
+}
+
 function colorizeFont(value,range) {
   // var ramp=d3.scale.linear().domain([0,100]).range(["red","blue"]);
   s = d3.scale.linear()

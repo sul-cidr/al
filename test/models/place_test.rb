@@ -2,16 +2,18 @@
 #
 # Table name: places
 #
-#  id         :integer          not null
-#  place_id   :integer          primary key
-#  source     :string
-#  geom_wkt   :text
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  latitude   :float
-#  longitude  :float
-#  names      :string
-#  place_type :string
+#  place_id        :integer          primary key
+#  place_type      :string
+#  prefname        :string
+#  latitude        :float
+#  longitude       :float
+#  geom_wkt        :text
+#  geom_wkt_l      :text
+#  geom_wkt_a      :text
+#  source          :string
+#  placerefs_count :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 
 require 'test_helper'

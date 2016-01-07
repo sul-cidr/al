@@ -11,6 +11,7 @@ class CreatePlaces < ActiveRecord::Migration
     	t.text :geom_wkt_l
     	t.text :geom_wkt_a
       t.string :source
+      t.integer :placerefs_count
      	t.timestamps null: false
     end
   end

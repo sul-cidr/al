@@ -45,7 +45,7 @@
       # reset filteredFeatures array
       @filteredFeatures = []
       setTimer('filterAllLayers')
-      # console.log @features
+      console.log @features
       _.each @features, (f) =>
         # console.log f
         @filterLayer(f)
@@ -252,29 +252,68 @@
     $idToFeature = {areas:{}, places:{}}
     window.idToFeature = $idToFeature
     # window.foo = $foo
+    buildPopup: (place_id) ->
+      console.log 'buildPopup for place #', place_id
 
     ingestPlaces: (places) ->
       console.log places.models.length + ' place models to be ingested, e.g.', places.models[0]
       @features = []
-      options = {
-        numberOfSides: 6,
-        color: 'red',
-        radius: 8,
-        opacity: 0.5
-      }
+
       $.each places.models, (i, pl) =>
         geom = pl.attributes.geom_wkt
         pid = pl.get("place_id")
+        pname = pl.get("prefname")
+        prcount = pl.get("placerefs_count")
         # console.log 'pid', pid
         if geom.substr(0,5) == 'POINT'
           coords = swap(wellknown(geom).coordinates)
           l_geom = new L.LatLng(coords[0],coords[1])
-          # console.log l_geom
-          feature = new L.CircleMarker(l_geom, options)
+
           # feature = new L.RegularPolygonMarker(l_geom, options)
+          feature = new L.CircleMarker(l_geom, {
+            # numberOfSides: 6,
+            color: '#000',
+            fillColor: 'yellow',
+            radius: scaleMarker(prcount,[1,43]),
+            fillOpacity: 0.7,
+            weight: 1
+          })
+
+          feature.on('click', (e) ->
+            console.log e.target
+            window.clicked = e.target
+            html = ''
+            # html = '<span class="popup-header">references to <b>'+pname+'</b></span><br/>'
+            App.request "placeref:entities", {place_id:pid}, (placerefs) =>
+              console.log placerefs
+              _.each placerefs.models, (pr) =>
+                html += '&#8220;'+pr.attributes.placeref +
+                  ',&#8221; in <em>' +
+                  workhash[pr.attributes.work_id].title + '</em><br/>('+
+                  authhash[workhash[pr.attributes.work_id].author_id] +
+                  ')&nbsp;[<span class="passage-link" val='+
+                  pr.attributes.passage_id+'>passage</span>]<hr/>'
+              e.target._popup.setContent(html)
+          )
+          # add model, id to feature
+          feature.model = pl
+          feature.options.id = pid
           $idToFeature.places[pid] = feature
-          # console.log feature
           @features.push feature
+
+          @popup = feature.bindPopup(
+            pl.get('prefname'), {'className': 'place-popup', 'maxHeight': '450'}
+          )
+
+          # if pl.get('placeref_type') == 'bio'
+          # then '<b>'+pl.get("placeref")+'</b>, a place in<br/>'+
+          #   authhash[pl.get("author_id")]+'\'s life<br/>'+
+          #   pl.get("placeref_id")
+          # else '<b>'+pl.get("placeref") + '</b>, in<br/>'+
+          #   '<em>'+workhash[pl.get("work_id")].title + '</em>'+'<br/>'+
+          #   'by '+authhash[pl.get("author_id")]+'. '+
+          #   '<span class="passage-link" val='+pl.get("passage_id")+
+          #     '>show passage</span> ['+pl.get("placeref_id") + ']'
 
         else if geom.substr(0,10) == 'LINESTRING'
           feature =  new L.GeoJSON(wellknown(geom), {
@@ -283,18 +322,13 @@
             onEachFeature: (feature, layer) ->
               layer.bindPopup pl.get("prefname")
           })
-          # CHECK: neither of these actually do anything
+          # add model, id to feature
           feature.model = pl
           feature.options.id = pid
           $idToFeature.places[pid] = feature
-          # CHECK: lines in @features defeats spatial query?
           @features.push feature
 
       @places = L.featureGroup(@features)
-
-      @places.on('click',
-        this.onSelectFeature.bind(this)
-      );
 
       @places.addTo(@map)
       # TODO: stop exposing these
@@ -355,15 +389,12 @@
             onEachFeature: (feature, layer) ->
               layer.bindPopup pl.get("placeref")
           })
-          # CHECK: neither of these actually do anything
           feature.model = pl
+          # CHECK: do of these actually do anything?
           feature.options.id = prid
           feature.options.workid = workid
-          # $idToFeature.placerefs.push {prid:feature}
-          $idToFeature.placerefs[prid] = feature
-          # $foo.placerefs[prid]={feat:feature,wid:workid}
 
-          # CHECK: lines in @features defeats spatial query
+          $idToFeature.placerefs[prid] = feature
           @features.push feature
 
 

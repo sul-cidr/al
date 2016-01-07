@@ -184,8 +184,9 @@ ActiveRecord::Schema.define(version: 20150919024745) do
     t.text     "geom_wkt_l"
     t.text     "geom_wkt_a"
     t.string   "source"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "placerefs_count"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "standings", force: :cascade do |t|

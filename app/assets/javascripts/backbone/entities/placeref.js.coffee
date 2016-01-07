@@ -12,9 +12,10 @@
 
   API =
     # all placerefs less bio not yet mapped to author/work
-    getPlacerefEntities: (cb) ->
+    getPlacerefEntities: (data, cb) ->
       placerefs = new Entities.PlacerefCollection()
       placerefs.fetch
+        data: data
         success: ->
           # TODO: why are author_ids missing?
           # filter = _.filter(placerefs.models,(item) ->
@@ -23,5 +24,5 @@
           # placerefs.reset(filter)
           cb placerefs
 
-  App.reqres.setHandler "placeref:entities", (cb) ->
-    API.getPlacerefEntities cb
+  App.reqres.setHandler "placeref:entities", (data={},cb) ->
+    API.getPlacerefEntities data, cb

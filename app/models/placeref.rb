@@ -21,18 +21,23 @@ class Placeref < ActiveRecord::Base
   # self.primary_key = 'placeref_id'
 
   belongs_to :passage
-  has_one :place
+  belongs_to :place, :counter_cache => true
+  # has_one :place
 
-  # placerefs in or near hood
-  def self.in_or_near(id)
-    where {
-        geom_wkt like 'MULTIPOINT%' and
-        st_intersects(
-          st_buffer( (st_geomfromtext(Area.find(id).geom_wkt)), 0.01),
-          st_geomfromtext(geom_wkt)
-        )
-      # st_geomfromtext(Area.find(id).geom_wkt)
-    }
-  end
+  scope :by_place, -> (pid = nil) {
+    where {place_id == pid}
+  }
+
+    # placerefs in or near hood
+    # def self.in_or_near(id)
+    #   where {
+    #       geom_wkt like 'MULTIPOINT%' and
+    #       st_intersects(
+    #         st_buffer( (st_geomfromtext(Area.find(id).geom_wkt)), 0.01),
+    #         st_geomfromtext(geom_wkt)
+    #       )
+    #     # st_geomfromtext(Area.find(id).geom_wkt)
+    #   }
+    # end
 
 end

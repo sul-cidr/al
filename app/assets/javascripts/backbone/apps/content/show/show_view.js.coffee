@@ -56,4 +56,5 @@
           AL.AuthorsApp.List.Controller.listCatAuthors(collection)
 
       # to map_app
+      console.log "category:"+tab+":show", catid
       App.vent.trigger "category:"+tab+":show", catid
