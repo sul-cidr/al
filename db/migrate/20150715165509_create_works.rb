@@ -11,8 +11,6 @@ class CreateWorks < ActiveRecord::Migration
      	t.timestamps null: false
     end
 
-    # add_foreign_key :works, :authors
-
     execute "ALTER TABLE works ADD PRIMARY KEY (work_id);"
 
   end

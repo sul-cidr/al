@@ -13,5 +13,8 @@ class CreatePlacerefs < ActiveRecord::Migration
       t.string :placeref_type
      	t.timestamps null: false
     end
+
+  execute "ALTER TABLE placerefs ADD PRIMARY KEY (placeref_id);"
+
   end
 end

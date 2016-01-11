@@ -7,8 +7,6 @@
     model: Entities.Placeref
     url: '/placerefs'
 
-    # idAttribute: "placeref_id"
-  # placerefs = new Entities.PlacerefCollection()
 
   API =
     # all placerefs less bio not yet mapped to author/work

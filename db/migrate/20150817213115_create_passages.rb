@@ -9,7 +9,7 @@ class CreatePassages < ActiveRecord::Migration
      	t.timestamps null: false
     end
 
-  execute "ALTER TABLE passages ADD PRIMARY KEY (passage_id);"
+    execute "ALTER TABLE passages ADD PRIMARY KEY (passage_id);"
 
   end
 

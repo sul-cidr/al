@@ -14,5 +14,8 @@ class CreatePlaces < ActiveRecord::Migration
       t.integer :placerefs_count
      	t.timestamps null: false
     end
+
+    execute "ALTER TABLE places ADD PRIMARY KEY (place_id);"
+
   end
 end
