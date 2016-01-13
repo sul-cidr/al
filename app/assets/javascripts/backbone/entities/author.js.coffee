@@ -39,8 +39,7 @@
           _.each authors.models, (a) =>
             # console.log a.attributes.categories
           filterCat = _.filter(authors.models,(item) ->
-            item.get("author_id") < 10434 && #item.contains("categories", cat)
-            item.get('categories').indexOf(cat) > -1;
+            item.get("author_id") < 10434 && item.get('categories').indexOf(cat) > -1;
           )
           authors.reset(filterCat);
           # console.log authors.models.length + ' authors from API'

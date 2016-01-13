@@ -6,6 +6,9 @@
     # placerefs for all passages by an author
     API.filterByAuthor author
 
+  App.vent.on "work:show", (work) ->
+    API.filterByWork work
+    
   App.vent.on "category:authors:show", (id) ->
     # console.log 'map heard category:authors:show --> ', id
     # placerefs for all passages by set of authors
@@ -99,9 +102,6 @@
 
   App.vent.on "map:reset", ->
     API.resetMap()
-
-  App.vent.on "work:show", (work) ->
-    API.filterByWork work
 
   App.vent.on "placeref:click", (prid) ->
     # console.log 'map_app heard highlight id#', iid

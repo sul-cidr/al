@@ -56,6 +56,11 @@
   margin-top: 50px;
 }
 
+.leaflet-popup-content {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
 .place-popup {
   h4 { font-size: 12px; }
 }

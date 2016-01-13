@@ -17,6 +17,12 @@ class Work < ActiveRecord::Base
 
   self.primary_key = 'work_id'
 
+  has_many :work_genre_rels
+  has_many :genres, :through => :work_genre_rels
+
+  has_many :work_form_rels
+  has_many :forms, :through => :work_form_rels
+
   belongs_to :author, foreign_key: :author_id
   has_many :passages
   has_many :placerefs, :through => :passages

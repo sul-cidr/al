@@ -2,6 +2,6 @@
   <!-- TODO: use Backbone.history.navigate here -->
   <p class="crumb-works"><< Return to works list</p>
   <h4><%= @title %></h4>
-  <p><%= authhash[@author_id] %></p>
+  <p><%= authHash[@author_id] %></p>
   <hr/>
 </div>

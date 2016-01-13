@@ -21,6 +21,8 @@ class Placeref < ActiveRecord::Base
   # self.primary_key = 'placeref_id'
 
   belongs_to :passage
+  belongs_to :work
+  belongs_to :author
   belongs_to :place, :counter_cache => true
   # has_one :place
 
@@ -28,16 +30,21 @@ class Placeref < ActiveRecord::Base
     where {place_id == pid}
   }
 
-    # placerefs in or near hood
-    # def self.in_or_near(id)
-    #   where {
-    #       geom_wkt like 'MULTIPOINT%' and
-    #       st_intersects(
-    #         st_buffer( (st_geomfromtext(Area.find(id).geom_wkt)), 0.01),
-    #         st_geomfromtext(geom_wkt)
-    #       )
-    #     # st_geomfromtext(Area.find(id).geom_wkt)
-    #   }
-    # end
+  scope :for_popup, -> {
+    includes {work}
+    includes {author}
+  }
+
+  # placerefs in or near hood
+  # def self.in_or_near(id)
+  #   where {
+  #       geom_wkt like 'MULTIPOINT%' and
+  #       st_intersects(
+  #         st_buffer( (st_geomfromtext(Area.find(id).geom_wkt)), 0.01),
+  #         st_geomfromtext(geom_wkt)
+  #       )
+  #     # st_geomfromtext(Area.find(id).geom_wkt)
+  #   }
+  # end
 
 end

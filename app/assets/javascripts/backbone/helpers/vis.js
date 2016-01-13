@@ -153,7 +153,7 @@ var packAuths = function (auths) {
       .attr("r", function(d) { return d.r; })
       // .on("mouseover", function(d){console.log(d)})
       .append("svg:title")
-        .text(function(d) { return authhash[d.key]});;
+        .text(function(d) { return authHash[d.key]});;
 
   node.append("text")
       .text(function(d) { return authLabel[d.key]; })

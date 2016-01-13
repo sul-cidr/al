@@ -9,12 +9,11 @@
     idAttribute: "place_id"
 
   API =
-    # all places: not especially useful
     getPlaceEntities: (cb) ->
       places = new Entities.PlaceCollection()
       places.fetch
         success: ->
-          # TODO make sense to filter by geom type here? e.g. separatehandlers
+          console.log 'places', places
           cb places
 
   App.reqres.setHandler "place:entities", (cb) ->

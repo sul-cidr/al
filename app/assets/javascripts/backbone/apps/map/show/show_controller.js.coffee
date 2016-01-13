@@ -82,7 +82,7 @@
         App.placePassagesRegion.show placePassageView
         App.placePassagesRegion.$el.fadeIn("slow")
         #
-        # $(".passages-places h4").html(authhash[authid])
+        # $(".passages-places h4").html(authHash[authid])
 
     getPlacePassageView: (place_passages) ->
       new AL.PlacesApp.Show.PlacePassages ({

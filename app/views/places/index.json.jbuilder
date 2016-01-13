@@ -1,4 +1,6 @@
 json.array! @places do |place|
+  # json.place place
+
   json.extract!(
     place,
     :place_id,

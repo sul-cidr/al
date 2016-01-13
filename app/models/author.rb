@@ -2,34 +2,26 @@
 #
 # Table name: authors
 #
-#  author_id  :integer          not null, primary key
-#  prefname   :string
-#  surname    :string
-#  middle     :string
-#  given      :string
-#  birth_date :date
-#  death_date :date
-#  birth_year :integer
-#  death_year :integer
-#  viaf_id    :integer
-#  wiki_id    :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  categories :integer          default([]), is an Array
+#  author_id    :integer          not null, primary key
+#  prefname     :string
+#  surname      :string
+#  middle       :string
+#  given        :string
+#  birth_date   :date
+#  death_date   :date
+#  birth_year   :integer
+#  death_year   :integer
+#  community_id :integer
+#  standing_id  :integer
+#  viaf_id      :integer
+#  wiki_id      :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
 #
 
 class Author < ActiveRecord::Base
 
   self.primary_key = 'author_id'
-
-  has_many :author_genres
-  has_many :genres, :through => :author_genres
-  has_many :author_forms
-  has_many :forms, :through => :author_forms
-  has_many :author_communities
-  has_many :communities, :through => :author_communities
-  has_many :author_standings
-  has_many :standings, :through => :author_standings
 
   has_many :works
   has_many :passages, :through => :works

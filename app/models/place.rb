@@ -24,5 +24,28 @@ class Place < ActiveRecord::Base
   has_many :works, :through => :passages
   has_many :authors, :through => :works
 
+  # scope :by_author, -> (aid = nil) {
+  #   where { auth_array.include? aid }
+  # }
+  #
+  # scope :by_place, -> (pid = nil) {
+  #   where {place_id == pid}
+  # }
+  #
+  # scope :by_genre, -> {
+  #   includes { work_genre }
+  # }
+  #
+  # scope :by_form, -> {
+  #   includes { work_form }
+  # }
+  #
+  # scope :by_community, -> ( cid = nil) {
+  #   where {community_id == cid}
+  # }
+  #
+  # scope :by_standing, -> (sid = nil) {
+  #   where {standing_id == sid}
+  # }
 
 end

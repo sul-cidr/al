@@ -3,7 +3,7 @@
   Show.Controller =
 
     listPlacePassages: (authid) ->
-      prefname = authhash[authid]
+      prefname = authHash[authid]
 
       window.authorPassages =
         _.filter @activeWorksPlaces, (wp) =>
@@ -25,7 +25,7 @@
         $("#place_passages_region").removeClass('hidden')
         # App.placePassagesRegion.$el.fadeIn("slow")
         #
-        $(".passages-places h4").html(authhash[authid])
+        $(".passages-places h4").html(authHash[authid])
 
     getPlacePassagesView: (place_passages) ->
       new Show.PlacePassages ({
@@ -95,7 +95,7 @@
       # console.log 'API.showAreaSummary..triggered from ??'
       _.each @activeWorksPlaces, (p) =>
         wPlacerefs.push(p.model.attributes)
-        worksYears.push(workhash[p.model.attributes.work_id].work_year)
+        worksYears.push(workHash[p.model.attributes.work_id].work_year)
       _.each @activeBioPlaces, (p) =>
         @bPlacerefs.push(p.model.attributes)
       crossworks = crossfilter(wPlacerefs)

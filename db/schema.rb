@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150919024745) do
+ActiveRecord::Schema.define(version: 20160113181230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,24 +69,6 @@ ActiveRecord::Schema.define(version: 20150919024745) do
 
   add_index "author_communities", ["author_id", "community_id"], name: "index_author_communities_on_author_id_and_community_id", using: :btree
 
-  create_table "author_forms", force: :cascade do |t|
-    t.integer  "author_id"
-    t.integer  "form_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "author_forms", ["author_id", "form_id"], name: "index_author_forms_on_author_id_and_form_id", using: :btree
-
-  create_table "author_genres", force: :cascade do |t|
-    t.integer  "author_id"
-    t.integer  "genre_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "author_genres", ["author_id", "genre_id"], name: "index_author_genres_on_author_id_and_genre_id", using: :btree
-
   create_table "author_standings", force: :cascade do |t|
     t.integer  "author_id"
     t.integer  "standing_id"
@@ -105,20 +87,14 @@ ActiveRecord::Schema.define(version: 20150919024745) do
     t.date     "death_date"
     t.integer  "birth_year"
     t.integer  "death_year"
+    t.integer  "community_id"
+    t.integer  "standing_id"
     t.integer  "viaf_id"
     t.string   "wiki_id"
-    t.integer  "categories", default: [],              array: true
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.integer  "categories",   default: [],              array: true
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
-
-  create_table "authors_categories", force: :cascade do |t|
-    t.integer "author_id"
-    t.integer "category_id"
-    t.integer "dimension_id"
-  end
-
-  add_index "authors_categories", ["author_id", "category_id"], name: "index_authors_categories_on_author_id_and_category_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.integer  "category_id"
@@ -212,6 +188,30 @@ ActiveRecord::Schema.define(version: 20150919024745) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "work_categories", force: :cascade do |t|
+    t.integer  "work_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "work_categories", ["category_id", "work_id"], name: "index_work_categories_on_category_id_and_work_id", using: :btree
+  add_index "work_categories", ["work_id", "category_id"], name: "index_work_categories_on_work_id_and_category_id", using: :btree
+
+  create_table "work_form_rels", force: :cascade do |t|
+    t.integer  "work_id"
+    t.integer  "form_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "work_genre_rels", force: :cascade do |t|
+    t.integer  "work_id"
+    t.integer  "genre_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "works", primary_key: "work_id", force: :cascade do |t|
     t.integer  "author_id"

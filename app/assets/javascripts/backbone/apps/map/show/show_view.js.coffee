@@ -122,26 +122,20 @@
       @initMap()
 
       App.request "area:entities", (areas) =>
-        # add to map
-        # allAreas = areas # clone collection
+
         @ingestAreas areas
         # make available to places_app
         App.reqres.setHandler "areas:active", ->
           return areas
-          # return areas
-        # AL.PlacesApp.List.Controller.startPlaces()
 
       App.request "place:entities", (places) =>
         # points, lines, polygons; type: [bioblace | worksplace]
         @ingestPlaces places
-      #
-      # App.request "placeref:entities", (placerefs) =>
-      #   # points, lines, polygons; type: [bioblace | worksplace]
-      #   @ingestPlacerefs placerefs
+
 
     L.mapbox.accessToken = 'pk.eyJ1IjoiZWxpamFobWVla3MiLCJhIjoiY2loanVmcGljMG50ZXY1a2xqdGV3YjRkZyJ9.tZqY_fRD2pQ1a0E599nKqg'
 
-    # mapbox light base in progress
+    # mapbox light basemap, in progress
     l_mblight = L.mapbox.tileLayer(
         # 'elijahmeeks.8a9e3cb1', # light
         'elijahmeeks.e72a8419',  # emerald
@@ -280,19 +274,26 @@
           })
 
           feature.on('click', (e) ->
-            console.log e.target
-            window.clicked = e.target
+            # console.log e.target
+            # window.clicked = e.target
             html = ''
             # html = '<span class="popup-header">references to <b>'+pname+'</b></span><br/>'
             App.request "placeref:entities", {place_id:pid}, (placerefs) =>
-              console.log placerefs
+              # console.log placerefs
               _.each placerefs.models, (pr) =>
-                html += '&#8220;'+pr.attributes.placeref +
-                  ',&#8221; in <em>' +
-                  workhash[pr.attributes.work_id].title + '</em><br/>('+
-                  authhash[workhash[pr.attributes.work_id].author_id] +
-                  ')&nbsp;[<span class="passage-link" val='+
-                  pr.attributes.passage_id+'>passage</span>]<hr/>'
+                # console.log 'placeref attributes', pr.attributes
+                if pr.attributes.placeref.placeref_type == 'work'
+                  html += '&#8220;'+pr.attributes.placeref.placeref +
+                    ',&#8221; in <em>' +
+                    pr.attributes.work.title + '</em><br/>('+
+                    pr.attributes.author.prefname +
+                    '; '+pr.attributes.work.work_year+')&nbsp;[<span class="passage-link" val='+
+                    pr.attributes.placeref.passage_id+'>passage</span>]<hr/>'
+                else
+                  html += '&#8220;'+pr.attributes.placeref.placeref +
+                    ',&#8221; a place in the life of ' +
+                    pr.attributes.author.prefname+'<hr/>'
+
               e.target._popup.setContent(html)
           )
           # add model, id to feature
@@ -305,23 +306,36 @@
             pl.get('prefname'), {'className': 'place-popup', 'maxHeight': '450'}
           )
 
-          # if pl.get('placeref_type') == 'bio'
-          # then '<b>'+pl.get("placeref")+'</b>, a place in<br/>'+
-          #   authhash[pl.get("author_id")]+'\'s life<br/>'+
-          #   pl.get("placeref_id")
-          # else '<b>'+pl.get("placeref") + '</b>, in<br/>'+
-          #   '<em>'+workhash[pl.get("work_id")].title + '</em>'+'<br/>'+
-          #   'by '+authhash[pl.get("author_id")]+'. '+
-          #   '<span class="passage-link" val='+pl.get("passage_id")+
-          #     '>show passage</span> ['+pl.get("placeref_id") + ']'
-
         else if geom.substr(0,10) == 'LINESTRING'
           feature =  new L.GeoJSON(wellknown(geom), {
             style: mapStyles.street
             # options: {"model":pl,"id":prid}
-            onEachFeature: (feature, layer) ->
-              layer.bindPopup pl.get("prefname")
+            # onEachFeature: (feature, layer) ->
+            #   layer.bindPopup pl.get("prefname")
           })
+
+          feature.on('click', (e) ->
+            console.log 'e.target', e.target
+            window.clicked = e.target
+            html = ''
+            # html = '<span class="popup-header">references to <b>'+pname+'</b></span><br/>'
+            App.request "placeref:entities", {place_id:pid}, (placerefs) =>
+              # console.log placerefs
+              _.each placerefs.models, (pr) =>
+                # console.log 'placeref attributes', pr.attributes
+                if pr.attributes.placeref.placeref_type == 'work'
+                  html += '&#8220;'+pr.attributes.placeref.placeref +
+                    ',&#8221; in <em>' +
+                    pr.attributes.work.title + '</em><br/>('+
+                    pr.attributes.author.prefname +
+                    '; '+pr.attributes.work.work_year+')&nbsp;[<span class="passage-link" val='+
+                    pr.attributes.placeref.passage_id+'>passage</span>]<hr/>'
+                else
+                  html += '&#8220;'+pr.attributes.placeref.placeref +
+                    ',&#8221; a place in the life of ' +
+                    pr.attributes.author.prefname+'<hr/>'
+                e.target.bindPopup html
+          )
           # add model, id to feature
           feature.model = pl
           feature.options.id = pid
@@ -354,11 +368,11 @@
           @popup = feature.bindPopup(
             if pl.get('placeref_type') == 'bio'
             then '<b>'+pl.get("placeref")+'</b>, a place in<br/>'+
-              authhash[pl.get("author_id")]+'\'s life<br/>'+
+              authHash[pl.get("author_id")]+'\'s life<br/>'+
               pl.get("placeref_id")
             else '<b>'+pl.get("placeref") + '</b>, in<br/>'+
-              '<em>'+workhash[pl.get("work_id")].title + '</em>'+'<br/>'+
-              'by '+authhash[pl.get("author_id")]+'. '+
+              '<em>'+workHash[pl.get("work_id")].title + '</em>'+'<br/>'+
+              'by '+authHash[pl.get("author_id")]+'. '+
               '<span class="passage-link" val='+pl.get("passage_id")+
                 '>show passage</span> ['+pl.get("placeref_id") + ']'
           )
