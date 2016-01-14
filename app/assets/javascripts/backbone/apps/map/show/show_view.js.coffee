@@ -45,7 +45,7 @@
       # reset filteredFeatures array
       @filteredFeatures = []
       setTimer('filterAllLayers')
-      console.log @features
+      # console.log @features
       _.each @features, (f) =>
         # console.log f
         @filterLayer(f)

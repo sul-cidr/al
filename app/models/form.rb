@@ -9,6 +9,9 @@
 #
 
 class Form < ActiveRecord::Base
-  has_many :author_forms
-  has_many :authors, :through => :author_forms
+  has_many :work_form_rels
+  has_many :works, :through => :work_form_rels
+  has_many :authors, :through => :works
+  has_many :passages, :through => :works
+  has_many :places, :through => :passages
 end

@@ -9,6 +9,9 @@
 #
 
 class Genre < ActiveRecord::Base
-  has_many :author_genres
-  has_many :authors, :through => :author_genres
+  has_many :work_genre_rels
+  has_many :works, :through => :work_genre_rels
+  has_many :authors, :through => :works
+  has_many :passages, :through => :works
+  has_many :places, :through => :passages
 end

@@ -60,24 +60,6 @@ ActiveRecord::Schema.define(version: 20160113181230) do
     t.datetime "updated_at",     null: false
   end
 
-  create_table "author_communities", force: :cascade do |t|
-    t.integer  "author_id"
-    t.integer  "community_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "author_communities", ["author_id", "community_id"], name: "index_author_communities_on_author_id_and_community_id", using: :btree
-
-  create_table "author_standings", force: :cascade do |t|
-    t.integer  "author_id"
-    t.integer  "standing_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  add_index "author_standings", ["author_id", "standing_id"], name: "index_author_standings_on_author_id_and_standing_id", using: :btree
-
   create_table "authors", primary_key: "author_id", force: :cascade do |t|
     t.string   "prefname"
     t.string   "surname"
@@ -116,13 +98,13 @@ ActiveRecord::Schema.define(version: 20160113181230) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "forms", force: :cascade do |t|
+  create_table "forms", primary_key: "form_id", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "genres", force: :cascade do |t|
+  create_table "genres", primary_key: "genre_id", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

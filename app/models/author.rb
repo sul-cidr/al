@@ -26,21 +26,22 @@ class Author < ActiveRecord::Base
   has_many :works
   has_many :passages, :through => :works
   has_many :placerefs, :through => :passages
+  has_many :places, :through => :passages
 
   def to_s
     "#{prefname}"
   end
 
-  def places
-    Place.joins('join placerefs on placerefs.place_id = places.place_id')
-      .joins('join passages on passages.passage_id = placerefs.passage_id')
-      .joins('join works on works.work_id = passages.work_id')
-      .joins('join authors on authors.author_id = works.author_id')
-      .where("authors.author_id = #{author_id}")
-
-    # alternate if rails handles ids:
-    # Place.joins{placerefs.passages.works.authors}.where{author=self}
-
-  end
+  # def places
+  #   Place.joins('join placerefs on placerefs.place_id = places.place_id')
+  #     .joins('join passages on passages.passage_id = placerefs.passage_id')
+  #     .joins('join works on works.work_id = passages.work_id')
+  #     .joins('join authors on authors.author_id = works.author_id')
+  #     .where("authors.author_id = #{author_id}")
+  #
+  #   # alternate if rails handles ids:
+  #   # Place.joins{placerefs.passages.works.authors}.where{author=self}
+  #
+  # end
 
 end
