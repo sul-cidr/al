@@ -15,11 +15,6 @@
       placerefs.fetch
         data: data
         success: ->
-          # TODO: why are author_ids missing?
-          # filter = _.filter(placerefs.models,(item) ->
-          #   item.get("author_id") > -1;
-          # )
-          # placerefs.reset(filter)
           cb placerefs
 
   App.reqres.setHandler "placeref:entities", (data={},cb) ->

@@ -35,6 +35,31 @@ class Placeref < ActiveRecord::Base
     includes {author}
   }
 
+  def self.rank_places(params)
+    refs = all
+    if params[:genre_id]
+      refs = refs.joins{work.genres}.where{genres.genre_id >> params[:genre_id]}
+    end
+    if params[:form_id]
+      refs = refs.joins{work.forms}.where{forms.form_id >> params[:form_id]}
+    end
+    if params[:community_id]
+      refs = refs.joins{author}.where{author.community_id >> params[:community_id]}
+    end
+    if params[:standing_id]
+      refs = refs.joins{author}.where{author.standing_id >> params[:standing_id]}
+    end
+    counts = {}
+    refs.each do |ref|
+      if !counts.has_key?(ref.place_id)
+        counts[ref.place_id] = 1
+      else
+        counts[ref.place_id] += 1
+      end
+    end
+    counts
+  end
+
   # placerefs in or near hood
   # def self.in_or_near(id)
   #   where {
