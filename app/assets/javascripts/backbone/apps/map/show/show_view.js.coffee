@@ -130,7 +130,7 @@
 
       App.request "place:entities", (places) =>
         # points, lines, polygons; type: [bioblace | worksplace]
-        @ingestPlaces places
+        @renderPlaces places
 
 
     L.mapbox.accessToken = 'pk.eyJ1IjoiZWxpamFobWVla3MiLCJhIjoiY2loanVmcGljMG50ZXY1a2xqdGV3YjRkZyJ9.tZqY_fRD2pQ1a0E599nKqg'
@@ -249,16 +249,17 @@
     buildPopup: (place_id) ->
       console.log 'buildPopup for place #', place_id
 
-    ingestPlaces: (places) ->
+    renderPlaces: (places) ->
       console.log places.models.length + ' place models to be ingested, e.g.', places.models[0]
       @features = []
 
       $.each places.models, (i, pl) =>
-        geom = pl.attributes.geom_wkt
-        pid = pl.get("place_id")
-        pname = pl.get("prefname")
-        prcount = pl.get("placerefs_count")
-        # console.log 'pid', pid
+        attribs = pl.attributes.place
+        prcount = pl.attributes.count # placerefs-per-place
+        geom = attribs.geom_wkt
+        pid = attribs.place_id
+        pname = attribs.prefname
+        # console.log 'pl', pl
         if geom.substr(0,5) == 'POINT'
           coords = swap(wellknown(geom).coordinates)
           l_geom = new L.LatLng(coords[0],coords[1])

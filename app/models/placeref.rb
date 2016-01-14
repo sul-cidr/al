@@ -49,6 +49,15 @@ class Placeref < ActiveRecord::Base
     if params[:standing_id]
       refs = refs.joins{author}.where{author.standing_id >> params[:standing_id]}
     end
+    if params[:author_id]
+      refs = refs.joins{author}.where{author.author_id >> params[:author_id]}
+    end
+    if params[:authors] # array of author_id
+      refs = refs.joins{author}.where{author.standing_id >> params[:authors]}
+    end
+    if params[:work_id]
+      refs = refs.joins{work}.where{work.work_id >> params[:work_id]}
+    end
     counts = {}
     refs.each do |ref|
       if !counts.has_key?(ref.place_id)
