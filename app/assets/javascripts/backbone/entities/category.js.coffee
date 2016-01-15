@@ -16,6 +16,3 @@
 
   App.reqres.setHandler "category:entities", (cb) ->
     API.getCategoryEntities cb
-
-  # App.reqres.setHandler "category:authors", (cb, cat) ->
-  #   API.getCategoryAuthors cb
