@@ -35,9 +35,11 @@
     }
     filterStuff: (e) ->
       # filter either authors or works and map for category
-      # console.log $(e.currentTarget)
+      filter = {}
+      dim = $(e.currentTarget).context.parentElement.id.substring(3,)
       tab = window.location.hash.substring(1,window.location.hash.length)
       catid = parseInt($(e.currentTarget).context.attributes.val.value)
+      console.log 'filterStuff()' + tab, dim, catid
       # print category header
       seltext =
         '<span class="strong">'+
@@ -46,7 +48,7 @@
         'Clear filter</span>'
       $("#selected_cat_"+tab).html(seltext)
 
-      # console.log 'filterStuff() ' + tab, catid
+      # TODO: refactor
       # get a collection of models for category
       App.request tab+":category", catid, (collection) =>
         # console.log 'filtered '+ tab + ', cat: '+ catid, collection
@@ -56,5 +58,7 @@
           AL.AuthorsApp.List.Controller.listCatAuthors(collection)
 
       # to map_app
-      console.log "category:"+tab+":show", catid
-      App.vent.trigger "category:"+tab+":show", catid
+      console.log "category:"+tab+":show" + dim, catid
+      filter[dim+'_id'] = catid
+      App.vent.trigger "category:show", (filter)
+      # App.vent.trigger "category:"+tab+":show", (filter)

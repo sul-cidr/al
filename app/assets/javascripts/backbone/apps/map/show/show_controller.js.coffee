@@ -16,6 +16,10 @@
     swapBase: (id) ->
       @mapView.swapBase id
 
+    filterPlaces: (filter) ->
+      # console.log 'filterPlaces', filter
+      @mapView.renderPlaces(filter)
+
     setFilter: (key, evaluator, counter) ->
       # console.log 'Map.Show.Controller.setFilter() ' + key
       @mapView.setFilter key, evaluator

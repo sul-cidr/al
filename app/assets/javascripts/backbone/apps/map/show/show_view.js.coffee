@@ -128,9 +128,12 @@
         App.reqres.setHandler "areas:active", ->
           return areas
 
-      App.request "place:entities", (places) =>
-        # points, lines, polygons; type: [bioblace | worksplace]
-        @renderPlaces places
+      @renderPlaces()
+      # @renderPlaces({genre_id: 2})
+
+      # App.request "place:entities", (places) =>
+      #   # points, lines, polygons; type: [bioblace | worksplace]
+      #   @renderPlaces places
 
 
     L.mapbox.accessToken = 'pk.eyJ1IjoiZWxpamFobWVla3MiLCJhIjoiY2loanVmcGljMG50ZXY1a2xqdGV3YjRkZyJ9.tZqY_fRD2pQ1a0E599nKqg'
@@ -249,106 +252,115 @@
     buildPopup: (place_id) ->
       console.log 'buildPopup for place #', place_id
 
-    renderPlaces: (places) ->
-      console.log places.models.length + ' place models to be ingested, e.g.', places.models[0]
-      @features = []
+    renderPlaces: (params) ->
+      # App.request "placeref:entities", {place_id:pid}, (placerefs) =>
+      if typeof @places != "undefined"
+        @places.clearLayers()
+      App.request "place:entities", params, (places) =>
+        # points, lines, polygons; type: [bioblace | worksplace
+        # console.log places.models.length + ' place models to be rendered' #, places.models[0]
+        @features = []
+        # window.places = places.models
+        max = Math.max.apply(Math, places.map((o) ->
+          o.attributes.count ))
+        $.each places.models, (i, pl) =>
+          # TODO: get max of count()
+          attribs = pl.attributes.place
+          prcount = pl.attributes.count # placerefs-per-place
+          geom = attribs.geom_wkt
+          pid = attribs.place_id
+          pname = attribs.prefname
+          # console.log 'pl', pl
+          if geom.substr(0,5) == 'POINT'
+            coords = swap(wellknown(geom).coordinates)
+            l_geom = new L.LatLng(coords[0],coords[1])
 
-      $.each places.models, (i, pl) =>
-        attribs = pl.attributes.place
-        prcount = pl.attributes.count # placerefs-per-place
-        geom = attribs.geom_wkt
-        pid = attribs.place_id
-        pname = attribs.prefname
-        # console.log 'pl', pl
-        if geom.substr(0,5) == 'POINT'
-          coords = swap(wellknown(geom).coordinates)
-          l_geom = new L.LatLng(coords[0],coords[1])
+            feature = new L.CircleMarker(l_geom, {
+              color: '#000',
+              fillColor: 'yellow',
+              # TODO: need to get max count
+              radius: scaleMarker(prcount,[1,max]),
+              fillOpacity: 0.7,
+              weight: 1
+            })
 
-          # feature = new L.RegularPolygonMarker(l_geom, options)
-          feature = new L.CircleMarker(l_geom, {
-            # numberOfSides: 6,
-            color: '#000',
-            fillColor: 'yellow',
-            radius: scaleMarker(prcount,[1,43]),
-            fillOpacity: 0.7,
-            weight: 1
-          })
+            feature.on('click', (e) ->
+              # console.log e.target
+              # window.clicked = e.target
+              html = ''
+              # html = '<span class="popup-header">references to <b>'+pname+'</b></span><br/>'
+              App.request "placeref:entities", {place_id:pid}, (placerefs) =>
+                # console.log placerefs
+                _.each placerefs.models, (pr) =>
+                  # console.log 'placeref attributes', pr.attributes
+                  if pr.attributes.placeref.placeref_type == 'work'
+                    html += '&#8220;'+pr.attributes.placeref.placeref +
+                      ',&#8221; in <em>' +
+                      pr.attributes.work.title + '</em><br/>('+
+                      pr.attributes.author.prefname +
+                      '; '+pr.attributes.work.work_year+')&nbsp;[<span class="passage-link" val='+
+                      pr.attributes.placeref.passage_id+'>passage</span>]<hr/>'
+                  else
+                    html += '&#8220;'+pr.attributes.placeref.placeref +
+                      ',&#8221; a place in the life of ' +
+                      pr.attributes.author.prefname+'<hr/>'
 
-          feature.on('click', (e) ->
-            # console.log e.target
-            # window.clicked = e.target
-            html = ''
-            # html = '<span class="popup-header">references to <b>'+pname+'</b></span><br/>'
-            App.request "placeref:entities", {place_id:pid}, (placerefs) =>
-              # console.log placerefs
-              _.each placerefs.models, (pr) =>
-                # console.log 'placeref attributes', pr.attributes
-                if pr.attributes.placeref.placeref_type == 'work'
-                  html += '&#8220;'+pr.attributes.placeref.placeref +
-                    ',&#8221; in <em>' +
-                    pr.attributes.work.title + '</em><br/>('+
-                    pr.attributes.author.prefname +
-                    '; '+pr.attributes.work.work_year+')&nbsp;[<span class="passage-link" val='+
-                    pr.attributes.placeref.passage_id+'>passage</span>]<hr/>'
-                else
-                  html += '&#8220;'+pr.attributes.placeref.placeref +
-                    ',&#8221; a place in the life of ' +
-                    pr.attributes.author.prefname+'<hr/>'
+                e.target._popup.setContent(html)
+            )
+            # add model, id to feature
+            feature.model = pl
+            feature.options.id = pid
+            $idToFeature.places[pid] = feature
+            @features.push feature
 
-              e.target._popup.setContent(html)
-          )
-          # add model, id to feature
-          feature.model = pl
-          feature.options.id = pid
-          $idToFeature.places[pid] = feature
-          @features.push feature
+            @popup = feature.bindPopup(
+              pl.get('prefname'), {
+                'className': 'place-popup',
+                'maxHeight': '450'}
+            )
 
-          @popup = feature.bindPopup(
-            pl.get('prefname'), {'className': 'place-popup', 'maxHeight': '450'}
-          )
+          else if geom.substr(0,10) == 'LINESTRING'
+            feature =  new L.GeoJSON(wellknown(geom), {
+              style: mapStyles.street
+              # options: {"model":pl,"id":prid}
+              # onEachFeature: (feature, layer) ->
+              #   layer.bindPopup pl.get("prefname")
+            })
 
-        else if geom.substr(0,10) == 'LINESTRING'
-          feature =  new L.GeoJSON(wellknown(geom), {
-            style: mapStyles.street
-            # options: {"model":pl,"id":prid}
-            # onEachFeature: (feature, layer) ->
-            #   layer.bindPopup pl.get("prefname")
-          })
+            feature.on('click', (e) ->
+              console.log 'e.target', e.target
+              window.clicked = e.target
+              html = ''
+              # html = '<span class="popup-header">references to <b>'+pname+'</b></span><br/>'
+              App.request "placeref:entities", {place_id:pid}, (placerefs) =>
+                # console.log placerefs
+                _.each placerefs.models, (pr) =>
+                  # console.log 'placeref attributes', pr.attributes
+                  if pr.attributes.placeref.placeref_type == 'work'
+                    html += '&#8220;'+pr.attributes.placeref.placeref +
+                      ',&#8221; in <em>' +
+                      pr.attributes.work.title + '</em><br/>('+
+                      pr.attributes.author.prefname +
+                      '; '+pr.attributes.work.work_year+')&nbsp;[<span class="passage-link" val='+
+                      pr.attributes.placeref.passage_id+'>passage</span>]<hr/>'
+                  else
+                    html += '&#8220;'+pr.attributes.placeref.placeref +
+                      ',&#8221; a place in the life of ' +
+                      pr.attributes.author.prefname+'<hr/>'
+                  e.target.bindPopup html
+            )
+            # add model, id to feature
+            feature.model = pl
+            feature.options.id = pid
+            $idToFeature.places[pid] = feature
+            @features.push feature
 
-          feature.on('click', (e) ->
-            console.log 'e.target', e.target
-            window.clicked = e.target
-            html = ''
-            # html = '<span class="popup-header">references to <b>'+pname+'</b></span><br/>'
-            App.request "placeref:entities", {place_id:pid}, (placerefs) =>
-              # console.log placerefs
-              _.each placerefs.models, (pr) =>
-                # console.log 'placeref attributes', pr.attributes
-                if pr.attributes.placeref.placeref_type == 'work'
-                  html += '&#8220;'+pr.attributes.placeref.placeref +
-                    ',&#8221; in <em>' +
-                    pr.attributes.work.title + '</em><br/>('+
-                    pr.attributes.author.prefname +
-                    '; '+pr.attributes.work.work_year+')&nbsp;[<span class="passage-link" val='+
-                    pr.attributes.placeref.passage_id+'>passage</span>]<hr/>'
-                else
-                  html += '&#8220;'+pr.attributes.placeref.placeref +
-                    ',&#8221; a place in the life of ' +
-                    pr.attributes.author.prefname+'<hr/>'
-                e.target.bindPopup html
-          )
-          # add model, id to feature
-          feature.model = pl
-          feature.options.id = pid
-          $idToFeature.places[pid] = feature
-          @features.push feature
+        @places = L.featureGroup(@features)
 
-      @places = L.featureGroup(@features)
-
-      @places.addTo(@map)
-      # TODO: stop exposing these
-      window.places = @places
-      window.features = @features
+        @places.addTo(@map)
+        # TODO: stop exposing these
+        # window.places = @places
+        # window.features = @features
 
     ingestPlacerefs: (placerefs) ->
       # console.log 'placeref models to be ingested', placerefs.models

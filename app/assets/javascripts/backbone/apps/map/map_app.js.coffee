@@ -8,16 +8,24 @@
 
   App.vent.on "work:show", (work) ->
     API.filterByWork work
-    
-  App.vent.on "category:authors:show", (id) ->
-    # console.log 'map heard category:authors:show --> ', id
-    # placerefs for all passages by set of authors
-    API.filterByAuthorCategory id
 
-  App.vent.on "category:works:show", (works) ->
-    # console.log 'map heard category:works:show '
-    # placerefs for all passages in works of a category
-    API.filterByWorkCategory works
+  # App.vent.on "category:authors:show", (filter) ->
+  #   console.log 'map heard category:authors:show --> ', filter
+  #   # places for all passages by category of authors
+  #   API.filterByCategory filter
+  #   # API.filterByAuthorCategory filter
+  #
+  # App.vent.on "category:works:show", (filter) ->
+  #   console.log 'map heard category:works:show --> ', filter
+  #   # places for all passages in works of a category
+  #   API.filterByCategory filter
+  #   # API.filterByWorkCategory filter
+
+  App.vent.on "category:show", (filter) ->
+    console.log 'map heard category:show --> ', filter
+    # places for all passages in works of a category
+    API.filterByCategory filter
+    # API.filterByWorkCategory filter
 
   App.vent.on "place:focus", (area) ->
     # console.log 'map_app place:focus', area
@@ -37,24 +45,25 @@
       id = author.get("author_id")
       dyear = author.get("death_year")
       # console.log  'MapApp.API.filterByAuthor()', id
-      MapApp.Show.Controller.setFilter 'author', (placeref) ->
-        # console.log placeref
-        placeref.get("author_id") == id
+      MapApp.Show.Controller.filterPlaces({author_id: id})
 
     filterByAuthors: (author_ids, id) ->
       # console.log author.get("author_id")
       MapApp.Show.Controller.setFilter 'authors', (placeref) ->
         author_ids.indexOf(placeref.get("author_id")) > -1
 
-    filterByAuthorCategory: (id) ->
-      # build collection of authors having 'id'
-      # id = cat.get("id")
-      author_ids = []
-      App.request "authors:category", id, (authors) =>
-        _.each authors.models, (a) =>
-          author_ids.push a.get("author_id")
-        @filterByAuthors author_ids, id
-        # console.log 'filterByAuthorCategory '+id+ ': ', author_ids
+    filterByCategory: (filter) ->
+      MapApp.Show.Controller.filterPlaces(filter)
+
+    # filterByAuthorCategory: (id) ->
+    #   # build collection of authors having 'id'
+    #   # id = cat.get("id")
+    #   author_ids = []
+    #   App.request "authors:category", id, (authors) =>
+    #     _.each authors.models, (a) =>
+    #       author_ids.push a.get("author_id")
+    #     @filterByAuthors author_ids, id
+    #     # console.log 'filterByAuthorCategory '+id+ ': ', author_ids
 
     filterByWork: (work) ->
       id = work.get("work_id")
@@ -66,12 +75,12 @@
       MapApp.Show.Controller.setFilter 'works', (placeref) ->
         work_ids.indexOf(placeref.get("work_id")) > -1
 
-    filterByWorkCategory: (works) ->
-      # id = cat.get("id")
-      work_ids = []
-      _.each works.models, (w) =>
-        work_ids.push w.get("work_id")
-      @filterByWorks work_ids
+    # filterByWorkCategory: (works) ->
+    #   # id = cat.get("id")
+    #   work_ids = []
+    #   _.each works.models, (w) =>
+    #     work_ids.push w.get("work_id")
+    #   @filterByWorks work_ids
       # console.log 'filterByWorkCategory ' # +id+ ': ', author_ids
 
     focusPlace: (area) ->
