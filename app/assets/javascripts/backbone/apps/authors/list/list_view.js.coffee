@@ -30,7 +30,10 @@
   class List.Author extends App.Views.ItemView
     template: "authors/list/templates/_author"
     tagName: "span"
-    events: {'click a': 'authByRoute'}
+    events: {
+      'click a': 'authByRoute'
+      'click input': 'aggAuthors'
+    }
     authByRoute: ->
       # $("#spin_authors").removeClass('hidden')
       $activeAuthor = this.model
@@ -38,6 +41,12 @@
       @route = "authors/" + author.get('author_id')
       # runs AuthorsApp.Show.Controller.showAuthor()
       Backbone.history.navigate(@route, true)
+    aggAuthors: ->
+      authArray = []
+      author = this.model
+      authArray.push author.get('author_id')
+      console.log authArray
+      App.vent.trigger "author:show", author
 
   class List.Authors extends App.Views.CompositeView
     template: "authors/list/templates/_authors"

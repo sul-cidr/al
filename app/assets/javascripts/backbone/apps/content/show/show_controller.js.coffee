@@ -25,35 +25,33 @@
       @contentLayout.dimensionsRegion.show dimensionsView
 
     # populate dropdowns from db
-    # TODO: multiple selections
-    dropdownCategories: ->
-      App.request "category:entities", (categories) =>
-        # console.log categories
-        for d in ['genre','form','community','standing']
-          dimcollection = categories.where({dim: d});
-          for c in dimcollection
-            $("#ul_"+d).append(
-              "<li val="+c.attributes.id+">"+c.attributes.name+"</li>"
-            )
+    # OLD method
+    # dropdownCategories: ->
+    #   App.request "category:entities", (categories) =>
+    #     # console.log categories
+    #     for d in ['genre','form','community','standing']
+    #       dimcollection = categories.where({dim: d});
+    #       for c in dimcollection
+    #         $("#ul_"+d).append(
+    #           "<li val="+c.attributes.id+">"+c.attributes.name+"</li>"
+    #         )
 
 
     # TODO: refactor getting categories separately by dimension
-    # dropdownCategories: ->
-    #   for d in ['genre']
-    #   # for d in ['genre','form','community','standing']
-    #     @idtag = d + "_id"
-    #     console.log 'idtag', '"'+@idtag+'"'
-    #     App.request d + ":entities", (categories) =>
-    #       console.log categories
-    #       window.amodel = categories.models[1]
-    #       for c in categories.models
-    #         # id = c.attributes[@idtag]
-    #         console.log "category of "+d, c.attributes[@idtag]
-    #         $("#ul_"+d).append(
-    #           "<li val="+c.attributes[@idtag]+">"+c.attributes.name+"</li>"
-    #         # "<li><label><input type='checkbox' val="+c.attributes.id+
-    #         # " disabled> "+c.attributes.name+"</label></li>"
-    #         )
+    dropdownCategories: ->
+      for d in ['genre']
+      # for d in ['genre','form','community','standing']
+        @idtag = d + "_id"
+        console.log 'idtag', '"'+@idtag+'"'
+        App.request d + ":entities", (categories) =>
+          console.log categories
+          for c in categories.models
+            console.log "category of "+d, c.attributes[@idtag]
+            $("#ul_"+d).append(
+              "<li val="+c.attributes[@idtag]+">"+c.attributes.name+"</li>"
+            # "<li><label><input type='checkbox' val="+c.attributes.id+
+            # " disabled> "+c.attributes.name+"</label></li>"
+            )
 
     # called from various places to manage tab state
     showTab: (tab)->
