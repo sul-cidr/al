@@ -14,7 +14,9 @@
       # console.log '@workLayout', @workLayout
 
       @workLayout.on "show", =>
-        $("#dimensions_region").addClass('hidden')
+        # $("#dimensions_region").addClass('hidden')
+        # disable buttons, don't hide
+        $(".btn").disable(true)
         @showTitle work
         @listWorkPassages work
 

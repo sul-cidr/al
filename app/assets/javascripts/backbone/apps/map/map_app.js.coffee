@@ -7,6 +7,7 @@
     API.filterByAuthor author
 
   App.vent.on "work:show", (work) ->
+    console.log "map heard work:show -->", work.get('work_id')
     API.filterByWork work
 
   # App.vent.on "category:authors:show", (filter) ->
@@ -67,8 +68,9 @@
 
     filterByWork: (work) ->
       id = work.get("work_id")
-      MapApp.Show.Controller.setFilter 'work', (placeref) ->
-        placeref.get("work_id") == id
+      # MapApp.Show.Controller.setFilter 'work', (placeref) ->
+      #   placeref.get("work_id") == id
+      MapApp.Show.Controller.filterPlaces({work_id: id})
 
     filterByWorks: (work_ids) ->
       # console.log author.get("author_id")
