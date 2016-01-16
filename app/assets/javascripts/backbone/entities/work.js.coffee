@@ -20,7 +20,17 @@
       work = works._byId[workid]
       cb work
 
-    getWorkEntities: (authid, cb) ->
+    getWorkEntities: (cb) ->
+      works.fetch
+        success: ->
+          # leave out bio essays
+          filterCat = _.filter(works.models,(item) ->
+            item.get("work_id") > 20399
+          )
+          works.reset(filterCat);
+          cb works
+
+    getWorksByAuthor: (authid, cb) ->
       # works = new Entities.WorkCollection()
       works.fetch
         success: ->
@@ -42,10 +52,13 @@
           cb works
 
   App.reqres.setHandler "works:author", (authid, cb) ->
-    API.getWorkEntities authid, cb
+    API.getWorksByAuthor authid, cb
 
   App.reqres.setHandler "work:entity", (workid, cb) ->
     API.getWorkEntity workid, cb
+
+  App.reqres.setHandler "work:entities", (workid, cb) ->
+    API.getWorkEntities workid, cb
 
   App.reqres.setHandler "works:category", (cat, cb) ->
     API.getWorksCategory cat, cb

@@ -3,9 +3,10 @@
   List.Controller =
 
     startWorks: ->
-      # console.log 'startWorks'
       Backbone.history.navigate("works")
-      App.request "works:category", 0, (works) =>
+      # old method
+      # App.request "works:category", 0, (works) =>
+      App.request "work:entities", (works) =>
         @layout = @getLayoutView()
 
         @layout.on "show", =>
