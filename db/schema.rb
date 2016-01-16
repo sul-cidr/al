@@ -86,10 +86,15 @@ ActiveRecord::Schema.define(version: 20160113181230) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "communities", force: :cascade do |t|
+  create_table "communities", id: false, force: :cascade do |t|
+    t.integer  "community_id"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "start_earliest"
+    t.integer  "start_latest"
+    t.integer  "stop_earliest"
+    t.integer  "stop_latest"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "dimensions", force: :cascade do |t|
@@ -147,10 +152,11 @@ ActiveRecord::Schema.define(version: 20160113181230) do
     t.datetime "updated_at",      null: false
   end
 
-  create_table "standings", force: :cascade do |t|
+  create_table "standings", id: false, force: :cascade do |t|
+    t.integer  "standing_id"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade do |t|

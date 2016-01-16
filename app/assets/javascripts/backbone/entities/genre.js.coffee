@@ -9,10 +9,12 @@
   API =
     getGenreEntities: (cb) ->
       # console.log Entities
-      genres = new Entities.CategoryCollection()
+      genres = new Entities.GenreCollection()
       genres.fetch
         success: ->
+          # console.log 'genres', genres
           cb genres
 
   App.reqres.setHandler "genre:entities", (cb) ->
+    # console.log 'in genre:entities'
     API.getGenreEntities cb

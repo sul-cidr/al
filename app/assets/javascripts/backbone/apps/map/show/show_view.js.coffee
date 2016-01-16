@@ -104,9 +104,6 @@
           map.setView(@London, 15)
         map.addLayer(lyr)
 
-    zoomToCluster: (what, geom) ->
-      # console.log 'in zoomToCluster'
-
     zoomTo: (what, geom) ->
       if what == "area"
         # geom is an area model; zoom to its voronoi extents
@@ -129,12 +126,6 @@
           return areas
 
       @renderPlaces()
-      # @renderPlaces({genre_id: 2})
-
-      # App.request "place:entities", (places) =>
-      #   # points, lines, polygons; type: [bioblace | worksplace]
-      #   @renderPlaces places
-
 
     L.mapbox.accessToken = 'pk.eyJ1IjoiZWxpamFobWVla3MiLCJhIjoiY2loanVmcGljMG50ZXY1a2xqdGV3YjRkZyJ9.tZqY_fRD2pQ1a0E599nKqg'
 

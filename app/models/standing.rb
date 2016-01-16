@@ -2,10 +2,10 @@
 #
 # Table name: standings
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  standing_id :integer
+#  name        :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 
 class Standing < ActiveRecord::Base

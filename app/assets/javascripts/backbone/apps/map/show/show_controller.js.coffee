@@ -25,7 +25,8 @@
       @mapView.setFilter key, evaluator
 
     clearFilters: (keepzoom)->
-      @mapView.clearFilters(keepzoom)
+      @mapView.renderPlaces()
+      # @mapView.clearFilters(keepzoom)
 
     zoomTo: (what, area) ->
       @mapView.zoomTo what, area

@@ -7,11 +7,14 @@ Rails.application.routes.draw do
   resources :areas
   resources :places, param: :place_id
   resources :placerefs, param: :placeref_id
-  resources :categories#, only: [:index]
   resources :works, param: :work_id
   resources :passages, param: :passage_id
-  # resources :passages/search, param: :q
   resources :search, only: [:index]
+  resources :categories #, only: [:index]
+  resources :genres, param: :genre_id
+  resources :forms, param: :form_id
+  resources :communities, param: :communities_id
+  resources :standings, param: :standings_id
 
   root to: "application#index"
 
