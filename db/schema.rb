@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160113181230) do
+ActiveRecord::Schema.define(version: 20160116181714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,16 @@ ActiveRecord::Schema.define(version: 20160113181230) do
     t.datetime "updated_at",     null: false
   end
 
+  create_table "author_category_rels", force: :cascade do |t|
+    t.integer  "author_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "author_category_rels", ["author_id", "category_id"], name: "index_author_category_rels_on_author_id_and_category_id", using: :btree
+  add_index "author_category_rels", ["category_id", "author_id"], name: "index_author_category_rels_on_category_id_and_author_id", using: :btree
+
   create_table "authors", primary_key: "author_id", force: :cascade do |t|
     t.string   "prefname"
     t.string   "surname"
@@ -78,12 +88,11 @@ ActiveRecord::Schema.define(version: 20160113181230) do
     t.datetime "updated_at",                null: false
   end
 
-  create_table "categories", force: :cascade do |t|
-    t.integer  "category_id"
+  create_table "categories", primary_key: "category_id", force: :cascade do |t|
     t.string   "name"
-    t.string   "dim"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "dimension_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "communities", id: false, force: :cascade do |t|
@@ -177,29 +186,15 @@ ActiveRecord::Schema.define(version: 20160113181230) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "work_categories", force: :cascade do |t|
+  create_table "work_category_rels", force: :cascade do |t|
     t.integer  "work_id"
     t.integer  "category_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  add_index "work_categories", ["category_id", "work_id"], name: "index_work_categories_on_category_id_and_work_id", using: :btree
-  add_index "work_categories", ["work_id", "category_id"], name: "index_work_categories_on_work_id_and_category_id", using: :btree
-
-  create_table "work_form_rels", force: :cascade do |t|
-    t.integer  "work_id"
-    t.integer  "form_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "work_genre_rels", force: :cascade do |t|
-    t.integer  "work_id"
-    t.integer  "genre_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  add_index "work_category_rels", ["category_id", "work_id"], name: "index_work_category_rels_on_category_id_and_work_id", using: :btree
+  add_index "work_category_rels", ["work_id", "category_id"], name: "index_work_category_rels_on_work_id_and_category_id", using: :btree
 
   create_table "works", primary_key: "work_id", force: :cascade do |t|
     t.integer  "author_id"

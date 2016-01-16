@@ -5,7 +5,10 @@
     showAuthor: (author) ->
       # console.log "showAuthor", author.get('surname')
       # hide dimension dropdowns
-      $("#dimensions_region").addClass("hidden")
+      # $("#dimensions_region").addClass("hidden")
+      
+      # disable dimension dropdowns
+      $(".btn").disable(true)
 
       id = author.get("author_id")
       prefname = author.get("prefname")

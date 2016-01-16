@@ -1,8 +1,6 @@
 json.array! @categories do |category|
-  json.extract!(
-    category,
-    :id,
-    :name,
-    :dim
-  )
+  json.category category
+  json.dimension category.dimension.name
+
+
 end

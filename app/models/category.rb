@@ -2,12 +2,11 @@
 #
 # Table name: categories
 #
-#  id          :integer          not null
-#  category_id :integer          primary key
-#  name        :string
-#  dim         :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  category_id  :integer          not null, primary key
+#  name         :string
+#  dimension_id :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
 #
 
 class Category < ActiveRecord::Base
@@ -16,25 +15,28 @@ class Category < ActiveRecord::Base
 
   belongs_to :dimension
 
-  # abandoned in favor of author_genre, etc.
-  has_and_belongs_to_many :authors, :through => :authors_categories
+  has_many :author_category_rels
+  has_many :authors, :through => :author_category_rels
+
+  has_many :work_category_rels
+  has_many :works, :through => :work_category_rels
 
   def self.by_dim(d)
-    where { dimension == d }
+    where { dimension_id == d }
   end
 
   # boy this sucks
-  def self.getAuthByGenre(cat)
-    Genre.select{ |g| g.name  == cat }[0].authors
-  end
-  def self.getAuthByForm(cat)
-    Form.select{ |f| f.name  == cat }[0].authors
-  end
-  def self.getAuthByCommunity(cat)
-    Community.select{ |c| c.name  == cat }[0].authors
-  end
-  def self.getAuthByStanding(cat)
-    Standing.select{ |s| s.name  == cat }[0].authors
-  end
+  # def self.getAuthByGenre(cat)
+  #   Genre.select{ |g| g.name  == cat }[0].authors
+  # end
+  # def self.getAuthByForm(cat)
+  #   Form.select{ |f| f.name  == cat }[0].authors
+  # end
+  # def self.getAuthByCommunity(cat)
+  #   Community.select{ |c| c.name  == cat }[0].authors
+  # end
+  # def self.getAuthByStanding(cat)
+  #   Standing.select{ |s| s.name  == cat }[0].authors
+  # end
 
 end

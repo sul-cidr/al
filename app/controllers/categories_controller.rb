@@ -1,10 +1,11 @@
 class CategoriesController < ApplicationController
-  respond_to do |format|
-    format.json
-  end
+  # respond_to do |format|
+  #   format.json
+  # end
 
   def index
-    @categories = Category.all
+    @categories = Category.joins(:dimension).all
+    # @categories = Category.all
   end
 
 end

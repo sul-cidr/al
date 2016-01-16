@@ -33,16 +33,17 @@
 
     # TODO this executes twice, from authors_app and map_app
     getAuthorsCategory: (cat, cb) ->
-      # console.log 'API.getAuthorsCategory', cat
+      console.log 'API.getAuthorsCategory', cat
       authors.fetch
         success: ->
+          console.log authors
           _.each authors.models, (a) =>
             # console.log a.attributes.categories
           filterCat = _.filter(authors.models,(item) ->
             item.get("author_id") < 10434 && item.get('categories').indexOf(cat) > -1;
           )
           authors.reset(filterCat);
-          # console.log authors.models.length + ' authors from API'
+          console.log authors.models.length + ' authors from API'
           cb authors
 
   App.reqres.setHandler "author:entities", (cb) ->

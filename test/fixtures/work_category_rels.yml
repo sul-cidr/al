@@ -1,12 +1,12 @@
 # == Schema Information
 #
-# Table name: categories
+# Table name: work_category_rels
 #
-#  category_id  :integer          not null, primary key
-#  name         :string
-#  dimension_id :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id          :integer          not null, primary key
+#  work_id     :integer
+#  category_id :integer
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

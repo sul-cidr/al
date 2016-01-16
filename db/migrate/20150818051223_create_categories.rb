@@ -3,7 +3,8 @@ class CreateCategories < ActiveRecord::Migration
     create_table :categories, {:id => false} do |t|
       t.integer :category_id
     	t.string :name
-      t.string :dim
+      t.integer :dimension_id
+      
       t.timestamps null: false
     end
 

@@ -5,9 +5,13 @@
     startAuthors: ->
       #
       # ensure dimension buttons show
-      $("#dimensions_region").removeClass("hidden")
-      # start with all (cat 0); filtered in the app
-      App.request "authors:category", 0, (authors) =>
+      $(".btn").disable(true)
+      # $("#dimensions_region").removeClass("hidden")
+
+      # just get all
+      App.request "author:entities", (authors) =>
+      # ABANDON: start with all (cat 0); filtered in the app
+      # App.request "authors:category", 0, (authors) =>
         @layout = @getLayoutView()
         # console.log authors.models.length + ' authors'
 

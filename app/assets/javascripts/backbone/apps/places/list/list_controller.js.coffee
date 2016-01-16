@@ -42,11 +42,11 @@
       new List.Layout
 
     showSearchbox: ->
-      App.request "placeref:entities", {}, (placerefs) =>
-        console.log 'showSearchbox', placerefs
-        searchboxView = new List.Searchbox
-          collection: placerefs
-        @layout.searchboxRegion.show searchboxView
+      # App.request "placeref:entities", {}, (placerefs) =>
+      # console.log 'showSearchbox', placerefs
+      searchboxView = new List.Searchbox
+        # collection: placerefs
+      @layout.searchboxRegion.show searchboxView
 
     showNavmap: ->
       navmapView = new List.Navmap

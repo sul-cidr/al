@@ -29,6 +29,9 @@ class Author < ActiveRecord::Base
   has_many :placerefs, :through => :passages
   has_many :places, :through => :passages
 
+  has_many :author_category_rels
+  has_many :categories, :through => :author_category_rels
+
   def to_s
     "#{prefname}"
   end

@@ -26,32 +26,35 @@
 
     # populate dropdowns from db
     # OLD method
-    # dropdownCategories: ->
-    #   App.request "category:entities", (categories) =>
-    #     # console.log categories
-    #     for d in ['genre','form','community','standing']
-    #       dimcollection = categories.where({dim: d});
-    #       for c in dimcollection
-    #         $("#ul_"+d).append(
-    #           "<li val="+c.attributes.id+">"+c.attributes.name+"</li>"
-    #         )
-
-
-    # TODO: refactor getting categories separately by dimension
     dropdownCategories: ->
-      for d in ['genre']
-      # for d in ['genre','form','community','standing']
-        @idtag = d + "_id"
-        console.log 'idtag', '"'+@idtag+'"'
-        App.request d + ":entities", (categories) =>
-          console.log categories
-          for c in categories.models
-            console.log "category of "+d, c.attributes[@idtag]
+      App.request "category:entities", (categories) =>
+        # console.log categories
+        for d in ['genre','form','community','standing']
+          # console.log d
+          dimcollection = categories.where({dimension: d})
+          for c in dimcollection
+            # console.log c
             $("#ul_"+d).append(
-              "<li val="+c.attributes[@idtag]+">"+c.attributes.name+"</li>"
-            # "<li><label><input type='checkbox' val="+c.attributes.id+
-            # " disabled> "+c.attributes.name+"</label></li>"
+              "<li val="+c.attributes.category.category_id+">"+c.attributes.category.name+"</li>"
             )
+
+
+    # new alternate
+    # TODO: refactor getting categories separately by dimension
+    # dropdownCategories: ->
+    #   for d in ['genre']
+    #   # for d in ['genre','form','community','standing']
+    #     @idtag = d + "_id"
+    #     console.log 'idtag', '"'+@idtag+'"'
+    #     App.request d + ":entities", (categories) =>
+    #       console.log categories
+    #       for c in categories.models
+    #         console.log "category of "+d, c.attributes[@idtag]
+    #         $("#ul_"+d).append(
+    #           "<li val="+c.attributes[@idtag]+">"+c.attributes.name+"</li>"
+    #         # "<li><label><input type='checkbox' val="+c.attributes.id+
+    #         # " disabled> "+c.attributes.name+"</label></li>"
+    #         )
 
     # called from various places to manage tab state
     showTab: (tab)->
@@ -66,6 +69,7 @@
         # console.log 'Show.Controller showTab(authors)'
         # ensure dimensions dropdowns visible
         # App.vent.trigger("map:reset")
+        $(".btn").disable(false)
         $("#dimensions_region").removeClass('hidden')
 
         Backbone.history.navigate('authors', true)
@@ -81,6 +85,7 @@
       else if tab == 'places'
         # console.log 'Show.Controller showTab(places)'
         # hide dimensions dropdowns
+        # $(".btn").disable(true)
         $("#dimensions_region").addClass('hidden')
 
         if $("#places_region").html() == ''
@@ -96,6 +101,7 @@
       else if tab == 'works'
         # console.log 'Show.Controller showTab(works)'
         # ensure dimensions dropdowns visible
+        $(".btn").disable(false)
         $("#dimensions_region").removeClass('hidden')
 
         if $("#works_region").html() == ''
