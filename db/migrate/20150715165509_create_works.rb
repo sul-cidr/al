@@ -6,7 +6,6 @@ class CreateWorks < ActiveRecord::Migration
       t.string :title
       t.string :sorter
     	t.integer :work_year
-      t.integer :categories, array: true, default: []
       t.jsonb :keywords
      	t.timestamps null: false
     end

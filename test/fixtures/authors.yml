@@ -15,7 +15,6 @@
 #  standing_id  :integer
 #  viaf_id      :integer
 #  wiki_id      :string
-#  categories   :integer          default([]), is an Array
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #

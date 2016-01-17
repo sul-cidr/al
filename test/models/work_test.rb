@@ -7,7 +7,6 @@
 #  title      :string
 #  sorter     :string
 #  work_year  :integer
-#  categories :integer          default([]), is an Array
 #  keywords   :jsonb
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

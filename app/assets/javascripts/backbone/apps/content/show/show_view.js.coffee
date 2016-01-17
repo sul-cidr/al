@@ -44,21 +44,20 @@
       seltext =
         '<span class="strong">'+
         $(e.currentTarget).context.innerHTML +
-        '</span><span class="right crumb clear">'+
-        'Clear filter</span>'
+        '</span><span class="right crumb clear">Clear filter</span>'
       $("#selected_cat_"+tab).html(seltext)
 
       # TODO: refactor
-      # get a collection of models for category
+      # get a collection of work or author models for category
       App.request tab+":category", catid, (collection) =>
-        # console.log 'filtered '+ tab + ', cat: '+ catid, collection
+        console.log 'filtered '+ tab + ', cat: '+ catid, collection
         if tab == 'works'
           AL.WorksApp.List.Controller.listCatWorks(collection)
         else if tab == 'authors'
           AL.AuthorsApp.List.Controller.listCatAuthors(collection)
 
       # to map_app
-      console.log "category:"+tab+":show" + dim, catid
+      console.log "to map -> category:"+tab+":show " + dim, catid
       filter[dim+'_id'] = catid
       App.vent.trigger "category:show", (filter)
       # App.vent.trigger "category:"+tab+":show", (filter)

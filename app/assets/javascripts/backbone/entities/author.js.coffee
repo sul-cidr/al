@@ -36,10 +36,10 @@
       console.log 'API.getAuthorsCategory', cat
       authors.fetch
         success: ->
-          console.log authors
-          _.each authors.models, (a) =>
-            # console.log a.attributes.categories
-          filterCat = _.filter(authors.models,(item) ->
+          console.log 'an author', authors.models[0].attributes
+          # _.each authors.models, (a) =>
+          #   console.log a.attributes.categories
+          filterCat = _.filter(authors.models, (item) ->
             item.get("author_id") < 10434 && item.get('categories').indexOf(cat) > -1;
           )
           authors.reset(filterCat);

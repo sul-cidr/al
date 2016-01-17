@@ -14,7 +14,6 @@ class CreateAuthors < ActiveRecord::Migration
         t.integer :standing_id
       	t.integer :viaf_id
       	t.string :wiki_id
-        t.integer :categories, array: true, default: []
       	t.timestamps null: false
       end
 

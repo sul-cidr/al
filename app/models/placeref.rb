@@ -37,6 +37,12 @@ class Placeref < ActiveRecord::Base
 
   def self.rank_places(params)
     refs = all
+    if params[:auth_cat]
+      refs = refs.joins{author.categories}.where{categories.category_id >> params[:auth_cat]}
+    end
+    if params[:work_cat]
+      refs = refs.joins{work.categories}.where{categories.category_id >> params[:work_cat]}
+    end
     if params[:genre_id]
       refs = refs.joins{work.genres}.where{genres.genre_id >> params[:genre_id]}
     end

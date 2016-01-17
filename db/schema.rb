@@ -83,9 +83,8 @@ ActiveRecord::Schema.define(version: 20160116181714) do
     t.integer  "standing_id"
     t.integer  "viaf_id"
     t.string   "wiki_id"
-    t.integer  "categories",   default: [],              array: true
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "categories", primary_key: "category_id", force: :cascade do |t|
@@ -201,10 +200,9 @@ ActiveRecord::Schema.define(version: 20160116181714) do
     t.string   "title"
     t.string   "sorter"
     t.integer  "work_year"
-    t.integer  "categories", default: [],              array: true
     t.jsonb    "keywords"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
