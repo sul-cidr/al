@@ -37,30 +37,36 @@ class Placeref < ActiveRecord::Base
 
   def self.rank_places(params)
     refs = all
-    if params[:auth_cat]
-      refs = refs.joins{author.categories}.where{categories.category_id >> params[:auth_cat]}
-    end
+    # agglomerates param terms
     if params[:work_cat]
       refs = refs.joins{work.categories}.where{categories.category_id >> params[:work_cat]}
     end
+    if params[:auth_cat]
+      refs = refs.joins{author.categories}.where{categories.category_id >> params[:auth_cat]}
+    end
+
+    # distinct param terms; same result as agglom
+    # e.g. auth_cat=30 is same as community_id = 30
     if params[:genre_id]
-      refs = refs.joins{work.genres}.where{genres.genre_id >> params[:genre_id]}
+      refs = refs.joins{work.categories}.where{categories.category_id >> params[:genre_id]}
     end
     if params[:form_id]
-      refs = refs.joins{work.forms}.where{forms.form_id >> params[:form_id]}
+      refs = refs.joins{work.categories}.where{categories.category_id >> params[:form_id]}
     end
     if params[:community_id]
-      refs = refs.joins{author}.where{author.community_id >> params[:community_id]}
+      refs = refs.joins{author.categories}.where{categories.category_id >> params[:community_id]}
     end
     if params[:standing_id]
-      refs = refs.joins{author}.where{author.standing_id >> params[:standing_id]}
+      refs = refs.joins{author.categories}.where{categories.category_id >> params[:standing_id]}
     end
+
     if params[:author_id]
       refs = refs.joins{author}.where{author.author_id >> params[:author_id]}
     end
     if params[:authors] # array of author_id
       refs = refs.joins{author}.where{author.standing_id >> params[:authors]}
     end
+    
     if params[:work_id]
       refs = refs.joins{work}.where{work.work_id >> params[:work_id]}
     end

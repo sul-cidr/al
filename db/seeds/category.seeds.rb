@@ -30,8 +30,8 @@ Category.create([
   {category_id:13,name:"Satire",dimension_id:1},
   {category_id:14,name:"Short Story",dimension_id:1},
   {category_id:15,name:"Thriller",dimension_id:1},
-  # {category_id:33,name:"Low",dimension_id:4},
-  # {category_id:32,name:"Middle",dimension_id:4},
+  {category_id:33,name:"Low",dimension_id:4},
+  {category_id:32,name:"Middle",dimension_id:4},
   {category_id:31,name:"Upper Class",dimension_id:4},
   {category_id:34,name:"Middle/Lower Classes",dimension_id:4}
 
