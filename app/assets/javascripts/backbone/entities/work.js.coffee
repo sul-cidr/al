@@ -40,16 +40,21 @@
           works.reset(filterId)
           cb works
 
-    getWorksCategory: (cat, cb) ->
+    getWorksCategory: (filter, cb) ->
+      console.log 'API.getWorksCategory', filter
       works.fetch
+        data: filter
         success: ->
-          filterCat = _.filter(works.models,(item) ->
-            item.get("work_id") > 20399 && # item.contains("categories", cat)
-              item.get('categories').indexOf(cat) > -1;
-          )
-          works.reset(filterCat);
-          # console.log 'filtered works', works
           cb works
+      # works.fetch
+      #   success: ->
+      #     filterCat = _.filter(works.models,(item) ->
+      #       item.get("work_id") > 20399 && # item.contains("categories", cat)
+      #         item.get('categories').indexOf(cat) > -1;
+      #     )
+      #     works.reset(filterCat);
+      #     # console.log 'filtered works', works
+      #     cb works
 
   App.reqres.setHandler "works:author", (authid, cb) ->
     API.getWorksByAuthor authid, cb
@@ -60,5 +65,5 @@
   App.reqres.setHandler "work:entities", (workid, cb) ->
     API.getWorkEntities workid, cb
 
-  App.reqres.setHandler "works:category", (cat, cb) ->
-    API.getWorksCategory cat, cb
+  App.reqres.setHandler "works:category", (filter={}, cb) ->
+    API.getWorksCategory filter, cb

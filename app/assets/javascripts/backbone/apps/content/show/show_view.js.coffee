@@ -35,11 +35,12 @@
     }
     filterStuff: (e) ->
       # filter either authors or works and map for category
-      filter = {}
+      listFilter = {}
+      mapFilter = {}
       dim = $(e.currentTarget).context.parentElement.id.substring(3,)
       tab = window.location.hash.substring(1,window.location.hash.length)
       catid = parseInt($(e.currentTarget).context.attributes.val.value)
-      console.log 'filterStuff()' + tab, dim, catid
+      # console.log 'filterStuff() ' + tab, dim, catid
       # print category header
       seltext =
         '<span class="strong">'+
@@ -49,15 +50,22 @@
 
       # TODO: refactor
       # get a collection of work or author models for category
-      App.request tab+":category", catid, (collection) =>
-        console.log 'filtered '+ tab + ', cat: '+ catid, collection
-        if tab == 'works'
+      # console.log 'filterStuff '+ tab+":category" + ', cat: '+ catid
+      if ['genre', 'form'].indexOf(dim) >= 0
+        listFilter['work_cat'] = catid
+      else # if ['community', 'standing'].indexOf(dim) >= 0
+        listFilter['auth_cat'] = catid
+      if tab == 'works'
+        App.request tab+":category", listFilter, (collection) =>
+          console.log 'filter ', listFilter, collection
           AL.WorksApp.List.Controller.listCatWorks(collection)
-        else if tab == 'authors'
+      else if tab == 'authors'
+        App.request tab+":category", listFilter, (collection) =>
+          console.log 'filter ', listFilter, collection
           AL.AuthorsApp.List.Controller.listCatAuthors(collection)
 
       # to map_app
-      console.log "to map -> category:"+tab+":show " + dim, catid
-      filter[dim+'_id'] = catid
-      App.vent.trigger "category:show", (filter)
+      # console.log "to map -> category:"+tab+":show " + dim, catid
+      mapFilter[dim+'_id'] = catid
+      App.vent.trigger "category:show", (mapFilter)
       # App.vent.trigger "category:"+tab+":show", (filter)

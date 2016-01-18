@@ -32,18 +32,11 @@
       cb @author
 
     # TODO this executes twice, from authors_app and map_app
-    getAuthorsCategory: (cat, cb) ->
-      console.log 'API.getAuthorsCategory', cat
+    getAuthorsCategory: (filter, cb) ->
+      console.log 'API.getAuthorsCategory', filter
       authors.fetch
+        data: filter
         success: ->
-          console.log 'an author', authors.models[0].attributes
-          # _.each authors.models, (a) =>
-          #   console.log a.attributes.categories
-          filterCat = _.filter(authors.models, (item) ->
-            item.get("author_id") < 10434 && item.get('categories').indexOf(cat) > -1;
-          )
-          authors.reset(filterCat);
-          console.log authors.models.length + ' authors from API'
           cb authors
 
   App.reqres.setHandler "author:entities", (cb) ->
@@ -52,7 +45,8 @@
   App.reqres.setHandler "author:entity", (id, cb) ->
     API.getAuthorEntity id, cb
 
-  App.reqres.setHandler "authors:category", (cat, cb) ->
-    API.getAuthorsCategory cat, cb
-
-  # CHECK ?? add initializer to populate authors once, then check before any other fetch
+  App.reqres.setHandler "authors:category", (filter={}, cb) ->
+    API.getAuthorsCategory filter, cb
+  #
+  # App.reqres.setHandler "authors:category", (cat, cb) ->
+  #   API.getAuthorsCategory cat, cb

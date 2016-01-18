@@ -2,7 +2,7 @@ json.array! @placerefs do |place|
   json.placeref place
   json.work place.work
   json.author place.author
-
+end
   # json.extract!(
   #   place,
   #   :placeref_id,
@@ -14,4 +14,3 @@ json.array! @placerefs do |place|
   #   :geom_wkt,
   #   :work
   # )
-end

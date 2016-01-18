@@ -66,7 +66,7 @@ class Placeref < ActiveRecord::Base
     if params[:authors] # array of author_id
       refs = refs.joins{author}.where{author.standing_id >> params[:authors]}
     end
-    
+
     if params[:work_id]
       refs = refs.joins{work}.where{work.work_id >> params[:work_id]}
     end
@@ -80,17 +80,5 @@ class Placeref < ActiveRecord::Base
     end
     counts
   end
-
-  # placerefs in or near hood
-  # def self.in_or_near(id)
-  #   where {
-  #       geom_wkt like 'MULTIPOINT%' and
-  #       st_intersects(
-  #         st_buffer( (st_geomfromtext(Area.find(id).geom_wkt)), 0.01),
-  #         st_geomfromtext(geom_wkt)
-  #       )
-  #     # st_geomfromtext(Area.find(id).geom_wkt)
-  #   }
-  # end
 
 end
