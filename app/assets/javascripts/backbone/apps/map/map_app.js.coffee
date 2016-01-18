@@ -1,26 +1,20 @@
 @AL.module "MapApp", (MapApp, App, Backbone, Marionette, $, _) ->
   @startWithParent = false
 
+  # TODO: need both??
   App.vent.on "author:show", (author) ->
     # console.log "map heard author:show -->", author.get('author_id')
     # placerefs for all passages by an author
     API.filterByAuthor author
 
+  App.vent.on "authors:show", (auths) ->
+    console.log "map heard authors:show -->", auths
+    # placerefs for all passages by an author
+    API.filterByAuthors auths
+
   App.vent.on "work:show", (work) ->
     console.log "map heard work:show -->", work.get('work_id')
     API.filterByWork work
-
-  # App.vent.on "category:authors:show", (filter) ->
-  #   console.log 'map heard category:authors:show --> ', filter
-  #   # places for all passages by category of authors
-  #   API.filterByCategory filter
-  #   # API.filterByAuthorCategory filter
-  #
-  # App.vent.on "category:works:show", (filter) ->
-  #   console.log 'map heard category:works:show --> ', filter
-  #   # places for all passages in works of a category
-  #   API.filterByCategory filter
-  #   # API.filterByWorkCategory filter
 
   App.vent.on "category:show", (filter) ->
     # console.log 'map heard category:show --> ', filter
@@ -48,10 +42,8 @@
       # console.log  'MapApp.API.filterByAuthor()', id
       MapApp.Show.Controller.filterPlaces({author_id: id})
 
-    filterByAuthors: (author_ids, id) ->
-      # console.log author.get("author_id")
-      MapApp.Show.Controller.setFilter 'authors', (placeref) ->
-        author_ids.indexOf(placeref.get("author_id")) > -1
+    filterByAuthors: (authids) ->
+      MapApp.Show.Controller.filterPlaces({author_id: authids})
 
     filterByCategory: (filter) ->
       MapApp.Show.Controller.filterPlaces(filter)

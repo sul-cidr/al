@@ -41,12 +41,16 @@
       @route = "authors/" + author.get('author_id')
       # runs AuthorsApp.Show.Controller.showAuthor()
       Backbone.history.navigate(@route, true)
+
     aggAuthors: ->
-      authArray = []
-      author = this.model
-      authArray.push author.get('author_id')
+      authArray = $(':checked').map(->
+        parseInt $(this).val()
+        ).get()
+      # author = this.model
       console.log authArray
-      App.vent.trigger "author:show", author
+      # for map
+      App.vent.trigger "authors:show", authArray
+      # App.vent.trigger "author:show", author
 
   class List.Authors extends App.Views.CompositeView
     template: "authors/list/templates/_authors"
