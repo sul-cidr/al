@@ -45,9 +45,7 @@
     aggAuthors: ->
       authArray = $(':checked').map(->
         parseInt $(this).val()
-        ).get()
-      # author = this.model
-      console.log authArray
+      ).get()
       # for map
       App.vent.trigger "authors:show", authArray
       # App.vent.trigger "author:show", author
