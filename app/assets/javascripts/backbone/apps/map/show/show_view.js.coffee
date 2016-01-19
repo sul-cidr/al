@@ -194,7 +194,8 @@
         @places.clearLayers()
       App.request "place:entities", params, (places) =>
         # points, lines, polygons; type: [bioblace | worksplace
-        # console.log places.models.length + ' place models to be rendered' #, places.models[0]
+        console.log 'params sent: ', params
+        console.log places.models.length + ' place models rendered' #, places.models[0]
         @features = []
         # window.places = places.models
         max = Math.max.apply(Math, places.map((o) ->
