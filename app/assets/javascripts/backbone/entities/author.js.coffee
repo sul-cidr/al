@@ -47,6 +47,3 @@
 
   App.reqres.setHandler "authors:category", (filter={}, cb) ->
     API.getAuthorsCategory filter, cb
-  #
-  # App.reqres.setHandler "authors:category", (cat, cb) ->
-  #   API.getAuthorsCategory cat, cb

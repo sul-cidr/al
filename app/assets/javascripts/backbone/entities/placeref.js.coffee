@@ -1,29 +1,33 @@
 @AL.module "Entities", (Entities, App, Backbone, Marionette, $,  _) ->
 
   class Entities.Placeref extends Entities.Model
-    # idAttribute: "placeref_id"
+    idAttribute: "placeref_id"
+    url: '/placerefs/:placeref_id'
 
   class Entities.PlacerefCollection extends Entities.Collection
     model: Entities.Placeref
     url: '/placerefs'
 
+  # placerefs = new Entities.PlacerefCollection()
 
   API =
     # all placerefs less bio not yet mapped to author/work
     getPlacerefEntities: (data, cb) ->
+      console.log 'getPlacerefEntities', data
       placerefs = new Entities.PlacerefCollection()
       placerefs.fetch
         data: data
         success: ->
           cb placerefs
 
-    getPlacerefEntity: (prid, cb) ->
-      @placeref = Placeref.find(prid)
-      console.log 'API' + @placeref, prid
-      cb @placeref
+    # getPlacerefEntity: (prid, cb) ->
+    #   placerefs = new Entities.PlacerefCollection()
+    #   placerefs = placerefs._byId[prid]
+    #   console.log 'placeref API given' + prid
+    #   cb placerefs
 
   App.reqres.setHandler "placeref:entities", (data={},cb) ->
     API.getPlacerefEntities data, cb
 
-  App.reqres.setHandler "placeref:entity", (prid,cb) ->
-    API.getPlacerefEntities prid, cb
+  # App.reqres.setHandler "placeref:oneoff", (data={}, cb) ->
+  #   API.getPlacerefEntity prid, cb

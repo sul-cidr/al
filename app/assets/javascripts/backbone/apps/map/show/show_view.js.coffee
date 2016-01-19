@@ -435,7 +435,13 @@
     # called by Show.Controller on trigger 'placeref:click'
     clickPlaceref: (prid) ->
       # TODO: get place_id from placeref_id
-
+      console.log 'prid', prid
+      App.request "placeref:entities", {id:prid}, (placerefs) =>
+        if placerefs.models.length == 0
+          console.log 'placeref not loaded'
+        else
+          placeid = placerefs.models[0].attributes.placeref.place_id
+          console.log 'place_id: ', placeid
       # # if search tab active, filteredFeatures doesn't exist
       # if $("#content_nav_region li.active").attr('value') != 'search'
       #   @marker = _.filter(filteredFeatures, (item) ->
