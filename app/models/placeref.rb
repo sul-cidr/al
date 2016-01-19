@@ -30,10 +30,21 @@ class Placeref < ActiveRecord::Base
     where {place_id == pid}
   }
 
+  scope :by_place_and_author, -> (pid = nil, aid = nill) {
+    where {place_id == pid && author_id == aid}
+  }
+
   scope :for_popup, -> {
     includes {work}
     includes {author}
   }
+
+  # def self.by_place_and_author(pid = nil, aid = nil)
+  #   return where {place_id:pid, author_id:aid} if pid && aid
+  #   return where {place_id:pid} if pid
+  #   return where {author_id:pid} if aid
+  #   all
+  # end
 
   def self.rank_places(params)
     refs = all

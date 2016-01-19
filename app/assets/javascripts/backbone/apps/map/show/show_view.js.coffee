@@ -195,9 +195,8 @@
       App.request "place:entities", params, (places) =>
         # points, lines, polygons; type: [bioblace | worksplace
         console.log 'params sent: ', params
-        console.log places.models.length + ' place models rendered' #, places.models[0]
+        console.log places.models.length + ' place models rendered e.g.', places.models[0]
         @features = []
-        # window.places = places.models
         max = Math.max.apply(Math, places.map((o) ->
           o.attributes.count ))
         $.each places.models, (i, pl) =>
@@ -222,11 +221,13 @@
             })
 
             feature.on('click', (e) ->
-              # console.log e.target
-              # window.clicked = e.target
               html = ''
-              # html = '<span class="popup-header">references to <b>'+pname+'</b></span><br/>'
-              App.request "placeref:entities", {place_id:pid}, (placerefs) =>
+              @filter = {place_id:pid}
+              if typeof params != "undefined"
+                @filter['author_id'] = params['author_id']
+                console.log 'on click params: ',@filter
+
+              App.request "placeref:entities", @filter, (placerefs) =>
                 # console.log placerefs
                 _.each placerefs.models, (pr) =>
                   # console.log 'placeref attributes', pr.attributes

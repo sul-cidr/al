@@ -2,6 +2,7 @@ json.array! @placerefs do |place|
   json.placeref place
   json.work place.work
   json.author place.author
+
 end
   # json.extract!(
   #   place,
