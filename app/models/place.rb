@@ -24,4 +24,5 @@ class Place < ActiveRecord::Base
   has_many :works, :through => :passages
   has_many :authors, :through => :works
 
+
 end

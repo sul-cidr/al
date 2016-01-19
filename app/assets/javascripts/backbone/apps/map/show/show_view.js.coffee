@@ -20,61 +20,6 @@
       @filteredFeatures = []
       # console.log 'filteredFeatures: ', @filteredFeatures
 
-    setFilter: (key, evaluator) ->
-      # re-initialize filters each time
-      @filters = {}
-      @filters[key] = evaluator
-      @filterAllLayers()
-      App.reqres.setHandler "filters:active", ->
-        return @filters
-
-    filterLayer: (layer) ->
-      visible = true
-      _.each @filters, (evaluator, key) =>
-        visible = visible && evaluator(layer.model)
-      # console.log visible
-      if visible
-        # used to get bounds
-        @filteredFeatures.push layer
-        @markerClusters.addLayer layer
-      else
-        @markerClusters.removeLayer layer
-        # @map.removeLayer layer
-
-    filterAllLayers: (keepzoom)->
-      # reset filteredFeatures array
-      @filteredFeatures = []
-      setTimer('filterAllLayers')
-      # console.log @features
-      _.each @features, (f) =>
-        # console.log f
-        @filterLayer(f)
-
-      console.timeEnd "filterAllLayers"
-
-      # TODO: filteredFeatures is empty sometimes !?!?!?
-      # filteredFeatures[]
-      window.markerClusters = @markerClusters
-      window.filteredFeatures = @filteredFeatures
-      # console.log @filteredFeatures
-      window.filteredBounds = L.featureGroup(@filteredFeatures).getBounds()
-
-      if keepzoom != 'stay'
-        map.fitBounds(filteredBounds)
-      # else if keepzoom == 'london'
-      #   map.setView([51.5120, -0.0928],12)
-
-      # @filteredFeatures array used in PlacesApp to render summary
-      App.vent.trigger('placerefs:filtered', @filteredFeatures);
-
-    removeFilter: (key) ->
-      delete @filters[key]
-      @filterAllLayers()
-
-    clearFilters: (keepzoom)->
-      @filters = {}
-      @filterAllLayers(keepzoom)
-
     swapBase: (id) ->
       # London = [51.5120, -0.0928]
       # TODO "eval is evil"
@@ -350,8 +295,8 @@
 
         @places.addTo(@map)
         # TODO: stop exposing these
-        # window.places = @places
-        # window.features = @features
+        window.places = @places
+        window.features = @features
 
     ingestPlacerefs: (placerefs) ->
       # console.log 'placeref models to be ingested', placerefs.models
@@ -489,30 +434,32 @@
     # click placeref in text
     # called by Show.Controller on trigger 'placeref:click'
     clickPlaceref: (prid) ->
-      # if search tab active, filteredFeatures doesn't exist
-      if $("#content_nav_region li.active").attr('value') != 'search'
-        @marker = _.filter(filteredFeatures, (item) ->
-          item.model.attributes.placeref_id == parseInt(prid) )[0]
-      else
-        @marker = _.filter(features, (item) ->
-          item.model.attributes.placeref_id == parseInt(prid) )[0]
+      # TODO: get place_id from placeref_id
 
-      # console.log 'clickPlaceref marker ', @marker
-      # zoom to it
-      window.m = @marker
-      if @marker._latlng != undefined
-        # console.log '!=undefined', @marker
-        # it's a point
-        # remove it from a cluster if it's in one
-        @markerClusters.removeLayer(@marker)
-        # put it back on map
-        map.addLayer(@marker)
-        @marker.openPopup()
-        map.setView(@marker._popup._source._latlng,15,{animate:true})
-      else
-        # it's a linestring
-        map.setView(@marker.getBounds().getCenter(),15,{animate:true})
-        @marker.openPopup()
+      # # if search tab active, filteredFeatures doesn't exist
+      # if $("#content_nav_region li.active").attr('value') != 'search'
+      #   @marker = _.filter(filteredFeatures, (item) ->
+      #     item.model.attributes.placeref_id == parseInt(prid) )[0]
+      # else
+      #   @marker = _.filter(features, (item) ->
+      #     item.model.attributes.placeref_id == parseInt(prid) )[0]
+      #
+      # # console.log 'clickPlaceref marker ', @marker
+      # # zoom to it
+      # window.m = @marker
+      # if @marker._latlng != undefined
+      #   # console.log '!=undefined', @marker
+      #   # it's a point
+      #   # remove it from a cluster if it's in one
+      #   @markerClusters.removeLayer(@marker)
+      #   # put it back on map
+      #   map.addLayer(@marker)
+      #   @marker.openPopup()
+      #   map.setView(@marker._popup._source._latlng,15,{animate:true})
+      # else
+      #   # it's a linestring
+      #   map.setView(@marker.getBounds().getCenter(),15,{animate:true})
+      #   @marker.openPopup()
 
     # triggered from passages, area list
     highlightFeature: (prid) ->

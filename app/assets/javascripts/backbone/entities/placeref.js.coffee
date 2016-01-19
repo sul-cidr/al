@@ -17,5 +17,13 @@
         success: ->
           cb placerefs
 
+    getPlacerefEntity: (prid, cb) ->
+      @placeref = Placeref.find(prid)
+      console.log 'API' + @placeref, prid
+      cb @placeref
+
   App.reqres.setHandler "placeref:entities", (data={},cb) ->
     API.getPlacerefEntities data, cb
+
+  App.reqres.setHandler "placeref:entity", (prid,cb) ->
+    API.getPlacerefEntities prid, cb

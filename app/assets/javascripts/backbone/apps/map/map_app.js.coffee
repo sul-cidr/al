@@ -8,7 +8,7 @@
     API.filterByAuthor author
 
   App.vent.on "authors:show", (authids) ->
-    console.log "map heard authors:show -->", auths
+    console.log "map heard authors:show -->", authids
     # placerefs for all passages by an author
     API.filterByAuthors authids
 
