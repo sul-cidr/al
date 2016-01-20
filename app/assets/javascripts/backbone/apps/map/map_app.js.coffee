@@ -3,7 +3,7 @@
 
   # TODO: need both??
   App.vent.on "author:show", (author) ->
-    # console.log "map heard author:show -->", author.get('author_id')
+    console.log "map heard author:show -->", author.get('author_id')
     # placerefs for all passages by an author
     API.filterByAuthor author
 

@@ -18,6 +18,8 @@
     initialize: ->
       @filters = {}
       @filteredFeatures = []
+      @keyPlaces = {}
+
       # console.log 'filteredFeatures: ', @filteredFeatures
 
     swapBase: (id) ->
@@ -188,13 +190,20 @@
     buildPopup: (place_id) ->
       console.log 'buildPopup for place #', place_id
 
-    renderPlaces: (params) ->
+    removePlaces: ->
+
+
+    renderPlaces: (params, key, clear = true) ->
       # App.request "placeref:entities", {place_id:pid}, (placerefs) =>
+      # markerColors = {0:"yellow",1:"red",2:"green",3:"blue",4:"grey"}
       if typeof @places != "undefined"
         @places.clearLayers()
+      if typeof params != "undefined"
+        authArray = params['author_id']
+        console.log 'author(s) selected: ',authArray
       App.request "place:entities", params, (places) =>
         # points, lines, polygons; type: [bioblace | worksplace
-        console.log 'params sent: ', params
+        # console.log 'params sent: ', params
         console.log places.models.length + ' place models rendered e.g.', places.models[0]
         @features = []
         max = Math.max.apply(Math, places.map((o) ->
@@ -294,6 +303,9 @@
             @features.push feature
 
         @places = L.featureGroup(@features)
+
+        # if key was passed, e.g. 'author_'+author_id
+        # @keyPlaces[key] = @places
 
         @places.addTo(@map)
         # TODO: stop exposing these

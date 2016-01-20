@@ -6,7 +6,7 @@
       # console.log "showAuthor", author.get('surname')
       # hide dimension dropdowns
       # $("#dimensions_region").addClass("hidden")
-      
+
       # disable dimension dropdowns
       $(".btn").disable(true)
 
@@ -31,7 +31,7 @@
 
       # trigger for map_app
       # TODO: map filtering fails half the time
-      App.vent.trigger "author:show", author
+      App.vent.trigger "author:show", author.get("author_id")
 
     getAuthorLayout: (author) ->
       new Show.Layout ({

@@ -34,6 +34,9 @@
       'click a': 'authByRoute'
       'click input': 'aggAuthors'
     }
+    initialize: ->
+      @checked = []
+
     authByRoute: ->
       # $("#spin_authors").removeClass('hidden')
       $activeAuthor = this.model
@@ -43,12 +46,18 @@
       Backbone.history.navigate(@route, true)
 
     aggAuthors: ->
-      authArray = $(':checked').map(->
+      authArray = @$(':checked').map(->
+      # authArray = $(':checked').map(->
         parseInt $(this).val()
       ).get()
+
+      # TODO:
+      # is (parseInt $(this).val()) in authArray or not?
+      # if id has been added, call renderPlaces, if removed, call removePlaces
+
       # for map
       App.vent.trigger "authors:show", authArray
-      # App.vent.trigger "author:show", author
+      # e.g. App.vent.trigger "authors:remove", 'author_'+<<author_id>>
 
   class List.Authors extends App.Views.CompositeView
     template: "authors/list/templates/_authors"

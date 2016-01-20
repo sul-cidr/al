@@ -39,13 +39,6 @@ class Placeref < ActiveRecord::Base
     includes {author}
   }
 
-  # def self.by_place_and_author(pid = nil, aid = nil)
-  #   return where {place_id:pid, author_id:aid} if pid && aid
-  #   return where {place_id:pid} if pid
-  #   return where {author_id:pid} if aid
-  #   all
-  # end
-
   def self.rank_places(params)
     refs = all
     # agglomerates param terms
@@ -56,20 +49,6 @@ class Placeref < ActiveRecord::Base
       refs = refs.joins{author.categories}.where{categories.category_id >> params[:auth_cat]}
     end
 
-    # distinct param terms; same result as agglom
-    # e.g. auth_cat=30 is same as community_id = 30
-    if params[:genre_id]
-      refs = refs.joins{work.categories}.where{categories.category_id >> params[:genre_id]}
-    end
-    if params[:form_id]
-      refs = refs.joins{work.categories}.where{categories.category_id >> params[:form_id]}
-    end
-    if params[:community_id]
-      refs = refs.joins{author.categories}.where{categories.category_id >> params[:community_id]}
-    end
-    if params[:standing_id]
-      refs = refs.joins{author.categories}.where{categories.category_id >> params[:standing_id]}
-    end
 
     if params[:author_id]
       refs = refs.joins{author}.where{author.author_id >> params[:author_id]}
@@ -81,7 +60,9 @@ class Placeref < ActiveRecord::Base
     if params[:work_id]
       refs = refs.joins{work}.where{work.work_id >> params[:work_id]}
     end
+
     counts = {}
+    
     refs.each do |ref|
       if !counts.has_key?(ref.place_id)
         counts[ref.place_id] = 1
@@ -93,3 +74,18 @@ class Placeref < ActiveRecord::Base
   end
 
 end
+
+    # distinct param terms; same result as agglom
+    # # e.g. auth_cat=30 is same as community_id = 30
+    # if params[:genre_id]
+    #   refs = refs.joins{work.categories}.where{categories.category_id >> params[:genre_id]}
+    # end
+    # if params[:form_id]
+    #   refs = refs.joins{work.categories}.where{categories.category_id >> params[:form_id]}
+    # end
+    # if params[:community_id]
+    #   refs = refs.joins{author.categories}.where{categories.category_id >> params[:community_id]}
+    # end
+    # if params[:standing_id]
+    #   refs = refs.joins{author.categories}.where{categories.category_id >> params[:standing_id]}
+    # end
