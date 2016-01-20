@@ -31,7 +31,8 @@
 
       # trigger for map_app
       # TODO: map filtering fails half the time
-      App.vent.trigger "author:show", author.get("author_id")
+      App.vent.trigger "authors:show", author.get("author_id")
+      # App.vent.trigger "author:show", author.get("author_id")
 
     getAuthorLayout: (author) ->
       new Show.Layout ({

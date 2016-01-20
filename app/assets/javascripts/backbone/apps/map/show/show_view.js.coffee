@@ -190,10 +190,10 @@
     buildPopup: (place_id) ->
       console.log 'buildPopup for place #', place_id
 
-    removePlaces: ->
+    removePlaces: (authid) ->
+      console.log 'removePlaces() for author', authid
 
-
-    renderPlaces: (params, key, clear = true) ->
+    renderPlaces: (params, key, clear=true) ->
       # App.request "placeref:entities", {place_id:pid}, (placerefs) =>
       # markerColors = {0:"yellow",1:"red",2:"green",3:"blue",4:"grey"}
       if typeof @places != "undefined"

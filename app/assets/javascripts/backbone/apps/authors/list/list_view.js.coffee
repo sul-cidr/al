@@ -11,7 +11,44 @@
 
     events: {
       "click .clear": "removeFilter"
+      'click input': 'aggAuthors'
     }
+
+    initialize: ->
+      @checked = []
+      console.log '@checked', @checked
+
+    # targeting renderPlaces(params, key, clear=true)
+    # or removePlaces(key)
+    aggAuthors: (e) ->
+      # console.clear()
+      console.log 'checked = ', @checked
+      selected = parseInt($(e.currentTarget).context.value)
+      key = 'auth_'+selected
+      if @checked.indexOf(selected) < 0
+        @checked.push(selected)
+        console.log 'added', selected + ', checked[] now', @checked
+        console.log 'need to renderPlaces(selected,key,clear=false)', key
+      else # selected in checked[] already
+        console.log 'need to removePlaces(key) ', key
+
+      # authArray = @$(':checked').map(->
+      # authArray = $(':checked').map(->
+      #   parseInt $(this).val()
+      # ).get()
+      # console.log 'selected, authArray: ' + selected, authArray
+      # if authArray.indexOf(selected) >= 0
+      #   key = 'auth_'+selected
+      #   console.log 'need to removePlaces() ', key
+      # else
+      #   console.log 'need to renderPlaces()'
+      # TODO:
+      # is (parseInt $(this).val()) in authArray or not?
+      # if id has been added, call renderPlaces, if removed, call removePlace
+
+      # for map
+      # App.vent.trigger "authors:show", authArray
+      # e.g. App.vent.trigger "authors:remove", 'author_'+<<author_id>>
 
     removeFilter: ->
       # console.log 'remove filter'
@@ -32,10 +69,8 @@
     tagName: "span"
     events: {
       'click a': 'authByRoute'
-      'click input': 'aggAuthors'
+      # 'click input': 'aggAuthors'
     }
-    initialize: ->
-      @checked = []
 
     authByRoute: ->
       # $("#spin_authors").removeClass('hidden')
@@ -44,20 +79,6 @@
       @route = "authors/" + author.get('author_id')
       # runs AuthorsApp.Show.Controller.showAuthor()
       Backbone.history.navigate(@route, true)
-
-    aggAuthors: ->
-      authArray = @$(':checked').map(->
-      # authArray = $(':checked').map(->
-        parseInt $(this).val()
-      ).get()
-
-      # TODO:
-      # is (parseInt $(this).val()) in authArray or not?
-      # if id has been added, call renderPlaces, if removed, call removePlaces
-
-      # for map
-      App.vent.trigger "authors:show", authArray
-      # e.g. App.vent.trigger "authors:remove", 'author_'+<<author_id>>
 
   class List.Authors extends App.Views.CompositeView
     template: "authors/list/templates/_authors"
