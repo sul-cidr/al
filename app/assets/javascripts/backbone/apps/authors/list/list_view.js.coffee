@@ -29,6 +29,7 @@
         checkedCount = @checked.length
         window.checked = @checked
         console.log 'added', selected + ', checked now', @checked
+        $("#legend").removeClass('hidden')
         # for map
         App.vent.trigger "author:checked",
           author_id: selected,

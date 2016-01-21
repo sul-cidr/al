@@ -192,6 +192,7 @@
       delete @keyPlaces[params['key']]
       # if no authors are checked any more, render all
       if params['count'] == 0
+        $("#legend").addClass('hidden')
         # console.log '@keyPlaces', @keyPlaces
         @renderPlaces({clear:true})
 

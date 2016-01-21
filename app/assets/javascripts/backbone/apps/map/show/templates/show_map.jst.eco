@@ -1,7 +1,7 @@
 
 <div id="map">
   <div id="spin_map" class="spinner-loader hidden"></div>
-  <div id="legend">
+  <div id="legend" class="hidden">
     <h4>Authors</h4>
     <div id="legend_list">
       <!-- <span class="fa-stack fa-lg"> -->
