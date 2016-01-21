@@ -2,15 +2,21 @@
   @startWithParent = false
 
   # TODO: need both??
-  App.vent.on "author:show", (author) ->
-    console.log "map heard author:show -->", author.get('author_id')
-    # placerefs for all passages by an author
-    API.filterByAuthor author
+  # App.vent.on "author:show", (author) ->
+  #   console.log "map heard author:show -->", author.get('author_id')
+  #   # placerefs for all passages by an author
+  #   API.filterByAuthor author
 
   App.vent.on "authors:show", (authids) ->
     console.log "map heard authors:show -->", authids
     # placerefs for all passages by an author
     API.filterByAuthors authids
+
+  App.vent.on "author:checked", (params) ->
+    API.renderOneAuthor params
+
+  App.vent.on "author:unchecked", (params) ->
+    API.dropOneAuthor params
 
   App.vent.on "work:show", (work) ->
     console.log "map heard work:show -->", work.get('work_id')
@@ -44,6 +50,14 @@
 
     filterByAuthors: (authids) ->
       MapApp.Show.Controller.filterPlaces({author_id: authids})
+
+    renderOneAuthor: (params) ->
+      console.log 'API.renderOneAuthor', params
+      MapApp.Show.Controller.renderOneAuthor(params)
+
+    dropOneAuthor: (params) ->
+      console.log 'API.dropOneAuthor', params
+      MapApp.Show.Controller.dropOneAuthor(params)
 
     filterByCategory: (filter) ->
       MapApp.Show.Controller.filterPlaces(filter)

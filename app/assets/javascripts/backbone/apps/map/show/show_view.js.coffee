@@ -19,7 +19,6 @@
       @filters = {}
       @filteredFeatures = []
       @keyPlaces = {}
-
       # console.log 'filteredFeatures: ', @filteredFeatures
 
     swapBase: (id) ->
@@ -73,6 +72,7 @@
           return areas
 
       @renderPlaces()
+      # @renderPlaces({author_id:null, key:null, clear:null})
 
     L.mapbox.accessToken = 'pk.eyJ1IjoiZWxpamFobWVla3MiLCJhIjoiY2loanVmcGljMG50ZXY1a2xqdGV3YjRkZyJ9.tZqY_fRD2pQ1a0E599nKqg'
 
@@ -182,29 +182,36 @@
     	size: 'm'
     });
 
-    # CHECK: ingestAreas and ingestPlacerefs both need to populate this
-    # $idToFeature = {areas:[], placerefs:[]}
     $idToFeature = {areas:{}, places:{}}
     window.idToFeature = $idToFeature
-    # window.foo = $foo
-    buildPopup: (place_id) ->
-      console.log 'buildPopup for place #', place_id
 
-    removePlaces: (authid) ->
-      console.log 'removePlaces() for author', authid
+    removePlaces: (params) ->
+      # drop from map
+      map.removeLayer(@keyPlaces[params['key']])
+      # delete from hash
+      delete @keyPlaces[params['key']]
+      # if no authors are checked any more, render all
+      if params['count'] == 0
+        # console.log '@keyPlaces', @keyPlaces
+        @renderPlaces({clear:true})
 
-    renderPlaces: (params, key, clear=true) ->
+    renderPlaces: (params) ->
+      console.log 'renderPlaces', params
       # App.request "placeref:entities", {place_id:pid}, (placerefs) =>
-      # markerColors = {0:"yellow",1:"red",2:"green",3:"blue",4:"grey"}
+      markerColors = {0:"yellow",1:"red",2:"green",3:"blue",4:"grey"}
+
       if typeof @places != "undefined"
-        @places.clearLayers()
-      if typeof params != "undefined"
-        authArray = params['author_id']
-        console.log 'author(s) selected: ',authArray
+        if params['clear'] == true
+          @places.clearLayers()
+
+      # if typeof params != "undefined"
+      #   authArray = params['author_id']
+      #   console.log 'author(s) selected: ',authArray
+
       App.request "place:entities", params, (places) =>
         # points, lines, polygons; type: [bioblace | worksplace
         # console.log 'params sent: ', params
-        console.log places.models.length + ' place models rendered e.g.', places.models[0]
+        console.log places.models.length + ' place models rendered' # e.g.', places.models[0]
         @features = []
         max = Math.max.apply(Math, places.map((o) ->
           o.attributes.count ))
@@ -222,10 +229,11 @@
 
             feature = new L.CircleMarker(l_geom, {
               color: '#000',
-              fillColor: 'yellow',
+              fillColor: markerColors[Object.keys(@keyPlaces).length],
+              # fillColor: 'yellow',
               # TODO: need to get max count
               radius: scaleMarker(prcount,[1,max]),
-              fillOpacity: 0.7,
+              fillOpacity: 0.5,
               weight: 1
             })
 
@@ -304,121 +312,18 @@
 
         @places = L.featureGroup(@features)
 
-        # if key was passed, e.g. 'author_'+author_id
-        # @keyPlaces[key] = @places
+        # if there's an author_id, add this set to hash
+        # if not, we're rendering all
+        if params != undefined
+          if params['author_id'] != undefined
+            @keyPlaces[params['key']] = @places
+            window.keyplaces = @keyPlaces
+            # console.log @keyPlaces
 
         @places.addTo(@map)
         # TODO: stop exposing these
         window.places = @places
         window.features = @features
-
-    ingestPlacerefs: (placerefs) ->
-      # console.log 'placeref models to be ingested', placerefs.models
-      @features = []
-      $.each placerefs.models, (i, pl) =>
-        geom = pl.attributes.geom_wkt
-        prid = pl.get("placeref_id")
-        aid = pl.get("author_id").toString()
-        workid = pl.get("work_id")
-
-        # POINT data
-        if geom.substr(0,5) == 'POINT'
-          # console.log wellknown(geom).coordinates
-          feature = L.marker(
-            swap(wellknown(geom).coordinates))
-
-          feature.model = pl
-          @popup = feature.bindPopup(
-            if pl.get('placeref_type') == 'bio'
-            then '<b>'+pl.get("placeref")+'</b>, a place in<br/>'+
-              authHash[pl.get("author_id")]+'\'s life<br/>'+
-              pl.get("placeref_id")
-            else '<b>'+pl.get("placeref") + '</b>, in<br/>'+
-              '<em>'+workHash[pl.get("work_id")].title + '</em>'+'<br/>'+
-              'by '+authHash[pl.get("author_id")]+'. '+
-              '<span class="passage-link" val='+pl.get("passage_id")+
-                '>show passage</span> ['+pl.get("placeref_id") + ']'
-          )
-          # popup.on("popupclose"): ->
-          #   $(".passages-places").addClass('hidden')
-
-          feature.setIcon(
-            if pl.get('placeref_type') == 'bio'
-            then houseMarker
-            else bookMarker
-          )
-          # CHECK: why bother adding an id here?
-          feature.options.id = prid
-          feature.options.workid = workid
-          # obj = {}
-          # obj[prid]=feature
-          # $idToFeature.placerefs.push obj
-          # $foo.placerefs[prid]={feat:feature,wid:workid}
-
-          $idToFeature.placerefs[prid] = feature
-          @features.push feature
-
-        # LINESTRING data
-        else if geom.substr(0,10) == 'LINESTRING'
-          feature =  new L.GeoJSON(wellknown(geom), {
-            style: mapStyles.street
-            # options: {"model":pl,"id":prid}
-            onEachFeature: (feature, layer) ->
-              layer.bindPopup pl.get("placeref")
-          })
-          feature.model = pl
-          # CHECK: do of these actually do anything?
-          feature.options.id = prid
-          feature.options.workid = workid
-
-          $idToFeature.placerefs[prid] = feature
-          @features.push feature
-
-
-      @placerefs = L.featureGroup(@features)
-
-      @markerClusters = L.markerClusterGroup(
-        {
-          polygonOptions: {
-          fillColor: '#3887be',
-          color: '#3887be',
-          weight: 2,
-          opacity: 0.6,
-          fillOpacity: 0.3 }
-          # disableClusteringAtZoom: 15
-        }
-      );
-
-      @markerClusters.addLayer(@placerefs);
-
-        # Highlight.
-      # @placerefs.on(
-      #   'mouseover',
-      #   this.onSelectFeature.bind(this)
-      # );
-      #
-      # # Unhighlight.
-      # @placerefs.on(
-      #   'mouseout',
-      #   this.onUnselectFeature.bind(this)
-      # );
-
-      # click gets a popup
-      @placerefs.on(
-        'click',
-        this.onSelectFeature.bind(this)
-      );
-
-      # clusters
-      @markerClusters.addTo(@map)
-
-      # TODO: stop exposing these
-      window.map = @map
-      window.placerefs = @placerefs
-      window.features = @features
-      window.markers = @markerClusters
-      # stop spinner
-      $("#spin_map").addClass('hidden')
 
     # neighborhood voronoi polygons (not visible)
     ingestAreas: (areas) ->

@@ -11,7 +11,7 @@
 
     events: {
       "click .clear": "removeFilter"
-      'click input': 'aggAuthors'
+      'click input': 'checkedAuthors'
     }
 
     initialize: ->
@@ -20,17 +20,29 @@
 
     # targeting renderPlaces(params, key, clear=true)
     # or removePlaces(key)
-    aggAuthors: (e) ->
+    checkedAuthors: (e) ->
       # console.clear()
-      console.log 'checked = ', @checked
       selected = parseInt($(e.currentTarget).context.value)
       key = 'auth_'+selected
       if @checked.indexOf(selected) < 0
         @checked.push(selected)
-        console.log 'added', selected + ', checked[] now', @checked
-        console.log 'need to renderPlaces(selected,key,clear=false)', key
-      else # selected in checked[] already
-        console.log 'need to removePlaces(key) ', key
+        checkedCount = @checked.length
+        window.checked = @checked
+        console.log 'added', selected + ', checked now', @checked
+        # for map
+        App.vent.trigger "author:checked",
+          author_id: selected,
+          key: key,
+          clear: if checkedCount==1 then true else false
+      else # author now unchecked, remove it
+        idx = @checked.indexOf(selected)
+        @checked.splice(idx, 1)
+        checkedCount = @checked.length
+        console.log selected + ' removed, @checked now', @checked
+        # for map
+        App.vent.trigger "author:unchecked",
+          key: key
+          count: checkedCount
 
       # authArray = @$(':checked').map(->
       # authArray = $(':checked').map(->

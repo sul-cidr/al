@@ -20,6 +20,14 @@
       # console.log 'filterPlaces', filter
       @mapView.renderPlaces(filter)
 
+    renderOneAuthor: (params) ->
+      # console.log 'renderOneAuthor() sending renderPlaces()', params
+      @mapView.renderPlaces(params)
+
+    dropOneAuthor: (params) ->
+      console.log 'dropOneAuthor() sending removePlaces():', params
+      @mapView.removePlaces(params)
+
     setFilter: (key, evaluator, counter) ->
       # console.log 'Map.Show.Controller.setFilter() ' + key
       @mapView.setFilter key, evaluator
@@ -50,7 +58,7 @@
       @mapView.unhighlightAll()
 
     # /**
-    # Clicking tagged placeref triggers "placeref:click"
+    # from on map_app "placeref:click"
     # Go to view
     # */
     onClickPlaceref: (prid) ->
