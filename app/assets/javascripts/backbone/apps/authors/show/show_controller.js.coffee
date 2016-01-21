@@ -30,7 +30,7 @@
       App.authorsRegion.show @authorLayout
 
       # trigger for map_app
-      # TODO: map filtering fails half the time
+      # sending one here
       App.vent.trigger "authors:show", author.get("author_id")
       # App.vent.trigger "author:show", author.get("author_id")
 

@@ -21,10 +21,11 @@
       authors.fetch
         success: ->
           # exclude Evans, Fielding, Boswell
-          filterName = _.filter(authors.models,(item) ->
-            item.get("author_id") < 10434;
-          )
-          authors.reset(filterName);
+          # should happen in Rails controller
+          # filterName = _.filter(authors.models,(item) ->
+          #   item.get("author_id") < 10434;
+          # )
+          # authors.reset(filterName);
           cb authors
 
     getAuthorEntity: (id, cb) ->

@@ -20,8 +20,6 @@ WorkCategoryRel.create([
   {work_id:20408,category_id:17},
   {work_id:20409,category_id:17},
   {work_id:20409,category_id:3},
-  {work_id:20410,category_id:1},
-  {work_id:20410,category_id:17},
   {work_id:20411,category_id:9},
   {work_id:20411,category_id:17},
   {work_id:20412,category_id:17},

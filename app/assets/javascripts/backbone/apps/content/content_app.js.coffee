@@ -51,7 +51,7 @@
 
         # console.log 'author', author
         AL.AuthorsApp.Show.Controller.showAuthor(author)
-
+        #
         App.reqres.setHandler "author:model", ->
           return author
     #

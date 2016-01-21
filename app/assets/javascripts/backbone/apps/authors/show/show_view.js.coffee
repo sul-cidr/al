@@ -44,14 +44,12 @@
         $("#crumb_author").addClass("crumb-link")
         @route = "works/"+authid
         # console.log 'loadContent, works:', @route
-        # CHECK: is this Navigate...true right?
         Backbone.history.navigate(@route, true)
         # Show.Controller.listWorks authid
       else if @pill == 'biography'
         @route = "authors/"+authid
-        # console.log 'loadContent, bio:', @route
+        # executes Show.Controller.showAuthor 
         Backbone.history.navigate(@route, true)
-        # Show.Controller.showAuthor authid
 
   class Show.Passage extends App.Views.ItemView
     template: "authors/show/templates/_passage"

@@ -40,7 +40,7 @@
       dim = $(e.currentTarget).context.parentElement.id.substring(3,)
       tab = window.location.hash.substring(1,window.location.hash.length)
       catid = parseInt($(e.currentTarget).context.attributes.val.value)
-      # console.log 'filterStuff() ' + tab, dim, catid
+      console.log 'filterStuff() ' + tab, dim, catid
       # print category header
       seltext =
         '<span class="strong">'+

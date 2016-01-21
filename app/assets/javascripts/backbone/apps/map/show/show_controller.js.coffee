@@ -16,9 +16,9 @@
     swapBase: (id) ->
       @mapView.swapBase id
 
-    filterPlaces: (filter) ->
+    filterPlaces: (params) ->
       # console.log 'filterPlaces', filter
-      @mapView.renderPlaces(filter)
+      @mapView.renderPlaces(params)
 
     renderOneAuthor: (params) ->
       # console.log 'renderOneAuthor() sending renderPlaces()', params

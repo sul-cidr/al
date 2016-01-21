@@ -42,17 +42,17 @@
     showMap: ->
       MapApp.Show.Controller.showMap()
 
-    filterByAuthor: (author) ->
-      id = author.get("author_id")
-      dyear = author.get("death_year")
-      # console.log  'MapApp.API.filterByAuthor()', id
-      MapApp.Show.Controller.filterPlaces({author_id: id})
+    # filterByAuthor: (author) ->
+    #   id = author.get("author_id")
+    #   dyear = author.get("death_year")
+    #   # console.log  'MapApp.API.filterByAuthor()', id
+    #   MapApp.Show.Controller.filterPlaces({author_id: id, clear:true})
 
     filterByAuthors: (authids) ->
-      MapApp.Show.Controller.filterPlaces({author_id: authids})
+      MapApp.Show.Controller.filterPlaces({author_id: authids, clear:true})
 
     renderOneAuthor: (params) ->
-      console.log 'API.renderOneAuthor', params
+      # console.log 'API.renderOneAuthor', params
       MapApp.Show.Controller.renderOneAuthor(params)
 
     dropOneAuthor: (params) ->

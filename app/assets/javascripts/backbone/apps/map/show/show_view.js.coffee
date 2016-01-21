@@ -195,6 +195,13 @@
         # console.log '@keyPlaces', @keyPlaces
         @renderPlaces({clear:true})
 
+    getColor: ->
+      markerColors = {0:"yellow",1:"red",2:"green",3:"blue",4:"grey"}
+      if Object.keys(@keyPlaces) != "undefined"
+        markerColors[Object.keys(@keyPlaces).length]
+      else
+        "yellow"
+
     renderPlaces: (params) ->
       console.log 'renderPlaces', params
       # App.request "placeref:entities", {place_id:pid}, (placerefs) =>
@@ -203,10 +210,6 @@
       if typeof @places != "undefined"
         if params['clear'] == true
           @places.clearLayers()
-
-      # if typeof params != "undefined"
-      #   authArray = params['author_id']
-      #   console.log 'author(s) selected: ',authArray
 
       App.request "place:entities", params, (places) =>
         # points, lines, polygons; type: [bioblace | worksplace
@@ -229,7 +232,7 @@
 
             feature = new L.CircleMarker(l_geom, {
               color: '#000',
-              fillColor: markerColors[Object.keys(@keyPlaces).length],
+              fillColor: @getColor(),
               # fillColor: 'yellow',
               # TODO: need to get max count
               radius: scaleMarker(prcount,[1,max]),
