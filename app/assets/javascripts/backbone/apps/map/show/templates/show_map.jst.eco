@@ -1,5 +1,21 @@
 
 <div id="map">
   <div id="spin_map" class="spinner-loader hidden"></div>
-  <div id="legend"></div>
+  <div id="legend">
+    <h4>Authors</h4>
+    <div id="legend_list">
+      <!-- <span class="fa-stack fa-lg"> -->
+        <!-- <i class="fa fa-circle-o fa-stack-2x" style="color:black;"></i> -->
+        <i class="fa fa-circle fa-lg" style="color:blue;"> W Blake</i>
+      <!-- </span> -->
+      <!-- <span class="fa-stack fa-lg"> -->
+        <!-- <i class="fa fa-circle-o fa-stack-2x" style="color:black;"></i> -->
+        <i class="fa fa-circle fa-lg" style="color:red;"> EB Browning</i>
+      <!-- </span> -->
+      <!-- <span class="fa-stack fa-lg"> -->
+        <!-- <i class="fa fa-circle-o fa-stack-2x" style="color:black;"></i> -->
+        <i class="fa fa-circle fa-lg" style="color:green;"> AC Swinburne</i>
+      <!-- </span> -->
+    </div>
+  </div>
 </div>

@@ -19,7 +19,7 @@
 }
 #legend {
   position: absolute;
-  max-height: 90px;
+  max-height: 100px;
   width: 120px;
   padding: 4px 0 4px 8px;
   bottom: 2%;
@@ -30,6 +30,7 @@
   font-family: 'english';
   border-radius: 3px;
   box-shadow: 3px 3px 2px #888888;
+  h4 {margin-bottom: 0;}
 }
 .viewport-places {
   position: absolute;
