@@ -33,7 +33,8 @@
       @mapView.setFilter key, evaluator
 
     clearFilters: (keepzoom)->
-      @mapView.renderPlaces()
+      console.log 'fired clearFilters()'
+      @mapView.renderPlaces({clear:true})
       # @mapView.clearFilters(keepzoom)
 
     zoomTo: (what, area) ->

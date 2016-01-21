@@ -197,18 +197,18 @@
 
     getColor: ->
       markerColors = {0:"yellow",1:"red",2:"green",3:"blue",4:"grey"}
-      if Object.keys(@keyPlaces) != "undefined"
-        markerColors[Object.keys(@keyPlaces).length]
+      if Object.keys(@keyPlaces)[0] == "undefined"
+        return "yellow"
       else
-        "yellow"
+        return markerColors[Object.keys(@keyPlaces).length]
 
     renderPlaces: (params) ->
       console.log 'renderPlaces', params
       # App.request "placeref:entities", {place_id:pid}, (placerefs) =>
-      markerColors = {0:"yellow",1:"red",2:"green",3:"blue",4:"grey"}
+      # markerColors = {0:"yellow",1:"red",2:"green",3:"blue",4:"grey"}
 
       if typeof @places != "undefined"
-        if params['clear'] == true
+        if params && params['clear'] == true
           @places.clearLayers()
 
       App.request "place:entities", params, (places) =>

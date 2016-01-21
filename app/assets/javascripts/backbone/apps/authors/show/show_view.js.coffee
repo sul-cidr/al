@@ -48,7 +48,7 @@
         # Show.Controller.listWorks authid
       else if @pill == 'biography'
         @route = "authors/"+authid
-        # executes Show.Controller.showAuthor 
+        # executes Show.Controller.showAuthor
         Backbone.history.navigate(@route, true)
 
   class Show.Passage extends App.Views.ItemView

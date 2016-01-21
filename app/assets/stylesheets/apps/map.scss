@@ -19,12 +19,13 @@
 }
 #legend {
   position: absolute;
-  height: 30px;
+  max-height: 90px;
+  width: 120px;
   padding: 4px 0 4px 8px;
   bottom: 2%;
-  right: 5px;
+  right: 8px;
   z-index: 1;
-  background: #f8f4f4;
+  background: whitesmoke;
   // oldlace whitesmoke
   font-family: 'english';
   border-radius: 3px;
