@@ -1,6 +1,7 @@
 json.array! @places do |place|
   json.place place[:place]
   json.count place[:count]
+  json.biocount place[:biocount]
 
   # json.extract!(
   #   place,
