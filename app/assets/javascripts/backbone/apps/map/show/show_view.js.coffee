@@ -196,12 +196,33 @@
         # console.log '@keyPlaces', @keyPlaces
         @renderPlaces({clear:true})
 
-    getColor: ->
+    getColor: (prtype)->
+      # console.log 'prtype', prtype
       markerColors = {0:"yellow",1:"red",2:"green",3:"blue",4:"grey"}
       if Object.keys(@keyPlaces)[0] == "undefined"
-        return "yellow"
+        if prtype == 'work'
+          return "yellow"
+        else if prtype == 'bio'
+          return "red"
+        else
+          return "orange"
       else
-        return markerColors[Object.keys(@keyPlaces).length]
+        if prtype == 'work'
+          return "yellow"
+        else if prtype == 'bio'
+          return "red"
+        else
+          return "orange"
+        # return markerColors[Object.keys(@keyPlaces).length]
+
+    prType: (count, biocount)->
+      # console.log 'count, biocount', count, biocount
+      if biocount == null
+        return 'work'
+      else if count == biocount
+        return 'bio'
+      else
+        return 'both'
 
     renderPlaces: (params) ->
       console.log 'renderPlaces', params
@@ -223,17 +244,18 @@
           # TODO: get max of count()
           attribs = pl.attributes.place
           prcount = pl.attributes.count # placerefs-per-place
+          prtype = @prType(prcount, pl.attributes.biocount) # return work, bio, both
           geom = attribs.geom_wkt
           pid = attribs.place_id
           pname = attribs.prefname
-          # console.log 'pl', pl
+          # console.log '@getColor prtype', @getColor(prtype)
           if geom.substr(0,5) == 'POINT'
             coords = swap(wellknown(geom).coordinates)
             l_geom = new L.LatLng(coords[0],coords[1])
 
             feature = new L.CircleMarker(l_geom, {
               color: '#000',
-              fillColor: @getColor(),
+              fillColor: @getColor(prtype),
               # fillColor: 'yellow',
               # TODO: need to get max count
               radius: scaleMarker(prcount,[1,max]),
