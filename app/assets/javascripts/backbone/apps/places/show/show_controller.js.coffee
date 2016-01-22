@@ -34,7 +34,7 @@
         className: 'passages-places'
       })
 
-    # triggers area:focus to get placerefs for area
+
     showPlace: (id) ->
       # console.log 'place:focus triggered', id
       App.request "area:entity", id, (area) =>
