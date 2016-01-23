@@ -113,7 +113,6 @@
 
     initMap: ->
       # console.log 'initMap'
-      # this.map = L.mapbox.map('map', {
       @map = L.map('map', {
         zoomControl: false,
         attributionControl: false,
@@ -121,8 +120,6 @@
         maxZoom: 18,
         inertiaMaxSpeed: 1000
       }).setActiveArea('viewport-authors');
-
-      # var map = new L.Map(document.createElement('div')).setActiveArea('activeArea');
 
       baseMaps = {
         "Modern": l_mblight
@@ -147,7 +144,7 @@
       @London = [51.5120, -0.0928]
 
       @map.addLayer(l_mblight);
-      # places open, authors open viewports
+
       @map.setView(@London, 12)
 
       @map.addEventListener 'popupclose', ( (e) =>
@@ -156,31 +153,6 @@
         # activeMarker.setIcon(houseMarker)
         return
       ), this
-
-    stylePoints: (feature) ->
-      # console.log feature
-      if feature.get("placeref_type") == "bio"
-        return mapStyles.point_bio.start
-      else if feature.get("placeref_type") == "work"
-        return mapStyles.point_work.start
-      # else if feature.get("area_type") == "hood"
-      #   return mapStyles.point_hood
-
-    window.bookMarker = L.MakiMarkers.icon({
-    	icon: 'library',
-    	color: '#CD5C5C',
-    	size: 's'
-    });
-    window.houseMarker = L.MakiMarkers.icon({
-    	icon: 'lodging',
-    	color: '#BA55D3',
-    	size: 's'
-    });
-    window.houseMarkerM = L.MakiMarkers.icon({
-    	icon: 'lodging',
-    	color: '#BA55D3',
-    	size: 'm'
-    });
 
     $idToFeature = {areas:{}, places:{}}
     window.idToFeature = $idToFeature
@@ -197,23 +169,18 @@
         @renderPlaces({clear:true})
 
     getColor: (prtype)->
-      # console.log 'prtype', prtype
-      markerColors = {0:"yellow",1:"red",2:"green",3:"blue",4:"grey"}
-      if Object.keys(@keyPlaces)[0] == "undefined"
-        if prtype == 'work'
-          return "yellow"
-        else if prtype == 'bio'
-          return "red"
-        else
-          return "orange"
+      len = Object.keys(@keyPlaces).length
+      markerColors = {
+        0: {0:"yellow",1:"orange",2:"red"},
+        1: {0:"cyan",1:"deepskyblue",2:"blue"}
+        2: {0:"#e5f5f9",1:"#99d8c9",2:"#2ca25f"}
+      }
+      if prtype == 'work'
+        return markerColors[len][2]
+      else if prtype == 'bio'
+        return markerColors[len][0]
       else
-        if prtype == 'work'
-          return "yellow"
-        else if prtype == 'bio'
-          return "red"
-        else
-          return "orange"
-        # return markerColors[Object.keys(@keyPlaces).length]
+        return markerColors[len][1]
 
     prType: (count, biocount)->
       # console.log 'count, biocount', count, biocount
@@ -226,16 +193,12 @@
 
     renderPlaces: (params) ->
       console.log 'renderPlaces', params
-      # App.request "placeref:entities", {place_id:pid}, (placerefs) =>
-      # markerColors = {0:"yellow",1:"red",2:"green",3:"blue",4:"grey"}
-
+      console.log '@keyPlaces length:', Object.keys(@keyPlaces).length
       if typeof @places != "undefined"
         if params && params['clear'] == true
           @places.clearLayers()
 
       App.request "place:entities", params, (places) =>
-        # points, lines, polygons; type: [bioblace | worksplace
-        # console.log 'params sent: ', params
         console.log places.models.length + ' place models rendered' # e.g.', places.models[0]
         @features = []
         max = Math.max.apply(Math, places.map((o) ->
@@ -256,8 +219,6 @@
             feature = new L.CircleMarker(l_geom, {
               color: '#000',
               fillColor: @getColor(prtype),
-              # fillColor: 'yellow',
-              # TODO: need to get max count
               radius: scaleMarker(prcount,[1,max]),
               fillOpacity: 0.5,
               weight: 1
@@ -268,7 +229,7 @@
               @filter = {place_id:pid}
               if typeof params != "undefined"
                 @filter['author_id'] = params['author_id']
-                console.log 'on click params: ',@filter
+                # console.log 'on click params: ',@filter
 
               App.request "placeref:entities", @filter, (placerefs) =>
                 # console.log placerefs
@@ -303,17 +264,14 @@
           else if geom.substr(0,10) == 'LINESTRING'
             feature =  new L.GeoJSON(wellknown(geom), {
               style: mapStyles.street
-              # options: {"model":pl,"id":prid}
-              # onEachFeature: (feature, layer) ->
-              #   layer.bindPopup pl.get("prefname")
             })
 
             feature.on('click', (e) ->
-              console.log 'e.target', e.target
-              window.clicked = e.target
               html = ''
-              # html = '<span class="popup-header">references to <b>'+pname+'</b></span><br/>'
-              App.request "placeref:entities", {place_id:pid}, (placerefs) =>
+              @filter = {place_id:pid}
+              if typeof params != "undefined"
+                @filter['author_id'] = params['author_id']
+              App.request "placeref:entities", @filter, (placerefs) =>
                 # console.log placerefs
                 _.each placerefs.models, (pr) =>
                   # console.log 'placeref attributes', pr.attributes
@@ -451,3 +409,29 @@
     selectFeature: (what, id) ->
       marker = $idToFeature.placerefs[id];
       this.map.flyTo(marker.getLatLng(), styles.zoom.feature);
+
+
+    # stylePoints: (feature) ->
+    #   # console.log feature
+    #   if feature.get("placeref_type") == "bio"
+    #     return mapStyles.point_bio.start
+    #   else if feature.get("placeref_type") == "work"
+    #     return mapStyles.point_work.start
+    #   # else if feature.get("area_type") == "hood"
+    #   #   return mapStyles.point_hood
+    #
+    # window.bookMarker = L.MakiMarkers.icon({
+    # 	icon: 'library',
+    # 	color: '#CD5C5C',
+    # 	size: 's'
+    # });
+    # window.houseMarker = L.MakiMarkers.icon({
+    # 	icon: 'lodging',
+    # 	color: '#BA55D3',
+    # 	size: 's'
+    # });
+    # window.houseMarkerM = L.MakiMarkers.icon({
+    # 	icon: 'lodging',
+    # 	color: '#BA55D3',
+    # 	size: 'm'
+    # });

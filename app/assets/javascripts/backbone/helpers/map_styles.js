@@ -16,8 +16,8 @@ var mapStyles = {
   },
   street: {
     "color": "purple",
-    "weight": 3.5,
-    "opacity": 0.5
+    "weight": 2,
+    "opacity": 1
   },
   area_placeref: {
     "color": "green",

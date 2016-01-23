@@ -35,8 +35,8 @@
     }
     filterStuff: (e) ->
       # filter either authors or works and map for category
-      listFilter = {}
-      mapFilter = {}
+      listFilter = {clear:true}
+      # mapFilter = {clear:true}
       dim = $(e.currentTarget).context.parentElement.id.substring(3,)
       tab = window.location.hash.substring(1,window.location.hash.length)
       catid = parseInt($(e.currentTarget).context.attributes.val.value)
@@ -65,7 +65,8 @@
           AL.AuthorsApp.List.Controller.listCatAuthors(collection)
 
       # to map_app
-      # console.log "to map -> category:"+tab+":show " + dim, catid
-      mapFilter[dim+'_id'] = catid
-      App.vent.trigger "category:show", (mapFilter)
-      # App.vent.trigger "category:"+tab+":show", (filter)
+      # MapApp.Show.Controller.filterPlaces(filter)
+      # -> @mapView.renderPlaces(params)
+      # mapFilter[dim+'_id'] = catid
+      console.log "category:show to map", listFilter
+      App.vent.trigger "category:show", (listFilter)
