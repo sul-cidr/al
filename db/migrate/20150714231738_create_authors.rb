@@ -3,6 +3,7 @@ class CreateAuthors < ActiveRecord::Migration
       create_table :authors, {:id => false} do |t|
       	t.integer :author_id
       	t.string :prefname #label
+      	t.string :label # shorter label
       	t.string :surname
       	t.string :middle
       	t.string :given

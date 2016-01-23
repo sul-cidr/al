@@ -3,6 +3,7 @@ json.array! @authors do |author|
     author,
     :author_id,
     :prefname,
+    :label,
     :surname,
     :viaf_id,
     :wiki_id,

@@ -24,12 +24,15 @@
       # console.clear()
       selected = parseInt($(e.currentTarget).context.value)
       key = 'auth_'+selected
-      if @checked.indexOf(selected) < 0
+      if @checked.indexOf(selected) < 0 # not selected
         @checked.push(selected)
         checkedCount = @checked.length
         window.checked = @checked
         console.log 'added', selected + ', checked now', @checked
-        $("#legend").removeClass('hidden')
+        if $( ".author input:checked" ).length == 3
+          $( ".author input:not(:checked)" ).attr('disabled', 'disabled');
+        else
+          $('.author input').removeAttr('disabled');
         # for map
         App.vent.trigger "author:checked",
           author_id: selected,
@@ -40,28 +43,21 @@
         @checked.splice(idx, 1)
         checkedCount = @checked.length
         console.log selected + ' removed, @checked now', @checked
+        if $( ".author input:checked" ).length == 3
+          $( ".author input:not(:checked)" ).attr('disabled', 'disabled');
+        else
+          $('.author input').removeAttr('disabled');
         # for map
         App.vent.trigger "author:unchecked",
+          author_id: selected,
           key: key
           count: checkedCount
 
-      # authArray = @$(':checked').map(->
-      # authArray = $(':checked').map(->
-      #   parseInt $(this).val()
-      # ).get()
-      # console.log 'selected, authArray: ' + selected, authArray
-      # if authArray.indexOf(selected) >= 0
-      #   key = 'auth_'+selected
-      #   console.log 'need to removePlaces() ', key
-      # else
-      #   console.log 'need to renderPlaces()'
-      # TODO:
-      # is (parseInt $(this).val()) in authArray or not?
-      # if id has been added, call renderPlaces, if removed, call removePlace
-
-      # for map
-      # App.vent.trigger "authors:show", authArray
-      # e.g. App.vent.trigger "authors:remove", 'author_'+<<author_id>>
+    #
+    # if($('input.author').filter(':checked').length == 3)
+    #     $('input.author:not(:checked)').attr('disabled', 'disabled');
+    # else
+    #     $('input.author').removeAttr('disabled');
 
     removeFilter: ->
       # console.log 'remove filter'

@@ -21,6 +21,7 @@
       @mapView.renderPlaces(params)
 
     renderOneAuthor: (params) ->
+      # console.clear()
       # console.log 'renderOneAuthor() sending renderPlaces()', params
       @mapView.renderPlaces(params)
 

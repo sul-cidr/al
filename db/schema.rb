@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20160116181714) do
 
   create_table "authors", primary_key: "author_id", force: :cascade do |t|
     t.string   "prefname"
+    t.string   "label"
     t.string   "surname"
     t.string   "middle"
     t.string   "given"

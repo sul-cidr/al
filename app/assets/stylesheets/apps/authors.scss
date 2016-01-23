@@ -24,15 +24,14 @@
 
 #authorlist_region {
   font-family:'english';
-  padding: 4px;
-  // background: peachpuff;
+  padding: 0 4px;
 }
 
 #authorlist {
-  padding:0 6px; margin-top: 6px;
+  padding:0 6px; margin-top: 0;
   a {text-decoration: none;}
   a:hover {background: yellow;}
-  // background: mintcream;
+  p {font-size: .8em; margin:2px;}
   }
 
 .author {

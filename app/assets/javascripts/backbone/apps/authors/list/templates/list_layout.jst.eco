@@ -1,2 +1,4 @@
 <div id="selected_cat_authors"></div>
-<div id="authorlist_region"></div>
+<div id="authorlist_region">
+  <p>Check <input type="checkbox" checked="checked" disabled="true">to compare 2 or 3 authors</p>
+</div>

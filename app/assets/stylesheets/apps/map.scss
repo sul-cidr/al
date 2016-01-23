@@ -20,7 +20,7 @@
 #legend {
   position: absolute;
   max-height: 100px;
-  width: 120px;
+  width: 180px;
   padding: 4px 0 4px 8px;
   bottom: 2%;
   right: 8px;
@@ -31,6 +31,12 @@
   border-radius: 3px;
   box-shadow: 3px 3px 2px #888888;
   h4 {margin: 0;}
+  p {font-size: .8em; margin:0; text-align: left !important;}
+}
+#legend_list {
+  padding-left: 0;
+  li {list-style-type: none;}
+  i {font-style: 6px; padding-right: 14px}
 }
 .viewport-places {
   position: absolute;

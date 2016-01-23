@@ -160,6 +160,9 @@
     removePlaces: (params) ->
       # drop from map
       map.removeLayer(@keyPlaces[params['key']])
+      # remove from legend
+      # remove element w/ id = leg_<author_id>
+      $("#leg_"+params['author_id']).remove()
       # delete from hash
       delete @keyPlaces[params['key']]
       # if no authors are checked any more, render all
@@ -168,12 +171,13 @@
         # console.log '@keyPlaces', @keyPlaces
         @renderPlaces({clear:true})
 
-    getColor: (prtype)->
-      len = Object.keys(@keyPlaces).length
+    getColor: (prtype, legend=false)->
+      length = Object.keys(@keyPlaces).length
+      len = if !legend then length else (length-1)
       markerColors = {
         0: {0:"yellow",1:"orange",2:"red"},
         1: {0:"cyan",1:"deepskyblue",2:"blue"}
-        2: {0:"#e5f5f9",1:"#99d8c9",2:"#2ca25f"}
+        2: {0:"#e5f5f9",1:"#99d8c9",2:"#2ca25f"} # greens
       }
       if prtype == 'work'
         return markerColors[len][2]
@@ -197,7 +201,9 @@
       if typeof @places != "undefined"
         if params && params['clear'] == true
           @places.clearLayers()
-
+      if params && params['author_id']
+        App.request "author:entity", params['author_id'], (author) =>
+          @authlabel = author.get("label")
       App.request "place:entities", params, (places) =>
         console.log places.models.length + ' place models rendered' # e.g.', places.models[0]
         @features = []
@@ -303,6 +309,17 @@
             @keyPlaces[params['key']] = @places
             window.keyplaces = @keyPlaces
             # console.log @keyPlaces
+
+        # populate legend
+        if Object.keys(@keyPlaces).length > 0
+          $("#legend_list").append('<li id=leg_'+params['author_id']+'>'+
+            '<i class="fa fa-circle fa-lg" style="color:'+@getColor('bio',true)+';"/>' +
+            '<i class="fa fa-circle fa-lg" style="color:'+@getColor('work',true)+';"/>'+
+            '<i class="fa fa-circle fa-lg" style="color:'+@getColor('both',true)+';"/> ' +
+             @authlabel+'</li>'
+          )
+          # $("#legend_list").append('<li>'+authLabel[params['author_id']]+'</li>')
+          $("#legend").removeClass('hidden')
 
         @places.addTo(@map)
         # TODO: stop exposing these

@@ -1,1 +1,3 @@
-<div id="authorlist"></div>
+<div id="authorlist">
+<p>Use checkboxes <input type="checkbox" checked="checked" disabled="true">to compare 2 or 3 authors</p>
+</div>
