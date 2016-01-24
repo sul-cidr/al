@@ -20,14 +20,5 @@
         success: ->
           cb placerefs
 
-    # getPlacerefEntity: (prid, cb) ->
-    #   placerefs = new Entities.PlacerefCollection()
-    #   placerefs = placerefs._byId[prid]
-    #   console.log 'placeref API given' + prid
-    #   cb placerefs
-
   App.reqres.setHandler "placeref:entities", (data={},cb) ->
     API.getPlacerefEntities data, cb
-
-  # App.reqres.setHandler "placeref:oneoff", (data={}, cb) ->
-  #   API.getPlacerefEntity prid, cb

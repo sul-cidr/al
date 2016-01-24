@@ -1362,7 +1362,7 @@ Placeref.create([
   {placeref_id:30033,work_id:20271,passage_id:"20271.1887",placeref:"the Thames",author_id:10423,place_id:40033,geom_wkt:"POINT(-0.099144 51.509375)",placeref_type:"bio"},
   {placeref_id:30261,work_id:20241,passage_id:"20241.1827",placeref:"24 South Audley St",author_id:10409,place_id:40260,geom_wkt:"POINT(-0.1510218 51.5091437)",placeref_type:"bio"},
   {placeref_id:31320,work_id:20606,passage_id:"20606.754",placeref:"St Paul's",author_id:10391,place_id:40053,geom_wkt:"POINT(-0.098761 51.513329)",placeref_type:"work"},
-  {placeref_id:31531,work_id:20451,passage_id:"20451.556",placeref:"31340>Bow",author_id:10347,place_id:40839,geom_wkt:"POINT(-0.008645 51.523298)",placeref_type:"work"},
+  {placeref_id:31531,work_id:20451,passage_id:"20451.556",placeref:"Stratford-atte-Bowe",author_id:10347,place_id:40839,geom_wkt:"POINT(-0.008645 51.523298)",placeref_type:"work"},
   {placeref_id:35175,work_id:20507,passage_id:"20507.1092",placeref:"Richmond Bridge",author_id:10381,place_id:40975,geom_wkt:"POINT(-0.307068 51.457346)",placeref_type:"work"},
   {placeref_id:30077,work_id:20125,passage_id:"20125.1583",placeref:"139 Long Acre, Covent Garden",author_id:10361,place_id:40077,geom_wkt:"POINT(-0.1263824 51.5120801)",placeref_type:"bio"},
   {placeref_id:30193,work_id:20504,passage_id:"20504.2226",placeref:"Bloomsbury",author_id:10377,place_id:40192,geom_wkt:"POINT(-0.1277556 51.5179665)",placeref_type:"work"},

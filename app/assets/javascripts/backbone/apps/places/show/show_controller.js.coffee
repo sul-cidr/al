@@ -36,7 +36,12 @@
 
     showPlace: (id) ->
       console.log 'showPlace(id)', id
+
       App.request "area:entity", id, (area) =>
+        App.request "placeref:entities", {area_id:id}, (activePlacerefs) =>
+          console.log 'showPlace() placerefs', activePlacerefs
+          window.activeplacerefs = activePlacerefs
+          @showPlaceSummary activePlacerefs
         # get placerefs within area,
         # then App.vent.trigger "placerefs:area" {activePlacerefs}
         # that will run showPlaceSummary() below
@@ -82,23 +87,16 @@
 
     # generates summary by author
     # TODO: by decade
-    # TODO: why is this function triggered continually?
     showPlaceSummary: (activePlacerefs) ->
+      # console.log 'showPlaceSummary() activePlacerefs', activePlacerefs
       window.wPlacerefs = []
       window.worksYears = []
       @bPlacerefs = []
-      @activeWorksPlaces = _.filter(activePlacerefs, (p) ->
-        p.model.attributes.placeref_type == 'work')
-      # console.log 'activeWorksPlaces', @activeWorksPlaces
-      @activeBioPlaces = _.filter(activePlacerefs, (p) ->
-        p.model.attributes.placeref_type == 'bio')
+      _.each activePlacerefs.models, (p) =>
+        # console.log 'activePlacerefs', p
+        wPlacerefs.push(p.attributes.placeref)
+        worksYears.push(p.attributes.work.work_year)
 
-      # console.log 'API.showAreaSummary..triggered from ??'
-      _.each @activeWorksPlaces, (p) =>
-        wPlacerefs.push(p.model.attributes)
-        worksYears.push(workHash[p.model.attributes.work_id].work_year)
-      _.each @activeBioPlaces, (p) =>
-        @bPlacerefs.push(p.model.attributes)
       crossworks = crossfilter(wPlacerefs)
       crossbio = crossfilter(@bPlacerefs)
       # console.log 'have crossworks and crossbio array'

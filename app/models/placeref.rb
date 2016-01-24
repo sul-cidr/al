@@ -39,24 +39,18 @@ class Placeref < ActiveRecord::Base
     includes {author}
   }
 
-  # scope :by_area, -> (area_id = nil){
-  #   where (
-  #
-  #   )
-  # }
-
   def self.by_area(areaid)
-    #--, pr.placeref, pr.passage_id, pr.author_id, p.place_id, p.geom_wkt
     find_by_sql(
-    'with z as (
-    	select geom_poly_wkt from areas where area_id = '+ areaid.to_s +
-    ')
-    select pr.placeref_id
+    "with z as (
+    	select geom_point_wkt from areas where area_id = "+ areaid.to_s +
+    ")
+    select pr.*
     	from z, placerefs pr join places p on pr.place_id=p.place_id
     	where st_intersects(
-              st_buffer( (st_geomfromtext(z.geom_poly_wkt)), 0.01),
-              st_geomfromtext(p.geom_wkt))
-            order by placeref, passage_id'
+              st_buffer( (st_geomfromtext(z.geom_point_wkt)), 0.01),
+              st_geomfromtext(p.geom_wkt)) AND
+              pr.placeref_type = 'work'
+            order by placeref, passage_id"
     )
   end
 
