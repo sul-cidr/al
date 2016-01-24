@@ -34,10 +34,12 @@
         className: 'passages-places'
       })
 
-
     showPlace: (id) ->
-      # console.log 'place:focus triggered', id
+      console.log 'showPlace(id)', id
       App.request "area:entity", id, (area) =>
+        # get placerefs within area,
+        # then App.vent.trigger "placerefs:area" {activePlacerefs}
+        # that will run showPlaceSummary() below
         # console.log 'showPlace(id) asked for model', area
         @placeLayout = @getPlaceLayout area
         @placeLayout.on "show", =>
@@ -68,7 +70,7 @@
       new Show.Title
         model: area
 
-    # CHECK: this could be split out, depending on content
+    # renders template with area keywords field
     showPlaceContent: (area) ->
       # console.log 'showPlaceContent', area
       @contentView = @getContentView area
@@ -78,7 +80,6 @@
       new Show.Content
         model: area
 
-    #
     # generates summary by author
     # TODO: by decade
     # TODO: why is this function triggered continually?

@@ -25,7 +25,7 @@
     Backbone.history.navigate("places/" + id)
     API.showPlace(id)
 
-  App.vent.on "placerefs:filtered", (activePlacerefs) ->
+  App.vent.on "placerefs:area", (activePlacerefs) ->
     # CHECK: placeref filtering happens from both directions
     # this renders Area Summary whether visible or not
     # console.log 'activePlacerefs', activePlacerefs.length

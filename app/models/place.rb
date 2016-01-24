@@ -24,5 +24,15 @@ class Place < ActiveRecord::Base
   has_many :works, :through => :passages
   has_many :authors, :through => :works
 
+  # TODO: need places in or near an area (neighborhood, e.g. 14 is Bloomsbury)
+  def self.in_or_near(id)
+    where {
+        # geom_wkt like 'POINT%' and
+        st_intersects(
+          st_buffer( (st_geomfromtext(Area.find(id).geom_point_wkt)), 0.01),
+          st_geomfromtext(geom_wkt)
+        )
+    }
+  end
 
 end

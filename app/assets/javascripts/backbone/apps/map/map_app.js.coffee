@@ -81,9 +81,8 @@
 
       MapApp.Show.Controller.zoomTo 'area', area
 
-      # run this to filter on hood voronoi bounds...
-      # or comment and let Show.Controller.zoomTo initiate filtering on viewport\
-      MapApp.Show.Controller.filterByArea "area", hbounds
+      # TODO: filter for places/placerefs within area
+      # MapApp.Show.Controller.filterByArea "area", hbounds
 
     resetMap: ->
       $("#place_passages_region").fadeOut("slow")

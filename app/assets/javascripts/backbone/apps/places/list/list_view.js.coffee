@@ -71,7 +71,6 @@
 
       Backbone.history.navigate(@route, true)
       # runs AL.PlacesApp.Show.Controller.showPlace(id)
-      # App.vent.trigger('area:unhighlight', id);
 
     onAreaEnter: (e) ->
       id = this.getAreaIdFromEvent(e);

@@ -39,6 +39,27 @@ class Placeref < ActiveRecord::Base
     includes {author}
   }
 
+  # scope :by_area, -> (area_id = nil){
+  #   where (
+  #
+  #   )
+  # }
+
+  def self.by_area(areaid)
+    #--, pr.placeref, pr.passage_id, pr.author_id, p.place_id, p.geom_wkt
+    find_by_sql(
+    'with z as (
+    	select geom_poly_wkt from areas where area_id = '+ areaid.to_s +
+    ')
+    select pr.placeref_id
+    	from z, placerefs pr join places p on pr.place_id=p.place_id
+    	where st_intersects(
+              st_buffer( (st_geomfromtext(z.geom_poly_wkt)), 0.01),
+              st_geomfromtext(p.geom_wkt))
+            order by placeref, passage_id'
+    )
+  end
+
   def self.rank_places(params)
     refs = Placeref.all
     # agglomerates param terms
@@ -48,7 +69,6 @@ class Placeref < ActiveRecord::Base
     if params[:auth_cat]
       refs = refs.joins{author.categories}.where{categories.category_id >> params[:auth_cat]}
     end
-
 
     if params[:author_id]
       refs = refs.joins{author}.where{author.author_id >> params[:author_id]}

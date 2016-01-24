@@ -15,6 +15,12 @@ class PlacerefsController < ApplicationController
       placerefs = placerefs.by_place_and_author(params[:place_id],params[:author_id])
     end
 
+    if params[:area_id]
+      # TODO: join placerefs to place, return placerefs where
+      # geom intersects buffered area
+      placerefs = placerefs
+    end
+
     @placerefs = placerefs
 
   end

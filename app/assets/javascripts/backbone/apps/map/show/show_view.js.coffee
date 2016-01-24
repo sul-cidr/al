@@ -72,6 +72,7 @@
           return areas
 
       @renderPlaces()
+      # @renderPlaces({clear:true})
       # @renderPlaces({author_id:null, key:null, clear:null})
 
     initMap: ->
@@ -157,6 +158,9 @@
         return 'bio'
       else
         return 'both'
+
+    clearKeyPlaces: ->
+      @keyPlaces = {}
 
     renderPlaces: (params) ->
       console.log 'renderPlaces', params

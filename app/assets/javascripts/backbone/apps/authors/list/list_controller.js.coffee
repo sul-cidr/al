@@ -3,8 +3,10 @@
   List.Controller =
 
     startAuthors: ->
-      #
-      # ensure dimension buttons show
+      # zap legend contents and hide
+      $("#legend_list").html('')
+      $("#legend").addClass('hidden')
+
       $(".btn").disable(true)
       # $("#dimensions_region").removeClass("hidden")
       # App.vent.trigger "map:reset"

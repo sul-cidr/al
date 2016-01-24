@@ -38,32 +38,17 @@
               "<li val="+c.attributes.category.category_id+">"+c.attributes.category.name+"</li>"
             )
 
-
-    # new alternate
-    # TODO: refactor getting categories separately by dimension
-    # dropdownCategories: ->
-    #   for d in ['genre']
-    #   # for d in ['genre','form','community','standing']
-    #     @idtag = d + "_id"
-    #     console.log 'idtag', '"'+@idtag+'"'
-    #     App.request d + ":entities", (categories) =>
-    #       console.log categories
-    #       for c in categories.models
-    #         console.log "category of "+d, c.attributes[@idtag]
-    #         $("#ul_"+d).append(
-    #           "<li val="+c.attributes[@idtag]+">"+c.attributes.name+"</li>"
-    #         # "<li><label><input type='checkbox' val="+c.attributes.id+
-    #         # " disabled> "+c.attributes.name+"</label></li>"
-    #         )
-
     # called from various places to manage tab state
     showTab: (tab)->
-      # $(".header-left").removeClass("hidden")
+      # zap legend if any tab action is taken...I think
+      $("#legend_list").html('')
+      $("#legend").addClass('hidden')
+
       $("#content_nav_region li").removeClass("active")
       $("#place_passages_region").fadeOut()
       # TODO: reset map when changing tab
       # if map.getZoom() > 16
-      #   App.vent.trigger("map:reset")
+      # App.vent.trigger("map:reset")
 
       if tab == 'authors'
         # console.log 'Show.Controller showTab(authors)'
