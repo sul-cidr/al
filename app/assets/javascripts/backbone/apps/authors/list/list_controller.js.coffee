@@ -7,7 +7,7 @@
       # ensure dimension buttons show
       $(".btn").disable(true)
       # $("#dimensions_region").removeClass("hidden")
-
+      # App.vent.trigger "map:reset"
       # just get all
       App.request "author:entities", (authors) =>
       # ABANDON: start with all (cat 0); filtered in the app

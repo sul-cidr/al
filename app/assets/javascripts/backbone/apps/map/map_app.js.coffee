@@ -88,8 +88,7 @@
     resetMap: ->
       $("#place_passages_region").fadeOut("slow")
       # clear all filters
-      MapApp.Show.Controller.clearFilters()
-      # map.addLayer(l_osmLayer)
+      MapApp.Show.Controller.resetMap()
 
 
   # TODO: part of refactoring for areas - single area:show

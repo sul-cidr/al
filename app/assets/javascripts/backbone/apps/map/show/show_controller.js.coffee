@@ -33,10 +33,11 @@
       # console.log 'Map.Show.Controller.setFilter() ' + key
       @mapView.setFilter key, evaluator
 
-    clearFilters: (keepzoom)->
-      console.log 'fired clearFilters()'
+    resetMap: (keepzoom)->
+      console.log 'fired resetMap()'
       @mapView.renderPlaces({clear:true})
-      # @mapView.clearFilters(keepzoom)
+      # map.setView([51.5120, -0.0928],12)
+
 
     zoomTo: (what, area) ->
       @mapView.zoomTo what, area

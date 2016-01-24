@@ -164,6 +164,7 @@
       if typeof @places != "undefined"
         if params && params['clear'] == true
           @places.clearLayers()
+          @map.setView(@London, 12)
       if params && params['author_id']
         App.request "author:entity", params['author_id'], (author) =>
           @authlabel = author.get("label")
@@ -218,17 +219,16 @@
 
                 e.target._popup.setContent(html)
             )
+            @popup = feature.bindPopup(
+              pname, {
+                'className': 'place-popup',
+                'maxHeight': '450'}
+            )
             # add model, id to feature
             feature.model = pl
             feature.options.id = pid
             $idToFeature.places[pid] = feature
             @features.push feature
-
-            @popup = feature.bindPopup(
-              pl.get('prefname'), {
-                'className': 'place-popup',
-                'maxHeight': '450'}
-            )
 
           else if geom.substr(0,10) == 'LINESTRING'
             feature =  new L.GeoJSON(wellknown(geom), {
@@ -256,6 +256,11 @@
                       ',&#8221; a place in the life of ' +
                       pr.attributes.author.prefname+'<hr/>'
                   e.target.bindPopup html
+            )
+            @popup = feature.bindPopup(
+              pname, {
+                'className': 'place-popup',
+                'maxHeight': '450'}
             )
             # add model, id to feature
             feature.model = pl
