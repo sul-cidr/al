@@ -3,16 +3,18 @@
   Show.Controller =
 
     listPlacePassages: (authid) ->
+      console.log 'listPlacePassages() for', authid
       prefname = authHash[authid]
 
-      window.authorPassages =
-        _.filter @activeWorksPlaces, (wp) =>
-          wp.model.attributes.author_id == authid
+      window.authorPlacerefs =
+        _.filter @activePlacerefs.models, (pr) =>
+          pr.attributes.placeref.author_id == authid
 
       # get passage_ids for author
       window.passage_ids = []
-      _.each authorPassages, (p) =>
-        passage_ids.push p.model.attributes.passage_id
+      _.each authorPlacerefs, (p) =>
+        console.log 'p',p
+        passage_ids.push p.attributes.placeref.passage_id
 
       # retrieve single author's passages for an area
       App.request "passages:place", passage_ids, (place_passages) =>
@@ -89,6 +91,7 @@
     # TODO: by decade
     showPlaceSummary: (activePlacerefs) ->
       # console.log 'showPlaceSummary() activePlacerefs', activePlacerefs
+      @activePlacerefs = activePlacerefs
       window.wPlacerefs = []
       window.worksYears = []
       @bPlacerefs = []
