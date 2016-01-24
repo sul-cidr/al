@@ -64,7 +64,8 @@
     onPlacerefClick: (e) ->
       # window.context = $(e.currentTarget).context
       prid = $(e.currentTarget).context.attributes.val.value
-      # console.log 'onPlaceRefClick', prid
+      # to MapApp.Show.Controller.onClickPlaceref
+      # -> @mapView.clickPlaceref(prid)
       App.vent.trigger('placeref:click', prid)
 
     onPlacerefEnter: (e) ->
@@ -76,9 +77,9 @@
       prid = $(e.currentTarget).context.attributes.val.value
       # console.log 'onPlaceRefLeave', id
       # App.vent.trigger('placeref:unhighlight', prid);
-
-    getPlacerefIdFromEvent: (e) ->
-      Number($(e.currentTarget).context.attributes.data_id.value);
+    #
+    # getPlacerefIdFromEvent: (e) ->
+    #   Number($(e.currentTarget).context.attributes.data_id.value);
 
   # passages are shown by clicking a work
   class Show.Passages extends App.Views.CompositeView

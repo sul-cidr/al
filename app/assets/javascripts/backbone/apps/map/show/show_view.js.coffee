@@ -74,43 +74,6 @@
       @renderPlaces()
       # @renderPlaces({author_id:null, key:null, clear:null})
 
-    L.mapbox.accessToken = 'pk.eyJ1IjoiZWxpamFobWVla3MiLCJhIjoiY2loanVmcGljMG50ZXY1a2xqdGV3YjRkZyJ9.tZqY_fRD2pQ1a0E599nKqg'
-
-    # mapbox light basemap, in progress
-    l_mblight = L.mapbox.tileLayer(
-        # 'elijahmeeks.8a9e3cb1', # light
-        'elijahmeeks.e72a8419',  # emerald
-        L.mapbox.accessToken, {
-        attribution: 'Mapbox',
-        detectRetina: true
-        });
-    # OSM base layer
-    l_osm = L.tileLayer(
-      'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
-      { detectRetina: true }
-      );
-    window.l_indicator = L.mapbox.tileLayer(
-        'elijahmeeks.gqd89536',
-      # 'https://api.mapbox.com/v4/elijahmeeks.gqd89536/{z}/{x}/{y}.png?access_token=' +
-        L.mapbox.accessToken, {
-        attribution: 'Indicator (1880)',
-        detectRetina: true
-        });
-    l_bowles = L.mapbox.tileLayer(
-        'elijahmeeks.36cac3di',
-      # 'https://api.mapbox.com/v4/elijahmeeks.36cac3di/{z}/{x}/{y}.png?access_token=' +
-        L.mapbox.accessToken, {
-        attribution: 'Bowles (1783)',
-        detectRetina: true
-        });
-    l_taylor = L.mapbox.tileLayer(
-      # 'https://api.mapbox.com/v4/elijahmeeks.7dd6ynaj/{z}/{x}/{y}.png?access_token=' +
-        'elijahmeeks.7dd6ynaj',
-        L.mapbox.accessToken, {
-        attribution: 'Taylor (1723)',
-        detectRetina: true
-        });
-
     initMap: ->
       # console.log 'initMap'
       @map = L.map('map', {
@@ -143,7 +106,7 @@
 
       @London = [51.5120, -0.0928]
 
-      @map.addLayer(l_mblight);
+      # @map.addLayer(l_mblight);
 
       @map.setView(@London, 12)
 
@@ -351,6 +314,28 @@
       window.leaf_areas = @areas
       window.areaFeatures = @features
 
+    buildPopup: (filter) ->
+      html = ''
+      @filter = {place_id:pid}
+      if typeof params != "undefined"
+        @filter['author_id'] = params['author_id']
+
+      App.request "placeref:entities", @filter, (placerefs) =>
+        # console.log placerefs
+        _.each placerefs.models, (pr) =>
+          # console.log 'placeref attributes', pr.attributes
+          if pr.attributes.placeref.placeref_type == 'work'
+            html += '&#8220;'+pr.attributes.placeref.placeref +
+              ',&#8221; in <em>' +
+              pr.attributes.work.title + '</em><br/>('+
+              pr.attributes.author.prefname +
+              '; '+pr.attributes.work.work_year+')&nbsp;[<span class="passage-link" val='+
+              pr.attributes.placeref.passage_id+'>passage</span>]<hr/>'
+          else
+            html += '&#8220;'+pr.attributes.placeref.placeref +
+              ',&#8221; a place in the life of ' +
+              pr.attributes.author.prefname+'<hr/>'
+
     # click placeref in text
     # called by Show.Controller on trigger 'placeref:click'
     clickPlaceref: (prid) ->
@@ -358,34 +343,23 @@
       console.log 'prid', prid
       App.request "placeref:entities", {id:prid}, (placerefs) =>
         if placerefs.models.length == 0
-          console.log 'placeref not loaded'
+          console.log 'placeref not georeferenced yet'
         else
-          placeid = placerefs.models[0].attributes.placeref.place_id
-          console.log 'place_id: ', placeid
-      # # if search tab active, filteredFeatures doesn't exist
-      # if $("#content_nav_region li.active").attr('value') != 'search'
-      #   @marker = _.filter(filteredFeatures, (item) ->
-      #     item.model.attributes.placeref_id == parseInt(prid) )[0]
-      # else
-      #   @marker = _.filter(features, (item) ->
-      #     item.model.attributes.placeref_id == parseInt(prid) )[0]
-      #
-      # # console.log 'clickPlaceref marker ', @marker
-      # # zoom to it
-      # window.m = @marker
-      # if @marker._latlng != undefined
-      #   # console.log '!=undefined', @marker
-      #   # it's a point
-      #   # remove it from a cluster if it's in one
-      #   @markerClusters.removeLayer(@marker)
-      #   # put it back on map
-      #   map.addLayer(@marker)
-      #   @marker.openPopup()
-      #   map.setView(@marker._popup._source._latlng,15,{animate:true})
-      # else
-      #   # it's a linestring
-      #   map.setView(@marker.getBounds().getCenter(),15,{animate:true})
-      #   @marker.openPopup()
+          @placeid = placerefs.models[0].attributes.placeref.place_id
+          console.log 'place_id of clicked placeref: ', @placeid
+          @marker = $idToFeature.places[@placeid]
+          # @marker = _.filter(@features, (f) ->
+          #   f.model.attributes.place_id == @placeid )[0]
+          console.log 'clickPlaceref() marker ', @marker
+          # # zoom to it
+          window.m = @marker
+          if @marker._latlng != undefined
+            @marker.openPopup()
+            map.setView(@marker._popup._source._latlng,15,{animate:true})
+          else
+            # it's a linestring, zoom to its centroid
+            map.setView(@marker.getBounds().getCenter(),15,{animate:true})
+            @marker.openPopup()
 
     # triggered from passages, area list
     highlightFeature: (prid) ->
@@ -426,6 +400,44 @@
     selectFeature: (what, id) ->
       marker = $idToFeature.placerefs[id];
       this.map.flyTo(marker.getLatLng(), styles.zoom.feature);
+
+
+    L.mapbox.accessToken = 'pk.eyJ1IjoiZWxpamFobWVla3MiLCJhIjoiY2loanVmcGljMG50ZXY1a2xqdGV3YjRkZyJ9.tZqY_fRD2pQ1a0E599nKqg'
+
+    # mapbox light basemap, in progress
+    l_mblight = L.mapbox.tileLayer(
+        # 'elijahmeeks.8a9e3cb1', # light
+        'elijahmeeks.e72a8419',  # emerald
+        L.mapbox.accessToken, {
+        attribution: 'Mapbox',
+        detectRetina: true
+        });
+    # OSM base layer
+    l_osm = L.tileLayer(
+      'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
+      { detectRetina: true }
+      );
+    window.l_indicator = L.mapbox.tileLayer(
+        'elijahmeeks.gqd89536',
+      # 'https://api.mapbox.com/v4/elijahmeeks.gqd89536/{z}/{x}/{y}.png?access_token=' +
+        L.mapbox.accessToken, {
+        attribution: 'Indicator (1880)',
+        detectRetina: true
+        });
+    l_bowles = L.mapbox.tileLayer(
+        'elijahmeeks.36cac3di',
+      # 'https://api.mapbox.com/v4/elijahmeeks.36cac3di/{z}/{x}/{y}.png?access_token=' +
+        L.mapbox.accessToken, {
+        attribution: 'Bowles (1783)',
+        detectRetina: true
+        });
+    l_taylor = L.mapbox.tileLayer(
+      # 'https://api.mapbox.com/v4/elijahmeeks.7dd6ynaj/{z}/{x}/{y}.png?access_token=' +
+        'elijahmeeks.7dd6ynaj',
+        L.mapbox.accessToken, {
+        attribution: 'Taylor (1723)',
+        detectRetina: true
+        });
 
 
     # stylePoints: (feature) ->
