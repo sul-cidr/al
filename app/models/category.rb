@@ -25,18 +25,4 @@ class Category < ActiveRecord::Base
     where { dimension_id == d }
   end
 
-  # boy this sucks
-  # def self.getAuthByGenre(cat)
-  #   Genre.select{ |g| g.name  == cat }[0].authors
-  # end
-  # def self.getAuthByForm(cat)
-  #   Form.select{ |f| f.name  == cat }[0].authors
-  # end
-  # def self.getAuthByCommunity(cat)
-  #   Community.select{ |c| c.name  == cat }[0].authors
-  # end
-  # def self.getAuthByStanding(cat)
-  #   Standing.select{ |s| s.name  == cat }[0].authors
-  # end
-
 end

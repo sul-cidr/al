@@ -28,7 +28,7 @@
     # OLD method
     dropdownCategories: ->
       App.request "category:entities", (categories) =>
-        # console.log categories
+        console.log 'categories', categories
         for d in ['genre','form','community','standing']
           # console.log d
           dimcollection = categories.where({dimension: d})
