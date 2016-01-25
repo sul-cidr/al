@@ -41,14 +41,16 @@
     # called from various places to manage tab state
     showTab: (tab)->
       # zap legend if any tab action is taken...I think
+      # TODO: reset map when changing tab
+      # if Object.keys(places._layers).length < 600
+      if map.getZoom() != 12 || Object.keys(places._layers).length < 600
+        App.vent.trigger("map:reset")
+
       $("#legend_list").html('')
       $("#legend").addClass('hidden')
 
       $("#content_nav_region li").removeClass("active")
       $("#place_passages_region").fadeOut()
-      # TODO: reset map when changing tab
-      # if map.getZoom() > 16
-      # App.vent.trigger("map:reset")
 
       if tab == 'authors'
         # console.log 'Show.Controller showTab(authors)'
@@ -68,9 +70,7 @@
         $("#b_stand").css('visibility','visible')
 
       else if tab == 'places'
-        # console.log 'Show.Controller showTab(places)'
-        # hide dimensions dropdowns
-        # $(".btn").disable(true)
+        # App.vent.trigger("map:reset")
         $("#dimensions_region").addClass('hidden')
 
         if $("#places_region").html() == ''
@@ -84,8 +84,7 @@
         $("#places_region").show()
 
       else if tab == 'works'
-        # console.log 'Show.Controller showTab(works)'
-        # ensure dimensions dropdowns visible
+        # App.vent.trigger("map:reset")
         $(".btn").disable(false)
         $("#dimensions_region").removeClass('hidden')
 
