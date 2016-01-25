@@ -66,7 +66,7 @@
       id = work.get("work_id")
       # MapApp.Show.Controller.setFilter 'work', (placeref) ->
       #   placeref.get("work_id") == id
-      MapApp.Show.Controller.filterPlaces({work_id: id})
+      MapApp.Show.Controller.filterPlaces({work_id: id, clear:true})
 
     focusPlace: (area) ->
       #

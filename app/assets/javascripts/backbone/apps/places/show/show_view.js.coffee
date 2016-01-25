@@ -15,7 +15,7 @@
     goHome: ->
       # console.log 'supposed to go home'
       Backbone.history.navigate("places", true)
-      App.vent.trigger("map:reset")
+      # App.vent.trigger("map:reset")
 
   class Show.PlacePassage extends App.Views.ItemView
     template: "places/show/templates/_passage"
