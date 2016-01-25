@@ -9,7 +9,7 @@
 
   App.vent.on "authors:show", (authids) ->
     console.log "map heard authors:show -->", authids
-    # placerefs for all passages by an author
+    # placerefs for all passages by one or more authors
     API.filterByAuthors authids
 
   App.vent.on "author:checked", (params) ->

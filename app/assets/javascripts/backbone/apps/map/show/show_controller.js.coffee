@@ -16,6 +16,7 @@
     swapBase: (id) ->
       @mapView.swapBase id
 
+    # params can be >=1 author_id:, work_id: - normally with clear:true
     filterPlaces: (params) ->
       # console.log 'filterPlaces', filter
       @mapView.renderPlaces(params)

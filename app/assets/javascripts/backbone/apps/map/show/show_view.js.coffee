@@ -19,6 +19,7 @@
       @filters = {}
       @filteredFeatures = []
       @keyPlaces = {}
+      @numPlaces = 0
       # console.log 'filteredFeatures: ', @filteredFeatures
 
     swapBase: (id) ->
@@ -170,12 +171,13 @@
       if typeof @places != "undefined"
         if params && params['clear'] == true
           @places.clearLayers()
-          @map.setView(@London, 12)
+          # @map.setView(@London, 12)
       if params && params['author_id']
         App.request "author:entity", params['author_id'], (author) =>
           @authlabel = author.get("label")
       App.request "place:entities", params, (places) =>
-        console.log places.models.length + ' place models rendered' # e.g.', places.models[0]
+        @numPlaces = places.models.length
+        console.log @numPlaces + ' place models rendered' # e.g.', places.models[0]
         @features = []
         max = Math.max.apply(Math, places.map((o) ->
           o.attributes.count ))
@@ -295,6 +297,12 @@
           # $("#legend_list").append('<li>'+authLabel[params['author_id']]+'</li>')
           $("#legend").removeClass('hidden')
 
+        # TODO: stop using hardcoded total
+        if @numPlaces < 604
+          @map.fitBounds(@places.getBounds())
+        else
+          @map.setView(@London, 12)
+          
         @places.addTo(@map)
         # TODO: stop exposing these
         window.places = @places
