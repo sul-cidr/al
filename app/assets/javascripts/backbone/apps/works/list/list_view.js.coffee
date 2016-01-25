@@ -14,7 +14,7 @@
     removeFilter: ->
       # console.log 'remove filter'
       $("#selected_cat_works").html('')
-      App.request "works:category", 0, (works) =>
+      App.request "work:entities", (works) =>
         List.Controller.listCatWorks(works)
         App.vent.trigger("map:reset")
 

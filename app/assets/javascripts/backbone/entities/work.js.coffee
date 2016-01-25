@@ -24,10 +24,11 @@
       works.fetch
         success: ->
           # leave out bio essays
-          filterCat = _.filter(works.models,(item) ->
-            item.get("work_id") > 20399
+          filterBio = _.filter(works.models,(item) ->
+            # item.get("author_id") != 10434
+            item.get("work_id") >= 20400
           )
-          works.reset(filterCat);
+          works.reset(filterBio);
           cb works
 
     getWorksByAuthor: (authid, cb) ->
@@ -46,15 +47,7 @@
         data: filter
         success: ->
           cb works
-      # works.fetch
-      #   success: ->
-      #     filterCat = _.filter(works.models,(item) ->
-      #       item.get("work_id") > 20399 && # item.contains("categories", cat)
-      #         item.get('categories').indexOf(cat) > -1;
-      #     )
-      #     works.reset(filterCat);
-      #     # console.log 'filtered works', works
-      #     cb works
+
 
   App.reqres.setHandler "works:author", (authid, cb) ->
     API.getWorksByAuthor authid, cb
@@ -62,8 +55,8 @@
   App.reqres.setHandler "work:entity", (workid, cb) ->
     API.getWorkEntity workid, cb
 
-  App.reqres.setHandler "work:entities", (workid, cb) ->
-    API.getWorkEntities workid, cb
+  App.reqres.setHandler "work:entities", (cb) ->
+    API.getWorkEntities cb
 
   App.reqres.setHandler "works:category", (filter={}, cb) ->
     API.getWorksCategory filter, cb
