@@ -1,10 +1,16 @@
 
 <div id="map">
   <div id="spin_map" class="spinner-loader hidden"></div>
+  <!-- <div id="legend"> -->
   <div id="legend" class="hidden">
     <h4>Authors</h4>
-    <p>Bio|Work|Both</p>
+    <p>Work|Bio|Both</p>
     <ul id="legend_list">
+      <!-- <li id='leg_base'>
+        <i class="fa fa-circle fa-lg" style="color:red;"/>
+        <i class="fa fa-circle fa-lg" style="color:yellow;"/>
+        <i class="fa fa-circle fa-lg" style="color:orange;"/>
+      </li> -->
     </ul>
   </div>
 </div>

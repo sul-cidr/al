@@ -8,7 +8,7 @@
   </div>
 </div>
 <div id="about">
-  <div id="map_chooser" class="hidden"
+  <div id="map_chooser"
     <span class="strong"><i class="fa fa-lg fa-map-o"/>&nbsp;Base map: </span>
     <ul>
       <li val="l_osm" class="active">Modern</li>

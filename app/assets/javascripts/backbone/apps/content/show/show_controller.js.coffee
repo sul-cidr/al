@@ -43,8 +43,8 @@
       # zap legend if any tab action is taken...I think
       # TODO: reset map when changing tab
       # if Object.keys(places._layers).length < 600
-      if map.getZoom() != 12 # || Object.keys(places._layers).length < 600
-        App.vent.trigger("map:reset")
+      # if map.getZoom() != 12 # || Object.keys(places._layers).length < 600
+      #   App.vent.trigger("map:reset")
 
       $("#legend_list").html('')
       $("#legend").addClass('hidden')

@@ -15,7 +15,7 @@ gem 'compass-rails', '2.0.4'
 gem 'pg'
 gem 'activerecord-postgis-adapter'
 
-# gem 'mapbox-rails'
+gem 'mapbox-rails'
 
 gem 'typekit-rails'
 
