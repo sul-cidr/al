@@ -63,6 +63,7 @@ var histYears = function (years) {
       .orient("bottom")
       .ticks(10, "4d");
 
+  // var svg = d3.select("#place_hist").append("svg")
   var svg = d3.select("#place_content_region").append("svg")
       .attr("id", "histYears")
       .attr("width", width + margin.left + margin.right)
@@ -124,6 +125,7 @@ var packAuths = function (auths) {
       // .size([width, height + bleed * 2])
       .padding(2);
 
+  // var svg = d3.select("#place_pack").append("svg")
   var svg = d3.select("#place_content_region").append("svg")
       .attr("id", "authPack")
       .attr("width", width)

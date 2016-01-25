@@ -107,7 +107,7 @@
 
       @London = [51.5120, -0.0928]
 
-      # @map.addLayer(l_mblight);
+      @map.addLayer(l_mblight);
 
       @map.setView(@London, 12)
 

@@ -3,4 +3,5 @@
   <p class="crumb-places"><< Return to places list</p>
   <h3><em>in or near </em><span class="red"><%= @prefname %></span></h3>
   <hr/>
+  <p> Some distinctive terms from the vicinity...</p>
 </div>

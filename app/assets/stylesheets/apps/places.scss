@@ -84,6 +84,9 @@ arealist { padding:0 6px; font-family: Palatino-linotype, Georgia;
   stroke-width: 1.5px;
 }
 
+.panel-title {
+  p {font-size: .8em; font-style: italic;}
+}
 #place_passages_region {
   width: 300px;
   // height: 85%;
