@@ -86,15 +86,15 @@
       }).setActiveArea('viewport-authors');
 
       baseMaps = {
-        "Modern": l_mblight
-        # "Modern": l_osm
+        # "Modern": l_mblight
+        "Modern": l_osm
       }
-      overlayMaps = {
-        "Indicator (1880)":l_indicator
-        "Bowles (1783)":l_bowles,
-        "Taylor (1723)":l_taylor
-        # "Satellite": l_sat
-      }
+      # overlayMaps = {
+      #   "Indicator (1880)":l_indicator
+      #   "Bowles (1783)":l_bowles,
+      #   "Taylor (1723)":l_taylor
+      #   # "Satellite": l_sat
+      # }
 
       # L.control.layers(baseMaps,overlayMaps).addTo(@map);
 
@@ -107,7 +107,9 @@
 
       @London = [51.5120, -0.0928]
 
-      @map.addLayer(l_mblight);
+      # TODO: avoid mapbox until gem is fixed
+      @map.addLayer(l_osm);
+      # @map.addLayer(l_mblight);
 
       @map.setView(@London, 12)
 
@@ -411,42 +413,42 @@
       this.map.flyTo(marker.getLatLng(), styles.zoom.feature);
 
 
-    L.mapbox.accessToken = 'pk.eyJ1IjoiZWxpamFobWVla3MiLCJhIjoiY2loanVmcGljMG50ZXY1a2xqdGV3YjRkZyJ9.tZqY_fRD2pQ1a0E599nKqg'
+    # L.mapbox.accessToken = 'pk.eyJ1IjoiZWxpamFobWVla3MiLCJhIjoiY2loanVmcGljMG50ZXY1a2xqdGV3YjRkZyJ9.tZqY_fRD2pQ1a0E599nKqg'
 
     # mapbox light basemap, in progress
-    l_mblight = L.mapbox.tileLayer(
-        # 'elijahmeeks.8a9e3cb1', # light
-        'elijahmeeks.e72a8419',  # emerald
-        L.mapbox.accessToken, {
-        attribution: 'Mapbox',
-        detectRetina: true
-        });
+    # l_mblight = L.mapbox.tileLayer(
+    #     # 'elijahmeeks.8a9e3cb1', # light
+    #     'elijahmeeks.e72a8419',  # emerald
+    #     L.mapbox.accessToken, {
+    #     attribution: 'Mapbox',
+    #     detectRetina: true
+    #     });
     # OSM base layer
     l_osm = L.tileLayer(
       'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
       { detectRetina: true }
       );
-    window.l_indicator = L.mapbox.tileLayer(
-        'elijahmeeks.gqd89536',
-      # 'https://api.mapbox.com/v4/elijahmeeks.gqd89536/{z}/{x}/{y}.png?access_token=' +
-        L.mapbox.accessToken, {
-        attribution: 'Indicator (1880)',
-        detectRetina: true
-        });
-    l_bowles = L.mapbox.tileLayer(
-        'elijahmeeks.36cac3di',
-      # 'https://api.mapbox.com/v4/elijahmeeks.36cac3di/{z}/{x}/{y}.png?access_token=' +
-        L.mapbox.accessToken, {
-        attribution: 'Bowles (1783)',
-        detectRetina: true
-        });
-    l_taylor = L.mapbox.tileLayer(
-      # 'https://api.mapbox.com/v4/elijahmeeks.7dd6ynaj/{z}/{x}/{y}.png?access_token=' +
-        'elijahmeeks.7dd6ynaj',
-        L.mapbox.accessToken, {
-        attribution: 'Taylor (1723)',
-        detectRetina: true
-        });
+    # window.l_indicator = L.mapbox.tileLayer(
+    #     'elijahmeeks.gqd89536',
+    #   # 'https://api.mapbox.com/v4/elijahmeeks.gqd89536/{z}/{x}/{y}.png?access_token=' +
+    #     L.mapbox.accessToken, {
+    #     attribution: 'Indicator (1880)',
+    #     detectRetina: true
+    #     });
+    # l_bowles = L.mapbox.tileLayer(
+    #     'elijahmeeks.36cac3di',
+    #   # 'https://api.mapbox.com/v4/elijahmeeks.36cac3di/{z}/{x}/{y}.png?access_token=' +
+    #     L.mapbox.accessToken, {
+    #     attribution: 'Bowles (1783)',
+    #     detectRetina: true
+    #     });
+    # l_taylor = L.mapbox.tileLayer(
+    #   # 'https://api.mapbox.com/v4/elijahmeeks.7dd6ynaj/{z}/{x}/{y}.png?access_token=' +
+    #     'elijahmeeks.7dd6ynaj',
+    #     L.mapbox.accessToken, {
+    #     attribution: 'Taylor (1723)',
+    #     detectRetina: true
+    #     });
 
 
     # stylePoints: (feature) ->
