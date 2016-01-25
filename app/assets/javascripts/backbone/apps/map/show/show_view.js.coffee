@@ -302,7 +302,7 @@
           @map.fitBounds(@places.getBounds())
         else
           @map.setView(@London, 12)
-          
+
         @places.addTo(@map)
         # TODO: stop exposing these
         window.places = @places
@@ -432,10 +432,10 @@
         });
 
     # OSM base layer
-    # l_osm = L.tileLayer(
-    #   'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
-    #   { detectRetina: true }
-    #   );
+    l_osm = L.tileLayer(
+      'http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png',
+      { detectRetina: true }
+      );
 
     window.l_indicator = L.mapbox.tileLayer(
         'elijahmeeks.gqd89536',
