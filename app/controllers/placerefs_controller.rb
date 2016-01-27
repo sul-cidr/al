@@ -12,8 +12,18 @@ class PlacerefsController < ApplicationController
     end
 
     if params[:place_id] && params[:author_id]
-      placerefs = placerefs.by_place_and_author(params[:place_id],params[:author_id])
+      placerefs = placerefs.by_place_and_authors(params[:place_id],params[:author_id])
     end
+
+    # TODO: return placerefs in works by author in category
+    # if params[:place_id] && params[:auth_cat]
+    #   placerefs = placerefs.by_place_and_authcat(params[:place_id],params[:auth_cat])
+    # end
+
+    # TODO: return placerefs in works in category
+    # if params[:place_id] && params[:work_cat]
+    #   placerefs = placerefs.by_place_and_workcat(params[:place_id],params[:auth_cat])
+    # end
 
     if params[:area_id]
       # TODO: join placerefs to place, return placerefs where

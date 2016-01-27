@@ -34,6 +34,8 @@
       "click .dim-container li": "filterStuff"
     }
     filterStuff: (e) ->
+      workids = []
+      authids = []
       # filter either authors or works and map for category
       listFilter = {clear:true}
       # mapFilter = {clear:true}
@@ -57,16 +59,19 @@
         listFilter['auth_cat'] = catid
       if tab == 'works'
         App.request tab+":category", listFilter, (collection) =>
-          console.log 'filter ', listFilter, collection
           AL.WorksApp.List.Controller.listCatWorks(collection)
+          _.each collection.models, (w) =>
+            workids.push(w.attributes.work_id)
+          console.log 'filter,workids', listFilter,workids
       else if tab == 'authors'
         App.request tab+":category", listFilter, (collection) =>
-          console.log 'filter ', listFilter, collection
           AL.AuthorsApp.List.Controller.listCatAuthors(collection)
+          _.each collection.models, (a) =>
+            authids.push(a.attributes.author_id)
+          listFilter['author_id']=authids
+          listFilter['clear']=true
+          console.log 'filter, authids',listFilter,authids
+          App.vent.trigger "category:show", (listFilter)
 
-      # to map_app
-      # MapApp.Show.Controller.filterPlaces(filter)
-      # -> @mapView.renderPlaces(params)
-      # mapFilter[dim+'_id'] = catid
-      console.log "category:show to map", listFilter
-      App.vent.trigger "category:show", (listFilter)
+      # console.log "category:show",listFilter
+      # App.vent.trigger "category:show", (listFilter)

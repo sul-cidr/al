@@ -167,12 +167,14 @@
 
     renderPlaces: (params) ->
       console.log 'renderPlaces', params
-      console.log '@keyPlaces length:', Object.keys(@keyPlaces).length
+      window.p = params
+      # console.log '@keyPlaces length:', Object.keys(@keyPlaces).length
       if typeof @places != "undefined"
         if params && params['clear'] == true
           @places.clearLayers()
           # @map.setView(@London, 12)
-      if params && params['author_id']
+      if params && params['author_id'] && !($.isArray(params['author_id']))
+        console.log $.isArray(params['author_id'])
         App.request "author:entity", params['author_id'], (author) =>
           @authlabel = author.get("label")
       App.request "place:entities", params, (places) =>
@@ -205,12 +207,13 @@
             feature.on('click', (e) ->
               html = ''
               @filter = {place_id:pid}
-              if typeof params != "undefined"
+              if params['author_id']
+              # if typeof params != "undefined"
                 @filter['author_id'] = params['author_id']
-                # console.log 'on click params: ',@filter
+                console.log 'on click params: ',@filter
 
               App.request "placeref:entities", @filter, (placerefs) =>
-                # console.log placerefs
+                # console.log 'params sent to placeref:entities', @filter
                 _.each placerefs.models, (pr) =>
                   # console.log 'placeref attributes', pr.attributes
                   if pr.attributes.placeref.placeref_type == 'work'

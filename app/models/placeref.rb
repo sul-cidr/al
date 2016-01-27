@@ -27,11 +27,11 @@ class Placeref < ActiveRecord::Base
   # has_one :place
 
   scope :by_place, -> (pid = nil) {
-    where {place_id == pid}
+    where("place_id = ?", pid)
   }
 
-  scope :by_place_and_author, -> (pid = nil, aid = nill) {
-    where {place_id == pid && author_id == aid}
+  scope :by_place_and_authors, -> (pid = nil, authids = nil) {
+    where(:place_id => pid, :author_id => authids)
   }
 
   scope :for_popup, -> {

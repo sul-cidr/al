@@ -18,7 +18,9 @@
 
     # params can be >=1 author_id:, work_id: - normally with clear:true
     filterPlaces: (params) ->
-      # console.log 'filterPlaces', filter
+      # if params['work_cat']
+      # if params['auth_cat']
+      # console.log 'filterPlaces', params
       @mapView.renderPlaces(params)
 
     renderOneAuthor: (params) ->
