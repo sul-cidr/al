@@ -8,33 +8,23 @@ class PlacerefsController < ApplicationController
     end
 
     if params[:place_id]
-      placerefs = placerefs.by_place(params[:place_id])
+      placerefs = placerefs.by_place(params[:place_id]).ordered
     end
 
     # :author_id an array of >=1
     if params[:place_id] && params[:author_id]
-      placerefs = placerefs.by_place_and_authors(params[:place_id],params[:author_id])
+      placerefs = placerefs.by_place_and_authors(params[:place_id],params[:author_id]).ordered
     end
 
     # :work_id an array of >=1
     if params[:place_id] && params[:work_id]
-      placerefs = placerefs.by_place_and_works(params[:place_id],params[:work_id])
+      placerefs = placerefs.by_place_and_works(params[:place_id],params[:work_id]).ordered
     end
-
-    # TODO: return placerefs in works by author in category
-    # if params[:place_id] && params[:auth_cat]
-    #   placerefs = placerefs.by_place_and_authcat(params[:place_id],params[:auth_cat])
-    # end
-
-    # TODO: return placerefs in works in category
-    # if params[:place_id] && params[:work_cat]
-    #   placerefs = placerefs.by_place_and_workcat(params[:place_id],params[:auth_cat])
-    # end
 
     if params[:area_id]
       # TODO: join placerefs to place, return placerefs where
       # geom intersects buffered area
-      placerefs = placerefs.by_area(params[:area_id])
+      placerefs = placerefs.by_area(params[:area_id]).ordered
     end
 
     @placerefs = placerefs

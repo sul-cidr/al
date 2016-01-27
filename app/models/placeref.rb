@@ -26,6 +26,10 @@ class Placeref < ActiveRecord::Base
   belongs_to :place, :counter_cache => true
   # has_one :place
 
+  scope :ordered, -> {
+    includes(:work).order('works.work_year')
+  }
+  
   scope :by_place, -> (pid = nil) {
     where("place_id = ?", pid)
   }
@@ -43,15 +47,21 @@ class Placeref < ActiveRecord::Base
     includes {author}
   }
 
+# CHECK: when is a place "in or near" an area/neighborhood
+# approach #1: intersects a buffer around radius of area centroid
+  # st_buffer( (st_geomfromtext(z.geom_point_wkt)), 0.01),
+  # st_geomfromtext(z.geom_point_wkt),
+# approach #2: intersects (within) area voronoi polygon
+# below is #2
   def self.by_area(areaid)
     find_by_sql(
     "with z as (
-    	select geom_point_wkt from areas where area_id = "+ areaid.to_s +
+    	select geom_poly_wkt from areas where area_id = "+ areaid.to_s +
     ")
     select pr.*
     	from z, placerefs pr join places p on pr.place_id=p.place_id
     	where st_intersects(
-              st_buffer( (st_geomfromtext(z.geom_point_wkt)), 0.01),
+              st_geomfromtext(z.geom_poly_wkt),
               st_geomfromtext(p.geom_wkt)) AND
               pr.placeref_type = 'work'
             order by placeref, passage_id"
