@@ -207,7 +207,7 @@
             feature.on('click', (e) ->
               html = ''
               @filter = {place_id:pid}
-              if params['author_id']
+              if params && params['author_id']
               # if typeof params != "undefined"
                 @filter['author_id'] = params['author_id']
                 console.log 'on click params: ',@filter
