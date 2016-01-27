@@ -17,7 +17,7 @@ require 'capistrano/npm'
 # commenting to prevent gems gfailing bundle-audit
 require 'dlss/capistrano'
 
-require 'capistrano/bower'
+# require 'capistrano/bower'
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
