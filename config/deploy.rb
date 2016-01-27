@@ -9,6 +9,7 @@ set :deploy_to, ENV['CAP_DEPLOY_TO']
 set :bundle_without, nil
 
 # TODO: this circumvents mapbox-rails issue; revisit after fix
+# doing this from command line instead
 # set :bundle_audit_ignore, %w(CVE-129854 CVE-132871)
 
 server "#{fetch(:deploy_host)}.stanford.edu", user: fetch(:user), roles: %w{web db app}
