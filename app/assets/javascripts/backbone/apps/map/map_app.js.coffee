@@ -23,10 +23,8 @@
     API.filterByWork work
 
   App.vent.on "category:show", (filter) ->
-    # console.log 'map heard category:show --> ', filter
     # places for all passages in works of a category
     API.filterByCategory filter
-    # API.filterByWorkCategory filter
 
   App.vent.on "place:focus", (area) ->
     # console.log 'map_app place:focus', area

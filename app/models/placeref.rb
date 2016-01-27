@@ -34,6 +34,10 @@ class Placeref < ActiveRecord::Base
     where(:place_id => pid, :author_id => authids)
   }
 
+  scope :by_place_and_works, -> (pid = nil, workids = nil) {
+    where(:place_id => pid, :work_id => workids)
+  }
+
   scope :for_popup, -> {
     includes {work}
     includes {author}

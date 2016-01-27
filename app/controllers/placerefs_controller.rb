@@ -11,8 +11,14 @@ class PlacerefsController < ApplicationController
       placerefs = placerefs.by_place(params[:place_id])
     end
 
+    # :author_id an array of >=1
     if params[:place_id] && params[:author_id]
       placerefs = placerefs.by_place_and_authors(params[:place_id],params[:author_id])
+    end
+
+    # :work_id an array of >=1
+    if params[:place_id] && params[:work_id]
+      placerefs = placerefs.by_place_and_works(params[:place_id],params[:work_id])
     end
 
     # TODO: return placerefs in works by author in category

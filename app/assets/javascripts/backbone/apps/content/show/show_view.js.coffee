@@ -34,23 +34,24 @@
       "click .dim-container li": "filterStuff"
     }
     filterStuff: (e) ->
+      # filter either authors or works and map for category
       workids = []
       authids = []
-      # filter either authors or works and map for category
+      # always clear map
       listFilter = {clear:true}
-      # mapFilter = {clear:true}
+
       dim = $(e.currentTarget).context.parentElement.id.substring(3,)
       tab = window.location.hash.substring(1,window.location.hash.length)
       catid = parseInt($(e.currentTarget).context.attributes.val.value)
       console.log 'filterStuff() ' + tab, dim, catid
-      # print category header
+
+      # display category header
       seltext =
         '<span class="strong">'+
         $(e.currentTarget).context.innerHTML +
         '</span><span class="right crumb clear">Clear filter</span>'
       $("#selected_cat_"+tab).html(seltext)
 
-      # TODO: refactor
       # get a collection of work or author models for category
       # console.log 'filterStuff '+ tab+":category" + ', cat: '+ catid
       if ['genre', 'form'].indexOf(dim) >= 0
@@ -62,16 +63,17 @@
           AL.WorksApp.List.Controller.listCatWorks(collection)
           _.each collection.models, (w) =>
             workids.push(w.attributes.work_id)
-          console.log 'filter,workids', listFilter,workids
+          listFilter['work_id']=workids
+          # listFilter['clear']=true
+          console.log 'filter, workids', listFilter, workids
+          # App.vent.trigger "category:show", (listFilter)
       else if tab == 'authors'
         App.request tab+":category", listFilter, (collection) =>
           AL.AuthorsApp.List.Controller.listCatAuthors(collection)
           _.each collection.models, (a) =>
             authids.push(a.attributes.author_id)
           listFilter['author_id']=authids
-          listFilter['clear']=true
+          # listFilter['clear']=true
           console.log 'filter, authids',listFilter,authids
-          App.vent.trigger "category:show", (listFilter)
 
-      # console.log "category:show",listFilter
-      # App.vent.trigger "category:show", (listFilter)
+      App.vent.trigger "category:show", (listFilter)
