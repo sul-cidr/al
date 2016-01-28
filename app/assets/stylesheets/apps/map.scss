@@ -17,12 +17,30 @@
   left: 60%;
   z-index: 10000;
 }
+
+#thumb_gallery {
+  position: absolute;
+  min-height: 75px;
+  left: 365px;
+  bottom: 18px;
+  right: 195px;
+  // background: whitesmoke;
+  border-radius: 3px;
+  box-shadow: 3px 3px 2px #888888;
+  z-index: 1;
+  padding-left:8px;
+  // float: left;
+  background: #eeeee0;
+  font-family: 'english';
+}
+
 #legend_compare, #legend_base {
   position: absolute;
-  max-height: 100px;
+  min-height: 75px;
   width: 180px;
   padding: 4px 0 4px 8px;
-  bottom: 2%;
+  bottom: 18px;
+  // bottom: 2%;
   right: 8px;
   z-index: 1;
   background: whitesmoke;
@@ -31,7 +49,7 @@
   border-radius: 3px;
   box-shadow: 3px 3px 2px #888888;
   h4 {margin: 0;}
-  p {font-size: .8em; margin:0; text-align: left !important;}
+  p {margin:0; text-align: left !important;}
 }
 #legend_base_list {
   padding-left: 0;

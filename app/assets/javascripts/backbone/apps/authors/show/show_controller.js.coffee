@@ -20,6 +20,8 @@
         @showTitle author
         @showNav author
         @listBioPassages author
+        @showAuthorPics author
+
         # @listWorks id
         $("#author_crumbs").append(
           '<span id="crumb_author" class="crumb-left" val="'+id+'">:: '+author.get("surname")+
@@ -33,6 +35,11 @@
       # sending one here
       App.vent.trigger "authors:show", author.get("author_id")
       # App.vent.trigger "author:show", author.get("author_id")
+
+    showAuthorPics: (author) ->
+      # TODO: create view
+      $("#thumb_gallery").html('<h3>Photos for '+author.get("prefname")+"</h3>")
+      $("#thumb_gallery").removeClass("hidden")
 
     getAuthorLayout: (author) ->
       new Show.Layout ({

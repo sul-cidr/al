@@ -1,23 +1,28 @@
 
 <div id="map">
   <div id="spin_map" class="spinner-loader hidden"></div>
-  <div id="legend_base">
-    <p>Place references in <br/> Works | Biographies | Both</p>
-    <ul id="legend_base_list">
-      <li id='leg_base'>
-        <i class="fa fa-circle fa-lg" style="color:red;"/>
-        <i class="fa fa-circle fa-lg" style="color:yellow;"/>
-        <i class="fa fa-circle fa-lg" style="color:orange;"/>
-      </li>
-    </ul>
-  </div>
-  <!-- for author compare -->
-  <div id="legend_compare" class="hidden">
-    <h4>Authors</h4>
-    <p>Work|Bio|Both</p>
-    <ul id="legend_list">
-    </ul>
-  </div>
+  <!-- <div id="map_footer"> -->
+    <div id="thumb_gallery" class="hidden">
+      <h3>photo thumbs here</h3>
+    </div>
+    <div id="legend_base">
+      <p>Place references in <br/> Works | Bios | Both</p>
+      <ul id="legend_base_list">
+        <li id='leg_base'>
+          <i class="fa fa-circle fa-lg" style="color:red;"/>
+          <i class="fa fa-circle fa-lg" style="color:yellow;"/>
+          <i class="fa fa-circle fa-lg" style="color:orange;"/>
+        </li>
+      </ul>
+    </div>
+    <!-- for author compare -->
+    <div id="legend_compare" class="hidden">
+      <h4>Authors</h4>
+      <p>Work|Bio|Both</p>
+      <ul id="legend_list">
+      </ul>
+    </div>
+  <!-- </div> -->
 </div>
 
 <!-- <span class="fa-stack fa-lg"> -->

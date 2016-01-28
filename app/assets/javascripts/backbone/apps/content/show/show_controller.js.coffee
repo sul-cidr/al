@@ -53,6 +53,8 @@
       $("#content_nav_region li").removeClass("active")
       $("#place_passages_region").addClass("hidden")
 
+      $("#thumb_gallery").addClass("hidden")
+
       if tab == 'authors'
         # ensure dimensions dropdowns visible
         # App.vent.trigger("map:reset")
