@@ -1,10 +1,11 @@
 # placeref = reference in text to a place
 # fk place_id --> place.place_id
 class CreatePlacerefs < ActiveRecord::Migration
-  def change
+  def up
     create_table :placerefs do |t|
     	t.integer :placeref_id
       t.integer :work_id
+      t.integer :year
       t.string :passage_id
     	t.string :placeref
       t.integer :author_id
@@ -14,7 +15,10 @@ class CreatePlacerefs < ActiveRecord::Migration
      	t.timestamps null: false
     end
 
-  execute "ALTER TABLE placerefs ADD PRIMARY KEY (placeref_id);"
+    # execute "ALTER TABLE placerefs ADD PRIMARY KEY (placeref_id);"
+  end
 
+  def down
+    drop_table :placerefs
   end
 end

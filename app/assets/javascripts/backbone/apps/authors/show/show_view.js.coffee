@@ -20,7 +20,7 @@
       # execute startAuthors()
       # Backbone.history.history.back()
       Backbone.history.navigate("authors", true)
-      App.vent.trigger("map:reset")
+      App.vent.trigger("map:reset", "authors_show")
     goAuthor: (e) ->
       # window.location.hash
       # console.log $(e.currentTarget).context.attributes

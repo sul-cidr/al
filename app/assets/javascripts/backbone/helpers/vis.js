@@ -88,6 +88,21 @@ var histYears = function (years) {
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
 
+  legend = svg.append("svg:g")
+  	.attr("id","hist_legend")
+    // .attr("y",10).attr("x",20)
+    .attr("width",150).attr("height",30)
+  legend.append("text")
+    .attr("class", "legend-text")
+    .attr("y",20).attr("x",75)
+  	.style("fill", "black")
+  	.text("Place references per period")
+  legend.append("rect")
+  	.attr("y",5).attr("x",0)
+  	.attr("width",10)
+  	.attr("height",15)
+    .attr("class", "legend-bar")
+
 // overlay hollow bars for all works (dataAll, yAll)
   // TODO: get reference bars for overall placeref count in
   // var barAll = svg.selectAll(".barAll")
@@ -102,14 +117,14 @@ var histYears = function (years) {
   //     .attr("width", barWidthAll)
   //     .attr("height", function(d) { return height - yAll(d.y); });
 
-  legend = svg.append("svg:g")
-    .attr("id","histlegend")
-
-  legend.append("image")
-  	.attr("xlink:href", function(d) { return ("assets/images/hist-legend.png")})
-  	.attr("x",1).attr("y",-5)
-  	.attr("width",80)
-  	.attr("height",29)
+  // legend = svg.append("svg:g")
+  //   .attr("id","histlegend")
+  //
+  // legend.append("image")
+  // 	.attr("xlink:href", function(d) { return ("assets/images/hist-legend.png")})
+  // 	.attr("x",1).attr("y",-5)
+  // 	.attr("width",80)
+  // 	.attr("height",29)
 }
 
 var packAuths = function (auths) {

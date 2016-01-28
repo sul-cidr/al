@@ -32,7 +32,7 @@
       console.log 'dropOneAuthor() sending removePlaces():', params
       @mapView.removePlaces(params)
 
-    resetMap: (keepzoom)->
+    resetMap: ()->
       console.log 'fired resetMap()'
       @mapView.renderPlaces({clear:true})
       @mapView.clearKeyPlaces()

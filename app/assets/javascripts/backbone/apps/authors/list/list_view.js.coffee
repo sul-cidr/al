@@ -60,11 +60,12 @@
     #     $('input.author').removeAttr('disabled');
 
     removeFilter: ->
-      # console.log 'remove filter'
+      console.log 'remove filter'
       $("#selected_cat_authors").html('')
-      App.request "authors:category", 0, (authors) =>
+      # get all authors
+      App.request "authors:category", {clear:true}, (authors) =>
         List.Controller.listCatAuthors(authors)
-        App.vent.trigger("map:reset")
+        App.vent.trigger("map:reset", 'authors_list')
 
   class List.Title extends App.Views.ItemView
     template: "authors/list/templates/_title"

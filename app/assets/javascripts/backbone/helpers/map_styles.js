@@ -27,9 +27,9 @@ var mapStyles = {
   },
   area: {
     start: {
-      "color": "red",
+      "color": "orange",
       "weight": 1,
-      "opacity": 0,
+      "opacity": 0.5,
       "fillOpacity": 0
     },
     highlight: {

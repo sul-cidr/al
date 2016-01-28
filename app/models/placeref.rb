@@ -26,10 +26,10 @@ class Placeref < ActiveRecord::Base
   belongs_to :place, :counter_cache => true
   # has_one :place
 
-  scope :ordered, -> {
-    includes(:work).order('works.work_year')
-  }
-  
+  # scope :ordered, -> {
+  #   includes(:author).order('death_year')
+  # }
+
   scope :by_place, -> (pid = nil) {
     where("place_id = ?", pid)
   }

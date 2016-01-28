@@ -13,6 +13,8 @@
       if $("#ul_genre li").length == 0
         @dropdownCategories()
 
+      @currentTab = "authors"
+
     getContentLayout: ->
       new Show.ContentLayout
 
@@ -40,20 +42,18 @@
 
     # called from various places to manage tab state
     showTab: (tab)->
-      # zap legend if any tab action is taken...I think
-      # TODO: reset map when changing tab
-      # if Object.keys(places._layers).length < 600
-      # if map.getZoom() != 12 # || Object.keys(places._layers).length < 600
-      #   App.vent.trigger("map:reset")
+      @activeTab = tab
+      console.log 'currentTab, activeTab', @currentTab, @activeTab
+
+      # App.vent.trigger("map:reset")
 
       $("#legend_list").html('')
       $("#legend").addClass('hidden')
 
       $("#content_nav_region li").removeClass("active")
-      $("#place_passages_region").fadeOut()
+      $("#place_passages_region").addClass("hidden")
 
       if tab == 'authors'
-        # console.log 'Show.Controller showTab(authors)'
         # ensure dimensions dropdowns visible
         # App.vent.trigger("map:reset")
         $(".btn").disable(false)
@@ -68,6 +68,7 @@
         $("#authors_region").fadeIn("slow")
         $("#b_comm").css('visibility','visible')
         $("#b_stand").css('visibility','visible')
+        @currentTab = "authors"
 
       else if tab == 'places'
         # App.vent.trigger("map:reset")
@@ -82,6 +83,7 @@
         $("#works_region").hide()
         $("#search_region").hide()
         $("#places_region").show()
+        @currentTab = "places"
 
       else if tab == 'works'
         # App.vent.trigger("map:reset")
@@ -99,6 +101,7 @@
         $("#works_region").fadeIn("slow")
         $("#b_comm").css('visibility','hidden')
         $("#b_stand").css('visibility','hidden')
+        @currentTab = "works"
 
       else if tab == 'search'
         # console.log 'Show.Controller showTab(search)'
@@ -112,6 +115,7 @@
         $("#places_region").hide()
         $("#works_region").hide()
         $("#search_region").show()
+        @currentTab = "search"
 
       Backbone.history.navigate(@route)
       # Backbone.history.navigate(@route, true)

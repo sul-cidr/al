@@ -25,7 +25,7 @@
           return work
 
     passAuthorModel: (author_id) ->
-      App.vent.trigger "map:reset"
+      # App.vent.trigger "map:reset"
       # forwards author model to showAuthor function
       App.request "author:entity", author_id, (author) =>
         # console.log 'API passing model to showAuthor'

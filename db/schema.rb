@@ -136,6 +136,7 @@ ActiveRecord::Schema.define(version: 20160116181714) do
   create_table "placerefs", force: :cascade do |t|
     t.integer  "placeref_id"
     t.integer  "work_id"
+    t.integer  "year"
     t.string   "passage_id"
     t.string   "placeref"
     t.integer  "author_id"

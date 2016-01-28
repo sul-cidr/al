@@ -18,11 +18,14 @@ circle {
 
 .axis text  {font: 10px sans-serif;}
 
+.legend-text {font-size: 10px;}
+
+.bar rect, .legend-bar {
+  fill: lightcoral;
+  shape-rendering: crispEdges;
+}
+
 #histYears {
-  .bar rect {
-    fill: lightcoral;
-    shape-rendering: crispEdges;
-  }
   .bar text {
     fill: #fff;
   }

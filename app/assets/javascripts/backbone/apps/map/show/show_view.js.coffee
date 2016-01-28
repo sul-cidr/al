@@ -218,6 +218,7 @@
 
               App.request "placeref:entities", @filter, (placerefs) =>
                 # console.log 'params sent to placeref:entities', @filter
+                console.log 'placerefs for popup', placerefs
                 _.each placerefs.models, (pr) =>
                   # console.log 'placeref attributes', pr.attributes
                   if pr.attributes.placeref.placeref_type == 'work'

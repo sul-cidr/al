@@ -15,9 +15,14 @@ hr { margin: 5px 0; border: 0; height: 1px;
 
 .red {color: #993333;}
 
+.strong { font-weight: bold;}
+
+.hanging {
+  padding-left: 8px ;
+  text-indent: -8px ;
+}
 // .right {right: 0;}
 .crumb { font-size: .8em; cursor: pointer; color: #336699;}
-.check-right {}
 
 .crumb-left {
   font-size: .7em;
@@ -25,11 +30,17 @@ hr { margin: 5px 0; border: 0; height: 1px;
 }
 .crumb-link {cursor: pointer; color:#336699 !important;}
 
-.strong { font-weight: bold;}
+span.help {
+  cursor: help;
+  cursor: -moz-help;
+  cursor: -webkit-help;
+  // text-decoration: underline;
+}
 
-.hanging {
-  padding-left: 8px ;
-  text-indent: -8px ;
+.panel-title {
+  h4 {margin-bottom:0; color: #993333;
+    text-align: center; font-weight: bold;}
+  p {font-style: italic; color: #333; margin:0; }
 }
 
 .word-cloud {

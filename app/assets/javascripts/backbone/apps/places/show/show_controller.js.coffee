@@ -13,7 +13,7 @@
       # get passage_ids for author
       window.passage_ids = []
       _.each authorPlacerefs, (p) =>
-        console.log 'p',p
+        # console.log 'p',p
         passage_ids.push p.attributes.placeref.passage_id
 
       # retrieve single author's passages for an area

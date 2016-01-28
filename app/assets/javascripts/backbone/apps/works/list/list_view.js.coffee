@@ -16,7 +16,7 @@
       $("#selected_cat_works").html('')
       App.request "work:entities", (works) =>
         List.Controller.listCatWorks(works)
-        App.vent.trigger("map:reset")
+        App.vent.trigger("map:reset", "works_list")
 
   class List.Searchbox extends App.Views.ItemView
     template: "works/list/templates/_searchbox"

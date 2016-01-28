@@ -82,16 +82,17 @@
       # TODO: filter for places/placerefs within area
       # MapApp.Show.Controller.filterByArea "area", hbounds
 
-    resetMap: ->
+    resetMap: (state)->
+      # TODO: where am I when this is run? clean up accordingly
+      console.log 'resetMap() state:', state
       $("#place_passages_region").fadeOut("slow")
-      # clear all filters
       MapApp.Show.Controller.resetMap()
 
 
   # TODO: part of refactoring for areas - single area:show
 
-  App.vent.on "map:reset", ->
-    API.resetMap()
+  App.vent.on "map:reset", (state) ->
+    API.resetMap(state)
 
   App.vent.on "placeref:click", (prid) ->
     # console.log 'map_app heard highlight id#', iid
