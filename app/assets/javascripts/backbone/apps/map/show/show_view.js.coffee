@@ -106,7 +106,8 @@
 
       @map.addControl(zoomControl);
 
-      @London = [51.5120, -0.0928]
+      @London = [51.5094, -0.1212]
+      # @London = [51.5120, -0.0928]
 
       # TODO: avoid mapbox until gem is fixed
       # @map.addLayer(l_osm);
@@ -134,7 +135,8 @@
       delete @keyPlaces[params['key']]
       # if no authors are checked any more, render all
       if params['count'] == 0
-        $("#legend").addClass('hidden')
+        $("#legend_compare").addClass('hidden')
+        $("#legend_base").removeClass('hidden')
         # console.log '@keyPlaces', @keyPlaces
         @renderPlaces({clear:true})
 
@@ -302,8 +304,8 @@
             '<i class="fa fa-circle fa-lg" style="color:'+@getColor('both',true)+';"/> ' +
              @authlabel+'</li>'
           )
-          # $("#legend_list").append('<li>'+authLabel[params['author_id']]+'</li>')
-          $("#legend").removeClass('hidden')
+          $("#legend_base").addClass('hidden')
+          $("#legend_compare").removeClass('hidden')
 
         # TODO: stop using hardcoded total
         if @numPlaces < 604

@@ -5,15 +5,13 @@
     startAuthors: ->
       # zap legend contents and hide
       $("#legend_list").html('')
-      $("#legend").addClass('hidden')
+      $("#legend_compare").addClass('hidden')
+      $("#legend_base").removeClass('hidden')
 
       $(".btn").disable(true)
-      # $("#dimensions_region").removeClass("hidden")
       # App.vent.trigger "map:reset"
-      # just get all
+      # get all
       App.request "author:entities", (authors) =>
-      # ABANDON: start with all (cat 0); filtered in the app
-      # App.request "authors:category", 0, (authors) =>
         @layout = @getLayoutView()
         # console.log authors.models.length + ' authors'
 

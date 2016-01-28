@@ -17,7 +17,7 @@
   left: 60%;
   z-index: 10000;
 }
-#legend {
+#legend_compare, #legend_base {
   position: absolute;
   max-height: 100px;
   width: 180px;
@@ -32,6 +32,11 @@
   box-shadow: 3px 3px 2px #888888;
   h4 {margin: 0;}
   p {font-size: .8em; margin:0; text-align: left !important;}
+}
+#legend_base_list {
+  padding-left: 0;
+  li {list-style-type: none; margin-left:10px;}
+  i {font-style: 6px; padding-right: 30px}
 }
 #legend_list {
   padding-left: 0;

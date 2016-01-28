@@ -48,7 +48,7 @@
       # App.vent.trigger("map:reset")
 
       $("#legend_list").html('')
-      $("#legend").addClass('hidden')
+      $("#legend_compare").addClass('hidden')
 
       $("#content_nav_region li").removeClass("active")
       $("#place_passages_region").addClass("hidden")
