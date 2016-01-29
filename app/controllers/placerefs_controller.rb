@@ -21,6 +21,17 @@ class PlacerefsController < ApplicationController
       placerefs = placerefs.by_place_and_works(params[:place_id],params[:work_id])
     end
 
+    if params[:place_id] && params[:work_cat]
+      works_of_cat = Category.find(params[:work_cat]).works
+      workids = []
+      works_of_cat.each do |w|
+        workids.push(w.work_id)
+      end
+      # puts workids
+      placerefs = placerefs.by_place_and_works(params[:place_id],workids)
+      # placerefs = placerefs.by_place_and_workcat(params[:place_id],params[:work_cat])
+    end
+
     if params[:area_id]
       # TODO: join placerefs to place, return placerefs where
       # geom intersects buffered area

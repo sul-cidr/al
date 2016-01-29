@@ -26,9 +26,10 @@ class Placeref < ActiveRecord::Base
   belongs_to :place, :counter_cache => true
   # has_one :place
 
-  # scope :ordered, -> {
-  #   includes(:author).order('death_year')
-  # }
+  scope :for_popup, -> {
+    includes {work}
+    includes {author}
+  }
 
   scope :by_place, -> (pid = nil) {
     where("place_id = ?", pid)
@@ -42,10 +43,10 @@ class Placeref < ActiveRecord::Base
     where(:place_id => pid, :work_id => workids)
   }
 
-  scope :for_popup, -> {
-    includes {work}
-    includes {author}
+  scope :by_place_and_workcat, -> (pid = nil, workids = nil) {
+    where(:place_id => pid, :work_id => workids)
   }
+
 
 # CHECK: when is a place "in or near" an area/neighborhood
 # approach #1: intersects a buffer around radius of area centroid

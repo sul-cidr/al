@@ -209,14 +209,16 @@
 
             feature.on('click', (e) ->
               html = ''
-              @filter = {place_id:pid}
+              @filter = params
+              @filter['place_id'] = pid
+              # @filter = {place_id:pid}
               if params && params['author_id']
               # if typeof params != "undefined"
                 @filter['author_id'] = params['author_id']
-                # console.log 'on click params: ',@filter
+                console.log 'on click params: ',@filter
               else if params && params['work_id']
                 @filter['work_id'] = params['work_id']
-                # console.log 'on click params: ',@filter
+                console.log 'on click params: ',@filter
 
               App.request "placeref:entities", @filter, (placerefs) =>
                 # console.log 'params sent to placeref:entities', @filter

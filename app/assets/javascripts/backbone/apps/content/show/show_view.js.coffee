@@ -65,7 +65,7 @@
             workids.push(w.attributes.work_id)
           listFilter['work_id']=workids
           # listFilter['clear']=true
-          console.log 'filter, workids', listFilter, workids
+          # console.log 'filter, workids', listFilter, workids
           # App.vent.trigger "category:show", (listFilter)
       else if tab == 'authors'
         App.request tab+":category", listFilter, (collection) =>
@@ -74,6 +74,6 @@
             authids.push(a.attributes.author_id)
           listFilter['author_id']=authids
           # listFilter['clear']=true
-          console.log 'filter, authids',listFilter,authids
+          # console.log 'filter, authids',listFilter,authids
 
       App.vent.trigger "category:show", (listFilter)
