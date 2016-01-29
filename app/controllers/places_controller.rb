@@ -2,8 +2,6 @@ class PlacesController < ApplicationController
   respond_to :json
 
   def index
-    # @places = Place.order(:prefname).all
-
     counts = Placeref.rank_places(params)
     biocounts = Placeref.rank_bioplaces(params)
     places = Place.where{place_id >> counts.keys}

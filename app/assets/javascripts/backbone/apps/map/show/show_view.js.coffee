@@ -155,7 +155,7 @@
       else
         return markerColors[len][1]
 
-    # what distribution of placeref_type per place?
+    # return tag for symbolizing places by placeref_type distrib
     prType: (count, biocount)->
       # console.log 'count, biocount', count, biocount
       if biocount == null

@@ -128,7 +128,7 @@ var histYears = function (years) {
 }
 
 var packAuths = function (auths) {
-  // console.log(JSON.stringify(auths))
+  console.log(JSON.stringify(auths))
   // TODO: variable bleed depending on # hoods?
   var bleed = 150,
       width = 340,

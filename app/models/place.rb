@@ -29,7 +29,8 @@ class Place < ActiveRecord::Base
     where {
         # geom_wkt like 'POINT%' and
         st_intersects(
-          st_buffer( (st_geomfromtext(Area.find(id).geom_poly_wkt)), 0.01),
+          st_geomfromtext(Area.find(id).geom_poly_wkt),
+          # st_buffer( (st_geomfromtext(Area.find(id).geom_poly_wkt)), 0.01),
           st_geomfromtext(geom_wkt)
         )
     }

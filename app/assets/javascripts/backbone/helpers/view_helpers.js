@@ -35,9 +35,13 @@ function scaleFont(value,range) {
 
 // returns value in pixels suitable for circle markers
 function scaleMarker(value,range) {
+  // console.log('scaleMarker',value, range)
+  // 2-step symbol size range
+  newRange = range[1]<=4 ? [4,6] : [4,12]
   s = d3.scale.linear()
     .domain(range)
-    .range([4,12]) // em
+    .range(newRange) // em
+    // .range([4,12])
   return s(value);
 }
 

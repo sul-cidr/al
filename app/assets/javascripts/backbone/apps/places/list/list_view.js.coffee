@@ -8,47 +8,6 @@
       navmapRegion: "#navmap_region"
       arealistRegion: "#arealist_region"
 
-  class List.Searchbox extends App.Views.ItemView
-    template: "places/list/templates/_searchbox"
-    events: {
-        "focus #search_input": "getAutocomplete"
-        # "click button": "showPlace"
-    }
-
-    getAutocomplete: ->
-      choice = $('#search_place_chooser input:radio:checked').val()
-      # console.log 'getAutocomplete', choice
-      if choice == 'hoods'
-        $("#search_input").autocomplete({
-          source: areaLookup
-          select: (event, ui) ->
-              event.preventDefault()
-              $("#search_input").val(ui.item.label)
-              @selectedArea = ui.item.value
-              @route = "places/" + ui.item.value
-              console.log 'autocomplete route,', @route
-              Backbone.history.navigate(@route, true)
-
-          focus: (event, ui) ->
-              event.preventDefault()
-              $("#search_input").val(ui.item.label)
-        })
-      else if choice == 'all'
-        $("#search_input").autocomplete({
-          source: placerefLookup
-          select: (event, ui) ->
-            event.preventDefault()
-            $("#search_input").val(ui.item.label)
-            @selectedArea = ui.item.value
-            @route = "placerefs/" + ui.item.value
-            # console.log 'autocomplete route,', @route
-            # Backbone.history.navigate(@route, true)
-
-          focus: (event, ui) ->
-              event.preventDefault()
-              $("#search_input").val(ui.item.label)
-        })
-
   class List.Navmap extends App.Views.ItemView
     template: "places/list/templates/_navmap"
 
@@ -90,6 +49,48 @@
     childView: List.Area
     emptyView: List.Empty
     childViewContainer: "arealist"
+
+
+  class List.Searchbox extends App.Views.ItemView
+    template: "places/list/templates/_searchbox"
+    events: {
+        "focus #search_input": "getAutocomplete"
+        # "click button": "showPlace"
+    }
+
+    getAutocomplete: ->
+      choice = $('#search_place_chooser input:radio:checked').val()
+      # console.log 'getAutocomplete', choice
+      if choice == 'hoods'
+        $("#search_input").autocomplete({
+          source: areaLookup
+          select: (event, ui) ->
+              event.preventDefault()
+              $("#search_input").val(ui.item.label)
+              @selectedArea = ui.item.value
+              @route = "places/" + ui.item.value
+              console.log 'autocomplete route,', @route
+              Backbone.history.navigate(@route, true)
+
+          focus: (event, ui) ->
+              event.preventDefault()
+              $("#search_input").val(ui.item.label)
+        })
+      else if choice == 'all'
+        $("#search_input").autocomplete({
+          source: placerefLookup
+          select: (event, ui) ->
+            event.preventDefault()
+            $("#search_input").val(ui.item.label)
+            @selectedArea = ui.item.value
+            @route = "placerefs/" + ui.item.value
+            # console.log 'autocomplete route,', @route
+            # Backbone.history.navigate(@route, true)
+
+          focus: (event, ui) ->
+              event.preventDefault()
+              $("#search_input").val(ui.item.label)
+        })
 
   class List.Empty extends App.Views.ItemView
     template: "places/list/templates/_empty"
