@@ -13,9 +13,10 @@
       "click .crumb-places": "goHome"
 
     goHome: ->
-      # console.log 'supposed to go home'
-      Backbone.history.navigate("places", true)
+      console.log 'goHome() navigates to /places'
       App.vent.trigger("map:reset", "places_show")
+      AL.PlacesApp.List.Controller.startPlaces()
+      # Backbone.history.navigate("places", true)
 
   class Show.PlacePassage extends App.Views.ItemView
     template: "places/show/templates/_passage"

@@ -3,7 +3,7 @@
   List.Controller =
 
     startPlaces: ->
-      # console.log 'PlacesApp.List startPlaces()'
+      console.log 'PlacesApp.List startPlaces()'
 
       @layout = @getLayoutView()
 
