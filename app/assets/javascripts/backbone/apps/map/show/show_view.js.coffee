@@ -72,8 +72,8 @@
         App.reqres.setHandler "areas:active", ->
           return areas
 
-      @renderPlaces()
-      # @renderPlaces({clear:true})
+      # @renderPlaces()
+      @renderPlaces({clear:true})
       # @renderPlaces({author_id:null, key:null, clear:null})
 
     initMap: ->
@@ -111,7 +111,7 @@
 
       # TODO: avoid mapbox until gem is fixed
       # @map.addLayer(l_osm);
-      # @map.addLayer(l_mblight);
+      @map.addLayer(l_mblight);
 
       @map.setView(@London, 12)
 
@@ -170,6 +170,7 @@
 
     renderPlaces: (params) ->
       console.log 'renderPlaces', params
+      # @filter = params
       window.p = params
       # console.log '@keyPlaces length:', Object.keys(@keyPlaces).length
       if typeof @places != "undefined"
@@ -193,6 +194,7 @@
           prtype = @prType(prcount, pl.attributes.biocount) # return work, bio, both
           geom = attribs.geom_wkt
           pid = attribs.place_id
+          # @filter['place_id'] = pid
           pname = attribs.prefname
           # console.log '@getColor prtype', @getColor(prtype)
           if geom.substr(0,5) == 'POINT'
@@ -212,16 +214,14 @@
               @filter = params
               @filter['place_id'] = pid
               # @filter = {place_id:pid}
-              if params && params['author_id']
-              # if typeof params != "undefined"
+              if params['author_id']
                 @filter['author_id'] = params['author_id']
-                console.log 'on click params: ',@filter
-              else if params && params['work_id']
+              else if params['work_id']
                 @filter['work_id'] = params['work_id']
-                console.log 'on click params: ',@filter
+              # console.log '@filter', @filter
 
               App.request "placeref:entities", @filter, (placerefs) =>
-                # console.log 'params sent to placeref:entities', @filter
+                console.log 'params heard by placeref:entities', @filter
                 console.log 'placerefs for popup', placerefs
                 _.each placerefs.models, (pr) =>
                   # console.log 'placeref attributes', pr.attributes
