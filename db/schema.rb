@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116181714) do
+ActiveRecord::Schema.define(version: 20160130002611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,16 @@ ActiveRecord::Schema.define(version: 20160116181714) do
   add_index "author_category_rels", ["author_id", "category_id"], name: "index_author_category_rels_on_author_id_and_category_id", using: :btree
   add_index "author_category_rels", ["category_id", "author_id"], name: "index_author_category_rels_on_category_id_and_author_id", using: :btree
 
+  create_table "author_image_rels", force: :cascade do |t|
+    t.integer  "author_id"
+    t.integer  "image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "author_image_rels", ["author_id", "image_id"], name: "index_author_image_rels_on_author_id_and_image_id", using: :btree
+  add_index "author_image_rels", ["image_id", "author_id"], name: "index_author_image_rels_on_image_id_and_author_id", using: :btree
+
   create_table "authors", primary_key: "author_id", force: :cascade do |t|
     t.string   "prefname"
     t.string   "label"
@@ -120,6 +130,17 @@ ActiveRecord::Schema.define(version: 20160116181714) do
 
   create_table "genres", primary_key: "genre_id", force: :cascade do |t|
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "images", primary_key: "image_id", force: :cascade do |t|
+    t.string   "filename"
+    t.string   "label"
+    t.text     "caption"
+    t.text     "geom_wkt"
+    t.float    "latitude"
+    t.float    "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

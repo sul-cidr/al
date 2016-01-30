@@ -45,3 +45,4 @@
 //*** require turbolinks
 //= require bootstrap-sprockets
 //= require typekit
+//= require google_analytics

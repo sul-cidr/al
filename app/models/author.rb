@@ -31,6 +31,9 @@ class Author < ActiveRecord::Base
   has_many :author_category_rels
   has_many :categories, :through => :author_category_rels
 
+  has_many :author_image_rels
+  has_many :images, :through => :author_image_rels
+
   def to_s
     "#{prefname}"
   end

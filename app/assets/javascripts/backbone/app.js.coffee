@@ -4,13 +4,11 @@
 
   App = new (Marionette.Application)
 
-  # from a 2012 blog post
+  # *** from 2012 blog post
   # https://lostechies.com/derickbailey/2012/04/17/managing-a-modal-dialog-with-backbone-and-marionette/
   ModalRegion = Backbone.Marionette.Region.extend(
     el: '#modal'
     constructor: ->
-      # throws error
-      # _.bindAll this
       Backbone.Marionette.Region::constructor.apply this, arguments
       @on 'view:show', @showModal, this
     getEl: (selector) ->
@@ -23,6 +21,7 @@
     hideModal: ->
       @$el.modal 'hide'
   )
+  # ***
 
   App.on 'initialize:before', ->
 
@@ -42,18 +41,15 @@
       contentRegion: '#content_region'
       authorsRegion:
         selector: '#authors_region'
-        #regionClass: AuthorsRegion
 
       authorContentRegion:
         selector: '#author_content_region'
 
       placesRegion:
         selector: '#places_region'
-        #regionClass: PlacesRegion
 
       placePassagesRegion:
         selector: '#place_passages_region'
-        # regionClass: @FaderRegion
 
       worksRegion:
         selector: '#works_region'
@@ -68,15 +64,12 @@
         selector: '#modal'
 
     App.module('HeaderApp').start()
+    # ContentApp manages AuthorsApp, WorksApp, PlacesApp, SearchApp
     App.module('ContentApp').start()
-    # App.module('AuthorsApp').start()
-    # App.module('WorksApp').start()
-    # App.module('PlacesApp').start()
     App.module('MapApp').start()
 
-  # App.on 'initialize:after', ->
   App.on 'start', ->
-    # console.log "App started"
+    # console.log "global AL app started"
     if Backbone.history
       return Backbone.history.start()
     return
