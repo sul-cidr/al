@@ -29,7 +29,7 @@ var mapStyles = {
     start: {
       "color": "orange",
       "weight": 1,
-      "opacity": 0.5,
+      "opacity": 0,
       "fillOpacity": 0
     },
     highlight: {

@@ -6,7 +6,7 @@
       <h3>photo thumbs here</h3>
     </div>
     <div id="legend_base">
-      <p>Place references in <br/> Works | Bios | Both</p>
+      <p><em>place references in</em> <br/> Works | Bios | Both</p>
       <ul id="legend_base_list">
         <li id='leg_base'>
           <i class="fa fa-circle fa-lg" style="color:red;"/>

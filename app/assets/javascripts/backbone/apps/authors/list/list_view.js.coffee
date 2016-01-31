@@ -22,6 +22,7 @@
     # or removePlaces(key)
     checkedAuthors: (e) ->
       # console.clear()
+      console.log $("#legend_list li")
       selected = parseInt($(e.currentTarget).context.value)
       key = 'auth_'+selected
       if @checked.indexOf(selected) < 0 # not selected
@@ -42,7 +43,7 @@
         idx = @checked.indexOf(selected)
         @checked.splice(idx, 1)
         checkedCount = @checked.length
-        console.log selected + ' removed, @checked now', @checked
+        console.log selected + ' removed, @checked now', @checked, checkedCount
         if $( ".author input:checked" ).length == 3
           $( ".author input:not(:checked)" ).attr('disabled', 'disabled');
         else
@@ -53,11 +54,7 @@
           key: key
           count: checkedCount
 
-    #
-    # if($('input.author').filter(':checked').length == 3)
-    #     $('input.author:not(:checked)').attr('disabled', 'disabled');
-    # else
-    #     $('input.author').removeAttr('disabled');
+
 
     removeFilter: ->
       console.log 'remove filter'

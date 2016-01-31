@@ -20,6 +20,8 @@
       @filteredFeatures = []
       @keyPlaces = {}
       @numPlaces = 0
+      @legendColors = [0,1,2]
+      window.colors = @legendColors
       # console.log 'filteredFeatures: ', @filteredFeatures
 
     swapBase: (id) ->
@@ -109,9 +111,10 @@
       @London = [51.5094, -0.1212]
       # @London = [51.5120, -0.0928]
 
-      # TODO: avoid mapbox until gem is fixed
+      # use if not mapbox
       # @map.addLayer(l_osm);
-      @map.addLayer(l_mblight);
+
+      # @map.addLayer(l_mblight);
 
       @map.setView(@London, 12)
 
@@ -126,10 +129,16 @@
     window.idToFeature = $idToFeature
 
     removePlaces: (params) ->
-      # drop from map
-      map.removeLayer(@keyPlaces[params['key']])
-      # remove from legend
-      # remove element w/ id = leg_<author_id>
+      # window.colors = @legendColors
+      places = @keyPlaces[params['key']]
+      # drop marker set from map
+      map.removeLayer(places.markers)
+
+      # add color back to available array
+      @legendColors.push(places.color)
+      console.log 'legendColors after restore', @legendColors
+
+      # remove legend <li>
       $("#leg_"+params['author_id']).remove()
       # delete from hash
       delete @keyPlaces[params['key']]
@@ -140,20 +149,39 @@
         # console.log '@keyPlaces', @keyPlaces
         @renderPlaces({clear:true})
 
-    getColor: (prtype, legend=false)->
-      length = Object.keys(@keyPlaces).length
-      len = if !legend then length else (length-1)
+    clearKeyPlaces: ->
+      @keyPlaces = {}
+
+    # TODO: whack this eventually
+    # getColor: (prtype, legend=false)->
+    #   length = Object.keys(@keyPlaces).length
+    #   len = if !legend then length else (length-1)
+    #   markerColors = {
+    #     0: {0:"yellow",1:"orange",2:"red"},
+    #     1: {0:"cyan",1:"deepskyblue",2:"blue"}
+    #     2: {0:"#e5f5f9",1:"#99d8c9",2:"#2ca25f"} # greens
+    #   }
+    #   if prtype == 'work'
+    #     return markerColors[len][2]
+    #   else if prtype == 'bio'
+    #     return markerColors[len][0]
+    #   else
+    #     return markerColors[len][1]
+
+    getColors: (prtype, legend=false, mincolor)->
+      console.log prtype, legend, mincolor
       markerColors = {
         0: {0:"yellow",1:"orange",2:"red"},
         1: {0:"cyan",1:"deepskyblue",2:"blue"}
         2: {0:"#e5f5f9",1:"#99d8c9",2:"#2ca25f"} # greens
       }
+
       if prtype == 'work'
-        return markerColors[len][2]
+        return markerColors[mincolor][2]
       else if prtype == 'bio'
-        return markerColors[len][0]
+        return markerColors[mincolor][0]
       else
-        return markerColors[len][1]
+        return markerColors[mincolor][1]
 
     # return tag for symbolizing places by placeref_type distrib
     prType: (count, biocount)->
@@ -164,9 +192,6 @@
         return 'bio'
       else
         return 'both'
-
-    clearKeyPlaces: ->
-      @keyPlaces = {}
 
     renderPlaces: (params) ->
       console.log 'renderPlaces', params
@@ -187,6 +212,8 @@
         @features = []
         max = Math.max.apply(Math, places.map((o) ->
           o.attributes.count ))
+        @mincolor = Math.min.apply(Math, @legendColors)
+        console.log '@mincolor =', @mincolor
         $.each places.models, (i, pl) =>
           # TODO: get max of count()
           attribs = pl.attributes.place
@@ -203,7 +230,8 @@
 
             feature = new L.CircleMarker(l_geom, {
               color: '#000',
-              fillColor: @getColor(prtype),
+              fillColor: @getColors(prtype,false,@mincolor),
+              # fillColor: @getColor(prtype),
               radius: scaleMarker(prcount,[1,max]),
               fillOpacity: 0.5,
               weight: 1
@@ -221,8 +249,8 @@
               # console.log '@filter', @filter
 
               App.request "placeref:entities", @filter, (placerefs) =>
-                console.log 'params heard by placeref:entities', @filter
-                console.log 'placerefs for popup', placerefs
+                # console.log 'params heard by placeref:entities', @filter
+                # console.log 'placerefs for popup', placerefs
                 _.each placerefs.models, (pr) =>
                   # console.log 'placeref attributes', pr.attributes
                   if pr.attributes.placeref.placeref_type == 'work'
@@ -292,25 +320,25 @@
 
         # if there's an author_id, add this set to hash
         # if not, we're rendering all
-        if params != undefined
-          if params['author_id'] != undefined
-            @keyPlaces[params['key']] = @places
+        if params['author_id']
+          if !($.isArray(params['author_id']))
+            console.log '@legendColors', @legendColors
+            @keyPlaces[params['key']] = {}
+            @keyPlaces[params['key']]['markers'] = @places
+            @keyPlaces[params['key']]['color'] = Math.min.apply(Math,@legendColors);
+            # @keyPlaces[params['key']]['color'] = (Object.keys(@keyPlaces).length)-1
+            console.log '@keyPlaces', @keyPlaces
             window.keyplaces = @keyPlaces
-            # console.log @keyPlaces
+            # remove this color set from available
+            idx=@legendColors.indexOf(@keyPlaces[params['key']].color)
+            @legendColors.splice(idx,1)
 
         # populate legend
         if Object.keys(@keyPlaces).length > 0
-          $("#legend_list").append('<li id=leg_'+params['author_id']+'>'+
-            '<i class="fa fa-circle fa-lg" style="color:'+@getColor('work',true)+';"/>'+
-            '<i class="fa fa-circle fa-lg" style="color:'+@getColor('bio',true)+';"/>' +
-            '<i class="fa fa-circle fa-lg" style="color:'+@getColor('both',true)+';"/> ' +
-             @authlabel+'</li>'
-          )
-          $("#legend_base").addClass('hidden')
-          $("#legend_compare").removeClass('hidden')
+          @makeLegend(params['author_id'], @mincolor)
 
         # TODO: stop using hardcoded total
-        if @numPlaces < 604
+        if @numPlaces < 770
           @map.fitBounds(@places.getBounds())
         else
           @map.setView(@London, 12)
@@ -319,6 +347,16 @@
         # TODO: stop exposing these
         window.places = @places
         window.features = @features
+
+    makeLegend: (authid, mincolor)->
+      $("#legend_list").append('<li id=leg_'+authid+'>'+
+        '<i class="fa fa-circle fa-lg" style="color:'+@getColors('work',true,mincolor)+';"/>'+
+        '<i class="fa fa-circle fa-lg" style="color:'+@getColors('bio',true,mincolor)+';"/>' +
+        '<i class="fa fa-circle fa-lg" style="color:'+@getColors('both',true,mincolor)+';"/> ' +
+         @authlabel+'</li>'
+      )
+      $("#legend_base").addClass('hidden')
+      $("#legend_compare").removeClass('hidden')
 
     # neighborhood voronoi polygons (not visible)
     ingestAreas: (areas) ->
