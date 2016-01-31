@@ -84,7 +84,7 @@
 
     resetMap: (state)->
       # TODO: where am I when this is run? clean up accordingly
-      console.log 'resetMap() state:', state
+      console.log 'resetMap() called from:', state
       $("#place_passages_region").fadeOut("slow")
       MapApp.Show.Controller.resetMap()
 

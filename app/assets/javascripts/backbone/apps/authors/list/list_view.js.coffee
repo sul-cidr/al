@@ -16,7 +16,7 @@
 
     initialize: ->
       @checked = []
-      console.log '@checked', @checked
+      # console.log '@checked', @checked
 
     # targeting renderPlaces(params, key, clear=true)
     # or removePlaces(key)

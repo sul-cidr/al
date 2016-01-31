@@ -114,7 +114,7 @@
       # use if not mapbox
       # @map.addLayer(l_osm);
 
-      @map.addLayer(l_mblight);
+      # @map.addLayer(l_mblight);
 
       @map.setView(@London, 12)
 
@@ -150,26 +150,12 @@
         @renderPlaces({clear:true})
 
     clearKeyPlaces: ->
+      # called by map:reset --> resetMap()
       @keyPlaces = {}
-
-    # TODO: whack this eventually
-    # getColor: (prtype, legend=false)->
-    #   length = Object.keys(@keyPlaces).length
-    #   len = if !legend then length else (length-1)
-    #   markerColors = {
-    #     0: {0:"yellow",1:"orange",2:"red"},
-    #     1: {0:"cyan",1:"deepskyblue",2:"blue"}
-    #     2: {0:"#e5f5f9",1:"#99d8c9",2:"#2ca25f"} # greens
-    #   }
-    #   if prtype == 'work'
-    #     return markerColors[len][2]
-    #   else if prtype == 'bio'
-    #     return markerColors[len][0]
-    #   else
-    #     return markerColors[len][1]
+      @legendColors = [0,1,2]
 
     getColors: (prtype, legend=false, mincolor)->
-      console.log prtype, legend, mincolor
+      # console.log prtype, legend, mincolor
       markerColors = {
         0: {0:"yellow",1:"orange",2:"red"},
         1: {0:"cyan",1:"deepskyblue",2:"blue"}
@@ -208,12 +194,12 @@
           @authlabel = author.get("label")
       App.request "place:entities", params, (places) =>
         @numPlaces = places.models.length
-        console.log @numPlaces + ' place models rendered' # e.g.', places.models[0]
+        # console.log @numPlaces + ' place models rendered' # e.g.', places.models[0]
         @features = []
         max = Math.max.apply(Math, places.map((o) ->
           o.attributes.count ))
         @mincolor = Math.min.apply(Math, @legendColors)
-        console.log '@mincolor =', @mincolor
+        console.log 'color set from @mincolor was', @mincolor
         $.each places.models, (i, pl) =>
           # TODO: get max of count()
           attribs = pl.attributes.place
@@ -322,16 +308,18 @@
         # if not, we're rendering all
         if params['author_id']
           if !($.isArray(params['author_id']))
-            console.log '@legendColors', @legendColors
-            @keyPlaces[params['key']] = {}
-            @keyPlaces[params['key']]['markers'] = @places
-            @keyPlaces[params['key']]['color'] = Math.min.apply(Math,@legendColors);
+            @key = if params['key'] then params['key'] else 'auth_'+params['author_id']
+            console.log 'key', @key
+            @keyPlaces[@key] = {}
+            @keyPlaces[@key]['markers'] = @places
+            @keyPlaces[@key]['color'] = Math.min.apply(Math,@legendColors);
             # @keyPlaces[params['key']]['color'] = (Object.keys(@keyPlaces).length)-1
             console.log '@keyPlaces', @keyPlaces
             window.keyplaces = @keyPlaces
             # remove this color set from available
-            idx=@legendColors.indexOf(@keyPlaces[params['key']].color)
+            idx=@legendColors.indexOf(@keyPlaces[@key].color)
             @legendColors.splice(idx,1)
+            console.log '@legendColors now', @legendColors
 
         # populate legend
         if Object.keys(@keyPlaces).length > 0

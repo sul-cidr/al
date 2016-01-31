@@ -3,14 +3,15 @@
   List.Controller =
 
     startWorks: ->
-      Backbone.history.navigate("works")
-      # old method
-      # App.request "works:category", 0, (works) =>
+      # set url
+      # Backbone.history.navigate("works")
+
+      # get, render works content
       App.request "work:entities", (works) =>
         @layout = @getLayoutView()
 
         @layout.on "show", =>
-          AL.ContentApp.Show.Controller.showTab('works')
+          # AL.ContentApp.Show.Controller.showTab('works')
           @showSearchbox()
           @listCatWorks works
 

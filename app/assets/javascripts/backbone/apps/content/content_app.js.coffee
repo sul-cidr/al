@@ -20,6 +20,12 @@
       "workpassages/:src/:work_id": "workPassages"
       "search/:q": "searchPassages"
 
+  # started by App.module('ContentApp').start()
+  # in app.js.coffee
+  ContentApp.on "start", ->
+    new ContentApp.Router
+      controller: API
+    API.startContent()
 
   API =
     startContent: ->
@@ -81,9 +87,3 @@
     searchPassages: (q) ->
       # console.log 'ContentApp router API searchPassages',q
       AL.SearchApp.Show.Controller.searchPassages q
-
-
-  ContentApp.on "start", ->
-    new ContentApp.Router
-      controller: API
-    API.startContent()

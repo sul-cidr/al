@@ -7,18 +7,16 @@
       @contentLayout = @getContentLayout()
       App.contentRegion.show @contentLayout
 
-      @listDimensions()
-      # @contentLayout.on "show", =>
       # render dropdown filter buttons & populate from db
+      @listDimensions()
       if $("#ul_genre li").length == 0
         @dropdownCategories()
 
       @currentTab = "authors"
+      console.log '@currentTab', @currentTab
 
     getContentLayout: ->
       new Show.ContentLayout
-
-    # TODO: refactor passages for authors, places, works
 
     # dimensions dropdowns ('genre, form, community, standing')
     listDimensions: ->
@@ -26,26 +24,13 @@
       dimensionsView = new Show.Dimensions
       @contentLayout.dimensionsRegion.show dimensionsView
 
-    # populate dropdowns from db
-    # OLD method
-    dropdownCategories: ->
-      App.request "category:entities", (categories) =>
-        # console.log 'categories', categories
-        for d in ['genre','form','community','standing']
-          # console.log d
-          dimcollection = categories.where({dimension: d})
-          for c in dimcollection
-            # console.log c
-            $("#ul_"+d).append(
-              "<li val="+c.attributes.category.category_id+">"+c.attributes.category.name+"</li>"
-            )
-
     # called from various places to manage tab state
     showTab: (tab)->
       @activeTab = tab
-      console.log 'currentTab, activeTab', @currentTab, @activeTab
+      console.log 'from '+ @currentTab + ' to ' + @activeTab + ' tab'
 
-      # App.vent.trigger("map:reset")
+      # reset map on any tab change
+      # App.vent.trigger("map:reset", "showTab")
 
       $("#legend_list").html('')
       $("#legend_compare").addClass('hidden')
@@ -84,7 +69,7 @@
         $("#authors_region").hide()
         $("#works_region").hide()
         $("#search_region").hide()
-        $("#places_region").show()
+        $("#places_region").fadeIn("slow")
         @currentTab = "places"
 
       else if tab == 'works'
@@ -101,6 +86,7 @@
         $("#places_region").hide()
         $("#search_region").hide()
         $("#works_region").fadeIn("slow")
+        # hide author category buttons
         $("#b_comm").css('visibility','hidden')
         $("#b_stand").css('visibility','hidden')
         @currentTab = "works"
@@ -121,3 +107,17 @@
 
       Backbone.history.navigate(@route)
       # Backbone.history.navigate(@route, true)
+
+
+    # populate dropdowns from db
+    dropdownCategories: ->
+      App.request "category:entities", (categories) =>
+        # console.log 'categories', categories
+        for d in ['genre','form','community','standing']
+          # console.log d
+          dimcollection = categories.where({dimension: d})
+          for c in dimcollection
+            # console.log c
+            $("#ul_"+d).append(
+              "<li val="+c.attributes.category.category_id+">"+c.attributes.category.name+"</li>"
+            )

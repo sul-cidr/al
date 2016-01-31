@@ -16,7 +16,7 @@
         # console.log authors.models.length + ' authors'
 
         @layout.on "show", =>
-          AL.ContentApp.Show.Controller.showTab('authors')
+          # AL.ContentApp.Show.Controller.showTab('authors')
           # @showTitle authors
           @listCatAuthors authors
           $("#spin_authors").addClass('hidden')
@@ -34,11 +34,11 @@
     getCatAuthorsView: (authors) ->
       new List.Authors
         collection: authors
-
-    showTitle: (authors) ->
-      titleView = @getTitleView authors
-      @layout.headerRegion.show titleView
-
-    getTitleView: (authors) ->
-      new List.Title
-        collection: authors
+    # 
+    # showTitle: (authors) ->
+    #   titleView = @getTitleView authors
+    #   @layout.headerRegion.show titleView
+    #
+    # getTitleView: (authors) ->
+    #   new List.Title
+    #     collection: authors

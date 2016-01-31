@@ -3,13 +3,16 @@
   List.Controller =
 
     startPlaces: ->
+      # set url
+      # Backbone.history.navigate("places")
       console.log 'PlacesApp.List startPlaces()'
 
+      # get, render places content
       @layout = @getLayoutView()
 
       @layout.on "show", =>
         $("#spin_authors").addClass('hidden')
-        AL.ContentApp.Show.Controller.showTab('places')
+        # AL.ContentApp.Show.Controller.showTab('places')
         @showSearchbox()
         @showNavmap()
         @listAreas(1)
