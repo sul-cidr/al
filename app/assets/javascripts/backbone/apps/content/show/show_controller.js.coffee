@@ -30,7 +30,7 @@
       console.log 'from '+ @currentTab + ' to ' + @activeTab + ' tab'
 
       # reset map on any tab change
-      # App.vent.trigger("map:reset", "showTab")
+      App.vent.trigger("map:reset", "showTab")
 
       $("#legend_list").html('')
       $("#legend_compare").addClass('hidden')
@@ -107,7 +107,6 @@
 
       Backbone.history.navigate(@route)
       # Backbone.history.navigate(@route, true)
-
 
     # populate dropdowns from db
     dropdownCategories: ->

@@ -22,6 +22,7 @@
       @numPlaces = 0
       @legendColors = [0,1,2]
       window.colors = @legendColors
+      @filteredAuthors = []
       # console.log 'filteredFeatures: ', @filteredFeatures
 
     swapBase: (id) ->
@@ -146,8 +147,14 @@
       if params['count'] == 0
         $("#legend_compare").addClass('hidden')
         $("#legend_base").removeClass('hidden')
-        # console.log '@keyPlaces', @keyPlaces
-        @renderPlaces({clear:true})
+        # are we in a filtered state?
+        # if so, restore filter
+        if $("#selected_cat_authors").html() == ""
+          @renderPlaces({clear:true})
+        else
+          console.clear()
+          console.log 'need to restore filter for', @filteredAuthors
+          @renderPlaces({clear:true, author_id:@filteredAuthors})
 
     clearKeyPlaces: ->
       # called by map:reset --> resetMap()
@@ -320,6 +327,12 @@
             idx=@legendColors.indexOf(@keyPlaces[@key].color)
             @legendColors.splice(idx,1)
             console.log '@legendColors now', @legendColors
+          else
+            # this is a filtered array of authors
+            _.each params['author_id'], (a) =>
+              if @filteredAuthors.indexOf(a) < 0
+                @filteredAuthors.push a
+            console.log '@filteredAuthors', @filteredAuthors
 
         # populate legend
         if Object.keys(@keyPlaces).length > 0

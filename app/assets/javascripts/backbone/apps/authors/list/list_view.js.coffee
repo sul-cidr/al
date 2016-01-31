@@ -54,15 +54,8 @@
           key: key
           count: checkedCount
 
-
-
     removeFilter: ->
-      console.log 'remove filter'
-      $("#selected_cat_authors").html('')
-      # get all authors
-      App.request "authors:category", {clear:true}, (authors) =>
-        List.Controller.listCatAuthors(authors)
-        App.vent.trigger("map:reset", 'authors_list')
+      AL.AuthorsApp.List.Controller.removeFilter()
 
   class List.Title extends App.Views.ItemView
     template: "authors/list/templates/_title"

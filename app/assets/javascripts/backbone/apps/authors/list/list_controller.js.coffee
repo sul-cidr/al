@@ -8,8 +8,8 @@
       $("#legend_compare").addClass('hidden')
       $("#legend_base").removeClass('hidden')
 
-      $(".btn").disable(true)
-      # App.vent.trigger "map:reset"
+      $(".btn").disable(false)
+
       # get all
       App.request "author:entities", (authors) =>
         @layout = @getLayoutView()
@@ -34,7 +34,16 @@
     getCatAuthorsView: (authors) ->
       new List.Authors
         collection: authors
-    # 
+
+    removeFilter: ->
+      console.log 'remove filter'
+      $("#selected_cat_authors").html('')
+      # get all authors
+      App.request "authors:category", {clear:true}, (authors) =>
+        @listCatAuthors(authors)
+        App.vent.trigger("map:reset", 'authors_list')
+
+    #
     # showTitle: (authors) ->
     #   titleView = @getTitleView authors
     #   @layout.headerRegion.show titleView

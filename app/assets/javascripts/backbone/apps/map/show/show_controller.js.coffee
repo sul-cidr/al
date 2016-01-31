@@ -3,10 +3,8 @@
   Show.Controller =
 
     showMap: ->
-      # console.log 'MapApp.Show.Controller.showMap()', authors
       @mapView = @getMapView()
 
-      # hold off rendering
       App.mapRegion.show @mapView
       # $("#spin_map").addClass('hidden')
 
@@ -16,30 +14,30 @@
     swapBase: (id) ->
       @mapView.swapBase id
 
-    # params can be >=1 author_id:, work_id: - normally with clear:true
+    # params can be >=1 author_id:, work_id:, work_cat:, auth_cat
+    # normally with clear:true
     filterPlaces: (params) ->
-      # if params['work_cat']
-      # if params['auth_cat']
       # console.log 'filterPlaces', params
       @mapView.renderPlaces(params)
 
     renderOneAuthor: (params) ->
-      # console.clear()
       # console.log 'renderOneAuthor() sending renderPlaces()', params
       @mapView.renderPlaces(params)
 
     dropOneAuthor: (params) ->
-      console.log 'dropOneAuthor() sending removePlaces():', params
+      # console.log 'dropOneAuthor() sending removePlaces():', params
       @mapView.removePlaces(params)
 
-    resetMap: ()->
-      console.log 'fired resetMap()'
+    resetMap: ->
+      console.log 'resetMap() fired'
+      $("#thumb_gallery").addClass("hidden")
       @mapView.renderPlaces({clear:true})
       @mapView.clearKeyPlaces()
 
     zoomTo: (what, area) ->
       @mapView.zoomTo what, area
 
+    # TODO: is this in effect?
     filterByArea: (type, b) ->
       window.counter = 0
       # console.log "bounds to turf from hoods:", b
@@ -83,24 +81,19 @@
     onSelectFeature: (what, id) ->
       @mapView.selectFeature(what, id);
 
-      # TODO: rig this
+    #
     showOnePassage: (passage_id) ->
       # retrieve single passage
       $("#place_passages_region").removeClass('hidden')
       App.request "passage:place", passage_id, (place_passages) =>
-        # if App.authorContentRegion.$el.length > 0
-        #   App.authorContentRegion.reset()
         window.placepassage = place_passages
         placePassageView = @getPlacePassageView place_passages
 
         App.placePassagesRegion.show placePassageView
         App.placePassagesRegion.$el.fadeIn("slow")
-        #
-        # $(".passages-places h4").html(authHash[authid])
 
     getPlacePassageView: (place_passages) ->
       new AL.PlacesApp.Show.PlacePassages ({
         collection: place_passages
-        # viewComparator: "passage_id"
         className: 'passages-places'
       })
