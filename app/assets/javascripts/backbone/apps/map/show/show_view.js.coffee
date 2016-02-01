@@ -384,28 +384,6 @@
       window.leaf_areas = @areas
       window.areaFeatures = @features
 
-    # buildPopup: (filter) ->
-    #   html = ''
-    #   @filter = {place_id:pid}
-    #   if typeof params != "undefined"
-    #     @filter['author_id'] = params['author_id']
-    #
-    #   App.request "placeref:entities", @filter, (placerefs) =>
-    #     # console.log placerefs
-    #     _.each placerefs.models, (pr) =>
-    #       # console.log 'placeref attributes', pr.attributes
-    #       if pr.attributes.placeref.placeref_type == 'work'
-    #         html += '&#8220;'+pr.attributes.placeref.placeref +
-    #           ',&#8221; in <em>' +
-    #           pr.attributes.work.title + '</em><br/>('+
-    #           pr.attributes.author.prefname +
-    #           '; '+pr.attributes.work.work_year+')&nbsp;[<span class="passage-link" val='+
-    #           pr.attributes.placeref.passage_id+'>passage</span>]<hr/>'
-    #       else
-    #         html += '&#8220;'+pr.attributes.placeref.placeref +
-    #           ',&#8221; a place in the life of ' +
-    #           pr.attributes.author.prefname+'<hr/>'
-
     # click placeref in text
     # called by Show.Controller on trigger 'placeref:click'
     clickPlaceref: (prid) ->

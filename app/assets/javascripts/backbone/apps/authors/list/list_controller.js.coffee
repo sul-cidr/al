@@ -21,7 +21,6 @@
           @listCatAuthors authors
           $("#spin_authors").addClass('hidden')
 
-        #
         App.authorsRegion.show @layout
 
     getLayoutView: ->
@@ -36,18 +35,9 @@
         collection: authors
 
     removeFilter: ->
-      console.log 'remove filter'
+      console.log 'remove filter in controller'
       $("#selected_cat_authors").html('')
       # get all authors
       App.request "authors:category", {clear:true}, (authors) =>
         @listCatAuthors(authors)
         App.vent.trigger("map:reset", 'authors_list')
-
-    #
-    # showTitle: (authors) ->
-    #   titleView = @getTitleView authors
-    #   @layout.headerRegion.show titleView
-    #
-    # getTitleView: (authors) ->
-    #   new List.Title
-    #     collection: authors
