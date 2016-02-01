@@ -2,9 +2,10 @@
 #
 # Table name: placerefs
 #
-#  id            :integer          not null, primary key
-#  placeref_id   :integer
+#  id            :integer          not null
+#  placeref_id   :integer          primary key
 #  work_id       :integer
+#  year          :integer
 #  passage_id    :string
 #  placeref      :string
 #  author_id     :integer

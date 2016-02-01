@@ -8,6 +8,25 @@
       navRegion: "#nav_region"
       authorContentRegion: "#author_content_region"
 
+  class Show.Image extends App.Views.ItemView
+    template: "authors/show/templates/_image"
+    tagName: "span"
+    events: {
+      'click img': 'imageModal'
+      # 'click input': 'aggAuthors'
+    }
+
+    imageModal: ->
+      image = this.model
+      imageid = image.get('image_id')
+      AL.AuthorsApp.Show.Controller.showImageModal(imageid)
+
+  class Show.ImageList extends App.Views.CompositeView
+    template: "authors/show/templates/_images"
+    childView: Show.Image
+    emptyView: Show.Empty
+    childViewContainer: "div"
+
   class Show.Title extends App.Views.ItemView
     template: "authors/show/templates/_title"
     events:

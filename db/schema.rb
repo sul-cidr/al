@@ -134,8 +134,10 @@ ActiveRecord::Schema.define(version: 20160130002611) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "images", primary_key: "image_id", force: :cascade do |t|
+  create_table "images", force: :cascade do |t|
     t.string   "filename"
+    t.integer  "place_id"
+    t.integer  "author_id"
     t.string   "label"
     t.text     "caption"
     t.text     "geom_wkt"

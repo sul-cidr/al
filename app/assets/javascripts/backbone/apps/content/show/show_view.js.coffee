@@ -12,6 +12,7 @@
       worksRegion: "#works_region"
       searchRegion: "#search_region"
       mapChooser: "#map_chooser"
+      galleryRegion: "#gallery_region"
 
     events:
       "click #content_nav_region li": "showTab"

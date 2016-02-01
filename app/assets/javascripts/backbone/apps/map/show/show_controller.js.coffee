@@ -30,7 +30,7 @@
 
     resetMap: ->
       console.log 'resetMap() fired'
-      $("#thumb_gallery").addClass("hidden")
+      $("#gallery_region").addClass("hidden")
       @mapView.renderPlaces({clear:true})
       @mapView.clearKeyPlaces()
 

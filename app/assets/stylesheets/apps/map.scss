@@ -18,9 +18,9 @@
   z-index: 10000;
 }
 
-#thumb_gallery {
+#gallery_region {
   position: absolute;
-  min-height: 75px;
+  min-height: 89px;
   left: 365px;
   bottom: 18px;
   right: 195px;
@@ -30,7 +30,7 @@
   z-index: 1;
   padding-left:8px;
   // float: left;
-  background: #eeeee0;
+  background: whitesmoke;
   font-family: 'english';
 }
 

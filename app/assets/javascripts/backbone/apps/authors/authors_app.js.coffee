@@ -1,12 +1,6 @@
 @AL.module "AuthorsApp", (AuthorsApp, App, Backbone, Marionette, $, _) ->
   @startWithParent = false
 
-  # class AuthorsApp.Router extends Marionette.AppRouter
-  #   appRoutes:
-  #     # "authors/:author_id": "passAuthorModel"
-  #     "works/:author_id": "authorWorks"
-  #     "workpassages/:work_id": "workPassages"
-
   API =
     startAuthors: ->
       # console.log 'API.startAuthors fired'

@@ -4,6 +4,7 @@
 #
 #  author_id    :integer          not null, primary key
 #  prefname     :string
+#  label        :string
 #  surname      :string
 #  middle       :string
 #  given        :string

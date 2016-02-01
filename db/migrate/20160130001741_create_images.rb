@@ -1,9 +1,11 @@
 class CreateImages < ActiveRecord::Migration
-  def change
-    create_table :images, {:id => false} do |t|
-
-      t.integer :image_id
+  def up
+    create_table :images do |t|
+    # create_table :images, {:id => false} do |t|
+    #   t.integer :image_id
       t.string :filename
+      t.integer :place_id
+      t.integer :author_id
       t.string :label
       t.text :caption
       t.text :geom_wkt
@@ -13,7 +15,10 @@ class CreateImages < ActiveRecord::Migration
       t.timestamps null: false
     end
 
-    execute "ALTER TABLE images ADD PRIMARY KEY (image_id);"
+    # execute "ALTER TABLE images ADD PRIMARY KEY (image_id);"
 
+  end
+  def down
+    drop_table :images
   end
 end

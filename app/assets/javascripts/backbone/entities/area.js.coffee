@@ -14,7 +14,7 @@
         @get id
       ), this)
 
-  window.areas = new Entities.AreaCollection()
+  areas = new Entities.AreaCollection()
 
   API =
     # 'areas' for navigating places

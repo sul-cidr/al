@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: images
+#
+#  image_id   :integer          not null, primary key
+#  filename   :string
+#  label      :string
+#  caption    :text
+#  geom_wkt   :text
+#  latitude   :float
+#  longitude  :float
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'test_helper'
 
 class ImageTest < ActiveSupport::TestCase

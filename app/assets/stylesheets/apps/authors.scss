@@ -64,6 +64,14 @@
   //
 }
 
+#imagelist {
+  display: inline-flex;
+  padding-top:3px;
+}
+.image {
+  padding-right: 3px;
+  cursor: pointer;
+}
 // passages are either for bio or works
 .passages-bio {
   hr {display: none;}

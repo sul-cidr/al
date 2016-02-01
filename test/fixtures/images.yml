@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: images
+#
+#  image_id   :integer          not null, primary key
+#  filename   :string
+#  label      :string
+#  caption    :text
+#  geom_wkt   :text
+#  latitude   :float
+#  longitude  :float
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 # This model initially had no columns defined.  If you add columns to the

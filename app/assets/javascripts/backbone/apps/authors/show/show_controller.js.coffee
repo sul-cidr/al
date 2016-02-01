@@ -10,21 +10,19 @@
       # disable dimension dropdowns
       $(".btn").disable(true)
 
-      id = author.get("author_id")
+      authid = author.get("author_id")
       prefname = author.get("prefname")
-      # console.log 'showAuthor: '+ id, prefname
+      surname = author.get("surname")
       @authorLayout = @getAuthorLayout author
-      # console.log '@authorLayout', @authorLayout
 
       @authorLayout.on "show", =>
         @showTitle author
         @showNav author
         @listBioPassages author
-        @showAuthorPics author
+        @showGallery authid
 
-        # @listWorks id
         $("#author_crumbs").append(
-          '<span id="crumb_author" class="crumb-left" val="'+id+'">:: '+author.get("surname")+
+          '<span id="crumb_author" class="crumb-left" val="'+authid+'">:: '+surname+
           ' :: Biography'+
           '</span>')
         # $("#spin_authors").addClass('hidden')
@@ -32,19 +30,27 @@
       App.authorsRegion.show @authorLayout
 
       # trigger for map_app
-      # sending one here
-      App.vent.trigger "authors:show", author.get("author_id")
-      # App.vent.trigger "author:show", author.get("author_id")
+      App.vent.trigger "authors:show", authid
 
-    showAuthorPics: (author) ->
-      # TODO: create view
-      $("#thumb_gallery").html('<h3>Photos for '+author.get("prefname")+"</h3>")
-      $("#thumb_gallery").removeClass("hidden")
+    showGallery: (authid) ->
+      $("#gallery_region").removeClass("hidden")
+      App.request "image:entities", {author_id: authid}, (images) =>
+        galleryView = @getGalleryView images
+        App.galleryRegion.show galleryView
+
+      # $("#thumb_gallery").html('<h3>Photos for '+author.get("prefname")+"</h3>")
+
+    getGalleryView: (images) ->
+      new Show.ImageList
+        collection: images
 
     getAuthorLayout: (author) ->
       new Show.Layout ({
         model: author
       })
+
+    showImageModal: (imageid) ->
+      alert "don't have bigger varsion queued up just yet, sorry!"
 
     listBioPassages: (author) ->
       id = author.get("author_id")

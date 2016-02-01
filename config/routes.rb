@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :forms, param: :form_id
   resources :communities, param: :communities_id
   resources :standings, param: :standings_id
+  resources :images, param: :author_id
 
   root to: "application#index"
 

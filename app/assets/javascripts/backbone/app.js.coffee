@@ -45,6 +45,9 @@
       authorContentRegion:
         selector: '#author_content_region'
 
+      galleryRegion:
+        selector: '#gallery_region'
+
       placesRegion:
         selector: '#places_region'
 

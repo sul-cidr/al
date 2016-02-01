@@ -1,0 +1,5 @@
+<div class="image">
+  <!-- <a href="#authors/<%= @author_id %>"> -->
+    <img title="<%= @label %>" src="assets/images/mapped/thumbs/<%= @filename %>" /><br/>
+  <!-- </a> -->
+</div>

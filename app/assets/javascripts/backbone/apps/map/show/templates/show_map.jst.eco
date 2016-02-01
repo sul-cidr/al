@@ -2,9 +2,7 @@
 <div id="map">
   <div id="spin_map" class="spinner-loader hidden"></div>
   <!-- <div id="map_footer"> -->
-    <div id="thumb_gallery" class="hidden">
-      <h3>photo thumbs here</h3>
-    </div>
+    <div id="gallery_region" class="hidden"></div>
     <div id="legend_base">
       <p><em>place references in</em> <br/> Works | Bios | Both</p>
       <ul id="legend_base_list">
@@ -24,16 +22,3 @@
     </div>
   <!-- </div> -->
 </div>
-
-<!-- <span class="fa-stack fa-lg"> -->
-  <!-- <i class="fa fa-circle-o fa-stack-2x" style="color:black;"></i> -->
-  <!-- <i class="fa fa-circle fa-lg" style="color:blue;"> W Blake</i> -->
-<!-- </span> -->
-<!-- <span class="fa-stack fa-lg"> -->
-  <!-- <i class="fa fa-circle-o fa-stack-2x" style="color:black;"></i> -->
-  <!-- <i class="fa fa-circle fa-lg" style="color:red;"> EB Browning</i> -->
-<!-- </span> -->
-<!-- <span class="fa-stack fa-lg"> -->
-  <!-- <i class="fa fa-circle-o fa-stack-2x" style="color:black;"></i> -->
-  <!-- <i class="fa fa-circle fa-lg" style="color:green;"> AC Swinburne</i> -->
-<!-- </span> -->
