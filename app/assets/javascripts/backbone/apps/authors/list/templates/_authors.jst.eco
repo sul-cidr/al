@@ -1,3 +1,4 @@
 <div id="authorlist">
-<p>Use checkboxes <input type="checkbox" checked="checked" disabled="true">to compare 2 or 3 authors</p>
+<p>Click photo for author biography, works and passages<br/>
+Use checkboxes <input type="checkbox" checked="checked" disabled="true"> to compare places for 2 or 3 authors</p>
 </div>

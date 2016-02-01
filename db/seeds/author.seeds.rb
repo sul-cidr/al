@@ -5,7 +5,7 @@ Author.create([
   {author_id:10359,prefname:"William Blake",label:"Blake",surname:"Blake",given:"William",birth_year:1757,death_year:1827,viaf_id:54144439,wiki_id:"William_Blake",community_id:5,standing_id:2},
   {author_id:10436,prefname:"James Boswell",label:"Boswell",surname:"Boswell",given:"James",birth_year:1740,death_year:1795,viaf_id:64002337,wiki_id:"James_Boswell",community_id:-1,standing_id:-1},
   {author_id:10375,prefname:"Robert Browning",label:"R. Browning",surname:"Browning",given:"Robert",birth_year:1812,death_year:1889,viaf_id:24598774,wiki_id:"Robert_Browning",community_id:8,standing_id:2},
-  {author_id:10371,prefname:"Elizabeth Barrett Browning",label:"E.B. Browning",surname:"Browning",given:"Elizabeth",birth_year:1806,death_year:1861,viaf_id:66464493,wiki_id:"Elizabeth_Barrett_Browning",community_id:8,standing_id:2},
+  {author_id:10371,prefname:"Elizabeth Barrett Browning",label:"E. Browning",surname:"Browning",given:"Elizabeth",birth_year:1806,death_year:1861,viaf_id:66464493,wiki_id:"Elizabeth_Barrett_Browning",community_id:8,standing_id:2},
   {author_id:10363,prefname:"Lord Byron",label:"Byron",surname:"Byron",given:"George",birth_year:1788,death_year:1824,viaf_id:95230688,wiki_id:"Lord_Byron",community_id:5,standing_id:1},
   {author_id:10369,prefname:"Thomas Carlyle",label:"Carlyle",surname:"Carlyle",given:"Thomas",birth_year:1795,death_year:1881,viaf_id:39390702,wiki_id:"Thomas_Carlyle",community_id:8,standing_id:2},
   {author_id:10347,prefname:"Geoffrey Chaucer",label:"Chaucer",surname:"Chaucer",given:"Geoffrey",birth_year:-1,death_year:1400,viaf_id:100185203,wiki_id:"Geoffrey_Chaucer",community_id:12,standing_id:2},
