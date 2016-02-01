@@ -9,7 +9,7 @@
     </div>
     <div class="radio">
       <!-- <label><input type="radio" name="optradio" value="all" >All places</label> -->
-      <label><input type="radio" name="optradio" value="all" disabled >All places</label>
+      <label class="greyed"><input type="radio" name="optradio" value="all" disabled >All places</label>
     </div>
   </div>
   <hr/>

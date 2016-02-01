@@ -2,7 +2,7 @@
 
   List.Controller =
 
-    startPlaces: ->
+    startPlaces: (borough)->
       # set url
       # Backbone.history.navigate("places")
       console.log 'PlacesApp.List startPlaces()'
@@ -14,8 +14,8 @@
         $("#spin_authors").addClass('hidden')
         # AL.ContentApp.Show.Controller.showTab('places')
         @showSearchbox()
-        @showNavmap()
-        @listAreas(1)
+        @showNavmap(borough)
+        @listAreas(borough)
 
       App.placesRegion.show @layout
 
@@ -24,7 +24,6 @@
         boroughHash[borough]+'</span')
       hoodArray = boroughHoods[borough]
       # console.log 'listAreas(), borough: '+borough, hoodArray
-      # window.areas = App.reqres.getHandler("areas:active")()
       window.filteredAreas = areas.filter((area) ->
         area.get('area_id') in hoodArray
       )
@@ -34,6 +33,8 @@
       areasView = @getAreasView boroughCollection
       # console.log 'boroughCollection ', boroughCollection
       @layout.arealistRegion.show areasView
+      App.reqres.setHandler "borough:current", ->
+        return borough
 
     getAreasView: (boroughCollection) ->
       new List.Areas
@@ -51,9 +52,10 @@
         # collection: placerefs
       @layout.searchboxRegion.show searchboxView
 
-    showNavmap: ->
+    showNavmap: (borough)->
       navmapView = new List.Navmap
       # console.log navmapView
       @layout.navmapRegion.show navmapView
-      # put map in div with area selected
-      $("#keymap").html( makeKeymap(1) )
+      # put map in div with borough selected
+      # borough = App.request "borough:current"
+      $("#keymap").html( makeKeymap(borough) )

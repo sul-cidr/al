@@ -39,7 +39,7 @@
 
     startPlaces: ->
       # console.log 'API.startPlaces from ContentApp'
-      AL.PlacesApp.List.Controller.startPlaces()
+      AL.PlacesApp.List.Controller.startPlaces(1)
 
     startWorks: ->
       # console.log 'API.startWorks from ContentApp'

@@ -15,7 +15,12 @@
     goHome: ->
       console.log 'goHome() navigates to /places'
       App.vent.trigger("map:reset", "places_show")
-      AL.PlacesApp.List.Controller.startPlaces()
+      borough = App.request "borough:current"
+      console.log 'go home to borough', borough
+      AL.PlacesApp.List.Controller.startPlaces(borough)
+      # App.request "borough:current", (borough) =>
+      #   console.log 'go home to borough', borough
+      #   AL.PlacesApp.List.Controller.startPlaces(borough)
       # Backbone.history.navigate("places", true)
 
   class Show.PlacePassage extends App.Views.ItemView

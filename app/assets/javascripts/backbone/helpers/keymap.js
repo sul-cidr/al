@@ -1,6 +1,6 @@
 // d3 keymap for places
 
-var makeKeymap = function(initarea){
+var makeKeymap = function(borough){
   var width = 310,
       height = 170;
   keymap = d3.select("#keymap").insert("svg:svg")
@@ -37,11 +37,12 @@ var makeKeymap = function(initarea){
         .on("click", function (d,i) {
           d3.select(".selected").classed("selected", false);
           d3.select(this).classed("selected", true);
-          // console.log('borough: ' + d.properties.id)
+          console.log('borough: ' + d.properties.id)
           AL.PlacesApp.List.Controller.listAreas(d.properties.id)
         })
-    // #13 City of London selected
-    boroughs.select("path#b1").classed('selected',true)
+    //
+    current = "path#b"+borough
+    boroughs.select(current).classed('selected',true)
 
   });
 }

@@ -1,6 +1,6 @@
 <div class="panel-title">
   <!-- TODO: use Backbone.history.navigate here -->
-  <p class="crumb-places"><< Return to places list</p>
+  <p class="crumb-places"><< Return to neighborhoods list</p>
   <h3><em>in and near </em><span class="red"><%= @prefname %></span></h3>
   <hr/>
   <p class="place-cloud-intro"> Some <span class="help">distinctive terms</span> from the vicinity...</p>
