@@ -6,6 +6,15 @@
       titleRegion: "#place_title_region"
       navRegion: "#place_nav_region"
       placeContentRegion: "#place_content_region"
+    events:
+      "click .red": "recenter"
+
+    recenter: (e) ->
+      # hood = Number($(e.currentTarget).context.attributes.val.value)
+      hood = App.request "area:model"
+      geom = hood.attributes.geom_point_wkt
+      map.setView(swap(wellknown(geom).coordinates))
+      console.log 'recentered to', hood
 
   class Show.Title extends App.Views.ItemView
     template: "places/show/templates/_title"
@@ -13,15 +22,12 @@
       "click .crumb-places": "goHome"
 
     goHome: ->
-      console.log 'goHome() navigates to /places'
+      # console.log 'goHome() navigates to /places'
       App.vent.trigger("map:reset", "places_show")
       borough = App.request "borough:current"
       console.log 'go home to borough', borough
       AL.PlacesApp.List.Controller.startPlaces(borough)
-      # App.request "borough:current", (borough) =>
-      #   console.log 'go home to borough', borough
-      #   AL.PlacesApp.List.Controller.startPlaces(borough)
-      # Backbone.history.navigate("places", true)
+
 
   class Show.PlacePassage extends App.Views.ItemView
     template: "places/show/templates/_passage"

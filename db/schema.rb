@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(version: 20160130002611) do
   end
 
   create_table "images", force: :cascade do |t|
+    t.integer  "image_id"
     t.string   "filename"
     t.integer  "place_id"
     t.integer  "author_id"

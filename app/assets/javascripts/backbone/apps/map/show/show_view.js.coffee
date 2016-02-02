@@ -3,7 +3,9 @@
   class Show.Map extends Marionette.ItemView
     template: "map/show/templates/show_map"
     events: {
-      "click .passage-link": "showOnePassage"
+      "mouseenter .passage-link": "showOnePassage"
+      "mouseenter .passage-link": "showOnePassage"
+      "mouseleave .passage-link": "closePassage"
       "click body": "closeAbout"
     }
     closeAbout: ->
@@ -14,6 +16,10 @@
       id = $(e.currentTarget).context.attributes.val.value
       # TODO: load passage in right panel
       Show.Controller.showOnePassage(id)
+
+    closePassage: ->
+      $(App.placePassagesRegion.$el).addClass("hidden")
+      # App.placePassagesRegion.$el.hide()
 
     initialize: ->
       @filters = {}
@@ -87,7 +93,7 @@
         fadeAnimation: true,
         maxZoom: 18,
         inertiaMaxSpeed: 1000
-      }).setActiveArea('viewport-authors');
+      }).setActiveArea('viewport-authors')
 
       baseMaps = {
         "Modern": l_mblight
@@ -126,7 +132,7 @@
         return
       ), this
 
-    $idToFeature = {areas:{}, places:{}}
+    $idToFeature = {areas:{}, places:{}, images:{}}
     window.idToFeature = $idToFeature
 
     removePlaces: (params) ->
@@ -186,6 +192,34 @@
       else
         return 'both'
 
+    window.imgMarker = L.MakiMarkers.icon({
+    	icon: 'camera',
+    	color: '#BA55D3',
+    	size: 'm'
+    });
+
+    renderImages: (params) ->
+      console.log 'renderImages', params
+      # in form {author_id: nnnnn, clear: true}
+      App.request "image:entities", params, (images) =>
+        @imgfeatures = []
+        $.each images.models, (i, img) =>
+          attribs = img.attributes
+          geom = attribs.geom_wkt
+          id = attribs.image_id
+          coords = swap(wellknown(geom).coordinates)
+          l_geom = new L.LatLng(coords[0],coords[1])
+          feature = new L.Marker(l_geom,{
+              icon: imgMarker
+            })
+          # feature.on('click', (e) ->
+          #   console.log 'clicked image marker, no action yet'
+
+          $idToFeature.images[id] = feature
+          @imgfeatures.push(feature)
+      @images = L.featureGroup(@imgfeatures)
+      @images.addTo(@map)
+
     renderPlaces: (params) ->
       console.log 'renderPlaces', params
       # @filter = params
@@ -201,12 +235,12 @@
           @authlabel = author.get("label")
       App.request "place:entities", params, (places) =>
         @numPlaces = places.models.length
-        # console.log @numPlaces + ' place models rendered' # e.g.', places.models[0]
+        console.log @numPlaces + ' place models rendered' # e.g.', places.models[0]
         @features = []
         max = Math.max.apply(Math, places.map((o) ->
           o.attributes.count ))
         @mincolor = Math.min.apply(Math, @legendColors)
-        console.log 'color set from @mincolor was', @mincolor
+        # console.log 'color set from @mincolor was', @mincolor
         $.each places.models, (i, pl) =>
           # TODO: get max of count()
           attribs = pl.attributes.place
@@ -298,6 +332,7 @@
                       pr.attributes.author.prefname+'<hr/>'
                   e.target.bindPopup html
             )
+
             @popup = feature.bindPopup(
               pname, {
                 'className': 'place-popup',
@@ -316,23 +351,23 @@
         if params['author_id']
           if !($.isArray(params['author_id']))
             @key = if params['key'] then params['key'] else 'auth_'+params['author_id']
-            console.log 'key', @key
+            # console.log 'key', @key
             @keyPlaces[@key] = {}
             @keyPlaces[@key]['markers'] = @places
             @keyPlaces[@key]['color'] = Math.min.apply(Math,@legendColors);
             # @keyPlaces[params['key']]['color'] = (Object.keys(@keyPlaces).length)-1
-            console.log '@keyPlaces', @keyPlaces
+            # console.log '@keyPlaces', @keyPlaces
             window.keyplaces = @keyPlaces
             # remove this color set from available
             idx=@legendColors.indexOf(@keyPlaces[@key].color)
             @legendColors.splice(idx,1)
-            console.log '@legendColors now', @legendColors
+            # console.log '@legendColors now', @legendColors
           else
             # this is a filtered array of authors
             _.each params['author_id'], (a) =>
               if @filteredAuthors.indexOf(a) < 0
                 @filteredAuthors.push a
-            console.log '@filteredAuthors', @filteredAuthors
+            # console.log '@filteredAuthors', @filteredAuthors
 
         # populate legend
         if Object.keys(@keyPlaces).length > 0
@@ -391,14 +426,14 @@
       console.log 'prid', prid
       App.request "placeref:entities", {id:prid}, (placerefs) =>
         if placerefs.models.length == 0
-          console.log 'placeref not georeferenced yet'
+          alert 'sorry, not georeferenced yet'
         else
           @placeid = placerefs.models[0].attributes.placeref.place_id
           console.log 'place_id of clicked placeref: ', @placeid
           @marker = $idToFeature.places[@placeid]
           # @marker = _.filter(@features, (f) ->
           #   f.model.attributes.place_id == @placeid )[0]
-          console.log 'clickPlaceref() marker ', @marker
+          # console.log 'clickPlaceref() marker ', @marker
           # # zoom to it
           window.m = @marker
           if @marker._latlng != undefined

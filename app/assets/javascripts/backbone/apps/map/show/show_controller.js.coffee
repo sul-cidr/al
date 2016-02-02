@@ -19,10 +19,13 @@
     filterPlaces: (params) ->
       # console.log 'filterPlaces', params
       @mapView.renderPlaces(params)
+      # if params['author_id']
+      #   @mapView.renderImages(params)
 
     renderOneAuthor: (params) ->
-      # console.log 'renderOneAuthor() sending renderPlaces()', params
+      # console.log 'renderOneAuthor() -> renderPlaces(),renderImages()', params
       @mapView.renderPlaces(params)
+      # @mapView.renderImages(params)
 
     dropOneAuthor: (params) ->
       # console.log 'dropOneAuthor() sending removePlaces():', params

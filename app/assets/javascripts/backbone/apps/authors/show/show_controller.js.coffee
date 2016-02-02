@@ -50,7 +50,7 @@
       })
 
     showImageModal: (imageid) ->
-      alert "don't have bigger varsion queued up just yet, sorry!"
+      alert "The larger version is not available yet, sorry!"
 
     listBioPassages: (author) ->
       id = author.get("author_id")

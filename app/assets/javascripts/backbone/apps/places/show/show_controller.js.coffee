@@ -25,7 +25,7 @@
 
           # CHECK: expose current area model here?
           App.reqres.setHandler "area:model", ->
-              return area
+            return area
       # keep showing in the placesRegion for now; areas are one kind of place
       App.placesRegion.show @placeLayout
 
@@ -91,6 +91,7 @@
 
     listPlacePassages: (authid) ->
       console.log 'listPlacePassages() for', authid
+      $("#place_passages_region").removeClass("hidden")
       prefname = authHash[authid]
 
       window.authorPlacerefs =

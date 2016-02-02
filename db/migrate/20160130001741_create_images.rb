@@ -2,7 +2,7 @@ class CreateImages < ActiveRecord::Migration
   def up
     create_table :images do |t|
     # create_table :images, {:id => false} do |t|
-    #   t.integer :image_id
+      t.integer :image_id
       t.string :filename
       t.integer :place_id
       t.integer :author_id
