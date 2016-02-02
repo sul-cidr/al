@@ -8,7 +8,10 @@
   </div>
 </div>
 <div id="results_region_search">
-  <img src="assets/images/drop-of-thames_320w.png" /><br/>
-  A Drop of Thames Water <br/>
-  <em>Punch magazine (1850), via Wikimedia Commons</em>
+  <span class="galleria">
+    <h4>A Gallery of Marginalia (future)</h4>
+    <img src="assets/images/drop-of-thames_320w.png" /><br/>
+    <p>A Drop of Thames Water <br/>
+    <em>Punch magazine (1850), via Wikimedia Commons</em></p>
+  </span>
 </div>

@@ -16,7 +16,7 @@
     goHome: ->
       # console.log 'supposed to go home'
       Backbone.history.navigate("works", true)
-      # App.vent.trigger("map:reset")
+      App.vent.trigger("map:reset")
 
   class Show.Nav extends App.Views.ItemView
     template: "works/show/templates/_nav"

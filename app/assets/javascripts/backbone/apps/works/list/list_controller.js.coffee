@@ -3,9 +3,9 @@
   List.Controller =
 
     startWorks: ->
-      # set url
-      # Backbone.history.navigate("works")
-
+      # App.vent.trigger "map:reset"
+      # ensure category buttons are not disabled
+      $(".btn").disable(false)
       # get, render works content
       App.request "work:entities", (works) =>
         @layout = @getLayoutView()
