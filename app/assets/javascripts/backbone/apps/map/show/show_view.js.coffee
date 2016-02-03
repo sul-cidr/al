@@ -3,9 +3,10 @@
   class Show.Map extends Marionette.ItemView
     template: "map/show/templates/show_map"
     events: {
-      "mouseenter .passage-link": "showOnePassage"
-      "mouseenter .passage-link": "showOnePassage"
-      "mouseleave .passage-link": "closePassage"
+      # "mouseenter .passage-link": "showOnePassage"
+      # "mouseenter .passage-link": "showOnePassage"
+      # "mouseleave .passage-link": "closePassage"
+      "click .passage-link": "showOnePassage"
       "click body": "closeAbout"
     }
     closeAbout: ->
