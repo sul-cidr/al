@@ -7,6 +7,7 @@
       "click .header-right": "loadAbout"
       "click .header-left": "resetApp"
       "click #map_chooser li": "loadMap"
+      "click #about_content i": "loadAbout"
 
     loadAbout: (e)->
       Show.Controller.loadAbout(e)

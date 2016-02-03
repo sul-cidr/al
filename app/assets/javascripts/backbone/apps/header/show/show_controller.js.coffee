@@ -13,18 +13,20 @@
       # e.preventDefault()
       @wHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
       # console.log 'resize to '+@wHeight*0.85
-      if $("#about").height() < 100
-        # $("#map_chooser").addClass('hidden')
-        $("#about").animate({ height: @wHeight * 0.90 }, 500, ->
-          $("#about_content").removeClass('hidden')
+      if $("#about_content").is(':visible')
+      #   # $("#map_chooser").addClass('hidden')
+      #   $("#about_content").animate({ height: @wHeight * 0.90 }, 500, ->
+          $("#about_content").fadeOut()
+          # $("#about_content").removeClass('hidden').fadeIn('slow')
           # $("#map_chooser").addClass('hidden')
-        )
+        # )
         # $("#about_content").removeClass('hidden')
       else
-        $("#about").animate({ height: '30px' }, 500, ->
-          $("#about_content").addClass('hidden')
+        # $("#about_content").animate({ height: '30px' }, 500, ->
+          $("#about_content").fadeIn()
+          # $("#about_content").addClass('hidden').fadeOut('slow')
           # $("#map_chooser").removeClass('hidden')
-        )
+        # )
 
 
 # HeaderApp.Show.Controller.displayModal()
