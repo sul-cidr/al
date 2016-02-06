@@ -122,7 +122,7 @@
       # use if not mapbox
       # @map.addLayer(l_osm);
 
-      @map.addLayer(l_mblight);
+      # @map.addLayer(l_mblight);
 
       @map.setView(@London, 12)
 
@@ -196,14 +196,17 @@
     window.imgMarker = L.MakiMarkers.icon({
     	icon: 'camera',
     	color: '#BA55D3',
-    	size: 'm'
+    	size: 's'
     });
 
-    renderImages: (params) ->
+    mapImages: (params) ->
       console.log 'renderImages', params
-      # in form {author_id: nnnnn, clear: true}
+      # if @imagefeatures.length() > 0
+      #   @images.clearLayers()
+      if typeof @images != "undefined"
+        @images.clearLayers()
+      @imgfeatures = []
       App.request "image:entities", params, (images) =>
-        @imgfeatures = []
         $.each images.models, (i, img) =>
           attribs = img.attributes
           geom = attribs.geom_wkt
@@ -213,13 +216,17 @@
           feature = new L.Marker(l_geom,{
               icon: imgMarker
             })
+          console.log 'coord', coords
           # feature.on('click', (e) ->
           #   console.log 'clicked image marker, no action yet'
-
           $idToFeature.images[id] = feature
           @imgfeatures.push(feature)
-      @images = L.featureGroup(@imgfeatures)
-      @images.addTo(@map)
+        console.log @imgfeatures
+        @key = 'auth_'+params['author_id']
+        @images = L.featureGroup(@imgfeatures)
+        window.images = @images
+        @keyPlaces[@key]['images'] = @images
+        @images.addTo(@map)
 
     renderPlaces: (params) ->
       console.log 'renderPlaces', params
@@ -383,6 +390,7 @@
           @map.setView(@London, 12)
 
         @places.addTo(@map)
+        # @mapImages(params)
         # TODO: stop exposing these
         window.places = @places
         window.features = @features

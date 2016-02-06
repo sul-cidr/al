@@ -25,14 +25,16 @@
     renderOneAuthor: (params) ->
       # console.log 'renderOneAuthor() -> renderPlaces(),renderImages()', params
       @mapView.renderPlaces(params)
-      # @mapView.renderImages(params)
+
+    mapImages: (params) ->
+      @mapView.mapImages(params)
 
     dropOneAuthor: (params) ->
       # console.log 'dropOneAuthor() sending removePlaces():', params
       @mapView.removePlaces(params)
 
     resetMap: ->
-      console.log 'resetMap() fired'
+      # console.log 'resetMap() fired'
       $("#gallery_region").addClass("hidden")
       @mapView.renderPlaces({clear:true})
       @mapView.clearKeyPlaces()
