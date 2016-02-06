@@ -17,7 +17,7 @@ class WorksController < ApplicationController
     if params[:work_cat]
       # works = Work.all.sort_by {|w| w.sortable_title}
       works = Work.joins{categories}.where('"categories"."category_id" IN (?)', params[:work_cat])
-      
+
       # works = Work.joins{categories}.where{categories.category_id >> params[:work_cat]}
       # works = Work.joins{work_category_rels.category}.where{categories.category_id >> params[:work_cat]}
     end
@@ -26,5 +26,19 @@ class WorksController < ApplicationController
 
   end
 
+  def new
+    @work = Work.new
+  end
+
+  def create
+    @work = Work.new work_params
+    @work.save
+  end
+
+  private
+
+  def work_params
+    # params.require(:work).permit!
+  end
 
 end

@@ -2,8 +2,11 @@
 #
 # Table name: images
 #
-#  image_id   :integer          not null, primary key
+#  id         :integer          not null, primary key
+#  image_id   :integer
 #  filename   :string
+#  place_id   :integer
+#  author_id  :integer
 #  label      :string
 #  caption    :text
 #  geom_wkt   :text

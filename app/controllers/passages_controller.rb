@@ -13,10 +13,13 @@ class PassagesController < ApplicationController
     end
   end
 
-  # def search
-  #   @search = Passage.search(:include => [:text]) do
-  #     keywords(params[:q])
-  #   end
-  # end
+  def new
+    @passage = Passage.new
+  end
+
+  def create
+    @passage = Passage.new passage_params
+    @passage.save
+  end
 
 end

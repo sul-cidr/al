@@ -42,4 +42,13 @@ class PlacerefsController < ApplicationController
 
   end
 
+  def new
+    @placeref = Placeref.new
+  end
+
+  def create
+    @placeref = Placeref.new placeref_params
+    @placeref.save
+  end
+
 end

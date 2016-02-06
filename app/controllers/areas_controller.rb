@@ -19,9 +19,13 @@ class AreasController < ApplicationController
 
 	end
 
-  def show
-    # something here to put a place detail view in #places-region
+  def new
+    @area = Area.new
   end
 
+  def create
+    @area = Area.new area_params
+    @area.save
+  end
 
 end

@@ -1,12 +1,14 @@
 ActiveAdmin.register Work do
+  permit_params :work_id, :title, :sorter, :author_id, :work_year, :keywords
 
 	config.sort_order = 'author_id_asc_and_title_asc'
 
 	index do
 		column :work_id
-		column :title 
+		column :title
 		column :author
-		column :pub_year
+		column :work_year
+    
 		actions
 	end
 
@@ -20,15 +22,3 @@ ActiveAdmin.register Work do
   end
 
 end
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if resource.something?
-#   permitted
-# end

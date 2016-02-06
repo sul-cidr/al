@@ -63,6 +63,9 @@ GEM
     arbre (1.0.3)
       activesupport (>= 3.0.0)
     arel (6.0.3)
+    auto_increment (1.2.0)
+      activerecord (~> 4.0)
+      activesupport (~> 4.0)
     autoprefixer-rails (6.1.2)
       execjs
       json
@@ -320,6 +323,7 @@ DEPENDENCIES
   activeadmin!
   activerecord-postgis-adapter
   annotate
+  auto_increment
   bootstrap-sass (~> 3.3.5)
   byebug
   capistrano (~> 3.0)

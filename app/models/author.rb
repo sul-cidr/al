@@ -24,6 +24,15 @@ class Author < ActiveRecord::Base
 
   self.primary_key = 'author_id'
 
+  # auto_increment :author_id
+
+  before_create :set_id
+
+  def set_id
+    max_id = Author.maximum(:author_id).next
+    self.author_id = max_id
+  end
+
   has_many :works
   has_many :passages, :through => :works
   has_many :placerefs, :through => :passages

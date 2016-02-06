@@ -1,6 +1,7 @@
 ActiveAdmin.register Passage do
+  permit_params :passage_id, :work_id, :subject_id, :text
 
-	index do
+  index do
 		column 'id', :passage_id
 		column :text
 		column 'work', :work
@@ -14,16 +15,3 @@ ActiveAdmin.register Passage do
 	filter :placerefs, label: "places"
 
 end
-
-# See permitted parameters documentation:
-# https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-#
-# permit_params :list, :of, :attributes, :on, :model
-#
-# or
-#
-# permit_params do
-#   permitted = [:permitted, :attributes]
-#   permitted << :other if resource.something?
-#   permitted
-# end

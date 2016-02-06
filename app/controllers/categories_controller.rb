@@ -5,7 +5,15 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.joins(:dimension).all
-    # @categories = Category.all
+  end
+
+  def new
+    @category = Category.new
+  end
+
+  def create
+    @category = Category.new category_params
+    @category.save
   end
 
 end

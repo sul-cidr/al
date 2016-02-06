@@ -1,4 +1,5 @@
 ActiveAdmin.register Category do
+  permit_params :category_id, :name, :dimension_id
 
   config.sort_order = 'category_id_asc'
 

@@ -26,9 +26,12 @@ class Work < ActiveRecord::Base
     where {author_id == aid}
   }
 
-  # def self.by_cat(catid)
-  #   works = Work.joins{work_category_rels.category}.where(categories.category_id >> catid)
-  # end
+  # auto-increment work_id
+  before_create :set_id
+  
+  def set_id
+    self.work_id = Work.maximum(:work_id).next
+  end
 
   def self.rank_authors(params)
     works = all

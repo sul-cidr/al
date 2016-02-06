@@ -14,7 +14,7 @@ gem 'compass-rails', '2.0.4'
 # Use postgresql as the database for Active Record
 gem 'pg'
 gem 'activerecord-postgis-adapter'
-
+gem 'auto_increment'
 gem 'mapbox-rails'
 
 gem 'typekit-rails'
