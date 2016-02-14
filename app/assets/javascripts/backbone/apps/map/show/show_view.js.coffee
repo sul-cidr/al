@@ -122,7 +122,7 @@
       # use if not mapbox
       # @map.addLayer(l_osm);
 
-      @map.addLayer(l_mblight);
+      # @map.addLayer(l_mblight);
 
       @map.setView(@London, 12)
 
@@ -308,7 +308,8 @@
               pname, {
                 'className': 'place-popup',
                 'maxHeight': '450'}
-            )
+            ).on('popupclose', (e) ->
+              $("#imagelist .image img").removeClass('photo-pop'))
             # add model, id to feature
             feature.model = pl
             feature.options.id = pid
@@ -435,6 +436,7 @@
     clickPlaceref: (prid) ->
       # TODO: get place_id from placeref_id
       console.log 'prid', prid
+      $("#imagelist .image img[prid="+prid+"]").addClass('photo-pop')
       App.request "placeref:entities", {id:prid}, (placerefs) =>
         if placerefs.models.length == 0
           alert 'sorry, not georeferenced yet'

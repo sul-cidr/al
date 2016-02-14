@@ -5,6 +5,7 @@ json.array! @images do |image|
     :filename,
     :label,
     :author_id,
+    :placeref_id,
     :caption,
     :geom_wkt
   )

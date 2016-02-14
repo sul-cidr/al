@@ -21,4 +21,5 @@ class PlacesController < ApplicationController
     @place = Place.new place_params
     @place.save
   end
+
 end

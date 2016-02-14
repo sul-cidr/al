@@ -6,6 +6,7 @@ class CreateImages < ActiveRecord::Migration
       t.string :filename
       t.integer :place_id
       t.integer :author_id
+      t.integer :placeref_id
       t.string :label
       t.text :caption
       t.text :geom_wkt

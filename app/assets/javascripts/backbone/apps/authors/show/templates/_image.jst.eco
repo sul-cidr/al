@@ -1,3 +1,3 @@
 <div class="image">
-  <img title="<%= @label %>" val="<%= @ %>" src="assets/images/mapped/thumbs/<%= @filename %>" /><br/>
+  <img title="<%= @label %>" iid="<%= @id %>" prid="<%= @placeref_id %>" src="assets/images/mapped/thumbs/<%= @filename %>" /><br/>
 </div>

@@ -12,14 +12,22 @@
     template: "authors/show/templates/_image"
     tagName: "span"
     events: {
-      'click img': 'imageModal'
+      'click img': 'popImage'
       # 'click input': 'aggAuthors'
     }
 
-    imageModal: ->
-      image = this.model
-      imageid = image.get('image_id')
-      AL.AuthorsApp.Show.Controller.showImageModal(imageid)
+    popImage: ->
+      prid = this.model.get('placeref_id')
+      iid = this.model.get('id')
+      fn = "assets/images/mapped/full/" + this.model.get('filename').replace("tn_","")
+      # prid = image.get('placeref_id')
+      App.vent.trigger('placeref:click', prid)
+      $("#imagelist .image img[prid="+prid+"]").addClass('photo-pop')
+      $("#imagelist .image img[iid="+iid+"]").attr('src', fn)
+      # AL.AuthorsApp.Show.Controller.showImageModal(imageid)
+
+# $("#imagelist .image img[prid=30097]").attr('src',"assets/images/mapped/tn_bennetst.jpg")
+
 
   class Show.ImageList extends App.Views.CompositeView
     template: "authors/show/templates/_images"
