@@ -16,7 +16,7 @@
 
 
  /*
-  *= require jquery-ui
+  * require jquery-ui
   */
 
 @import "bootstrap-sprockets";
@@ -28,6 +28,7 @@
 @import "leaflet.markercluster/dist/MarkerCluster";
 @import "leaflet.markercluster/dist/MarkerCluster.Default";
 
+// @import "jquery-ui/themes/base/jquery-ui.min";
 
 // TODO fix this pathing
 @import "apps/leaflet";

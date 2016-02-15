@@ -342,7 +342,6 @@ DEPENDENCIES
   font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
-  jquery-ui-rails
   mapbox-rails
   pg
   rabl

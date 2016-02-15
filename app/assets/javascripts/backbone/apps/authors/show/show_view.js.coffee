@@ -22,20 +22,24 @@
       iid = this.model.get('id')
       label = this.model.get('label')
       fn = "assets/images/mapped/full/" + this.model.get('filename')
+      console.log fn
       # send id to create map popup
       App.vent.trigger('placeref:click', prid)
       # border on photo
       $("#imagelist .image img[prid="+prid+"]").addClass('photo-pop')
-      # populate modal div
-      $("#image_modal").html("<img src='"+fn+"' style='width:300px;'/>")
+      # load image
+      $( "#image_modal" ).html("<img src='"+fn+"' style='width:300px;'/>")
       # open dialog
-      $( "#image_modal" ).dialog({
-        modal: false,
-        title: label,
-        position: { my: "left+370 bottom-120", at: "left bottom", of: window}
+      @editDialog = $( "#image_modal" ).dialog(
+        {
+          modal: false,
+          title: label,
+          position: { my: "left+370 bottom-120", at: "left bottom", of: window}
         })
+      # TODO: position needs calculation after image is loaded
+      @editDialog.dialog('option', 'position',  { my: "left+370 bottom-120", at: "left bottom", of: window})
 
-# $("#imagelist .image img[prid=30097]").attr('src',"assets/images/mapped/tn_bennetst.jpg")
+      # $("#imagelist .image img[prid=30097]").attr('src',"assets/images/mapped/tn_bennetst.jpg")
 
 
   class Show.ImageList extends App.Views.CompositeView

@@ -57,7 +57,7 @@ gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
+# gem 'jquery-ui-rails'
 # works with jquery-ui
 # gem 'rails4-autocomplete'
 
