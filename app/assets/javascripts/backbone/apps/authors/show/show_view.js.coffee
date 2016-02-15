@@ -34,10 +34,13 @@
         {
           modal: false,
           title: label,
-          position: { my: "left+370 bottom-120", at: "left bottom", of: window}
+          show: { effect: "fadeIn", duration: 500 },
+          position: { my: "left+370 bottom-120", at: "left bottom", of: window},
+          close: (event, ui) ->
+            map.closePopup()
         })
       # TODO: position needs calculation after image is loaded
-      @editDialog.dialog('option', 'position',  { my: "left+370 bottom-120", at: "left bottom", of: window})
+      @editDialog.dialog('option', 'position',  { my: "left+370 top+90", at: "left top", of: window})
 
       # $("#imagelist .image img[prid=30097]").attr('src',"assets/images/mapped/tn_bennetst.jpg")
 

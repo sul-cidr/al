@@ -309,7 +309,8 @@
                 'className': 'place-popup',
                 'maxHeight': '450'}
             ).on('popupclose', (e) ->
-              $("#imagelist .image img").removeClass('photo-pop'))
+              $("#imagelist .image img").removeClass('photo-pop');
+              $( "#image_modal" ).dialog("close");)
             # add model, id to feature
             feature.model = pl
             feature.options.id = pid
