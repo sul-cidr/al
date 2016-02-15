@@ -4,10 +4,9 @@
   class Show.Header extends App.Views.ItemView
     template: "header/show/templates/show_header"
     events:
-      "click .header-right": "loadAbout"
-      "click .header-left": "resetApp"
+      "click #header_right i": "loadAbout"
+      "click #header_left i": "resetApp"
       "click #map_chooser li": "loadMap"
-      "click #about_content i": "loadAbout"
 
     loadAbout: (e)->
       Show.Controller.loadAbout(e)
@@ -18,7 +17,6 @@
 
     loadMap: (e) ->
       id = e.target.attributes.val.value
-      # console.log 'loadMap (e)', id
       App.vent.trigger('map:swap', id);
 
   class Show.ModalView extends App.Views.ItemView

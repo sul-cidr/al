@@ -1,63 +1,62 @@
 /* header.scss */
 @import "compass/css3/images";
 
-// aboout link, etc.
-.header-right {
-  position:absolute;
-  right:14px;
-  cursor: pointer;
-  text-decoration: underline;
-  color:#C2D1E0;
-  // color:#336699;
-  top: 14px;
-}
-
-.header-left {
-  // font-awesome 'home'
-  position:absolute;
-  left:16px;
-  cursor: pointer;
-  color:#C2D1E0;
-  top: 14px;
-}
-
 #header {
   position: absolute;
   top: 0;
   width: 100vw;
   height: 55px;
-
-  // white-ish center
-  background-color: #ffffff; // Old browsers
-  @include filter-gradient( #ffffff, #ffffff, horizontal); // IE6-9
+  @include filter-gradient( #ffffff, #ffffff, horizontal);
   @include background-image(linear-gradient(left,  #2A4747 0%,#BFC8C8 25%,#BFC8C8 75%,#2A4747 100%));
-
-  // slate center
-  // background-color: #2A4747; // Old browsers
-  // @include filter-gradient(#ffffff, #ffffff, horizontal); // IE6-9
-  // @include background-image(linear-gradient(left,  #ffffff 0%,#2A4747 25%,#2A4747 75%,#ffffff 100%));
+  i {cursor: pointer; color: whitesmoke; margin: 14px;}
 }
+#header_left {
+    position:absolute;
+    left:0;
+    top:0;
+    width:150px;
+    height:100%;
+}
+
+#header_right {
+    position:absolute;
+    right:0;
+    top:0;
+    width:150px;
+    height:100%;
+    text-align: right;
+}
+
 #title {
-  position: absolute;
-  width: 700px;
-  margin: 0 20%;
+  height:100%;
+  margin: 0 150px;
+  text-align: center;
+
   padding-top: 0;
   text-align: center;
   vertical-align: top;
   font-family: "english";
   font-variant: small-caps;
+  // background-color: #eeeee0;
   h1 {
+    margin: 0;
     font-size: 2em;
-    line-height: 0.8em;
+    display: inline;
+    padding-left: 36px;
+    line-height: 0.9em;
     color: #2A4747;
-    padding-left: 180px;
     letter-spacing: 8px;
   }
   .tagline {
-    letter-spacing: 4px;
-    color: #337ab7;
+    letter-spacing: 5px;
+    color: olive;
   }
 }
+  // slate center
+  // background-color: #2A4747; // Old browsers
+  // @include filter-gradient(#ffffff, #ffffff, horizontal); // IE6-9
+  // @include background-image(linear-gradient(left,  #ffffff 0%,#2A4747 25%,#2A4747 75%,#ffffff 100%));
+
 #map_chooser {
   position: absolute;
   margin: 4px 2px;
@@ -90,19 +89,7 @@
     background: yellow;
   }
 }
-// #about {
-//   position: absolute;
-//   margin: 4px 2px;
-//   padding: 4px 0 4px 8px;
-//   top: 55px;
-//   right: 42px;
-//   z-index: 1;
-//   background: whitesmoke;
-//   font-family: 'english';
-//   border-radius: 3px;
-//   box-shadow: 3px 3px 2px #888888;
-//   // overflow-y: auto;
-// }
+
 #about_content {
   position: absolute;
   top: 95px;
