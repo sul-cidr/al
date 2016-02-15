@@ -61,8 +61,8 @@
         # App.vent.trigger("map:reset")
         $("#dimensions_region").addClass('hidden')
 
-        if $("#places_region").html() == ''
-          Backbone.history.navigate('places', true)
+        # if $("#places_region").html() == ''
+        Backbone.history.navigate('places', true)
           # AL.PlacesApp.List.Controller.startPlaces()
         @route = "places"
         $("#places_tab").addClass("active")
@@ -77,9 +77,12 @@
         $(".btn").disable(false)
         $("#dimensions_region").removeClass('hidden')
 
-        if $("#works_region").html() == ''
-          Backbone.history.navigate('works', true)
+        # if $("#works_region").html() == ''
+        Backbone.history.navigate('works', true)
         #   AL.WorksApp.List.Controller.startWorks()
+
+        # if $("#one_place").length == 1
+
         @route = "works"
         $("#works_tab").addClass("active")
         $("#authors_region").hide()
@@ -95,8 +98,9 @@
         # console.log 'Show.Controller showTab(search)'
         $("#dimensions_region").addClass('hidden')
 
-        if $("#search_region").html() == ''
-          Backbone.history.navigate('search', true)
+        # if $("#search_region").html() == ''
+        Backbone.history.navigate('search', true)
+
         @route = "search"
         $("#search_tab").addClass("active")
         $("#authors_region").hide()

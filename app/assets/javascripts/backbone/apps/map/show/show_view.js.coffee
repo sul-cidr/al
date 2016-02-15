@@ -383,7 +383,8 @@
 
         # populate legend
         if Object.keys(@keyPlaces).length > 0
-          @makeLegend(params['author_id'], @mincolor)
+          if $("#leg_"+params['author_id']).length == 0
+            @makeLegend(params['author_id'], @mincolor)
 
         # TODO: stop using hardcoded total
         if @numPlaces < 770
@@ -398,6 +399,7 @@
         window.features = @features
 
     makeLegend: (authid, mincolor)->
+      console.log 'triggered makeLegend(), keyplaces: '+ authid, keyplaces
       $("#legend_list").append('<li id=leg_'+authid+'>'+
         '<i class="fa fa-circle fa-lg" style="color:'+@getColors('work',true,mincolor)+';"/>'+
         '<i class="fa fa-circle fa-lg" style="color:'+@getColors('bio',true,mincolor)+';"/>' +
