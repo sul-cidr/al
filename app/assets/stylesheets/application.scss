@@ -14,6 +14,11 @@
  *= require_self
  */
 
+
+ /*
+  *= require jquery-ui
+  */
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap.vertical-tabs";
@@ -22,14 +27,7 @@
 @import "compass/css3/images";
 @import "leaflet.markercluster/dist/MarkerCluster";
 @import "leaflet.markercluster/dist/MarkerCluster.Default";
-// @import "spinners/spinner";
 
-// @import "mapbox.js/mapbox.uncompressed";
-// @import "mapbox.js/images";
-
-/*
- *= require jquery-ui
- */
 
 // TODO fix this pathing
 @import "apps/leaflet";

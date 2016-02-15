@@ -10,6 +10,7 @@
 
   class Show.Image extends App.Views.ItemView
     template: "authors/show/templates/_image"
+    # wrapping element necessary; 'div' used if omitted
     tagName: "span"
     events: {
       'click img': 'popImage'
@@ -19,12 +20,20 @@
     popImage: ->
       prid = this.model.get('placeref_id')
       iid = this.model.get('id')
-      fn = "assets/images/mapped/full/" + this.model.get('filename').replace("tn_","")
-      # prid = image.get('placeref_id')
+      label = this.model.get('label')
+      fn = "assets/images/mapped/full/" + this.model.get('filename')
+      # send id to create map popup
       App.vent.trigger('placeref:click', prid)
+      # border on photo
       $("#imagelist .image img[prid="+prid+"]").addClass('photo-pop')
-      $("#imagelist .image img[iid="+iid+"]").attr('src', fn)
-      # AL.AuthorsApp.Show.Controller.showImageModal(imageid)
+      # populate modal div
+      $("#image_modal").html("<img src='"+fn+"' style='width:300px;'/>")
+      # open dialog
+      $( "#image_modal" ).dialog({
+        modal: false,
+        title: label,
+        position: { my: "left+370 bottom-120", at: "left bottom", of: window}
+        })
 
 # $("#imagelist .image img[prid=30097]").attr('src',"assets/images/mapped/tn_bennetst.jpg")
 
@@ -33,6 +42,8 @@
     template: "authors/show/templates/_images"
     childView: Show.Image
     emptyView: Show.Empty
+
+    # childViewContainer: "#links"
     childViewContainer: "div"
 
   class Show.Title extends App.Views.ItemView

@@ -2,7 +2,8 @@
 <div id="map">
   <div id="spin_map" class="spinner-loader hidden"></div>
   <!-- <div id="map_footer"> -->
-    <div id="gallery_region" class="hidden"></div>
+    <div id="gallery_region" class="hidden">
+    </div>
     <div id="legend_base">
       <p><em>place references in</em> <br/> Works | Bios | Both</p>
       <ul id="legend_base_list">

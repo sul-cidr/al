@@ -1,3 +1,9 @@
 <div class="image">
-  <img title="<%= @label %>" iid="<%= @id %>" prid="<%= @placeref_id %>" src="assets/images/mapped/thumbs/<%= @filename %>" /><br/>
+  <img title="<%= @label %>" iid="<%= @id %>" prid="<%= @placeref_id %>"
+    src="assets/images/mapped/thumbs/tn_<%= @filename %>" /><br/>
 </div>
+
+<!-- in progress  -->
+<!-- <a href="assets/images/mapped/full/<%= @filename %>" title="<%= @label %>" data-gallery>
+    <img src="assets/images/mapped/thumbs/tn_<%= @filename %>" alt="<%= @label %>">
+</a> -->

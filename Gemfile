@@ -40,6 +40,7 @@ gem 'sequel'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 
+
 group :deployment do
   gem 'capistrano', '~> 3.0'
   gem 'capistrano-rails'

@@ -1,1 +1,4 @@
-<div id="imagelist"> </div>
+<div id="imagelist"></div>
+
+<!-- used for blueimp gallery -->
+<!-- <div id="links"></div> -->

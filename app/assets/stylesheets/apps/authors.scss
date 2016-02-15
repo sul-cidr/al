@@ -68,9 +68,15 @@
   p {margin: 6px 0 -6px; font-style: italic;}
 }
 
-#imagelist {
+#imagelist, #links {
   display: inline-flex;
   padding-top:3px;
+}
+// .ui-dialog-titlebar-close {
+//   float:right;
+// }
+.ui-dialog .ui-dialog-content {
+  padding:0 !important;
 }
 .image {
   padding-right: 3px;
