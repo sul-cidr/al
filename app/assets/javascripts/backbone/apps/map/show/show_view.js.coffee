@@ -308,12 +308,15 @@
               pname, {
                 'className': 'place-popup',
                 'maxHeight': '450'}
-            ).on('popupclose', (e) ->
-              $("#imagelist .image img").removeClass('photo-pop');
-              $( "#image_modal" ).dialog("close");)
+              ).on('popupclose', (e) ->
+              if $("#imagelist").length > 0
+                $("#imagelist .image img").removeClass('photo-pop');
+                $("#image_modal").dialog("close");)
+
             # add model, id to feature
             feature.model = pl
             feature.options.id = pid
+            # feature._leaflet_id = pid
             $idToFeature.places[pid] = feature
             @features.push feature
 
@@ -353,6 +356,7 @@
             # add model, id to feature
             feature.model = pl
             feature.options.id = pid
+            # feature._leaflet_id = pid
             $idToFeature.places[pid] = feature
             @features.push feature
 
@@ -438,6 +442,7 @@
     # called by Show.Controller on trigger 'placeref:click'
     clickPlaceref: (prid) ->
       # TODO: get place_id from placeref_id
+
       console.log 'prid', prid
       $("#imagelist .image img[prid="+prid+"]").addClass('photo-pop')
       App.request "placeref:entities", {id:prid}, (placerefs) =>
@@ -453,10 +458,11 @@
           # # zoom to it
           window.m = @marker
           if @marker._latlng != undefined
-            @marker.openPopup()
             map.setView(@marker._popup._source._latlng,15,{animate:true})
+            @marker.openPopup()
           else
             # it's a linestring, zoom to its centroid
+            # map._layers[@placeid].fireEvent("click")
             map.setView(@marker.getBounds().getCenter(),15,{animate:true})
             @marker.openPopup()
 

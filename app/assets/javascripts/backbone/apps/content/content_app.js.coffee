@@ -13,6 +13,7 @@
       "search": "startSearch"
       "authors/:author_id": "showAuthor"
       "places/:id": "showArea"
+      "placerefs/:id": "showPlaceref"
 
       # TODO: getting authors per cat should be a route
       # "authors/:category_id": "showAuthors"
@@ -62,9 +63,11 @@
           return author
     #
     showArea: (id)->
-      # these are the voronoi polygons
+      # these are the neighborhood voronoi polygons
       AL.PlacesApp.Show.Controller.showPlace(id)
 
+    showPlaceref: (id)->
+      AL.PlacesApp.Show.Controller.showPlaceref(id)
 
     authorWorks: (author_id) ->
       # console.log 'works/:author_id, API authorWorks()'

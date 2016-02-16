@@ -68,6 +68,18 @@
           placePassages.reset(filter)
           cb placePassages
 
+    getPlacerefPassages: (placeref_id, cb) ->
+      # console.log 'API.getPlacePassages', passage_ids
+      # placerefPassages = new Entities.PassageCollection
+      # placerefPassages.fetch
+      #   success: ->
+      #     # console.log placePassages
+      #     filter = _.filter(placerefPassages.models,(item) ->
+      #       passage_ids.indexOf(item.get("placeref_id")) > -1
+      #     )
+      #     placePassages.reset(filter)
+      #     cb placePassages
+
     getPlacePassage: (passage_id, cb) ->
       # console.log 'API.getPlacePassage (one)', passage_id
       placePassages = new Entities.PassageCollection
@@ -86,6 +98,11 @@
   App.reqres.setHandler "passages:place", (passage_ids, cb) ->
     API.getPlacePassages passage_ids, cb
 
+  #
+  App.reqres.setHandler "passages:placeref", (placeref_id, cb) ->
+    API.getPlacerefPassages placeref_id, cb
+
+  # gets one from link in place popup
   App.reqres.setHandler "passage:place", (passage_id, cb) ->
     API.getPlacePassage passage_id, cb
 

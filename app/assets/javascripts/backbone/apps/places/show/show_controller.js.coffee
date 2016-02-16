@@ -2,6 +2,21 @@
 
   Show.Controller =
 
+    showPlaceref: (prid) ->
+      console.log 'showPlaceref(prid)', prid
+      # get place_id
+      # App.request "placeref:entities", {id: prid}, (placeref) =>
+      #   console.log 'placeref', placeref
+      # get passages
+      # zoom to the place
+      App.vent.trigger('placeref:click', prid)
+      # if it's a neighborhood name, navigate there
+      # if not:
+      #   display passage(s) for related Place in right panel
+      #   zoom to and center on Place
+      #   LEFT PANEL: navigate to relevant borough? hood? possible?
+      #
+
     showPlace: (id) ->
       console.log 'showPlace(id)', id
 

@@ -59,6 +59,10 @@
     }
 
     getAutocomplete: ->
+      # @hoodArray = []
+      # for a of areaLookup
+      #   @hoodArray.push areaLookup[a]['label']
+      # console.log @hoodArray
       choice = $('#search_place_chooser input:radio:checked').val()
       # console.log 'getAutocomplete', choice
       if choice == 'hoods'
@@ -66,10 +70,10 @@
           source: areaLookup
           select: (event, ui) ->
               event.preventDefault()
-              $("#search_input").val(ui.item.label)
               @selectedArea = ui.item.value
-              @route = "places/" + ui.item.value
-              console.log 'autocomplete route,', @route
+              $("#search_input").val(ui.item.label)
+              @route = "places/" + @selectedArea
+              # console.log 'autocomplete route,', @route
               Backbone.history.navigate(@route, true)
 
           focus: (event, ui) ->
@@ -81,11 +85,21 @@
           source: placerefLookup
           select: (event, ui) ->
             event.preventDefault()
+            @selected = ui.item.value
             $("#search_input").val(ui.item.label)
-            @selectedArea = ui.item.value
-            @route = "placerefs/" + ui.item.value
-            # console.log 'autocomplete route,', @route
-            # Backbone.history.navigate(@route, true)
+            console.log 'ui.item.label', ui.item.label
+            # console.log @hoodArray
+            if hoodList.indexOf(ui.item.label) > 0
+              # it's a neighborhood, do the usual for that
+              aid = $.grep(areaLookup, (e) ->
+                return e.label == ui.item.label; )
+              @route = "places/" + aid[0].value
+              console.log 'that\'s a neighborhood'
+              Backbone.history.navigate(@route, true)
+            else
+              @route = "placerefs/" + @selected
+            console.log 'autocomplete route,', @route
+            Backbone.history.navigate(@route, true)
 
           focus: (event, ui) ->
               event.preventDefault()
