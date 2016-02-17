@@ -5,5 +5,4 @@
     <li value="works" id="works_pill">WORKS</li>
     <li value="passages" class="hidden" id="passages_pill">PASSAGES</li>
   </ul>
-  <p>by Martin Evans</p>
 <div>

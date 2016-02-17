@@ -68,6 +68,7 @@
         App.reqres.setHandler "activework:id", ->
           return bioPassagesView.collection.models[0].attributes.work_id
 
+        $(".passages-bio").append('<span class="byline">by Martin Evans</span>')
         App.authorContentRegion.show bioPassagesView
 
     getBioPassagesView: (bio_passages, type) ->

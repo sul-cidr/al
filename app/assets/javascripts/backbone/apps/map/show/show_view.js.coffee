@@ -309,11 +309,10 @@
               pname, {
                 'className': 'place-popup',
                 'maxHeight': '450'}
-              )
-              # .on('popupclose', (e) ->
-              # if $("#imagelist").length > 0
-              #   $("#imagelist .image img").removeClass('photo-pop');
-              #   $("#image_modal").dialog("close");)
+              ).on('popupclose', (e) ->
+              if $("#imagelist").length > 0
+                $("#imagelist .image img").removeClass('photo-pop');
+                $("#image_modal").dialog("close");)
 
             # add model, id to feature
             feature.model = pl

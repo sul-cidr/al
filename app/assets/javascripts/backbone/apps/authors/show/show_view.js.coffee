@@ -38,6 +38,7 @@
           position: { my: "left+370 bottom-120", at: "left bottom", of: window},
           close: (event, ui) ->
             map.closePopup()
+            $("#imagelist .image img").removeClass('photo-pop');
         })
       # TODO: position needs calculation after image is loaded
       @editDialog.dialog('option', 'position',  { my: "left+370 top+90", at: "left top", of: window})
