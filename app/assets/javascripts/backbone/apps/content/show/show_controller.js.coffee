@@ -27,7 +27,7 @@
     # called from various places to manage tab state
     showTab: (tab)->
       @activeTab = tab
-      console.log 'from '+ @currentTab + ' to ' + @activeTab + ' tab'
+      # console.log 'from '+ @currentTab + ' to ' + @activeTab + ' tab'
 
       # reset map on any tab change
       App.vent.trigger("map:reset", "showTab")

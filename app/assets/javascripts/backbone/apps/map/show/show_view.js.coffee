@@ -76,6 +76,7 @@
       @initMap()
 
       App.request "area:entities", (areas) =>
+        # console.log areas
 
         @ingestAreas areas
         # make available to places_app
@@ -229,7 +230,7 @@
         @images.addTo(@map)
 
     renderPlaces: (params) ->
-      console.log 'renderPlaces', params
+      # console.log 'renderPlaces', params
       # @filter = params
       window.p = params
       # console.log '@keyPlaces length:', Object.keys(@keyPlaces).length
@@ -243,7 +244,7 @@
           @authlabel = author.get("label")
       App.request "place:entities", params, (places) =>
         @numPlaces = places.models.length
-        console.log @numPlaces + ' place models rendered' # e.g.', places.models[0]
+        # console.log @numPlaces + ' place models rendered' # e.g.', places.models[0]
         @features = []
         max = Math.max.apply(Math, places.map((o) ->
           o.attributes.count ))
@@ -308,10 +309,11 @@
               pname, {
                 'className': 'place-popup',
                 'maxHeight': '450'}
-              ).on('popupclose', (e) ->
-              if $("#imagelist").length > 0
-                $("#imagelist .image img").removeClass('photo-pop');
-                $("#image_modal").dialog("close");)
+              )
+              # .on('popupclose', (e) ->
+              # if $("#imagelist").length > 0
+              #   $("#imagelist .image img").removeClass('photo-pop');
+              #   $("#image_modal").dialog("close");)
 
             # add model, id to feature
             feature.model = pl
@@ -403,7 +405,7 @@
         window.features = @features
 
     makeLegend: (authid, mincolor)->
-      console.log 'triggered makeLegend(), keyplaces: '+ authid, keyplaces
+      # console.log 'triggered makeLegend(), keyplaces: '+ authid, keyplaces
       $("#legend_list").append('<li id=leg_'+authid+'>'+
         '<i class="fa fa-circle fa-lg" style="color:'+@getColors('work',true,mincolor)+';"/>'+
         '<i class="fa fa-circle fa-lg" style="color:'+@getColors('bio',true,mincolor)+';"/>' +
@@ -442,8 +444,7 @@
     # called by Show.Controller on trigger 'placeref:click'
     clickPlaceref: (prid) ->
       # TODO: get place_id from placeref_id
-
-      console.log 'prid', prid
+      console.log 'clickPlaceref prid', prid
       $("#imagelist .image img[prid="+prid+"]").addClass('photo-pop')
       App.request "placeref:entities", {id:prid}, (placerefs) =>
         if placerefs.models.length == 0

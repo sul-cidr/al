@@ -8,7 +8,7 @@
   #   API.filterByAuthor author
 
   App.vent.on "authors:show", (authids) ->
-    console.log "map heard authors:show -->", authids
+    # console.log "map heard authors:show -->", authids
     # placerefs for all passages by one or more authors
     API.filterByAuthors authids
 
@@ -19,7 +19,7 @@
     API.dropOneAuthor params
 
   App.vent.on "work:show", (work) ->
-    console.log "map heard work:show -->", work.get('work_id')
+    # console.log "map heard work:show -->", work.get('work_id')
     API.filterByWork work
 
   App.vent.on "category:show", (filter) ->
