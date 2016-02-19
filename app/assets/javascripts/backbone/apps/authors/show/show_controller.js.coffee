@@ -54,7 +54,7 @@
 
     listBioPassages: (author) ->
       id = author.get("author_id")
-      # console.log 'List.Controller.listPassages() for ',author_id
+      console.log 'List.Controller.listBioPassages() for ',id
       App.request "passage:entities", id, "bio", (bio_passages) =>
         # console.log bio_passages
         # wont show/render twice without reset
@@ -68,8 +68,8 @@
         App.reqres.setHandler "activework:id", ->
           return bioPassagesView.collection.models[0].attributes.work_id
 
-        $(".passages-bio").append('<span class="byline">by Martin Evans</span>')
         App.authorContentRegion.show bioPassagesView
+        $(".work-title").html('<p class="byline">by Martin Evans</p>')
 
     getBioPassagesView: (bio_passages, type) ->
       new Show.Passages

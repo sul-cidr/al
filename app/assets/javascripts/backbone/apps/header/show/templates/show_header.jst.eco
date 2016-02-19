@@ -4,7 +4,7 @@
     <h1>
       <img src="assets/images/curly-left.png" />
       Authorial London
-      <img src="assets/images/curly-right.png" />
+      <img src="assets/images/curly-right.png" style="margin-left:-6px;"/>
     </h1><br/>
     <span class="tagline">The City in the Lives and Works of its Writers</span>
   </div>

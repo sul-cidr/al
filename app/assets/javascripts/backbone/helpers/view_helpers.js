@@ -1,3 +1,13 @@
+
+  function loadPopup(placeid) {
+    idToFeature.places[placeid].fireEvent("click")
+  }
+  function openPopup(placeid) {
+    loadPopup(placeid)
+    .then(
+      idToFeature.places[placeid].openPopup());
+  }
+
 // Disable function
 jQuery.fn.extend({
     disable: function(state) {
