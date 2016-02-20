@@ -2,6 +2,9 @@
 
   Show.Controller =
 
+    buildPopup: (params) ->
+      @mapView.buildPopup params
+
     showMap: ->
       @mapView = @getMapView()
 

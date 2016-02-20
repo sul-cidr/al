@@ -229,6 +229,36 @@
         @keyPlaces[@key]['images'] = @images
         @images.addTo(@map)
 
+    buildPopup: (params) ->
+      # @filter = params
+      # map.closePopup()
+      console.log 'buildPopup, @filter', params
+      html = ''
+
+      App.request "placeref:entities", params, (placerefs) =>
+        # console.log 'params heard by placeref:entities', @filter
+        # console.log 'placerefs for popup', placerefs
+        _.each placerefs.models, (pr) =>
+          # console.log 'placeref attributes', pr.attributes
+          if pr.attributes.placeref.placeref_type == 'work'
+            html += '<b>'+pr.attributes.placeref.placeref +
+              '</b>, in <em>' +
+            # html += '&#8220;'+pr.attributes.placeref.placeref +
+            #   ',&#8221; in <em>' +
+              pr.attributes.work.title + '</em><br/>('+
+              pr.attributes.author.prefname +
+              '; '+pr.attributes.work.work_year+')&nbsp;[<span class="passage-link" val='+
+              pr.attributes.placeref.passage_id+'>passage</span>]<hr/>'
+          else
+            html += '&#8220;'+pr.attributes.placeref.placeref +
+              ',&#8221; a place in the life of ' +
+              pr.attributes.author.prefname+'<hr/>'
+
+        idToFeature.places[params['place_id']].bindPopup(html)
+        # idToFeature.places[params['place_id']]._popup.setContent(html)
+        idToFeature.places[params['place_id']].openPopup()
+        # e.target._popup.setContent(html)
+
     renderPlaces: (params) ->
       # console.log 'renderPlaces', params
       # @filter = params
@@ -257,7 +287,6 @@
           prtype = @prType(prcount, pl.attributes.biocount) # return work, bio, both
           geom = attribs.geom_wkt
           pid = attribs.place_id
-          # @filter['place_id'] = pid
           pname = attribs.prefname
           # console.log '@getColor prtype', @getColor(prtype)
           if geom.substr(0,5) == 'POINT'
@@ -267,7 +296,6 @@
             feature = new L.CircleMarker(l_geom, {
               color: '#000',
               fillColor: @getColors(prtype,false,@mincolor),
-              # fillColor: @getColor(prtype),
               radius: scaleMarker(prcount,[1,max]),
               fillOpacity: 0.5,
               weight: 1
@@ -276,35 +304,32 @@
             feature.on('click', (e) ->
               html = ''
               @filter = params
+              # add this placeid
               @filter['place_id'] = pid
-              # @filter = {place_id:pid}
+              # add author or work as appropriate
               if params['author_id']
                 @filter['author_id'] = params['author_id']
               else if params['work_id']
                 @filter['work_id'] = params['work_id']
-              # console.log '@filter', @filter
-
-              App.request "placeref:entities", @filter, (placerefs) =>
-                # console.log 'params heard by placeref:entities', @filter
-                # console.log 'placerefs for popup', placerefs
-                _.each placerefs.models, (pr) =>
-                  # console.log 'placeref attributes', pr.attributes
-                  if pr.attributes.placeref.placeref_type == 'work'
-                    html += '<b>'+pr.attributes.placeref.placeref +
-                      '</b>, in <em>' +
-                    # html += '&#8220;'+pr.attributes.placeref.placeref +
-                    #   ',&#8221; in <em>' +
-                      pr.attributes.work.title + '</em><br/>('+
-                      pr.attributes.author.prefname +
-                      '; '+pr.attributes.work.work_year+')&nbsp;[<span class="passage-link" val='+
-                      pr.attributes.placeref.passage_id+'>passage</span>]<hr/>'
-                  else
-                    html += '&#8220;'+pr.attributes.placeref.placeref +
-                      ',&#8221; a place in the life of ' +
-                      pr.attributes.author.prefname+'<hr/>'
-
-                e.target._popup.setContent(html)
+              console.log '@filter (params +)', @filter
+              App.MapApp.Show.Controller.buildPopup @filter
+              # App.request "placeref:entities", @filter, (placerefs) =>
+              #   _.each placerefs.models, (pr) =>
+              #     if pr.attributes.placeref.placeref_type == 'work'
+              #       html += '<b>'+pr.attributes.placeref.placeref +
+              #         '</b>, in <em>' +
+              #         pr.attributes.work.title + '</em><br/>('+
+              #         pr.attributes.author.prefname +
+              #         '; '+pr.attributes.work.work_year+')&nbsp;[<span class="passage-link" val='+
+              #         pr.attributes.placeref.passage_id+'>passage</span>]<hr/>'
+              #     else
+              #       html += '&#8220;'+pr.attributes.placeref.placeref +
+              #         ',&#8221; a place in the life of ' +
+              #         pr.attributes.author.prefname+'<hr/>'
+              #
+              #   e.target._popup.setContent(html)
             )
+            # trying to replace this
             @popup = feature.bindPopup(
               pname, {
                 'className': 'place-popup',
@@ -312,7 +337,8 @@
               ).on('popupclose', (e) ->
               if $("#imagelist").length > 0
                 $("#imagelist .image img").removeClass('photo-pop');
-                $("#image_modal").dialog("close");)
+                # $("#image_modal").dialog("close");
+                )
 
             # add model, id to feature
             feature.model = pl
@@ -454,17 +480,16 @@
           @marker = $idToFeature.places[@placeid]
           # @marker = _.filter(@features, (f) ->
           #   f.model.attributes.place_id == @placeid )[0]
-          # console.log 'clickPlaceref() marker ', @marker
+          console.log 'clickPlaceref() marker, placeid '+@marker,@placeid
           # # zoom to it
           window.m = @marker
           if @marker._latlng != undefined
-            map.setView(@marker._popup._source._latlng,15,{animate:true})
-            @marker.openPopup()
+            latlng = @marker._popup._source._latlng
           else
             # it's a linestring, zoom to its centroid
-            # map._layers[@placeid].fireEvent("click")
-            map.setView(@marker.getBounds().getCenter(),15,{animate:true})
-            @marker.openPopup()
+            latlng = @marker.getBounds().getCenter()
+          map.setView(latlng,15,{animate:true})
+          App.MapApp.Show.Controller.buildPopup({'place_id': @placeid })
 
     # triggered from passages, area list
     highlightFeature: (prid) ->
