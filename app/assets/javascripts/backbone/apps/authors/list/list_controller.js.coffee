@@ -10,6 +10,9 @@
 
       $(".btn").disable(false)
 
+      if $("#image_modal").html() != ""
+        $("#image_modal").dialog("close")
+        
       # get all
       App.request "author:entities", (authors) =>
         @layout = @getLayoutView()

@@ -9,7 +9,6 @@
 
       # disable dimension dropdowns
       $(".btn").disable(true)
-
       authid = author.get("author_id")
       prefname = author.get("prefname")
       surname = author.get("surname")
@@ -54,7 +53,7 @@
 
     listBioPassages: (author) ->
       id = author.get("author_id")
-      console.log 'List.Controller.listBioPassages() for ',id
+      # console.log 'List.Controller.listBioPassages() for ',id
       App.request "passage:entities", id, "bio", (bio_passages) =>
         # console.log bio_passages
         # wont show/render twice without reset

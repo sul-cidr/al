@@ -22,11 +22,10 @@
       iid = this.model.get('id')
       label = this.model.get('label')
       fn = "assets/images/mapped/full/" + this.model.get('filename')
-      console.log fn
       # send id to create map popup
-      App.vent.trigger('placeref:click', prid)
-      # border on photo
-      $("#imagelist .image img[prid="+prid+"]").addClass('photo-pop')
+      App.vent.trigger 'placeref:click', {'id': prid}
+      # photo border
+      $("#imagelist .image img[iid="+iid+"]").addClass('photo-pop')
       # load image
       $( "#image_modal" ).html("<img src='"+fn+"' style='width:300px;'/>")
       # open dialog
@@ -35,16 +34,13 @@
           modal: false,
           title: label,
           show: { effect: "fadeIn", duration: 500 },
-          position: { my: "left+370 bottom-120", at: "left bottom", of: window},
+          # position: { my: "left+370 bottom-120", at: "left bottom", of: window},
           close: (event, ui) ->
             map.closePopup()
             $("#imagelist .image img").removeClass('photo-pop');
         })
       # TODO: position needs calculation after image is loaded
-      @editDialog.dialog('option', 'position',  { my: "left+370 top+90", at: "left top", of: window})
-
-      # $("#imagelist .image img[prid=30097]").attr('src',"assets/images/mapped/tn_bennetst.jpg")
-
+      @editDialog.dialog('option', 'position',  { my: "left+370 top+70", at: "left top", of: window})
 
   class Show.ImageList extends App.Views.CompositeView
     template: "authors/show/templates/_images"
@@ -113,7 +109,7 @@
       # to MapApp.Show.Controller.onClickPlaceref
       # -> @mapView.clickPlaceref(prid)
       authid = App.request("author:model").get("author_id")
-      App.vent.trigger 'placeref:click', {'id': prid, 'author_id': authid}
+      App.vent.trigger 'placeref:click', {'id': prid, 'authorid': authid}
       # App.vent.trigger 'placeref:click', prid
 
     onPlacerefEnter: (e) ->

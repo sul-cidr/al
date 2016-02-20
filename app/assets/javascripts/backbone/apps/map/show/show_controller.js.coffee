@@ -29,8 +29,9 @@
       # console.log 'renderOneAuthor() -> renderPlaces(),renderImages()', params
       @mapView.renderPlaces(params)
 
-    mapImages: (params) ->
-      @mapView.mapImages(params)
+    # CHECK: not in use
+    # mapImages: (params) ->
+    #   @mapView.mapImages(params)
 
     dropOneAuthor: (params) ->
       # console.log 'dropOneAuthor() sending removePlaces():', params

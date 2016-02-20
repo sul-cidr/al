@@ -65,7 +65,7 @@
 }
 
 .byline {
-  margin: 6px 0 0; 
+  margin: 6px 0 0;
   font-style: italic;
 }
 
@@ -87,9 +87,15 @@
 .passages-bio {
   hr {display: none;}
 }
-
 .photo-pop {
-  border: red 2px solid;
+  border: red 1px solid;
+}
+.ui-dialog-titlebar p {
+  font-weight: normal;
+  font-style: italic;
+  margin:0;
+  color:red;
+  font-size: .9em;
 }
 .bioplace {text-decoration: underline;
   color: #993333;

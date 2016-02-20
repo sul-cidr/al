@@ -3,9 +3,6 @@
   class Show.Map extends Marionette.ItemView
     template: "map/show/templates/show_map"
     events: {
-      # "mouseenter .passage-link": "showOnePassage"
-      # "mouseenter .passage-link": "showOnePassage"
-      # "mouseleave .passage-link": "closePassage"
       "click .passage-link": "showOnePassage"
       "click body": "closeAbout"
     }
@@ -72,6 +69,7 @@
       # get the bounds of the resulting viewport
       window.vbounds = turf.polygon([createPolygonFromBounds( map.getBounds() )])
 
+    # pre-initMap
     onDomRefresh: ->
       @initMap()
 
@@ -83,9 +81,7 @@
         App.reqres.setHandler "areas:active", ->
           return areas
 
-      # @renderPlaces()
       @renderPlaces({clear:true})
-      # @renderPlaces({author_id:null, key:null, clear:null})
 
     initMap: ->
       # console.log 'initMap'
@@ -123,7 +119,7 @@
       # use if not mapbox
       # @map.addLayer(l_osm);
 
-      @map.addLayer(l_mblight);
+      # @map.addLayer(l_mblight);
 
       @map.setView(@London, 12)
 
@@ -194,43 +190,40 @@
       else
         return 'both'
 
-    window.imgMarker = L.MakiMarkers.icon({
-    	icon: 'camera',
-    	color: '#BA55D3',
-    	size: 's'
-    });
-
-    mapImages: (params) ->
-      console.log 'renderImages', params
-      # if @imagefeatures.length() > 0
-      #   @images.clearLayers()
-      if typeof @images != "undefined"
-        @images.clearLayers()
-      @imgfeatures = []
-      App.request "image:entities", params, (images) =>
-        $.each images.models, (i, img) =>
-          attribs = img.attributes
-          geom = attribs.geom_wkt
-          id = attribs.image_id
-          coords = swap(wellknown(geom).coordinates)
-          l_geom = new L.LatLng(coords[0],coords[1])
-          feature = new L.Marker(l_geom,{
-              icon: imgMarker
-            })
-          console.log 'coord', coords
-          # feature.on('click', (e) ->
-          #   console.log 'clicked image marker, no action yet'
-          $idToFeature.images[id] = feature
-          @imgfeatures.push(feature)
-        console.log @imgfeatures
-        @key = 'auth_'+params['author_id']
-        @images = L.featureGroup(@imgfeatures)
-        window.images = @images
-        @keyPlaces[@key]['images'] = @images
-        @images.addTo(@map)
+    # CHECK: not in use
+    # window.imgMarker = L.MakiMarkers.icon({
+    # 	icon: 'camera',
+    # 	color: '#BA55D3',
+    # 	size: 's'
+    # });
+    # mapImages: (params) ->
+    #   console.log 'renderImages', params
+    #   # if @imagefeatures.length() > 0
+    #   #   @images.clearLayers()
+    #   if typeof @images != "undefined"
+    #     @images.clearLayers()
+    #   @imgfeatures = []
+    #   App.request "image:entities", params, (images) =>
+    #     $.each images.models, (i, img) =>
+    #       attribs = img.attributes
+    #       geom = attribs.geom_wkt
+    #       id = attribs.image_id
+    #       coords = swap(wellknown(geom).coordinates)
+    #       l_geom = new L.LatLng(coords[0],coords[1])
+    #       feature = new L.Marker(l_geom,{
+    #           icon: imgMarker
+    #         })
+    #       $idToFeature.images[id] = feature
+    #       @imgfeatures.push(feature)
+    #     console.log @imgfeatures
+    #     @key = 'auth_'+params['author_id']
+    #     @images = L.featureGroup(@imgfeatures)
+    #     window.images = @images
+    #     @keyPlaces[@key]['images'] = @images
+    #     @images.addTo(@map)
 
     buildPopup: (params) ->
-      console.log 'buildPopup() params', params
+      # console.log 'buildPopup() params', params
       html = ''
 
       App.request "placeref:entities", params, (placerefs) =>
@@ -477,7 +470,7 @@
       $("#imagelist .image img[prid="+params['id']+"]").addClass('photo-pop')
       App.request "placeref:entities", params, (placerefs) =>
         if placerefs.models.length == 0
-          alert 'sorry, not georeferenced yet'
+          $(".ui-dialog-titlebar").prepend('<p>(not georeferenced yet)</p>')
         else
           @placeid = placerefs.models[0].attributes.placeref.place_id
           @marker = $idToFeature.places[@placeid]
