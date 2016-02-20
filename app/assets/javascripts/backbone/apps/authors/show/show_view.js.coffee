@@ -108,11 +108,13 @@
     }
 
     onPlacerefClick: (e) ->
-      # window.context = $(e.currentTarget).context
+      window.context = $(e.currentTarget).context
       prid = $(e.currentTarget).context.attributes.val.value
       # to MapApp.Show.Controller.onClickPlaceref
       # -> @mapView.clickPlaceref(prid)
-      App.vent.trigger('placeref:click', prid)
+      authid = App.request("author:model").get("author_id")
+      App.vent.trigger 'placeref:click', {'id': prid, 'author_id': authid}
+      # App.vent.trigger 'placeref:click', prid
 
     onPlacerefEnter: (e) ->
       prid = $(e.currentTarget).context.attributes.val.value

@@ -230,21 +230,15 @@
         @images.addTo(@map)
 
     buildPopup: (params) ->
-      # @filter = params
-      # map.closePopup()
-      console.log 'buildPopup, @filter', params
+      console.log 'buildPopup() params', params
       html = ''
 
       App.request "placeref:entities", params, (placerefs) =>
-        # console.log 'params heard by placeref:entities', @filter
-        # console.log 'placerefs for popup', placerefs
         _.each placerefs.models, (pr) =>
           # console.log 'placeref attributes', pr.attributes
           if pr.attributes.placeref.placeref_type == 'work'
             html += '<b>'+pr.attributes.placeref.placeref +
               '</b>, in <em>' +
-            # html += '&#8220;'+pr.attributes.placeref.placeref +
-            #   ',&#8221; in <em>' +
               pr.attributes.work.title + '</em><br/>('+
               pr.attributes.author.prefname +
               '; '+pr.attributes.work.work_year+')&nbsp;[<span class="passage-link" val='+
@@ -262,7 +256,7 @@
     renderPlaces: (params) ->
       # console.log 'renderPlaces', params
       # @filter = params
-      window.p = params
+      # window.p = params
       # console.log '@keyPlaces length:', Object.keys(@keyPlaces).length
       if typeof @places != "undefined"
         if params && params['clear'] == true
@@ -311,7 +305,7 @@
                 @filter['author_id'] = params['author_id']
               else if params['work_id']
                 @filter['work_id'] = params['work_id']
-              console.log '@filter (params +)', @filter
+              # console.log '@filter (params +)', @filter
               App.MapApp.Show.Controller.buildPopup @filter
               # App.request "placeref:entities", @filter, (placerefs) =>
               #   _.each placerefs.models, (pr) =>
@@ -354,25 +348,36 @@
 
             feature.on('click', (e) ->
               html = ''
-              @filter = {place_id:pid}
-              if typeof params != "undefined"
+              @filter = params
+              # add this placeid
+              @filter['place_id'] = pid
+              # add author or work as appropriate
+              if params['author_id']
                 @filter['author_id'] = params['author_id']
-              App.request "placeref:entities", @filter, (placerefs) =>
-                # console.log placerefs
-                _.each placerefs.models, (pr) =>
-                  # console.log 'placeref attributes', pr.attributes
-                  if pr.attributes.placeref.placeref_type == 'work'
-                    html += '&#8220;'+pr.attributes.placeref.placeref +
-                      ',&#8221; in <em>' +
-                      pr.attributes.work.title + '</em><br/>('+
-                      pr.attributes.author.prefname +
-                      '; '+pr.attributes.work.work_year+')&nbsp;[<span class="passage-link" val='+
-                      pr.attributes.placeref.passage_id+'>passage</span>]<hr/>'
-                  else
-                    html += '&#8220;'+pr.attributes.placeref.placeref +
-                      ',&#8221; a place in the life of ' +
-                      pr.attributes.author.prefname+'<hr/>'
-                  e.target.bindPopup html
+              else if params['work_id']
+                @filter['work_id'] = params['work_id']
+              # console.log '@filter (params +)', @filter
+              App.MapApp.Show.Controller.buildPopup @filter
+              # html = ''
+              # @filter = {place_id:pid}
+              # if typeof params != "undefined"
+              #   @filter['author_id'] = params['author_id']
+              # App.request "placeref:entities", @filter, (placerefs) =>
+              #   # console.log placerefs
+              #   _.each placerefs.models, (pr) =>
+              #     # console.log 'placeref attributes', pr.attributes
+              #     if pr.attributes.placeref.placeref_type == 'work'
+              #       html += '&#8220;'+pr.attributes.placeref.placeref +
+              #         ',&#8221; in <em>' +
+              #         pr.attributes.work.title + '</em><br/>('+
+              #         pr.attributes.author.prefname +
+              #         '; '+pr.attributes.work.work_year+')&nbsp;[<span class="passage-link" val='+
+              #         pr.attributes.placeref.passage_id+'>passage</span>]<hr/>'
+              #     else
+              #       html += '&#8220;'+pr.attributes.placeref.placeref +
+              #         ',&#8221; a place in the life of ' +
+              #         pr.attributes.author.prefname+'<hr/>'
+              #     e.target.bindPopup html
             )
 
             @popup = feature.bindPopup(
@@ -465,31 +470,30 @@
       window.leaf_areas = @areas
       window.areaFeatures = @features
 
-    # click placeref in text
+    # onclick placeref in text
     # called by Show.Controller on trigger 'placeref:click'
-    clickPlaceref: (prid) ->
-      # TODO: get place_id from placeref_id
-      console.log 'clickPlaceref prid', prid
-      $("#imagelist .image img[prid="+prid+"]").addClass('photo-pop')
-      App.request "placeref:entities", {id:prid}, (placerefs) =>
+    clickPlaceref: (params) ->
+      console.log 'clickPlaceref params', params
+      $("#imagelist .image img[prid="+params['id']+"]").addClass('photo-pop')
+      App.request "placeref:entities", params, (placerefs) =>
         if placerefs.models.length == 0
           alert 'sorry, not georeferenced yet'
         else
           @placeid = placerefs.models[0].attributes.placeref.place_id
-          console.log 'place_id of clicked placeref: ', @placeid
           @marker = $idToFeature.places[@placeid]
-          # @marker = _.filter(@features, (f) ->
-          #   f.model.attributes.place_id == @placeid )[0]
-          console.log 'clickPlaceref() marker, placeid '+@marker,@placeid
-          # # zoom to it
+          # zoom to it
           window.m = @marker
           if @marker._latlng != undefined
+            # it's a point
             latlng = @marker._popup._source._latlng
           else
             # it's a linestring, zoom to its centroid
             latlng = @marker.getBounds().getCenter()
           map.setView(latlng,15,{animate:true})
-          App.MapApp.Show.Controller.buildPopup({'place_id': @placeid })
+          App.MapApp.Show.Controller.buildPopup({
+            'place_id': @placeid
+            'author_id': params['author_id']
+          })
 
     # triggered from passages, area list
     highlightFeature: (prid) ->
@@ -548,7 +552,7 @@
       { detectRetina: true }
       );
 
-    window.l_indicator = L.mapbox.tileLayer(
+    l_indicator = L.mapbox.tileLayer(
         'elijahmeeks.gqd89536',
       # 'https://api.mapbox.com/v4/elijahmeeks.gqd89536/{z}/{x}/{y}.png?access_token=' +
         L.mapbox.accessToken, {
