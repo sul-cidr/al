@@ -195,38 +195,6 @@
       else
         return 'both'
 
-    # CHECK: not in use
-    # window.imgMarker = L.MakiMarkers.icon({
-    # 	icon: 'camera',
-    # 	color: '#BA55D3',
-    # 	size: 's'
-    # });
-    # mapImages: (params) ->
-    #   console.log 'renderImages', params
-    #   # if @imagefeatures.length() > 0
-    #   #   @images.clearLayers()
-    #   if typeof @images != "undefined"
-    #     @images.clearLayers()
-    #   @imgfeatures = []
-    #   App.request "image:entities", params, (images) =>
-    #     $.each images.models, (i, img) =>
-    #       attribs = img.attributes
-    #       geom = attribs.geom_wkt
-    #       id = attribs.image_id
-    #       coords = swap(wellknown(geom).coordinates)
-    #       l_geom = new L.LatLng(coords[0],coords[1])
-    #       feature = new L.Marker(l_geom,{
-    #           icon: imgMarker
-    #         })
-    #       $idToFeature.images[id] = feature
-    #       @imgfeatures.push(feature)
-    #     console.log @imgfeatures
-    #     @key = 'auth_'+params['author_id']
-    #     @images = L.featureGroup(@imgfeatures)
-    #     window.images = @images
-    #     @keyPlaces[@key]['images'] = @images
-    #     @images.addTo(@map)
-
     buildPopup: (params) ->
       # console.log 'buildPopup() params', params
       html = ''
@@ -250,15 +218,16 @@
               pr.attributes.author.prefname+'</span><hr/>'
 
         idToFeature.places[params['place_id']].bindPopup(html)
+          .on("popupclose", ->
+            if $("#image_modal").html() != ""
+              $("#image_modal").dialog("close")
+            )
         # idToFeature.places[params['place_id']]._popup.setContent(html)
         idToFeature.places[params['place_id']].openPopup()
         # e.target._popup.setContent(html)
 
     renderPlaces: (params) ->
       # console.log 'renderPlaces', params
-      # @filter = params
-      # window.p = params
-      # console.log '@keyPlaces length:', Object.keys(@keyPlaces).length
       if typeof @places != "undefined"
         if params && params['clear'] == true
           @places.clearLayers()
@@ -308,21 +277,6 @@
                 @filter['work_id'] = params['work_id']
               # console.log '@filter (params +)', @filter
               App.MapApp.Show.Controller.buildPopup @filter
-              # App.request "placeref:entities", @filter, (placerefs) =>
-              #   _.each placerefs.models, (pr) =>
-              #     if pr.attributes.placeref.placeref_type == 'work'
-              #       html += '<b>'+pr.attributes.placeref.placeref +
-              #         '</b>, in <em>' +
-              #         pr.attributes.work.title + '</em><br/>('+
-              #         pr.attributes.author.prefname +
-              #         '; '+pr.attributes.work.work_year+')&nbsp;[<span class="passage-link" val='+
-              #         pr.attributes.placeref.passage_id+'>passage</span>]<hr/>'
-              #     else
-              #       html += '&#8220;'+pr.attributes.placeref.placeref +
-              #         ',&#8221; a place in the life of ' +
-              #         pr.attributes.author.prefname+'<hr/>'
-              #
-              #   e.target._popup.setContent(html)
             )
             # trying to replace this
             @popup = feature.bindPopup(
@@ -359,26 +313,6 @@
                 @filter['work_id'] = params['work_id']
               # console.log '@filter (params +)', @filter
               App.MapApp.Show.Controller.buildPopup @filter
-              # html = ''
-              # @filter = {place_id:pid}
-              # if typeof params != "undefined"
-              #   @filter['author_id'] = params['author_id']
-              # App.request "placeref:entities", @filter, (placerefs) =>
-              #   # console.log placerefs
-              #   _.each placerefs.models, (pr) =>
-              #     # console.log 'placeref attributes', pr.attributes
-              #     if pr.attributes.placeref.placeref_type == 'work'
-              #       html += '&#8220;'+pr.attributes.placeref.placeref +
-              #         ',&#8221; in <em>' +
-              #         pr.attributes.work.title + '</em><br/>('+
-              #         pr.attributes.author.prefname +
-              #         '; '+pr.attributes.work.work_year+')&nbsp;[<span class="passage-link" val='+
-              #         pr.attributes.placeref.passage_id+'>passage</span>]<hr/>'
-              #     else
-              #       html += '&#8220;'+pr.attributes.placeref.placeref +
-              #         ',&#8221; a place in the life of ' +
-              #         pr.attributes.author.prefname+'<hr/>'
-              #     e.target.bindPopup html
             )
 
             @popup = feature.bindPopup(
@@ -396,7 +330,7 @@
         @places = L.featureGroup(@features)
 
         # if there's an author_id, add this set to hash
-        # if not, we're rendering all
+        # if not, render all
         if params['author_id']
           if !($.isArray(params['author_id']))
             @key = if params['key'] then params['key'] else 'auth_'+params['author_id']
@@ -436,13 +370,13 @@
         window.features = @features
 
     makeLegend: (authid, mincolor)->
-      # console.log 'triggered makeLegend(), keyplaces: '+ authid, keyplaces
       $("#legend_list").append('<li id=leg_'+authid+'>'+
-        '<i class="fa fa-circle fa-lg" style="color:'+@getColors('work',true,mincolor)+';"/>'+
-        '<i class="fa fa-circle fa-lg" style="color:'+@getColors('bio',true,mincolor)+';"/>' +
-        '<i class="fa fa-circle fa-lg" style="color:'+@getColors('both',true,mincolor)+';"/> ' +
-         @authlabel+'</li>'
-      )
+        '<svg width="96" height="20">
+          <circle cx="8" cy="12" r="6" fill="'+@getColors('work',true,mincolor)+'"/>'+'
+          <circle cx="48" cy="12" r="6" fill="'+@getColors('bio',true,mincolor)+'"/>'+'
+          <circle cx="84" cy="12" r="6" fill="'+@getColors('both',true,mincolor)+'"/>'+'
+        </svg><span class="auth-label">'+@authlabel+'</span></li>'
+        )
       $("#legend_base").addClass('hidden')
       $("#legend_compare").removeClass('hidden')
 

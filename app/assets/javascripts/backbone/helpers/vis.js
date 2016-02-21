@@ -168,6 +168,7 @@ var packAuths = function (auths) {
 
   node.append("circle")
       .attr("r", function(d) { return d.r; })
+      .attr("class", "circle-place")
       // .on("mouseover", function(d){console.log(d)})
       .append("svg:title")
         .text(function(d) { return authHash[d.key]});;

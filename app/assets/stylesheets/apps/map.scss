@@ -34,6 +34,26 @@
   font-family: 'english';
 }
 
+.viewport-places {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  right: 350px;
+  height: 100%;
+}
+
+.viewport-authors {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  left: 350px;
+  height: 100%;
+}
+
+/***/
+/* Legend */
+/***/
+
 #legend_compare, #legend_base {
   position: absolute;
   min-height: 75px;
@@ -50,6 +70,7 @@
   box-shadow: 3px 3px 2px #888888;
   h4 {margin: 0;}
   p {margin:0; text-align: left !important;}
+  em {padding-left: 6px;}
 }
 #legend_base_list {
   padding-left: 0;
@@ -58,25 +79,25 @@
 }
 #legend_list {
   padding-left: 0;
-  li {list-style-type: none; margin-left:3px;}
+  li {list-style-type: none; margin-left:3px; display: inline-flex;}
   i {font-style: 6px; padding-right: 14px}
 }
-.viewport-places {
-  position: absolute;
-  top: 50px;
-  left: 50px;
-  right: 350px;
-  height: 100%;
+
+svg circle {
+  stroke: #000;
+  opacity: 0.5;
+}
+.dot-red { fill: red; }
+.dot-yellow { fill: yellow; }
+.dot-orange { fill: orange; }
+
+.auth-label {
+  margin-top: 4px;
 }
 
-.viewport-authors {
-  position: absolute;
-  top: 50px;
-  right: 50px;
-  left: 350px;
-  height: 100%;
-}
-// popup
+/***/
+/* popup */
+/***/
 .passage-link {
   text-decoration: underline;
   color: #336699;

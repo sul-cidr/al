@@ -7,11 +7,11 @@ text {
   pointer-events: none;
 }
 
-circle {
+.circle-place {
   fill: #ccc;
 }
 
-.node:hover circle {
+.node:hover .circle-place {
   fill: lightcoral;
   cursor: pointer;
 }
