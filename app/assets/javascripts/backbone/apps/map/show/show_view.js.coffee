@@ -4,10 +4,15 @@
     template: "map/show/templates/show_map"
     events: {
       "click .passage-link": "showOnePassage"
+      "click .author-link": "goToAuthor"
       "click body": "closeAbout"
     }
     closeAbout: ->
       HeaderApp.Show.Controller.loadAbout()
+
+    goToAuthor: (e) ->
+      id = $(e.currentTarget).context.attributes.val.value
+      Backbone.history.navigate("authors/" + id, true)
 
     showOnePassage: (e) ->
       # console.log 'popup passage', $(e.currentTarget).context.attributes.val.value
@@ -234,12 +239,15 @@
               '</b>, in <em>' +
               pr.attributes.work.title + '</em><br/>('+
               pr.attributes.author.prefname +
-              '; '+pr.attributes.work.work_year+')&nbsp;[<span class="passage-link" val='+
+              '; '+pr.attributes.work.work_year+
+              ')&nbsp;[<span class="passage-link" val='+
               pr.attributes.placeref.passage_id+'>passage</span>]<hr/>'
           else
             html += '&#8220;'+pr.attributes.placeref.placeref +
               ',&#8221; a place in the life of ' +
-              pr.attributes.author.prefname+'<hr/>'
+              '<span class="author-link" val='+
+              pr.attributes.placeref.author_id+'>'+
+              pr.attributes.author.prefname+'</span><hr/>'
 
         idToFeature.places[params['place_id']].bindPopup(html)
         # idToFeature.places[params['place_id']]._popup.setContent(html)
