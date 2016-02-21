@@ -124,7 +124,7 @@
       # use if not mapbox
       # @map.addLayer(l_osm);
 
-      # @map.addLayer(l_mblight);
+      @map.addLayer(l_mblight);
 
       @map.setView(@London, 12)
 
@@ -174,8 +174,8 @@
       # console.log prtype, legend, mincolor
       markerColors = {
         0: {0:"yellow",1:"orange",2:"red"},
-        1: {0:"cyan",1:"deepskyblue",2:"blue"}
-        2: {0:"#e5f5f9",1:"#99d8c9",2:"#2ca25f"} # greens
+        1: {0:"#ece7f2",1:"#a6bddb",2:"#2b8cbe"} # blues
+        2: {0:"#e5f5e0",1:"#a1d99b",2:"#31a354"} # greens
       }
 
       if prtype == 'work'
