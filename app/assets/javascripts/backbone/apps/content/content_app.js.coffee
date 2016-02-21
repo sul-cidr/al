@@ -66,8 +66,8 @@
       # these are the neighborhood voronoi polygons
       AL.PlacesApp.Show.Controller.showPlace(id)
 
-    showPlaceref: (id)->
-      AL.PlacesApp.Show.Controller.showPlaceref(id)
+    showPlaceref: (prid)->
+      AL.PlacesApp.Show.Controller.showPlaceref(prid)
 
     authorWorks: (author_id) ->
       # console.log 'works/:author_id, API authorWorks()'

@@ -59,10 +59,6 @@
     }
 
     getAutocomplete: ->
-      # @hoodArray = []
-      # for a of areaLookup
-      #   @hoodArray.push areaLookup[a]['label']
-      # console.log @hoodArray
       choice = $('#search_place_chooser input:radio:checked').val()
       # console.log 'getAutocomplete', choice
       if choice == 'hoods'
@@ -82,13 +78,16 @@
         })
       else if choice == 'all'
         $("#search_input").autocomplete({
+          focus: (event, ui) ->
+              event.preventDefault()
+              $("#search_input").val(ui.item.label)
           source: placerefLookup
           select: (event, ui) ->
             event.preventDefault()
             @selected = ui.item.value
             $("#search_input").val(ui.item.label)
             console.log 'ui.item.label', ui.item.label
-            # console.log @hoodArray
+            # build route for area or placeref
             if hoodList.indexOf(ui.item.label) > 0
               # it's a neighborhood, do the usual for that
               aid = $.grep(areaLookup, (e) ->
@@ -100,10 +99,7 @@
               @route = "placerefs/" + @selected
             console.log 'autocomplete route,', @route
             Backbone.history.navigate(@route, true)
-
-          focus: (event, ui) ->
-              event.preventDefault()
-              $("#search_input").val(ui.item.label)
+          #
         })
 
   class List.Empty extends App.Views.ItemView
