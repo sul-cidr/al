@@ -18,6 +18,7 @@
     }
 
     popImage: ->
+      $("#unmapped_tag").remove()
       prid = this.model.get('placeref_id')
       iid = this.model.get('id')
       label = this.model.get('label')
@@ -27,12 +28,14 @@
       # photo border
       $("#imagelist .image img[iid="+iid+"]").addClass('photo-pop')
       # load image
-      $( "#image_modal" ).html("<img src='"+fn+"' style='width:300px;'/>")
+      $("#image_modal").html("<img src='"+fn+"' style='width:300px;'/>")
       # open dialog
-      @editDialog = $( "#image_modal" ).dialog(
+      # $(".ui-dialog-titlebar").prepend('<p>(not georeferenced yet)</p>')
+      @editDialog = $("#image_modal").dialog(
         {
           modal: false,
           title: label,
+          # title: label,
           show: { effect: "fadeIn", duration: 500 },
           # position: { my: "left+370 bottom-120", at: "left bottom", of: window},
           close: (event, ui) ->

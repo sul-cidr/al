@@ -469,8 +469,9 @@
       console.log 'clickPlaceref params', params
       $("#imagelist .image img[prid="+params['id']+"]").addClass('photo-pop')
       App.request "placeref:entities", params, (placerefs) =>
+        console.log 'placerefs.models.length',
         if placerefs.models.length == 0
-          $(".ui-dialog-titlebar").prepend('<p>(not georeferenced yet)</p>')
+          $(".ui-dialog-titlebar").prepend('<span id="unmapped_tag">(not georeferenced yet)</span>')
         else
           @placeid = placerefs.models[0].attributes.placeref.place_id
           @marker = $idToFeature.places[@placeid]
