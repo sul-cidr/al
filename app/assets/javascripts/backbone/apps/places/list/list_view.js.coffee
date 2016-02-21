@@ -87,8 +87,11 @@
             @selected = ui.item.value
             $("#search_input").val(ui.item.label)
             console.log 'ui.item.label', ui.item.label
+
+            # TODO: make hoodList array dynamic
             # build route for area or placeref
             if hoodList.indexOf(ui.item.label) > 0
+              # TODO: make areaLookup dynamic
               # it's a neighborhood, do the usual for that
               aid = $.grep(areaLookup, (e) ->
                 return e.label == ui.item.label; )
@@ -99,7 +102,6 @@
               @route = "placerefs/" + @selected
             console.log 'autocomplete route,', @route
             Backbone.history.navigate(@route, true)
-          #
         })
 
   class List.Empty extends App.Views.ItemView

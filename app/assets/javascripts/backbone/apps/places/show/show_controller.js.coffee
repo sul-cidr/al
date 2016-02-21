@@ -8,13 +8,21 @@
       #   LEFT PANEL: navigate to relevant borough? hood? possible?
       #
       console.log 'showPlaceref(prid)', prid
-      # get place_id
-      App.request "placeref:entities", {id: prid}, (placerefs) =>
-        console.log 'placerefs', placerefs
-        pid = placerefs.models[0].attributes.placeref.place_id
-      # get passages
       # zoom to the place
       App.vent.trigger('placeref:click', {id: prid})
+      # get place_id
+      App.request "placeref:entities", {id: prid}, (placerefs) =>
+        pid = placerefs.models[0].attributes.placeref.place_id
+        console.log 'placerefs', placerefs
+        console.log 'with place_id', pid
+        # get place geometry
+        # App.request "place:entity", pid, (place) =>
+        #   console.log 'placeref in place', place
+          # pgeom = parent.
+        App.request "area:place", pid, (parent) =>
+          aid = parent.models[0].attributes.area_id
+          console.log 'parent area', aid
+          Backbone.history.navigate("places/"+aid, true)
 
     showPlace: (id) ->
       console.log 'showPlace(id)', id

@@ -36,4 +36,8 @@ class Place < ActiveRecord::Base
     }
   end
 
+  def self.by_id(id)
+    Place.find(id)
+  end
+
 end

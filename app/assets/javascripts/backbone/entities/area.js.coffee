@@ -40,6 +40,13 @@
           areas.reset(filterBorough);
           cb areas
 
+    parentArea: (pid, cb) ->
+      areas.fetch
+        data: {child: pid}
+        success: ->
+          # TODO: does spatial query, deathly slow
+          cb areas
+
   App.reqres.setHandler "area:entities", (cb) ->
     API.getAreaEntities cb
 
@@ -49,3 +56,6 @@
 
   App.reqres.setHandler "borough:hoods", (id, cb) ->
     API.getHoods id, cb
+
+  App.reqres.setHandler "area:place", (pid, cb) ->
+    API.parentArea pid, cb

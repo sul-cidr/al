@@ -23,7 +23,6 @@ class Area < ActiveRecord::Base
     }
   end
 
-
   def self.active
     find_by_sql(
       "SELECT distinct on(ar.area_id) ar.*
@@ -37,9 +36,18 @@ class Area < ActiveRecord::Base
     )
   end
 
+  def self.contains_place(placeid)
+    where {
+      st_within(
+      st_geomfromtext(Place.find(placeid).geom_wkt),
+        st_geomfromtext(geom_poly_wkt)
+      )
+    }
+  end
+
   def self.in_or_near(id)
     where {
-        geom_wkt like 'POINT%' and
+        # geom_wkt like 'POINT%' and
         st_intersects(
           st_buffer( (st_geomfromtext(Area.find(id).geom_point_wkt)), 0.01),
           st_geomfromtext(geom_point_wkt)

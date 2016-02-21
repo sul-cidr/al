@@ -20,16 +20,11 @@
     getAuthorEntities: (cb) ->
       authors.fetch
         success: ->
-          # exclude Evans, Fielding, Boswell
-          # should happen in Rails controller
-          # filterName = _.filter(authors.models,(item) ->
-          #   item.get("author_id") < 10434;
-          # )
-          # authors.reset(filterName);
           cb authors
 
     getAuthorEntity: (id, cb) ->
       @author = authors._byId[id]
+      console.log 'hit author:entity', @author
       cb @author
 
     # TODO this executes twice, from authors_app and map_app
