@@ -14,6 +14,12 @@ class @GoogleAnalytics
     firstScript = document.getElementsByTagName("script")[0]
     firstScript.parentNode.insertBefore ga, firstScript
 
+    # individual pages?
+    ga('send', 'page', '/#authors');
+    ga('set', 'page', '/#places');
+    ga('set', 'page', '/#works');
+    ga('set', 'page', '/#search');
+
     # If Turbolinks is supported, set up a callback to track pageviews on page:change.
     # If it isn't supported, just track the pageview now.
     if typeof Turbolinks isnt 'undefined' and Turbolinks.supported
