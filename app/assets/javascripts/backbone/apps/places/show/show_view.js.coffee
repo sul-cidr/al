@@ -14,7 +14,7 @@
       hood = App.request "area:model"
       geom = hood.attributes.geom_point_wkt
       map.setView(swap(wellknown(geom).coordinates))
-      console.log 'recentered to', hood
+      # console.log 'recentered to', hood
 
   class Show.Title extends App.Views.ItemView
     template: "places/show/templates/_title"
@@ -45,7 +45,7 @@
       prid = this.getPlacerefIdFromEvent(e);
       # prid = $(e.currentTarget).context.attributes.val.value
       # console.log 'clicked placeref', prid
-      App.vent.trigger('placeref:click', prid)
+      App.vent.trigger('placeref:click', {id: prid} )
 
     onPlacerefEnter: (e) ->
       prid = this.getPlacerefIdFromEvent(e);
