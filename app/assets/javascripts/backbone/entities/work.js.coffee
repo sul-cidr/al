@@ -42,7 +42,7 @@
           cb works
 
     getWorksCategory: (filter, cb) ->
-      console.log 'API.getWorksCategory', filter
+      # console.log 'API.getWorksCategory', filter
       works.fetch
         data: filter
         success: ->

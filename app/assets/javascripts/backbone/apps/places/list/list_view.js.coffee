@@ -96,11 +96,11 @@
               aid = $.grep(areaLookup, (e) ->
                 return e.label == ui.item.label; )
               @route = "places/" + aid[0].value
-              console.log 'that\'s a neighborhood'
+              # console.log 'that\'s a neighborhood'
               Backbone.history.navigate(@route, true)
             else
               @route = "placerefs/" + @selected
-            console.log 'autocomplete route,', @route
+            # console.log 'autocomplete route,', @route
             Backbone.history.navigate(@route, true)
         })
 

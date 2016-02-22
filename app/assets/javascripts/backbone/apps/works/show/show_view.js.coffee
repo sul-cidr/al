@@ -35,7 +35,11 @@
     onPlacerefClick: (e) ->
       # window.context = $(e.currentTarget).context
       prid = $(e.currentTarget).context.attributes.val.value
-      App.vent.trigger('placeref:click', prid)
+      # workid = App.request("work:model").get("work_id")
+      App.vent.trigger 'placeref:click', {'id': prid}
+      
+      # takes a params object now
+      # App.vent.trigger('placeref:click', prid)
 
     onPlacerefEnter: (e) ->
       prid = $(e.currentTarget).context.attributes.val.value

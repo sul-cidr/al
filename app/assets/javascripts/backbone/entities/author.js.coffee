@@ -24,12 +24,12 @@
 
     getAuthorEntity: (id, cb) ->
       @author = authors._byId[id]
-      console.log 'hit author:entity', @author
+      # console.log 'hit author:entity', @author
       cb @author
 
     # TODO this executes twice, from authors_app and map_app
     getAuthorsCategory: (filter, cb) ->
-      console.log 'API.getAuthorsCategory', filter
+      # console.log 'API.getAuthorsCategory', filter
       authors.fetch
         data: filter
         success: ->

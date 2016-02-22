@@ -13,7 +13,7 @@
         @dropdownCategories()
 
       @currentTab = "authors"
-      console.log '@currentTab', @currentTab
+      # console.log '@currentTab', @currentTab
 
     getContentLayout: ->
       new Show.ContentLayout

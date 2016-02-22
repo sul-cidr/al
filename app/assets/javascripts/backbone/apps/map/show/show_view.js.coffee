@@ -408,28 +408,30 @@
     # onclick placeref in text
     # called by Show.Controller on trigger 'placeref:click'
     clickPlaceref: (params) ->
-      console.log 'clickPlaceref params', params
+      # console.log 'clickPlaceref params', params
       $("#imagelist .image img[prid="+params['id']+"]").addClass('photo-pop')
       App.request "placeref:entities", params, (placerefs) =>
-        console.log 'placerefs.models.length',
+        # console.log 'placerefs.models.length',
         if placerefs.models.length == 0
+          # just showing image
           $(".ui-dialog-titlebar").prepend('<span id="unmapped_tag">(not georeferenced yet)</span>')
         else
           @placeid = placerefs.models[0].attributes.placeref.place_id
+          # identify marker and zoom to its latlng
           @marker = $idToFeature.places[@placeid]
-          # zoom to it
-          window.m = @marker
           if @marker._latlng != undefined
             # it's a point
-            latlng = @marker._popup._source._latlng
+            latlng = @marker._latlng
+            # latlng = @marker._popup._source._latlng
           else
             # it's a linestring, zoom to its centroid
             latlng = @marker.getBounds().getCenter()
-          map.setView(latlng,15,{animate:true})
+          # console.log latlng
           App.MapApp.Show.Controller.buildPopup({
             'place_id': @placeid
             'author_id': params['author_id']
           })
+          map.setView(latlng,15,{animate:true})
 
     # triggered from passages, area list
     highlightFeature: (prid) ->

@@ -7,27 +7,27 @@
       #   zoom to and center on Place
       #   LEFT PANEL: navigate to relevant borough? hood? possible?
       #
-      console.log 'showPlaceref(prid)', prid
+      # console.log 'showPlaceref(prid)', prid
       # zoom to the place
       App.vent.trigger('placeref:click', {id: prid})
       # get place_id
       App.request "placeref:entities", {id: prid}, (placerefs) =>
         $("#spin_authors").removeClass('hidden')
         pid = placerefs.models[0].attributes.placeref.place_id
-        console.log 'placerefs', placerefs
-        console.log 'with place_id', pid
+        # console.log 'placerefs', placerefs
+        # console.log 'with place_id', pid
         App.request "area:place", pid, (parent) =>
           aid = parent.models[0].attributes.area_id
-          console.log 'parent area', aid
+          # console.log 'parent area', aid
           Backbone.history.navigate("places/"+aid, true)
           $("#spin_authors").addClass('hidden')
 
     showPlace: (id) ->
-      console.log 'showPlace(id)', id
+      # console.log 'showPlace(id)', id
 
       App.request "area:entity", id, (area) =>
         App.request "placeref:entities", {area_id:id}, (activePlacerefs) =>
-          console.log 'showPlace() placerefs', activePlacerefs
+          # console.log 'showPlace() placerefs', activePlacerefs
           window.activeplacerefs = activePlacerefs
           @showPlaceSummary activePlacerefs
         # get placerefs within area,
@@ -110,7 +110,7 @@
 
 
     listPlacePassages: (authid) ->
-      console.log 'listPlacePassages() for', authid
+      # console.log 'listPlacePassages() for', authid
       $("#place_passages_region").removeClass("hidden")
       prefname = authHash[authid]
 

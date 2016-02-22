@@ -5,7 +5,7 @@
     startPlaces: (borough)->
       # set url
       # Backbone.history.navigate("places")
-      console.log 'PlacesApp.List startPlaces()'
+      # console.log 'PlacesApp.List startPlaces()'
 
       # get, render places content
       @layout = @getLayoutView()
