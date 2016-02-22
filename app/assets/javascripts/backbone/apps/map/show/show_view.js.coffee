@@ -80,11 +80,11 @@
 
       App.request "area:entities", (areas) =>
         # console.log areas
-
+        window.activeAreas = areas
         @ingestAreas areas
         # make available to places_app
         App.reqres.setHandler "areas:active", ->
-          return areas
+          return activeAreas
 
       @renderPlaces({clear:true})
 

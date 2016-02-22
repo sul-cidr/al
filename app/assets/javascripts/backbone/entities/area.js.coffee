@@ -41,11 +41,12 @@
           cb areas
 
     parentArea: (pid, cb) ->
-      areas.fetch
+      areas_parent = new Entities.AreaCollection()
+      areas_parent.fetch
         data: {child: pid}
         success: ->
           # TODO: does spatial query, deathly slow
-          cb areas
+          cb areas_parent
 
   App.reqres.setHandler "area:entities", (cb) ->
     API.getAreaEntities cb

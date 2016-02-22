@@ -17,6 +17,13 @@
   font-size: 1.2em;
 }
 
+#spin_places {
+  position: absolute;
+  top: 150px;
+  left: 150px;
+  z-index: 1000;
+}
+
 /***/
 /* PlacesApp List module */
 /***/
@@ -89,7 +96,7 @@ arealist { padding:0 6px; font-family: Palatino-linotype, Georgia;
 }
 
 #panel_title.red {
-  
+
 }
 
 #place_passages_region {

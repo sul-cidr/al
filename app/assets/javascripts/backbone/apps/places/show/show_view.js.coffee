@@ -23,10 +23,12 @@
 
     goHome: ->
       # console.log 'goHome() navigates to /places'
+      # reset url, b/c it may have changed via a search
       App.vent.trigger("map:reset", "places_show")
       borough = App.request "borough:current"
       console.log 'go home to borough', borough
-      AL.PlacesApp.List.Controller.startPlaces(borough)
+      Backbone.history.navigate("places", true)
+      # AL.PlacesApp.List.Controller.startPlaces(borough)
 
 
   class Show.PlacePassage extends App.Views.ItemView
