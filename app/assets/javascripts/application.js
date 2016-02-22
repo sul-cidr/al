@@ -46,4 +46,5 @@
 //*** require turbolinks
 //= require bootstrap-sprockets
 //= require typekit
-//= require google_analytics
+//= require ga_core
+// require google_analytics
