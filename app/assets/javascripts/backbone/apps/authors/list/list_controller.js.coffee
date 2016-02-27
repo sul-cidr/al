@@ -8,11 +8,11 @@
       $("#legend_compare").addClass('hidden')
       $("#legend_base").removeClass('hidden')
 
-      $(".btn").disable(false)
+      $(".btn").removeClass('disabled')
 
       if $("#image_modal").html() != ""
         $("#image_modal").dialog("close")
-        
+
       # get all
       App.request "author:entities", (authors) =>
         @layout = @getLayoutView()

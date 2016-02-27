@@ -2,5 +2,5 @@
   <a href="#authors/<%= @author_id %>">
     <img src="assets/images/<%= @author_id %>_<%= @surname %>.png" /><br/>
     <%= @safe hardSpace(@label) %>
-  </a><input class="right" type='checkbox' value='<%= @author_id %>' />
+  </a><input class="right" title="compare locations" type='checkbox' value='<%= @author_id %>' />
 </div>

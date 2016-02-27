@@ -8,7 +8,7 @@
       # $("#dimensions_region").addClass("hidden")
 
       # disable dimension dropdowns
-      $(".btn").disable(true)
+      $(".btn").addClass('disabled')
       authid = author.get("author_id")
       prefname = author.get("prefname")
       surname = author.get("surname")

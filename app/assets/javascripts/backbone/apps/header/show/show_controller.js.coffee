@@ -13,23 +13,10 @@
       # e.preventDefault()
       @wHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
       # console.log 'resize to '+@wHeight*0.85
-      if $("#about_content").is(':visible')
-      #   # $("#map_chooser").addClass('hidden')
-      #   $("#about_content").animate({ height: @wHeight * 0.90 }, 500, ->
-          $("#about_content").fadeOut()
-          # $("#about_content").removeClass('hidden').fadeIn('slow')
-          # $("#map_chooser").addClass('hidden')
-        # )
-        # $("#about_content").removeClass('hidden')
+      if $("#about").is(':visible')
+          $("#about").fadeOut()
       else
-        # $("#about_content").animate({ height: '30px' }, 500, ->
-          $("#about_content").fadeIn()
-          # $("#about_content").addClass('hidden').fadeOut('slow')
-          # $("#map_chooser").removeClass('hidden')
-        # )
-
-
-# HeaderApp.Show.Controller.displayModal()
+          $("#about").fadeIn()
 
 $('#clickme').click ->
   $('#book').animate {
