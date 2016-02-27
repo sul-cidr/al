@@ -6,7 +6,25 @@
       # build top-level frame for app
       @contentLayout = @getContentLayout()
       App.contentRegion.show @contentLayout
+      if Cookies.get("al_splash") != "no-more"
+        $("#splash_modal").removeClass("hidden")
+        $("#splash_modal").dialog({
+          modal: true,
+          dialogClass: "splash-modal",
+          # text: "<h1>Authorial London</h1><p>The City in the Lives and Works of its Writers<p>"+
+          #   "<a href='#'>don't display again</a>"
+          buttons: [
+            {
+              text: "Close",
+              click: ->
+                $( this ).dialog( "close" );
+            }
+          ],
+          create: (e, ui) ->
+            pane = $(this).dialog("widget").find(".ui-dialog-buttonpane")
+            $("<label class='not-again'><input type='checkbox' onclick='setCookie()'/> Don't display on startup again</label>").prependTo(pane)
 
+        })
       # render dropdown filter buttons & populate from db
       @listDimensions()
       if $("#ul_genre li").length == 0

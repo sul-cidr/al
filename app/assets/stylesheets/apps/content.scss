@@ -1,4 +1,26 @@
-
+#splash_content {
+  padding:12px;
+}
+.splash-modal {
+  min-width: 60%;
+  min-height: 60%;
+  font-family: "english";
+  h1 {font-size: 2em; text-align:center; margin-bottom: 0;}
+  .ui-dialog-titlebar {display: none;}
+}
+.tag-line {
+  display: block;
+  text-align:center;
+  font-family: "english";
+  margin-top:0;
+}
+.not-again {
+  font-size: 0.8em;
+  font-style: normal !important;
+  float:left;
+  display: inline-block;
+  margin-top: 1em;
+}
 #content_region {
   width: 350px;
   position: absolute;

@@ -1,12 +1,16 @@
+function setCookie() {
+  Cookies.set("al_splash","no-more")
+  console.log(Cookies.get("al_splash"))
+}
 
-  function loadPopup(placeid) {
-    idToFeature.places[placeid].fireEvent("click")
-  }
-  function openPopup(placeid) {
-    loadPopup(placeid)
-    .then(
-      idToFeature.places[placeid].openPopup());
-  }
+function loadPopup(placeid) {
+  idToFeature.places[placeid].fireEvent("click")
+}
+function openPopup(placeid) {
+  loadPopup(placeid)
+  .then(
+    idToFeature.places[placeid].openPopup());
+}
 
 // Disable function
 jQuery.fn.extend({

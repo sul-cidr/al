@@ -33,6 +33,7 @@
 //= require turf/turf
 //= require crossfilter/crossfilter.min
 //= require d3/d3.min
+//= require js-cookie/src/js.cookie
 
 
 // *** app

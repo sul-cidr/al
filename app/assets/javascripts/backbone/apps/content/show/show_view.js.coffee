@@ -13,9 +13,11 @@
       searchRegion: "#search_region"
       mapChooser: "#map_chooser"
       galleryRegion: "#gallery_region"
+      splashRegion: "#splash_modal"
 
     events:
       "click #content_nav_region li": "showTab"
+      "click #splash_modal input": "setCookie"
 
     showTab: (e) ->
       if ['authors','places','works','search'].indexOf(e) > -1
@@ -26,6 +28,10 @@
         $(e.currentTarget).addClass("active")
       window.activeTab = @tab
       Show.Controller.showTab(@tab)
+
+    setCookie: (e) ->
+      Cookies.set("al_splash","no-more")
+      console.log Cookies.get("al_splash")
 
   class Show.Dimensions extends App.Views.ItemView
     template: "content/show/templates/_dimensions"

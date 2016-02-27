@@ -12,7 +12,7 @@
       App.vent.trigger('placeref:click', {id: prid})
       # get place_id
       App.request "placeref:entities", {id: prid}, (placerefs) =>
-        $("#spin_authors").removeClass('hidden')
+        $("#spin_district").removeClass('hidden')
         pid = placerefs.models[0].attributes.placeref.place_id
         # console.log 'placerefs', placerefs
         # console.log 'with place_id', pid
@@ -20,7 +20,7 @@
           aid = parent.models[0].attributes.area_id
           # console.log 'parent area', aid
           Backbone.history.navigate("places/"+aid, true)
-          $("#spin_authors").addClass('hidden')
+          $("#spin_district").addClass('hidden')
 
     showPlace: (id) ->
       # console.log 'showPlace(id)', id
