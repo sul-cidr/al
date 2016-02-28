@@ -26,14 +26,10 @@
       # console.log 'showPlace(id)', id
 
       App.request "area:entity", id, (area) =>
+        # get placerefs within area
         App.request "placeref:entities", {area_id:id}, (activePlacerefs) =>
-          # console.log 'showPlace() placerefs', activePlacerefs
           window.activeplacerefs = activePlacerefs
           @showPlaceSummary activePlacerefs
-        # get placerefs within area,
-        # then App.vent.trigger "placerefs:area" {activePlacerefs}
-        # that will run showPlaceSummary() below
-        # console.log 'showPlace(id) asked for model', area
         @placeLayout = @getPlaceLayout area
         @placeLayout.on "show", =>
           # console.log 'areaLayout shown'
@@ -69,18 +65,16 @@
       window.placerefsByAuthor = authById.group((author_id) ->
         author_id).all()
 
-      # render the bubble vis
+      # render histogram and bubble vis
       $("#place_content_region").html(@makeVis placerefsByAuthor, worksYears)
 
-    #
-    # run vis.js packAuths bubble chart and temporal histogram
-    #
     makeVis: (auths, years) ->
       # console.log years
       window.authobj = {"children":[]}
       # console.log authobj
       _.each auths, (a) =>
         authobj['children'].push(a)
+      # in vis.js
       histYears(years)
       packAuths(authobj)
 

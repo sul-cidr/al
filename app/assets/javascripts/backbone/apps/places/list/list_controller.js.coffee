@@ -3,19 +3,22 @@
   List.Controller =
 
     startPlaces: (borough)->
-      # set url
-      # Backbone.history.navigate("places")
-      # console.log 'PlacesApp.List startPlaces()'
-
       # get, render places content
       @layout = @getLayoutView()
 
       @layout.on "show", =>
         $("#spin_authors").addClass('hidden')
-        # AL.ContentApp.Show.Controller.showTab('places')
+        AL.ContentApp.Show.Controller.showTab('places')
         @showSearchbox()
         @showNavmap(borough)
-        @listAreas(borough)
+        # if areas haven't loaded, pause
+        if window.location.href.substr(-7) == "#places" && typeof activeAreas == "undefined"
+          console.log 'pausing'
+          setTimeout (->
+            AL.PlacesApp.List.Controller.listAreas(borough)
+          ), 4500
+        else
+          @listAreas(borough)
 
       App.placesRegion.show @layout
 
@@ -23,8 +26,10 @@
       $("#places_navmap h4").html('Neighborhoods in and around <span class="red">'+
         boroughHash[borough]+'</span')
       hoodArray = boroughHoods[borough]
+
+      console.log 'url in listAreas', window.location.href
+
       window.areas = App.reqres.getHandler("areas:active")()
-      # console.log 'listAreas(), borough: '+borough, hoodArray
       window.filteredAreas = areas.filter((area) ->
         area.get('area_id') in hoodArray
       )

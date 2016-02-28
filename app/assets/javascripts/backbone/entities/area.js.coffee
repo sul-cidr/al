@@ -23,7 +23,7 @@
       areas.fetch
         success: ->
           cb areas
-          # console.timeEnd 'getAreaEntities'
+          console.timeEnd 'getAreaEntities'
 
     getAreaEntity: (id, cb) ->
       # console.log 'getAreaEntity', id

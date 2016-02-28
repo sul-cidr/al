@@ -70,6 +70,8 @@
     # ContentApp manages AuthorsApp, WorksApp, PlacesApp, SearchApp
     App.module('ContentApp').start()
     App.module('MapApp').start()
+    # App.module('WorksApp').start()
+    # App.module('PlacesApp').start()
 
   App.on 'start', ->
     # console.log "global AL app started"

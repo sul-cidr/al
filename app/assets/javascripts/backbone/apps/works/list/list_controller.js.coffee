@@ -12,7 +12,7 @@
         @layout = @getLayoutView()
 
         @layout.on "show", =>
-          # AL.ContentApp.Show.Controller.showTab('works')
+          AL.ContentApp.Show.Controller.showTab('works')
           @showSearchbox()
           @listCatWorks works
 
