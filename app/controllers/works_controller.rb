@@ -22,6 +22,10 @@ class WorksController < ApplicationController
       # works = Work.joins{work_category_rels.category}.where{categories.category_id >> params[:work_cat]}
     end
 
+    if params[:list]
+      works = Work.all.select("title, work_id").sort_by {|w| w.sortable_title}
+    end
+
     @works = works
 
   end

@@ -8,7 +8,7 @@
       App.contentRegion.show @contentLayout
       if Cookies.get("al_splash") != "no-more"
         @openSplash()
-        
+
       # render dropdown filter buttons & populate from db
       @listDimensions()
       if $("#ul_genre li").length == 0
@@ -48,6 +48,8 @@
 
     # called from various places to manage tab state
     showTab: (tab)->
+      # display home link in header and leave it there
+      $("#home_link").removeClass("hidden")
       @activeTab = tab
       # console.log 'from '+ @currentTab + ' to ' + @activeTab + ' tab'
 

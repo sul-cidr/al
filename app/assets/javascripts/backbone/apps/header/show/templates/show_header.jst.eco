@@ -1,5 +1,5 @@
 <div id="header">
-  <div id="header_left"><a id="home_link">Home</a></div>
+  <div id="header_left"><a id="home_link" class="hidden">Home</a></div>
   <!-- <div id="header_left"><i class="fa fa-home fa-lg"></i></div> -->
   <div id="title">
     <h1>
@@ -9,7 +9,7 @@
     </h1><br/>
     <span class="tagline">The City in the Lives and Works of its Writers</span>
   </div>
-  <div id="header_right"><a id="intro_link">Introduction</a>&nbsp;&nbsp;
+  <div id="header_right"><a id="intro_link">Introduction</a>&nbsp;&nbsp;|&nbsp;
     <a id="about_link">About</a></div>
   <!-- <div id="header_right"><i class="fa fa-bars fa-lg"></i></div> -->
 </div>

@@ -28,7 +28,7 @@ class Work < ActiveRecord::Base
 
   # auto-increment work_id
   before_create :set_id
-  
+
   def set_id
     self.work_id = Work.maximum(:work_id).next
   end
@@ -57,6 +57,10 @@ class Work < ActiveRecord::Base
 
   def sortable_title
     self.title.sub(/^(the|a|an)\s+/i, '')
+  end
+
+  def list(options={})
+    super(:only => [:work_id,:title])
   end
 
 end

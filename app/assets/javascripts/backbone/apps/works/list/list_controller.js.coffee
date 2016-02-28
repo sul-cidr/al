@@ -8,6 +8,7 @@
       $(".btn").disable(false)
       # get, render works content
       App.request "work:entities", (works) =>
+        window.works = works
         @layout = @getLayoutView()
 
         @layout.on "show", =>

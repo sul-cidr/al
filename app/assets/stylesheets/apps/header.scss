@@ -10,11 +10,14 @@
   @include background-image(linear-gradient(left,  #2A4747 0%,#BFC8C8 25%,#BFC8C8 75%,#2A4747 100%));
   // i {cursor: pointer; color: whitesmoke; margin: 14px;}
   color: whitesmoke;
-  a {color: aliceblue; cursor:pointer;}
+  a {
+    color: darkseagreen; cursor:pointer;
+    &:hover {color: palegoldenrod;}
+  }
 }
 #header_left {
     position:absolute;
-    left:10px;
+    left:17px;
     top:17px;
     width:150px;
     height:100%;
@@ -22,7 +25,7 @@
 
 #header_right {
     position:absolute;
-    right:10px;
+    right:12px;
     top:17px;
     width:150px;
     height:100%;
@@ -76,7 +79,7 @@
   ul {
     list-style-type: none;
     display: inline-block;
-    margin-bottom: 0;
+    margin: 0;
     padding: 2px;
   }
   li {
