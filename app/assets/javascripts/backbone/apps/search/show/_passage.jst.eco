@@ -1,3 +1,0 @@
-From <%= @work_id %>
-<%= @safe poetize(@text) %>
-<hr/>

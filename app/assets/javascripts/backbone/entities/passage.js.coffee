@@ -28,10 +28,10 @@
         processData: true
 
         success: ->
-          filterBio = _.filter(passages.models,(item) ->
+          filterOutBio = _.filter(passages.models,(item) ->
             item.get("work_id") > 20399
           )
-          passages.reset(filterBio)
+          passages.reset(filterOutBio)
           cb passages
 
       })

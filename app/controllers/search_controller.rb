@@ -5,17 +5,14 @@ class SearchController < ApplicationController
     if params[:q].nil?
       @passages = []
     else
+      # @passages = Passage.search do
       @passages = Sunspot.search Passage do
         fulltext params[:q] do
-          highlight :text
+          highlight :text, :fragment_size => 200
         end
-      end
-      # puts @passages
 
+      end
 
     end
   end
-
 end
-
-# Passage.solr_search {fulltext 'river'}

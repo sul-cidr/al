@@ -30,34 +30,16 @@
     template: "search/show/templates/_passage"
     tagName: "p"
     events: {
-      "click span.placeref": "onPlacerefClick"
-      "mouseenter span.place": "onPlacerefEnter"
-      "mouseleave span.place": "onPlacerefLeave"
+      "click span.passage-link": "showOnePassage"
     }
-    # highlightPlacerefs: ->
-    #   console.log 'Show.Passage.highlightPlacerefs()'
 
-    onPlacerefClick: (e) ->
-      # window.context = $(e.currentTarget).context
-      prid = $(e.currentTarget).context.attributes.val.value
-      # console.log 'onPlaceRefClick', prid
-      App.vent.trigger 'placeref:click', {'id': prid}
+    showOnePassage: (e) ->
+      # console.log 'popup passage', $(e.currentTarget).context.attributes.val.value
+      id = $(e.currentTarget).context.attributes.val.value
+      # TODO: load passage in right panel
+      AL.MapApp.Show.Controller.showOnePassage(id)
 
-    onPlacerefEnter: (e) ->
-      id = this.getPlacerefIdFromEvent(e);
-      # console.log 'highlight placeref #', id
-      App.vent.trigger('placeref:highlight', id);
-      # App.vent.trigger('placeref:hover', e)
-
-    onPlacerefLeave: (e) ->
-      id = this.getPlacerefIdFromEvent(e);
-      # console.log 'left placeref span'
-      App.vent.trigger('placeref:unhighlight', id);
-
-    getPlacerefIdFromEvent: (e) ->
-      Number($(e.currentTarget).context.attributes.data_id.value);
-
-  # passages are shown by clicking a work
+  #
   class Show.SearchResults extends App.Views.CompositeView
     template: "search/show/templates/_passages"
     childView: Show.SearchResult
