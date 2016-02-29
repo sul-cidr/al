@@ -10,7 +10,7 @@
       # console.log '@layout', @layout
 
       @layout.on "show", =>
-        AL.ContentApp.Show.Controller.showTab('search')
+        # AL.ContentApp.Show.Controller.showTab('search')
         $("#spin_authors").addClass('hidden')
 
       App.searchRegion.show @layout

@@ -54,7 +54,7 @@
       # console.log 'from '+ @currentTab + ' to ' + @activeTab + ' tab'
 
       # reset map on any tab change
-      App.vent.trigger("map:reset", "showTab")
+      App.vent.trigger("map:reset")
 
       $("#legend_list").html('')
       $("#legend_compare").addClass('hidden')

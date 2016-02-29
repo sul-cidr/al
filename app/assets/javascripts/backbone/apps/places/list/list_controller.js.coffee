@@ -8,7 +8,7 @@
 
       @layout.on "show", =>
         $("#spin_authors").addClass('hidden')
-        AL.ContentApp.Show.Controller.showTab('places')
+        # AL.ContentApp.Show.Controller.showTab('places')
         @showSearchbox()
         @showNavmap(borough)
         # if areas haven't loaded, pause
