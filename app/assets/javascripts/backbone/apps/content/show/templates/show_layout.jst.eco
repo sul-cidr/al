@@ -9,11 +9,23 @@
 <div id="spin_authors" class="spinner-loader"></div>
 <div id="spin_district" class="spinner-loader hidden">finding district...</div>
 <div id="splash_modal" class="hidden">
-  <h1>Authorial London</h1>
-  <span class="tag-line">The City in the Lives and Works of its Writers</span>
+  <div id="splash_banner">
+    <h1>Authorial London</h1>
+    <span class="tag-line">The City in the Lives and Works of its Writers</span>
+  </div>
   <div id="splash_content">
-    <p>Fusce vel interdum nisl, a rhoncus lacus. Morbi volutpat, magna eget luctus tristique, lorem libero laoreet dolor, vel porttitor magna justo feugiat leo. In consectetur ornare arcu et varius. Donec eu quam quis magna suscipit dapibus quis et nisl. Phasellus tempus elementum justo, non egestas diam luctus sit amet. Aenean euismod quam at sem tempus placerat. Vivamus vestibulum, orci eu iaculis feugiat, velit tellus tincidunt nisl, in posuere massa orci sagittis arcu. </p>
-    <p>Vestibulum iaculis nulla vel ante rutrum tristique. Nullam suscipit dolor ultrices libero scelerisque dignissim. Nullam lacinia posuere eros, eget accumsan sem tempor vel. Vestibulum interdum elit consectetur aliquam mollis. Aenean faucibus feugiat nunc vitae ultricies.</p>
+    <div id="splash_left">
+      <p>The age is running mad after innovation; all the business of the world is to be done in a new way; men are to be hanged in a new way; <b>Tyburn</b> itself is not safe from the fury of innovation.'</p>
+      <hr/><p>JOHNSON. 'Yes, Sir.'  It was a delightful day: as we walked to St. Clement's church, I again remarked that <b>Fleet-street</b> was the most cheerful scene in the world.</p>
+      <hr/><p>And Frenssh she spak ful faire and fetisly,<br/>After the scole of <b>Stratford-atte-Bowe</b>,<br/>For Frenssh of Parys was to hir unknowe.</p>
+      <hr/><p>the water was so high that there was boats rowed in <b>King Street</b> and all our yard was drowned</p>
+    </div>
+    <div id="splash_right">
+      <div id="splash_intro">
+        <p><img src="#" hspace="4" alt="video thumb" align="right" width="160" height="120"/>Fusce vel interdum nisl, a rhoncus lacus. Morbi volutpat, magna eget luctus tristique, lorem libero laoreet dolor, vel porttitor magna justo feugiat leo. In consectetur ornare arcu et varius. Donec eu quam quis magna suscipit dapibus quis et nisl. Phasellus tempus elementum justo, non egestas diam luctus sit amet. Aenean euismod quam at sem tempus placerat. Vivamus vestibulum, orci eu iaculis feugiat, velit tellus tincidunt nisl, in posuere massa orci sagittis arcu. </p></div>
+      <!-- <div id="splash_video"><p>video thumbnail</p></div> -->
+      <div id="splash_slides"><img src="assets/images/slides.png" /></div>
+    </div>
   </div>
 </div>
 <div id="dimensions_region"></div>

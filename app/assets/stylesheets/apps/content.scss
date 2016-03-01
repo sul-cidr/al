@@ -1,13 +1,52 @@
+/***/
+/* splash intro */
+/***/
 #splash_content {
   padding:12px;
+  p {
+    font-family: Georgia;
+  }
 }
+#splash_left {
+  float: left;
+  width: 25%; height: 370px;
+  overflow-y: auto;
+  // background: aliceblue;
+  font-size: 0.9em;
+}
+#splash_right {
+  float:right;
+  width:75%;
+}
+#splash_intro {
+  float:left;
+  font-size: 1.1em;
+  padding: 0 6px;
+
+}
+#splash_video {
+  float:right;
+  clear: none;
+  width: 33%;
+  background: antiquewhite;
+  height: 120px;
+}
+#splash_slides {
+  clear: both;
+  margin-top: 3px;
+  // background: lightgrey;
+  height: 150px;
+}
+
 .splash-modal {
-  min-width: 60%;
-  min-height: 60%;
+  min-width: 70%;
+  min-height: 75%;
   font-family: "english";
   h1 {font-size: 2em; text-align:center; margin-bottom: 0;}
   .ui-dialog-titlebar {display: none;}
 }
+
+
 .tag-line {
   display: block;
   text-align:center;
