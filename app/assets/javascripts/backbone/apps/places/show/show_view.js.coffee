@@ -30,7 +30,6 @@
       Backbone.history.navigate("places", true)
       # AL.PlacesApp.List.Controller.startPlaces(borough)
 
-
   class Show.PlacePassage extends App.Views.ItemView
     template: "places/show/templates/_passage"
     tagName: "p"

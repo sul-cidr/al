@@ -102,7 +102,6 @@
       new Show.Content
         model: area
 
-
     listPlacePassages: (authid) ->
       # console.log 'listPlacePassages() for', authid
       $("#place_passages_region").removeClass("hidden")
