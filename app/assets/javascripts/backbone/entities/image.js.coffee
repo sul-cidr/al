@@ -12,7 +12,7 @@
       images.fetch
         data: filter
         success: ->
-          console.log images
+          # console.log images
           cb images
 
   App.reqres.setHandler "image:entities", (filter={}, cb) ->

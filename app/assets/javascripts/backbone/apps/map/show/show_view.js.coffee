@@ -227,7 +227,7 @@
         # e.target._popup.setContent(html)
 
     renderPlaces: (params) ->
-      # console.log 'renderPlaces', params
+      console.log 'renderPlaces', params
       if typeof @places != "undefined"
         if params && params['clear'] == true
           @places.clearLayers()
@@ -242,8 +242,11 @@
         @features = []
         max = Math.max.apply(Math, places.map((o) ->
           o.attributes.count ))
-        @mincolor = Math.min.apply(Math, @legendColors)
-        # console.log 'color set from @mincolor was', @mincolor
+        if params['author_id'] && @keyPlaces['auth_'+params['author_id']]
+          @mincolor = 0
+        else 
+          @mincolor = Math.min.apply(Math, @legendColors)
+        console.log 'color set from @mincolor was', @mincolor
         $.each places.models, (i, pl) =>
           # TODO: get max of count()
           attribs = pl.attributes.place
@@ -334,17 +337,16 @@
         if params['author_id']
           if !($.isArray(params['author_id']))
             @key = if params['key'] then params['key'] else 'auth_'+params['author_id']
-            # console.log 'key', @key
+            console.log 'key', @key
+            console.log '@legendColors', @legendColors
             @keyPlaces[@key] = {}
             @keyPlaces[@key]['markers'] = @places
             @keyPlaces[@key]['color'] = Math.min.apply(Math,@legendColors);
-            # @keyPlaces[params['key']]['color'] = (Object.keys(@keyPlaces).length)-1
-            # console.log '@keyPlaces', @keyPlaces
             window.keyplaces = @keyPlaces
             # remove this color set from available
             idx=@legendColors.indexOf(@keyPlaces[@key].color)
             @legendColors.splice(idx,1)
-            # console.log '@legendColors now', @legendColors
+            console.log '@legendColors now', @legendColors
           else
             # this is a filtered array of authors
             _.each params['author_id'], (a) =>
@@ -356,6 +358,7 @@
         if Object.keys(@keyPlaces).length > 0
           if $("#leg_"+params['author_id']).length == 0
             @makeLegend(params['author_id'], @mincolor)
+
 
         # TODO: stop using hardcoded total
         if @numPlaces < 770
