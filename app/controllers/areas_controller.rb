@@ -4,6 +4,7 @@ class AreasController < ApplicationController
 	def index
 		# only those with places/placerefs in them
 		areas = Area.active
+    # areas = Area.all
 		# @areas = Area.order(:prefname).all
 
     if params[:area_type]

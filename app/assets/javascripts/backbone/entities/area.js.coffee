@@ -6,13 +6,13 @@
   class Entities.AreaCollection extends Entities.Collection
     model: Entities.Area
     url: '/areas.json'
-    comparator: 'prefname'
+    # comparator: 'prefname'
     idAttribute: "area_id"
 
-    filterById: (idArray) ->
-      @reset _.map(idArray, ((id) ->
-        @get id
-      ), this)
+    # filterById: (idArray) ->
+    #   @reset _.map(idArray, ((id) ->
+    #     @get id
+    #   ), this)
 
   areas = new Entities.AreaCollection()
 
