@@ -22,6 +22,14 @@
       # console.log 'search_app Show.Controller.searchPassages()', q
       App.request "passages:search", q, (results) =>
         window.searchresults = results
+
+        # array of passage_ids
+        searchPlaces = []
+        _.each results.models, (s) =>
+          searchPlaces.push s.attributes.passage_id
+        console.log 'searchPlaces[]', searchPlaces
+        App.vent.trigger "search:show", (searchPlaces)
+
         if results.length > 0
           resultsView = @getResultsView results
           @layout.resultsRegion.show resultsView

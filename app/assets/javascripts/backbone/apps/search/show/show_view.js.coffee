@@ -22,7 +22,7 @@
       # console.log $(e.currentTarget)
       q = $("#q_input").val()
       Backbone.history.navigate("search/" + q, true)
-      # List.Controller.searchPassages($("#q_input").val())
+      # -> Show.Controller.searchPassages($("#q_input").val())
 
 
   # TODO: refactor? same functionality elsewhere
@@ -31,6 +31,7 @@
     tagName: "p"
     events: {
       "click span.passage-link": "showOnePassage"
+      "click span.placeref": "onPlacerefClick"
     }
 
     showOnePassage: (e) ->
@@ -39,7 +40,12 @@
       # TODO: load passage in right panel
       AL.MapApp.Show.Controller.showOnePassage(id)
 
-  #
+    onPlacerefClick: (e) ->
+      window.context = $(e.currentTarget).context
+      prid = $(e.currentTarget).context.attributes.val.value
+      # -> @mapView.clickPlaceref(prid)
+      App.vent.trigger 'placeref:click', {'id': prid}
+
   class Show.SearchResults extends App.Views.CompositeView
     template: "search/show/templates/_passages"
     childView: Show.SearchResult

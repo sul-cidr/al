@@ -227,6 +227,7 @@
         # e.target._popup.setContent(html)
 
     renderPlaces: (params) ->
+      # params: author_id=[], work_id=[], clear=[true|false]
       console.log 'renderPlaces', params
       if typeof @places != "undefined"
         if params && params['clear'] == true
@@ -244,7 +245,7 @@
           o.attributes.count ))
         if params['author_id'] && @keyPlaces['auth_'+params['author_id']]
           @mincolor = 0
-        else 
+        else
           @mincolor = Math.min.apply(Math, @legendColors)
         console.log 'color set from @mincolor was', @mincolor
         $.each places.models, (i, pl) =>

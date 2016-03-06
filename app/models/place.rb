@@ -24,6 +24,21 @@ class Place < ActiveRecord::Base
   has_many :works, :through => :passages
   has_many :authors, :through => :works
 
+  scope :by_passage, -> (passages = nil) {
+    placesets = []
+    placearray = []
+    passages = Passage.where{passage_id >> passages}
+    passages.each do |p|
+      placesets.push(p.places)
+    end
+    placesets.each do |arr|
+      arr.each do |p|
+        placearray.push(p)
+      end
+    end
+    placearray #.uniq
+  }
+
   # TODO: need places in or near an area (neighborhood, e.g. 14 is Bloomsbury)
   def self.in_or_near(id)
     where {
@@ -40,4 +55,18 @@ class Place < ActiveRecord::Base
     Place.find(id)
   end
 
+  # def self.by_passage(id)
+  #   placesets = []
+  #   placearray = []
+  #   passages = Passage.where{passage_id >> id}
+  #   passages.each do |p|
+  #     placesets.push(p.places)
+  #   end
+  #   placesets.each do |arr|
+  #     arr.each do |p|
+  #       placearray.push(p.place_id)
+  #     end
+  #   end
+  #   placearray.uniq
+  # end
 end

@@ -33,12 +33,20 @@
   App.vent.on "map:swap", (id) ->
     MapApp.Show.Controller.swapBase id
 
+  App.vent.on "search:show", (filter) ->
+    # places for all passages returned by search
+    API.filterByPassages filter
+
   API =
     # swapBase: (id) ->
     #   MapApp.Show.Controller.swapBase()
 
     showMap: ->
       MapApp.Show.Controller.showMap()
+
+    filterByPassages: (passageids) ->
+      console.log "passageids", passageids
+      MapApp.Show.Controller.filterPlaces({passages: passageids, clear:true})
 
     filterByAuthors: (authids) ->
       MapApp.Show.Controller.filterPlaces({author_id: authids, clear:true})

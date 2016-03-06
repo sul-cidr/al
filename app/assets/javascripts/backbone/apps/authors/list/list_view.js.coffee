@@ -4,8 +4,6 @@
     template: "authors/list/templates/list_layout"
 
     regions:
-      # headerRegion: "#title_region"
-      # dimensionsRegion: "#dimensions_region"
       categoriesRegion: "#categories_region"
       authorlistRegion: "#authorlist_region"
 
