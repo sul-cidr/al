@@ -17,13 +17,11 @@
     swapBase: (id) ->
       @mapView.swapBase id
 
-    # params can be >=1 author_id:, work_id:, work_cat:, auth_cat
+    # params can be any of author_id:, work_id:, work_cat:, auth_cat
     # normally with clear:true
     filterPlaces: (params) ->
       # console.log 'filterPlaces', params
       @mapView.renderPlaces(params)
-      # if params['author_id']
-      #   @mapView.renderImages(params)
 
     renderOneAuthor: (params) ->
       # console.log 'renderOneAuthor() -> renderPlaces(),renderImages()', params

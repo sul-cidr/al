@@ -1,4 +1,5 @@
 json.array! @places do |place|
+
   json.place place[:place]
   json.count place[:count]
   json.biocount place[:biocount]
@@ -6,9 +7,8 @@ json.array! @places do |place|
   # json.extract!(
   #   place,
   #   :place_id,
-  #   :prefname,
-  #   :geom_wkt,
-  #   :placerefs_count,
-  #   :auth_array
+  #   :prefname
+  #   # :geom_wkt,
+  #   # :placerefs_count
   # )
 end

@@ -24,10 +24,11 @@ class Place < ActiveRecord::Base
   has_many :works, :through => :passages
   has_many :authors, :through => :works
 
-  scope :by_passage, -> (passages = nil) {
+  scope :by_passage, -> (passarray = nil) {
     placesets = []
     placearray = []
-    passages = Passage.where{passage_id >> passages}
+    passages = Passage.where(passage_id: passarray)
+    # passages = Passage.where{passage_id >> passarray}
     passages.each do |p|
       placesets.push(p.places)
     end
@@ -36,7 +37,7 @@ class Place < ActiveRecord::Base
         placearray.push(p)
       end
     end
-    placearray #.uniq
+    placearray.uniq
   }
 
   # TODO: need places in or near an area (neighborhood, e.g. 14 is Bloomsbury)
