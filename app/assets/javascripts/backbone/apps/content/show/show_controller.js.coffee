@@ -6,8 +6,8 @@
       # build top-level frame for app
       @contentLayout = @getContentLayout()
       App.contentRegion.show @contentLayout
-      if Cookies.get("al_splash") != "no-more"
-        @openSplash()
+      # if Cookies.get("al_splash") != "no-more"
+      #   @openSplash()
 
       # render dropdown filter buttons & populate from db
       @listDimensions()
