@@ -98,7 +98,20 @@ function createPolygonFromBounds(latLngBounds) {
   // return new L.polygon(latlngs);
 }
 
-
+function cycleQuotes(){
+      var $active = $('#cycler .active');
+      var len = $active.html().length;
+      // TODO: extends the fadeout period for longer passages
+      // console.log('fade val will be',len*7)
+      var $next = ($active.next().length > 0) ? $active.next() : $('#cycler div:first');
+      $next.css('z-index',2);//move the next div up the pile
+      $active.fadeOut(len*7,function(){ //fade out the top div
+      // $active.fadeOut(1500,function(){ //fade out the top div
+        $active.css('z-index',1).show().removeClass('active');//reset the z-index and unhide the div
+          $next.css('z-index',3).addClass('active');//make the next div the top one
+      });
+    }
+    
 // $(function() {
 //
 //   var toponyms = new Bloodhound({
