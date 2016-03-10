@@ -21,7 +21,7 @@ h1, h2, h3 {margin: 0 !important;}
   img {margin: 18px;}
 }
 #splash_top_left {width: 17%;background: lightblue; }
-#splash_top_center, #splash_blurb {width: 66%;float:left; font-size:1.1em; }
+#splash_top_center, #splash_blurb {width: 66%;float:left; font-size:1.2em; }
 #splash_top_right, #splash_graphic {
   width: 34%; float:right; text-align: center; line-height: 1.9em;
   p {margin-top: 0; font-size:1.1em; }
@@ -33,7 +33,13 @@ h1, h2, h3 {margin: 0 !important;}
 #splash_graphic {
   // float:right; text-align: center;
 }
-
+.splash-caption {
+  font-size: 2em; font-family: "english";
+  display:inline-block; padding:12px;}
+.splash-image-horiz {
+  margin-bottom: 6px;
+}
+.glyphicon {top: 250px !important;}
 /* splash bottom */
 
 

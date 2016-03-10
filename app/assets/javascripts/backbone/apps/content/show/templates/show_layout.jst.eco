@@ -20,6 +20,11 @@
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
         <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+        <li data-target="#myCarousel" data-slide-to="5"></li>
+        <li data-target="#myCarousel" data-slide-to="6"></li>
+        <li data-target="#myCarousel" data-slide-to="7"></li>
+        <li data-target="#myCarousel" data-slide-to="8"></li>
       </ol>
 
       <!-- Wrapper for slides -->
@@ -52,30 +57,76 @@
         </div>
 
         <div class="item">
-          <div><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eu efficitur justo. Etiam non semper diam. Quisque vel porttitor mauris. Curabitur suscipit rhoncus tellus, facilisis rutrum nisi iaculis quis. Proin sed libero quis eros consectetur elementum ac vitae ipsum. Morbi imperdiet turpis tortor, sed blandit nunc aliquam eu. Praesent non leo at tortor interdum lacinia. Proin condimentum auctor volutpat. Nulla eget euismod est. In id risus felis. Phasellus ornare erat id lacus efficitur, eu aliquam augue posuere. Mauris at sapien magna. Aliquam pellentesque enim eu lectus vehicula porta. Sed convallis leo eu libero eleifend, cursus mollis magna consequat. Proin quis ultrices neque, a molestie purus. Duis non finibus lacus, id ultricies lorem.</p>
+          <div class="splash-image-horiz">
+            <img src="assets/images/splash01a.png" height = 300/>
+              <span class="splash-caption">See where authors lived...<br/>
+              and where they wrote about</span>
+          </div>
+          <div>
+            <img src="assets/images/splash01b.png" height = 300/>
           </div>
         </div>
 
         <div class="item">
-          <div>
+          <div><img src="assets/images/splash02.png"/>
+            <span class="splash-caption">Discover patterns, such as Dickens living
+              mostly in the west and <br/>writing mostly of the east and south</span>
           </div>
         </div>
 
         <div class="item">
-          <div>
+          <div class="splash-image-horiz">
+            <img src="assets/images/splash03.png"/>
+              <span class="splash-caption">Compare writers to see where they converged
+                and diverged, for example these three poets</span>
           </div>
         </div>
+
+        <div class="item">
+          <div class="splash-image-horiz">
+            <img src="assets/images/splash04.png"/>
+            <span class="splash-caption">...or all those in this collection who wrote in a given genre</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="splash-image-horiz">
+            <img src="assets/images/splash05.png"/>
+            <span class="splash-caption">Choose a neighborhood and see who wrote about it and when.<br/>
+              See how a specific place evolved in the literary imagination over centuries.</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="splash-image-horiz">
+            <!-- <img src="assets/images/splash06.png"/> -->
+            <span class="splash-caption"></span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="splash-image-horiz">
+            <!-- <img src="assets/images/splash07.png"/> -->
+            <span class="splash-caption"></span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="splash-image-horiz">
+            <!-- <img src="assets/images/splash08.png"/> -->
+            <span class="splash-caption"></span>
+          </div>
+        </div>
+        <!-- Left and right controls -->
+        <!-- <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a> -->
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
-
-      <!-- Left and right controls -->
-  <!--     <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a> -->
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
     </div>
   </div>
 </div>
