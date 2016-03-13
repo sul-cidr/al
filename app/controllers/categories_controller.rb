@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   # end
 
   def index
-    @categories = Category.joins(:dimension).all
+    @categories = Category.joins(:dimension).order(:dimension_id, :sort).all
   end
 
   def new

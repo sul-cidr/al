@@ -60,6 +60,8 @@ ActiveRecord::Schema.define(version: 20160130002611) do
     t.datetime "updated_at",     null: false
   end
 
+  add_index "areas", ["geom_poly_wkt"], name: "idx_areas_geompoly", using: :btree
+
   create_table "author_category_rels", force: :cascade do |t|
     t.integer  "author_id"
     t.integer  "category_id"
@@ -101,6 +103,7 @@ ActiveRecord::Schema.define(version: 20160130002611) do
   create_table "categories", primary_key: "category_id", force: :cascade do |t|
     t.string   "name"
     t.integer  "dimension_id"
+    t.integer  "sort"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -171,6 +174,8 @@ ActiveRecord::Schema.define(version: 20160130002611) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
+
+  add_index "placerefs", ["geom_wkt"], name: "idx_placeref_geomwkt", using: :btree
 
   create_table "places", id: false, force: :cascade do |t|
     t.integer  "place_id"
