@@ -6,25 +6,31 @@ body {
 
 h1, h2, h3 {margin: 0 !important;}
 
+ol.carousel-indicators {bottom: 0; margin-bottom:0;}
 /* splash top */
 // #splash_top {width: 100%; background: lightyellow; padding:2px;}
 #splash_header {
-  width: 75%;
-  margin: 8px auto;
+  width: 100%;
+  margin: 8px 0 12px;
+  padding: 4px 0 2px;
   text-align: center;
-  h2 {font-variant: small-caps;}
+  background: #B1BCBC;
+  border-bottom: 1px solid #333;
+  box-shadow: 2px 2px #ddd;
+  h3 {color: #365353;}
 }
 // #splash_header {width: 100%; background: #e0e0e0; text-align: center;}
 #splash_top_content {
   p {font-family: Georgia, "Palatino Linotype", "Book Antiqua", Palatino, serif;
-  padding: 0 6px;}
+  padding: 0 6px; font-size: 1.15em;}
   img {margin: 18px;}
 }
 #splash_top_left {width: 17%;background: lightblue; }
 #splash_top_center, #splash_blurb {width: 66%;float:left; font-size:1.2em; }
+#splash_blurb img {background: gainsboro;}
 #splash_top_right, #splash_graphic {
   width: 34%; float:right; text-align: center; line-height: 1.9em;
-  p {margin-top: 0; font-size:1.1em; }
+  p {margin-top: 0; font-size:1.3em; }
 }
 .bignum {font-weight: 800; font-size:1.4em; color: #993333;}
 /* splash top */
@@ -76,9 +82,12 @@ h1, h2, h3 {margin: 0 !important;}
   position:relative;
   clear:both;
   font-family: Georgia, "Palatino Linotype", "Book Antiqua", Palatino, serif; font-size: 1.4em;}
-#cycler div{position:absolute;z-index:1; background-color:palegoldenrod;
-  padding: 0 18px 12px 18px; width: 65%;
+
+#cycler div{
+  position:absolute;z-index:1; background-color:palegoldenrod;
+  padding: 12px 18px 12px 18px; width: 65%;
   border-radius: 16px;}
+
 #cycler div p{ color:black; display:block; }
 #cycler div.active{z-index:3}
 .quote {min-height: 150px; width: 60%; }

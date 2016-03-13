@@ -11,7 +11,7 @@
 <div id="splash_modal" class="hidden">
   <div class="container">
     <div id="splash_header">
-      <h2>Authorial London</h2>
+      <h3>An Introduction to Authorial London</h3>
     </div>
     <div id="myCarousel" class="carousel carousel-fade" data-ride="carousel" data-interval="false">
       <!-- Indicators -->
@@ -31,69 +31,77 @@
       <div class="carousel-inner" role="listbox">
         <div class="item active">
           <div id="splash_top_content">
-              <div id="splash_blurb"><img src="#" alt="video thumb" align="right" width="160" height="120"/><p>The Authorial London project is compiling and mapping references to London places found in the biographies and works of writers who have lived there.</p><p>The site allows exploring and analyzing them from literary, geographical, and biographical perspectives, on dimensions of genre, form, literary community, social standing, and neighborhood.</p></div>
+              <div id="splash_blurb"><img src="#" alt="video walkthrough (soon)" align="right" width="160" height="120"/><p>The Authorial London project is compiling and mapping references to London places found in the biographies and works of writers who have lived there.</p><p>The site allows exploring and analyzing them from literary, geographical, and biographical perspectives, on dimensions of genre, form, literary community, social standing, and neighborhood.</p></div>
             <!-- </div> -->
             <div id="splash_top_right"><p>Explore <span class="bignum">2795</span> references to<br/><span class="bignum">823</span> London places<br/> in <span class="bignum">1591</span> passages from the<br/> biographies of <span class="bignum">47</span> authors<br> and <span class="bignum">193</span> of their works,<br/> written between the<br/><span class="bignum">14th</span> and <span class="bignum">20th</span> centuries</p></div>
           </div>
           <div id="splash_bottom_content">
             <div id="cycler">
-              <div class="quote active"><p>"The age is running mad after innovation; all the business of the world is to be done in a new way; men are to be hanged in a new way; <b>Tyburn</b> itself is not safe from the fury of innovation."</p>
+              <div class="quote active">
+                <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
+                The age is running mad after innovation; all the business of the world is to be done in a new way; men are to be hanged in a new way; <b>Tyburn</b> itself is not safe from the fury of innovation.
                 <span class="cite">James Boswell (<em>The Life of Samuel Johnson</em>; 1791)</span>
               </div>
-              <div class="quote"><p>And Frenssh she spak ful faire and fetisly,<br/>After the scole of <b>Stratford-atte-Bowe</b>,<br/>For Frenssh of Parys was to hir unknowe.</p>
+              <div class="quote">
+                <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
+                And Frenssh she spak ful faire and fetisly,<br/>After the scole of <b>Stratford-atte-Bowe</b>,<br/>For Frenssh of Parys was to hir unknowe.
                 <span class="cite">Geoffrey Chaucer (<em>The Canterbury Tales</em>; 1475)</span>
               </div>
-              <div class="quote"><p>JOHNSON. 'Yes, Sir.'  It was a delightful day: as we walked to St. Clement's church, I again remarked that <b>Fleet-street</b> was the most cheerful scene in the world.</p>
+              <div class="quote">
+                <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
+                JOHNSON. 'Yes, Sir.'  It was a delightful day: as we walked to St. Clement's church, I again remarked that <b>Fleet-street</b> was the most cheerful scene in the world.
                 <span class="cite">James Boswell (<em>The Life of Samuel Johnson</em>; 1791)</span>
               </div>
-              <div class="quote"><p>...the water was so high that there was boats rowed in <b>King Street</b> and all our yard was drowned</p>
+              <div class="quote">
+                <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
+                ...the water was so high that there was boats rowed in <b>King Street</b> and all our yard was drowned</p>
                 <span class="cite">Samuel Pepys (<em>The Diary of Samuel Pepys</em>; 1669)</span>
               </div>
             </div>
-            <div id="splash_graphic"><p>graphic for perspectives & dimensions <br/>
-              authors<br/>works<br/>places<br/>genres<br/>literary forms<br/>periods</p>
+            <div id="splash_graphic"><img src="assets/images/splash-graphic467w.jpg" width="235" />
             </div>
           </div>
         </div>
 
         <div class="item">
           <div class="splash-image-horiz">
-            <img src="assets/images/splash01a.png" height = 300/>
-              <span class="splash-caption">See where authors lived...<br/>
-              and where they wrote about</span>
+            <img src="assets/images/splash01a.png" height = 250/>
+              <span class="splash-caption">See where authors lived<br/>
+              and the places they wrote about</span>
           </div>
           <div>
-            <img src="assets/images/splash01b.png" height = 300/>
+            <img src="assets/images/splash01b.jpg" height = 200/>
           </div>
         </div>
 
         <div class="item">
-          <div><img src="assets/images/splash02.png"/>
-            <span class="splash-caption">Discover patterns, such as Dickens living
-              mostly in the west and <br/>writing mostly of the east and south</span>
+          <div><img src="assets/images/splash02.png" height = 375/>
+            <span class="splash-caption">Discover patterns, such as Dickens (and  others) living
+              mostly in the west and writing mostly of the east and south</span>
           </div>
         </div>
 
         <div class="item">
           <div class="splash-image-horiz">
-            <img src="assets/images/splash03.png"/>
+            <img src="assets/images/splash03.png" height = 375/>
               <span class="splash-caption">Compare writers to see where they converged
-                and diverged, for example these three poets</span>
+                and diverged,<br/>for example these three poets...</span>
           </div>
         </div>
 
         <div class="item">
           <div class="splash-image-horiz">
             <img src="assets/images/splash04.png"/>
-            <span class="splash-caption">...or all those in this collection who wrote in a given genre</span>
+            <span class="splash-caption">...or all those who wrote in a given genre</span>
           </div>
         </div>
 
         <div class="item">
           <div class="splash-image-horiz">
-            <img src="assets/images/splash05.png"/>
-            <span class="splash-caption">Choose a neighborhood and see who wrote about it and when.<br/>
-              See how a specific place evolved in the literary imagination over centuries.</span>
+            <img src="assets/images/splash05.png" height = 350/>
+            <span class="splash-caption">Select neighborhoods, and particular places
+              within them, to see who wrote about them, when, and
+              how place conceptions have evolved in the literary imagination over time</span>
           </div>
         </div>
 

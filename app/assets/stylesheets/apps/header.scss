@@ -12,7 +12,8 @@
   color: whitesmoke;
   a {
     color: darkseagreen; cursor:pointer;
-    &:hover {color: palegoldenrod;}
+    &:hover {color: palegoldenrod;
+    }
   }
 }
 #header_left {
@@ -21,15 +22,17 @@
     top:17px;
     width:150px;
     height:100%;
+    font-family: Verdana, Geneva, sans-serif;
 }
 
 #header_right {
     position:absolute;
     right:12px;
     top:17px;
-    width:150px;
+    width:200px;
     height:100%;
     text-align: right;
+    font-family: Verdana, Geneva, sans-serif;
 }
 
 #title {
