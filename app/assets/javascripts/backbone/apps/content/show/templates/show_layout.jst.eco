@@ -84,15 +84,15 @@
         <div class="item">
           <div class="splash-image-horiz">
             <img src="assets/images/splash03.png" height = 375/>
-              <span class="splash-caption">Compare writers to see where they converged
-                and diverged,<br/>for example these three poets...</span>
+              <span class="splash-caption">Compare 2 or 3 writers to see where they converged
+                and diverged...</span>
           </div>
         </div>
 
         <div class="item">
           <div class="splash-image-horiz">
             <img src="assets/images/splash04.png"/>
-            <span class="splash-caption">...or all those who wrote in a given genre</span>
+            <span class="splash-caption">...or filter for those who wrote in a given genre or literary form</span>
           </div>
         </div>
 

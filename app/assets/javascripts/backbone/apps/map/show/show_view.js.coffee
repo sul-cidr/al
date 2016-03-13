@@ -124,7 +124,7 @@
       # use if not mapbox
       # @map.addLayer(l_osm);
 
-      @map.addLayer(l_mblight);
+      # @map.addLayer(l_mblight);
 
       @map.setView(@London, 12)
 
