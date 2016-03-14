@@ -41,17 +41,17 @@
     startPlaces: ->
       # console.log 'API.startPlaces from ContentApp'
       AL.PlacesApp.List.Controller.startPlaces(1)
-      ContentApp.Show.Controller.showTab("places")
+      # ContentApp.Show.Controller.showTab("places")
 
     startWorks: ->
-      # console.log 'API.startWorks from ContentApp'
+      console.log 'API.startWorks from ContentApp'
       AL.WorksApp.List.Controller.startWorks()
       ContentApp.Show.Controller.showTab("works")
 
     startSearch: ->
       # console.log 'API.startSearch from ContentApp'
       AL.SearchApp.Show.Controller.startSearch()
-      ContentApp.Show.Controller.showTab("search")
+      # ContentApp.Show.Controller.showTab("search")
 
     showAuthor: (author_id)->
       # console.log 'ContentApp.Router, showAuthor()', author_id

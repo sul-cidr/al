@@ -53,9 +53,9 @@
       @activeTab = tab
       # console.log 'from '+ @currentTab + ' to ' + @activeTab + ' tab'
 
-      if App.request("places:count") < 820
+      if App.request("places:count") < placesCount
         console.log 'the map has been filtered'
-        # App.vent.trigger("map:reset")
+        App.vent.trigger("map:reset")
       # reset map on any tab change
       # App.vent.trigger("map:reset")
 
@@ -73,7 +73,8 @@
         $(".btn").disable(false)
         $("#dimensions_region").removeClass('hidden')
 
-        Backbone.history.navigate('authors', true)
+        AL.AuthorsApp.List.Controller.startAuthors()
+        # Backbone.history.navigate('authors', true)
         @route = "authors"
         $("#authors_tab").addClass("active")
         $("#places_region").hide()
@@ -88,9 +89,8 @@
         # App.vent.trigger("map:reset")
         $("#dimensions_region").addClass('hidden')
 
-        # if $("#places_region").html() == ''
-        Backbone.history.navigate('places', true)
-          # AL.PlacesApp.List.Controller.startPlaces()
+        AL.PlacesApp.List.Controller.startPlaces(1)
+        # Backbone.history.navigate('places', true)
         @route = "places"
         $("#places_tab").addClass("active")
         $("#authors_region").hide()
@@ -104,12 +104,8 @@
         $(".btn").disable(false)
         $("#dimensions_region").removeClass('hidden')
 
-        # if $("#works_region").html() == ''
-        Backbone.history.navigate('works', true)
-        #   AL.WorksApp.List.Controller.startWorks()
-
-        # if $("#one_place").length == 1
-
+        AL.WorksApp.List.Controller.startWorks()
+        # Backbone.history.navigate('works', true)
         @route = "works"
         $("#works_tab").addClass("active")
         $("#authors_region").hide()
@@ -125,8 +121,8 @@
         # console.log 'Show.Controller showTab(search)'
         $("#dimensions_region").addClass('hidden')
 
-        # if $("#search_region").html() == ''
-        Backbone.history.navigate('search', true)
+        AL.SearchApp.Show.Controller.startSearch()
+        # Backbone.history.navigate('search', true)
 
         @route = "search"
         $("#search_tab").addClass("active")

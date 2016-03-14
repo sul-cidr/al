@@ -24,7 +24,7 @@
         @tab = e
       else
         @tab = $(e.currentTarget).context.attributes.value.value
-        # console.log 'content.showTab', @tab
+        console.log 'content.showTab', @tab
         $(e.currentTarget).addClass("active")
       window.activeTab = @tab
       Show.Controller.showTab(@tab)

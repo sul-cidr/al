@@ -240,8 +240,7 @@
           @authlabel = author.get("label")
       App.request "place:entities", params, (places) =>
         @numPlaces = places.models.length
-        console.log @numPlaces
-
+        window.numPlaces = @numPlaces
         App.reqres.setHandler "places:count", ->
           return @numPlaces
 
@@ -365,9 +364,8 @@
           if $("#leg_"+params['author_id']).length == 0
             @makeLegend(params['author_id'], @mincolor)
 
-
         # TODO: stop using hardcoded total
-        if @numPlaces < 770
+        if @numPlaces < 820
           @map.fitBounds(@places.getBounds())
         else
           @map.setView(@London, 12)
