@@ -239,7 +239,10 @@
           @authlabel = author.get("label")
       App.request "place:entities", params, (places) =>
         @numPlaces = places.models.length
-        # console.log @numPlaces + ' place models rendered' # e.g.', places.models[0]
+
+        App.reqres.setHandler "places:count", ->
+          return @numPlaces
+
         @features = []
         max = Math.max.apply(Math, places.map((o) ->
           o.attributes.count ))

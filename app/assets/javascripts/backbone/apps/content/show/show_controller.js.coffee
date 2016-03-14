@@ -53,8 +53,10 @@
       @activeTab = tab
       # console.log 'from '+ @currentTab + ' to ' + @activeTab + ' tab'
 
+      if App.request("places:count") < 820
+        console.log 'the map has been filtered'
       # reset map on any tab change
-      App.vent.trigger("map:reset")
+      # App.vent.trigger("map:reset")
 
       $("#legend_list").html('')
       $("#legend_compare").addClass('hidden')

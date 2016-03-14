@@ -13,7 +13,7 @@
         @showNavmap(borough)
         # if areas haven't loaded, pause
         if window.location.href.substr(-7) == "#places" && typeof activeAreas == "undefined"
-          console.log 'pausing'
+          # console.log 'pausing'
           setTimeout (->
             AL.PlacesApp.List.Controller.listAreas(borough)
           ), 4500
@@ -27,7 +27,7 @@
         boroughHash[borough]+'</span')
       hoodArray = boroughHoods[borough]
 
-      console.log 'url in listAreas', window.location.href
+      # console.log 'url in listAreas', window.location.href
 
       window.areas = App.reqres.getHandler("areas:active")()
       window.filteredAreas = areas.filter((area) ->

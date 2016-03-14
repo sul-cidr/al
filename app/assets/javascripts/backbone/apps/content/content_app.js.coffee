@@ -41,10 +41,12 @@
     startPlaces: ->
       # console.log 'API.startPlaces from ContentApp'
       AL.PlacesApp.List.Controller.startPlaces(1)
+      ContentApp.Show.Controller.showTab("places")
 
     startWorks: ->
       # console.log 'API.startWorks from ContentApp'
       AL.WorksApp.List.Controller.startWorks()
+      ContentApp.Show.Controller.showTab("works")
 
     startSearch: ->
       # console.log 'API.startSearch from ContentApp'
