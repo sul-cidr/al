@@ -240,6 +240,7 @@
           @authlabel = author.get("label")
       App.request "place:entities", params, (places) =>
         @numPlaces = places.models.length
+        console.log @numPlaces
 
         App.reqres.setHandler "places:count", ->
           return @numPlaces
