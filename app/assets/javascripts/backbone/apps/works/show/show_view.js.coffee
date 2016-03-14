@@ -15,7 +15,9 @@
 
     goHome: ->
       # console.log 'supposed to go home'
-      Backbone.history.navigate("works", true)
+      AL.WorksApp.List.Controller.startWorks()
+      Backbone.history.navigate("works")
+      # Backbone.history.navigate("works", true)
       App.vent.trigger("map:reset")
 
   class Show.Nav extends App.Views.ItemView
@@ -37,7 +39,7 @@
       prid = $(e.currentTarget).context.attributes.val.value
       # workid = App.request("work:model").get("work_id")
       App.vent.trigger 'placeref:click', {'id': prid}
-      
+
       # takes a params object now
       # App.vent.trigger('placeref:click', prid)
 

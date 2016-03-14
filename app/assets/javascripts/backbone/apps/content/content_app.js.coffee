@@ -39,9 +39,9 @@
       AL.AuthorsApp.List.Controller.startAuthors()
 
     startPlaces: ->
-      # console.log 'API.startPlaces from ContentApp'
+      console.log 'API.startPlaces from ContentApp'
       AL.PlacesApp.List.Controller.startPlaces(1)
-      # ContentApp.Show.Controller.showTab("places")
+      ContentApp.Show.Controller.showTab("places")
 
     startWorks: ->
       console.log 'API.startWorks from ContentApp'

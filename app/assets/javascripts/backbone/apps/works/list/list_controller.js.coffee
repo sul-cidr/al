@@ -3,7 +3,7 @@
   List.Controller =
 
     startWorks: ->
-      # App.vent.trigger "map:reset"
+      console.log 'startWorks()'
       # ensure category buttons are not disabled
       $(".btn").disable(false)
       # get, render works content
