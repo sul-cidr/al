@@ -31,7 +31,7 @@
   API =
     startContent: ->
       # console.log ' in AL.ContentApp.API.startContent()'
-      Backbone.history.navigate("authors", true)
+      # Backbone.history.navigate("authors", true)
       AL.ContentApp.Show.Controller.startContent()
 
     startAuthors: ->

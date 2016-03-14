@@ -16,7 +16,7 @@
       places.fetch
         data: filter
         success: ->
-          console.log 'filtered places,', places
+          # console.log 'filtered places,', places
           cb places
 
     getPlaceEntity: (pid, cb) ->
@@ -29,9 +29,9 @@
 
 
   App.reqres.setHandler "place:entities", (filter={}, cb) ->
-    console.log 'API.getPlaceEntities filter', filter
+    # console.log 'API.getPlaceEntities filter', filter
     API.getPlaceEntities filter, cb
 
   App.reqres.setHandler "place:entity", (pid, cb) ->
-    console.log 'API.getPlaceEntity pid', pid
+    # console.log 'API.getPlaceEntity pid', pid
     API.getPlaceEntity pid, cb

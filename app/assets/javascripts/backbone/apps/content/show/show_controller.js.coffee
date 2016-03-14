@@ -133,7 +133,7 @@
         $("#search_region").show()
         @currentTab = "search"
 
-      Backbone.history.navigate(@route)
+      # Backbone.history.navigate(@route)
       # Backbone.history.navigate(@route, true)
 
     # populate dropdowns from db

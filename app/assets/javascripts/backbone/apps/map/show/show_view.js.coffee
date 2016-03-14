@@ -247,7 +247,7 @@
           @mincolor = 0
         else
           @mincolor = Math.min.apply(Math, @legendColors)
-        console.log 'color set from @mincolor was', @mincolor
+        # console.log 'color set from @mincolor was', @mincolor
         $.each places.models, (i, pl) =>
           # TODO: get max of count()
           attribs = pl.attributes.place
@@ -338,8 +338,8 @@
         if params['author_id']
           if !($.isArray(params['author_id']))
             @key = if params['key'] then params['key'] else 'auth_'+params['author_id']
-            console.log 'key', @key
-            console.log '@legendColors', @legendColors
+            # console.log 'key', @key
+            # console.log '@legendColors', @legendColors
             @keyPlaces[@key] = {}
             @keyPlaces[@key]['markers'] = @places
             @keyPlaces[@key]['color'] = Math.min.apply(Math,@legendColors);
@@ -347,7 +347,7 @@
             # remove this color set from available
             idx=@legendColors.indexOf(@keyPlaces[@key].color)
             @legendColors.splice(idx,1)
-            console.log '@legendColors now', @legendColors
+            # console.log '@legendColors now', @legendColors
           else
             # this is a filtered array of authors
             _.each params['author_id'], (a) =>
