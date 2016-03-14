@@ -51,6 +51,7 @@
     startSearch: ->
       # console.log 'API.startSearch from ContentApp'
       AL.SearchApp.Show.Controller.startSearch()
+      ContentApp.Show.Controller.showTab("search")
 
     showAuthor: (author_id)->
       # console.log 'ContentApp.Router, showAuthor()', author_id

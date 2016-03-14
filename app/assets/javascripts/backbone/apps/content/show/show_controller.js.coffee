@@ -55,6 +55,7 @@
 
       if App.request("places:count") < 820
         console.log 'the map has been filtered'
+        # App.vent.trigger("map:reset")
       # reset map on any tab change
       # App.vent.trigger("map:reset")
 

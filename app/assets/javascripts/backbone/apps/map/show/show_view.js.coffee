@@ -29,6 +29,7 @@
       @filteredFeatures = []
       @keyPlaces = {}
       @numPlaces = 0
+      window.placesCount = 820
       @legendColors = [0,1,2]
       window.colors = @legendColors
       @filteredAuthors = []
