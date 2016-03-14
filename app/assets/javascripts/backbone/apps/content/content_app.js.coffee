@@ -54,11 +54,11 @@
       # ContentApp.Show.Controller.showTab("search")
 
     showAuthor: (author_id)->
-      # console.log 'ContentApp.Router, showAuthor()', author_id
+      console.log 'ContentApp.Router, showAuthor()', author_id
       # App.vent.trigger "map:reset"
       # get author model from id, forward to showAuthor()
       App.request "author:entity", author_id, (author) =>
-        # console.log 'author', author
+        console.log 'API.showAuthor', author
         AL.AuthorsApp.Show.Controller.showAuthor(author)
         #
         App.reqres.setHandler "author:model", ->

@@ -1,5 +1,5 @@
 <div id="header">
-  <div id="header_left"><a id="home_link" class="hidden">Home</a></div>
+  <div id="header_left"><a id="home_link">Home</a></div>
   <!-- <div id="header_left"><i class="fa fa-home fa-lg"></i></div> -->
   <div id="title">
     <h1>
