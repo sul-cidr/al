@@ -35,6 +35,8 @@
           # console.log 'areaLayout shown'
           @showTitle area
           @showPlaceContent area
+          
+          ga('send', 'pageview', area.get("prefname"));
 
           # for map
           App.vent.trigger "place:focus", area

@@ -274,6 +274,7 @@
             })
 
             feature.on('click', (e) ->
+              ga('send', 'event', "select", "place", pname)
               html = ''
               @filter = params
               # add this placeid
@@ -310,6 +311,7 @@
             })
 
             feature.on('click', (e) ->
+              ga('send', 'event', "select", "place", pname)
               html = ''
               @filter = params
               # add this placeid

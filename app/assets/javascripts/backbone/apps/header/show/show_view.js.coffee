@@ -14,17 +14,21 @@
       # "click #map_chooser li": "loadMap"
 
     loadAbout: (e)->
+      ga('send', 'event', "banner", "click", "about")
       Show.Controller.loadAbout(e)
 
     openSplash: (e)->
+      ga('send', 'event', "banner", "click", "introduction")
       AL.ContentApp.Show.Controller.openSplash()
 
     resetApp: ->
+      ga('send', 'event', "banner", "click", "home")
       Backbone.history.navigate("/authors")
       window.location.reload()
 
     loadMap: (e) ->
       id = e.target.attributes.val.value
+      ga('send', 'event', "select", "map", id)
       App.vent.trigger('map:swap', id);
 
   class Show.ModalView extends App.Views.ItemView

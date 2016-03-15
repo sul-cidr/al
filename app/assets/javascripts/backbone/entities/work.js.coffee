@@ -14,11 +14,16 @@
   works = new Entities.WorkCollection()
 
   API =
+    # getWorkEntity: (workid, cb) ->
+    #   works.fetch
+    #     success: ->
+    #       @work = works._byId[workid]
+    #       cb @work
+
     getWorkEntity: (workid, cb) ->
-      # console.log 'works, from getWorkEntity', works
-      # window.works = works
       work = works._byId[workid]
       cb work
+    #
 
     getWorkEntities: (cb) ->
       works.fetch

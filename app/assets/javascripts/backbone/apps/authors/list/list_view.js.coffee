@@ -23,6 +23,9 @@
       console.log $("#legend_list li")
       selected = parseInt($(e.currentTarget).context.value)
       key = 'auth_'+selected
+
+      ga('send', 'event', "filter", "compare", key)
+
       if @checked.indexOf(selected) < 0 # not selected
         @checked.push(selected)
         checkedCount = @checked.length

@@ -3,7 +3,6 @@
   Show.Controller =
 
     showAuthor: (author) ->
-      # console.log "showAuthor", author.get('surname')
       # hide dimension dropdowns
       # $("#dimensions_region").addClass("hidden")
 
@@ -13,6 +12,8 @@
       prefname = author.get("prefname")
       surname = author.get("surname")
       @authorLayout = @getAuthorLayout author
+
+      ga('send', 'pageview', author.get("label"));
 
       @authorLayout.on "show", =>
         @showTitle author

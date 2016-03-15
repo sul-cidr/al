@@ -13,6 +13,8 @@
       @workLayout = @getWorkLayout work
       # console.log '@workLayout', @workLayout
 
+      ga('send', 'pageview', 'work_'+title);
+
       @workLayout.on "show", =>
         # $("#dimensions_region").addClass('hidden')
         # disable buttons, don't hide

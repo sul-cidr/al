@@ -48,6 +48,7 @@
 
     # called from various places to manage tab state
     showTab: (tab)->
+      ga('send', 'pageview', tab)
       # display home link in header and leave it there
       $("#home_link").removeClass("hidden")
       @activeTab = tab

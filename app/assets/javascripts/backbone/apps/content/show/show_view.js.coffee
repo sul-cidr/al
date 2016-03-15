@@ -52,6 +52,8 @@
       catid = parseInt($(e.currentTarget).context.attributes.val.value)
       # console.log 'filterStuff() ' + tab, dim, catid
 
+      ga('send', 'event', "filter", "dropdown", tab+'_'+dim+'_'+catid)
+
       # display category header
       seltext =
         '<span class="strong">'+
