@@ -24,7 +24,7 @@
           '<span id="crumb_author" class="crumb-left" val="'+authid+'">:: '+surname+
           ' :: Biography'+
           '</span>')
-        # $("#spin_authors").addClass('hidden')
+        $("#spin_authors").addClass('hidden')
 
       App.authorsRegion.show @authorLayout
 
