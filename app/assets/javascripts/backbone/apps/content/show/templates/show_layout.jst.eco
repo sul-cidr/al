@@ -65,7 +65,7 @@
 
         <div class="item">
           <div class="splash-image-horiz">
-            <img src="assets/images/splash01a.png" height = 250/>
+            <img src="assets/images/splash01a.jpg" height = 250/>
               <span class="splash-caption">See where authors lived<br/>
               and the places they wrote about</span>
           </div>
@@ -75,7 +75,7 @@
         </div>
 
         <div class="item">
-          <div><img src="assets/images/splash02.png" height = 375/>
+          <div><img src="assets/images/splash02.jpg" height = 375/>
             <span class="splash-caption">Discover patterns, such as Dickens (and  others) living
               mostly in the west and writing mostly of the east and south</span>
           </div>
@@ -83,7 +83,7 @@
 
         <div class="item">
           <div class="splash-image-horiz">
-            <img src="assets/images/splash03.png" height = 375/>
+            <img src="assets/images/splash03.jpg" height = 375/>
               <span class="splash-caption">Compare 2 or 3 writers to see where they converged
                 and diverged...</span>
           </div>
@@ -98,7 +98,7 @@
 
         <div class="item">
           <div class="splash-image-horiz">
-            <img src="assets/images/splash05.png" height = 350/>
+            <img src="assets/images/splash05.png" height=350/>
             <span class="splash-caption">Select neighborhoods, and particular places
               within them, to see who wrote about them, when, and
               how place conceptions have evolved in the literary imagination over time</span>
@@ -107,15 +107,15 @@
 
         <div class="item">
           <div class="splash-image-horiz">
-            <!-- <img src="assets/images/splash06.png"/> -->
-            <span class="splash-caption"></span>
+            <img src="assets/images/splash06.jpg"  style="vertical-align:top;" height=450/>
+            <span class="splash-caption" style="width:220px;">Expats and English: You can compare authors with the checkboxes.  Here, you can see how Victorian London largely differed for the expat Mark Twain and the English George Eliot.  They did share, though, a few interesting points in common: the British Museum, Chelsea, and Hyde Park.</span>
           </div>
         </div>
 
         <div class="item">
           <div class="splash-image-horiz">
-            <!-- <img src="assets/images/splash07.png"/> -->
-            <span class="splash-caption"></span>
+            <img src="assets/images/splash07.jpg" height=380/>
+            <span class="splash-caption">The London modernist community is famously associated with Bloomsbury, but here we see centers of modernist life in Kensington and Chelsea.  Modernist works are actually concentrated <em>away</em> from Bloomsbury, in the City, the West End, Piccadilly, and Hyde Park.</span>
           </div>
         </div>
 

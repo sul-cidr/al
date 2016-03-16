@@ -15,7 +15,7 @@
   </div>
   <div class="dropdown child">
    <button id="b_comm" class="btn btn-primary dropdown-toggle" type="button"
-    data-toggle="dropdown">Community
+    data-toggle="dropdown">Period
    <span class="caret"></span></button>
    <ul id="ul_community" class="dropdown-menu">
    </ul>
