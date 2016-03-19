@@ -41,6 +41,9 @@
       @mapView.renderPlaces({clear:true})
       @mapView.clearKeyPlaces()
 
+    clearAuthors: ->
+      @mapView.clearAuthors
+      
     zoomTo: (what, area) ->
       @mapView.zoomTo what, area
 

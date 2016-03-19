@@ -125,7 +125,7 @@
       # use if not mapbox
       # @map.addLayer(l_osm);
 
-      @map.addLayer(l_mblight);
+      # @map.addLayer(l_mblight);
 
       @map.setView(@London, 12)
 
@@ -162,7 +162,7 @@
         if $("#selected_cat_authors").html() == ""
           @renderPlaces({clear:true})
         else
-          console.clear()
+          # console.clear()
           console.log 'need to restore filter for', @filteredAuthors
           @renderPlaces({clear:true, author_id:@filteredAuthors})
 
@@ -170,6 +170,12 @@
       # called by map:reset --> resetMap()
       @keyPlaces = {}
       @legendColors = [0,1,2]
+
+    clearAuthors: ->
+      # called by map:reset --> resetMap()
+      @keyPlaces = {}
+      @legendColors = [0,1,2]
+      $("#legend_list li").remove()
 
     getColors: (prtype, legend=false, mincolor)->
       # console.log prtype, legend, mincolor
@@ -233,6 +239,7 @@
       if typeof @places != "undefined"
         if params && params['clear'] == true
           @places.clearLayers()
+          @clearAuthors()
           # @map.setView(@London, 12)
       if params && params['author_id'] && !($.isArray(params['author_id']))
         # console.log $.isArray(params['author_id'])
@@ -343,6 +350,7 @@
         # if not, render all
         if params['author_id']
           if !($.isArray(params['author_id']))
+            console.log('checked authors',checked)
             @key = if params['key'] then params['key'] else 'auth_'+params['author_id']
             # console.log 'key', @key
             # console.log '@legendColors', @legendColors
@@ -431,6 +439,7 @@
           if @marker._latlng != undefined
             # it's a point
             latlng = @marker._latlng
+            console.log latlng
             # latlng = @marker._popup._source._latlng
           else
             # it's a linestring, zoom to its centroid
@@ -440,7 +449,8 @@
             'place_id': @placeid
             'author_id': params['author_id']
           })
-          map.setView(latlng,15,{animate:true})
+          map.setView(latlng,15)
+          # map.setView(latlng,15,{animate:true})
 
     # triggered from passages, area list
     highlightFeature: (prid) ->

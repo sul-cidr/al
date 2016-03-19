@@ -3,9 +3,18 @@
   Show.Controller =
 
     showAuthor: (author) ->
-      # hide dimension dropdowns
-      # $("#dimensions_region").addClass("hidden")
-
+      # if any authors are checked, clear them throughout
+      # if !(typeof(keyplaces)=="undefined") && !($.isEmptyObject(keyplaces))
+      #   console.log 'keyplaces includes:', keyplaces
+      #   # App.vent.trigger "map:clearauthors"
+        # $("#legend_list li").remove()
+        # keyplaces = {}
+        # checked = []
+      if App.request("authors:checked").length > 0
+        console.log 'authors:checked',App.request("authors:checked")
+        # $("#legend_list li").remove()
+        # window.keyplaces = {}
+        # App.vent.trigger "map:clearauthors"
       # disable dimension dropdowns
       $(".btn").addClass('disabled')
       authid = author.get("author_id")

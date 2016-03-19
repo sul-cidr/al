@@ -90,11 +90,16 @@
       $("#place_passages_region").fadeOut("slow")
       MapApp.Show.Controller.resetMap()
 
+    clearAuthors: ->
+      MapApp.Show.Controller.clearAuthors()
 
   # TODO: part of refactoring for areas - single area:show
 
   App.vent.on "map:reset", (state) ->
     API.resetMap(state)
+
+  App.vent.on "map:clearauthors", ->
+    API.clearAuthors()
 
   App.vent.on "placeref:click", (prid) ->
     # console.log 'map_app heard highlight id#', iid

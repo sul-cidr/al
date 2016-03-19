@@ -20,16 +20,18 @@
     # or removePlaces(key)
     checkedAuthors: (e) ->
       # console.clear()
-      console.log $("#legend_list li")
+      # console.log $("#legend_list li")
       selected = parseInt($(e.currentTarget).context.value)
       key = 'auth_'+selected
-
+      # console.log 'checked author context', $(e.currentTarget).context
       ga('send', 'event', "filter", "compare", key)
 
       if @checked.indexOf(selected) < 0 # not selected
         @checked.push(selected)
         checkedCount = @checked.length
         window.checked = @checked
+        App.reqres.setHandler "authors:checked", ->
+          return @checked
         console.log 'added', selected + ', checked now', @checked
         if $( ".author input:checked" ).length == 3
           $( ".author input:not(:checked)" ).attr('disabled', 'disabled');
