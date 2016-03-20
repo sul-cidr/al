@@ -76,6 +76,18 @@
 // .ui-dialog-titlebar-close {
 //   float:right;
 // }
+
+#image_modal {
+  overflow-x: hidden;
+}
+.ui-dialog-titlebar-close {
+  background-image: url('images/close14a.png');
+  background-repeat: no-repeat;
+  background-color: #fff;
+}
+
+button.ui-dialog-titlebar-close:focus { outline:none !important }
+
 .ui-dialog .ui-dialog-content {
   padding:0 !important;
 }
