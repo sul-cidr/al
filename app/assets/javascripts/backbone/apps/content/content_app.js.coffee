@@ -39,12 +39,12 @@
       AL.AuthorsApp.List.Controller.startAuthors()
 
     startPlaces: ->
-      console.log 'API.startPlaces from ContentApp'
+      # console.log 'API.startPlaces from ContentApp'
       AL.PlacesApp.List.Controller.startPlaces(1)
       ContentApp.Show.Controller.showTab("places")
 
     startWorks: ->
-      console.log 'API.startWorks from ContentApp'
+      # console.log 'API.startWorks from ContentApp'
       AL.WorksApp.List.Controller.startWorks()
       ContentApp.Show.Controller.showTab("works")
 
@@ -54,11 +54,11 @@
       # ContentApp.Show.Controller.showTab("search")
 
     showAuthor: (author_id)->
-      console.log 'ContentApp.Router, showAuthor()', author_id
+      # console.log 'ContentApp.Router, showAuthor()', author_id
       # App.vent.trigger "map:reset"
       # get author model from id, forward to showAuthor()
       App.request "author:entity", author_id, (author) =>
-        console.log 'API.showAuthor', author
+        # console.log 'API.showAuthor', author
         AL.AuthorsApp.Show.Controller.showAuthor(author)
         #
         App.reqres.setHandler "author:model", ->

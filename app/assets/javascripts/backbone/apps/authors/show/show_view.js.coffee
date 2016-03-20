@@ -14,15 +14,17 @@
     tagName: "span"
     events: {
       'click img': 'popImage'
-      # 'click input': 'aggAuthors'
     }
 
     popImage: ->
+      if $("#image_modal").hasClass('ui-dialog-content')
+        $("#image_modal").dialog("close")
       $("#unmapped_tag").remove()
       prid = this.model.get('placeref_id')
       iid = this.model.get('id')
       label = this.model.get('label')
       fn = "assets/images/mapped/full/" + this.model.get('filename')
+      console.log 'img:',iid,prid,label,fn
       # send id to create map popup
       App.vent.trigger 'placeref:click', {'id': prid}
       # photo border
@@ -31,19 +33,18 @@
       $("#image_modal").html("<img src='"+fn+"' style='width:300px;'/>")
       # open dialog
       # $(".ui-dialog-titlebar").prepend('<p>(not georeferenced yet)</p>')
-      @editDialog = $("#image_modal").dialog(
+      @imgDialog = $("#image_modal").dialog(
         {
           modal: false,
           title: label,
-          # title: label,
           show: { effect: "fadeIn", duration: 500 },
           # position: { my: "left+370 bottom-120", at: "left bottom", of: window},
           close: (event, ui) ->
             map.closePopup()
             $("#imagelist .image img").removeClass('photo-pop');
         })
-      # TODO: position needs calculation after image is loaded
-      @editDialog.dialog('option', 'position',  { my: "left+370 top+70", at: "left top", of: window})
+      # TODO: position needs calculation after image is loaded?
+      @imgDialog.dialog('option', 'position',  { my: "left+370 top+70", at: "left top", of: window})
 
   class Show.ImageList extends App.Views.CompositeView
     template: "authors/show/templates/_images"

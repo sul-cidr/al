@@ -112,7 +112,7 @@ Image.create([
   {"image_id":407,"filename":"thomas1.png","author_id":10399,"placeref_id":30215,"label":"Wentworth Mansions","caption":"","geom_wkt":"POINT(-0.1712 51.4872)"},
   {"image_id":356,"filename":"Londonnew0025.JPG","author_id":10399,"placeref_id":30216,"label":"The Cross Keyes","caption":"","geom_wkt":"POINT(-0.2133 51.5535)"},
   {"image_id":313,"filename":"frenshouse.jpg","author_id":10399,"placeref_id":30213,"label":"The French House","caption":"","geom_wkt":"POINT(-0.1328 51.5141)"},
-  {"image_id":255,"filename":"amishouse.png","author_id":10401,"placeref_id":30218,"label":"194 Regent's Park Rd","caption":"","geom_wkt":"POINT(-0.1985 51.5958)"},
+  {"image_id":255,"filename":"amishouse.png","author_id":10401,"placeref_id":30221,"label":"194 Regent's Park Rd","caption":"","geom_wkt":"POINT(-0.1985 51.5958)"},
   {"image_id":256,"filename":"amispub.png","author_id":10401,"placeref_id":30220,"label":"The Queen's Head","caption":"","geom_wkt":"POINT(-0.0998 51.5368)"},
   {"image_id":371,"filename":"orwelhsehamp.jpg","author_id":10403,"placeref_id":30225,"label":"77 Parliament Hill","caption":"","geom_wkt":"POINT(-0.1616 51.5588)"},
   {"image_id":374,"filename":"orwell portobellord.jpg","author_id":10403,"placeref_id":30222,"label":"22 Portobello Rd","caption":"","geom_wkt":"POINT(-0.2011 51.5123)"},

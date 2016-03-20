@@ -163,7 +163,7 @@
           @renderPlaces({clear:true})
         else
           # console.clear()
-          console.log 'need to restore filter for', @filteredAuthors
+          # console.log 'need to restore filter for', @filteredAuthors
           @renderPlaces({clear:true, author_id:@filteredAuthors})
 
     clearKeyPlaces: ->
@@ -235,10 +235,10 @@
 
     renderPlaces: (params) ->
       # params: author_id=[], work_id=[], clear=[true|false]
-      console.log 'renderPlaces', params
+      # console.log 'renderPlaces', params
       if typeof @places != "undefined"
         if params && params['clear'] == true
-          console.log '@places',@places
+          # console.log '@places',@places
           map.eachLayer (layer) ->
             map.removeLayer layer
           # @places.clearLayers()
@@ -427,10 +427,10 @@
     # onclick placeref in text
     # called by Show.Controller on trigger 'placeref:click'
     clickPlaceref: (params) ->
-      # console.log 'clickPlaceref params', params
+      console.log 'clickPlaceref params', params
       $("#imagelist .image img[prid="+params['id']+"]").addClass('photo-pop')
       App.request "placeref:entities", params, (placerefs) =>
-        # console.log 'placerefs.models.length',
+        console.log 'placeref models', placerefs
         if placerefs.models.length == 0
           # just showing image
           $(".ui-dialog-titlebar").prepend('<span id="unmapped_tag">(not georeferenced yet)</span>')
@@ -441,8 +441,7 @@
           if @marker._latlng != undefined
             # it's a point
             latlng = @marker._latlng
-            console.log latlng
-            # latlng = @marker._popup._source._latlng
+            # console.log latlng
           else
             # it's a linestring, zoom to its centroid
             latlng = @marker.getBounds().getCenter()
