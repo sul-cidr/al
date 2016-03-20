@@ -36,14 +36,14 @@
       @mapView.removePlaces(params)
 
     resetMap: ->
-      # console.log 'resetMap() fired'
+      console.log 'resetMap() fired'
       $("#gallery_region").addClass("hidden")
       @mapView.renderPlaces({clear:true})
       @mapView.clearKeyPlaces()
 
     clearAuthors: ->
-      @mapView.clearAuthors
-      
+      @mapView.clearKeyPlaces()
+
     zoomTo: (what, area) ->
       @mapView.zoomTo what, area
 

@@ -238,7 +238,10 @@
       console.log 'renderPlaces', params
       if typeof @places != "undefined"
         if params && params['clear'] == true
-          @places.clearLayers()
+          console.log '@places',@places
+          map.eachLayer (layer) ->
+            map.removeLayer layer
+          # @places.clearLayers()
           @clearAuthors()
           # @map.setView(@London, 12)
       if params && params['author_id'] && !($.isArray(params['author_id']))
@@ -350,7 +353,6 @@
         # if not, render all
         if params['author_id']
           if !($.isArray(params['author_id']))
-            console.log('checked authors',checked)
             @key = if params['key'] then params['key'] else 'auth_'+params['author_id']
             # console.log 'key', @key
             # console.log '@legendColors', @legendColors
