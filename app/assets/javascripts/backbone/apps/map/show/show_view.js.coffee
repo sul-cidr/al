@@ -172,7 +172,7 @@
       @legendColors = [0,1,2]
 
     clearAuthors: ->
-      console.log 'clearAuthors()'
+      # console.log 'clearAuthors()'
       # called by map:reset --> resetMap()
       @keyPlaces = {}
       @legendColors = [0,1,2]
@@ -237,14 +237,14 @@
 
     renderPlaces: (params) ->
       # params: author_id=[], work_id=[], clear=[true|false]
-      console.log 'renderPlaces', params
+      # console.log 'renderPlaces', params
       # console.log '@keyPlaces on start',@keyPlaces
       if typeof @places != "undefined"
         if params && params['clear'] == true
           if typeof(@keyPlaces) != "undefined" && Object.keys(@keyPlaces).length > 0
             # console.log '@keyPlaces',Object.keys(@keyPlaces).length, @keyPlaces
             $.each @keyPlaces, (k,v) ->
-              console.log 'removing', v.markers._leaflet_id
+              # console.log 'removing', v.markers._leaflet_id
               map.removeLayer(map._layers[v.markers._leaflet_id])
           @places.clearLayers()
           @clearAuthors()
@@ -252,7 +252,7 @@
       if params && params['author_id'] && !($.isArray(params['author_id']))
         App.request "author:entity", params['author_id'], (author) =>
           @authlabel = author.get("label")
-          console.log 'authlabel', @authlabel
+          # console.log 'authlabel', @authlabel
       App.request "place:entities", params, (places) =>
         @numPlaces = places.models.length
         window.numPlaces = @numPlaces
@@ -377,7 +377,7 @@
             # console.log '@filteredAuthors', @filteredAuthors
 
         # populate legend
-        console.log 'authlabel', @authlabel
+        # console.log 'authlabel', @authlabel
         if Object.keys(@keyPlaces).length > 0
           if $("#leg_"+params['author_id']).length == 0
             @makeLegend(params['author_id'], @mincolor)
