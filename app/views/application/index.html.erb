@@ -10,6 +10,21 @@
 <%= javascript_tag do %>
 	$(function() {
 		AL.start();
+
     setInterval('cycleQuotes()', 5500 );
+
+    $('#myCarousel').on('slide.bs.carousel', function (e) {
+      var active = $(e.target).find('.carousel-inner > .item.active');
+      var from = active.index();
+      var next = $(e.relatedTarget);
+      var to = next.index();
+      if(to == 1) {
+        $("#splash_modal").removeClass('bkgd-img')
+      } else if (to == 0) {
+        $("#splash_modal").addClass('bkgd-img')
+      }
+      console.log(from + ' => ' + to);
+    })
+
 	});
 <% end %>

@@ -8,10 +8,10 @@
 </div>
 <div id="spin_authors" class="spinner-loader"></div>
 <div id="spin_district" class="spinner-loader hidden">finding district...</div>
-<div id="splash_modal" class="hidden">
+<div id="splash_modal" class="hidden bkgd-img">
   <div class="container">
     <div id="splash_header">
-      <h3>An Introduction to Authorial London</h3>
+      <h3>Introduction</h3>
     </div>
     <div id="myCarousel" class="carousel carousel-fade" data-ride="carousel" data-interval="false">
       <!-- Indicators -->
@@ -29,37 +29,49 @@
 
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
-        <div class="item active">
-          <div id="splash_top_content">
-              <div id="splash_blurb"><img src="#" alt="video walkthrough (soon)" align="right" width="160" height="120"/><p>The Authorial London project is compiling and mapping references to London places found in the biographies and works of writers who have lived there.</p><p>The site allows exploring and analyzing them from literary, geographical, and biographical perspectives, on dimensions of genre, form, literary community, social standing, and neighborhood.</p></div>
-            <!-- </div> -->
-            <div id="splash_top_right"><p>Explore <span class="bignum">2795</span> references to<br/><span class="bignum">823</span> London places<br/> in <span class="bignum">1591</span> passages from the<br/> biographies of <span class="bignum">47</span> authors<br> and <span class="bignum">193</span> of their works,<br/> written between the<br/><span class="bignum">14th</span> and <span class="bignum">20th</span> centuries</p></div>
+        <div id="item_splash" class="item active">
+          <div id="splash_left">
+              <div id="splash_blurb">
+                <img src="#" alt="video walkthrough (soon)" align="right" width="160" height="120"/>
+                <p>The Authorial London project is compiling and mapping references to London places found in the biographies and works of writers who have lived there.</p>
+                <p>The site allows exploring and analyzing them from literary, geographical, and biographical perspectives, on dimensions of genre, form, period, social standing, and neighborhood.</p>
+                <p>Donec eu nunc diam. Nunc libero nibh, vulputate sit amet felis eu, varius pulvinar dolor. Vivamus sit amet libero at dolor euismod congue.</p>
+              </div>
+              <div id="cycler">
+                <div class="quote active">
+                  <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
+                  The age is running mad after innovation; all the business of the world is to be done in a new way; men are to be hanged in a new way; <b>Tyburn</b> itself is not safe from the fury of innovation.
+                  <span class="cite">James Boswell (<em>The Life of Samuel Johnson</em>; 1791)</span>
+                </div>
+                <div class="quote">
+                  <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
+                  And Frenssh she spak ful faire and fetisly,<br/>After the scole of <b>Stratford-atte-Bowe</b>,<br/>For Frenssh of Parys was to hir unknowe.
+                  <span class="cite">Geoffrey Chaucer (<em>The Canterbury Tales</em>; 1475)</span>
+                </div>
+                <div class="quote">
+                  <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
+                  JOHNSON. 'Yes, Sir.'  It was a delightful day: as we walked to St. Clement's church, I again remarked that <b>Fleet-street</b> was the most cheerful scene in the world.
+                  <span class="cite">James Boswell (<em>The Life of Samuel Johnson</em>; 1791)</span>
+                </div>
+                <div class="quote">
+                  <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
+                  ...the water was so high that there was boats rowed in <b>King Street</b> and all our yard was drowned</p>
+                  <span class="cite">Samuel Pepys (<em>The Diary of Samuel Pepys</em>; 1669)</span>
+                </div>
+              </div>
           </div>
-          <div id="splash_bottom_content">
-            <div id="cycler">
-              <div class="quote active">
-                <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
-                The age is running mad after innovation; all the business of the world is to be done in a new way; men are to be hanged in a new way; <b>Tyburn</b> itself is not safe from the fury of innovation.
-                <span class="cite">James Boswell (<em>The Life of Samuel Johnson</em>; 1791)</span>
-              </div>
-              <div class="quote">
-                <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
-                And Frenssh she spak ful faire and fetisly,<br/>After the scole of <b>Stratford-atte-Bowe</b>,<br/>For Frenssh of Parys was to hir unknowe.
-                <span class="cite">Geoffrey Chaucer (<em>The Canterbury Tales</em>; 1475)</span>
-              </div>
-              <div class="quote">
-                <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
-                JOHNSON. 'Yes, Sir.'  It was a delightful day: as we walked to St. Clement's church, I again remarked that <b>Fleet-street</b> was the most cheerful scene in the world.
-                <span class="cite">James Boswell (<em>The Life of Samuel Johnson</em>; 1791)</span>
-              </div>
-              <div class="quote">
-                <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
-                ...the water was so high that there was boats rowed in <b>King Street</b> and all our yard was drowned</p>
-                <span class="cite">Samuel Pepys (<em>The Diary of Samuel Pepys</em>; 1669)</span>
-              </div>
-            </div>
-            <div id="splash_graphic"><img src="assets/images/splash-graphic467w.jpg" width="235" />
-            </div>
+          <div id="splash_right">
+            <!-- <div id="splash_top_right"> -->
+              <p class="hidden">Explore <span class="bignum">2795</span> references to<br/><span class="bignum">823</span> London places<br/> in <span class="bignum">1591</span> passages from the<br/> biographies of <span class="bignum">47</span> authors<br> and <span class="bignum">193</span> of their works,<br/> written between the<br/><span class="bignum">14th</span> and <span class="bignum">20th</span> centuries</p>
+            <!-- </div> -->
+            <!-- <div id="splash_graphic"><img src="assets/images/splash-graphic467w.jpg" width="235" /></div> -->
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="splash-image-horiz">
+            <img src="assets/images/splash-graphic460h.jpg" height=400 style="display:block; margin: 0 auto;"/>
+            <span class="splash-caption"></span>
           </div>
         </div>
 
@@ -91,8 +103,15 @@
 
         <div class="item">
           <div class="splash-image-horiz">
+            <img src="assets/images/splash06.jpg"  style="vertical-align:top;" height=420/>
+            <span class="splash-caption" style="width:280px;">...for example, expats and English: Victorian London differed for the expat Mark Twain and the English George Eliot. They did share, though, a few interesting points in common: the British Museum, Chelsea, and Hyde Park.</span>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="splash-image-horiz">
             <img src="assets/images/splash04.png"/>
-            <span class="splash-caption">...or filter for those who wrote in a given genre or literary form</span>
+            <span class="splash-caption">Filter for all those who wrote in a given literary form or genre</span>
           </div>
         </div>
 
@@ -107,24 +126,12 @@
 
         <div class="item">
           <div class="splash-image-horiz">
-            <img src="assets/images/splash06.jpg"  style="vertical-align:top;" height=450/>
-            <span class="splash-caption" style="width:220px;">Expats and English: You can compare authors with the checkboxes.  Here, you can see how Victorian London largely differed for the expat Mark Twain and the English George Eliot.  They did share, though, a few interesting points in common: the British Museum, Chelsea, and Hyde Park.</span>
-          </div>
-        </div>
-
-        <div class="item">
-          <div class="splash-image-horiz">
             <img src="assets/images/splash07.jpg" height=380/>
-            <span class="splash-caption">The London modernist community is famously associated with Bloomsbury, but here we see centers of modernist life in Kensington and Chelsea.  Modernist works are actually concentrated <em>away</em> from Bloomsbury, in the City, the West End, Piccadilly, and Hyde Park.</span>
+            <span class="splash-caption" style="font-size: 1.3em">The London modernist community is famously associated with Bloomsbury, but here we see centers of modernist life in Kensington and Chelsea.  Modernist works are actually concentrated <em>away</em> from Bloomsbury, in the City, the West End, Piccadilly, and Hyde Park.</span>
           </div>
         </div>
 
-        <div class="item">
-          <div class="splash-image-horiz">
-            <!-- <img src="assets/images/splash08.png"/> -->
-            <span class="splash-caption"></span>
-          </div>
-        </div>
+
         <!-- Left and right controls -->
         <!-- <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
           <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>

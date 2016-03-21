@@ -2,44 +2,116 @@ body {
   margin:0;padding:0; height: 100%;
   font-family: "Georgia" !important;
 }
-.container {width: 100% !important; height:70%; margin: 0 15%;}
 
 h1, h2, h3 {margin: 0 !important;}
-ol.carousel-indicators {bottom: 0; margin-bottom:0;}
-
 .fa-quote-left {color: white;}
-/* splash top */
-// #splash_top {width: 100%; background: lightyellow; padding:2px;}
+
+.not-again {
+  font-size: 0.8em;
+  font-style: normal !important;
+  float:left;
+  display: inline-block;
+  margin-top: 1em;
+}
+
+// set by dialog initialize
+.splash-modal {
+  min-width: 75%;
+  h1 {font-size: 2em; text-align:center; margin-bottom: 0;}
+  .ui-dialog-titlebar {display: none;}
+}
+
+.bkgd-img {
+  background-image: url('images/Grimshaw_Thames1880_adj01.png') !important;
+  background-size:100% 100% !important;
+}
+
+#splash_modal {
+  div.container {
+    padding-left: 0;
+    padding-right: 0;
+    width: 100% !important;
+    height:70%;
+    margin: 0 15%;
+  }
+  overflow:hidden;
+}
 #splash_header {
   width: 100%;
-  margin: 8px 0 12px;
+  margin: 0 0 8px 0;
   padding: 4px 0 2px;
   text-align: center;
   background: palegoldenrod;
-  border-bottom: 1px solid #333;
-  box-shadow: 2px 2px #ddd;
+  // border-bottom: 1px solid #333;
+  // box-shadow: 2px 2px #ddd;
   h3 {color: #365353;}
 }
-// #splash_header {width: 100%; background: #e0e0e0; text-align: center;}
-#splash_top_content {
-  p {font-family: Georgia, "Palatino Linotype", "Book Antiqua", Palatino, serif;
-  padding: 0 6px; font-size: 1em;}
-  img {margin: 18px;}
+// item #0
+#item_splash {
+  // background-image: url('images/Grimshaw_Thames1880_adj01.png');
+  // background-size:100%;
 }
-#splash_top_left {width: 17%;background: lightblue; }
-#splash_top_center, #splash_blurb {width: 66%;float:left; font-size:1.2em; }
-#splash_blurb img {font-size: x-small;}
-#splash_top_right, #splash_graphic {
+
+/* SPLASH LEFT blurb w/video icon; quotes*/
+#splash_left {
+  width: 64%;
+  float:left;
+  // background: lightblue;
+  // overflow: hidden;
+}
+
+#splash_blurb {
+  width: 100%;
+  float:left;
+  img {
+    font-size: x-small;
+    margin: 0 0 6px 6px;}
+  p {
+    color:whitesmoke;
+    font-family: Georgia, "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-size:1.2em; }
+}
+
+/*  quotes */
+#cycler{
+  position:relative;
+  clear:both;
+  font-family: "english";
+  font-size: 1.4em;
+  div {
+    position:absolute;z-index:1; background-color:#e3e8e8;
+    padding: 12px 18px 12px 18px; width: 65%;
+    border-radius: 16px;
+    p{ color:black; display:block; }
+  }
+  div.active{z-index:3}
+  .quote {
+    min-height: 160px;
+    width: 100%;
+    b {color: #993333;}
+  }
+  .cite {display: inline-block; font-size: .8em;}
+}
+
+/* SPLASH RIGHT graphic*/
+#splash_right {
   width: 34%; float:right; text-align: center; line-height: 1.9em;
   p {margin-top: 0; font-size:1.2em; }
 }
 .bignum {font-weight: 800; font-size:1.4em; color: #993333;}
-/* splash top */
-
-/* splash bottom */
 #splash_graphic {
   // float:right; text-align: center;
 }
+
+
+/* CAROUSEL */
+.glyphicon {top: 250px !important;}
+.glyphicon-chevron-right {color: whitesmoke;}
+ol.carousel-indicators {bottom: 0; margin-bottom:0;}
+
+.carousel-control { background: none; width: 40px;
+  &:hover {color:grey}}
+
 .splash-caption {
   font-size: 1.6em; font-family: "english";
   display:inline-block; padding:12px;}
@@ -48,21 +120,12 @@ ol.carousel-indicators {bottom: 0; margin-bottom:0;}
   margin-bottom: 6px;
 }
 
-.glyphicon {top: 250px !important;}
-.glyphicon-chevron-right {color: whitesmoke;}
-/* splash bottom */
-
-
-/* carousel */
-.carousel-control { background: none; width: 40px;
-  &:hover {color:grey}}
-
 .carousel-inner > .item {
   width: 95%;
   height: 75%;
-  min-height: 500px;
+  min-height: 480px;
   margin: auto;
-  /*background-color: palegoldenrod;*/
+  // background-color: whitesmoke;
   /*font-size: 1.4em;*/
 }
 .slide-header {
@@ -97,28 +160,6 @@ ol.carousel-indicators {bottom: 0; margin-bottom:0;}
   background-color: #993333 !important;
 }
 
-
-/* quotes */
-#cycler{
-  position:relative;
-  clear:both;
-  font-family: Georgia, "Palatino Linotype", "Book Antiqua", Palatino, serif; font-size: 1.4em;}
-
-#cycler div{
-  position:absolute;z-index:1; background-color:#e3e8e8;
-  padding: 12px 18px 12px 18px; width: 65%;
-  border-radius: 16px;}
-
-#cycler div p{ color:black; display:block; }
-#cycler div.active{z-index:3}
-.quote {
-  min-height: 160px;
-  // height: 100%;
-  width: 60%; }
-.quote b {color: #993333;}
-.cite {display: inline-block; font-size: .8em;}
-/* quotes */
-
 /* carousel-fade */
 .carousel-fade .carousel-inner .item {
   opacity: 0;
@@ -143,19 +184,3 @@ ol.carousel-indicators {bottom: 0; margin-bottom:0;}
 .carousel-fade .carousel-control {
   z-index: 2;
 }
-/* carousel-fade */
-
-// p#return{clear:left;margin-left:50px;margin-top:30px}
-// p#prompt,p.prompt{margin-left:50px}
-//
-// a:active, a:focus{outline:none}
-//
-// form{margin-left:50px;width:150px}
-// input{font-size:12px}
-// // label{float:left;width:170px}
-// select{float:left;width:200px;font-family:Arial, Helvetica, sans-serif;font-size:12px;margin-bottom:10px}
-// fieldset{border:none;padding:0;margin:0 0 15px;width:400px}
-//
-// #scroll-pane,.scroll-pane { background-color:white;float:left;overflow: auto; width: 420px; height:300px;position:relative;border:1px solid gray;margin-left:50px;margin-bottom:25px;display:inline}
-//
-// .scroll-content-item {background-color:#fcfcfc;color:#003366;width:100px;height:100px;float:left;margin:10px;font-size:3em;line-height:96px;text-align:center;border:1px solid gray;display:inline;}
