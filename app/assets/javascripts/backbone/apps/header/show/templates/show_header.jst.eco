@@ -29,9 +29,17 @@
   <h3>What, who, why, and how</h3>
   <div id="about_content" >
     <h4 class="red">What</h4>
-    <p>The <span class="strong">Authorial London</span> project is compiling and mapping references to places within London found in works by writers who have lived there.</p>
-    <p>At present our corpus includes roughly 1,600 passages from 240 works written between the 14th and 20th centuries by 47 authors from 12 literary communities. The site allows exploring and analyzing them from literary, geographical, and biographical perspectives, on dimensions of genre, form, literary community, social standing, and neighborhood.</p>
-    <p>Authorial London has been developed as the first instance of a re-usable platform we call, “Authorial {X}.“ Our intent is that researchers and college instructors may readily instantiate a similar site for any place of interest, and engage either a class or research community of interest in gathering data for it: authors, texts, references to places within texts, and the geometry necessary for mapping them.</p>
+    <p>The <span class="strong">Authorial London</span> project is compiling and mapping references to places
+      within London found in works by writers who have lived there.</p>
+    <p>At present our corpus includes roughly 1,700 passages from 193 works written between the 14th and 20th
+      centuries by 47 authors from 12 literary communities (periods). The site allows exploring and analyzing them
+      from literary, geographical, and biographical perspectives, on dimensions of genre, form,
+      literary community (period), social standing, and neighborhood.</p>
+    <p>Authorial London has been developed as the first instance of a re-usable platform we call,
+      “Authorial {X}.“ Our intent is that researchers and college instructors may readily instantiate
+      a similar site for any place of interest, and engage either a class or research community of interest
+      in gathering data for it: authors, texts, references to places within texts, and the geometry
+      necessary for mapping them.</p>
     <h4 class="red">Who</h4>
     <p>This work extends the earlier <a href="http://authoriallondon.stanford.edu" target="_blank">"A Guide to Authorial London" project</a> at
       Stanford University (2011), led by <a href="http://bookhaven.stanford.edu/2013/02/a-durable-sense-of-joy-master-miltonist-martin-evans-1935-2013/" target="_blank"><b>Martin Evans</b></a>
@@ -39,7 +47,7 @@
     </p>
      <p>This latest phase of the project is being developed at Stanford University Libraries by:</p>
     <ul>
-      <li><strong>Kenneth Ligda</strong>, PhD <em>co-investigator & editor</em>
+      <li><strong>Kenneth Ligda</strong>, PhD <em>co-investigator & Editor</em>
         <br/>Office of Vice Provost for Teaching and Learning (VPTL)
       </li>
       <li><strong>Karl Grossner</strong>, PhD <em>co-investigator & lead developer</em>
@@ -49,10 +57,38 @@
         <br/>Center for Interdisciplinary Digital Research (CIDR)
     </ul>
     <h4 class="red">Why</h4>
-    <p>Authorial London opens up one of the most alluring and perplexing characteristics of literature: geography.  Few things are so quickly dated and so obscure to outsiders in literature as references to place.  A neighborhood nickname, a locally notorious alley, may be rich in meaning as Dickens writes them, but utterly baffle readers a mere generation later or a country distant.  Authorial London provides us, in many cases for the first time, with a means to directly explore what places meant to writers as they lived and imagined them, to see how meaning changes over time and varies between writers, and to learn how places are reified as cultural concepts (Fleet Street, Scotland Yard) and transformed beyond recognition.</p>
-    <p>A distinctive feature of the site is its openness to input and expansion: a dynamic data structure allow for the addition of new writers and works by the many scholars and readers of London literature.  It is a future-facing site, designed to integrate a broadening canon of the past and the fresh writing of contemporary authors.</p>
-    <p>Beyond this, Authorial London is designed to promote literary exploration of any geographic location.  The site is built as the first instance of Authorial {X} architecture, which is made available on GitHub for those interested in creating their own site to investigate the interplay of literature and place anywhere on Earth.</p>
+    <p>Authorial London opens up one of the most alluring and perplexing characteristics of literature:
+      geography.  Few things are so quickly dated and so obscure to outsiders in literature as references
+      to place.  A neighborhood nickname, a locally notorious alley, may be rich in meaning as Dickens
+      writes them, but utterly baffle readers a mere generation later or a country distant.
+      Authorial London provides us, in many cases for the first time, with a means to directly explore
+      what places meant to writers as they lived and imagined them, to see how meaning changes over time
+      and varies between writers, and to learn how places are reified as cultural concepts
+      (Fleet Street, Scotland Yard) and transformed beyond recognition.</p>
+    <p>A distinctive feature of the site is its openness to input and expansion: a dynamic data structure
+      allow for the addition of new writers and works by the many scholars and readers of London literature.
+      It is a future-facing site, designed to integrate a broadening canon of the past and the fresh writing
+      of contemporary authors.</p>
+    <p>Beyond this, Authorial London is designed to promote literary exploration of any geographic location.
+      The site is built as the first instance of Authorial {X} architecture, which will soon be made
+      available on GitHub for those interested in creating their own site to investigate the interplay
+      of literature and place anywhere on Earth.</p>
     <h4 class="red">How</h4>
-    <p>Description of the methodology and technologies used to follow...</p>
+    <p class="subhead">The corpus</p>
+    <p>How the corpus was chosen and future prospects</p>
+    <p class="subhead">Locating and geo-tagging passages</p>
+    <p>This work began with a manual process of extracting approximately 600 spatially inflected passages
+      and hand tagging place names within them. The resulting place name list was supplemented with common
+      London neighborhood and district names from several sources, which was then used to perform a
+      machine aided search across the entire corpus, producing several thousand additional candidate passages.
+      These were manually reviewed and culled, in the process of which additional place names were
+      discovered and added to the original list of search terms. This process was repeated twice, resulting in the
+      present count of 2961 passages.</p>
+    <p class="subhead">Georeferencing</p>
+    <p>How georeferencing was performed and some distinctive characteristic of the resulting gazetteer.</p>
+    <p class="subhead">Technologies</p>
+    <p>The Authorial London web application has been built with a Ruby-on-Rails and PostgreSQL database backend,
+      and a hybrid set of JavaScript front-end technologies, including the Backbone/Marionette framework,
+      Leaflet/MapBox mapping, JQuery, and D3.js</p>
   </div>
 </div>

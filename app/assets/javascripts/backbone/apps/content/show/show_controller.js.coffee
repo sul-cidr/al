@@ -22,8 +22,6 @@
       $("#splash_modal").dialog({
         modal: true,
         dialogClass: "splash-modal",
-        # text: "<h1>Authorial London</h1><p>The City in the Lives and Works of its Writers<p>"+
-        #   "<a href='#'>don't display again</a>"
         buttons: [
           {
             text: "Close",
@@ -33,7 +31,7 @@
         ],
         create: (e, ui) ->
           pane = $(this).dialog("widget").find(".ui-dialog-buttonpane")
-          $("<label class='not-again'><input type='checkbox' onclick='setCookie()'/> Don't display on startup again</label>").prependTo(pane)
+          $("<label class='not-again'><input type='checkbox' onclick='setCookie()'/> Don't display introduction on startup again</label>").prependTo(pane)
 
       })
 

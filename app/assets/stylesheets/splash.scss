@@ -4,8 +4,15 @@ body {
 }
 
 h1, h2, h3 {margin: 0 !important;}
-.fa-quote-left {color: white;}
+.fa-quote-left {color: grey;}
 
+iframe {
+  display: block;
+  margin: 0 auto;
+}
+.smaller {
+  font-size: smaller;
+}
 .not-again {
   font-size: 0.8em;
   font-style: normal !important;
@@ -22,10 +29,18 @@ h1, h2, h3 {margin: 0 !important;}
 }
 
 .bkgd-img {
-  background-image: url('images/Grimshaw_Thames1880_adj01.png') !important;
+  background-image: url('images/Grimshaw_Thames1880_adj03.jpg') !important;
+  // background-image: url('images/Grimshaw_Thames1880_adj01.png') !important;
   background-size:100% 100% !important;
 }
-
+#splash_credits {
+  position: absolute;
+  bottom:3px;
+  right: 56px;
+  color: burlywood;
+  cursor: help;
+  z-index: 100;
+}
 #splash_modal {
   div.container {
     padding-left: 0;
@@ -41,17 +56,17 @@ h1, h2, h3 {margin: 0 !important;}
   margin: 0 0 8px 0;
   padding: 4px 0 2px;
   text-align: center;
-  background: palegoldenrod;
+  // background: #9FACAC;
   // border-bottom: 1px solid #333;
   // box-shadow: 2px 2px #ddd;
-  h3 {color: #365353;}
+  h3 {color: #2A4747; font-variant: small-caps;}
 }
-// item #0
 #item_splash {
-  // background-image: url('images/Grimshaw_Thames1880_adj01.png');
-  // background-size:100%;
+  cursor:auto;
 }
-
+#video_thumb {
+  cursor:pointer;
+}
 /* SPLASH LEFT blurb w/video icon; quotes*/
 #splash_left {
   width: 64%;
@@ -62,12 +77,16 @@ h1, h2, h3 {margin: 0 !important;}
 
 #splash_blurb {
   width: 100%;
+  min-height: 300px;
   float:left;
   img {
     font-size: x-small;
-    margin: 0 0 6px 6px;}
+    margin: 0 0 6px 6px;
+    border: 1px solid black;
+  }
   p {
-    color:whitesmoke;
+    color:floralwhite;
+    font-weight: 600;
     font-family: Georgia, "Palatino Linotype", "Book Antiqua", Palatino, serif;
     font-size:1.2em; }
 }
@@ -79,14 +98,17 @@ h1, h2, h3 {margin: 0 !important;}
   font-family: "english";
   font-size: 1.4em;
   div {
-    position:absolute;z-index:1; background-color:#e3e8e8;
-    padding: 12px 18px 12px 18px; width: 65%;
+    position:absolute;z-index:1; background-color: cornsilk;
+    // opacity: 0.85;
+    padding: 12px 18px 0 18px; width: 65%;
     border-radius: 16px;
-    p{ color:black; display:block; }
-  }
-  div.active{z-index:3}
-  .quote {
     min-height: 160px;
+    p { color:black; display:block; }
+  }
+  div.active{
+    z-index:3
+  }
+  .quote {
     width: 100%;
     b {color: #993333;}
   }

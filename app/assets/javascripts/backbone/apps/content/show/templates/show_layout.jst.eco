@@ -10,7 +10,7 @@
 <div id="spin_district" class="spinner-loader hidden">finding district...</div>
 <div id="splash_modal" class="hidden bkgd-img">
   <div class="container">
-    <div id="splash_header">
+    <div id="splash_header" class="gradient">
       <h3>Introduction</h3>
     </div>
     <div id="myCarousel" class="carousel carousel-fade" data-ride="carousel" data-interval="false">
@@ -25,20 +25,22 @@
         <li data-target="#myCarousel" data-slide-to="6"></li>
         <li data-target="#myCarousel" data-slide-to="7"></li>
         <li data-target="#myCarousel" data-slide-to="8"></li>
+        <li data-target="#myCarousel" data-slide-to="9"></li>
       </ol>
-
+      <span id="splash_credits" title="John Atkinson Grimshaw [1880, Public domain], via Wikimedia Commons">Image credit</span>
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
         <div id="item_splash" class="item active">
           <div id="splash_left">
               <div id="splash_blurb">
-                <img src="#" alt="video walkthrough (soon)" align="right" width="160" height="120"/>
+                <img id="video_thumb" src="assets/images/video_thumb.jpg" alt="video introduction" align="right" width="160"/>
                 <p>The Authorial London project is compiling and mapping references to London places found in the biographies and works of writers who have lived there.</p>
-                <p>The site allows exploring and analyzing them from literary, geographical, and biographical perspectives, on dimensions of genre, form, period, social standing, and neighborhood.</p>
-                <p>Donec eu nunc diam. Nunc libero nibh, vulputate sit amet felis eu, varius pulvinar dolor. Vivamus sit amet libero at dolor euismod congue.</p>
+                <p>You can explore and analyze these curated passages from literary, geographical, and biographical perspectives, on dimensions of genre, form, period, social standing, and neighborhood.</p>
+                <p>The site's underlying software platform, "Authorial {X}," will be made available soon, permitting creation of similar sites for other locales.</p>
               </div>
               <div id="cycler">
-                <div class="quote active">
+                <!-- <div id="pull_left"> <i class="fa fa-quote-left fa-lg fa-pull-left"></i></div> -->
+                <!-- <div class="quote active">
                   <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
                   The age is running mad after innovation; all the business of the world is to be done in a new way; men are to be hanged in a new way; <b>Tyburn</b> itself is not safe from the fury of innovation.
                   <span class="cite">James Boswell (<em>The Life of Samuel Johnson</em>; 1791)</span>
@@ -47,11 +49,48 @@
                   <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
                   And Frenssh she spak ful faire and fetisly,<br/>After the scole of <b>Stratford-atte-Bowe</b>,<br/>For Frenssh of Parys was to hir unknowe.
                   <span class="cite">Geoffrey Chaucer (<em>The Canterbury Tales</em>; 1475)</span>
+                </div>-->
+
+                <div class="quote active">
+                  <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
+                  <p>So near the fire as we could for smoke; and all over <b>the Thames</b>, with one's face in the wind, you were almost burned with a shower of firedrops.</p>
+                  <span class="cite">Samuel Pepys (<em>The Diary of Samuel Pepys</em>; 1669)</span>
+                </div>
+
+                <div class="quote smaller">
+                  <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
+                  <p>So I came into <b>Smithfield</b>; and the shameful place, being all asmear with filth and fat and blood and foam, seemed to stick to me. So, I rubbed it off with all possible speed by turning into a street where I saw the great black dome of <b>Saint Paul's</b> bulging at me from behind a grim stone building which a bystander said was <b>Newgate Prison</b>.</p>
+                  <span class="cite">Charles Dickens (<em>Great Expectations</em>; 1861)</span>
                 </div>
                 <div class="quote">
                   <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
-                  JOHNSON. 'Yes, Sir.'  It was a delightful day: as we walked to St. Clement's church, I again remarked that <b>Fleet-street</b> was the most cheerful scene in the world.
+                  <p>As frequent as street corners in <b>Holborn</b> are these chasms in the continuity of our ways.</p>
+                  <span class="cite">Virginia Woolf (<em>Jacob's Room</em>; 1922)</span>
+                </div>
+                <div class="quote">
+                  <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
+                  <p>during me weeping stillstumms over the freshprosts of <b>Eastchept</b> and the dangling garters of <b>Marrowbone</b></p>
+                  <span class="cite">James Joyce (<em>Finnegan's Wake</em>; 1939)</span>
+                </div>
+                <div class="quote">
+                  <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
+                  JOHNSON. &lsquo;Yes, Sir.&rsquo;  It was a delightful day: as we walked to <b>St. Clement's church</b>, I again remarked that <b>Fleet-street</b> was the most cheerful scene in the world.
                   <span class="cite">James Boswell (<em>The Life of Samuel Johnson</em>; 1791)</span>
+                </div>
+                <div class="quote">
+                  <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
+                  <p>If you climb to the top of the hill in <b>Greenwich Park</b>, you can have the mild thrill of standing exactly on longitude 0, and you can also examine the ugliest building in the world, Greenwich Observatory.</p>
+                  <span class="cite">George Orwell (<em>As I Please</em>; 1944)</span>
+                </div>
+                <!-- <div class="quote smaller">
+                  <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
+                  <p>This music crept by me upon the waters / And along the Strand, up Queen Victoria Street. / O City city, I can sometimes hear / Beside a public bar in Lower Thames Street, / The pleasant whining of a mandolin / And a clatter and a chatter from within / Where fishmen lounge at noon: where the walls / Of Magnus Martyr hold / Inexplicable splendour of Ionian white and gold.</p>
+                  <span class="cite"> (<em>T.S. Eliot</em>; 1922)</span>
+                </div> -->
+                <div class="quote">
+                  <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
+                  <p>Then, play us a tune on the unbroken spinet, let time be as the road to London and we a traveller on it; and let us enter London and find out what year it is there in the <b>Mile End Road</b></p>
+                  <span class="cite">Thomas Wolfe (<em>Of Time and the River</em>; 1935)</span>
                 </div>
                 <div class="quote">
                   <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
@@ -130,8 +169,17 @@
             <span class="splash-caption" style="font-size: 1.3em">The London modernist community is famously associated with Bloomsbury, but here we see centers of modernist life in Kensington and Chelsea.  Modernist works are actually concentrated <em>away</em> from Bloomsbury, in the City, the West End, Piccadilly, and Hyde Park.</span>
           </div>
         </div>
+<!-- https://youtu.be/JDw09hv0PHc -->
 
-
+        <div class="item">
+          <div class="splash-image-horiz">
+            <iframe width="613" height="460"
+              src="http://www.youtube.com/embed/JDw09hv0PHc?modestbranding=1&autohide=1&showinfo=0&autoplay=0&controls=2"
+              frameborder="0" allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+<!-- <iframe width="560" height="315" src="//www.youtube.com/embed/videoid?modestbranding=1&autohide=1&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe> -->
         <!-- Left and right controls -->
         <!-- <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
           <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>

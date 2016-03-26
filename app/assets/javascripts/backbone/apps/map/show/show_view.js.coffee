@@ -40,7 +40,7 @@
       # TODO "eval is evil"
       # what is active lyr id?
       active = $("#map_chooser li.active").attr("val")
-      # console.log 'swapBase(id): active, new: '+ active, id
+      console.log 'swapBase(id): active, new: '+ active, id
       # clear all tabs of active class
       $("#map_chooser li").removeClass('active')
       # make selected active
@@ -55,6 +55,7 @@
         if map.getZoom() < 13
           map.setView(@London, 13)
         map.addLayer(lyr)
+      # if id == 'l_bowles_wms'
       if id == 'l_bowles'
         if map.getZoom() < 14
           map.setView(@London, 14)
@@ -105,9 +106,9 @@
       }
       overlayMaps = {
         "Indicator (1880)":l_indicator
+        # "Bowles (1783)":l_bowles_wms,
         "Bowles (1783)":l_bowles,
         "Taylor (1723)":l_taylor
-        # "Satellite": l_sat
       }
 
       # L.control.layers(baseMaps,overlayMaps).addTo(@map);
@@ -523,6 +524,7 @@
         attribution: 'Indicator (1880)',
         detectRetina: true
         });
+
     l_bowles = L.mapbox.tileLayer(
         'elijahmeeks.36cac3di',
       # 'https://api.mapbox.com/v4/elijahmeeks.36cac3di/{z}/{x}/{y}.png?access_token=' +
@@ -530,6 +532,13 @@
         attribution: 'Bowles (1783)',
         detectRetina: true
         });
+
+    # l_bowles = L.tileLayer.wms('http://hgl.harvard.edu:8080/geoserver/wms/', {
+    #   layers: 'cite:SDE2.G5754_L7_1783_B6',
+    #   format: 'image/png',
+    #   transparent: true
+    # })
+
     l_taylor = L.mapbox.tileLayer(
       # 'https://api.mapbox.com/v4/elijahmeeks.7dd6ynaj/{z}/{x}/{y}.png?access_token=' +
         'elijahmeeks.7dd6ynaj',

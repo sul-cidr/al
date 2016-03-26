@@ -11,7 +11,7 @@
 	$(function() {
 		AL.start();
 
-    setInterval('cycleQuotes()', 5500 );
+    setInterval('cycleQuotes()', 8800 );
 
     $('#myCarousel').on('slide.bs.carousel', function (e) {
       var active = $(e.target).find('.carousel-inner > .item.active');
@@ -26,5 +26,8 @@
       console.log(from + ' => ' + to);
     })
 
+    $("#video_thumb").click(function(){
+        $("#myCarousel").carousel(9);
+    });
 	});
 <% end %>
