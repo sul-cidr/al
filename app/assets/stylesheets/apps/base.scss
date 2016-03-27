@@ -12,6 +12,10 @@ hr { margin: 5px 0; border: 0; height: 1px;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0),
     rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));}
 
+.gradient {
+  @include filter-gradient( #ffffff, #ffffff, horizontal);
+  @include background-image(linear-gradient(left,  #2A4747 0%,#BFC8C8 25%,#BFC8C8 75%,#2A4747 100%));
+}
 
 .active {cursor: none;}
 .left {text-align: left;}
