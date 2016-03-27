@@ -40,7 +40,7 @@
       # TODO "eval is evil"
       # what is active lyr id?
       active = $("#map_chooser li.active").attr("val")
-      console.log 'swapBase(id): active, new: '+ active, id
+      # console.log 'swapBase(id): active, new: '+ active, id
       # clear all tabs of active class
       $("#map_chooser li").removeClass('active')
       # make selected active
@@ -518,8 +518,8 @@
       );
 
     l_indicator = L.mapbox.tileLayer(
-        'elijahmeeks.gqd89536',
-      # 'https://api.mapbox.com/v4/elijahmeeks.gqd89536/{z}/{x}/{y}.png?access_token=' +
+        'elijahmeeks.5s7vzgi4',
+        # 'elijahmeeks.gqd89536',
         L.mapbox.accessToken, {
         attribution: 'Indicator (1880)',
         detectRetina: true
@@ -527,7 +527,6 @@
 
     l_bowles = L.mapbox.tileLayer(
         'elijahmeeks.36cac3di',
-      # 'https://api.mapbox.com/v4/elijahmeeks.36cac3di/{z}/{x}/{y}.png?access_token=' +
         L.mapbox.accessToken, {
         attribution: 'Bowles (1783)',
         detectRetina: true
@@ -540,8 +539,8 @@
     # })
 
     l_taylor = L.mapbox.tileLayer(
-      # 'https://api.mapbox.com/v4/elijahmeeks.7dd6ynaj/{z}/{x}/{y}.png?access_token=' +
-        'elijahmeeks.7dd6ynaj',
+        'elijahmeeks.1pr88bpk',
+        # 'elijahmeeks.7dd6ynaj',
         L.mapbox.accessToken, {
         attribution: 'Taylor (1723)',
         detectRetina: true

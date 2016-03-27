@@ -44,8 +44,6 @@ Image.create([
   {"image_id":409,"filename":"trollope39montaguest.jpg","author_id":10379,"placeref_id":30156,"label":"39 Montagu Sq","caption":"","geom_wkt":"POINT(-0.1598 51.5184)"},
   {"image_id":411,"filename":"trollope.png","author_id":10379,"placeref_id":30155,"label":"6 Keppel St","caption":"","geom_wkt":"POINT(-0.1299 51.5206)"},
   {"image_id":318,"filename":"georgeeliotplaqye.png","author_id":10381,"placeref_id":30163,"label":"4 Cheyne Walk","caption":"","geom_wkt":"POINT(-0.1644 51.484)"},
-  {"image_id":357,"filename":"Londonnew0027.png","author_id":10381,"placeref_id":30163,"label":"4 Cheyne Walk","caption":"","geom_wkt":"POINT(-0.1644 51.484)"},
-  {"image_id":311,"filename":"eliotplaqye.png","author_id":10381,"placeref_id":30163,"label":"16 Cheyne Walk","caption":"","geom_wkt":"POINT(-0.0989 51.6434)"},
   {"image_id":315,"filename":"geliotcamridgest.jpg","author_id":10381,"placeref_id":30159,"label":"21 Cambridge St","caption":"","geom_wkt":"POINT(-0.1462 51.4913)"},
   {"image_id":316,"filename":"geliot.jpg","author_id":10381,"placeref_id":30158,"label":"142 The Strand","caption":"","geom_wkt":"POINT(-0.1214 51.5104)"},
   {"image_id":317,"filename":"geliot.png","author_id":10381,"placeref_id":30163,"label":"16 Cheyne Walk","caption":"","geom_wkt":"POINT(-0.0989 51.6434)"},

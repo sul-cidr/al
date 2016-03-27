@@ -3,6 +3,7 @@
   Show.Controller =
 
     showHeader: ->
+      # console.log 'config stuff', Rails.config.x.locale_name, Rails.config.x.locale_latlng
       headerView = @getHeaderView()
       App.headerRegion.show headerView
 

@@ -20,10 +20,11 @@
       var to = next.index();
       if(to == 1) {
         $("#splash_modal").removeClass('bkgd-img')
+        $("#splash_credits").addClass('hidden')
       } else if (to == 0) {
         $("#splash_modal").addClass('bkgd-img')
+        $("#splash_credits").removeClass('hidden')
       }
-      console.log(from + ' => ' + to);
     })
 
     $("#video_thumb").click(function(){
