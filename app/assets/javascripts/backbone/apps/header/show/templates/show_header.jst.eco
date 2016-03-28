@@ -40,6 +40,8 @@
       a similar site for any place of interest, and engage either a class or research community of interest
       in gathering data for it: authors, texts, references to places within texts, and the geometry
       necessary for mapping them.</p>
+    <!-- <a href='mapcredits'>Historical Map Credits</a> -->
+    <a class="pointer" onclick="scrollTo('mapcredits')">Historical Map Credits</a>
     <h4 class="red">Who</h4>
     <p>This work extends the earlier <a href="http://authoriallondon.stanford.edu" target="_blank">"A Guide to Authorial London" project</a> at
       Stanford University (2011), led by <a href="http://bookhaven.stanford.edu/2013/02/a-durable-sense-of-joy-master-miltonist-martin-evans-1935-2013/" target="_blank"><b>Martin Evans</b></a>
@@ -75,20 +77,25 @@
       of literature and place anywhere on Earth.</p>
     <h4 class="red">How</h4>
     <p class="subhead">The corpus</p>
-    <p>How the corpus was chosen and future prospects</p>
-    <p class="subhead">Locating and geo-tagging passages</p>
-    <p>This work began with a manual process of extracting approximately 600 spatially inflected passages
-      and hand tagging place names within them. The resulting place name list was supplemented with common
-      London neighborhood and district names from several sources, which was then used to perform a
-      machine aided search across the entire corpus, producing several thousand additional candidate passages.
-      These were manually reviewed and culled, in the process of which additional place names were
-      discovered and added to the original list of search terms. This process was repeated twice, resulting in the
-      present count of 2961 passages.</p>
+      <p>How the corpus was chosen and future prospects</p>
+    <p class="subhead">Selecting and geo-tagging passages</p>
+      <p>This work began with a manual process of extracting approximately 600 spatially inflected passages
+        and hand tagging place names within them. The resulting place name list was supplemented with common
+        London neighborhood and district names from several sources, which was then used to perform a
+        machine aided search across the entire corpus, producing several thousand additional candidate passages.
+        These were manually reviewed and culled, in the process of which additional place names were
+        discovered and added to the original list of search terms. This process was repeated twice, resulting in the
+        present count of 2961 passages.</p>
     <p class="subhead">Georeferencing</p>
-    <p>How georeferencing was performed and some distinctive characteristic of the resulting gazetteer.</p>
+      <p>How georeferencing was performed and some distinctive characteristic of the resulting gazetteer.</p>
     <p class="subhead">Technologies</p>
-    <p>The Authorial London web application has been built with a Ruby-on-Rails and PostgreSQL database backend,
+      <p>The Authorial London web application has been built with a Ruby-on-Rails and PostgreSQL database backend,
       and a hybrid set of JavaScript front-end technologies, including the Backbone/Marionette framework,
       Leaflet/MapBox mapping, JQuery, and D3.js</p>
+    <h4 id="mapcredits" class="red">Map Credits</h4>
+    <p>All historical maps retrieved from <a href="http://hcl.harvard.edu/libraries/maps/digitalmaps/" target = "_blank">Harvard College Library Digital Map Collection</a></p>
+    <p><b>Early 18th century</b>: "Taylor Map of London, England, 1723"; <a target="_blank" href="https://earthworks.stanford.edu/catalog/harvard-g5754-l7-1723-t3">Metadata</a>
+    <p><b>Late 18th century</b>: "Bowles's new pocket plan of the cities of London & Westminster with the borough of Southwark : comprehending the new buildings and other alterations to the year 1783"; <a target="_blank" href="https://earthworks.stanford.edu/catalog/harvard-g5754-l7-1783-b6">Metadata</a>
+    <p><b>Late 19th century</b>: "Indicator map of London: with the Recent improvements, 1880"; <a target="_blank" href="https://earthworks.stanford.edu/catalog/harvard-g5754-l7-1880-s6">Metadata</a>
   </div>
 </div>

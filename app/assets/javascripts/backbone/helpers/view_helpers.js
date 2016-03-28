@@ -3,6 +3,10 @@ function setCookie() {
   console.log(Cookies.get("al_splash"))
 }
 
+function scrollTo(hash) {
+    location.hash = "#" + hash;
+}
+
 function loadPopup(placeid) {
   idToFeature.places[placeid].fireEvent("click")
 }
@@ -111,7 +115,7 @@ function cycleQuotes(){
           $next.css('z-index',3).addClass('active');//make the next div the top one
       });
     }
-    
+
 // $(function() {
 //
 //   var toponyms = new Bloodhound({

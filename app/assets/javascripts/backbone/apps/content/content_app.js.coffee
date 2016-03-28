@@ -15,6 +15,7 @@
       "places/:id": "showArea"
       "placerefs/:id": "showPlaceref"
 
+
       # TODO: getting authors per cat should be a route
       # "authors/:category_id": "showAuthors"
       "works/:author_id": "authorWorks"

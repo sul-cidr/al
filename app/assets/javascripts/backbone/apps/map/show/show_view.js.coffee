@@ -526,7 +526,8 @@
         });
 
     l_bowles = L.mapbox.tileLayer(
-        'elijahmeeks.36cac3di',
+        'elijahmeeks.95vtr2c4',
+        # 'elijahmeeks.36cac3di',
         L.mapbox.accessToken, {
         attribution: 'Bowles (1783)',
         detectRetina: true
