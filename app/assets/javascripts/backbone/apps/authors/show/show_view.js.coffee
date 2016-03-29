@@ -24,7 +24,7 @@
       iid = this.model.get('id')
       label = this.model.get('label')
       fn = "assets/images/mapped/full/" + this.model.get('filename')
-      console.log 'img:',iid,prid,label,fn
+      # console.log 'img:',iid,prid,label,fn
       # send id to create map popup
       App.vent.trigger 'placeref:click', {'id': prid}
       # photo border

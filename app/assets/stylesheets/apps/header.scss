@@ -2,7 +2,10 @@
 @import "compass/css3/images";
 
 .subhead {font-weight: bold; font-style: italic;}
-
+.gradient {
+  @include filter-gradient( #ffffff, #ffffff, horizontal);
+  @include background-image(linear-gradient(left,  #2A4747 0%,#BFC8C8 25%,#BFC8C8 75%,#2A4747 100%));
+}
 #header {
   position: absolute;
   top: 0;

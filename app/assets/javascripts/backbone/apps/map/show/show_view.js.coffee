@@ -276,7 +276,7 @@
           geom = attribs.geom_wkt
           pid = attribs.place_id
           pname = attribs.prefname
-          # console.log '@getColor prtype', @getColor(prtype)
+
           if geom.substr(0,5) == 'POINT'
             coords = swap(wellknown(geom).coordinates)
             l_geom = new L.LatLng(coords[0],coords[1])
@@ -289,69 +289,48 @@
               weight: 1
             })
 
-            feature.on('click', (e) ->
-              ga('send', 'event', "select", "place", pname)
-              html = ''
-              @filter = params
-              # add this placeid
-              @filter['place_id'] = pid
-              # add author or work as appropriate
-              if params['author_id']
-                @filter['author_id'] = params['author_id']
-              else if params['work_id']
-                @filter['work_id'] = params['work_id']
-              # console.log '@filter (params +)', @filter
-              App.MapApp.Show.Controller.buildPopup @filter
-            )
-            # trying to replace this
-            @popup = feature.bindPopup(
-              pname, {
-                'className': 'place-popup',
-                'maxHeight': '450'}
-              ).on('popupclose', (e) ->
-              if $("#imagelist").length > 0
-                $("#imagelist .image img").removeClass('photo-pop');
-                # $("#image_modal").dialog("close");
-                )
-
-            # add model, id to feature
-            feature.model = pl
-            feature.options.id = pid
-            # feature._leaflet_id = pid
-            $idToFeature.places[pid] = feature
-            @features.push feature
-
           else if geom.substr(0,10) == 'LINESTRING'
             feature =  new L.GeoJSON(wellknown(geom), {
               style: mapStyles.street
             })
 
-            feature.on('click', (e) ->
-              ga('send', 'event', "select", "place", pname)
-              html = ''
-              @filter = params
-              # add this placeid
-              @filter['place_id'] = pid
-              # add author or work as appropriate
-              if params['author_id']
-                @filter['author_id'] = params['author_id']
-              else if params['work_id']
-                @filter['work_id'] = params['work_id']
-              # console.log '@filter (params +)', @filter
-              App.MapApp.Show.Controller.buildPopup @filter
-            )
+          else if geom.substr(0,10) == 'MULTIPOINT'
+            feature =  new L.GeoJSON(wellknown(geom), {
+              style: mapStyles.multipont
+            })
 
-            @popup = feature.bindPopup(
-              pname, {
-                'className': 'place-popup',
-                'maxHeight': '450'}
-            )
-            # add model, id to feature
-            feature.model = pl
-            feature.options.id = pid
-            # feature._leaflet_id = pid
-            $idToFeature.places[pid] = feature
-            @features.push feature
+          # got a feature, whatever its geometry
+          feature.on('click', (e) ->
+            ga('send', 'event', "select", "place", pname)
+            html = ''
+            @filter = params
+            # add this placeid
+            @filter['place_id'] = pid
+            # add author or work as appropriate
+            if params['author_id']
+              @filter['author_id'] = params['author_id']
+            else if params['work_id']
+              @filter['work_id'] = params['work_id']
+            # console.log '@filter (params +)', @filter
+            App.MapApp.Show.Controller.buildPopup @filter
+          )
+
+          @popup = feature.bindPopup(
+            pname, {
+              'className': 'place-popup',
+              'maxHeight': '450'}
+            ).on('popupclose', (e) ->
+            if $("#imagelist").length > 0
+              $("#imagelist .image img").removeClass('photo-pop');
+              # $("#image_modal").dialog("close");
+              )
+
+          # add model, id to feature
+          feature.model = pl
+          feature.options.id = pid
+          # feature._leaflet_id = pid
+          $idToFeature.places[pid] = feature
+          @features.push feature
 
         @places = L.featureGroup(@features)
 
@@ -434,10 +413,10 @@
     # onclick placeref in text
     # called by Show.Controller on trigger 'placeref:click'
     clickPlaceref: (params) ->
-      console.log 'clickPlaceref params', params
+      # console.log 'clickPlaceref params', params
       $("#imagelist .image img[prid="+params['id']+"]").addClass('photo-pop')
       App.request "placeref:entities", params, (placerefs) =>
-        console.log 'placeref models', placerefs
+        # console.log 'placeref models', placerefs
         if placerefs.models.length == 0
           # just showing image
           $(".ui-dialog-titlebar").prepend('<span id="unmapped_tag">(not georeferenced yet)</span>')

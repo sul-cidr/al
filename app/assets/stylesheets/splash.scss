@@ -1,3 +1,5 @@
+@import "compass/css3/images";
+
 body {
   margin:0;padding:0; height: 100%;
   font-family: "Georgia" !important;
@@ -32,6 +34,7 @@ iframe {
   background-image: url('images/Grimshaw_Thames1880_adj03.jpg') !important;
   // background-image: url('images/Grimshaw_Thames1880_adj01.png') !important;
   background-size:100% 100% !important;
+  opacity: 0.8;
 }
 #splash_credits {
   position: absolute;
@@ -85,7 +88,7 @@ iframe {
     border: 1px solid black;
   }
   p {
-    color:floralwhite;
+    color:white;
     font-weight: 600;
     font-family: Georgia, "Palatino Linotype", "Book Antiqua", Palatino, serif;
     font-size:1.2em; }
