@@ -108,7 +108,7 @@
 
         <div class="item">
           <div class="splash-image-horiz">
-            <img src="assets/images/splash-graphic460h.jpg" height=400 style="display:block; margin: 0 auto;"/>
+            <img src="assets/images/splash-graphic368h.jpg" style="display:block; margin: 0 auto;"/>
             <span class="splash-caption"></span>
           </div>
         </div>

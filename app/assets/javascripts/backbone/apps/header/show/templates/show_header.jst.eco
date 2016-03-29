@@ -32,7 +32,7 @@
     <h4 class="red">What</h4>
     <p>The <span class="strong">Authorial London</span> project is compiling and mapping references to places
       within London found in works by writers who have lived there.</p>
-    <p>At present our corpus includes roughly 1,700 passages from 193 works written between the 14th and 20th
+    <p>At present our corpus includes roughly 1,600 passages from 193 works written between the 14th and 20th
       centuries by 47 authors from 12 literary communities (periods). The site allows exploring and analyzing them
       from literary, geographical, and biographical perspectives, on dimensions of genre, form,
       literary community (period), social standing, and neighborhood.</p>
@@ -44,7 +44,7 @@
     <a class="pointer" onclick="scrollTo('mapcredits')">Historical Map Credits</a>
 
     <h4 class="red">Who</h4>
-    <p>This work extends the earlier <a href="http://authoriallondon.stanford.edu" target="_blank">"A Guide to Authorial London" project</a> at
+    <p>This work extends the earlier <a href="http://authoriallondon.stanford.edu" target="_blank">"A Guide to Authorial London"</a> project at
       Stanford University (2011), led by <a href="http://bookhaven.stanford.edu/2013/02/a-durable-sense-of-joy-master-miltonist-martin-evans-1935-2013/" target="_blank"><b>Martin Evans</b></a>
       of the English Department. The biographical essays appearing here are those authored by Professor Evans for the original project.
     </p>
