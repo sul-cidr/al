@@ -40,7 +40,7 @@
               </div>
               <div id="cycler">
                 <!-- <div id="pull_left"> <i class="fa fa-quote-left fa-lg fa-pull-left"></i></div> -->
-                <!-- <div class="quote active">
+                <div class="quote active">
                   <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
                   The age is running mad after innovation; all the business of the world is to be done in a new way; men are to be hanged in a new way; <b>Tyburn</b> itself is not safe from the fury of innovation.
                   <span class="cite">James Boswell (<em>The Life of Samuel Johnson</em>; 1791)</span>
@@ -49,9 +49,8 @@
                   <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
                   And Frenssh she spak ful faire and fetisly,<br/>After the scole of <b>Stratford-atte-Bowe</b>,<br/>For Frenssh of Parys was to hir unknowe.
                   <span class="cite">Geoffrey Chaucer (<em>The Canterbury Tales</em>; 1475)</span>
-                </div>-->
-
-                <div class="quote active">
+                </div>
+                <div class="quote">
                   <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
                   <p>So near the fire as we could for smoke; and all over <b>the Thames</b>, with one's face in the wind, you were almost burned with a shower of firedrops.</p>
                   <span class="cite">Samuel Pepys (<em>The Diary of Samuel Pepys</em>; 1669)</span>
@@ -174,7 +173,7 @@
         <div class="item">
           <div class="splash-image-horiz">
             <iframe width="613" height="460"
-              src="http://www.youtube.com/embed/JDw09hv0PHc?modestbranding=1&autohide=1&showinfo=0&autoplay=0&controls=2"
+              src="https://www.youtube.com/embed/JDw09hv0PHc?modestbranding=1&autohide=1&showinfo=0&autoplay=0&controls=2"
               frameborder="0" allowfullscreen>
             </iframe>
           </div>
