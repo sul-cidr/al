@@ -1,6 +1,8 @@
 <div class="author">
   <a href="#authors/<%= @author_id %>" title="author detail">
+    <!-- <img src="#" width=90 height=90 style="background:#eeeee0;"/><br/> -->
     <img src="assets/images/<%= @author_id %>_<%= @surname %>.png" /><br/>
+    <!-- A. Author -->
     <%= @safe hardSpace(@label) %>
   </a><input class="right" title="compare places" type='checkbox' value='<%= @author_id %>' />
 </div>

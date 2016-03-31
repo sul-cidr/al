@@ -121,7 +121,8 @@
       @map.addControl(zoomControl);
 
       @London = [51.5094, -0.1212]
-      # @London = [51.5120, -0.0928]
+      # @NewYork = [40.730610, -73.935242]
+      # @Copenhagen = [55.676098, 12.568337]
 
       # use if not mapbox
       # @map.addLayer(l_osm);
@@ -129,6 +130,8 @@
       @map.addLayer(l_mblight);
 
       @map.setView(@London, 12)
+      # @map.setView(@NewYork, 12)
+      # @map.setView(@Copenhagen, 12)
 
       @map.addEventListener 'popupclose', ( (e) =>
         e.preventDefault
@@ -184,8 +187,10 @@
       # console.log prtype, legend, mincolor
       markerColors = {
         0: {0:"yellow",1:"orange",2:"red"},
-        1: {0:"#ece7f2",1:"#a6bddb",2:"#2b8cbe"} # blues
-        2: {0:"#e5f5e0",1:"#a1d99b",2:"#31a354"} # greens
+        1: {0:"#fde0dd", 1:"#fa9fb5", 2:"#c51b8a"}, # purples
+        2: {0:"#c2e699", 1:"#78c679", 2:"#238443"}, # greens
+        # 1: {0:"#ece7f2",1:"#a6bddb",2:"#2b8cbe"} # blues
+        # 2: {0:"#e5f5e0",1:"#a1d99b",2:"#31a354"} # greens
       }
 
       if prtype == 'work'

@@ -1,5 +1,4 @@
 Image.create([
-
   {"image_id":301,"filename":"dickens2.png","author_id":10377,"placeref_id":-1,"label":"20 Bloomsbury Square","caption":"","geom_wkt":"POINT(-0.1238 51.5192)"},
   {"image_id":305,"filename":"dickens.png","author_id":10377,"placeref_id":-1,"label":"48 Doughty St","caption":"","geom_wkt":"POINT(-0.1166 51.5237)"},
   {"image_id":251,"filename":"A_Conversation_With_Oscar_Wilde_-_London_-_240404.jpg","author_id":10383,"placeref_id":-1,"label":"Adelaide St.","caption":"","geom_wkt":"POINT(-0.13 51.51)"},
@@ -44,6 +43,8 @@ Image.create([
   {"image_id":409,"filename":"trollope39montaguest.jpg","author_id":10379,"placeref_id":30156,"label":"39 Montagu Sq","caption":"","geom_wkt":"POINT(-0.1598 51.5184)"},
   {"image_id":411,"filename":"trollope.png","author_id":10379,"placeref_id":30155,"label":"6 Keppel St","caption":"","geom_wkt":"POINT(-0.1299 51.5206)"},
   {"image_id":318,"filename":"georgeeliotplaqye.png","author_id":10381,"placeref_id":30163,"label":"4 Cheyne Walk","caption":"","geom_wkt":"POINT(-0.1644 51.484)"},
+  {"image_id":357,"filename":"Londonnew0027.png","author_id":10381,"placeref_id":30163,"label":"4 Cheyne Walk","caption":"","geom_wkt":"POINT(-0.1644 51.484)"},
+  {"image_id":311,"filename":"eliotplaqye.png","author_id":10381,"placeref_id":30163,"label":"16 Cheyne Walk","caption":"","geom_wkt":"POINT(-0.0989 51.6434)"},
   {"image_id":315,"filename":"geliotcamridgest.jpg","author_id":10381,"placeref_id":30159,"label":"21 Cambridge St","caption":"","geom_wkt":"POINT(-0.1462 51.4913)"},
   {"image_id":316,"filename":"geliot.jpg","author_id":10381,"placeref_id":30158,"label":"142 The Strand","caption":"","geom_wkt":"POINT(-0.1214 51.5104)"},
   {"image_id":317,"filename":"geliot.png","author_id":10381,"placeref_id":30163,"label":"16 Cheyne Walk","caption":"","geom_wkt":"POINT(-0.0989 51.6434)"},
@@ -110,7 +111,6 @@ Image.create([
   {"image_id":407,"filename":"thomas1.png","author_id":10399,"placeref_id":30215,"label":"Wentworth Mansions","caption":"","geom_wkt":"POINT(-0.1712 51.4872)"},
   {"image_id":356,"filename":"Londonnew0025.JPG","author_id":10399,"placeref_id":30216,"label":"The Cross Keyes","caption":"","geom_wkt":"POINT(-0.2133 51.5535)"},
   {"image_id":313,"filename":"frenshouse.jpg","author_id":10399,"placeref_id":30213,"label":"The French House","caption":"","geom_wkt":"POINT(-0.1328 51.5141)"},
-  {"image_id":255,"filename":"amishouse.png","author_id":10401,"placeref_id":30221,"label":"194 Regent's Park Rd","caption":"","geom_wkt":"POINT(-0.1985 51.5958)"},
   {"image_id":256,"filename":"amispub.png","author_id":10401,"placeref_id":30220,"label":"The Queen's Head","caption":"","geom_wkt":"POINT(-0.0998 51.5368)"},
   {"image_id":371,"filename":"orwelhsehamp.jpg","author_id":10403,"placeref_id":30225,"label":"77 Parliament Hill","caption":"","geom_wkt":"POINT(-0.1616 51.5588)"},
   {"image_id":374,"filename":"orwell portobellord.jpg","author_id":10403,"placeref_id":30222,"label":"22 Portobello Rd","caption":"","geom_wkt":"POINT(-0.2011 51.5123)"},
@@ -161,6 +161,7 @@ Image.create([
   {"image_id":285,"filename":"carlmans.png","author_id":10423,"placeref_id":30305,"label":"Carlyle Mansions","caption":"","geom_wkt":"POINT(-0.1705 51.4828)"},
   {"image_id":310,"filename":"eliotplaque.jpg","author_id":10423,"placeref_id":30302,"label":"Faber and Faber","caption":"","geom_wkt":"POINT(-0.1243 51.5229)"},
   {"image_id":377,"filename":"plath.png","author_id":10433,"placeref_id":30330,"label":"3 Chalcot Square","caption":"","geom_wkt":"POINT(-0.1556 51.5409)"},
-  {"image_id":309,"filename":"eliot2.png","author_id":10423,"placeref_id":30307,"label":"3 Kensington Court Gardens","caption":"","geom_wkt":"POINT(-0.1881 51.4996)"}
+  {"image_id":309,"filename":"eliot2.png","author_id":10423,"placeref_id":30307,"label":"3 Kensington Court Gardens","caption":"","geom_wkt":"POINT(-0.1881 51.4996)"},
+  {"image_id":255,"filename":"amishouse.png","author_id":10401,"placeref_id":30221,"label":"194 Regent's Park Rd","caption":"","geom_wkt":"POINT(-0.1985 51.5958)"}
 
 ])
