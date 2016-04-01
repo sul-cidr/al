@@ -38,7 +38,7 @@
         collection: authors
 
     removeFilter: ->
-      console.log 'remove filter in controller'
+      # console.log 'remove filter in controller'
       $("#selected_cat_authors").html('')
       # get all authors
       App.request "authors:category", {clear:true}, (authors) =>

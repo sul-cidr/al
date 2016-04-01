@@ -64,7 +64,6 @@
       # restore dimensions dropdowns
       $("#dimensions_region").removeClass("hidden")
       # execute startAuthors()
-      # Backbone.history.history.back()
       Backbone.history.navigate("authors", true)
       App.vent.trigger("map:reset", "authors_show")
     goAuthor: (e) ->
@@ -124,10 +123,6 @@
     onPlacerefLeave: (e) ->
       prid = $(e.currentTarget).context.attributes.val.value
       # console.log 'onPlaceRefLeave', id
-      # App.vent.trigger('placeref:unhighlight', prid);
-    #
-    # getPlacerefIdFromEvent: (e) ->
-    #   Number($(e.currentTarget).context.attributes.data_id.value);
 
   # passages are shown by clicking a work
   class Show.Passages extends App.Views.CompositeView

@@ -86,9 +86,7 @@
           AL.AuthorsApp.Show.Controller.listWorkPassages(work)
         else if src == 'w'
           AL.WorksApp.Show.Controller.showWork(work)
-        # returns current work
-        # App.reqres.setHandler "work:model", ->
-        #   return work
+
 
     searchPassages: (q) ->
       # console.log 'ContentApp router API searchPassages',q

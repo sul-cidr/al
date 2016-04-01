@@ -6,24 +6,14 @@
   class Entities.WorkCollection extends Entities.Collection
     model: Entities.Work
     url: '/works'
-    # comparator: (a) ->
-    #   a.get 'year'
     comparator: 'sorter'
-    # comparator: 'sortable_title'
 
   works = new Entities.WorkCollection()
 
   API =
-    # getWorkEntity: (workid, cb) ->
-    #   works.fetch
-    #     success: ->
-    #       @work = works._byId[workid]
-    #       cb @work
-
     getWorkEntity: (workid, cb) ->
       work = works._byId[workid]
       cb work
-    #
 
     getWorkEntities: (cb) ->
       works.fetch

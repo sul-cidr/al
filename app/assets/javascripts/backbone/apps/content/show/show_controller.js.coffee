@@ -54,7 +54,7 @@
 
       # reset map on tab change if place markers are filters
       if App.request("places:count") < placesCount
-        console.log 'the map has been filtered, resetting'
+        # console.log 'the map has been filtered, resetting'
         App.vent.trigger("map:reset")
 
       $("#legend_list").html('')

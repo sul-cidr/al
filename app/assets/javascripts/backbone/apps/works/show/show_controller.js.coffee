@@ -58,8 +58,3 @@
     getTitleView: (work) ->
       new Show.Title
         model: work
-
-    # showNav: (work) ->
-    #   @navView = new Show.Pills
-    #     model: work
-    #   @authorLayout.navRegion.show @navView

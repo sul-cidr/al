@@ -35,8 +35,3 @@
     new PlacesApp.Router
       controller: API
     # API.startPlacess()
-
-  # App.addInitializer ->
-  #   new PlacesApp.Router
-  #     controller: API
-  #   API.startPlaces()

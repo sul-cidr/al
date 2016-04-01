@@ -27,7 +27,7 @@
         searchPlaces = []
         _.each results.models, (s) =>
           searchPlaces.push s.attributes.passage_id
-        console.log 'searchPlaces[]', searchPlaces
+        # console.log 'searchPlaces[]', searchPlaces
         # App.vent.trigger "search:show", (searchPlaces)
 
         if results.length > 0

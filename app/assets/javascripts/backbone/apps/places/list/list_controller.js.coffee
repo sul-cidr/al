@@ -3,7 +3,7 @@
   List.Controller =
 
     startPlaces: (borough)->
-      console.log 'startPlaces', borough
+      # console.log 'startPlaces', borough
       # get, render places content
       @layout = @getLayoutView()
 

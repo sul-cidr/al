@@ -22,23 +22,11 @@
         success: ->
           cb authors
 
-    # getAuthorEntity: (id, cb) ->
-    #   @author = authors._byId[id]
-    #   console.log 'hit author:entity', @author
-    #   cb @author
-
-    #
     getAuthorEntity: (id, cb) ->
       authors.fetch
         success: ->
           @author = authors._byId[id]
           cb @author
-          # filterOne = _.filter(authors.models,(item) ->
-          #   item.get("author_id") == id
-          # )
-          # authors.reset(filterOne);
-          # console.log 'author:entity', authors
-          # cb authors
 
     # TODO this executes twice, from authors_app and map_app
     getAuthorsCategory: (filter, cb) ->

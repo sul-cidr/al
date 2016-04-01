@@ -1,12 +1,6 @@
 @AL.module "MapApp", (MapApp, App, Backbone, Marionette, $, _) ->
   @startWithParent = false
 
-  # TODO: need both??
-  # App.vent.on "author:show", (author) ->
-  #   console.log "map heard author:show -->", author.get('author_id')
-  #   # placerefs for all passages by an author
-  #   API.filterByAuthor author
-
   App.vent.on "authors:show", (authids) ->
     # console.log "map heard authors:show -->", authids
     # placerefs for all passages by one or more authors
@@ -45,7 +39,7 @@
       MapApp.Show.Controller.showMap()
 
     filterByPassages: (passageids) ->
-      console.log "passageids", passageids
+      # console.log "passageids", passageids
       MapApp.Show.Controller.filterPlaces({passages: passageids, clear:true})
 
     filterByAuthors: (authids) ->
@@ -56,7 +50,7 @@
       MapApp.Show.Controller.renderOneAuthor(params)
 
     dropOneAuthor: (params) ->
-      console.log 'API.dropOneAuthor', params
+      # console.log 'API.dropOneAuthor', params
       MapApp.Show.Controller.dropOneAuthor(params)
 
     filterByCategory: (filter) ->

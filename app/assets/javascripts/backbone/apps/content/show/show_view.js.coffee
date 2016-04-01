@@ -24,14 +24,14 @@
         @tab = e
       else
         @tab = $(e.currentTarget).context.attributes.value.value
-        console.log 'content.showTab', @tab
+        # console.log 'content.showTab', @tab
         $(e.currentTarget).addClass("active")
       window.activeTab = @tab
       Show.Controller.showTab(@tab)
 
     setCookie: (e) ->
       Cookies.set("al_splash","no-more")
-      console.log Cookies.get("al_splash")
+      # console.log Cookies.get("al_splash")
 
   class Show.Dimensions extends App.Views.ItemView
     template: "content/show/templates/_dimensions"

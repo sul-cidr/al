@@ -12,7 +12,7 @@
       "click button": "queryPassages"
     }
     clearSearch: ->
-      console.log 'clearSearch'
+      # console.log 'clearSearch'
       Backbone.history.navigate("search", true)
       # $("#results_region_search").html('<img src="assets/images/drop-of-thames_320w.png" />
       #   <br/>A Drop of Thames Water <br/><em>Punch magazine (1850), via Wikimedia Commons</em>')

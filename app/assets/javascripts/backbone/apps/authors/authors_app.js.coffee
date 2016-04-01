@@ -31,10 +31,3 @@
   AuthorsApp.on "start", ->
     new AuthorsApp.Router
       controller: API
-    # Backbone.history.navigate("authors")
-    # API.startAuthors()
-  #
-  # App.addInitializer ->
-  #   new AuthorsApp.Router
-  #     controller: API
-    # API.startAuthors()

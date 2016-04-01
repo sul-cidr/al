@@ -9,9 +9,6 @@
       "click #about_link": "loadAbout"
       "click #map_chooser li": "loadMap"
       "click i.fa-close": "loadAbout"
-      # "click #header_right i": "loadAbout"
-      # "click #header_left i": "resetApp"
-      # "click #map_chooser li": "loadMap"
 
     loadAbout: (e)->
       ga('send', 'event', "banner", "click", "about")
