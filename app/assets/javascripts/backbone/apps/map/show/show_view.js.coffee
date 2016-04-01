@@ -306,7 +306,7 @@
 
           # got a feature, whatever its geometry
           feature.on('click', (e) ->
-            ga('send', 'event', "select", "place", pname)
+            # ga('send', 'event', "select", "place", pname)
             html = ''
             @filter = params
             # add this placeid
