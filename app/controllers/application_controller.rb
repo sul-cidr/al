@@ -3,9 +3,9 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  http_basic_authenticate_with(
-    name: ENV['AL_USERNAME'],
-    password: ENV['AL_PASS'],
-  )
+  # http_basic_authenticate_with(
+  #   name: ENV['AL_USERNAME'],
+  #   password: ENV['AL_PASS']
+  # )
 
 end
