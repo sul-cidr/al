@@ -88,7 +88,7 @@
         App.reqres.setHandler "areas:active", ->
           return activeAreas
 
-      @renderPlaces({clear:true})
+        @renderPlaces({clear:true})
 
     initMap: ->
       # console.log 'initMap'
@@ -413,7 +413,7 @@
       # TODO: stop exposing these
       window.map = @map
       window.leaf_areas = @areas
-      window.areaFeatures = @features
+      window.areaFeatures = @areaFeatures
 
     # onclick placeref in text
     # called by Show.Controller on trigger 'placeref:click'
