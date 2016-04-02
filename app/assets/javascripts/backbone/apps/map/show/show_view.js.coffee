@@ -237,14 +237,11 @@
             if $("#image_modal").html() != ""
               $("#image_modal").dialog("close")
             )
-        # idToFeature.places[params['place_id']]._popup.setContent(html)
         idToFeature.places[params['place_id']].openPopup()
-        # e.target._popup.setContent(html)
 
     renderPlaces: (params) ->
       # params: author_id=[], work_id=[], clear=[true|false]
       # console.log 'renderPlaces', params
-      # console.log '@keyPlaces on start',@keyPlaces
       if typeof @places != "undefined"
         if params && params['clear'] == true
           if typeof(@keyPlaces) != "undefined" && Object.keys(@keyPlaces).length > 0
@@ -305,8 +302,10 @@
             })
 
           # got a feature, whatever its geometry
-          feature.on('click', (e) ->
-            # ga('send', 'event', "select", "place", pname)
+          feature.on('click', () ->
+            ga('send', 'event', "select", "place", pname)
+            # TODO: why is this necessary?
+            # window.location.hash = '#'
             html = ''
             @filter = params
             # add this placeid
@@ -326,9 +325,8 @@
               'maxHeight': '450'}
             ).on('popupclose', (e) ->
             if $("#imagelist").length > 0
-              $("#imagelist .image img").removeClass('photo-pop');
-              # $("#image_modal").dialog("close");
-              )
+              $("#imagelist .image img").removeClass('photo-pop')
+            )
 
           # add model, id to feature
           feature.model = pl
