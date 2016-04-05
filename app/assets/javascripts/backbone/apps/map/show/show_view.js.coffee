@@ -322,7 +322,7 @@
           @popup = feature.bindPopup(
             pname, {
               'className': 'place-popup',
-              'maxHeight': '450'}
+              'maxHeight': '300'}
             ).on('popupclose', (e) ->
             if $("#imagelist").length > 0
               $("#imagelist .image img").removeClass('photo-pop')

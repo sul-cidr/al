@@ -48,7 +48,7 @@
                 <div class="quote">
                   <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
                   <p>And Frenssh she spak ful faire and fetisly,<br/>After the scole of <b>Stratford-atte-Bowe</b>,<br/>For Frenssh of Parys was to hir unknowe</p>
-                  <span class="cite">Geoffrey Chaucer (<em>The Canterbury Tales</em>; 1475)</span>
+                  <span class="cite">Geoffrey Chaucer (<em>The Canterbury Tales</em>; c. 1390)</span>
                 </div>
                 <div class="quote">
                   <i class="fa fa-quote-left fa-lg fa-pull-left"></i>
@@ -164,7 +164,7 @@
         <div class="item">
           <!-- <div class="splash-image-horiz"> -->
             <iframe width="613" height="460"
-              src="https://www.youtube.com/embed/JDw09hv0PHc?modestbranding=1&autohide=1&showinfo=0&autoplay=0&controls=2"
+              src="https://www.youtube.com/embed/JDw09hv0PHc?modestbranding=1&autohide=1&showinfo=0&autoplay=0&rel=0&controls=2"
               frameborder="0" allowfullscreen>
             </iframe>
           <!-- </div> -->
