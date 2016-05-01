@@ -2,7 +2,7 @@
 #
 # Table name: places
 #
-#  place_id        :integer          primary key
+#  place_id        :integer          not null, primary key
 #  place_type      :string
 #  prefname        :string
 #  latitude        :float
@@ -40,6 +40,13 @@ class Place < ActiveRecord::Base
     placearray.uniq
   }
 
+  # auto-increment work_id
+  before_create :set_id
+
+  def set_id
+    self.place_id = Place.maximum(:place_id).next
+  end
+
   # TODO: need places in or near an area (neighborhood, e.g. 14 is Bloomsbury)
   def self.in_or_near(id)
     where {
@@ -56,18 +63,4 @@ class Place < ActiveRecord::Base
     Place.find(id)
   end
 
-  # def self.by_passage(id)
-  #   placesets = []
-  #   placearray = []
-  #   passages = Passage.where{passage_id >> id}
-  #   passages.each do |p|
-  #     placesets.push(p.places)
-  #   end
-  #   placesets.each do |arr|
-  #     arr.each do |p|
-  #       placearray.push(p.place_id)
-  #     end
-  #   end
-  #   placearray.uniq
-  # end
 end

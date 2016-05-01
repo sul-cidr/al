@@ -3,14 +3,13 @@
 # Table name: placerefs
 #
 #  id            :integer          not null
-#  placeref_id   :integer          primary key
+#  placeref_id   :integer          not null, primary key
 #  work_id       :integer
 #  year          :integer
-#  passage_id    :string
+#  passage_id    :string           not null
 #  placeref      :string
 #  author_id     :integer
 #  place_id      :integer
-#  geom_wkt      :text
 #  placeref_type :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
@@ -72,10 +71,6 @@ class Placeref < ActiveRecord::Base
 
   def self.rank_places(params)
     refs = Placeref.all
-    #
-    # if params[:passages] # array of passage_ids
-    #   places = Place.by_passage(:passage_id)
-    # end
 
     # agglomerates param terms
     if params[:work_cat]
@@ -96,10 +91,6 @@ class Placeref < ActiveRecord::Base
     if params[:work_id]
       refs = refs.joins{work}.where{work.work_id >> params[:work_id]}
     end
-
-    # if params[:passages] # array of passage_id
-    #   refs = refs.joins{work}.where{work.work_id >> params[:passages]}
-    # end
 
     counts = {}
 
