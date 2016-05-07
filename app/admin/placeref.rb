@@ -6,10 +6,13 @@ ActiveAdmin.register Placeref do
   index do
     column 'id', :placeref_id
     column 'place reference', :placeref
+    column 'passage_id', :passage_id
     column 'type', :placeref_type
     column 'place_id', :place_id
 
     actions
   end
+
+  filter :placeref, label: "place reference string"
 
 end
