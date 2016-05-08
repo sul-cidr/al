@@ -13,6 +13,7 @@
 
 
 class Passage < ActiveRecord::Base
+  self.primary_key = 'passage_id'
 
   def to_param
     passage_id

@@ -72,10 +72,6 @@ class Placeref < ActiveRecord::Base
 
   def self.rank_places(params)
     refs = Placeref.all
-    #
-    # if params[:passages] # array of passage_ids
-    #   places = Place.by_passage(:passage_id)
-    # end
 
     # agglomerates param terms
     if params[:work_cat]
@@ -96,10 +92,6 @@ class Placeref < ActiveRecord::Base
     if params[:work_id]
       refs = refs.joins{work}.where{work.work_id >> params[:work_id]}
     end
-
-    # if params[:passages] # array of passage_id
-    #   refs = refs.joins{work}.where{work.work_id >> params[:passages]}
-    # end
 
     counts = {}
 
