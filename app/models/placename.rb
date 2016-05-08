@@ -2,8 +2,7 @@
 #
 # Table name: placenames
 #
-#  id           :integer          not null
-#  placename_id :string           primary key
+#  placename_id :integer          not null, primary key
 #  placename    :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
@@ -12,6 +11,14 @@
 class Placename < ActiveRecord::Base
   self.primary_key = 'placename_id'
 
-  belongs_to :placeref
-  
+  before_create :set_id
+
+  def set_id
+    self.placename_id = Placename.maximum(:placename_id).next
+  end
+
+  belongs_to :placeref, :foreign_key => "placeref_id"
+
+
+
 end

@@ -3,14 +3,13 @@
 # Table name: placerefs
 #
 #  id            :integer          not null
-#  placeref_id   :integer          primary key
+#  placeref_id   :integer          not null, primary key
 #  work_id       :integer
 #  year          :integer
-#  passage_id    :string
+#  passage_id    :string           not null
 #  placeref      :string
 #  author_id     :integer
 #  place_id      :integer
-#  geom_wkt      :text
 #  placeref_type :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null

@@ -7,8 +7,17 @@ ActiveAdmin.register Passage do
 		column 'work', :work
 		column 'places', :placerefs
 
-		# actions TODO -> broken
+		actions
 	end
+
+  form do |f|
+    f.inputs "Passage" do
+      f.input :work
+      f.input :passage_id
+      f.input :text
+    end
+    f.actions
+  end
 
 	filter :work, collection: proc { Work.order(:title)}
 	filter :text

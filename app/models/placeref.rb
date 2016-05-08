@@ -3,14 +3,13 @@
 # Table name: placerefs
 #
 #  id            :integer          not null
-#  placeref_id   :integer          primary key
+#  placeref_id   :integer          not null, primary key
 #  work_id       :integer
 #  year          :integer
-#  passage_id    :string
+#  passage_id    :string           not null
 #  placeref      :string
 #  author_id     :integer
 #  place_id      :integer
-#  geom_wkt      :text
 #  placeref_type :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
@@ -25,7 +24,8 @@ class Placeref < ActiveRecord::Base
   belongs_to :work
   belongs_to :author
   belongs_to :place, :counter_cache => true
-  # has_one :place
+
+  has_one :placename, :foreign_key => "placename_id"
 
   scope :for_popup, -> {
     includes {work}

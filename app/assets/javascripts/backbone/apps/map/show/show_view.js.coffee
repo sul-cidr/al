@@ -215,6 +215,8 @@
       html = ''
 
       App.request "placeref:entities", params, (placerefs) =>
+        # console.log 'params', params
+        console.log 'placerefs models', placerefs.models
         _.each placerefs.models, (pr) =>
           # console.log 'placeref attributes', pr.attributes
           if pr.attributes.placeref.placeref_type == 'work'
@@ -278,7 +280,6 @@
           geom = attribs.geom_wkt
           pid = attribs.place_id
           pname = attribs.prefname
-
           if geom.substr(0,5) == 'POINT'
             coords = swap(wellknown(geom).coordinates)
             l_geom = new L.LatLng(coords[0],coords[1])

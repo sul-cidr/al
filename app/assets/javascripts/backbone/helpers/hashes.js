@@ -257,7 +257,8 @@ var workHash = {
   20282:{"author_id":10427,"work_year":2011,"title":"Gertrude Stein (bio-10427)"},
   20285:{"author_id":10429,"work_year":2011,"title":"Hilda Doolittle (bio-10429)"},
   20292:{"author_id":10431,"work_year":2011,"title":"Thomas Wolfe (bio-10431)"},
-  20294:{"author_id":10433,"work_year":2011,"title":"Sylvia Plath (bio-10433)"}
+  20294:{"author_id":10433,"work_year":2011,"title":"Sylvia Plath (bio-10433)"},
+  20607:{"author_id":10437,"work_year":-1,"title":"Hickory, Dickory, Dock"}
 
 }
 
@@ -312,7 +313,7 @@ var authHash = {
   10431:"Thomas Wolfe",
   10391:"Virginia Woolf",
   10389:"W. B. Yeats",
-
+  10437:"Anonymous"
 }
 
 var authLabel = {
@@ -366,6 +367,7 @@ var authLabel = {
   10431:"Wolfe",
   10391:"Woolf",
   10389:"Yeats",
+  10437:"Anon."
 }
 
 var boroughHash = {

@@ -161,32 +161,28 @@ ActiveRecord::Schema.define(version: 20160501232400) do
     t.datetime "updated_at",              null: false
   end
 
-  create_table "placenames", force: :cascade do |t|
-    t.string   "placename_id"
+  create_table "placenames", primary_key: "placename_id", force: :cascade do |t|
     t.string   "placename"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "placerefs", force: :cascade do |t|
-    t.integer  "placeref_id"
+    t.integer  "placeref_id",   null: false
     t.integer  "work_id"
     t.integer  "year"
-    t.string   "passage_id"
+    t.string   "passage_id",    null: false
     t.string   "placeref"
     t.integer  "author_id"
     t.integer  "place_id"
-    t.text     "geom_wkt"
     t.string   "placeref_type"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
 
-  add_index "placerefs", ["geom_wkt"], name: "idx_placeref_geomwkt", using: :btree
+  add_index "placerefs", ["placeref_id", "passage_id"], name: "placerefs_uniq", unique: true, using: :btree
 
-  create_table "places", id: false, force: :cascade do |t|
-    t.integer  "place_id"
-    t.string   "place_type"
+  create_table "places", primary_key: "place_id", force: :cascade do |t|
     t.string   "prefname"
     t.float    "latitude"
     t.float    "longitude"
