@@ -44,6 +44,9 @@ class Author < ActiveRecord::Base
   has_many :author_image_rels
   has_many :images, :through => :author_image_rels
 
+  accepts_nested_attributes_for :categories
+  accepts_nested_attributes_for :author_category_rels
+
   def to_s
     "#{prefname}"
   end

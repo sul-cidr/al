@@ -12,4 +12,8 @@
 class AuthorCategoryRel < ActiveRecord::Base
   belongs_to :author, :foreign_key => "author_id"
   belongs_to :category, :foreign_key => "category_id"
+
+  accepts_nested_attributes_for :author
+  accepts_nested_attributes_for :category
+
 end

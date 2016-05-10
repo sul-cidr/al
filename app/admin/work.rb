@@ -5,15 +5,32 @@ ActiveAdmin.register Work do
 
 	index do
 		column :work_id
-		column :title
-		column :author
+		column :title, sortable: :sorter
+		column :author, sortable: :author_id
 		column :work_year
-    
+
 		actions
 	end
 
 	filter :author
 	filter :title
+
+  form do |f|
+    f.inputs "Work" do
+      f.input :author
+      f.input :title
+      f.input :sorter, :hint => "Title without leading article(s)"
+      f.input :work_year, :hint => "Year to be used for display & temporal ordering"
+      f.input :keywords, :hint => "Externally generated; not avail. for new entries May 2016"
+    end
+  end
+
+  sidebar 'Categories', :only => :show do
+    table_for work.categories do |t|
+      t.column("id") { |category| category.category_id }
+      t.column("name") { |category| category.name }
+    end
+  end
 
 	sidebar 'Passages from this work', :only => :show do
     table_for Passage.joins(:work).where(:work_id => work.work_id) do |t|

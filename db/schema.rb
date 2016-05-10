@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160501232400) do
+ActiveRecord::Schema.define(version: 20160508233909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,12 +92,10 @@ ActiveRecord::Schema.define(version: 20160501232400) do
     t.date     "death_date"
     t.integer  "birth_year"
     t.integer  "death_year"
-    t.integer  "community_id"
-    t.integer  "standing_id"
     t.integer  "viaf_id"
     t.string   "wiki_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "categories", primary_key: "category_id", force: :cascade do |t|

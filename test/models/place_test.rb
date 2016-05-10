@@ -3,10 +3,7 @@
 # Table name: places
 #
 #  place_id        :integer          not null, primary key
-<<<<<<< HEAD
-=======
 #  place_type      :string
->>>>>>> ae4636d4c4595914056a68c31060a5edfcc21324
 #  prefname        :string
 #  latitude        :float
 #  longitude       :float

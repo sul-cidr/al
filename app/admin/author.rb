@@ -1,7 +1,7 @@
 ActiveAdmin.register Author do
   permit_params :author_id, :prefname, :surname, :middle, :given,
     :label, :birth_date, :death_date, :birth_year, :death_year,
-    :wiki_id, :viaf_id
+    :wiki_id, :viaf_id, :name, :category_id
 
 	config.sort_order = 'surname_asc'
 
@@ -11,13 +11,37 @@ ActiveAdmin.register Author do
 		column 'died', :death_year
 		column 'full name', :prefname
 		column 'VIAF id', :viaf_id
-    
+
 		actions
 	end
 
 	filter :prefname, label: 'full name'
-	filter :surname, label: 'last name'
-	filter :categories
+
+  form do |f|
+    f.inputs "Author" do
+      f.input :prefname, label: "Full name"
+      f.input :label,:hint => "for display, e.g. 'G. Eliot'"
+      f.input :surname
+      f.input :middle
+      f.input :given
+      f.input :birth_year
+      f.input :birth_date, :as => :datepicker,:hint => "type YYYY-MM-DD"
+      f.input :death_year
+      f.input :death_date, :as => :datepicker,:hint => "type YYYY-MM-DD"
+      f.input :wiki_id, label: "Wikipedia page ID, e.g. 'T.s._eliot'"
+      f.input :viaf_id
+    end
+
+    f.inputs "Categories" do
+      f.has_many :categories, new_record: "assign category" do |c|
+        c.input :category_id
+        # c.input :category_id, as: :select, collection: Category.select(:name).uniq
+      end
+    end
+
+    f.actions
+
+  end
 
 	sidebar 'Works by this Author', :only => :show do
     table_for Work.joins(:author).where(:author_id => author.author_id) do |t|
@@ -26,12 +50,13 @@ ActiveAdmin.register Author do
     end
   end
 
+  sidebar 'Categories', :only => :show do
+    table_for author.categories do |t|
+      t.column("id") { |category| category.category_id }
+      t.column("name") { |category| category.name }
+    end
+  end
 end
-
-# sidebar query:
-# SELECT "works".* FROM "works"
-# INNER JOIN "authors" ON "authors"."author_id" = "works"."author_id"
-# WHERE "works"."author_id" = $1  [["author_id", 10436]]
 
 
 # See permitted parameters documentation:
