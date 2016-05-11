@@ -18,7 +18,8 @@
 # reference in a work.passage to a place
 
 class Placeref < ActiveRecord::Base
-  self.primary_key = 'placeref_id'
+  self.primary_key = 'id'
+  # self.primary_key = 'placeref_id'
 
   belongs_to :passage
   belongs_to :work

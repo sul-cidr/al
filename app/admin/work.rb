@@ -23,7 +23,18 @@ ActiveAdmin.register Work do
       f.input :work_year, :hint => "Year to be used for display & temporal ordering"
       f.input :keywords, :hint => "Externally generated; not avail. for new entries May 2016"
     end
+    # , new_record: "add passage"
+    # f.inputs "Passages" do
+    #   f.has_many :passages do |p|
+    #     p.input :work_id
+    #     p.input :passage_id
+    #     p.input :text
+    #   end
+    # end
+    actions
   end
+
+
 
   sidebar 'Categories', :only => :show do
     table_for work.categories do |t|

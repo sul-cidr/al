@@ -258,7 +258,7 @@ var workHash = {
   20285:{"author_id":10429,"work_year":2011,"title":"Hilda Doolittle (bio-10429)"},
   20292:{"author_id":10431,"work_year":2011,"title":"Thomas Wolfe (bio-10431)"},
   20294:{"author_id":10433,"work_year":2011,"title":"Sylvia Plath (bio-10433)"},
-  20607:{"author_id":10437,"work_year":-1,"title":"Hickory, Dickory, Dock"}
+  20607:{"author_id":10437,"work_year":2016,"title":"A Book of Rhymes"}
 
 }
 

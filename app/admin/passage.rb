@@ -12,8 +12,9 @@ ActiveAdmin.register Passage do
   form do |f|
     f.inputs "Passage" do
       f.input :work
-      f.input :passage_id
+      f.input :passage_id, label: "passage_id"
       f.input :text
+      f.input :subject_id, label: "Subject (author id if Bio)", hint: "-1 if none"
     end
     f.actions
   end

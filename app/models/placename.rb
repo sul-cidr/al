@@ -11,6 +11,12 @@
 class Placename < ActiveRecord::Base
   self.primary_key = 'placename_id'
 
+  # after_initialize do
+  #   if new_record?
+  #     :set_id
+  #   end
+  # end
+
   before_create :set_id
 
   def set_id
@@ -18,7 +24,6 @@ class Placename < ActiveRecord::Base
   end
 
   belongs_to :placeref, :foreign_key => "placeref_id"
-
 
 
 end
