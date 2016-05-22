@@ -42,7 +42,7 @@
     <a class="pointer" onclick="scrollTo('mapcredits')">Historical Map Credits</a>
 
     <h4 class="red">Who</h4>
-    <p>This work extends the earlier <a href="http://authoriallondon.stanford.edu" target="_blank">"A Guide to Authorial London"</a> project at
+    <p>This work extends the earlier <a href="http://regis.stanford.edu/authlondon" target="_blank">"A Guide to Authorial London"</a> project at
       Stanford University (2011), led by <a href="http://bookhaven.stanford.edu/2013/02/a-durable-sense-of-joy-master-miltonist-martin-evans-1935-2013/" target="_blank"><b>Martin Evans</b></a>
       of the English Department. The biographical essays appearing here are those authored by Professor Evans for the original project.
     </p>

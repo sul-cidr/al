@@ -4,7 +4,7 @@ class AuthorsController < ApplicationController
   end
 
   def index
-    authors = Author.order(:surname).where('author_id < 10434')
+    authors = Author.order(:surname).where('author_id < 10434 or author_id > 10436')
 
     if params[:author_id]
       authors = Author.where(:author_id => params[:author_id])
@@ -31,7 +31,7 @@ class AuthorsController < ApplicationController
     @author = Author.new author_params
     @author.save
   end
-  # 
+  #
   # private
   #
   # def author_params

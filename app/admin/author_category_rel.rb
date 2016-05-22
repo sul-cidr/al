@@ -1,7 +1,8 @@
 ActiveAdmin.register AuthorCategoryRel do
   permit_params :category_id, :author_id
 
-  config.sort_order = 'author_id_asc'
+  config.sort_order = 'id_desc'
+  # config.sort_order = 'author_id_asc'
 
   index do
     column 'author', :author

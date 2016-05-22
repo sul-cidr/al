@@ -5,7 +5,7 @@ ActiveAdmin.register Placeref do
   config.sort_order = 'placeref'
 
   index do
-    column 'id', :placeref_id
+    column 'placename_id', :placeref_id
     column 'place reference', :placeref
     column 'passage_id', :passage_id
     column 'type', :placeref_type
@@ -16,8 +16,8 @@ ActiveAdmin.register Placeref do
 
   form do |f|
     f.inputs "Placeref Details" do
-      li "Have placeref_id and place_id to hand"
-      f.input :placeref_id, label: "placeref_id"
+      li "Have placename_id and place_id to hand"
+      f.input :placeref_id, label: "placename_id"
       f.input :placeref, label: "placeref string"
       f.input :work_id, label: "work_id"
       f.input :author_id, label: "author_id"

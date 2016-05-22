@@ -3,7 +3,8 @@ ActiveAdmin.register Author do
     :label, :birth_date, :death_date, :birth_year, :death_year,
     :wiki_id, :viaf_id, :name, :category_id
 
-	config.sort_order = 'surname_asc'
+	config.sort_order = 'author_id_desc'
+	# config.sort_order = 'surname_asc'
 
 	index do
 		column 'author_id', :author_id
@@ -21,7 +22,7 @@ ActiveAdmin.register Author do
     f.inputs "Author" do
       f.input :prefname, label: "Full name"
       f.input :label,:hint => "for display, e.g. 'G. Eliot'"
-      f.input :surname
+      f.input :surname, :hint => "Needed for alphabetizing"
       f.input :middle
       f.input :given
       f.input :birth_year

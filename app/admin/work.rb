@@ -1,7 +1,8 @@
 ActiveAdmin.register Work do
   permit_params :work_id, :title, :sorter, :author_id, :work_year, :keywords
 
-	config.sort_order = 'author_id_asc_and_title_asc'
+	config.sort_order = 'work_id_desc'
+	# config.sort_order = 'author_id_asc_and_title_asc'
 
 	index do
 		column :work_id

@@ -198,5 +198,8 @@ var workLookup =
   {label:"Murder in the Cathedral",value:20603},
   {label:"Mrs. Dalloway",value:20604},
   {label:"Old Possum''s Book of Practical Cats",value:20605},
-  {label:"Orlando: A Biography",value:20606}
+  {label:"Orlando: A Biography",value:20606},
+  {label:"Scoop",value:20609},
+  {label:"A Book of Rhymes",value:20607}
+
 ]
