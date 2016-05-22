@@ -69,7 +69,9 @@
           return bioPassagesView.collection.models[0].attributes.work_id
 
         App.authorContentRegion.show bioPassagesView
-        $(".work-title").html('<p class="byline">by Martin Evans</p>')
+        $(".work-title").html('<p class="byline">by '+
+          authHash[workHash[passb.collection.models[0].attributes.work_id].author_id].fullname+
+          '</p>')
 
     getBioPassagesView: (bio_passages, type) ->
       new Show.Passages

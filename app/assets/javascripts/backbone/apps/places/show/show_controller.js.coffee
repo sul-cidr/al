@@ -35,7 +35,7 @@
           # console.log 'areaLayout shown'
           @showTitle area
           @showPlaceContent area
-          
+
           ga('send', 'pageview', area.get("prefname"));
 
           # for map
@@ -107,7 +107,7 @@
     listPlacePassages: (authid) ->
       # console.log 'listPlacePassages() for', authid
       $("#place_passages_region").removeClass("hidden")
-      prefname = authHash[authid]
+      prefname = authHash[authid].fullname
 
       window.authorPlacerefs =
         _.filter @activePlacerefs.models, (pr) =>
