@@ -1,7 +1,7 @@
 ActiveAdmin.register Author do
   permit_params :author_id, :prefname, :surname, :middle, :given,
     :label, :birth_date, :death_date, :birth_year, :death_year,
-    :wiki_id, :viaf_id, :name, :category_id
+    :wiki_id, :viaf_id, :name, :category_id, :image
 
 	config.sort_order = 'author_id_desc'
 	# config.sort_order = 'surname_asc'
@@ -29,6 +29,7 @@ ActiveAdmin.register Author do
       f.input :birth_date, :as => :datepicker,:hint => "type YYYY-MM-DD"
       f.input :death_year
       f.input :death_date, :as => :datepicker,:hint => "type YYYY-MM-DD"
+      f.input :image, as: :file
       f.input :wiki_id, label: "Wikipedia page ID, e.g. 'T.s._eliot'"
       f.input :viaf_id
     end

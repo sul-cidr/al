@@ -8,6 +8,7 @@ json.array! @authors do |author|
     :viaf_id,
     :wiki_id,
     :birth_year,
-    :death_year
+    :death_year,
+    :image_file_name
   )
 end

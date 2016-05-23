@@ -31,6 +31,10 @@ class AuthorsController < ApplicationController
     @author = Author.new author_params
     @author.save
   end
+
+  def author_params
+    params.require(:author).permit(:image)
+  end
   #
   # private
   #
