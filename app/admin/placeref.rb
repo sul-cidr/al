@@ -1,6 +1,6 @@
 ActiveAdmin.register Placeref do
   permit_params :placeref_id, :placeref, :work_id, :author_id, :passage_id,
-    :placeref_type, :place_id
+    :placeref_type, :place_id, :year
 
   config.sort_order = 'placeref'
 
