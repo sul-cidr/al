@@ -22,7 +22,7 @@ ActiveAdmin.register Work do
       f.input :title
       f.input :sorter, :hint => "Title without leading article(s)"
       f.input :work_year, :hint => "Year to be used for display & temporal ordering"
-      f.input :keywords, :hint => "Externally generated; not avail. for new entries May 2016"
+      f.input :keywords, :default => [[""]], :hint => "Externally generated; not avail. for new entries May 2016"
     end
     # , new_record: "add passage"
     # f.inputs "Passages" do

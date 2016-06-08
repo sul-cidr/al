@@ -20,6 +20,7 @@ ActiveAdmin.register Placeref do
       f.input :placeref_id, label: "placename_id"
       f.input :placeref, label: "placeref string"
       f.input :work_id, label: "work_id"
+      f.input :year, label: "work year"
       f.input :author_id, label: "author_id"
       f.input :passage_id, label: "passage_id"
       f.input :placeref_type, label: "type ('work' or 'bio')"
