@@ -20,9 +20,10 @@ ActiveAdmin.register Work do
     f.inputs "Work" do
       f.input :author
       f.input :title
-      f.input :sorter, :hint => "Title without leading article(s)"
+      f.input :sorter,   :hint => "Title without leading article(s)"
       f.input :work_year, :hint => "Year to be used for display & temporal ordering"
-      f.input :keywords, :default => [[""]], :hint => "Externally generated; not avail. for new entries May 2016"
+      f.input :keywords, :input_html => {:value => '[[""]]' } ,
+        :hint => 'accept default [[""]] or manually enter, e.g. [["MyPlacename":1,"Another":2]]'
     end
     # , new_record: "add passage"
     # f.inputs "Passages" do
