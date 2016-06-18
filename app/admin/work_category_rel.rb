@@ -10,11 +10,8 @@ ActiveAdmin.register WorkCategoryRel do
   end
 
   index do
-    column 'work', sortable: 'work.title' do |w|
-      work = Work.find(w.work_id).title
-    end
+    column 'work', :work, sortable: :work_id
     column 'category', :category
-    # column 'category id', :category_id
 
     actions
   end
@@ -26,10 +23,11 @@ ActiveAdmin.register WorkCategoryRel do
       f.input :category_id, as: :select, :collection =>
         Category.where("dimension_id < 3").map{|c| ["#{c.name}", c.category_id]}
     end
+
     actions
   end
 
-  filter :work
+  # filter :work
   filter :category, :collection =>
     Category.where("dimension_id < 3").map{|c| ["#{c.name}", c.category_id]}
 

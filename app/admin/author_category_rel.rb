@@ -1,12 +1,11 @@
 ActiveAdmin.register AuthorCategoryRel do
   permit_params :category_id, :author_id
 
-  config.sort_order = 'id_desc'
+  # config.sort_order = 'id_desc'
   # config.sort_order = 'author_id_asc'
 
   index do
-    column 'author', :author
-    # column 'author id', :author_id
+    column 'author', :author, sortable: :author_id
     column 'category', :category, sortable: :category_id
 
     actions
@@ -24,7 +23,7 @@ ActiveAdmin.register AuthorCategoryRel do
   end
 
 
-  filter :author
+  # filter :author
   filter :category, :collection =>
     Category.where("dimension_id > 2").map{|c| ["#{c.name}", c.category_id]}
 end

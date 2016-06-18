@@ -34,13 +34,6 @@ ActiveAdmin.register Author do
       f.input :viaf_id
     end
 
-    f.inputs "Categories" do
-      f.has_many :categories, new_record: "assign category" do |c|
-        c.input :category_id
-        # c.input :category_id, as: :select, collection: Category.select(:name).uniq
-      end
-    end
-
     f.actions
 
   end

@@ -12,4 +12,7 @@
 class WorkCategoryRel < ActiveRecord::Base
   belongs_to :work, :foreign_key => "work_id"
   belongs_to :category, :foreign_key => "category_id"
+
+  accepts_nested_attributes_for :work
+  accepts_nested_attributes_for :category
 end

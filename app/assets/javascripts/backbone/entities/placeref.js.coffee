@@ -13,7 +13,7 @@
   API =
     # all placerefs less bio not yet mapped to author/work
     getPlacerefEntities: (data, cb) ->
-      console.log 'getPlacerefEntities', data
+      # console.log 'getPlacerefEntities', data
       placerefs = new Entities.PlacerefCollection()
       placerefs.fetch
         data: data
