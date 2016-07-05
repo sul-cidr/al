@@ -19,13 +19,13 @@
       # make work hashes
       # worksYearsAll [YYYY, ...]
       # workHash: 20469:{"author_id":10405,"work_year":1921,"title":"To Let"}
-      window.workYearsAll = new Array
+      window.worksYearsAll = new Array
       window.workHash = new Array
       App.request "work:entities", (works) =>
         _.each works.models, (w) =>
           wa = w.attributes
-          if workYearsAll.indexOf(wa.work_year) < 0
-            workYearsAll.push wa.work_year
+          if worksYearsAll.indexOf(wa.work_year) < 0
+            worksYearsAll.push wa.work_year
           workHash[wa.work_id]=
             {'author_id':wa.author_id,"work_year":wa.work_year,"title":wa.title}
 

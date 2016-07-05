@@ -257,7 +257,7 @@
       if params && params['author_id'] && !($.isArray(params['author_id']))
         App.request "author:entity", params['author_id'], (author) =>
           @authlabel = author.get("label")
-          # console.log 'authlabel', @authlabel
+          console.log 'authlabel', @authlabel
       App.request "place:entities", params, (places) =>
         @numPlaces = places.models.length
         window.numPlaces = @numPlaces

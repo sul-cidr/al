@@ -200,6 +200,14 @@ var workLookup =
   {label:"Old Possum''s Book of Practical Cats",value:20605},
   {label:"Orlando: A Biography",value:20606},
   {label:"Scoop",value:20609},
-  {label:"A Book of Rhymes",value:20607}
+  {label:"Martin Chuzzlewit",value:20610},
+  {label:"Chelsea Buns",value:20611},
+  {label:"Oranges and Lemons",value:20612},
+  {label:"London Bridge",value:20613},
+  {label:"As I Was Going o'er Westminster Bridge",value:20614},
+  {label:"At Islington",value:20615},
+  {label:"The Unfortunate Rake",value:20616},
+  {label:"White Teeth",value:20618},
+  {label:"NW",value:20619}
 
 ]

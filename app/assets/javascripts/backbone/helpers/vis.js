@@ -171,10 +171,11 @@ var packAuths = function (auths) {
       .attr("class", "circle-place")
       // .on("mouseover", function(d){console.log(d)})
       .append("svg:title")
-        .text(function(d) { return authHash[d.key]});;
+        .text(function(d) { return authHash[d.key].label});;
+        // .text(function(d) { return authHash[d.key]});;
 
   node.append("text")
-      .text(function(d) { return authLabel[d.key]; })
+      .text(function(d) { return authHash[d.key].label; })
       .style("font-size", function(d) {
         return Math.min(2 * d.r, (2 * d.r - 8) / this.getComputedTextLength() * 24) + "px";
       })
