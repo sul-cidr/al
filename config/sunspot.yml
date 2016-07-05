@@ -4,8 +4,13 @@ production:
     port: 443
     log_level: WARNING
     path: /solr/cidr-authorial-stage
-    # read_timeout: 2
-    # open_timeout: 0.5
+
+staging:
+  solr:
+    hostname: sul-solr.stanford.edu
+    port: 443
+    log_level: WARNING
+    path: /solr/cidr-authorial-stage
 
 development:
   solr:

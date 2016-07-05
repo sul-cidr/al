@@ -71,7 +71,7 @@ function colorizeFont(value,range) {
   return s(value);
 }
 function poetize(string) {
-  return string.replace(/\/(?!span|p)/g,'<br/>');
+  return string.replace(/\/(?!span|p|i|em|b)/g,'<br/>');
 }
 
 function hardSpace(string){

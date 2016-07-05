@@ -8,12 +8,16 @@
       ?
     <% else if @birth_year > 0: %>
       <%= @birth_year %>
+    <% else if @birth_year is null: %>
+      -
     <% end %>
     &middot; d.
     <% if @death_year < 0: %>
       ?
     <% else if @death_year > 0: %>
       <%= @death_year %>
+    <% else if @death_year is null: %>
+      -
     <% end %>
   <hr/>
 </div>
