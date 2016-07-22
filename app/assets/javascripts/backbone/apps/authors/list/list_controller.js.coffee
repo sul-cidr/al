@@ -18,7 +18,6 @@
         # make hash
         window.authHash = new Array
         _.each authors.models, (a) =>
-          # z[10377]= {"prefname":"dickens", "foo":"bar"}
           authHash[a.attributes.author_id]={'fullname':a.attributes.prefname,"label":a.attributes.label}
         @layout = @getLayoutView()
         # console.log authors.models.length + ' authors'

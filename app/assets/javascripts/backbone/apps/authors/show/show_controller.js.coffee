@@ -54,7 +54,7 @@
 
     listBioPassages: (author) ->
       id = author.get("author_id")
-      # console.log 'List.Controller.listBioPassages() for ',id
+
       App.request "passage:entities", id, "bio", (bio_passages) =>
         # console.log bio_passages
         # wont show/render twice without reset
@@ -64,14 +64,14 @@
         bioPassagesView = @getBioPassagesView bio_passages, 'bio'
         # console.log 'listBioPassages(), '+ bio_passages.length + ' for ' + author_id
         window.passb = bioPassagesView
+        # bioauthor = workHash[passb.collection.models[0].attributes.work_id].author_id
+        # console.log 'bioauthor is ' + if bioauthor == 10438 then 'Kenny' else 'Martin'
         # expose for disambiguating placeref selection on click
         App.reqres.setHandler "activework:id", ->
-          return bioPassagesView.collection.models[0].attributes.work_id
+          return passb.collection.models[0].attributes.work_id
         console.log('listBioPassages work_id',passb.collection.models[0].attributes.work_id)
+
         App.authorContentRegion.show bioPassagesView
-        $(".work-title").html('<p class="byline">by '+
-          authHash[workHash[passb.collection.models[0].attributes.work_id].author_id].fullname+
-          '</p>')
 
     getBioPassagesView: (bio_passages, type) ->
       new Show.Passages
