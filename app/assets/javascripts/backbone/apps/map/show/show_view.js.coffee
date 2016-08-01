@@ -215,7 +215,7 @@
       html = ''
 
       App.request "placeref:entities", params, (placerefs) =>
-        # console.log 'params', params
+        console.log 'params', params
         # console.log 'placerefs models', placerefs.models
         _.each placerefs.models, (pr) =>
           # console.log 'placeref attributes', pr.attributes
