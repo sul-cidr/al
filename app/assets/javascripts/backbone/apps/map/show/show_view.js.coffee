@@ -101,6 +101,7 @@
       }).setActiveArea('viewport-authors')
 
       baseMaps = {
+        # "Modern": l_mbgrey
         "Modern": l_mblight
         # "Modern": l_osm
       }
@@ -125,8 +126,8 @@
       # @Copenhagen = [55.676098, 12.568337]
 
       # use if not mapbox
+      # @map.addLayer(l_mbgrey);
       # @map.addLayer(l_osm);
-
       @map.addLayer(l_mblight);
 
       @map.setView(@London, 12)
@@ -516,11 +517,6 @@
         detectRetina: true
         });
 
-    # l_bowles = L.tileLayer.wms('http://hgl.harvard.edu:8080/geoserver/wms/', {
-    #   layers: 'cite:SDE2.G5754_L7_1783_B6',
-    #   format: 'image/png',
-    #   transparent: true
-    # })
 
     l_taylor = L.mapbox.tileLayer(
         'elijahmeeks.1pr88bpk',
