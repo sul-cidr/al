@@ -33,6 +33,15 @@ class Work < ActiveRecord::Base
     self.work_id = Work.maximum(:work_id).next
   end
 
+  # compute keywords field on save
+  # work_id is an integer, e.g. 20564
+  after_save :update_keywords
+
+  def update_keywords
+    keywords = ActiveRecord::Base.connection.exec_query('select pr.placeref,count(pr.placeref) from works w join placerefs pr on w.work_id = pr.work_id
+   where w.work_id = '+self.work_id.to_s+' group by pr.placeref order by pr.placeref;').rows
+  end
+
   def self.rank_authors(params)
     works = all
 

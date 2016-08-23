@@ -103,28 +103,6 @@ var histYears = function (years) {
   	.attr("height",15)
     .attr("class", "legend-bar")
 
-// overlay hollow bars for all works (dataAll, yAll)
-  // TODO: get reference bars for overall placeref count in
-  // var barAll = svg.selectAll(".barAll")
-  //     .data(dataAll)
-  //   .enter().append("g")
-  //     .attr("class", "barAll")
-  //     .attr("transform", function(d) { return "translate(" + x(d.x) + "," + yAll(d.y) + ")"; });
-  //
-  // barAll.append("rect")
-  //     .attr("x", 1)
-  //     //.attr("width", x(data[0].dx) - 1)
-  //     .attr("width", barWidthAll)
-  //     .attr("height", function(d) { return height - yAll(d.y); });
-
-  // legend = svg.append("svg:g")
-  //   .attr("id","histlegend")
-  //
-  // legend.append("image")
-  // 	.attr("xlink:href", function(d) { return ("assets/images/hist-legend.png")})
-  // 	.attr("x",1).attr("y",-5)
-  // 	.attr("width",80)
-  // 	.attr("height",29)
 }
 
 var packAuths = function (auths) {
@@ -171,7 +149,9 @@ var packAuths = function (auths) {
       .attr("class", "circle-place")
       // .on("mouseover", function(d){console.log(d)})
       .append("svg:title")
-        .text(function(d) { return authHash[d.key].label});;
+        .text(function(d) {
+          console.log(d.key)
+          return authHash[d.key].label});;
         // .text(function(d) { return authHash[d.key]});;
 
   node.append("text")
