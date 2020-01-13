@@ -3,7 +3,7 @@ production:
     hostname: sul-solr.stanford.edu
     port: 443
     log_level: WARNING
-    path: /solr/cidr-authorial-stage
+    path: /solr/cidr-authorial-prod
 
 staging:
   solr:
