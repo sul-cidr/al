@@ -484,15 +484,14 @@
       marker = $idToFeature.placerefs[id];
       this.map.flyTo(marker.getLatLng(), styles.zoom.feature);
 
-    # L.mapbox.accessToken = 'pk.eyJ1IjoiZWxpamFobWVla3MiLCJhIjoiY2loanVmcGljMG50ZXY1a2xqdGV3YjRkZyJ9.tZqY_fRD2pQ1a0E599nKqg'
+    L.mapbox.accessToken = 'pk.eyJ1IjoiZWxpamFobWVla3MiLCJhIjoiYXlPRmNObyJ9.wnIqLHTkEEAVVT-ihW8BjQ'
 
     # mapbox light basemap, in progress
-    l_mblight = L.mapbox.tileLayer(
-        # 'elijahmeeks.8a9e3cb1', # light
-        'elijahmeeks.e72a8419',  # emerald
-        L.mapbox.accessToken, {
+    l_mblight = L.tileLayer(
+        'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+        id: 'elijahmeeks/ck6cspw6d07ne1ipkqy6czvut',
         attribution: 'Mapbox',
-        detectRetina: true
+        accessToken: L.mapbox.accessToken
         });
 
     # OSM base layer
