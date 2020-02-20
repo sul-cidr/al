@@ -486,13 +486,7 @@
 
     L.mapbox.accessToken = 'pk.eyJ1IjoiZWxpamFobWVla3MiLCJhIjoiYXlPRmNObyJ9.wnIqLHTkEEAVVT-ihW8BjQ'
 
-    # mapbox light basemap, in progress
-    l_mblight = L.tileLayer(
-        'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-        id: 'elijahmeeks/ck6cspw6d07ne1ipkqy6czvut',
-        attribution: 'Mapbox',
-        accessToken: L.mapbox.accessToken
-        });
+    l_mblight = L.mapbox.styleLayer('mapbox://styles/elijahmeeks/ck6cspw6d07ne1ipkqy6czvut');
 
     # OSM base layer
     l_osm = L.tileLayer(
