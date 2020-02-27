@@ -210,7 +210,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mapbox-rails (1.6.1.1)
+    mapbox-rails (2.3.0)
     mime-types (2.99)
     mimemagic (0.3.1)
     mini_portile2 (2.0.0)
@@ -358,7 +358,7 @@ DEPENDENCIES
   font-awesome-rails
   jbuilder (~> 2.0)
   jquery-rails
-  mapbox-rails
+  mapbox-rails (= 2.3.0)
   paperclip!
   pg
   rabl

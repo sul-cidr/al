@@ -14,7 +14,7 @@ gem 'compass-rails', '2.0.4'
 gem 'pg'
 gem 'activerecord-postgis-adapter'
 gem 'auto_increment'
-gem 'mapbox-rails'
+gem 'mapbox-rails', '2.3.0'
 
 gem 'typekit-rails'
 
