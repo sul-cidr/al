@@ -494,27 +494,32 @@
       { detectRetina: true }
       );
 
-    l_indicator = L.mapbox.tileLayer(
-        'elijahmeeks.5s7vzgi4',
-        # 'elijahmeeks.gqd89536',
-        L.mapbox.accessToken, {
-        attribution: 'Indicator (1880)',
-        detectRetina: true
-        });
+    l_indicator = L.tileLayer(
+         'https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
+         tileSize: 256,
+         id: 'elijahmeeks.5s7vzgi4',
+         #id: 'elijahmeeks.gqd89536',
+         attribution: 'Indicator (1880)',
+         accessToken: L.mapbox.accessToken,
+         detectRetina: true
+         });
 
-    l_bowles = L.mapbox.tileLayer(
-        'elijahmeeks.95vtr2c4',
-        # 'elijahmeeks.36cac3di',
-        L.mapbox.accessToken, {
-        attribution: 'Bowles (1783)',
-        detectRetina: true
-        });
+    l_bowles = L.tileLayer(
+         'https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
+         tileSize: 256,
+         id: 'elijahmeeks.95vtr2c4',
+         #id: 'elijahmeeks.36cac3di',
+         attribution: 'Bowles (1783)',
+         accessToken: L.mapbox.accessToken,
+         detectRetina: true
+         });
 
-
-    l_taylor = L.mapbox.tileLayer(
-        'elijahmeeks.1pr88bpk',
-        # 'elijahmeeks.7dd6ynaj',
-        L.mapbox.accessToken, {
-        attribution: 'Taylor (1723)',
-        detectRetina: true
-        });
+    l_taylor = L.tileLayer(
+         'https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
+         tileSize: 256,
+         id: 'elijahmeeks.1pr88bpk',
+         #id: 'elijahmeeks.7dd6ynaj',
+         attribution: 'Taylor (1723)',
+         accessToken: L.mapbox.accessToken,
+         detectRetina: true
+         });
