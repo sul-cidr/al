@@ -31,7 +31,7 @@
     "jquery": "~2.1.4",
     "jquery-ui": "~1.11.4",
     "leaflet": "~0.7.5",
-    "leaflet-active-area": "https://github.com/Mappy/Leaflet-active-area.git",
+    "leaflet-active-area": "https://github.com/Mappy/Leaflet-active-area.git#e59b58d07c",
     "leaflet-omnivore": "=0.3.2",
     "lesshat": "~3.0.2",
     "lodash": "~3.10.1",
