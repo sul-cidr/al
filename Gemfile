@@ -23,7 +23,7 @@ gem 'typekit-rails'
 gem 'seedbank'
 
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
-gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+gem "paperclip", git: "https://github.com/thoughtbot/paperclip"
 gem 'devise'
 gem 'dotenv-rails'
 
